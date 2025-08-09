@@ -3,20 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>vFlat Lite — 브라우저 문서 펴주기</title>
-  <meta name="description" content="이미지/PDF를 브라우저에서 바로 원근 보정, 기울기 보정, 조명 보정, 대비 강화해줍니다."/>
+  <title>vFlat Lite — 자동 보정</title>
+  <meta name="description" content="이미지/PDF를 브라우저에서 자동 원근/기울기/조명/대비 보정합니다."/>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><rect width='128' height='128' rx='24' fill='%2360a5fa'/><path d='M30 84c16-32 52-32 68 0' stroke='%230b0c10' stroke-width='10' fill='none' stroke-linecap='round'/><circle cx='44' cy='48' r='6' fill='%230b0c10'/><circle cx='84' cy='48' r='6' fill='%230b0c10'/></svg>" type="image/svg+xml">
 
-  <!-- OpenCV.js -->
-  <script async src="https://docs.opencv.org/4.x/opencv.js"></script>
-  <!-- PDF.js -->
+  <!-- OpenCV.js (필수) -->
+  <script src="https://docs.opencv.org/4.x/opencv.js"></script>
+  <!-- PDF.js (PDF → 이미지 렌더) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.min.js"></script>
-  <script>
-    if (window['pdfjsLib']) {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.worker.min.js";
-    }
-  </script>
-  <!-- JSZip & FileSaver -->
+  <script>pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.worker.min.js";</script>
+  <!-- JSZip & FileSaver (ZIP 내보내기) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
@@ -32,6 +28,7 @@
     .subtitle{color:var(--muted);margin:0 0 12px 0}
     .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:16px}
     .dropzone{border:2px dashed var(--border);border-radius:12px;padding:24px;text-align:center;color:var(--muted);cursor:pointer;position:relative}
+    .dropzone.drag{border-color:var(--accent);color:var(--fg)}
     .dropzone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
     .controls .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:8px 0}
     .controls label{display:flex;flex-direction:column;font-size:14px;color:var(--muted)}
@@ -47,31 +44,32 @@
     .item .actions{display:flex;gap:8px}
     .item .actions .btn{flex:1;text-align:center;padding:8px;border-radius:8px;border:1px solid var(--border);background:#0b1220;color:var(--fg)}
     .footer{color:var(--muted);font-size:12px;text-align:center;margin-bottom:24px}
+    progress{width:100%; height:10px; border-radius:6px; background:#0b1220}
   </style>
 </head>
 <body>
   <header class="container">
     <h1>vFlat Lite</h1>
-    <p class="subtitle">GitHub Pages에서 바로 돌아가는 브라우저 전용 문서 보정기</p>
+    <p class="subtitle">GitHub Pages용 • 업로드하면 자동 보정 시작</p>
   </header>
 
   <main class="container">
     <section class="card">
-      <div id="dropzone" class="dropzone" tabindex="0">
+      <div id="dropzone" class="dropzone" tabindex="0" aria-label="업로드 영역">
         <div><strong>이미지(JPG/PNG) 또는 PDF</strong>를 끌어놓거나 눌러서 업로드하세요.</div>
         <input id="fileInput" type="file" accept="image/*,.pdf" multiple />
       </div>
 
       <div class="controls">
         <div class="row">
-          <label><span>흑백 임계 (Adaptive)</span><input id="useBW" type="checkbox" checked /></label>
-          <label><span>CLAHE(대비) 강도</span><input id="claheClip" type="range" min="1.0" max="6.0" step="0.5" value="3.0" /></label>
+          <label><span>자동 흑백(Adaptive)</span><input id="useBW" type="checkbox" checked /></label>
+          <label><span>대비(CLAHE)</span><input id="claheClip" type="range" min="1.0" max="6.0" step="0.5" value="3.0" /></label>
           <label><span>샤프닝</span><input id="sharpen" type="range" min="0" max="3" step="1" value="1" /></label>
-        </div>
-        <div class="row">
-          <button id="processAll" class="btn primary">전체 보정</button>
           <button id="downloadZip" class="btn">ZIP 다운로드</button>
           <button id="resetAll" class="btn danger">초기화</button>
+        </div>
+        <div class="row" style="width:100%;">
+          <progress id="progress" max="100" value="0" aria-label="진행률"></progress>
         </div>
         <div id="status" class="status">준비됨</div>
       </div>
@@ -84,7 +82,7 @@
   </main>
 
   <footer class="container footer">
-    <span>Made for GitHub Pages • 브라우저에서만 동작 • 개인정보 서버 전송 없음</span>
+    <span>브라우저에서만 동작 • 서버 전송 없음</span>
   </footer>
 
   <!-- utils -->
@@ -96,9 +94,10 @@
     const fileToArrayBuffer = (file)=>file.arrayBuffer();
     const nameWithSuffix = (name, suffix, ext="jpg")=> name.replace(/\.[^.]+$/, "") + suffix + "." + ext;
     const setStatus = (msg)=>$("#status").textContent = msg;
+    const sleep = (ms)=>new Promise(r=>setTimeout(r,ms));
   </script>
 
-  <!-- processor (OpenCV.js 파이프라인) -->
+  <!-- OpenCV 파이프라인 -->
   <script>
     async function waitForOpenCV(){
       return new Promise(res=>{
@@ -240,19 +239,34 @@
     }
   </script>
 
-  <!-- app (UI glue) -->
+  <!-- 앱 로직 (자동보정) -->
   <script>
     const queueEl=$("#queue"), fileInput=$("#fileInput"), dropzone=$("#dropzone");
-    const btnProcessAll=$("#processAll"), btnDownloadZip=$("#downloadZip"), btnResetAll=$("#resetAll");
+    const btnDownloadZip=$("#downloadZip"), btnResetAll=$("#resetAll");
+    const bar=$("#progress");
     let items=[]; // { name, originalBlob, processedBlob, el }
+    let processing=false;
 
+    // 업로드 → 자동 큐잉 → 즉시 자동 보정
     async function handleFiles(files){
-      for(const file of files){
-        if(file.type==="application/pdf"||file.name.toLowerCase().endsWith(".pdf")){
-          await enqueuePdf(file);
-        } else if (file.type.startsWith("image/")){
-          await enqueueImage(file, file.name);
+      try{
+        setStatus("파일을 읽는 중…");
+        const list=[...files];
+        // 큰 PDF에서 메모리 폭주 방지: 순차 처리
+        for(const f of list){
+          if(f.type==="application/pdf"||f.name.toLowerCase().endsWith(".pdf")){
+            await enqueuePdf(f);
+          } else if (f.type.startsWith("image/")){
+            await enqueueImage(f, f.name);
+          } else {
+            console.warn("지원하지 않는 형식:", f.name);
+          }
         }
+        setStatus("자동 보정 시작…");
+        autoProcess();
+      }catch(err){
+        console.error(err);
+        setStatus("업로드 중 오류 발생");
       }
     }
 
@@ -265,22 +279,20 @@
         <div class="thumb"><img src="${url}" alt="${name}"></div>
         <div class="meta"><span>${name}</span><span class="badge">대기</span></div>
         <div class="actions">
-          <button class="btn doProcess">보정</button>
           <button class="btn doDownload" disabled>다운로드</button>
         </div>
       `;
-      $(".doProcess",el).addEventListener("click",()=>processOne(item,el));
       $(".doDownload",el).addEventListener("click",()=>downloadOne(item));
       item.el=el;
       items.push(item);
-      queueEl.prepend(el);
+      queueEl.append(el);
     }
 
     async function enqueuePdf(file){
-      setStatus(`PDF 불러오는 중: ${file.name}`);
       const buf=await fileToArrayBuffer(file);
       const pdf=await pdfjsLib.getDocument({ data: buf }).promise;
       for(let p=1;p<=pdf.numPages;p++){
+        setStatus(`PDF 렌더링 (${p}/${pdf.numPages})`);
         const page=await pdf.getPage(p);
         const viewport=page.getViewport({ scale: 2.0 });
         const canvas=document.createElement("canvas");
@@ -289,15 +301,16 @@
         await page.render({ canvasContext: ctx, viewport }).promise;
         const blob=await new Promise(res=>canvas.toBlob(res,"image/jpeg",0.95));
         await enqueueImage(blob, `${file.name.replace(/\.pdf$/i,"")}_p${p}.jpg`);
+        // UI 렉 방지
+        await sleep(10);
       }
-      setStatus(`PDF 처리 대기열 추가 완료 (${pdf.numPages}페이지)`);
     }
 
-    async function processOne(item, el){
+    async function processOne(item){
+      const el=item.el;
       const badge=$(".badge",el);
       const btn=$(".doDownload",el);
       badge.textContent="보정 중…";
-      setStatus(`보정 중: ${item.name}`);
 
       await waitForOpenCV();
       const bitmap=await blobToImageBitmap(item.originalBlob);
@@ -314,7 +327,28 @@
       $(".thumb img", el).src=URL.createObjectURL(outBlob);
       badge.textContent="완료";
       btn.disabled=false;
-      setStatus(`완료: ${item.name}`);
+    }
+
+    async function autoProcess(){
+      if(processing) return;
+      processing=true;
+      try{
+        let total=items.length, done=0;
+        bar.max=total; bar.value=0;
+        for(const it of items){
+          if(!it.processedBlob){
+            setStatus(`보정 중: ${it.name}`);
+            await processOne(it);
+          }
+          done++; bar.value=done;
+        }
+        setStatus("전체 자동 보정 완료");
+      }catch(err){
+        console.error(err);
+        setStatus("보정 중 오류 발생");
+      }finally{
+        processing=false;
+      }
     }
 
     async function downloadOne(item){
@@ -326,15 +360,6 @@
       a.click();
       a.remove();
     }
-
-    btnProcessAll.addEventListener("click", async ()=>{
-      for(const item of items){
-        if(!item.processedBlob){
-          await processOne(item, item.el);
-        }
-      }
-      setStatus("전체 보정 완료");
-    });
 
     btnDownloadZip.addEventListener("click", async ()=>{
       const zip=new JSZip();
@@ -353,19 +378,21 @@
     btnResetAll.addEventListener("click", ()=>{
       items=[];
       $("#queue").innerHTML="";
+      $("#progress").value=0; $("#progress").max=100;
       setStatus("초기화됨");
     });
 
-    // DnD + 파일 선택
+    // 업로드 트리거
     $("#dropzone").addEventListener("click", ()=>$("#fileInput").click());
     $("#fileInput").addEventListener("change", (e)=>handleFiles(e.target.files));
 
+    // DnD (모바일 드랍 미지원 브라우저도 있어서 클릭 병행)
     $("#dropzone").addEventListener("dragover", (e)=>{ e.preventDefault(); $("#dropzone").classList.add("drag"); });
     $("#dropzone").addEventListener("dragleave", ()=>$("#dropzone").classList.remove("drag"));
     $("#dropzone").addEventListener("drop", (e)=>{
       e.preventDefault();
       $("#dropzone").classList.remove("drag");
-      handleFiles(e.dataTransfer.files);
+      if(e.dataTransfer && e.dataTransfer.files) handleFiles(e.dataTransfer.files);
     });
 
     setStatus("준비됨");
