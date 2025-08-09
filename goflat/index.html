@@ -7,11 +7,13 @@
   <meta name="description" content="이미지/PDF를 브라우저에서 자동 원근/기울기/조명/대비 보정합니다."/>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><rect width='128' height='128' rx='24' fill='%2360a5fa'/><path d='M30 84c16-32 52-32 68 0' stroke='%230b0c10' stroke-width='10' fill='none' stroke-linecap='round'/><circle cx='44' cy='48' r='6' fill='%230b0c10'/><circle cx='84' cy='48' r='6' fill='%230b0c10'/></svg>" type="image/svg+xml">
 
-  <!-- OpenCV.js (필수) -->
+  <!-- OpenCV.js -->
   <script src="https://docs.opencv.org/4.x/opencv.js"></script>
-  <!-- PDF.js (PDF → 이미지 렌더) -->
+  <!-- PDF.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.min.js"></script>
   <script>pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.worker.min.js";</script>
+  <!-- HEIC → JPEG 변환 -->
+  <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
   <!-- JSZip & FileSaver (ZIP 내보내기) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -56,8 +58,11 @@
   <main class="container">
     <section class="card">
       <div id="dropzone" class="dropzone" tabindex="0" aria-label="업로드 영역">
-        <div><strong>이미지(JPG/PNG) 또는 PDF</strong>를 끌어놓거나 눌러서 업로드하세요.</div>
-        <input id="fileInput" type="file" accept="image/*,.pdf" multiple />
+        <div><strong>이미지(JPG/PNG/HEIC) 또는 PDF</strong>를 끌어놓거나 눌러서 업로드하세요.</div>
+        <input id="fileInput"
+               type="file"
+               accept="image/*,application/pdf,.pdf,.heic,.heif,.jpg,.jpeg,.png"
+               multiple />
       </div>
 
       <div class="controls">
@@ -239,7 +244,7 @@
     }
   </script>
 
-  <!-- 앱 로직 (자동보정) -->
+  <!-- 앱 로직 (자동보정 + HEIC 대응) -->
   <script>
     const queueEl=$("#queue"), fileInput=$("#fileInput"), dropzone=$("#dropzone");
     const btnDownloadZip=$("#downloadZip"), btnResetAll=$("#resetAll");
@@ -247,26 +252,48 @@
     let items=[]; // { name, originalBlob, processedBlob, el }
     let processing=false;
 
-    // 업로드 → 자동 큐잉 → 즉시 자동 보정
     async function handleFiles(files){
       try{
         setStatus("파일을 읽는 중…");
-        const list=[...files];
-        // 큰 PDF에서 메모리 폭주 방지: 순차 처리
-        for(const f of list){
-          if(f.type==="application/pdf"||f.name.toLowerCase().endsWith(".pdf")){
+        const list = Array.from(files);
+
+        for (const f of list){
+          const name = (f.name || "untitled").toLowerCase();
+          const mime = (f.type || "");
+
+          const isPdf  = mime === "application/pdf" || name.endsWith(".pdf");
+          const isHeic = name.endsWith(".heic") || name.endsWith(".heif") || mime === "image/heic" || mime === "image/heif";
+          const isImg  = mime.startsWith("image/") || /\.(jpg|jpeg|png|bmp|gif|webp|tif|tiff)$/i.test(name);
+
+          if (isPdf){
             await enqueuePdf(f);
-          } else if (f.type.startsWith("image/")){
+          } else if (isHeic){
+            try {
+              const ab  = await f.arrayBuffer();
+              const src = new Blob([ab], { type: "image/heic" });
+              const jpgBlob = await heic2any({ blob: src, toType: "image/jpeg", quality: 0.95 });
+              await enqueueImage(jpgBlob, name.replace(/\.(heic|heif)$/i, ".jpg"));
+            } catch (err){
+              console.error("HEIC 변환 실패:", err);
+              setStatus("HEIC 변환 실패 — PNG로 다시 시도해 주세요");
+            }
+          } else if (isImg){
             await enqueueImage(f, f.name);
           } else {
-            console.warn("지원하지 않는 형식:", f.name);
+            console.warn("지원하지 않는 형식:", f.name, mime);
+            setStatus("지원하지 않는 형식이 포함되어 있습니다");
           }
+          await sleep(5);
         }
+
+        // 같은 파일 재선택 허용
+        if (fileInput) fileInput.value = "";
+
         setStatus("자동 보정 시작…");
         autoProcess();
       }catch(err){
         console.error(err);
-        setStatus("업로드 중 오류 발생");
+        setStatus("업로드 중 오류");
       }
     }
 
@@ -301,7 +328,6 @@
         await page.render({ canvasContext: ctx, viewport }).promise;
         const blob=await new Promise(res=>canvas.toBlob(res,"image/jpeg",0.95));
         await enqueueImage(blob, `${file.name.replace(/\.pdf$/i,"")}_p${p}.jpg`);
-        // UI 렉 방지
         await sleep(10);
       }
     }
@@ -334,7 +360,7 @@
       processing=true;
       try{
         let total=items.length, done=0;
-        bar.max=total; bar.value=0;
+        bar.max=total || 1; bar.value=0;
         for(const it of items){
           if(!it.processedBlob){
             setStatus(`보정 중: ${it.name}`);
@@ -386,7 +412,7 @@
     $("#dropzone").addEventListener("click", ()=>$("#fileInput").click());
     $("#fileInput").addEventListener("change", (e)=>handleFiles(e.target.files));
 
-    // DnD (모바일 드랍 미지원 브라우저도 있어서 클릭 병행)
+    // DnD
     $("#dropzone").addEventListener("dragover", (e)=>{ e.preventDefault(); $("#dropzone").classList.add("drag"); });
     $("#dropzone").addEventListener("dragleave", ()=>$("#dropzone").classList.remove("drag"));
     $("#dropzone").addEventListener("drop", (e)=>{
