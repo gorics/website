@@ -3,47 +3,37 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
-  <title>Nebula Blobs — Single File (v2.4 Final)</title>
+  <title>Nebula Blobs — Single File (v2.5 Final)</title>
   <style>
+    /* 스타일 정의 — 생략 가능하지만 UI 일관성을 위해 유지 */
     :root{
-      --bg:#0b1020; --ink:#e6ebff; --accent:#7aa2ff; --panel:rgba(8,12,24,.62); --bd:rgba(255,255,255,.09);
-      --ok:#76e3a6; --warn:#ffd66b; --bad:#ff7a7a;
+      --bg:#0b1020; --ink:#e6ebff; --accent:#7aa2ff;
+      --panel:rgba(8,12,24,.62); --bd:rgba(255,255,255,.09);
     }
-    html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Noto Sans KR,Helvetica,Arial,sans-serif}
-    #game{position:fixed;inset:0;display:block;background:radial-gradient(1200px 800px at 50% 40%, #0e1530 0%, #0b1020 70%)}
+    html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font:14px system-ui;}
+    #game{position:fixed;inset:0;background:radial-gradient(1200px 800px at 50% 40%, #0e1530, #0b1020 70%)}
     .hud{position:fixed;z-index:5;pointer-events:none}
     .panel{background:var(--panel);backdrop-filter:blur(8px);border:1px solid var(--bd);border-radius:14px;padding:10px}
     .top-left{top:10px;left:10px}
     .top-right{top:10px;right:10px}
-    .bottom-center{left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom) + 10px)}
+    .bottom-center{left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom)+10px)}
     .btns{pointer-events:auto;display:flex;gap:8px}
     .btn{cursor:pointer;background:rgba(16,24,48,.7);border:1px solid rgba(255,255,255,.12);padding:10px 14px;border-radius:14px;font-weight:700}
-    .btn:active{transform:translateY(1px)}
-    #mini{position:fixed;right:10px;bottom:calc(env(safe-area-inset-bottom) + 10px);width:200px;height:132px;border-radius:12px;background:rgba(8,12,24,.55);border:1px solid var(--bd);z-index:5}
+    #mini{position:fixed;right:10px;bottom:calc(env(safe-area-inset-bottom)+10px);width:200px;height:132px;border-radius:12px;background:rgba(8,12,24,.55);border:1px solid var(--bd);z-index:5}
     #mini canvas{width:100%;height:100%}
-    #settings{position:fixed;left:10px;bottom:calc(env(safe-area-inset-bottom) + 10px);z-index:6;pointer-events:auto}
+    #settings{position:fixed;left:10px;bottom:calc(env(safe-area-inset-bottom)+10px);z-index:6;pointer-events:auto}
     .row{display:flex;align-items:center;gap:8px;margin-top:6px}
-    .link{pointer-events:auto;color:#9fc0ff}
-
-    /* Responsive */
-    @media (max-width:1024px){ .panel{padding:8px;border-radius:12px} .btn{padding:10px 12px;border-radius:12px} #mini{width:170px;height:112px}}
-    @media (max-width:768px){ html,body{font-size:15px} .top-left{top:8px;left:8px} .top-right{top:8px;right:8px} #mini{right:8px} .btn{padding:12px 16px;font-weight:800} .btns{gap:10px}}
-    @media (pointer:coarse){ #mini{display:none} .btn{padding:14px 18px;font-size:16px} .panel{padding:10px 12px} .top-right{right:8px} #settings{left:8px} #btnMenu{display:block}}
-
-    /* Mobile drawer */
-    #btnMenu{display:none; position:fixed; top:8px; right:8px; z-index:7; pointer-events:auto; background:rgba(16,24,48,.8); border:1px solid var(--bd); border-radius:12px; padding:10px 12px; font-weight:800}
-    .drawer{position:fixed; right:8px; top:56px; width:min(88vw,360px); max-height:70vh; overflow:auto; z-index:7; display:none}
+    #btnMenu{display:none;position:fixed;top:8px;right:8px;z-index:7;pointer-events:auto;background:rgba(16,24,48,.8);border:1px solid var(--bd);border-radius:12px;padding:10px;font-weight:800}
+    .drawer{position:fixed;right:8px;top:56px;width:min(88vw,360px);max-height:70vh;overflow:auto;z-index:7;display:none}
     .drawer.open{display:block}
-    .stack{display:grid; gap:10px}
-
-    /* Toast */
-    #toast{position:fixed; left:50%; transform:translateX(-50%); bottom:calc(env(safe-area-inset-bottom) + 70px); z-index:7; background:rgba(0,0,0,.45); color:#fff; padding:8px 12px; border-radius:12px; font-weight:700; opacity:0; transition:opacity .25s}
+    .stack{display:grid;gap:10px}
+    #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom)+70px);z-index:7;background:rgba(0,0,0,.45);color:#fff;padding:8px;border-radius:12px;font-weight:700;opacity:0;transition:opacity .25s}
     #toast.show{opacity:1}
   </style>
 </head>
 <body>
   <canvas id="game"></canvas>
-
+  <!-- 모바일 메뉴 -->
   <button id="btnMenu">Menu</button>
   <div id="drawer" class="drawer">
     <div class="stack">
@@ -53,583 +43,688 @@
       </div>
       <div id="settings_m" class="panel">
         <div style="font-weight:700">Settings</div>
-        <div class="row"><label> Bots: <input id="optBots_m" type="number" min="0" max="32" step="1" value="10" style="width:56px"></label></div>
-        <div class="row"><label> Foods: <input id="optFoods_m" type="number" min="200" max="2000" step="50" value="1000" style="width:70px"></label></div>
-        <div class="row"><label> Timed FFA: <input id="optTimed_m" type="checkbox"></label> <span id="timer_m" style="opacity:.8"></span></div>
+        <div class="row"><label> Bots: <input id="optBots_m" type="number" min="0" max="32" step="1" value="10"></label></div>
+        <div class="row"><label> Foods: <input id="optFoods_m" type="number" min="200" max="2000" step="50" value="1000"></label></div>
+        <div class="row"><label> Timed FFA: <input id="optTimed_m" type="checkbox"></label> <span id="timer_m"></span></div>
         <div class="row"><button class="btn" id="btnApply_m">Apply</button><button class="btn" id="btnNewMatch_m">New Match</button></div>
       </div>
     </div>
   </div>
-
+  <!-- HUD -->
   <div class="hud top-left panel">
-    <div style="font-weight:800">Nebula Blobs <span style="opacity:.7">v2.4</span></div>
+    <div style="font-weight:800">Nebula Blobs <span style="opacity:.7">v2.5</span></div>
     <div>Mass <b id="mass">0</b> · Pieces <b id="pieces">1</b> · Rank <b id="rank">1</b></div>
     <div>Speed <b id="spd">0</b> · Merge <b id="merge">—</b> · Score <b id="score">0</b></div>
     <div>Controls: Mouse/Touch move · <b>Space</b> Split · <b>E</b> Eject · <b>P</b> Pause · <b>R</b> Reset</div>
-    <div id="msg" style="opacity:.8"></div>
+    <div id="msg"></div>
     <div id="powerHUD" style="display:flex;gap:6px;margin-top:6px"></div>
   </div>
-
-  <div class="hud top-right panel" id="board_d">
+  <div class="hud top-right panel">
     <div style="font-weight:700;margin-bottom:6px">Leaderboard</div>
     <ol id="lb" style="margin:0;padding-left:18px"></ol>
   </div>
-
+  <!-- 아래쪽 버튼 -->
   <div class="hud bottom-center btns">
     <div class="btn" id="btnSplit">Split</div>
     <div class="btn" id="btnEject">Eject</div>
     <div class="btn" id="btnPause">Pause</div>
     <div class="btn" id="btnRespawn">Respawn</div>
   </div>
-
+  <!-- 미니맵 -->
   <div id="mini"><canvas id="miniCanvas"></canvas></div>
-
+  <!-- 설정 창 -->
   <div id="settings" class="panel">
     <div style="font-weight:700">Settings</div>
-    <div class="row"><label> Bots: <input id="optBots" type="number" min="0" max="32" step="1" value="10" style="width:56px"></label></div>
-    <div class="row"><label> Foods: <input id="optFoods" type="number" min="200" max="2000" step="50" value="1000" style="width:70px"></label></div>
-    <div class="row"><label> Timed FFA: <input id="optTimed" type="checkbox"></label> <span id="timer" style="opacity:.8"></span></div>
+    <div class="row"><label> Bots: <input id="optBots" type="number" min="0" max="32" step="1" value="10"></label></div>
+    <div class="row"><label> Foods: <input id="optFoods" type="number" min="200" max="2000" step="50" value="1000"></label></div>
+    <div class="row"><label> Timed FFA: <input id="optTimed" type="checkbox"></label> <span id="timer"></span></div>
     <div class="row"><button class="btn" id="btnApply">Apply</button><button class="btn" id="btnNewMatch">New Match</button></div>
     <div class="row" style="opacity:.8">Single-file canvas · Responsive · Population keeper</div>
   </div>
-
   <div id="toast"></div>
-
 <script>
-(()=>{
-// ============================ CONFIG ============================
-const WORLD_SIZE = 7200;
-let   FOOD_TARGET = 1000;
-let   BOT_TARGET  = 10;      // 최소 봇 수 유지
-const HOLE_COUNT  = 8;
-const START_MASS  = 120;
-const FOOD_MASS   = 2.0;
-const EJECT_MASS  = 16;
-const BASE_SPEED  = 1.9;
-const SPLIT_VEL   = 12;
-const PELLET_DRAG = 0.985;
-const BLOB_DRAG   = 0.94;
-const MAX_PIECES  = 16;
-const MERGE_BASE  = 10000;    // ms
-const ABSORB_RATIO= 1.18;
-const ABSORB_OVERLAP = 0.38;
-const DT_CAP      = 28;
-const GRID_SIZE   = 420;
-const MASS_DECAY_THRESHOLD = 1800;  // anti-snowball
-const MASS_DECAY_RATE = 0.0025;     // per second on excess
-const START_MASS_MIN = 60;          // 스폰 최소 질량 (가시성 보장)
-const MASS_FLOOR = 5;               // 렌더 가시성 최소치
+(() => {
+  // 게임 설정 상수
+  const WORLD_SIZE=7200, FOOD_MASS=2, EJECT_MASS=16, MAX_PIECES=16;
+  const BASE_SPEED=1.9, SPLIT_VEL=12, PELLET_DRAG=0.985, BLOB_DRAG=0.94;
+  const MERGE_BASE=10000, ABSORB_RATIO=1.18, ABSORB_OVERLAP=0.38;
+  const DT_CAP=28, GRID_SIZE=420, MASS_DECAY_THRESHOLD=1800, MASS_DECAY_RATE=0.0025;
+  const START_MASS=120, START_MASS_MIN=60, MASS_FLOOR=5;
+  let TIMED_ON=false, MATCH_TIME=180000, matchEndsAt=0;
 
-// Timed FFA
-let TIMED_ON = false; const MATCH_TIME = 180000; // 3분
-let matchEndsAt = 0;
+  // DOM 참조
+  const canvas=document.getElementById('game'), ctx=canvas.getContext('2d');
+  const miniCanvas=document.getElementById('miniCanvas'), mctx=miniCanvas.getContext('2d');
+  const massEl=document.getElementById('mass'), piecesEl=document.getElementById('pieces'), spdEl=document.getElementById('spd');
+  const rankEl=document.getElementById('rank'), mergeEl=document.getElementById('merge'), lbEl=document.getElementById('lb'), lbMobile=document.getElementById('lb_m');
+  const scoreEl=document.getElementById('score'), msgEl=document.getElementById('msg'), toastEl=document.getElementById('toast'), powerHUD=document.getElementById('powerHUD');
+  const optBots=document.getElementById('optBots'), optFoods=document.getElementById('optFoods'), optTimed=document.getElementById('optTimed'), timerEl=document.getElementById('timer');
+  const optBotsM=document.getElementById('optBots_m'), optFoodsM=document.getElementById('optFoods_m'), optTimedM=document.getElementById('optTimed_m'), timerElM=document.getElementById('timer_m');
 
-// Power-ups
-const POWER_TYPES = ['speed','shield','double'];
-const POWER_SPAWN_INTERVAL = 10000; // 10s
-const POWER_LIFETIME = 20000;       // 20s on map
-const POWER_DURATION = 8000;        // 8s effect
-
-// ========================== SHORTCUTS ===========================
-const $ = (id)=>document.getElementById(id);
-const canvas = $("game"); const ctx = canvas.getContext('2d');
-const miniEl = $("miniCanvas"); const mctx = miniEl.getContext('2d');
-const massEl=$("mass"), piecesEl=$("pieces"), spdEl=$("spd"), rankEl=$("rank"), mergeEl=$("merge"), lbEl=$("lb"), lbMobile=$("lb_m"), msgEl=$("msg"), scoreEl=$("score"), toastEl=$("toast"), powerHUD=$("powerHUD");
-const optBots=$("optBots"), optFoods=$("optFoods"), optTimed=$("optTimed"), timerEl=$("timer");
-const optBotsM=$("optBots_m"), optFoodsM=$("optFoods_m"), optTimedM=$("optTimed_m"), timerElM=$("timer_m");
-const dpr = Math.max(1, Math.min(2.5, window.devicePixelRatio||1));
-
-let W=innerWidth, H=innerHeight;
-function resizeCanvases(){
-  W=innerWidth; H=innerHeight;
-  canvas.style.width=W+'px'; canvas.style.height=H+'px';
-  canvas.width=Math.floor(W*dpr); canvas.height=Math.floor(H*dpr);
-  const miniBaseW = (matchMedia('(max-width:768px)').matches? 170 : 200);
-  const miniBaseH = Math.round(miniBaseW*0.66);
-  miniEl.style.width=miniBaseW+'px'; miniEl.style.height=miniBaseH+'px';
-  miniEl.width = Math.floor(miniBaseW*dpr); miniEl.height=Math.floor(miniBaseH*dpr);
-}
-resizeCanvases();
-addEventListener('resize',resizeCanvases);
-
-// =========================== UTILS ==============================
-const TAU=Math.PI*2; const clamp=(v,a,b)=>v<a?a:v>b?b:v; const rand=(a=0,b=1)=>a+Math.random()*(b-a); const rint=(a,b)=>Math.floor(rand(a,b));
-const len=(x,y)=>Math.hypot(x,y); const lerp=(a,b,t)=>a+(b-a)*t; const massToR=(m)=>Math.sqrt(m/Math.PI);
-function toast(s){ toastEl.textContent=s; toastEl.classList.add('show'); setTimeout(()=>toastEl.classList.remove('show'), 1400); }
-
-// ========================== ENTITIES ============================
-class Blob{
-  constructor({id,x,y,mass,color,name,isPlayer=false}){
-    Object.assign(this,{id,x,y,mass,color,name,isPlayer});
-    this.vx=0; this.vy=0; this.mergeAt=0; this.score=0; this.power=null;
+  // DPI 대응
+  const dpr=Math.max(1,Math.min(2.5,window.devicePixelRatio||1));
+  let W=window.innerWidth, H=window.innerHeight;
+  function resize() {
+    W=window.innerWidth; H=window.innerHeight;
+    canvas.style.width=W+'px'; canvas.style.height=H+'px';
+    canvas.width=Math.floor(W*dpr); canvas.height=Math.floor(H*dpr);
+    const miniW=window.matchMedia('(max-width:768px)').matches?170:200;
+    const miniH=Math.round(miniW*0.66);
+    miniCanvas.style.width=miniW+'px'; miniCanvas.style.height=miniH+'px';
+    miniCanvas.width=Math.floor(miniW*dpr); miniCanvas.height=Math.floor(miniH*dpr);
   }
-  get r(){return massToR(this.mass)}
-  get speed(){ let s = BASE_SPEED / Math.sqrt(Math.max(this.mass,60)/60); if(this.power?.type==='speed') s*=1.5; return s; }
-  update(dt, steer){
-    if(steer){ const dx=steer.x-this.x, dy=steer.y-this.y; const L=len(dx,dy)||1; const ax=(dx/L)*this.speed, ay=(dy/L)*this.speed; this.vx=(this.vx+ax)*BLOB_DRAG; this.vy=(this.vy+ay)*BLOB_DRAG; }
-    else { this.vx*=BLOB_DRAG; this.vy*=BLOB_DRAG; }
-    if(this.mass>MASS_DECAY_THRESHOLD){ const excess=this.mass-MASS_DECAY_THRESHOLD; this.mass -= excess * MASS_DECAY_RATE * (dt/1000); }
-    if(this.mass>0 && this.mass<MASS_FLOOR) this.mass=MASS_FLOOR; // 가시성 바닥
-    this.x += this.vx*dt*0.06; this.y += this.vy*dt*0.06;
-    const r=this.r; this.x=clamp(this.x,-WORLD_SIZE+r,WORLD_SIZE-r); this.y=clamp(this.y,-WORLD_SIZE+r,WORLD_SIZE-r);
-    if(this.power && performance.now()>this.power.until){ this.power=null; if(this.isPlayer) toast('파워업 종료'); }
-  }
-}
-class Food{ constructor(x,y){ this.x=x; this.y=y; this.mass=FOOD_MASS; this.color=`hsl(${rint(180,300)} 80% 65%)`; } get r(){return 3.1} }
-class Pellet{ constructor(x,y,vx,vy){Object.assign(this,{x,y,vx,vy}); this.mass=EJECT_MASS; this.life=12000;} get r(){return 3.2} }
-class Hole{ constructor(x,y,r){Object.assign(this,{x,y,r}); this.vx=0; this.vy=0;} update(dt){ this.x+=this.vx*dt*0.06; this.y+=this.vy*dt*0.06; this.vx*=0.985; this.vy*=0.985; this.x=clamp(this.x,-WORLD_SIZE+this.r,WORLD_SIZE-this.r); this.y=clamp(this.y,-WORLD_SIZE+this.r,WORLD_SIZE-this.r);} }
-class Power{
-  constructor(type,x,y){ this.type=type; this.x=x; this.y=y; this.spawnAt=performance.now(); this.dead=false; }
-  get r(){ return 12; }
-  get alive(){ return !this.dead && performance.now()-this.spawnAt < POWER_LIFETIME; }
-}
+  resize(); window.addEventListener('resize',resize);
 
-// ========================= WORLD STATE ==========================
-const foods=[], pellets=[], holes=[], blobs=[], powers=[];
-let playerId=1; let running=true; let gameOver=false;
-let camera={x:0,y:0,scale:1}; let pointer={active:false,x:0,y:0}; let lastPowerSpawn=0;
+  // 유틸
+  const TAU=Math.PI*2, clamp=(v,a,b)=>v<a?a:v>b?b:v;
+  const rand=(a=0,b=1)=>a+Math.random()*(b-a), rint=(a,b)=>Math.floor(rand(a,b));
+  const len=(x,y)=>Math.hypot(x,y), lerp=(a,b,t)=>a+(b-a)*t, massToR=m=>Math.sqrt(m/Math.PI);
+  function toast(msg){ toastEl.textContent=msg; toastEl.classList.add('show'); setTimeout(()=>toastEl.classList.remove('show'),1500); }
 
-// spatial hash
-const grid=new Map(); const cellKey=(x,y)=> (Math.floor(x/GRID_SIZE)+','+Math.floor(y/GRID_SIZE));
-function gridRebuild(){ grid.clear(); const push=(k,v)=>{const a=grid.get(k); if(a) a.push(v); else grid.set(k,[v]);};
-  for(const arr of [foods,pellets,holes,blobs,powers]) for(const o of arr){ push(cellKey(o.x,o.y), o); }
-}
-function nearby(x,y){ const cx=Math.floor(x/GRID_SIZE), cy=Math.floor(y/GRID_SIZE); const out=[]; for(let i=-1;i<=1;i++) for(let j=-1;j<=1;j++){ const a=grid.get((cx+i)+','+(cy+j)); if(a) out.push(...a); } return out; }
-
-function safeSpawnPos(minDist=480){
-  for(let tries=0; tries<40; tries++){
-    const x=rand(-WORLD_SIZE*0.9,WORLD_SIZE*0.9), y=rand(-WORLD_SIZE*0.9,WORLD_SIZE*0.9);
-    let ok=true; for(const b of blobs){ if(len(b.x-x,b.y-y)<minDist) {ok=false; break;} } if(ok) return {x,y};
-  }
-  return {x:rand(-WORLD_SIZE*0.6,WORLD_SIZE*0.6), y:rand(-WORLD_SIZE*0.6,WORLD_SIZE*0.6)};
-}
-
-function reset(){
-  foods.length=0; pellets.length=0; holes.length=0; blobs.length=0; powers.length=0; gameOver=false; msg(''); score=0; scoreEl.textContent='0';
-  for(let i=0;i<HOLE_COUNT;i++) holes.push(new Hole(rand(-WORLD_SIZE*0.8,WORLD_SIZE*0.8), rand(-WORLD_SIZE*0.8,WORLD_SIZE*0.8), rand(42,68)));
-  // clustered foods
-  for(let c=0;c<Math.ceil(FOOD_TARGET/100);c++){
-    const cx=rand(-WORLD_SIZE*0.8,WORLD_SIZE*0.8), cy=rand(-WORLD_SIZE*0.8,WORLD_SIZE*0.8);
-    for(let i=0;i<100 && foods.length<FOOD_TARGET;i++) foods.push(new Food(cx+rand(-280,280), cy+rand(-280,280)));
-  }
-  const p= safeSpawnPos(200);
-  const initialMass=Math.max(START_MASS, START_MASS_MIN);
-  const player=new Blob({id:playerId,x:p.x,y:p.y,mass:initialMass,color:'#9af',name:'YOU',isPlayer:true});
-  blobs.push(player);
-  camera.x = player.x; camera.y = player.y; camera.scale = Math.min(1.9, Math.max(0.28, 1.8 / Math.sqrt(player.mass/150)));
-  while(countBots() < BOT_TARGET){ spawnBot(); }
-  if(TIMED_ON){ matchEndsAt = performance.now() + MATCH_TIME; }
-}
-reset();
-
-function spawnBot(){
-  const pos=safeSpawnPos(560);
-  const id=100+rint(0,999999);
-  const b=new Blob({id, x:pos.x, y:pos.y, mass:rand(90,220), color:`hsl(${rint(0,360)} 75% 65%)`, name:`BOT`});
-  blobs.push(b);
-}
-function countBots(){ const ids=new Set(blobs.map(b=>b.id)); let n=0; for(const id of ids){ if(id!==playerId) n++; } return n; }
-
-// ============================ INPUT =============================
-function setPointerFrom(e){
-  const rect=canvas.getBoundingClientRect();
-  const x=(e.touches?e.touches[0].clientX:e.clientX)-rect.left;
-  const y=(e.touches?e.touches[0].clientY:e.clientY)-rect.top;
-  pointer.active=true; pointer.x=x; pointer.y=y;
-}
-canvas.addEventListener('mousemove',e=>setPointerFrom(e));
-canvas.addEventListener('mouseleave',()=>pointer.active=false);
-canvas.addEventListener('touchstart',e=>setPointerFrom(e),{passive:true});
-canvas.addEventListener('touchmove',e=>setPointerFrom(e),{passive:true});
-canvas.addEventListener('touchend',()=>pointer.active=false);
-
-addEventListener('keydown',e=>{
-  if(e.code==='Space'){ doSplit(); e.preventDefault(); }
-  else if(e.key==='e'||e.key==='E'){ doEject(); }
-  else if(e.key==='p'||e.key==='P'){ running=!running; $("btnPause").textContent= running? 'Pause':'Resume'; }
-  else if(e.key==='r'||e.key==='R'){ reset(); }
-});
-$("btnSplit").onclick=()=>doSplit();
-$("btnEject").onclick=()=>doEject();
-$("btnPause").onclick=()=>{running=!running; $("btnPause").textContent= running? 'Pause':'Resume';};
-$("btnMenu").onclick=()=>{ $("drawer").classList.toggle('open'); };
-$("btnRespawn").onclick=()=>{ forceRespawn(); };
-
-$("btnApply").onclick=()=>{ BOT_TARGET=clamp(parseInt(optBots.value||BOT_TARGET),0,32); FOOD_TARGET=clamp(parseInt(optFoods.value||FOOD_TARGET),200,2000); TIMED_ON=optTimed.checked; syncMobileSettings(); msg('Applied. New matches will use these.'); };
-$("btnNewMatch").onclick=()=>reset();
-$("btnApply_m").onclick=()=>{ BOT_TARGET=clamp(parseInt(optBotsM.value||BOT_TARGET),0,32); FOOD_TARGET=clamp(parseInt(optFoodsM.value||FOOD_TARGET),200,2000); TIMED_ON=optTimedM.checked; syncDesktopSettings(); msg('Applied (mobile). New matches will use these.'); };
-$("btnNewMatch_m").onclick=()=>reset();
-
-function syncMobileSettings(){ optBotsM.value=BOT_TARGET; optFoodsM.value=FOOD_TARGET; optTimedM.checked=TIMED_ON; }
-function syncDesktopSettings(){ optBots.value=BOT_TARGET; optFoods.value=FOOD_TARGET; optTimed.checked=TIMED_ON; }
-
-const myPieces = ()=> blobs.filter(b=>b.id===playerId);
-const myMass   = ()=> myPieces().reduce((s,b)=>s+b.mass,0);
-
-function screenToWorld(x,y){
-  return { x:(x - W/2)/camera.scale + camera.x, y:(y - H/2)/camera.scale + camera.y }
-}
-
-function doSplit(){
-  const mine=myPieces(); if(!mine.length || mine.length>=MAX_PIECES) return;
-  const worldAim= pointer.active? screenToWorld(pointer.x,pointer.y) : {x:camera.x,y:camera.y};
-  for(const b of mine){
-    if(b.mass<60) continue;
-    const m=b.mass/2; b.mass-=m;
-    const dx=worldAim.x - b.x, dy=worldAim.y - b.y; const L=len(dx,dy)||1;
-    const vx=(dx/L)*SPLIT_VEL, vy=(dy/L)*SPLIT_VEL;
-    const nb=new Blob({id:b.id,x:b.x+(dx/L)*(b.r+4),y:b.y+(dy/L)*(b.r+4),mass:m,color:b.color,name:b.name,isPlayer:b.isPlayer});
-    nb.vx=b.vx+vx; nb.vy=b.vy+vy; const now=performance.now();
-    nb.mergeAt= now + MERGE_BASE * (Math.sqrt(m)/8);
-    b.mergeAt=  now + MERGE_BASE * (Math.sqrt(b.mass)/8);
-    blobs.push(nb);
-  }
-}
-
-function doEject(){
-  const worldAim= pointer.active? screenToWorld(pointer.x,pointer.y) : {x:camera.x,y:camera.y};
-  for(const b of myPieces()){
-    if(b.mass<Math.max(40, START_MASS_MIN)) continue;
-    b.mass-=EJECT_MASS;
-    const dx=worldAim.x-b.x, dy=worldAim.y-b.y; const L=len(dx,dy)||1;
-    const vx=(dx/L)*16, vy=(dy/L)*16;
-    pellets.push(new Pellet(b.x+(dx/L)*(b.r+6), b.y+(dy/L)*(b.r+6), b.vx+vx, b.vy+vy));
-  }
-}
-
-// ============================ AI ================================
-function botThink(dt){
-  const ids=new Set(blobs.map(b=>b.id));
-  for(const id of ids){
-    if(id===playerId) continue; // bots only
-    const pieces = blobs.filter(b=>b.id===id); if(!pieces.length) continue;
-    const mass=pieces.reduce((s,b)=>s+b.mass,0);
-    let cx=0,cy=0; for(const p of pieces){ cx+=p.x*p.mass; cy+=p.y*p.mass; } cx/=mass; cy/=mass;
-    let prey=null, pd=1e9, threat=null, td=1e9;
-    for(const b of blobs){
-      if(b.id===id) continue;
-      const d=len(b.x-cx,b.y-cy);
-      if(b.mass < mass*0.6 && d<pd){ prey=b; pd=d; }
-      if(b.mass > mass*1.3 && d<td){ threat=b; td=d; }
+  // 엔티티 클래스
+  class Blob {
+    constructor({id,x,y,mass,color,name,isPlayer=false}) {
+      Object.assign(this,{id,x,y,mass,color,name,isPlayer});
+      this.vx=0; this.vy=0; this.mergeAt=0; this.power=null;
     }
-    let tx=cx, ty=cy;
-    if(threat && td<1200){ tx = cx + (cx-threat.x)*2; ty = cy + (cy-threat.y)*2; }
-    else if(prey){ tx=prey.x; ty=prey.y; }
-    for(const p of pieces){ p.update(dt, {x:tx, y:ty}); }
-    // opportunistic split
-    if(prey && mass>160 && Math.random()<0.002){
-      const angle=Math.atan2(prey.y-cy, prey.x-cx);
-      const cand=pieces[0];
-      if(cand && pieces.length<MAX_PIECES){
-        const m=cand.mass/2; if(m>40){
-          cand.mass-=m;
-          const nb=new Blob({id:cand.id,x:cand.x+Math.cos(angle)*(cand.r+4),y:cand.y+Math.sin(angle)*(cand.r+4),mass:m,color:cand.color,name:cand.name});
-          nb.vx=cand.vx+Math.cos(angle)*SPLIT_VEL; nb.vy=cand.vy+Math.sin(angle)*SPLIT_VEL;
-          const now=performance.now();
-          nb.mergeAt=now+MERGE_BASE*(Math.sqrt(m)/8);
-          cand.mergeAt=now+MERGE_BASE*(Math.sqrt(cand.mass)/8);
-          blobs.push(nb);
-        }
+    get r(){ return massToR(this.mass); }
+    get speed() {
+      let s=BASE_SPEED/Math.sqrt(Math.max(this.mass,60)/60);
+      if(this.power?.type==='speed') s*=1.5;
+      return s;
+    }
+    update(dt, steer){
+      if(steer){
+        const dx=steer.x-this.x, dy=steer.y-this.y;
+        const L=len(dx,dy)||1;
+        const ax=(dx/L)*this.speed, ay=(dy/L)*this.speed;
+        this.vx=(this.vx+ax)*BLOB_DRAG;
+        this.vy=(this.vy+ay)*BLOB_DRAG;
+      }else{
+        this.vx*=BLOB_DRAG; this.vy*=BLOB_DRAG;
+      }
+      // 질량 감쇠
+      if(this.mass>MASS_DECAY_THRESHOLD){
+        const excess=this.mass-MASS_DECAY_THRESHOLD;
+        this.mass-=excess*MASS_DECAY_RATE*(dt/1000);
+      }
+      // 최소 질량
+      if(this.mass>0 && this.mass<MASS_FLOOR) this.mass=MASS_FLOOR;
+      this.x += this.vx*dt*0.06;
+      this.y += this.vy*dt*0.06;
+      const r=this.r;
+      this.x=clamp(this.x,-WORLD_SIZE+r,WORLD_SIZE-r);
+      this.y=clamp(this.y,-WORLD_SIZE+r,WORLD_SIZE-r);
+      // 파워업 만료
+      if(this.power && performance.now()>this.power.until){ this.power=null; if(this.isPlayer) toast('파워업 종료'); }
+    }
+  }
+  class Food { constructor(x,y){ this.x=x; this.y=y; this.mass=FOOD_MASS; this.color=`hsl(${rint(180,300)} 80% 65%)`; } get r(){ return 3.1; } }
+  class Pellet { constructor(x,y,vx,vy){ Object.assign(this,{x,y,vx,vy}); this.mass=EJECT_MASS; this.life=12000; } get r(){ return 3.2; } }
+  class Hole { constructor(x,y,r){ Object.assign(this,{x,y,r}); this.vx=0; this.vy=0; } update(dt){ this.x+=this.vx*dt*0.06; this.y+=this.vy*dt*0.06; this.vx*=0.985; this.vy*=0.985; const r=this.r; this.x=clamp(this.x,-WORLD_SIZE+r,WORLD_SIZE-r); this.y=clamp(this.y,-WORLD_SIZE+r,WORLD_SIZE-r); } }
+  class Power { constructor(type,x,y){ this.type=type; this.x=x; this.y=y; this.spawnAt=performance.now(); this.dead=false; } get r(){ return 12; } get alive(){ return !this.dead && performance.now()-this.spawnAt<20000; } }
+
+  // 월드 상태
+  const foods=[], pellets=[], holes=[], blobs=[], powers=[];
+  let playerId=1, running=true, gameOver=false, score=0;
+  let camera={x:0,y:0,scale:1}, pointer={active:false,x:0,y:0};
+  let lastPowerSpawn=0;
+
+  // 공간 해시
+  const grid=new Map(), cellKey=(x,y)=>`${Math.floor(x/GRID_SIZE)},${Math.floor(y/GRID_SIZE)}`;
+  function gridRebuild(){
+    grid.clear();
+    const push=(k,v)=>{ const a=grid.get(k); if(a) a.push(v); else grid.set(k,[v]); };
+    for(const arr of [foods,pellets,holes,blobs,powers]) for(const o of arr) push(cellKey(o.x,o.y),o);
+  }
+  function nearby(x,y){
+    const cx=Math.floor(x/GRID_SIZE), cy=Math.floor(y/GRID_SIZE);
+    const out=[];
+    for(let i=-1;i<=1;i++) for(let j=-1;j<=1;j++){
+      const arr=grid.get(`${cx+i},${cy+j}`);
+      if(arr) out.push(...arr);
+    }
+    return out;
+  }
+
+  function safeSpawnPos(minDist=480){
+    for(let tries=0;tries<40;tries++){
+      const x=rand(-WORLD_SIZE*0.9,WORLD_SIZE*0.9);
+      const y=rand(-WORLD_SIZE*0.9,WORLD_SIZE*0.9);
+      let ok=true;
+      for(const b of blobs){
+        if(len(b.x-x,b.y-y)<minDist){ ok=false; break; }
+      }
+      if(ok) return {x,y};
+    }
+    return {x:rand(-WORLD_SIZE*0.6,WORLD_SIZE*0.6),y:rand(-WORLD_SIZE*0.6,WORLD_SIZE*0.6)};
+  }
+
+  function updateHUDImmediate(){
+    massEl.textContent=myMass().toFixed(0);
+    piecesEl.textContent=myPieces().length;
+    const s=myPieces().length?myPieces().reduce((sum,b)=>sum+b.speed,0)/myPieces().length:0;
+    spdEl.textContent=s.toFixed(2);
+    const mergeRemain=myPieces().reduce((mx,b)=>Math.max(0,(b.mergeAt||0)-performance.now()),0);
+    mergeEl.textContent=mergeRemain?((mergeRemain/1000).toFixed(1)+'s'):'—';
+  }
+
+  // 초기화 함수
+  let BOT_TARGET=10, FOOD_TARGET=1000;
+  function reset(){
+    foods.length=0; pellets.length=0; holes.length=0; blobs.length=0; powers.length=0;
+    gameOver=false; msgEl.textContent=''; score=0; scoreEl.textContent='0';
+    for(let i=0;i<8;i++){
+      holes.push(new Hole(rand(-WORLD_SIZE*0.8,WORLD_SIZE*0.8), rand(-WORLD_SIZE*0.8,WORLD_SIZE*0.8), rand(42,68)));
+    }
+    // 먹이 클러스터
+    for(let c=0;c<Math.ceil(FOOD_TARGET/100);c++){
+      const cx=rand(-WORLD_SIZE*0.8,WORLD_SIZE*0.8), cy=rand(-WORLD_SIZE*0.8,WORLD_SIZE*0.8);
+      for(let i=0;i<100 && foods.length<FOOD_TARGET;i++){
+        foods.push(new Food(cx+rand(-280,280),cy+rand(-280,280)));
       }
     }
-  }
-}
-
-// ========================= SIMULATION ===========================
-function step(dt){
-  // 봇 인구 유지
-  { const currentBots = countBots(); if(currentBots < BOT_TARGET){ for(let i=0;i<BOT_TARGET-currentBots;i++) spawnBot(); } }
-
-  gridRebuild();
-
-  // 타임드
-  if(TIMED_ON){
-    const left = Math.max(0, matchEndsAt - performance.now());
-    timerEl.textContent = (left/1000).toFixed(0)+'s';
-    timerElM.textContent = timerEl.textContent;
-    if(left <= 0 && running){ running=false; toast('Time up! New Match to restart'); }
-  }
-
-  // 파워업 스폰
-  if(performance.now()-lastPowerSpawn > POWER_SPAWN_INTERVAL){
-    lastPowerSpawn=performance.now();
-    const pos=safeSpawnPos(200);
-    powers.push(new Power(POWER_TYPES[rint(0,POWER_TYPES.length)], pos.x,pos.y));
-  }
-
-  for(const h of holes) h.update(dt);
-
-  for(const p of pellets){
-    p.x+=p.vx*dt*0.06; p.y+=p.vy*dt*0.06; p.vx*=PELLET_DRAG; p.vy*=PELLET_DRAG; p.life-=dt;
-  }
-  for(let i=pellets.length-1;i>=0;i--) if(pellets[i].life<=0) pellets.splice(i,1);
-
-  // 펠릿이 블랙홀을 미세하게 밀기
-  for(const h of holes){
-    for(const p of nearby(h.x,h.y)){
-      if(!(p instanceof Pellet)) continue;
-      const d=len(p.x-h.x,p.y-h.y);
-      if(d<h.r+10){
-        const k=0.12; const dx=h.x-p.x, dy=h.y-p.y; const L=len(dx,dy)||1;
-        h.vx += (dx/L)*k; h.vy += (dy/L)*k; p.life=0;
-      }
+    const p=safeSpawnPos(200);
+    const m=Math.max(START_MASS,START_MASS_MIN);
+    const player=new Blob({id:playerId,x:p.x,y:p.y,mass:m,color:'#9af',name:'YOU',isPlayer:true});
+    blobs.push(player);
+    camera.x=player.x; camera.y=player.y;
+    camera.scale=Math.min(1.9, Math.max(0.28, 1.8/Math.sqrt(player.mass/150)));
+    updateHUDImmediate();
+    // 봇 채우기
+    while(countBots()<BOT_TARGET) spawnBot();
+    // 타임드 초기화
+    if(TIMED_ON){
+      matchEndsAt=performance.now()+MATCH_TIME;
+      timerEl.textContent='180s'; timerElM.textContent='180s';
     }
   }
+  reset();
 
-  const mine=myPieces();
-  const aim = pointer.active? screenToWorld(pointer.x,pointer.y) : {x:camera.x,y:camera.y};
-  for(const b of mine) b.update(dt, aim);
-
-  botThink(dt);
-
-  // 먹이 흡수
-  for(const b of blobs){
-    const r=b.r;
-    for(const o of nearby(b.x,b.y)){
-      if(!(o instanceof Food)) continue;
-      if(Math.abs(o.x-b.x)>r+6||Math.abs(o.y-b.y)>r+6) continue;
-      if(len(o.x-b.x,o.y-b.y)<r){
-        b.mass+= (b.power?.type==='double'? o.mass*2 : o.mass);
-        o.mass=0; if(b.isPlayer) addScore(1);
-      }
-    }
+  function spawnBot(){
+    const pos=safeSpawnPos(560);
+    const id=100+rint(0,999999);
+    const b=new Blob({id,x:pos.x,y:pos.y,mass:rand(90,220),color:`hsl(${rint(0,360)} 75% 65%)`,name:'BOT'});
+    blobs.push(b);
   }
-  for(let i=foods.length-1;i>=0;i--) if(foods[i].mass<=0) foods.splice(i,1);
-  while(foods.length<FOOD_TARGET) foods.push(new Food(rand(-WORLD_SIZE,WORLD_SIZE), rand(-WORLD_SIZE,WORLD_SIZE)));
 
-  // 펠릿 흡수
-  for(const b of blobs){
-    const r=b.r+6;
-    for(const p of nearby(b.x,b.y)){
-      if(!(p instanceof Pellet)) continue;
-      if(Math.abs(p.x-b.x)>r||Math.abs(p.y-b.y)>r) continue;
-      if(len(p.x-b.x,p.y-b.y)<r){
-        b.mass+=p.mass; p.life=0; if(b.isPlayer) addScore(2);
-      }
-    }
+  function countBots(){
+    const ids=new Set(blobs.map(b=>b.id));
+    let count=0;
+    for(const id of ids) if(id!==playerId) count++;
+    return count;
   }
-  for(let i=pellets.length-1;i>=0;i--) if(pellets[i].life<=0) pellets.splice(i,1);
 
-  // 파워업 습득
-  for(const b of blobs){
-    for(const pw of nearby(b.x,b.y)){
-      if(!(pw instanceof Power)) continue; if(!pw.alive) continue;
-      if(len(b.x-pw.x, b.y-pw.y) < b.r + pw.r){
-        pw.dead=true; const until=performance.now()+POWER_DURATION; b.power={type:pw.type, until};
-        if(b.isPlayer){ const label = pw.type==='speed'? '속도' : pw.type==='shield'? '실드' : '더블'; toast(label+' 파워업!'); }
-      }
-    }
+  // 입력처리
+  canvas.addEventListener('mousemove',e=>setPointer(e));
+  canvas.addEventListener('touchstart',e=>setPointer(e),{passive:true});
+  canvas.addEventListener('touchmove',e=>setPointer(e),{passive:true});
+  canvas.addEventListener('mouseleave',()=>pointer.active=false);
+  canvas.addEventListener('touchend',()=>pointer.active=false);
+
+  function setPointer(e){
+    const rect=canvas.getBoundingClientRect();
+    const x=(e.touches?e.touches[0].clientX:e.clientX)-rect.left;
+    const y=(e.touches?e.touches[0].clientY:e.clientY)-rect.top;
+    pointer.active=true; pointer.x=x; pointer.y=y;
   }
-  for(let i=powers.length-1;i>=0;i--) if(!powers[i].alive) powers.splice(i,1);
 
-  // 블랙홀 충돌(폭산)
-  for(const b of blobs){
-    for(const h of nearby(b.x,b.y)){
-      if(!(h instanceof Hole)) continue;
-      const d=len(b.x-h.x,b.y-h.y);
-      if(d < h.r + b.r*0.8){
-        if(b.r>h.r*0.9 && blobs.length<140){
-          const pieces=Math.min(6, MAX_PIECES - myPieces().length + (b.isPlayer?0:2));
-          if(pieces>1){
-            const share=b.mass/pieces; const ang0=rand(0,TAU);
-            for(let k=0;k<pieces;k++){
-              const a=ang0+k*(TAU/pieces);
-              const nb=new Blob({id:b.id,x:b.x+Math.cos(a)*(b.r+8),y=b.y+Math.sin(a)*(b.r+8),mass:share,color:b.color,name:b.name,isPlayer:b.isPlayer});
-              nb.vx=b.vx+Math.cos(a)*10; nb.vy=b.vy+Math.sin(a)*10;
-              nb.mergeAt=performance.now()+MERGE_BASE*(Math.sqrt(share)/6);
-              blobs.push(nb);
-            }
-            b.mass=0;
+  window.addEventListener('keydown',e=>{
+    if(e.code==='Space'){ doSplit(); e.preventDefault(); }
+    else if(e.key.toLowerCase()==='e'){ doEject(); }
+    else if(e.key.toLowerCase()==='p'){ running=!running; document.getElementById('btnPause').textContent=running?'Pause':'Resume'; }
+    else if(e.key.toLowerCase()==='r'){ reset(); }
+  });
+  document.getElementById('btnSplit').onclick=()=>doSplit();
+  document.getElementById('btnEject').onclick=()=>doEject();
+  document.getElementById('btnPause').onclick=()=>{
+    running=!running;
+    document.getElementById('btnPause').textContent=running?'Pause':'Resume';
+  };
+  document.getElementById('btnRespawn').onclick=()=>forceRespawn();
+  document.getElementById('btnMenu').onclick=()=>{ document.getElementById('drawer').classList.toggle('open'); };
+  document.getElementById('btnApply').onclick=()=>{
+    BOT_TARGET=clamp(parseInt(optBots.value||BOT_TARGET),0,32);
+    FOOD_TARGET=clamp(parseInt(optFoods.value||FOOD_TARGET),200,2000);
+    TIMED_ON=optTimed.checked;
+    syncMobileSettings();
+    msgEl.textContent='Applied. New matches will use these.';
+  };
+  document.getElementById('btnNewMatch').onclick=()=>reset();
+  document.getElementById('btnApply_m').onclick=()=>{
+    BOT_TARGET=clamp(parseInt(optBotsM.value||BOT_TARGET),0,32);
+    FOOD_TARGET=clamp(parseInt(optFoodsM.value||FOOD_TARGET),200,2000);
+    TIMED_ON=optTimedM.checked;
+    syncDesktopSettings();
+    msgEl.textContent='Applied (mobile). New matches will use these.';
+  };
+  document.getElementById('btnNewMatch_m').onclick=()=>reset();
+
+  function syncMobileSettings(){
+    optBotsM.value=BOT_TARGET; optFoodsM.value=FOOD_TARGET; optTimedM.checked=TIMED_ON;
+  }
+  function syncDesktopSettings(){
+    optBots.value=BOT_TARGET; optFoods.value=FOOD_TARGET; optTimed.checked=TIMED_ON;
+  }
+
+  function myPieces(){ return blobs.filter(b=>b.id===playerId); }
+  function myMass(){ return myPieces().reduce((sum,b)=>sum+b.mass,0); }
+  function screenToWorld(x,y){
+    return { x:(x-W/2)/camera.scale+camera.x, y:(y-H/2)/camera.scale+camera.y };
+  }
+
+  function doSplit(){
+    const mine=myPieces();
+    if(!mine.length || mine.length>=MAX_PIECES) return;
+    const aim=pointer.active?screenToWorld(pointer.x,pointer.y):{x:camera.x,y:camera.y};
+    for(const b of mine){
+      if(b.mass<60) continue;
+      const m=b.mass/2; b.mass-=m;
+      const dx=aim.x-b.x, dy=aim.y-b.y; const L=len(dx,dy)||1;
+      const vx=(dx/L)*SPLIT_VEL, vy=(dy/L)*SPLIT_VEL;
+      const nb=new Blob({id:b.id,x:b.x+(dx/L)*(b.r+4),y:b.y+(dy/L)*(b.r+4),mass:m,color:b.color,name:b.name,isPlayer:b.isPlayer});
+      nb.vx=b.vx+vx; nb.vy=b.vy+vy;
+      const now=performance.now();
+      nb.mergeAt=now+MERGE_BASE*(Math.sqrt(m)/8);
+      b.mergeAt=now+MERGE_BASE*(Math.sqrt(b.mass)/8);
+      blobs.push(nb);
+    }
+    updateHUDImmediate();
+  }
+
+  function doEject(){
+    const aim=pointer.active?screenToWorld(pointer.x,pointer.y):{x:camera.x,y:camera.y};
+    for(const b of myPieces()){
+      if(b.mass<Math.max(40,START_MASS_MIN)) continue;
+      b.mass-=EJECT_MASS;
+      const dx=aim.x-b.x, dy=aim.y-b.y; const L=len(dx,dy)||1;
+      const vx=(dx/L)*16, vy=(dy/L)*16;
+      pellets.push(new Pellet(b.x+(dx/L)*(b.r+6), b.y+(dy/L)*(b.r+6), b.vx+vx, b.vy+vy));
+    }
+    updateHUDImmediate();
+  }
+
+  // 인공지능 로직
+  function botThink(dt){
+    const ids=new Set(blobs.map(b=>b.id));
+    for(const id of ids){
+      if(id===playerId) continue;
+      const pieces=blobs.filter(b=>b.id===id);
+      if(!pieces.length) continue;
+      const mass=pieces.reduce((sum,b)=>sum+b.mass,0);
+      let cx=0, cy=0;
+      for(const p of pieces){ cx+=p.x*p.mass; cy+=p.y*p.mass; }
+      cx/=mass; cy/=mass;
+      let prey=null, pd=Infinity, threat=null, td=Infinity;
+      for(const b of blobs){
+        if(b.id===id) continue;
+        const d=len(b.x-cx,b.y-cy);
+        if(b.mass < mass*0.6 && d<pd){ prey=b; pd=d; }
+        if(b.mass > mass*1.3 && d<td){ threat=b; td=d; }
+      }
+      let tx=cx, ty=cy;
+      if(threat && td<1200) {
+        tx=cx+(cx-threat.x)*2; ty=cy+(cy-threat.y)*2;
+      } else if(prey){
+        tx=prey.x; ty=prey.y;
+      }
+      for(const p of pieces) p.update(dt,{x:tx,y:ty});
+      if(prey && mass>160 && Math.random()<0.002){
+        const angle=Math.atan2(prey.y-cy, prey.x-cx);
+        const cand=pieces[0];
+        if(cand && pieces.length<MAX_PIECES){
+          const m=cand.mass/2; if(m>40){
+            cand.mass-=m;
+            const nb=new Blob({id:cand.id,x:cand.x+Math.cos(angle)*(cand.r+4),y:cand.y+Math.sin(angle)*(cand.r+4),mass:m,color:cand.color,name:cand.name});
+            nb.vx=cand.vx+Math.cos(angle)*SPLIT_VEL; nb.vy=cand.vy+Math.sin(angle)*SPLIT_VEL;
+            const now=performance.now();
+            nb.mergeAt=now+MERGE_BASE*(Math.sqrt(m)/8);
+            cand.mergeAt=now+MERGE_BASE*(Math.sqrt(cand.mass)/8);
+            blobs.push(nb);
           }
         }
       }
     }
   }
-  for(let i=blobs.length-1;i>=0;i--) if(blobs[i].mass<=0) blobs.splice(i,1);
 
-  // 블롭 vs 블롭
-  for(let i=0;i<blobs.length;i++){
-    const A=blobs[i]; if(!A) continue;
-    for(let j=i+1;j<blobs.length;j++){
-      const B=blobs[j]; if(!B) continue;
-      const dx=B.x-A.x, dy=B.y-A.y; const d=len(dx,dy);
-      const rA=A.r, rB=B.r; if(d>rA+rB) continue;
+  // 점수 추가
+  function addScore(n){ score+=n; scoreEl.textContent=score.toString(); }
 
-      if(A.id===B.id){
-        const now=performance.now();
-        if(now> A.mergeAt && now> B.mergeAt){
-          if(A.mass>=B.mass){ A.mass+=B.mass; blobs.splice(j,1); j--; } else { B.mass+=A.mass; blobs.splice(i,1); i--; break; }
+  // 리스폰
+  function forceRespawn(){
+    for(let i=blobs.length-1;i>=0;i--) if(blobs[i].id===playerId) blobs.splice(i,1);
+    const p=safeSpawnPos(400);
+    const m=Math.max(START_MASS,START_MASS_MIN);
+    const pl=new Blob({id:playerId,x:p.x,y:p.y,mass:m,color:'#9af',name:'YOU',isPlayer:true});
+    blobs.push(pl);
+    camera.x=pl.x; camera.y=pl.y;
+    camera.scale=Math.min(1.9, Math.max(0.28, 1.8/Math.sqrt(pl.mass/150)));
+    running=true; gameOver=false; msgEl.textContent='';
+    toast('Respawn!');
+    updateHUDImmediate();
+  }
+
+  // 메인 업데이트 루프
+  function step(dt){
+    // 봇 유지
+    const currentBots=countBots();
+    if(currentBots < BOT_TARGET){
+      for(let i=0;i<BOT_TARGET-currentBots;i++) spawnBot();
+    }
+    gridRebuild();
+
+    // 타임드 FFA 체크
+    if(TIMED_ON){
+      const left=Math.max(0, matchEndsAt-performance.now());
+      const secs=(left/1000)|0;
+      timerEl.textContent=secs+'s';
+      timerElM.textContent=secs+'s';
+      if(left<=0 && running){
+        running=false; toast('Time up! New Match to restart');
+      }
+    }
+    // 파워업 스폰
+    if(performance.now()-lastPowerSpawn>10000){
+      lastPowerSpawn=performance.now();
+      const pos=safeSpawnPos(200);
+      powers.push(new Power(['speed','shield','double'][rint(0,3)],pos.x,pos.y));
+    }
+    // 업데이트
+    for(const h of holes) h.update(dt);
+    for(const p of pellets){
+      p.x+=p.vx*dt*0.06; p.y+=p.vy*dt*0.06; p.vx*=PELLET_DRAG; p.vy*=PELLET_DRAG; p.life-=dt;
+    }
+    for(let i=pellets.length-1;i>=0;i--) if(pellets[i].life<=0) pellets.splice(i,1);
+
+    // 펠릿이 블랙홀을 이동
+    for(const h of holes){
+      for(const p of nearby(h.x,h.y)){
+        if(!(p instanceof Pellet)) continue;
+        const d=len(p.x-h.x,p.y-h.y);
+        if(d<h.r+10){
+          const k=0.12;
+          const dx=h.x-p.x, dy=h.y-p.y;
+          const L=len(dx,dy)||1;
+          h.vx+=dx/L*k; h.vy+=dy/L*k;
+          p.life=0;
         }
-        continue;
-      }
-      const bigger = A.mass>B.mass?A:B; const smaller= bigger===A?B:A;
-      const ratio=bigger.mass/(smaller.mass+1e-6);
-      if(smaller.power?.type==='shield'){ smaller.power=null; if(smaller.isPlayer) toast('실드 소모'); continue; }
-      if(ratio>ABSORB_RATIO && d < bigger.r - smaller.r*ABSORB_OVERLAP){
-        bigger.mass += smaller.mass; if(bigger.isPlayer) addScore(10); smaller.mass=0;
       }
     }
-  }
-  for(let i=blobs.length-1;i>=0;i--) if(blobs[i].mass<=0) blobs.splice(i,1);
-
-  // 카메라 & HUD
-  if(mine.length){
-    let cx=0,cy=0,m=0; for(const b of mine){ cx+=b.x*b.mass; cy+=b.y*b.mass; m+=b.mass; }
-    cx/=m; cy/=m;
-    camera.x=lerp(camera.x,cx,0.12); camera.y=lerp(camera.y,cy,0.12);
-    const targetScale=clamp( 1.8 / Math.sqrt(m/150), 0.28, 1.9 );
-    camera.scale=lerp(camera.scale,targetScale,0.08);
-  }
-  massEl.textContent=myMass().toFixed(0);
-  piecesEl.textContent=myPieces().length;
-  const sp=myPieces().length? myPieces().reduce((s,b)=>s+b.speed,0)/myPieces().length : 0;
-  spdEl.textContent=sp.toFixed(2);
-  const mergeRemain=myPieces().reduce((mx,b)=>Math.max(0,(b.mergeAt||0)-performance.now()),0);
-  mergeEl.textContent = mergeRemain? (mergeRemain/1000).toFixed(1)+'s':'—';
-
-  const totals=new Map(); for(const b of blobs){ totals.set(b.id,(totals.get(b.id)||0)+b.mass); }
-  const rows=[...totals.entries()].map(([id,mass])=>({id,mass,name:id===playerId?'YOU':'BOT'})).sort((a,b)=>b.mass-a.mass);
-  rankEl.textContent = rows.findIndex(r=>r.id===playerId)+1;
-  lbEl.innerHTML = rows.slice(0,8).map(r=>`<li>${r.name} — ${r.mass.toFixed(0)}</li>`).join('');
-  lbMobile.innerHTML = lbEl.innerHTML;
-
-  powerHUD.innerHTML='';
-  for(const b of myPieces()){
-    if(b.power){
-      const lbl=b.power.type==='speed'?'SPD':b.power.type==='shield'?'SHD':'x2';
-      const left=((b.power.until-performance.now())/1000).toFixed(1)+'s';
-      const tag=document.createElement('div'); tag.className='panel'; tag.style.padding='4px 8px';
-      tag.innerHTML=`<b>${lbl}</b> ${left}`; powerHUD.appendChild(tag);
+    // 플레이어와 봇 업데이트
+    const myPiecesList=myPieces();
+    const aim=pointer.active?screenToWorld(pointer.x,pointer.y):{x:camera.x,y:camera.y};
+    for(const b of myPiecesList) b.update(dt,aim);
+    botThink(dt);
+    // 먹이 흡수
+    for(const b of blobs){
+      const r=b.r;
+      for(const f of nearby(b.x,b.y)){
+        if(!(f instanceof Food)) continue;
+        if(Math.abs(f.x-b.x)>r+6 || Math.abs(f.y-b.y)>r+6) continue;
+        if(len(f.x-b.x,f.y-b.y)<r){
+          b.mass+=(b.power?.type==='double'?f.mass*2:f.mass);
+          f.mass=0;
+          if(b.isPlayer) addScore(1);
+        }
+      }
+    }
+    for(let i=foods.length-1;i>=0;i--) if(foods[i].mass<=0) foods.splice(i,1);
+    while(foods.length<FOOD_TARGET) foods.push(new Food(rand(-WORLD_SIZE,WORLD_SIZE),rand(-WORLD_SIZE,WORLD_SIZE)));
+    // 펠릿 흡수
+    for(const b of blobs){
+      const r=b.r+6;
+      for(const pl of nearby(b.x,b.y)){
+        if(!(pl instanceof Pellet)) continue;
+        if(Math.abs(pl.x-b.x)>r || Math.abs(pl.y-b.y)>r) continue;
+        if(len(pl.x-b.x,pl.y-b.y)<r){
+          b.mass+=pl.mass;
+          pl.life=0;
+          if(b.isPlayer) addScore(2);
+        }
+      }
+    }
+    for(let i=pellets.length-1;i>=0;i--) if(pellets[i].life<=0) pellets.splice(i,1);
+    // 파워업 획득
+    for(const b of blobs){
+      for(const pw of nearby(b.x,b.y)){
+        if(!(pw instanceof Power)) continue;
+        if(!pw.alive) continue;
+        if(len(b.x-pw.x,b.y-pw.y)<b.r+pw.r){
+          pw.dead=true;
+          const until=performance.now()+8000;
+          b.power={type:pw.type,until};
+          if(b.isPlayer){
+            const label=pw.type==='speed'?'속도':pw.type==='shield'?'실드':'더블';
+            toast(label+' 파워업!');
+          }
+        }
+      }
+    }
+    for(let i=powers.length-1;i>=0;i--) if(!powers[i].alive) powers.splice(i,1);
+    // 블랙홀 폭산
+    for(const b of blobs){
+      for(const h of nearby(b.x,b.y)){
+        if(!(h instanceof Hole)) continue;
+        const d=len(b.x-h.x,b.y-h.y);
+        if(d<h.r + b.r*0.8){
+          if(b.r>h.r*0.9 && blobs.length<140){
+            const parts=Math.min(6,MAX_PIECES - myPieces().length + (b.isPlayer?0:2));
+            if(parts>1){
+              const share=b.mass/parts;
+              const baseAngle=rand(0,TAU);
+              for(let k=0;k<parts;k++){
+                const a=baseAngle+k*(TAU/parts);
+                const nb=new Blob({id:b.id,x:b.x+Math.cos(a)*(b.r+8),y:b.y+Math.sin(a)*(b.r+8),mass:share,color:b.color,name:b.name,isPlayer:b.isPlayer});
+                nb.vx=b.vx+Math.cos(a)*10; nb.vy=b.vy+Math.sin(a)*10;
+                nb.mergeAt=performance.now()+MERGE_BASE*(Math.sqrt(share)/6);
+                blobs.push(nb);
+              }
+              b.mass=0;
+            }
+          }
+        }
+      }
+    }
+    for(let i=blobs.length-1;i>=0;i--) if(blobs[i].mass<=0) blobs.splice(i,1);
+    // 블롭 끼리 흡수
+    for(let i=0;i<blobs.length;i++){
+      const A=blobs[i];
+      for(let j=i+1;j<blobs.length;j++){
+        const B=blobs[j];
+        const dx=B.x-A.x, dy=B.y-A.y, d=len(dx,dy);
+        if(d>A.r+B.r) continue;
+        if(A.id===B.id){
+          const now=performance.now();
+          if(now>A.mergeAt && now>B.mergeAt){
+            if(A.mass>=B.mass){ A.mass+=B.mass; blobs.splice(j,1); j--; } else { B.mass+=A.mass; blobs.splice(i,1); i--; break; }
+          }
+        } else {
+          const big=A.mass>B.mass?A:B, small=big===A?B:A;
+          const ratio=big.mass/(small.mass+1e-6);
+          if(small.power?.type==='shield'){ small.power=null; if(small.isPlayer) toast('실드 소모'); continue; }
+          if(ratio>ABSORB_RATIO && d<big.r-small.r*ABSORB_OVERLAP){
+            big.mass+=small.mass; if(big.isPlayer) addScore(10);
+            small.mass=0;
+          }
+        }
+      }
+    }
+    for(let i=blobs.length-1;i>=0;i--) if(blobs[i].mass<=0) blobs.splice(i,1);
+    // 카메라 & HUD
+    if(myPieces().length){
+      let cx=0,cy=0,m=0;
+      for(const b of myPieces()){ cx+=b.x*b.mass; cy+=b.y*b.mass; m+=b.mass; }
+      cx/=m; cy/=m;
+      camera.x=lerp(camera.x,cx,0.12);
+      camera.y=lerp(camera.y,cy,0.12);
+      const target=clamp(1.8/Math.sqrt(m/150),0.28,1.9);
+      camera.scale=lerp(camera.scale,target,0.08);
+    }
+    massEl.textContent=myMass().toFixed(0);
+    piecesEl.textContent=myPieces().length;
+    const sp=myPieces().length?myPieces().reduce((sum,b)=>sum+b.speed,0)/myPieces().length:0;
+    spdEl.textContent=sp.toFixed(2);
+    const mergeRemain=myPieces().reduce((mx,b)=>Math.max(0,(b.mergeAt||0)-performance.now()),0);
+    mergeEl.textContent=mergeRemain?((mergeRemain/1000).toFixed(1)+'s'):'—';
+    // 리더보드
+    const totals=new Map();
+    for(const b of blobs) totals.set(b.id,(totals.get(b.id)||0)+b.mass);
+    const rows=[...totals.entries()].map(([id,mass])=>({id,mass,name:id===playerId?'YOU':'BOT'})).sort((a,b)=>b.mass-a.mass);
+    rankEl.textContent=rows.findIndex(r=>r.id===playerId)+1;
+    lbEl.innerHTML=rows.slice(0,8).map(r=>`<li>${r.name} — ${r.mass.toFixed(0)}</li>`).join('');
+    lbMobile.innerHTML=lbEl.innerHTML;
+    // 파워 HUD
+    powerHUD.innerHTML='';
+    for(const b of myPieces()){
+      if(b.power){
+        const label=b.power.type==='speed'?'SPD':b.power.type==='shield'?'SHD':'x2';
+        const left=((b.power.until-performance.now())/1000).toFixed(1)+'s';
+        const tag=document.createElement('div');
+        tag.className='panel'; tag.style.padding='4px 8px';
+        tag.innerHTML=`<b>${label}</b> ${left}`;
+        powerHUD.appendChild(tag);
+      }
+    }
+    // 사망 처리 & 자동 리스폰
+    if(!myPieces().length && !gameOver){
+      gameOver=true; msgEl.textContent='You were eaten. Respawning in 2s…';
+      setTimeout(()=>{
+        if(!myPieces().length){
+          const pos=safeSpawnPos(400);
+          const m=Math.max(START_MASS,START_MASS_MIN);
+          const pl=new Blob({id:playerId,x:pos.x,y:pos.y,mass:m,color:'#9af',name:'YOU',isPlayer:true});
+          blobs.push(pl);
+          camera.x=pl.x; camera.y=pl.y;
+          camera.scale=Math.min(1.9,Math.max(0.28,1.8/Math.sqrt(pl.mass/150)));
+          updateHUDImmediate();
+          msgEl.textContent='';
+        }
+        gameOver=false;
+      },2000);
     }
   }
 
-  if(!myPieces().length && !gameOver){
-    gameOver=true; msg('You were eaten. Respawning in 2s…');
-    setTimeout(()=>{
-      if(!myPieces().length){
-        const p=safeSpawnPos(400);
-        blobs.push(new Blob({id:playerId,x:p.x,y:p.y,mass:Math.max(START_MASS, START_MASS_MIN),color:'#9af',name:'YOU',isPlayer:true}));
-        msg('');
-      }
-      gameOver=false;
-    },2000);
-  }
-}
-
-let score=0; function addScore(n){ score+=n; scoreEl.textContent=score; }
-function msg(s){ msgEl.textContent=s; }
-
-function forceRespawn(){
-  for(let i=blobs.length-1;i>=0;i--){ if(blobs[i].id===playerId) blobs.splice(i,1); }
-  const p=safeSpawnPos(400);
-  const player=new Blob({id:playerId,x:p.x,y:p.y,mass:Math.max(START_MASS, START_MASS_MIN),color:'#9af',name:'YOU',isPlayer:true});
-  blobs.push(player);
-  camera.x=player.x; camera.y=player.y; camera.scale=Math.min(1.9, Math.max(0.28, 1.8 / Math.sqrt(player.mass/150)));
-  running=true; gameOver=false; msg(''); toast('Respawn!');
-}
-
-// =========================== RENDER =============================
-function draw(){
-  ctx.setTransform(1,0,0,1,0,0);
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.save();
-  ctx.scale(dpr,dpr);
-
-  // 월드 좌표 변환
-  ctx.translate(W/2, H/2);
-  ctx.scale(camera.scale, camera.scale);
-  ctx.translate(-camera.x, -camera.y);
-
-  // 격자
-  ctx.lineWidth=1/camera.scale; ctx.strokeStyle='rgba(255,255,255,.06)';
-  const g=140;
-  const startX=Math.floor((-W/2/camera.scale+camera.x)/g)*g - g*4;
-  const endX=Math.floor((W/2/camera.scale+camera.x)/g)*g + g*4;
-  const startY=Math.floor((-H/2/camera.scale+camera.y)/g)*g - g*4;
-  const endY=Math.floor((H/2/camera.scale+camera.y)/g)*g + g*4;
-  ctx.beginPath();
-  for(let x=startX;x<=endX;x+=g){ ctx.moveTo(x,startY); ctx.lineTo(x,endY); }
-  for(let y=startY;y<=endY;y+=g){ ctx.moveTo(startX,y); ctx.lineTo(endX,y); }
-  ctx.stroke();
-
-  // 월드 경계
-  ctx.strokeStyle='rgba(122,162,255,.35)'; ctx.lineWidth=2/camera.scale;
-  ctx.strokeRect(-WORLD_SIZE,-WORLD_SIZE,WORLD_SIZE*2,WORLD_SIZE*2);
-
-  // 먹이
-  for(const f of foods){ ctx.beginPath(); ctx.fillStyle=f.color; ctx.arc(f.x,f.y,f.r,0,TAU); ctx.fill(); }
-
-  // 블랙홀
-  for(const h of holes){
-    const grd=ctx.createRadialGradient(h.x-h.r*0.3,h.y-h.r*0.3,h.r*0.2,h.x,h.y,h.r);
-    grd.addColorStop(0,'rgba(20,30,60,.9)'); grd.addColorStop(1,'rgba(5,8,18,.6)');
-    ctx.fillStyle=grd; ctx.beginPath(); ctx.arc(h.x,h.y,h.r,0,TAU); ctx.fill();
-    ctx.strokeStyle='rgba(122,162,255,.5)'; ctx.lineWidth=2/camera.scale; ctx.stroke();
-  }
-
-  // 펠릿
-  ctx.fillStyle='rgba(255,255,255,.9)';
-  for(const p of pellets){ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,TAU); ctx.fill(); }
-
-  // 파워업
-  for(const pw of powers){
-    if(!pw.alive) continue;
+  // 렌더링
+  function draw(){
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.save(); ctx.scale(dpr,dpr);
+    // 월드 변환
+    ctx.translate(W/2,H/2); ctx.scale(camera.scale,camera.scale); ctx.translate(-camera.x,-camera.y);
+    // 그리드
+    ctx.lineWidth=1/camera.scale; ctx.strokeStyle='rgba(255,255,255,.06)';
+    const g=140;
+    const startX=Math.floor(( -W/2/camera.scale+camera.x )/g)*g - g*4;
+    const endX=Math.floor(( W/2/camera.scale+camera.x )/g)*g + g*4;
+    const startY=Math.floor(( -H/2/camera.scale+camera.y )/g)*g - g*4;
+    const endY=Math.floor(( H/2/camera.scale+camera.y )/g)*g + g*4;
     ctx.beginPath();
-    const c = pw.type==='speed'? '#7cf' : pw.type==='shield'? '#7f7' : '#fc7';
-    ctx.fillStyle=c; ctx.arc(pw.x,pw.y,pw.r,0,TAU); ctx.fill();
-    ctx.strokeStyle='rgba(255,255,255,.5)'; ctx.lineWidth=2/camera.scale; ctx.stroke();
-  }
-
-  // 블롭
-  for(const b of blobs){
-    const grd=ctx.createRadialGradient(b.x-b.r*0.4,b.y-b.r*0.4,b.r*0.4,b.x,b.y,b.r);
-    grd.addColorStop(0,b.color); grd.addColorStop(1,'rgba(255,255,255,.08)');
-    ctx.fillStyle=grd; ctx.beginPath(); ctx.arc(b.x,b.y,b.r,0,TAU); ctx.fill();
-    ctx.strokeStyle=b.power?.type==='shield' ? 'rgba(118,227,166,.9)' : 'rgba(255,255,255,.2)';
-    ctx.lineWidth=3/camera.scale; ctx.stroke();
-    if(b.r>20){
-      ctx.fillStyle='rgba(255,255,255,.9)';
-      ctx.font=`${Math.max(12,b.r*0.35)}px/1 sans-serif`; ctx.textAlign='center';
-      ctx.fillText(b.name||'', b.x, b.y+4);
+    for(let x=startX;x<=endX;x+=g){ ctx.moveTo(x,startY); ctx.lineTo(x,endY); }
+    for(let y=startY;y<=endY;y+=g){ ctx.moveTo(startX,y); ctx.lineTo(endX,y); }
+    ctx.stroke();
+    // 경계
+    ctx.strokeStyle='rgba(122,162,255,.35)'; ctx.lineWidth=2/camera.scale;
+    ctx.strokeRect(-WORLD_SIZE,-WORLD_SIZE,WORLD_SIZE*2,WORLD_SIZE*2);
+    // 먹이
+    for(const f of foods){
+      ctx.beginPath();
+      ctx.fillStyle=f.color;
+      ctx.arc(f.x,f.y,f.r,0,TAU);
+      ctx.fill();
     }
-    if(b.r>26){
-      ctx.fillStyle='rgba(255,255,255,.7)';
-      ctx.font=`${Math.max(11,b.r*0.28)}px/1 sans-serif`;
-      ctx.fillText(b.mass.toFixed(0), b.x, b.y+b.r*0.55);
+    // 블랙홀
+    for(const h of holes){
+      const grad=ctx.createRadialGradient(h.x-h.r*0.3,h.y-h.r*0.3,h.r*0.2,h.x,h.y,h.r);
+      grad.addColorStop(0,'rgba(20,30,60,.9)');
+      grad.addColorStop(1,'rgba(5,8,18,.6)');
+      ctx.beginPath();
+      ctx.fillStyle=grad;
+      ctx.arc(h.x,h.y,h.r,0,TAU);
+      ctx.fill();
+      ctx.strokeStyle='rgba(122,162,255,.5)';
+      ctx.lineWidth=2/camera.scale;
+      ctx.stroke();
     }
+    // 펠릿
+    ctx.fillStyle='rgba(255,255,255,.9)';
+    for(const p of pellets){
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,TAU);
+      ctx.fill();
+    }
+    // 파워업
+    for(const pw of powers){
+      if(!pw.alive) continue;
+      ctx.beginPath();
+      const c=pw.type==='speed'?'#7cf':pw.type==='shield'?'#7f7':'#fc7';
+      ctx.fillStyle=c;
+      ctx.arc(pw.x,pw.y,pw.r,0,TAU);
+      ctx.fill();
+      ctx.strokeStyle='rgba(255,255,255,.5)';
+      ctx.lineWidth=2/camera.scale;
+      ctx.stroke();
+    }
+    // 블롭
+    for(const b of blobs){
+      const grad=ctx.createRadialGradient(b.x-b.r*0.4,b.y-b.r*0.4,b.r*0.4,b.x,b.y,b.r);
+      grad.addColorStop(0,b.color);
+      grad.addColorStop(1,'rgba(255,255,255,.08)');
+      ctx.beginPath();
+      ctx.fillStyle=grad;
+      ctx.arc(b.x,b.y,b.r,0,TAU);
+      ctx.fill();
+      ctx.strokeStyle=b.power?.type==='shield'?'rgba(118,227,166,.9)':'rgba(255,255,255,.2)';
+      ctx.lineWidth=3/camera.scale;
+      ctx.stroke();
+      if(b.r>20){
+        ctx.fillStyle='rgba(255,255,255,.9)';
+        ctx.font=`${Math.max(12,b.r*0.35)}px sans-serif`;
+        ctx.textAlign='center';
+        ctx.fillText(b.name||'',b.x,b.y+4);
+      }
+      if(b.r>26){
+        ctx.fillStyle='rgba(255,255,255,.7)';
+        ctx.font=`${Math.max(11,b.r*0.28)}px sans-serif`;
+        ctx.fillText(b.mass.toFixed(0),b.x,b.y+b.r*0.55);
+      }
+    }
+    ctx.restore();
+    // 미니맵
+    mctx.setTransform(1,0,0,1,0,0);
+    mctx.clearRect(0,0,miniCanvas.width,miniCanvas.height);
+    mctx.save(); mctx.scale(dpr,dpr);
+    const miniW=miniCanvas.width/dpr, miniH=miniCanvas.height/dpr;
+    mctx.fillStyle='rgba(255,255,255,.05)';
+    mctx.fillRect(0,0,miniW,miniH);
+    mctx.strokeStyle='rgba(122,162,255,.5)';
+    mctx.strokeRect(0.5,0.5,miniW-1,miniH-1);
+    const wx=x => (x+WORLD_SIZE)/(WORLD_SIZE*2)*miniW;
+    const wy=y => (y+WORLD_SIZE)/(WORLD_SIZE*2)*miniH;
+    for(const b of blobs){
+      mctx.fillStyle=b.id===playerId?'rgba(122,162,255,.95)':'rgba(255,255,255,.6)';
+      mctx.beginPath();
+      mctx.arc(wx(b.x),wy(b.y),Math.max(2,Math.log2(b.mass+2)),0,TAU);
+      mctx.fill();
+    }
+    for(const pw of powers){
+      if(!pw.alive) continue;
+      mctx.fillStyle=pw.type==='speed'?'#7cf':pw.type==='shield'?'#7f7':'#fc7';
+      mctx.beginPath();
+      mctx.arc(wx(pw.x),wy(pw.y),3,0,TAU);
+      mctx.fill();
+    }
+    mctx.restore();
   }
 
-  ctx.restore();
-
-  // 미니맵
-  mctx.setTransform(1,0,0,1,0,0);
-  mctx.clearRect(0,0,miniEl.width,miniEl.height);
-  mctx.save(); mctx.scale(dpr,dpr);
-  const miniW=miniEl.width/dpr, miniH=miniEl.height/dpr;
-  mctx.fillStyle='rgba(255,255,255,.05)'; mctx.fillRect(0,0,miniW,miniH);
-  mctx.strokeStyle='rgba(122,162,255,.5)'; mctx.strokeRect(0.5,0.5,miniW-1,miniH-1);
-  const wx=(x)=> (x+WORLD_SIZE)/(WORLD_SIZE*2) * miniW; const wy=(y)=> (y+WORLD_SIZE)/(WORLD_SIZE*2) * miniH;
-  for(const b of blobs){
-    mctx.fillStyle = (b.id===playerId)? 'rgba(122,162,255,.95)' : 'rgba(255,255,255,.6)';
-    mctx.beginPath(); mctx.arc(wx(b.x), wy(b.y), Math.max(2, Math.log2(b.mass+2)), 0, TAU); mctx.fill();
+  // 루프
+  let tPrev=performance.now();
+  function loop(now){
+    const dt=Math.min(now-tPrev,DT_CAP);
+    tPrev=now;
+    if(running){ step(dt); draw(); }
+    requestAnimationFrame(loop);
   }
-  for(const pw of powers){
-    if(!pw.alive) continue;
-    mctx.fillStyle = pw.type==='speed'? '#7cf' : pw.type==='shield'? '#7f7' : '#fc7';
-    mctx.beginPath(); mctx.arc(wx(pw.x), wy(pw.y), 3, 0, TAU); mctx.fill();
-  }
-  mctx.restore();
-}
-
-// ============================ LOOP ==============================
-let tPrev=performance.now();
-function loop(now){
-  const dt=Math.min(now - tPrev, DT_CAP); tPrev=now;
-  if(running){ step(dt); draw(); }
   requestAnimationFrame(loop);
-}
-requestAnimationFrame(loop);
-
 })();
 </script>
 </body>
