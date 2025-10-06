@@ -1,0 +1,528 @@
+:root {
+  --accent: #78e0ff;
+  --glow: rgba(200, 132, 255, 0.6);
+  --bg-top: #0a043c;
+  --bg-bottom: #3e1f92;
+  --glow-strength: 30px;
+  --font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: 'Poppins', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: rgba(255, 255, 255, 0.92);
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 55%),
+    linear-gradient(160deg, var(--bg-top), var(--bg-bottom));
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 1.5rem 4rem;
+  gap: 2rem;
+}
+
+.aurora {
+  position: fixed;
+  inset: -40vh -10vw auto;
+  height: 120vh;
+  background: radial-gradient(circle at 20% 20%, rgba(120, 224, 255, 0.18), transparent 65%),
+    radial-gradient(circle at 80% 30%, rgba(200, 132, 255, 0.16), transparent 70%),
+    radial-gradient(circle at 40% 80%, rgba(255, 189, 106, 0.12), transparent 75%);
+  filter: blur(60px);
+  opacity: 0.85;
+  pointer-events: none;
+  animation: auroraDrift 18s ease-in-out infinite alternate;
+  transform-origin: center;
+  z-index: 0;
+}
+
+@keyframes auroraDrift {
+  from {
+    transform: translate3d(-5%, -3%, 0) scale(1.02);
+  }
+  to {
+    transform: translate3d(5%, 3%, 0) scale(1.08);
+  }
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0, transparent 60%),
+    radial-gradient(circle, rgba(120, 224, 255, 0.6) 0, transparent 45%),
+    radial-gradient(circle, rgba(200, 132, 255, 0.5) 0, transparent 40%);
+  background-size: 4px 4px, 3px 3px, 2px 2px;
+  mix-blend-mode: screen;
+  opacity: 0.35;
+  mask-image: radial-gradient(circle at 50% 20%, rgba(0, 0, 0, 0.9), transparent 80%);
+  transition: opacity 0.6s ease;
+}
+
+.app-shell {
+  position: relative;
+  z-index: 2;
+  width: min(1080px, 100%);
+  backdrop-filter: blur(28px) saturate(140%);
+  background: rgba(8, 10, 26, 0.35);
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.35),
+    0 0 60px rgba(120, 224, 255, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.top-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2.5rem clamp(1.5rem, 4vw, 3rem) 1.5rem;
+  background: rgba(12, 15, 35, 0.65);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.brand__icon {
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  background: linear-gradient(140deg, var(--accent), rgba(255, 255, 255, 0.85));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.brand__text h1 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-size: clamp(1.4rem, 4vw, 2.1rem);
+  text-transform: uppercase;
+}
+
+.brand__text p {
+  margin: 0.2rem 0 0;
+  font-weight: 300;
+  opacity: 0.72;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.tab-button {
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transition: transform 0.3s ease, background 0.3s ease, border 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+}
+
+.tab-button:hover,
+.tab-button:focus {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+
+.tab-button.active {
+  background: linear-gradient(140deg, rgba(120, 224, 255, 0.24), rgba(200, 132, 255, 0.24));
+  border-color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.panel {
+  display: none;
+  padding: clamp(2rem, 5vw, 3rem);
+}
+
+.panel.active {
+  display: block;
+}
+
+.clock-grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: center;
+}
+
+.clock-card {
+  perspective: 1400px;
+  display: flex;
+  justify-content: center;
+}
+
+.clock-face {
+  position: relative;
+  width: clamp(240px, 40vw, 360px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.15), transparent 58%),
+    radial-gradient(circle at 50% 65%, rgba(120, 224, 255, 0.12), transparent 70%);
+  box-shadow: inset 0 12px 40px rgba(255, 255, 255, 0.07),
+    inset 0 -20px 40px rgba(0, 0, 0, 0.45),
+    0 40px 90px rgba(0, 0, 0, 0.45),
+    0 0 80px var(--glow);
+  display: grid;
+  place-items: center;
+  transform-style: preserve-3d;
+  transform: rotateX(18deg) rotateY(-12deg);
+}
+
+.clock-face .face.depth {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(8, 12, 30, 0.92), rgba(22, 26, 52, 0.65));
+  transform: translateZ(-20px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.clock-face .face.rim {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  transform: translateZ(12px);
+}
+
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: center calc(100% - 12px);
+  transform: translate(-50%, 0) rotate(0deg) translateZ(18px);
+  border-radius: 999px;
+  box-shadow: 0 0 20px var(--glow);
+}
+
+.hand.hour {
+  width: 10px;
+  height: 80px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.85), var(--accent));
+}
+
+.hand.minute {
+  width: 6px;
+  height: 120px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.75), rgba(120, 224, 255, 0.8));
+}
+
+.hand.second {
+  width: 2px;
+  height: 140px;
+  background: linear-gradient(180deg, rgba(255, 80, 125, 0.9), rgba(255, 255, 255, 0.8));
+  box-shadow: 0 0 40px rgba(255, 90, 140, 0.55);
+}
+
+.center-pin {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.9), rgba(120, 224, 255, 0.8));
+  transform: translateZ(26px);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+.numerals span {
+  position: absolute;
+  font-weight: 600;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  letter-spacing: 0.1em;
+  transform: translateZ(24px);
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.45);
+}
+
+.numerals span[data-num="12"] {
+  top: 12%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(24px);
+}
+
+.numerals span[data-num="6"] {
+  bottom: 12%;
+  left: 50%;
+  transform: translate(-50%, 50%) translateZ(24px);
+}
+
+.numerals span[data-num="3"] {
+  top: 50%;
+  right: 14%;
+  transform: translate(50%, -50%) translateZ(24px);
+}
+
+.numerals span[data-num="9"] {
+  top: 50%;
+  left: 14%;
+  transform: translate(-50%, -50%) translateZ(24px);
+}
+
+.clock-info {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.digital-time {
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.35);
+}
+
+.date-info {
+  font-weight: 300;
+  opacity: 0.72;
+  letter-spacing: 0.08em;
+}
+
+.timezone-select label {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+  opacity: 0.8;
+}
+
+select,
+input,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+select,
+input[type="number"],
+input[type="color"],
+input[type="range"] {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 0.6rem 0.8rem;
+  width: 100%;
+  color: inherit;
+  transition: border 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  backdrop-filter: blur(12px);
+}
+
+select:focus,
+input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 0 3px rgba(120, 224, 255, 0.25);
+}
+
+select option {
+  background: #0b0f22;
+}
+
+.module-card {
+  background: rgba(15, 18, 42, 0.5);
+  border-radius: 28px;
+  padding: clamp(1.8rem, 4vw, 2.6rem);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35),
+    0 0 60px rgba(120, 224, 255, 0.12);
+  display: grid;
+  gap: 1.6rem;
+}
+
+.module-card h2 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.time-display {
+  font-size: clamp(2.2rem, 7vw, 3.6rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.35);
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.button-row button {
+  flex: 1 1 120px;
+}
+
+button.primary {
+  background: linear-gradient(140deg, rgba(120, 224, 255, 0.35), rgba(200, 132, 255, 0.35));
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+button.ghost {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+button {
+  padding: 0.8rem 1.4rem;
+  border-radius: 18px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+button:not(:disabled):hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.lap-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 0.4rem;
+}
+
+.lap-list li {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.65rem 0.9rem;
+  border-radius: 14px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+.lap-list li span {
+  flex: 1;
+}
+
+.lap-list li span:first-child {
+  max-width: 80px;
+  font-weight: 600;
+}
+
+.lap-list li span:nth-child(2) {
+  text-align: center;
+}
+
+.lap-list li .lap-diff {
+  text-align: right;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.timer-config {
+  display: flex;
+  gap: 1rem;
+}
+
+.timer-config label {
+  flex: 1;
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 400;
+}
+
+.sound-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+}
+
+.footer {
+  position: relative;
+  z-index: 1;
+  font-size: 0.9rem;
+  opacity: 0.65;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 720px) {
+  body {
+    padding: 1.6rem 1rem 3rem;
+  }
+
+  .clock-face {
+    transform: rotateX(14deg) rotateY(-8deg);
+  }
+
+  .timer-config {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  font-weight: var(--font-weight);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.16), transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(120, 224, 255, 0.18), transparent 65%);
+  mix-blend-mode: screen;
+  opacity: 0.4;
+}
+
+.app-shell,
+.module-card {
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45),
+    0 0 var(--glow-strength) var(--glow);
+}
