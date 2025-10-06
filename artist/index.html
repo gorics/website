@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dreamseed Artist</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="dream-canvas" aria-hidden="true"></canvas>
+    <div class="overlay" role="region" aria-label="Dreamseed controls">
+      <header class="panel">
+        <h1>Dreamseed Artist</h1>
+        <p>
+          숫자를 씨앗으로 삼아 우주적이고 몽환적인 예술을 만듭니다. 새로운
+          세계를 보고 싶다면 씨앗을 입력하세요.
+        </p>
+        <form id="seed-form" autocomplete="off">
+          <label for="seed-input">씨앗 숫자</label>
+          <div class="controls">
+            <input
+              id="seed-input"
+              name="seed"
+              type="number"
+              inputmode="numeric"
+              placeholder="예: 314159"
+              required
+            />
+            <button type="submit">소환</button>
+            <button type="button" id="random-seed">무작위</button>
+          </div>
+        </form>
+        <div class="palette" aria-live="polite">
+          <span>현재 팔레트</span>
+          <div class="swatches" id="palette-swatches"></div>
+        </div>
+        <p class="hint">
+          화면을 터치하거나 마우스를 움직이면 새로운 흐름이 생기고, 스크롤로
+          리듬을 바꿀 수 있습니다.
+        </p>
+      </header>
+    </div>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
