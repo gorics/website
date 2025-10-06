@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dreamscape Clock Lab</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
+</head>
+<body>
+  <div class="aurora"></div>
+  <div class="stars" id="starField"></div>
+  <main class="app-shell">
+    <header class="top-bar">
+      <div class="brand">
+        <span class="brand__icon">🜁</span>
+        <div class="brand__text">
+          <h1>Dreamscape Clock Lab</h1>
+          <p>모든 시간을 한 곳에서, 몽환적인 3D 감성으로.</p>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="tab-button active" data-target="clock">현재 시계</button>
+        <button class="tab-button" data-target="stopwatch">스톱워치</button>
+        <button class="tab-button" data-target="timer">타이머</button>
+        <button class="tab-button" data-target="settings">디자인 설정</button>
+      </div>
+    </header>
+
+    <section class="panel active" id="clock">
+      <div class="clock-grid">
+        <div class="clock-card">
+          <div class="clock-face" aria-label="3D 아날로그 시계">
+            <div class="face depth"></div>
+            <div class="face rim"></div>
+            <div class="hand hour" id="hourHand"></div>
+            <div class="hand minute" id="minuteHand"></div>
+            <div class="hand second" id="secondHand"></div>
+            <div class="center-pin"></div>
+            <div class="numerals">
+              <span data-num="12">12</span>
+              <span data-num="3">3</span>
+              <span data-num="6">6</span>
+              <span data-num="9">9</span>
+            </div>
+          </div>
+        </div>
+        <div class="clock-info">
+          <div class="digital-time" id="digitalTime">00:00:00</div>
+          <div class="date-info" id="dateInfo">2024년 1월 1일 월요일</div>
+          <div class="timezone-select">
+            <label for="timezone">타임존 선택</label>
+            <select id="timezone">
+              <option value="local">현재 기기 기준</option>
+              <option value="Asia/Seoul">서울 (KST)</option>
+              <option value="America/New_York">뉴욕 (EST)</option>
+              <option value="Europe/London">런던 (GMT)</option>
+              <option value="Asia/Tokyo">도쿄 (JST)</option>
+              <option value="Australia/Sydney">시드니 (AEST)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="stopwatch">
+      <div class="module-card">
+        <h2>스톱워치</h2>
+        <div class="time-display" id="stopwatchDisplay">00:00.000</div>
+        <div class="button-row">
+          <button id="stopwatchStart" class="primary">시작</button>
+          <button id="stopwatchStop" class="ghost" disabled>정지</button>
+          <button id="stopwatchLap" class="ghost" disabled>랩 저장</button>
+          <button id="stopwatchReset" class="ghost" disabled>초기화</button>
+        </div>
+        <ul class="lap-list" id="lapList"></ul>
+      </div>
+    </section>
+
+    <section class="panel" id="timer">
+      <div class="module-card">
+        <h2>타이머</h2>
+        <div class="timer-config">
+          <label>분
+            <input type="number" id="timerMinutes" min="0" max="999" value="0">
+          </label>
+          <label>초
+            <input type="number" id="timerSeconds" min="0" max="59" value="30">
+          </label>
+        </div>
+        <div class="time-display" id="timerDisplay">00:30.0</div>
+        <div class="button-row">
+          <button id="timerStart" class="primary">시작</button>
+          <button id="timerPause" class="ghost" disabled>일시정지</button>
+          <button id="timerReset" class="ghost" disabled>초기화</button>
+        </div>
+        <label class="sound-toggle">
+          <input type="checkbox" id="timerSound" checked>
+          완료 시 사운드 재생
+        </label>
+      </div>
+    </section>
+
+    <section class="panel" id="settings">
+      <div class="module-card settings-card">
+        <h2>디자인 커스터마이징</h2>
+        <div class="settings-grid">
+          <label>메인 포인트 색상
+            <input type="color" id="accentColor" value="#78E0FF">
+          </label>
+          <label>글로우 색상
+            <input type="color" id="glowColor" value="#C884FF">
+          </label>
+          <label>배경 그라디언트 상단
+            <input type="color" id="bgTop" value="#0A043C">
+          </label>
+          <label>배경 그라디언트 하단
+            <input type="color" id="bgBottom" value="#3E1F92">
+          </label>
+          <label>별빛 밀도
+            <input type="range" id="starDensity" min="20" max="160" value="80">
+          </label>
+          <label>글로우 강도
+            <input type="range" id="glowStrength" min="0" max="60" value="30">
+          </label>
+          <label>폰트 두께
+            <select id="fontWeight">
+              <option value="300">Light</option>
+              <option value="400" selected>Regular</option>
+              <option value="600">Semi-bold</option>
+              <option value="700">Bold</option>
+            </select>
+          </label>
+          <label>테마 프리셋
+            <select id="themePreset">
+              <option value="custom">사용자 지정</option>
+              <option value="aurora">Aurora Borealis</option>
+              <option value="neon">Neon Pulse</option>
+              <option value="sunrise">Luminous Sunrise</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Dreamscape Clock Lab — 정적 페이지로 어디서나 사용할 수 있는 시간 도구 모음</p>
+  </footer>
+  <script src="script.js" type="module"></script>
+</body>
+</html>
