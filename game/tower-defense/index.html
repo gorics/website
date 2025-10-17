@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <title>하늘길 디펜스 지휘본부</title>
+    <style>
+        :root { color-scheme: dark; }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(circle at 30% 20%, #14253f, #060b16 65%, #020409 100%);
+            color: #f4f7ff;
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+            padding: clamp(24px, 4vw, 48px);
+        }
+        main {
+            width: min(100%, 1080px);
+            display: grid;
+            gap: clamp(18px, 4vw, 28px);
+            grid-template-columns: minmax(0, 740px) minmax(0, 1fr);
+        }
+        @media (max-width: 1040px) {
+            main { grid-template-columns: 1fr; }
+        }
+        canvas {
+            width: 100%;
+            max-width: 740px;
+            border-radius: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            background: #0b1422;
+            box-shadow: 0 26px 64px rgba(0, 0, 0, 0.45);
+        }
+        aside {
+            background: rgba(8, 18, 34, 0.78);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: clamp(22px, 3vw, 32px);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            backdrop-filter: blur(14px);
+        }
+        h1 { margin: 0; font-size: clamp(30px, 4vw, 40px); }
+        .stats { display: flex; flex-wrap: wrap; gap: 12px 16px; font-weight: 600; }
+        .chip { background: rgba(255, 255, 255, 0.1); border-radius: 999px; padding: 6px 14px; }
+        button {
+            border: none;
+            border-radius: 14px;
+            padding: 12px 18px;
+            font-weight: 700;
+            cursor: pointer;
+            background: linear-gradient(135deg, #38d2ff, #6872ff);
+            color: white;
+            box-shadow: 0 18px 40px rgba(56, 210, 255, 0.3);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        button.secondary { background: rgba(255, 255, 255, 0.12); box-shadow: none; }
+        button:hover { transform: translateY(-2px); }
+        ul { margin: 0; padding-left: 18px; color: rgba(230, 236, 255, 0.82); line-height: 1.6; }
+        .tower-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 14px 16px;
+        }
+        .tower-option.active { border: 1px solid rgba(111, 205, 255, 0.52); background: rgba(111, 205, 255, 0.12); }
+        .log {
+            min-height: 48px;
+            padding: 12px 16px;
+            border-radius: 14px;
+            background: rgba(111, 205, 255, 0.12);
+            border: 1px solid rgba(111, 205, 255, 0.22);
+        }
+    </style>
+</head>
+<body data-arcade-game>
+    <main>
+        <canvas id="game" width="720" height="480" aria-label="타워 디펜스 전장"></canvas>
+        <aside>
+            <h1>하늘길 디펜스</h1>
+            <div class="stats">
+                <span class="chip">웨이브 <strong id="wave">1</strong></span>
+                <span class="chip">라이프 <strong id="lives">20</strong></span>
+                <span class="chip">에너지 <strong id="energy">150</strong></span>
+            </div>
+            <div class="tower-option" id="basic-tower">
+                <div>
+                    <strong>펄스 타워</strong>
+                    <p style="margin:4px 0 0;font-size:13px;color:rgba(230,236,255,0.75);">단일 적에게 빠른 펄스를 발사합니다. 사거리 120, 공격 속도 0.6초.</p>
+                </div>
+                <button class="secondary" data-cost="80">80</button>
+            </div>
+            <div class="tower-option" id="slow-tower">
+                <div>
+                    <strong>아이싱 타워</strong>
+                    <p style="margin:4px 0 0;font-size:13px;color:rgba(230,236,255,0.75);">적을 둔화시키는 냉기 빔. 사거리 100, 공격 속도 1.2초.</p>
+                </div>
+                <button class="secondary" data-cost="110">110</button>
+            </div>
+            <button id="start">다음 웨이브 시작</button>
+            <div class="log" id="log">타워를 선택한 뒤 전장에 배치하세요.</div>
+            <ul>
+                <li>타워는 길 위에는 배치할 수 없습니다. 전략적으로 위치를 선택하세요.</li>
+                <li>웨이브 사이에 에너지가 보충됩니다. 어려운 적은 둔화 타워로 관리해 보세요.</li>
+                <li>적이 골라인에 도달하면 라이프가 줄어듭니다. 0이 되기 전에 모두 막아내세요!</li>
+            </ul>
+        </aside>
+    </main>
+    <script>
+        const canvas = document.getElementById('game');
+        const ctx = canvas.getContext('2d');
+        const waveEl = document.getElementById('wave');
+        const livesEl = document.getElementById('lives');
+        const energyEl = document.getElementById('energy');
+        const logEl = document.getElementById('log');
+        const towerButtons = document.querySelectorAll('.tower-option button');
+        const towerContainers = document.querySelectorAll('.tower-option');
+        const startBtn = document.getElementById('start');
+
+        const path = [
+            { x: 60, y: 460 },
+            { x: 60, y: 300 },
+            { x: 240, y: 300 },
+            { x: 240, y: 140 },
+            { x: 420, y: 140 },
+            { x: 420, y: 360 },
+            { x: 640, y: 360 },
+            { x: 640, y: 60 }
+        ];
+
+        let wave = 1;
+        let lives = 20;
+        let energy = 150;
+        let nextWaveReady = true;
+        let selectedTower = null;
+        let placingTower = false;
+        let ghostPosition = null;
+
+        const towers = [];
+        const enemies = [];
+        const projectiles = [];
+        let spawnQueue = [];
+        let spawnTimer = 0;
+        let lastTime = 0;
+
+        const towerTypes = {
+            basic: { cost: 80, range: 120, cooldown: 0.6, damage: 20, slow: 0 },
+            slow: { cost: 110, range: 100, cooldown: 1.2, damage: 10, slow: 0.45, slowDuration: 1.6 }
+        };
+
+        canvas.addEventListener('mousemove', handleHover);
+        canvas.addEventListener('mouseleave', () => {
+            ghostPosition = null;
+            canvas.style.cursor = 'default';
+        });
+        canvas.addEventListener('click', handlePlacement);
+        startBtn.addEventListener('click', startWave);
+        towerButtons.forEach((button) => {
+            button.addEventListener('click', () => selectTower(button));
+        });
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                placingTower = false;
+                selectedTower = null;
+                ghostPosition = null;
+                canvas.style.cursor = 'default';
+                towerContainers.forEach((container) => container.classList.remove('active'));
+                logEl.textContent = '타워 배치를 취소했습니다.';
+            }
+        });
+
+        function selectTower(button) {
+            const type = button.parentElement.id === 'basic-tower' ? 'basic' : 'slow';
+            const cost = towerTypes[type].cost;
+            if (energy < cost) {
+                logEl.textContent = '에너지가 부족합니다. 적을 처치해 에너지를 모으세요.';
+                return;
+            }
+            selectedTower = type;
+            placingTower = true;
+            towerContainers.forEach((container) => container.classList.remove('active'));
+            button.parentElement.classList.add('active');
+            logEl.textContent = `${cost} 에너지를 사용해 ${type === 'basic' ? '펄스 타워' : '아이싱 타워'}를 배치하세요.`;
+        }
+
+        function handleHover(event) {
+            if (!placingTower) {
+                ghostPosition = null;
+                canvas.style.cursor = 'default';
+                return;
+            }
+            const { offsetX, offsetY } = event;
+            ghostPosition = { x: offsetX, y: offsetY };
+            canvas.style.cursor = 'crosshair';
+        }
+
+        function handlePlacement(event) {
+            if (!placingTower || !selectedTower) return;
+            const { offsetX, offsetY } = event;
+            if (!canPlaceTower(offsetX, offsetY)) {
+                logEl.textContent = '이 위치에는 타워를 지을 수 없습니다.';
+                return;
+            }
+            const type = towerTypes[selectedTower];
+            energy -= type.cost;
+            updateHUD();
+            towers.push({
+                x: offsetX,
+                y: offsetY,
+                type: selectedTower,
+                cooldown: 0
+            });
+            placingTower = false;
+            selectedTower = null;
+            canvas.style.cursor = 'default';
+            towerContainers.forEach((container) => container.classList.remove('active'));
+            logEl.textContent = '타워를 배치했습니다! 웨이브를 시작하거나 추가 배치를 계속하세요.';
+            ghostPosition = null;
+        }
+
+        function canPlaceTower(x, y) {
+            const margin = 28;
+            if (x < margin || y < margin || x > canvas.width - margin || y > canvas.height - margin) return false;
+            if (towers.some((tower) => distance(tower, { x, y }) < 50)) return false;
+            for (let i = 0; i < path.length - 1; i++) {
+                const a = path[i];
+                const b = path[i + 1];
+                if (pointToSegmentDistance({ x, y }, a, b) < 32) return false;
+            }
+            return true;
+        }
+
+        function startWave() {
+            if (!nextWaveReady) {
+                logEl.textContent = '웨이브 진행 중입니다. 먼저 적을 모두 처치하세요.';
+                return;
+            }
+            nextWaveReady = false;
+            const count = 6 + wave * 2;
+            spawnQueue = Array.from({ length: count }, (_, i) => ({
+                hp: 60 + wave * 18,
+                speed: 55 + wave * 3,
+                reward: 14 + wave * 2,
+                delay: i * 0.8
+            }));
+            spawnTimer = 0;
+            logEl.textContent = `웨이브 ${wave} 시작! 적 ${count}마리가 접근합니다.`;
+        }
+
+        function spawnEnemies(dt) {
+            if (!spawnQueue.length) return;
+            spawnTimer += dt;
+            while (spawnQueue.length && spawnTimer >= spawnQueue[0].delay) {
+                const data = spawnQueue.shift();
+                enemies.push({
+                    x: path[0].x,
+                    y: path[0].y,
+                    hp: data.hp,
+                    maxHp: data.hp,
+                    speed: data.speed,
+                    reward: data.reward,
+                    pathIndex: 0,
+                    progress: 0,
+                    slowTimer: 0,
+                    slowFactor: 1
+                });
+            }
+            if (!spawnQueue.length) {
+                spawnTimer = 0;
+            }
+        }
+
+        function update(dt) {
+            spawnEnemies(dt);
+            enemies.forEach((enemy) => {
+                const target = path[enemy.pathIndex + 1];
+                if (!target) return;
+                if (enemy.slowTimer > 0) {
+                    enemy.slowTimer -= dt;
+                    if (enemy.slowTimer <= 0) enemy.slowFactor = 1;
+                }
+                const dir = normalize({ x: target.x - enemy.x, y: target.y - enemy.y });
+                const moveSpeed = enemy.speed * enemy.slowFactor * dt;
+                enemy.x += dir.x * moveSpeed;
+                enemy.y += dir.y * moveSpeed;
+                if (distance(enemy, target) < 4) {
+                    enemy.pathIndex += 1;
+                    if (enemy.pathIndex >= path.length - 1) {
+                        enemy.reached = true;
+                    }
+                }
+            });
+            enemies.filter((enemy) => enemy.reached).forEach((enemy) => {
+                lives -= 1;
+                updateHUD();
+            });
+            for (let i = enemies.length - 1; i >= 0; i--) {
+                if (enemies[i].hp <= 0) {
+                    energy += enemies[i].reward;
+                    enemies.splice(i, 1);
+                    updateHUD();
+                } else if (enemies[i].reached) {
+                    enemies.splice(i, 1);
+                }
+            }
+            towers.forEach((tower) => {
+                tower.cooldown = Math.max(0, tower.cooldown - dt);
+                if (tower.cooldown > 0) return;
+                const type = towerTypes[tower.type];
+                const target = findTarget(tower, type.range);
+                if (target) {
+                    fireProjectile(tower, target, type);
+                    tower.cooldown = type.cooldown;
+                }
+            });
+            projectiles.forEach((shot) => {
+                shot.x += shot.vx * dt;
+                shot.y += shot.vy * dt;
+                shot.life -= dt;
+                if (shot.life <= 0) shot.remove = true;
+                const enemy = enemies.find((e) => distance(e, shot) < 14);
+                if (enemy) {
+                    enemy.hp -= shot.damage;
+                    if (shot.slow && enemy.slowFactor === 1) {
+                        enemy.slowFactor = shot.slow;
+                        enemy.slowTimer = shot.slowDuration;
+                    }
+                    shot.remove = true;
+                }
+            });
+            for (let i = projectiles.length - 1; i >= 0; i--) {
+                if (projectiles[i].remove) projectiles.splice(i, 1);
+            }
+            if (!spawnQueue.length && !enemies.length && !nextWaveReady) {
+                nextWaveReady = true;
+                energy += Math.floor(40 + wave * 8);
+                wave += 1;
+                updateHUD();
+                logEl.textContent = `웨이브 ${wave - 1} 방어 성공! 에너지가 보충되었습니다.`;
+            }
+            if (lives <= 0) {
+                logEl.textContent = '기지가 함락되었습니다... 다시 시도해 보세요!';
+                resetGame();
+            }
+        }
+
+        function fireProjectile(tower, target, type) {
+            const dir = normalize({ x: target.x - tower.x, y: target.y - tower.y });
+            const speed = 380;
+            projectiles.push({
+                x: tower.x,
+                y: tower.y,
+                vx: dir.x * speed,
+                vy: dir.y * speed,
+                damage: type.damage,
+                life: 1.2,
+                slow: type.slow ? 0.55 : 0,
+                slowDuration: type.slowDuration || 0
+            });
+        }
+
+        function findTarget(tower, range) {
+            let nearest = null;
+            let nearestDist = Infinity;
+            enemies.forEach((enemy) => {
+                const dist = distance(tower, enemy);
+                if (dist <= range && dist < nearestDist) {
+                    nearest = enemy;
+                    nearestDist = dist;
+                }
+            });
+            return nearest;
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawPath();
+            towers.forEach((tower) => drawTower(tower));
+            enemies.forEach((enemy) => drawEnemy(enemy));
+            projectiles.forEach((shot) => drawProjectile(shot));
+            if (ghostPosition && selectedTower) {
+                drawTowerGhost(ghostPosition.x, ghostPosition.y, towerTypes[selectedTower]);
+            }
+        }
+
+        function drawPath() {
+            ctx.strokeStyle = '#354b63';
+            ctx.lineWidth = 46;
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(path[0].x, path[0].y);
+            for (let i = 1; i < path.length; i++) {
+                ctx.lineTo(path[i].x, path[i].y);
+            }
+            ctx.stroke();
+            ctx.lineWidth = 22;
+            ctx.strokeStyle = '#2a394b';
+            ctx.stroke();
+        }
+
+        function drawTower(tower) {
+            ctx.fillStyle = tower.type === 'basic' ? '#61f5ff' : '#7cc9ff';
+            ctx.beginPath();
+            ctx.arc(tower.x, tower.y, 18, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(255,255,255,0.35)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+
+        function drawTowerGhost(x, y, type) {
+            ctx.save();
+            ctx.globalAlpha = 0.4;
+            ctx.fillStyle = '#61f5ff';
+            ctx.beginPath();
+            ctx.arc(x, y, 18, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#61f5ff';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(x, y, type.range, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        function drawEnemy(enemy) {
+            ctx.fillStyle = '#ff6b81';
+            ctx.beginPath();
+            ctx.arc(enemy.x, enemy.y, 16, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#1b0a13';
+            ctx.beginPath();
+            ctx.arc(enemy.x - 4, enemy.y - 4, 3, 0, Math.PI * 2);
+            ctx.arc(enemy.x + 4, enemy.y - 4, 3, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#000';
+            ctx.fillRect(enemy.x - 18, enemy.y - 22, 36, 6);
+            ctx.fillStyle = '#45f1c5';
+            const hpRatio = Math.max(enemy.hp, 0) / enemy.maxHp;
+            ctx.fillRect(enemy.x - 18, enemy.y - 22, 36 * hpRatio, 6);
+        }
+
+        function drawProjectile(shot) {
+            ctx.fillStyle = '#afffff';
+            ctx.beginPath();
+            ctx.arc(shot.x, shot.y, 5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function updateHUD() {
+            waveEl.textContent = wave;
+            livesEl.textContent = lives;
+            energyEl.textContent = energy;
+        }
+
+        function distance(a, b) {
+            return Math.hypot(a.x - b.x, a.y - b.y);
+        }
+
+        function normalize(vec) {
+            const length = Math.hypot(vec.x, vec.y) || 1;
+            return { x: vec.x / length, y: vec.y / length };
+        }
+
+        function pointToSegmentDistance(point, a, b) {
+            const ab = { x: b.x - a.x, y: b.y - a.y };
+            const ap = { x: point.x - a.x, y: point.y - a.y };
+            const t = Math.max(0, Math.min(1, (ap.x * ab.x + ap.y * ab.y) / (ab.x * ab.x + ab.y * ab.y)));
+            const closest = { x: a.x + ab.x * t, y: a.y + ab.y * t };
+            return distance(point, closest);
+        }
+
+        function resetGame() {
+            enemies.length = 0;
+            towers.length = 0;
+            projectiles.length = 0;
+            spawnQueue.length = 0;
+            wave = 1;
+            lives = 20;
+            energy = 150;
+            nextWaveReady = true;
+            placingTower = false;
+            selectedTower = null;
+            ghostPosition = null;
+            towerContainers.forEach((container) => container.classList.remove('active'));
+            updateHUD();
+            logEl.textContent = '방어를 다시 준비하세요. 타워를 배치한 뒤 웨이브를 시작하세요.';
+        }
+
+        function loop(timestamp) {
+            const dt = Math.min(0.1, (timestamp - lastTime) / 1000 || 0);
+            lastTime = timestamp;
+            update(dt);
+            draw();
+            requestAnimationFrame(loop);
+        }
+
+        updateHUD();
+        loop(0);
+    </script>
+    <script src="../global-enhancements.js" defer></script>
+</body>
+</html>
