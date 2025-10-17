@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네온 벽돌깨기</title>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(circle at 50% 0%, #0f1c2d, #050811 70%);
+            color: #f0f6ff;
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+        }
+        .panel {
+            background: rgba(8, 16, 32, 0.88);
+            padding: 32px;
+            border-radius: 28px;
+            box-shadow: 0 32px 70px rgba(0, 0, 0, 0.55);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            align-items: center;
+        }
+        canvas {
+            background: radial-gradient(circle at 50% 20%, #0b1a2f, #02060e 80%);
+            border-radius: 20px;
+            border: 6px solid rgba(255, 255, 255, 0.04);
+        }
+        h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 2px;
+        }
+        .stats {
+            display: flex;
+            gap: 24px;
+            font-weight: 600;
+        }
+        .controls {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.72);
+            text-align: center;
+            line-height: 1.6;
+        }
+        button {
+            background: linear-gradient(130deg, #00f5ff, #3a7bd5);
+            color: #02162c;
+            border: none;
+            border-radius: 999px;
+            padding: 10px 24px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 30px rgba(0, 245, 255, 0.28);
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h1>네온 벽돌깨기</h1>
+        <div class="stats">
+            <div>점수: <span id="score">0</span></div>
+            <div>스테이지: <span id="stage">1</span></div>
+            <div>기회: <span id="lives">3</span></div>
+        </div>
+        <canvas id="game" width="520" height="640"></canvas>
+        <button id="restart">다시 시작</button>
+        <p class="controls">마우스 또는 ← → 키로 패들을 움직여 공을 튕기세요.<br>파워업을 받아 다양한 효과를 활용해 모든 벽돌을 제거하면 다음 스테이지로 진행합니다.</p>
+    </div>
+    <script>
+        const canvas = document.getElementById('game');
+        const ctx = canvas.getContext('2d');
+        const scoreEl = document.getElementById('score');
+        const stageEl = document.getElementById('stage');
+        const livesEl = document.getElementById('lives');
+        const restartBtn = document.getElementById('restart');
+
+        const WIDTH = canvas.width;
+        const HEIGHT = canvas.height;
+        const ROWS = 6;
+        const COLS = 10;
+        const BRICK_WIDTH = (WIDTH - 80) / COLS;
+        const BRICK_HEIGHT = 28;
+
+        let mouseX = WIDTH / 2;
+
+        const POWERUPS = [
+            { type: 'expand', color: '#6c5ce7', duration: 10000 },
+            { type: 'multi', color: '#fd79a8', duration: 0 },
+            { type: 'laser', color: '#74b9ff', duration: 8000 }
+        ];
+
+        const lasers = [];
+
+        class Paddle {
+            constructor() {
+                this.width = 110;
+                this.height = 16;
+                this.x = WIDTH / 2 - this.width / 2;
+                this.y = HEIGHT - 60;
+                this.speed = 9;
+                this.expireAt = 0;
+                this.hasLaser = false;
+            }
+            update(delta) {
+                if (keys.ArrowLeft) this.x -= this.speed;
+                if (keys.ArrowRight) this.x += this.speed;
+                const target = mouseX - this.width / 2;
+                this.x += (target - this.x) * Math.min(1, delta * 0.02);
+                this.x = Math.max(20, Math.min(WIDTH - 20 - this.width, this.x));
+                if (this.expireAt && performance.now() > this.expireAt) {
+                    this.width = 110;
+                    this.expireAt = 0;
+                }
+            }
+            draw() {
+                const grd = ctx.createLinearGradient(this.x, this.y, this.x + this.width, this.y + this.height);
+                grd.addColorStop(0, '#0ff0f7');
+                grd.addColorStop(1, '#3a7bd5');
+                ctx.fillStyle = grd;
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+            }
+        }
+
+        class Ball {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.radius = 9;
+                const angle = (Math.random() * 0.5 + 0.25) * Math.PI;
+                this.dx = Math.cos(angle) * 6;
+                this.dy = -Math.abs(Math.sin(angle) * 6);
+            }
+            update(delta) {
+                this.x += this.dx;
+                this.y += this.dy;
+
+                if (this.x < this.radius + 8 || this.x > WIDTH - this.radius - 8) {
+                    this.dx *= -1;
+                    this.x = Math.max(this.radius + 8, Math.min(WIDTH - this.radius - 8, this.x));
+                }
+                if (this.y < this.radius + 12) {
+                    this.dy *= -1;
+                    this.y = this.radius + 12;
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.fillStyle = '#ffeaa7';
+                ctx.shadowBlur = 12;
+                ctx.shadowColor = '#ffeaa7aa';
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        class Brick {
+            constructor(x, y, hp) {
+                this.x = x;
+                this.y = y;
+                this.hp = hp;
+                this.width = BRICK_WIDTH;
+                this.height = BRICK_HEIGHT;
+                this.dropChance = Math.random() < 0.18;
+            }
+            draw() {
+                if (this.hp <= 0) return;
+                const colors = ['#1dd1a1', '#54a0ff', '#5f27cd'];
+                const color = colors[this.hp - 1] || '#ff7675';
+                ctx.fillStyle = color;
+                ctx.fillRect(this.x, this.y, this.width - 6, this.height - 6);
+            }
+        }
+
+        class PowerUp {
+            constructor(x, y, def) {
+                this.x = x;
+                this.y = y;
+                this.type = def.type;
+                this.color = def.color;
+                this.duration = def.duration;
+                this.speed = 3.2;
+                this.size = 18;
+            }
+            update() {
+                this.y += this.speed;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = '#0b1a2f';
+                ctx.font = 'bold 12px Pretendard';
+                ctx.textAlign = 'center';
+                ctx.fillText(this.type[0].toUpperCase(), this.x, this.y + 4);
+            }
+        }
+
+        class Laser {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.speed = 9;
+            }
+            update() {
+                this.y -= this.speed;
+            }
+            draw() {
+                ctx.fillStyle = '#74b9ff';
+                ctx.fillRect(this.x - 2, this.y, 4, 20);
+            }
+        }
+
+        let paddle;
+        let balls;
+        let bricks;
+        let powerUps;
+        let stage = 1;
+        let score = 0;
+        let lives = 3;
+        let lastTime = 0;
+        let keys = { ArrowLeft: false, ArrowRight: false };
+        let running = true;
+
+        function createStage() {
+            bricks = [];
+            const offsetX = 40;
+            const offsetY = 80;
+            for (let r = 0; r < ROWS + stage - 1; r++) {
+                for (let c = 0; c < COLS; c++) {
+                    const hp = 1 + Math.floor(r / 2);
+                    const brickX = offsetX + c * BRICK_WIDTH;
+                    const brickY = offsetY + r * BRICK_HEIGHT;
+                    bricks.push(new Brick(brickX, brickY, Math.min(4, hp)));
+                }
+            }
+        }
+
+        function resetBall() {
+            balls = [new Ball(paddle.x + paddle.width / 2, paddle.y - 12)];
+            balls[0].dx = 0;
+            balls[0].dy = 0;
+        }
+
+        function resetGame() {
+            paddle = new Paddle();
+            stage = 1;
+            score = 0;
+            lives = 3;
+            powerUps = [];
+            lasers.length = 0;
+            createStage();
+            resetBall();
+            prepareServe();
+            running = true;
+            updateUI();
+        }
+
+        function updateUI() {
+            scoreEl.textContent = score;
+            stageEl.textContent = stage;
+            livesEl.textContent = lives;
+        }
+
+        function spawnPowerUp(brick) {
+            const power = POWERUPS[Math.floor(Math.random() * POWERUPS.length)];
+            powerUps.push(new PowerUp(brick.x + brick.width / 2, brick.y + brick.height / 2, power));
+        }
+
+        function activatePowerUp(power) {
+            if (power.type === 'expand') {
+                paddle.width = 160;
+                paddle.expireAt = performance.now() + power.duration;
+            } else if (power.type === 'multi') {
+                if (balls.length < 5) {
+                    const clones = balls.map(ball => {
+                        const clone = new Ball(ball.x, ball.y);
+                        clone.dx = -ball.dx;
+                        clone.dy = ball.dy;
+                        return clone;
+                    });
+                    balls.push(...clones);
+                }
+            } else if (power.type === 'laser') {
+                paddle.hasLaser = true;
+                paddle.expireAt = performance.now() + power.duration;
+            }
+        }
+
+        function launchBallFromPaddle(ball) {
+            if (ball.dy > 0) return;
+            const hit = (ball.x - paddle.x) / paddle.width - 0.5;
+            const angle = hit * Math.PI / 3;
+            const speed = Math.hypot(ball.dx, ball.dy);
+            ball.dx = Math.sin(angle) * speed * 1.05;
+            ball.dy = -Math.cos(angle) * speed * 1.05;
+        }
+
+        function handleCollisions(ball) {
+            if (ball.y + ball.radius >= paddle.y &&
+                ball.x >= paddle.x && ball.x <= paddle.x + paddle.width &&
+                ball.dy > 0) {
+                ball.y = paddle.y - ball.radius;
+                launchBallFromPaddle(ball);
+                if (paddle.hasLaser) {
+                    lasers.push(new Laser(ball.x - 12, paddle.y));
+                    lasers.push(new Laser(ball.x + 12, paddle.y));
+                }
+            }
+
+            for (const brick of bricks) {
+                if (brick.hp <= 0) continue;
+                if (ball.x + ball.radius < brick.x || ball.x - ball.radius > brick.x + brick.width) continue;
+                if (ball.y + ball.radius < brick.y || ball.y - ball.radius > brick.y + brick.height) continue;
+
+                const overlapX = Math.min(ball.x + ball.radius - brick.x, brick.x + brick.width - (ball.x - ball.radius));
+                const overlapY = Math.min(ball.y + ball.radius - brick.y, brick.y + brick.height - (ball.y - ball.radius));
+                if (overlapX < overlapY) {
+                    ball.dx *= -1;
+                } else {
+                    ball.dy *= -1;
+                }
+                brick.hp--;
+                score += 50;
+                updateUI();
+                if (brick.hp <= 0 && brick.dropChance && Math.random() < 0.6) {
+                    spawnPowerUp(brick);
+                }
+                break;
+            }
+        }
+
+        function update(time = 0) {
+            if (!running) return;
+            const delta = time - lastTime;
+            lastTime = time;
+            ctx.clearRect(0, 0, WIDTH, HEIGHT);
+
+            paddle.update(delta);
+            paddle.draw();
+
+            powerUps = powerUps.filter(power => {
+                power.update();
+                power.draw();
+                if (power.y > HEIGHT) return false;
+                if (power.y + power.size / 2 >= paddle.y && power.x >= paddle.x && power.x <= paddle.x + paddle.width) {
+                    activatePowerUp(power);
+                    return false;
+                }
+                return true;
+            });
+
+            lasers.forEach(laser => laser.update());
+            lasers.forEach(laser => laser.draw());
+            for (const laser of lasers) {
+                for (const brick of bricks) {
+                    if (brick.hp <= 0) continue;
+                    if (laser.x >= brick.x && laser.x <= brick.x + brick.width &&
+                        laser.y <= brick.y + brick.height && laser.y + 20 >= brick.y) {
+                        brick.hp--;
+                        score += 80;
+                        updateUI();
+                        laser.y = -100;
+                        if (brick.hp <= 0 && brick.dropChance && Math.random() < 0.5) {
+                            spawnPowerUp(brick);
+                        }
+                    }
+                }
+            }
+            for (let i = lasers.length - 1; i >= 0; i--) {
+                if (lasers[i].y < -30) lasers.splice(i, 1);
+            }
+
+            for (let i = balls.length - 1; i >= 0; i--) {
+                const ball = balls[i];
+                ball.update(delta);
+                handleCollisions(ball);
+                ball.draw();
+                if (ball.y - ball.radius > HEIGHT) {
+                    balls.splice(i, 1);
+                }
+            }
+
+            if (!balls.length) {
+                lives--;
+                updateUI();
+                paddle.hasLaser = false;
+                paddle.width = 110;
+                if (lives <= 0) {
+                    running = false;
+                    showGameOver();
+                    return;
+                }
+                resetBall();
+                powerUps = [];
+                prepareServe();
+            }
+
+            if (bricks.every(brick => brick.hp <= 0)) {
+                stage++;
+                updateUI();
+                paddle.hasLaser = false;
+                paddle.width = 110;
+                lasers.length = 0;
+                powerUps = [];
+                createStage();
+                resetBall();
+                prepareServe();
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        function showGameOver() {
+            ctx.fillStyle = 'rgba(2, 6, 14, 0.82)';
+            ctx.fillRect(0, 0, WIDTH, HEIGHT);
+            ctx.fillStyle = '#f5f6fa';
+            ctx.font = '32px Pretendard, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('게임 오버', WIDTH / 2, HEIGHT / 2 - 12);
+            ctx.font = '20px Pretendard, sans-serif';
+            ctx.fillText('다시 시작 버튼을 눌러 재도전하세요!', WIDTH / 2, HEIGHT / 2 + 24);
+        }
+
+        restartBtn.addEventListener('click', () => {
+            resetGame();
+            lastTime = performance.now();
+            requestAnimationFrame(update);
+        });
+
+        document.addEventListener('mousemove', e => {
+            const rect = canvas.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+        });
+
+        document.addEventListener('keydown', e => {
+            if (keys.hasOwnProperty(e.key)) keys[e.key] = true;
+            if (e.code === 'Space' && running && balls.length === 1 && balls[0].dy === 0) {
+                balls[0].dy = -6;
+            }
+        });
+        document.addEventListener('keyup', e => {
+            if (keys.hasOwnProperty(e.key)) keys[e.key] = false;
+        });
+
+        canvas.addEventListener('click', () => {
+            if (!running) return;
+            const ball = balls[0];
+            if (ball && ball.dy === 0) {
+                ball.dy = -6;
+            } else if (paddle.hasLaser) {
+                lasers.push(new Laser(paddle.x + 20, paddle.y));
+                lasers.push(new Laser(paddle.x + paddle.width - 20, paddle.y));
+            }
+        });
+
+        function prepareServe() {
+            balls.forEach(ball => {
+                ball.x = paddle.x + paddle.width / 2;
+                ball.y = paddle.y - 12;
+                ball.dx = 0;
+                ball.dy = 0;
+            });
+        }
+
+        canvas.addEventListener('mouseenter', prepareServe);
+        canvas.addEventListener('mouseleave', prepareServe);
+
+        resetGame();
+        prepareServe();
+        requestAnimationFrame(update);
+    </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>브라우저 미니 게임 아케이드</title>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at 10% 15%, #314867, #0b1521 58%, #04070b 100%);
+            color: #f5f6fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(32px, 5vw, 64px) clamp(16px, 3vw, 48px);
+        }
+        .container {
+            width: min(100%, 1080px);
+            background: rgba(10, 18, 32, 0.82);
+            border-radius: 28px;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+            padding: clamp(32px, 4vw, 56px);
+            backdrop-filter: blur(16px);
+        }
+        header {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        header h1 {
+            font-size: clamp(30px, 5vw, 46px);
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+        header p {
+            margin: 0;
+            color: rgba(245, 246, 250, 0.78);
+            line-height: 1.6;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: clamp(16px, 3vw, 26px);
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .card {
+            background: linear-gradient(150deg, rgba(40, 66, 102, 0.94), rgba(16, 30, 50, 0.92));
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 22px 38px rgba(0, 0, 0, 0.45);
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+        .card h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+        .card p {
+            margin: 0;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.76);
+            line-height: 1.5;
+        }
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            background: rgba(255, 255, 255, 0.12);
+            color: rgba(255, 255, 255, 0.85);
+        }
+        footer {
+            margin-top: 36px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.55);
+            text-align: center;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>브라우저 미니 게임 아케이드</h1>
+            <p>클래식 아케이드부터 퍼즐, 액션, 캐주얼 게임까지! 설치 없이 즐길 수 있는 미니 게임을 계속해서 확장 중입니다.</p>
+        </header>
+        <section class="grid">
+            <a href="./snake/">
+                <article class="card">
+                    <span class="tag">캐주얼</span>
+                    <h2>지렁이 게임</h2>
+                    <p>방향키로 지렁이를 조작해 사과를 먹고 성장하세요. 속도가 점점 빨라지는 클래식 스네이크!</p>
+                </article>
+            </a>
+            <a href="./tetris/">
+                <article class="card">
+                    <span class="tag">퍼즐</span>
+                    <h2>테트리스</h2>
+                    <p>떨어지는 블록을 회전하고 쌓아 라인을 지워 보세요. 레벨이 오를수록 속도가 빨라집니다.</p>
+                </article>
+            </a>
+            <a href="./2048/">
+                <article class="card">
+                    <span class="tag">두뇌</span>
+                    <h2>2048 퍼즐</h2>
+                    <p>같은 숫자 타일을 합쳐 2048에 도전하세요. 차분하지만 중독성 있는 퍼즐입니다.</p>
+                </article>
+            </a>
+            <a href="./sand-tetris/">
+                <article class="card">
+                    <span class="tag">샌드박스</span>
+                    <h2>모래 실험실</h2>
+                    <p>자유롭게 모래와 블록을 떨어뜨리고 쌓으며 물리 퍼즐을 해결해 보세요.</p>
+                </article>
+            </a>
+            <a href="./nebulous/">
+                <article class="card">
+                    <span class="tag">아케이드</span>
+                    <h2>세포 성장 게임</h2>
+                    <p>작은 입자를 흡수해 세포를 키우고 함정을 피해 생존하세요. 네뷸러스 스타일의 액션.</p>
+                </article>
+            </a>
+            <a href="./pong/">
+                <article class="card">
+                    <span class="tag">대전</span>
+                    <h2>레이저 핑퐁</h2>
+                    <p>마우스로 패들을 조작해 공을 반사하고 득점을 노려 보세요. 10점을 먼저 얻으면 승리!</p>
+                </article>
+            </a>
+            <a href="./breakout/">
+                <article class="card">
+                    <span class="tag">아케이드</span>
+                    <h2>네온 벽돌깨기</h2>
+                    <p>발판으로 공을 튕겨 벽돌을 모두 제거하세요. 콤보와 파워업으로 하이 스코어에 도전!</p>
+                </article>
+            </a>
+            <a href="./flappy/">
+                <article class="card">
+                    <span class="tag">반사신경</span>
+                    <h2>플래피 비행</h2>
+                    <p>탭/스페이스로 새를 조작해 장애물을 통과하세요. 속도감 있는 점프 액션 게임입니다.</p>
+                </article>
+            </a>
+            <a href="./minesweeper/">
+                <article class="card">
+                    <span class="tag">전략</span>
+                    <h2>지뢰찾기</h2>
+                    <p>논리와 추리로 지뢰의 위치를 찾아 플래그를 꽂아 보세요. 난이도를 선택할 수 있습니다.</p>
+                </article>
+            </a>
+            <a href="./memory-match/">
+                <article class="card">
+                    <span class="tag">기억력</span>
+                    <h2>카드 매칭</h2>
+                    <p>뒤집힌 카드를 두 장씩 선택해 짝을 맞추세요. 짧은 플레이로 집중력을 시험해 보세요.</p>
+                </article>
+            </a>
+            <a href="./space-shooter/">
+                <article class="card">
+                    <span class="tag">슈팅</span>
+                    <h2>우주 방위전</h2>
+                    <p>적 함대를 피하고 격추하며 보스를 방어하세요. 파워업을 모아 강력한 레이저를 발사!</p>
+                </article>
+            </a>
+            <a href="./runner/">
+                <article class="card">
+                    <span class="tag">러너</span>
+                    <h2>스카이 러너</h2>
+                    <p>장애물을 점프와 슬라이드로 피하며 더 멀리 달려 보세요. 속도는 계속 빨라집니다.</p>
+                </article>
+            </a>
+        </section>
+        <footer>
+            계속해서 새로운 게임을 추가하고 오류를 수정하고 있습니다. 제안하고 싶은 게임이 있다면 알려주세요!
+        </footer>
+    </main>
+</body>
+</html>
