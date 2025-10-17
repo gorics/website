@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <title>레이저 핑퐁</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: clamp(16px, 5vw, 48px);
+            background: conic-gradient(from 120deg, #111827, #1f2937, #111827);
+            color: #f3f4f6;
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+        }
+        .frame {
+            background: rgba(11, 22, 34, 0.88);
+            border-radius: 22px;
+            padding: clamp(20px, 5vw, 32px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.55);
+            display: grid;
+            gap: 16px;
+            width: min(100%, 640px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        canvas {
+            background: rgba(2, 6, 14, 0.94);
+            border-radius: 16px;
+            border: 4px solid rgba(255,255,255,0.08);
+            image-rendering: pixelated;
+            width: min(100%, 640px);
+            height: auto;
+        }
+        .info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            color: rgba(243, 244, 246, 0.85);
+            flex-wrap: wrap;
+            gap: 8px 16px;
+        }
+        .hint {
+            font-size: 14px;
+            color: rgba(209, 213, 219, 0.7);
+            text-align: center;
+            line-height: 1.6;
+        }
+        .signature {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(56, 189, 248, 0.2);
+            color: #93c5fd;
+            font-weight: 700;
+            font-size: 12px;
+            justify-self: center;
+        }
+    </style>
+    <link rel="stylesheet" href="../mobile-controls.css">
+</head>
+<body>
+    <div class="frame">
+        <div class="signature">박은성이 만든 게임</div>
+        <div class="info">
+            <span>플레이어: <strong id="player-score">0</strong></span>
+            <span>AI: <strong id="ai-score">0</strong></span>
+        </div>
+        <canvas id="game" width="640" height="360"></canvas>
+        <p class="hint">마우스나 터치로 패들을 움직여 공을 튕겨내세요. 10점을 먼저 획득하면 승리!</p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('game');
+        const ctx = canvas.getContext('2d');
+        const playerScoreEl = document.getElementById('player-score');
+        const aiScoreEl = document.getElementById('ai-score');
+
+        const paddle = { width: 14, height: 90 };
+        const player = { x: 20, y: canvas.height / 2 - paddle.height / 2, score: 0 };
+        const ai = { x: canvas.width - 20 - paddle.width, y: canvas.height / 2 - paddle.height / 2, score: 0, speed: 4 };
+        const ball = { x: canvas.width / 2, y: canvas.height / 2, radius: 8, speed: 5, vx: 4, vy: 3 };
+
+        let targetY = player.y;
+
+        canvas.addEventListener('mousemove', e => {
+            const rect = canvas.getBoundingClientRect();
+            targetY = e.clientY - rect.top - paddle.height / 2;
+        });
+        canvas.addEventListener('touchmove', e => {
+            const rect = canvas.getBoundingClientRect();
+            targetY = e.touches[0].clientY - rect.top - paddle.height / 2;
+            e.preventDefault();
+        }, { passive: false });
+        canvas.style.touchAction = 'none';
+
+        function clamp(value, min, max) {
+            return Math.max(min, Math.min(max, value));
+        }
+
+        function resetBall(direction = 1) {
+            ball.x = canvas.width / 2;
+            ball.y = canvas.height / 2;
+            const angle = (Math.random() * Math.PI / 3) - Math.PI / 6;
+            const speed = 5 + Math.random() * 1.5;
+            ball.vx = Math.cos(angle) * speed * direction;
+            ball.vy = Math.sin(angle) * speed;
+        }
+
+        function update() {
+            player.y += (targetY - player.y) * 0.2;
+            player.y = clamp(player.y, 0, canvas.height - paddle.height);
+
+            const aiCenter = ai.y + paddle.height / 2;
+            if (ball.y < aiCenter - 20) ai.y -= ai.speed;
+            else if (ball.y > aiCenter + 20) ai.y += ai.speed;
+            ai.y = clamp(ai.y, 0, canvas.height - paddle.height);
+
+            ball.x += ball.vx;
+            ball.y += ball.vy;
+
+            if (ball.y - ball.radius <= 0 || ball.y + ball.radius >= canvas.height) {
+                ball.vy *= -1;
+            }
+
+            function paddleCollision(p) {
+                if (
+                    ball.x - ball.radius < p.x + paddle.width &&
+                    ball.x + ball.radius > p.x &&
+                    ball.y + ball.radius > p.y &&
+                    ball.y - ball.radius < p.y + paddle.height
+                ) {
+                    const relativeIntersectY = (ball.y - (p.y + paddle.height / 2)) / (paddle.height / 2);
+                    const bounceAngle = relativeIntersectY * (Math.PI / 3);
+                    const direction = p === player ? 1 : -1;
+                    const speed = Math.min(10, Math.hypot(ball.vx, ball.vy) + 0.4);
+                    ball.vx = Math.cos(bounceAngle) * speed * direction;
+                    ball.vy = Math.sin(bounceAngle) * speed;
+                    ball.x = p === player ? p.x + paddle.width + ball.radius : p.x - ball.radius;
+                }
+            }
+
+            paddleCollision(player);
+            paddleCollision(ai);
+
+            if (ball.x < 0) {
+                ai.score++;
+                aiScoreEl.textContent = ai.score;
+                resetBall(1);
+            } else if (ball.x > canvas.width) {
+                player.score++;
+                playerScoreEl.textContent = player.score;
+                resetBall(-1);
+            }
+
+            if (player.score >= 10 || ai.score >= 10) {
+                alert((player.score > ai.score ? '플레이어 승리!' : 'AI 승리!') + ` (플레이어 ${player.score} : ${ai.score} AI)`);
+                player.score = 0;
+                ai.score = 0;
+                playerScoreEl.textContent = player.score;
+                aiScoreEl.textContent = ai.score;
+                resetBall(Math.random() < 0.5 ? 1 : -1);
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, 'rgba(59, 130, 246, 0.2)');
+            gradient.addColorStop(1, 'rgba(236, 72, 153, 0.2)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = 'rgba(148, 163, 184, 0.35)';
+            for (let y = 0; y < canvas.height; y += 24) {
+                ctx.fillRect(canvas.width / 2 - 2, y, 4, 12);
+            }
+
+            ctx.fillStyle = '#38bdf8';
+            ctx.fillRect(player.x, player.y, paddle.width, paddle.height);
+            ctx.fillStyle = '#f472b6';
+            ctx.fillRect(ai.x, ai.y, paddle.width, paddle.height);
+
+            ctx.beginPath();
+            ctx.fillStyle = '#f8fafc';
+            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function loop() {
+            update();
+            draw();
+            requestAnimationFrame(loop);
+        }
+
+        resetBall(Math.random() < 0.5 ? 1 : -1);
+        loop();
+    </script>
+    <script src="../global-enhancements.js" defer></script>
+    <script src="../mobile-controls.js" defer></script>
+</body>
+</html>
