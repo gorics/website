@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>브라우저 미니 게임 아케이드</title>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at 10% 15%, #314867, #0b1521 58%, #04070b 100%);
+            color: #f5f6fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(24px, 5vw, 72px) clamp(16px, 4vw, 64px);
+        }
+        .container {
+            width: min(100%, 1080px);
+            background: rgba(10, 18, 32, 0.82);
+            border-radius: 28px;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+            padding: clamp(28px, 4vw, 56px);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+        }
+        header {
+            display: grid;
+            gap: 14px;
+            margin-bottom: clamp(24px, 6vw, 40px);
+        }
+        header h1 {
+            font-size: clamp(30px, 5vw, 46px);
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+        header p {
+            margin: 0;
+            color: rgba(245, 246, 250, 0.78);
+            line-height: 1.6;
+        }
+        .device-pill {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            font-size: clamp(12px, 2.6vw, 14px);
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: linear-gradient(120deg, rgba(58, 92, 140, 0.65), rgba(112, 160, 220, 0.35));
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            justify-content: center;
+            width: fit-content;
+        }
+        .device-pill span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .device-pill svg {
+            width: 16px;
+            height: 16px;
+            opacity: 0.85;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: clamp(16px, 3vw, 26px);
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .card {
+            background: linear-gradient(150deg, rgba(40, 66, 102, 0.94), rgba(16, 30, 50, 0.92));
+            border-radius: 20px;
+            padding: clamp(20px, 3vw, 26px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 22px 38px rgba(0, 0, 0, 0.45);
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+        .card h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+        .card p {
+            margin: 0;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.76);
+            line-height: 1.5;
+        }
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            background: rgba(255, 255, 255, 0.12);
+            color: rgba(255, 255, 255, 0.85);
+        }
+        footer {
+            margin-top: clamp(28px, 6vw, 42px);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.65);
+            text-align: center;
+            line-height: 1.6;
+            display: grid;
+            gap: 18px;
+            justify-items: center;
+        }
+        .creator-callout {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+            padding: 12px 18px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 18px 32px rgba(0, 0, 0, 0.22);
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .creator-callout strong {
+            font-size: clamp(16px, 3vw, 18px);
+            color: #ffe082;
+        }
+        .creator-ribbon {
+            position: absolute;
+            top: 18px;
+            right: clamp(12px, 3vw, 24px);
+            background: linear-gradient(135deg, rgba(255, 215, 64, 0.9), rgba(255, 111, 0, 0.9));
+            color: #0b1521;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            padding: 10px 16px;
+            border-radius: 999px;
+            box-shadow: 0 14px 32px rgba(255, 140, 0, 0.35);
+        }
+        @media (max-width: 720px) {
+            body {
+                padding: clamp(20px, 6vw, 48px) clamp(14px, 4vw, 36px);
+            }
+            .container {
+                border-radius: 22px;
+            }
+            header {
+                gap: 12px;
+            }
+        }
+        @media (max-width: 540px) {
+            .grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+            .card h2 {
+                font-size: 19px;
+            }
+            .card p {
+                font-size: 14px;
+            }
+            .creator-ribbon {
+                position: static;
+                display: inline-flex;
+                margin-bottom: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="creator-ribbon">박은성의 아케이드</div>
+        <header>
+            <h1>브라우저 미니 게임 아케이드</h1>
+            <p>클래식 아케이드부터 퍼즐, 전략, 카드, 단어 게임까지! 설치 없이 즐길 수 있는 미니 게임을 계속해서 확장 중입니다. 박은성이 직접 디자인하고 다듬은 총 18가지 미니 게임을 어떤 기기에서나 편하게 즐겨보세요.</p>
+            <div class="device-pill" aria-label="모든 기기 지원">
+                <span>
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4l1.5 3h-9L9 17H5a2 2 0 0 1-2-2V5zm2 0v10h14V5H5z" />
+                    </svg>
+                    컴퓨터
+                </span>
+                <span>
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M7 2a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3H7zm0 2h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm4 15a1 1 0 1 0 2 0 1 1 0 0 0-2 0z" />
+                    </svg>
+                    스마트폰
+                </span>
+                <span>
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6zm2 0v10h12V6H6z" />
+                    </svg>
+                    태블릿
+                </span>
+            </div>
+        </header>
+        <section class="grid">
+            <a href="./snake/">
+                <article class="card">
+                    <span class="tag">캐주얼</span>
+                    <h2>지렁이 게임</h2>
+                    <p>방향키로 지렁이를 조작해 사과를 먹고 성장하세요. 속도가 점점 빨라지는 클래식 스네이크!</p>
+                </article>
+            </a>
+            <a href="./tetris/">
+                <article class="card">
+                    <span class="tag">퍼즐</span>
+                    <h2>테트리스</h2>
+                    <p>떨어지는 블록을 회전하고 쌓아 라인을 지워 보세요. 레벨이 오를수록 속도가 빨라집니다.</p>
+                </article>
+            </a>
+            <a href="./2048/">
+                <article class="card">
+                    <span class="tag">두뇌</span>
+                    <h2>2048 퍼즐</h2>
+                    <p>같은 숫자 타일을 합쳐 2048에 도전하세요. 차분하지만 중독성 있는 퍼즐입니다.</p>
+                </article>
+            </a>
+            <a href="./sand-tetris/">
+                <article class="card">
+                    <span class="tag">샌드박스</span>
+                    <h2>모래 실험실</h2>
+                    <p>자유롭게 모래와 블록을 떨어뜨리고 쌓으며 물리 퍼즐을 해결해 보세요.</p>
+                </article>
+            </a>
+            <a href="./nebulous/">
+                <article class="card">
+                    <span class="tag">아케이드</span>
+                    <h2>세포 성장 게임</h2>
+                    <p>작은 입자를 흡수해 세포를 키우고 함정을 피해 생존하세요. 네뷸러스 스타일의 액션.</p>
+                </article>
+            </a>
+            <a href="./pong/">
+                <article class="card">
+                    <span class="tag">대전</span>
+                    <h2>레이저 핑퐁</h2>
+                    <p>마우스로 패들을 조작해 공을 반사하고 득점을 노려 보세요. 10점을 먼저 얻으면 승리!</p>
+                </article>
+            </a>
+            <a href="./frogger/">
+                <article class="card">
+                    <span class="tag">아케이드</span>
+                    <h2>레트로 개구리</h2>
+                    <p>도로와 강을 건너 목적지에 도착하세요. 통나무를 이용하고, 차량을 피해 생존해야 합니다.</p>
+                </article>
+            </a>
+            <a href="./breakout/">
+                <article class="card">
+                    <span class="tag">아케이드</span>
+                    <h2>네온 벽돌깨기</h2>
+                    <p>발판으로 공을 튕겨 벽돌을 모두 제거하세요. 콤보와 파워업으로 하이 스코어에 도전!</p>
+                </article>
+            </a>
+            <a href="./flappy/">
+                <article class="card">
+                    <span class="tag">반사신경</span>
+                    <h2>플래피 비행</h2>
+                    <p>탭/스페이스로 새를 조작해 장애물을 통과하세요. 속도감 있는 점프 액션 게임입니다.</p>
+                </article>
+            </a>
+            <a href="./minesweeper/">
+                <article class="card">
+                    <span class="tag">전략</span>
+                    <h2>지뢰찾기</h2>
+                    <p>논리와 추리로 지뢰의 위치를 찾아 플래그를 꽂아 보세요. 난이도를 선택할 수 있습니다.</p>
+                </article>
+            </a>
+            <a href="./memory-match/">
+                <article class="card">
+                    <span class="tag">기억력</span>
+                    <h2>카드 매칭</h2>
+                    <p>뒤집힌 카드를 두 장씩 선택해 짝을 맞추세요. 짧은 플레이로 집중력을 시험해 보세요.</p>
+                </article>
+            </a>
+            <a href="./sokoban/">
+                <article class="card">
+                    <span class="tag">퍼즐</span>
+                    <h2>소코반 창고지기</h2>
+                    <p>상자를 목표 지점으로 밀어 넣는 클래식 퍼즐. 되돌리기와 여러 레벨로 깊이 있게 즐겨보세요.</p>
+                </article>
+            </a>
+            <a href="./space-shooter/">
+                <article class="card">
+                    <span class="tag">슈팅</span>
+                    <h2>우주 방위전</h2>
+                    <p>적 함대를 피하고 격추하며 보스를 방어하세요. 파워업을 모아 강력한 레이저를 발사!</p>
+                </article>
+            </a>
+            <a href="./runner/">
+                <article class="card">
+                    <span class="tag">러너</span>
+                    <h2>스카이 러너</h2>
+                    <p>장애물을 점프와 슬라이드로 피하며 더 멀리 달려 보세요. 속도는 계속 빨라집니다.</p>
+                </article>
+            </a>
+            <a href="./whack-a-mole/">
+                <article class="card">
+                    <span class="tag">반사신경</span>
+                    <h2>두더지 팡팡</h2>
+                    <p>두더지가 머리를 내밀 때 빠르게 클릭해 점수를 얻으세요. 난이도별 폭탄과 콤보를 조심!</p>
+                </article>
+            </a>
+            <a href="./blackjack/">
+                <article class="card">
+                    <span class="tag">카드</span>
+                    <h2>네온 블랙잭</h2>
+                    <p>보유 칩을 관리하며 21에 도전하세요. 더블다운, 서렌더 등 핵심 전략을 구현했습니다.</p>
+                </article>
+            </a>
+            <a href="./wordle/">
+                <article class="card">
+                    <span class="tag">단어</span>
+                    <h2>코드 워들</h2>
+                    <p>5글자 영어 단어를 6번 안에 추리하세요. 키보드와 색상 힌트로 논리력을 발휘해 보세요.</p>
+                </article>
+            </a>
+            <a href="./tower-defense/">
+                <article class="card">
+                    <span class="tag">전략</span>
+                    <h2>하늘길 디펜스</h2>
+                    <p>펄스와 냉기 타워를 배치해 웨이브를 방어하세요. 에너지를 관리하며 최적의 방어선을 구축하세요.</p>
+                </article>
+            </a>
+        </section>
+        <footer>
+            <p>즐기고 싶은 게임이 더 있다면 언제든지 제안해 주세요. 계속해서 새로운 아이디어를 실험하고 추가하겠습니다.</p>
+            <div class="creator-callout" role="note">이 아케이드는 <strong>박은성</strong>이 기획·제작했습니다.</div>
+        </footer>
+    </main>
+</body>
+</html>

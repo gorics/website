@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>코드 워들 챌린지</title>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at 50% 0%, #203248 0%, #070c16 70%, #03040a 100%);
+            color: #f5f7ff;
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(24px, 5vw, 64px);
+        }
+        main {
+            width: min(100%, 720px);
+            display: grid;
+            gap: clamp(18px, 3vw, 32px);
+            justify-items: center;
+            background: rgba(9, 17, 32, 0.82);
+            border-radius: 28px;
+            padding: clamp(28px, 4vw, 48px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.48);
+        }
+        h1 {
+            margin: 0;
+            font-size: clamp(30px, 4vw, 42px);
+            letter-spacing: 0.12em;
+        }
+        p {
+            margin: 0;
+            text-align: center;
+            color: rgba(240, 242, 255, 0.84);
+            line-height: 1.6;
+        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(5, 64px);
+            gap: 10px;
+        }
+        .cell {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+        .cell.filled {
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+        .cell.correct {
+            background: linear-gradient(135deg, #4ebc7f, #2c8b53);
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+        .cell.present {
+            background: linear-gradient(135deg, #d6a63f, #9d6f13);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .cell.absent {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .keyboard {
+            display: grid;
+            gap: 8px;
+            width: 100%;
+        }
+        .keyboard-row {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+        }
+        .key {
+            flex: 1;
+            padding: 14px 10px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: transform 0.12s ease, background 0.12s ease;
+        }
+        .key.wide { flex: 1.5; }
+        .key:active {
+            transform: scale(0.96);
+        }
+        .key.correct { background: linear-gradient(135deg, #4ebc7f, #2c8b53); }
+        .key.present { background: linear-gradient(135deg, #d6a63f, #9d6f13); }
+        .key.absent { background: rgba(255, 255, 255, 0.06); color: rgba(255, 255, 255, 0.45); }
+        .status {
+            min-height: 42px;
+            background: rgba(79, 167, 255, 0.12);
+            border-radius: 14px;
+            padding: 12px 16px;
+            color: #d7e9ff;
+            text-align: center;
+            border: 1px solid rgba(79, 167, 255, 0.24);
+        }
+        button#restart {
+            border: none;
+            border-radius: 14px;
+            padding: 12px 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4ea9ff, #765bff);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 18px 40px rgba(79, 167, 255, 0.3);
+        }
+        .credit {
+            margin: 8px 0 0;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.72);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>CODEL</h1>
+        <p>5글자 단어를 6번 안에 맞춰보세요. 초록색은 정확한 자리, 노란색은 다른 위치, 회색은 단어에 없는 글자입니다. 한국어 설명이지만 영어 단어로 플레이합니다!</p>
+        <div class="board" id="board" aria-label="워들 보드"></div>
+        <div class="keyboard" id="keyboard"></div>
+        <div class="status" id="status" role="status">단어를 입력하세요.</div>
+        <button id="restart">새 게임</button>
+    </main>
+    <script>
+        const WORD_LIST = [
+            'ARRAY', 'DEBUG', 'CYCLE', 'PIXEL', 'SCOPE', 'ALERT', 'STACK', 'GUESS', 'HONEY', 'SHAPE',
+            'MUSIC', 'ROUTE', 'DRIFT', 'QUEST', 'LOGIC', 'MAGIC', 'FRAME', 'CLOUD', 'INPUT', 'NEXUS',
+            'SHIFT', 'FROST', 'BASIC', 'SMART', 'CLICK', 'HEART', 'BRAVE', 'FLASH', 'RHYME', 'LIGHT'
+        ];
+        const MAX_ROWS = 6;
+        const COLS = 5;
+
+        const boardEl = document.getElementById('board');
+        const keyboardEl = document.getElementById('keyboard');
+        const statusEl = document.getElementById('status');
+        const restartBtn = document.getElementById('restart');
+
+        const keyboardLayout = [
+            ['Q','W','E','R','T','Y','U','I','O','P'],
+            ['A','S','D','F','G','H','J','K','L'],
+            ['ENTER','Z','X','C','V','B','N','M','DEL']
+        ];
+
+        let target = '';
+        let row = 0;
+        let col = 0;
+        const grid = [];
+        const state = { finished: false };
+
+        function initBoard() {
+            boardEl.innerHTML = '';
+            grid.length = 0;
+            for (let r = 0; r < MAX_ROWS; r++) {
+                const rowCells = [];
+                for (let c = 0; c < COLS; c++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    cell.setAttribute('aria-live', 'polite');
+                    boardEl.appendChild(cell);
+                    rowCells.push(cell);
+                }
+                grid.push(rowCells);
+            }
+        }
+
+        function initKeyboard() {
+            keyboardEl.innerHTML = '';
+            keyboardLayout.forEach((line) => {
+                const rowEl = document.createElement('div');
+                rowEl.className = 'keyboard-row';
+                line.forEach((key) => {
+                    const button = document.createElement('button');
+                    button.className = 'key' + (key.length > 1 ? ' wide' : '');
+                    button.textContent = key;
+                    button.dataset.key = key;
+                    button.addEventListener('click', () => handleInput(key));
+                    rowEl.appendChild(button);
+                });
+                keyboardEl.appendChild(rowEl);
+            });
+        }
+
+        function pickWord() {
+            target = WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)];
+        }
+
+        function handleInput(key) {
+            if (state.finished) return;
+            if (key === 'DEL') {
+                if (col > 0) {
+                    col -= 1;
+                    const cell = grid[row][col];
+                    cell.textContent = '';
+                    cell.classList.remove('filled');
+                }
+                return;
+            }
+            if (key === 'ENTER') {
+                submitRow();
+                return;
+            }
+            if (col >= COLS) return;
+            const letter = key.toUpperCase();
+            if (!/^[A-Z]$/.test(letter)) return;
+            const cell = grid[row][col];
+            cell.textContent = letter;
+            cell.classList.add('filled');
+            col += 1;
+        }
+
+        function submitRow() {
+            if (col < COLS) {
+                statusEl.textContent = '5글자를 모두 입력하세요.';
+                return;
+            }
+            const guess = grid[row].map((cell) => cell.textContent).join('');
+            if (!WORD_LIST.includes(guess)) {
+                statusEl.textContent = '사전에 없는 단어입니다. 다른 단어를 시도하세요.';
+                return;
+            }
+            evaluateGuess(guess);
+        }
+
+        function evaluateGuess(guess) {
+            const targetLetters = target.split('');
+            const result = Array(COLS).fill('absent');
+            const remaining = targetLetters.slice();
+
+            // correct positions
+            for (let i = 0; i < COLS; i++) {
+                if (guess[i] === targetLetters[i]) {
+                    result[i] = 'correct';
+                    remaining[i] = null;
+                }
+            }
+            // present but wrong position
+            for (let i = 0; i < COLS; i++) {
+                if (result[i] === 'correct') continue;
+                const idx = remaining.indexOf(guess[i]);
+                if (idx !== -1) {
+                    result[i] = 'present';
+                    remaining[idx] = null;
+                }
+            }
+
+            grid[row].forEach((cell, i) => {
+                cell.classList.remove('filled');
+                cell.classList.add(result[i]);
+                cell.style.transform = 'rotateX(0deg)';
+            });
+            updateKeyboard(result, guess);
+
+            if (guess === target) {
+                statusEl.textContent = `${row + 1}번째 만에 정답! 대단해요!`;
+                state.finished = true;
+                return;
+            }
+            row += 1;
+            col = 0;
+            if (row === MAX_ROWS) {
+                statusEl.textContent = `실패! 정답은 ${target}였습니다.`;
+                state.finished = true;
+            } else {
+                statusEl.textContent = `${MAX_ROWS - row}번의 기회가 남았습니다.`;
+            }
+        }
+
+        function updateKeyboard(result, guess) {
+            const keys = keyboardEl.querySelectorAll('.key');
+            result.forEach((status, idx) => {
+                const letter = guess[idx];
+                keys.forEach((keyBtn) => {
+                    if (keyBtn.dataset.key === letter) {
+                        if (keyBtn.classList.contains('correct')) return;
+                        if (status === 'correct') {
+                            keyBtn.className = 'key correct';
+                        } else if (status === 'present' && !keyBtn.classList.contains('correct')) {
+                            keyBtn.classList.add('present');
+                        } else if (status === 'absent' && !keyBtn.classList.contains('present') && !keyBtn.classList.contains('correct')) {
+                            keyBtn.classList.add('absent');
+                        }
+                    }
+                });
+            });
+        }
+
+        function resetGame() {
+            state.finished = false;
+            row = 0;
+            col = 0;
+            pickWord();
+            initBoard();
+            initKeyboard();
+            statusEl.textContent = '단어를 입력하세요.';
+        }
+
+        window.addEventListener('keydown', (event) => {
+            if (event.metaKey || event.ctrlKey || event.altKey) return;
+            if (event.key === 'Backspace') {
+                handleInput('DEL');
+            } else if (event.key === 'Enter') {
+                handleInput('ENTER');
+            } else {
+                handleInput(event.key.toUpperCase());
+            }
+        });
+
+        restartBtn.addEventListener('click', resetGame);
+
+        resetGame();
+
+        const creditTarget = document.querySelector('.panel, .container, main, .game-wrapper, .wrapper') || document.body;
+        if (creditTarget && !creditTarget.querySelector('.credit')) {
+            const credit = document.createElement('p');
+            credit.className = 'credit';
+            credit.innerHTML = '만든이: <strong>박은성</strong>';
+            creditTarget.appendChild(credit);
+        }
+</script>
+</body>
+</html>
