@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스카이 러너</title>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #0c1445 0%, #1b2b6b 40%, #0b1329 100%);
+            color: #f5f6fa;
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+        }
+        .container {
+            background: rgba(10, 16, 36, 0.9);
+            padding: 30px;
+            border-radius: 28px;
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.55);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+        }
+        canvas {
+            border-radius: 20px;
+            border: 6px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(180deg, #2f80ed 0%, #56ccf2 55%, #ecf8ff 56%, #f3f9ff 100%);
+        }
+        h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        .stats {
+            display: flex;
+            gap: 20px;
+            font-weight: 600;
+        }
+        button {
+            background: linear-gradient(135deg, #c471ed, #f7797d);
+            color: #1f0b2f;
+            border: none;
+            border-radius: 999px;
+            padding: 10px 24px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 28px rgba(247, 121, 125, 0.35);
+        }
+        p {
+            margin: 0;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.75);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>스카이 러너</h1>
+        <div class="stats">
+            <div>거리: <span id="distance">0</span>m</div>
+            <div>최고: <span id="best">0</span>m</div>
+            <div>속도: <span id="speed">0</span>m/s</div>
+        </div>
+        <canvas id="game" width="640" height="360"></canvas>
+        <button id="restart">다시 시작</button>
+        <p>스페이스/위 키로 점프, 아래 키로 구르기. 장애물을 피하며 더 멀리 달려 보세요!</p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('game');
+        const ctx = canvas.getContext('2d');
+        const distanceEl = document.getElementById('distance');
+        const bestEl = document.getElementById('best');
+        const speedEl = document.getElementById('speed');
+        const restartBtn = document.getElementById('restart');
+
+        const WIDTH = canvas.width;
+        const HEIGHT = canvas.height;
+
+        const GROUND = HEIGHT - 60;
+        const GRAVITY = 0.0022;
+        const JUMP_FORCE = -0.95;
+
+        let player;
+        let obstacles;
+        let clouds;
+        let distance;
+        let speed;
+        let best = Number(localStorage.getItem('runner-best')) || 0;
+        let running = false;
+        let lastTime = 0;
+        let slideTimer = 0;
+
+        const keys = new Set();
+
+        bestEl.textContent = best;
+
+        function resetGame() {
+            player = { x: 120, y: GROUND, vy: 0, width: 44, height: 64, sliding: false };
+            obstacles = [];
+            clouds = Array.from({ length: 5 }, () => ({
+                x: Math.random() * WIDTH,
+                y: 40 + Math.random() * 120,
+                speed: 0.02 + Math.random() * 0.05
+            }));
+            distance = 0;
+            speed = 0.25;
+            running = true;
+            lastTime = performance.now();
+            slideTimer = 0;
+            updateObstacles.nextSpawn = 600;
+            updateUI();
+        }
+
+        function updateUI() {
+            distanceEl.textContent = Math.floor(distance);
+            speedEl.textContent = speed.toFixed(2);
+        }
+
+        function spawnObstacle() {
+            const types = [
+                { width: 30, height: 60, yOffset: 0 },
+                { width: 54, height: 40, yOffset: 20 },
+                { width: 40, height: 32, yOffset: 28 }
+            ];
+            const type = types[Math.floor(Math.random() * types.length)];
+            obstacles.push({
+                x: WIDTH + 40,
+                width: type.width,
+                height: type.height,
+                y: GROUND - type.height + type.yOffset,
+                scored: false
+            });
+        }
+
+        function updateClouds(delta) {
+            clouds.forEach(cloud => {
+                cloud.x -= cloud.speed * delta;
+                if (cloud.x < -80) {
+                    cloud.x = WIDTH + Math.random() * 80;
+                    cloud.y = 40 + Math.random() * 120;
+                    cloud.speed = 0.02 + Math.random() * 0.05;
+                }
+            });
+        }
+
+        function updateObstacles(delta) {
+            const spawnInterval = Math.max(900 - distance * 2, 360);
+            if (!updateObstacles.nextSpawn) updateObstacles.nextSpawn = spawnInterval;
+            updateObstacles.nextSpawn -= delta;
+            if (updateObstacles.nextSpawn <= 0) {
+                spawnObstacle();
+                updateObstacles.nextSpawn = spawnInterval;
+            }
+            obstacles = obstacles.filter(obs => {
+                obs.x -= speed * delta * 1.4;
+                if (!obs.scored && obs.x + obs.width < player.x) {
+                    obs.scored = true;
+                    distance += 5;
+                }
+                return obs.x + obs.width > -20;
+            });
+        }
+
+        function handleInput(delta) {
+            if ((keys.has(' ') || keys.has('Space') || keys.has('ArrowUp')) && player.y >= GROUND) {
+                player.vy = JUMP_FORCE;
+                player.y = GROUND - 1;
+            }
+            if (keys.has('ArrowDown') && player.y >= GROUND - 1) {
+                player.sliding = true;
+                slideTimer += delta;
+                if (slideTimer > 600) {
+                    slideTimer = 0;
+                    player.sliding = false;
+                }
+            } else {
+                player.sliding = false;
+                slideTimer = 0;
+            }
+        }
+
+        function updatePlayer(delta) {
+            handleInput(delta);
+            player.vy += GRAVITY * delta;
+            player.y += player.vy * delta;
+            if (player.y >= GROUND) {
+                player.y = GROUND;
+                player.vy = 0;
+            }
+            updateUI();
+        }
+
+        function detectCollision(obstacle) {
+            const playerHeight = player.sliding ? player.height * 0.55 : player.height;
+            const playerTop = player.y - playerHeight;
+            const playerBottom = player.y;
+            const playerLeft = player.x - player.width / 2;
+            const playerRight = player.x + player.width / 2;
+            const obstacleTop = obstacle.y - obstacle.height;
+            const obstacleBottom = obstacle.y;
+            const obstacleLeft = obstacle.x;
+            const obstacleRight = obstacle.x + obstacle.width;
+            return !(playerRight < obstacleLeft || playerLeft > obstacleRight || playerBottom < obstacleTop || playerTop > obstacleBottom);
+        }
+
+        function drawBackground() {
+            ctx.fillStyle = '#90e0ff';
+            ctx.fillRect(0, 0, WIDTH, HEIGHT);
+            ctx.fillStyle = '#fff';
+            clouds.forEach(cloud => {
+                ctx.globalAlpha = 0.6;
+                ctx.beginPath();
+                ctx.arc(cloud.x, cloud.y, 24, Math.PI, 0);
+                ctx.arc(cloud.x + 24, cloud.y, 24, Math.PI, 0);
+                ctx.arc(cloud.x + 48, cloud.y, 24, Math.PI, 0);
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            });
+            ctx.fillStyle = '#0f3d66';
+            ctx.fillRect(0, HEIGHT - 60, WIDTH, 60);
+            ctx.fillStyle = '#1f5a8a';
+            ctx.fillRect(0, HEIGHT - 56, WIDTH, 4);
+        }
+
+        function drawPlayer() {
+            ctx.save();
+            ctx.translate(player.x, player.y);
+            const height = player.sliding ? player.height * 0.55 : player.height;
+            ctx.fillStyle = '#f8cdda';
+            ctx.fillRect(-player.width / 2, -height, player.width, height);
+            ctx.fillStyle = '#ff5f6d';
+            ctx.fillRect(-player.width / 2, -height, player.width, 16);
+            ctx.restore();
+        }
+
+        function drawObstacles() {
+            ctx.fillStyle = '#ffd166';
+            obstacles.forEach(obs => {
+                ctx.fillRect(obs.x, obs.y - obs.height, obs.width, obs.height);
+                ctx.fillStyle = '#f8961e';
+                ctx.fillRect(obs.x, obs.y - 8, obs.width, 8);
+                ctx.fillStyle = '#ffd166';
+            });
+        }
+
+        function update(time = 0) {
+            if (!running) return;
+            const delta = time - lastTime;
+            lastTime = time;
+            speed += delta * 0.00002;
+            distance += speed * delta * 0.01;
+            updateClouds(delta);
+            updateObstacles(delta);
+            updatePlayer(delta);
+            drawBackground();
+            drawObstacles();
+            drawPlayer();
+            if (obstacles.some(detectCollision)) {
+                endGame();
+                return;
+            }
+            requestAnimationFrame(update);
+        }
+
+        function endGame() {
+            running = false;
+            best = Math.max(best, Math.floor(distance));
+            localStorage.setItem('runner-best', best);
+            bestEl.textContent = best;
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.55)';
+            ctx.fillRect(0, 0, WIDTH, HEIGHT);
+            ctx.fillStyle = '#f5f6fa';
+            ctx.font = '28px Pretendard, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('게임 오버', WIDTH / 2, HEIGHT / 2 - 12);
+            ctx.font = '18px Pretendard, sans-serif';
+            ctx.fillText(`거리: ${Math.floor(distance)}m`, WIDTH / 2, HEIGHT / 2 + 20);
+        }
+
+        restartBtn.addEventListener('click', () => {
+            resetGame();
+            requestAnimationFrame(update);
+        });
+
+        document.addEventListener('keydown', e => {
+            keys.add(e.key);
+            if (e.key === ' ') e.preventDefault();
+            if (!running) {
+                resetGame();
+                requestAnimationFrame(update);
+            }
+        });
+        document.addEventListener('keyup', e => {
+            keys.delete(e.key);
+        });
+
+        resetGame();
+        running = false;
+        drawBackground();
+        drawObstacles();
+        drawPlayer();
+    </script>
+    <script src="../global-enhancements.js" defer></script>
+</body>
+</html>
