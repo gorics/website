@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>레트로 개구리 건너기</title>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at top, #091729 0%, #03060c 65%, #000 100%);
+            color: #f8fbff;
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(16px, 3vw, 48px);
+        }
+        main {
+            width: min(100%, 960px);
+            display: grid;
+            gap: 24px;
+            grid-template-columns: minmax(0, 480px) minmax(0, 1fr);
+            align-items: start;
+        }
+        @media (max-width: 980px) {
+            main {
+                grid-template-columns: 1fr;
+                justify-items: center;
+            }
+        }
+        canvas {
+            width: 100%;
+            max-width: 480px;
+            border-radius: 18px;
+            background: linear-gradient(#071c34 0%, #0b101c 100%);
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+        }
+        section {
+            background: rgba(10, 24, 46, 0.76);
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: clamp(20px, 3vw, 32px);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            backdrop-filter: blur(14px);
+        }
+        h1 {
+            margin: 0;
+            font-size: clamp(28px, 3.6vw, 38px);
+            letter-spacing: -0.02em;
+        }
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            font-weight: 600;
+        }
+        .chip {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            padding: 6px 14px;
+        }
+        ul {
+            margin: 0;
+            padding-left: 20px;
+            color: rgba(240, 244, 255, 0.82);
+            line-height: 1.6;
+        }
+        button {
+            border: none;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #1d5de7, #36b8ff);
+            color: white;
+            cursor: pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 24px rgba(21, 89, 224, 0.35);
+        }
+        .goals {
+            display: flex;
+            gap: 6px;
+        }
+        .goals span {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .goals span.reached {
+            background: linear-gradient(140deg, #8ef18a, #2fe191);
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <canvas id="game" width="480" height="560" aria-label="게임 화면"></canvas>
+        <section>
+            <h1>레트로 개구리 건너기</h1>
+            <div class="stats">
+                <span class="chip">레벨 <strong id="level">1</strong></span>
+                <span class="chip">점수 <strong id="score">0</strong></span>
+                <span class="chip">남은 생명 <strong id="lives">3</strong></span>
+            </div>
+            <div class="goals" aria-live="polite" id="goal-tracker"></div>
+            <p>방향키 또는 WASD로 개구리를 조작해 강과 도로를 건너 목적지에 도착하세요. 통나무 위에 올라타 이동하고, 차와 물에 닿지 않도록 조심하세요. 모든 홈을 채우면 다음 레벨로 진행합니다.</p>
+            <ul>
+                <li>레벨이 오를수록 차량과 통나무 속도가 빨라집니다.</li>
+                <li>구급차는 매우 빠르며, 강물에 빠지면 생명이 줄어듭니다.</li>
+                <li>스페이스 키로 현재 라운드를 포기하고 시작 지점으로 돌아갈 수 있지만 점수가 감소합니다.</li>
+            </ul>
+            <button id="restart">다시 시작</button>
+        </section>
+    </main>
+    <script>
+        const canvas = document.getElementById('game');
+        const ctx = canvas.getContext('2d');
+        const tile = 40;
+        const cols = 12;
+        const rows = 14;
+        const levelEl = document.getElementById('level');
+        const scoreEl = document.getElementById('score');
+        const livesEl = document.getElementById('lives');
+        const restartBtn = document.getElementById('restart');
+        const goalTracker = document.getElementById('goal-tracker');
+
+        const lanes = [
+            { type: 'goal' },
+            { type: 'river', speed: 1.6, spawnDelay: 2.4, size: 140 },
+            { type: 'river', speed: -1.9, spawnDelay: 2.0, size: 120 },
+            { type: 'river', speed: 1.8, spawnDelay: 1.8, size: 100 },
+            { type: 'river', speed: -2.1, spawnDelay: 1.9, size: 150 },
+            { type: 'safe' },
+            { type: 'road', speed: 2.6, spawnDelay: 1.6, size: 80 },
+            { type: 'road', speed: -3.0, spawnDelay: 1.6, size: 70 },
+            { type: 'road', speed: 3.3, spawnDelay: 1.3, size: 90 },
+            { type: 'road', speed: -4.1, spawnDelay: 1.1, size: 90 },
+            { type: 'road', speed: 5.0, spawnDelay: 1.0, size: 80, aggressive: true },
+            { type: 'safe' },
+            { type: 'start' }
+        ];
+
+        const palette = {
+            river: '#123a55',
+            road: '#1b1f2c',
+            safe: '#14233a',
+            goal: '#1a3144',
+            text: '#f5f8ff'
+        };
+
+        const goalPositions = [0.8, 2.8, 4.8, 6.8, 8.8];
+
+        let player;
+        let logs = [];
+        let cars = [];
+        let spawnTimers = new Array(lanes.length).fill(0);
+        let lives = 3;
+        let score = 0;
+        let level = 1;
+        let reachedGoals = goalPositions.map(() => false);
+        let lastTime = 0;
+        let gameOver = false;
+
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playBeep(freq, duration = 0.12) {
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.frequency.value = freq;
+            osc.type = 'square';
+            gain.gain.setValueAtTime(0.18, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+            osc.connect(gain).connect(audioCtx.destination);
+            osc.start(now);
+            osc.stop(now + duration);
+        }
+
+        const input = {
+            up: false,
+            down: false,
+            left: false,
+            right: false,
+            reset: false
+        };
+
+        window.addEventListener('keydown', (e) => {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume().catch(() => {});
+            }
+            if (['ArrowUp', 'w', 'W'].includes(e.key)) input.up = true;
+            if (['ArrowDown', 's', 'S'].includes(e.key)) input.down = true;
+            if (['ArrowLeft', 'a', 'A'].includes(e.key)) input.left = true;
+            if (['ArrowRight', 'd', 'D'].includes(e.key)) input.right = true;
+            if (e.code === 'Space') input.reset = true;
+        });
+        window.addEventListener('keyup', (e) => {
+            if (['ArrowUp', 'w', 'W'].includes(e.key)) input.up = false;
+            if (['ArrowDown', 's', 'S'].includes(e.key)) input.down = false;
+            if (['ArrowLeft', 'a', 'A'].includes(e.key)) input.left = false;
+            if (['ArrowRight', 'd', 'D'].includes(e.key)) input.right = false;
+            if (e.code === 'Space') input.reset = false;
+        });
+
+        restartBtn.addEventListener('click', () => startGame(true));
+
+        function startGame(full = false) {
+            player = { x: 5, y: lanes.length - 1, offsetX: 0 };
+            logs = [];
+            cars = [];
+            spawnTimers = new Array(lanes.length).fill(0);
+            gameOver = false;
+            if (full) {
+                lives = 3;
+                score = 0;
+                level = 1;
+                reachedGoals = reachedGoals.map(() => false);
+            }
+            updateHUD();
+            requestAnimationFrame(loop);
+        }
+
+        function updateHUD() {
+            levelEl.textContent = level;
+            scoreEl.textContent = score;
+            livesEl.textContent = lives;
+            goalTracker.innerHTML = '';
+            reachedGoals.forEach((reached) => {
+                const span = document.createElement('span');
+                span.className = reached ? 'reached' : '';
+                goalTracker.appendChild(span);
+            });
+        }
+
+        function spawnEntity(laneIndex, dt) {
+            const lane = lanes[laneIndex];
+            if (lane.type !== 'river' && lane.type !== 'road') return;
+            spawnTimers[laneIndex] -= dt;
+            const levelModifier = 1 + (level - 1) * 0.12;
+            if (spawnTimers[laneIndex] <= 0) {
+                const direction = Math.sign(lane.speed);
+                const speed = lane.speed * levelModifier;
+                const y = laneIndex * tile;
+                const size = lane.size;
+                if (lane.type === 'river') {
+                    logs.push({
+                        x: direction > 0 ? -size : canvas.width + size,
+                        y,
+                        w: size,
+                        speed
+                    });
+                } else {
+                    const color = lane.aggressive ? '#ff3567' : '#f7b733';
+                    cars.push({
+                        x: direction > 0 ? -size : canvas.width + size,
+                        y,
+                        w: size,
+                        speed,
+                        color
+                    });
+                }
+                const baseDelay = lane.spawnDelay / levelModifier;
+                spawnTimers[laneIndex] = baseDelay * (0.7 + Math.random() * 0.6);
+            }
+        }
+
+        function updateEntities(dt) {
+            logs.forEach((log) => {
+                log.x += log.speed * dt;
+            });
+            cars.forEach((car) => {
+                car.x += car.speed * dt;
+            });
+            logs = logs.filter((log) => log.x + log.w > -80 && log.x < canvas.width + 80);
+            cars = cars.filter((car) => car.x + car.w > -80 && car.x < canvas.width + 80);
+        }
+
+        function movePlayer() {
+            let moved = false;
+            if (input.up) {
+                player.y = Math.max(0, player.y - 1);
+                moved = true;
+            } else if (input.down) {
+                player.y = Math.min(lanes.length - 1, player.y + 1);
+                moved = true;
+            } else if (input.left) {
+                player.x = Math.max(0, player.x - 1);
+                moved = true;
+            } else if (input.right) {
+                player.x = Math.min(cols - 1, player.x + 1);
+                moved = true;
+            }
+            if (moved) {
+                playBeep(880);
+                input.up = input.down = input.left = input.right = false;
+            }
+            if (input.reset) {
+                score = Math.max(0, score - 50);
+                resetPlayer();
+                input.reset = false;
+            }
+        }
+
+        function resetPlayer() {
+            player.x = 5;
+            player.y = lanes.length - 1;
+            player.offsetX = 0;
+        }
+
+        function handleRiver(dt) {
+            const laneIndex = player.y;
+            const lane = lanes[laneIndex];
+            if (lane.type !== 'river') {
+                player.offsetX = 0;
+                return;
+            }
+            const frogY = laneIndex * tile;
+            const frogX = player.x * tile + player.offsetX;
+            const ride = logs.find((log) => frogY === log.y && frogX + tile > log.x && frogX < log.x + log.w);
+            if (ride) {
+                player.offsetX += ride.speed * dt;
+                const newX = player.x * tile + player.offsetX;
+                if (newX < 0 || newX + tile > canvas.width) {
+                    loseLife();
+                }
+            } else {
+                loseLife();
+            }
+        }
+
+        function handleRoad() {
+            const laneIndex = player.y;
+            const lane = lanes[laneIndex];
+            if (lane.type !== 'road') return;
+            const frogY = laneIndex * tile;
+            const frogX = player.x * tile + player.offsetX;
+            const hit = cars.find((car) => frogY === car.y && frogX + tile - 6 > car.x && frogX + 6 < car.x + car.w);
+            if (hit) {
+                loseLife();
+            }
+        }
+
+        function handleGoal() {
+            if (player.y !== 0) return;
+            const frogX = player.x + player.offsetX / tile;
+            const goalIndex = goalPositions.findIndex((pos) => Math.abs(pos - frogX) < 0.4);
+            if (goalIndex >= 0 && !reachedGoals[goalIndex]) {
+                reachedGoals[goalIndex] = true;
+                score += 200 + level * 50;
+                playBeep(1320, 0.3);
+                if (reachedGoals.every(Boolean)) {
+                    level += 1;
+                    reachedGoals = reachedGoals.map(() => false);
+                    score += 500;
+                }
+                updateHUD();
+                resetPlayer();
+            } else {
+                loseLife();
+            }
+        }
+
+        function loseLife() {
+            if (gameOver) return;
+            lives -= 1;
+            playBeep(220, 0.25);
+            if (lives <= 0) {
+                gameOver = true;
+                lives = 0;
+                updateHUD();
+                ctx.fillStyle = 'rgba(0,0,0,0.68)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#ff5d73';
+                ctx.font = 'bold 40px Pretendard, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2);
+                ctx.font = '20px Pretendard, sans-serif';
+                ctx.fillText('다시 시작 버튼을 눌러 재도전하세요', canvas.width / 2, canvas.height / 2 + 40);
+                return;
+            }
+            score = Math.max(0, score - 100);
+            resetPlayer();
+            updateHUD();
+        }
+
+        function renderBackground() {
+            ctx.fillStyle = '#030b16';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            lanes.forEach((lane, i) => {
+                let color = palette.safe;
+                if (lane.type === 'river') color = palette.river;
+                if (lane.type === 'road') color = palette.road;
+                if (lane.type === 'goal') color = palette.goal;
+                ctx.fillStyle = color;
+                ctx.fillRect(0, i * tile, canvas.width, tile);
+            });
+            ctx.fillStyle = '#0b111d';
+            ctx.fillRect(0, (lanes.length - 1) * tile, canvas.width, tile);
+            ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+            ctx.lineWidth = 2;
+            for (let i = 1; i < cols; i++) {
+                ctx.beginPath();
+                ctx.moveTo(i * tile, 0);
+                ctx.lineTo(i * tile, canvas.height);
+                ctx.stroke();
+            }
+        }
+
+        function renderEntities() {
+            logs.forEach((log) => {
+                const gradient = ctx.createLinearGradient(log.x, 0, log.x + log.w, 0);
+                gradient.addColorStop(0, '#2f6a4c');
+                gradient.addColorStop(1, '#79c594');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(log.x, log.y + 6, log.w, tile - 12);
+            });
+            cars.forEach((car) => {
+                ctx.fillStyle = car.color;
+                ctx.fillRect(car.x + 6, car.y + 8, car.w - 12, tile - 16);
+                ctx.fillStyle = 'rgba(0,0,0,0.25)';
+                ctx.fillRect(car.x + 12, car.y + tile / 2 - 8, car.w - 24, 16);
+            });
+            const frogX = player.x * tile + player.offsetX;
+            const frogY = player.y * tile;
+            ctx.fillStyle = '#7fffa7';
+            ctx.beginPath();
+            ctx.arc(frogX + tile / 2, frogY + tile / 2, tile / 2.4, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#053017';
+            ctx.beginPath();
+            ctx.arc(frogX + tile / 2 - 6, frogY + tile / 2 - 4, 6, 0, Math.PI * 2);
+            ctx.arc(frogX + tile / 2 + 6, frogY + tile / 2 - 4, 6, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function loop(timestamp) {
+            if (gameOver) return;
+            const dt = Math.min(0.2, (timestamp - lastTime) / 1000 || 0);
+            lastTime = timestamp;
+            movePlayer();
+            for (let i = 0; i < lanes.length; i++) {
+                spawnEntity(i, dt);
+            }
+            updateEntities(dt * 120);
+            handleRiver(dt * 120);
+            handleRoad();
+            handleGoal();
+            renderBackground();
+            renderEntities();
+            requestAnimationFrame(loop);
+        }
+
+        startGame(true);
+    </script>
+</body>
+</html>
