@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <title>카드 매칭</title>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #373b44, #4286f4);
+            color: #f5f6fa;
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+            padding: clamp(20px, 5vw, 48px);
+        }
+        .container {
+            width: min(92vw, 620px);
+            background: rgba(16, 28, 48, 0.92);
+            border-radius: 28px;
+            padding: clamp(24px, 5vw, 48px);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: clamp(26px, 5vw, 34px);
+        }
+        .signature {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(66, 134, 244, 0.18);
+            color: #9ebdff;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .stats {
+            display: flex;
+            gap: 16px;
+            font-weight: 600;
+            flex-wrap: wrap;
+        }
+        #board {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(80px, 1fr));
+            gap: clamp(12px, 3vw, 18px);
+        }
+        button.card {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            border-radius: 18px;
+            border: none;
+            cursor: pointer;
+            perspective: 800px;
+            background: transparent;
+        }
+        .card-face {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 18px;
+            font-size: clamp(24px, 7vw, 44px);
+            font-weight: 700;
+            backface-visibility: hidden;
+            transition: transform 0.4s ease;
+        }
+        .card-front {
+            background: rgba(255, 255, 255, 0.09);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .card-back {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #222;
+            transform: rotateY(180deg);
+        }
+        .card.revealed .card-front {
+            transform: rotateY(180deg);
+        }
+        .card.revealed .card-back {
+            transform: rotateY(360deg);
+        }
+        .card.matched .card-back {
+            background: linear-gradient(135deg, #6ee7b7, #3b82f6);
+            color: #0b1726;
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        button.action {
+            background: linear-gradient(135deg, #fdfbfb, #ebedee);
+            color: #0f172a;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 999px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        button.action:hover, button.action:focus-visible {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 24px rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+        .message {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.75);
+        }
+    </style>
+    <style>
+      :root { --osc-gap: 10px; --osc-btn: 56px; --osc-z: 9999; }
+      .credit-banner{
+        position:fixed; top:env(safe-area-inset-top,0); left:env(safe-area-inset-left,0);
+        margin:8px; padding:6px 10px; font:600 14px/1.2 system-ui, sans-serif;
+        background:rgba(0,0,0,.55); color:#fff; border-radius:8px; z-index:var(--osc-z);
+        -webkit-backdrop-filter:saturate(150%) blur(6px); backdrop-filter:saturate(150%) blur(6px);
+        user-select:none; pointer-events:none;
+      }
+      .osc-wrap{
+        position:fixed; inset:auto 0 env(safe-area-inset-bottom,0) 0;
+        display:flex; justify-content:center; gap:24px; padding:var(--osc-gap);
+        z-index:var(--osc-z); touch-action:manipulation;
+      }
+      .osc { display:flex; align-items:center; gap:16px; }
+      .osc .dpad{ display:grid; grid-template-areas:
+          ".    up    ."
+          "left  mid  right"
+          ".   down   .";
+        gap:8px; align-items:center; justify-items:center;
+      }
+      .osc .actions{ display:flex; gap:10px; }
+      .osc button{
+        min-width:var(--osc-btn); min-height:var(--osc-btn);
+        border:0; border-radius:12px; font:700 16px system-ui, sans-serif;
+        background:rgba(255,255,255,.9); color:#111; box-shadow:0 2px 10px rgba(0,0,0,.2);
+      }
+      .osc .pause{ min-width:72px; }
+      /* 게임 화면 가려짐 방지 */
+      body{ padding-bottom: calc(env(safe-area-inset-bottom,0) + 110px); }
+      @media (pointer:fine){ /* 데스크톱이면 패드 숨김 */
+        .osc-wrap{ display:none; } body{ padding-bottom:0; }
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+                <div class="signature">박은성이 만든 게임</div>
+                <h1>카드 매칭</h1>
+            </div>
+            <div class="stats">
+                <div>턴: <span id="turns">0</span></div>
+                <div>시간: <span id="time">0</span>s</div>
+            </div>
+        </header>
+        <div id="board"></div>
+        <div class="controls">
+            <button class="action" id="restart">다시 섞기</button>
+            <span class="message" id="message">두 장의 카드를 뒤집어 짝을 찾아보세요.</span>
+        </div>
+    </div>
+
+    <script>
+        const icons = ['🍎','🍉','🍓','🍊','🥝','🍇','🍍','🥕','🍒','🍅','🌽','🥑'];
+        const boardEl = document.getElementById('board');
+        const turnsEl = document.getElementById('turns');
+        const timeEl = document.getElementById('time');
+        const restartBtn = document.getElementById('restart');
+        const messageEl = document.getElementById('message');
+
+        let deck = [];
+        let flipped = [];
+        let matched = 0;
+        let turns = 0;
+        let startTime = null;
+        let timer = null;
+        let lock = false;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function buildDeck() {
+            const pairs = shuffle([...icons]).slice(0, 8);
+            deck = shuffle([...pairs, ...pairs]).map((icon, index) => ({ id: index, icon, matched: false }));
+        }
+
+        function startTimer() {
+            if (timer) return;
+            startTime = Date.now();
+            timer = setInterval(() => {
+                const elapsed = Math.floor((Date.now() - startTime) / 1000);
+                timeEl.textContent = elapsed;
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timer);
+            timer = null;
+        }
+
+        function renderBoard() {
+            boardEl.innerHTML = '';
+            deck.forEach(card => {
+                const button = document.createElement('button');
+                button.className = 'card';
+                button.dataset.id = card.id;
+                button.innerHTML = `
+                    <div class="card-face card-front"></div>
+                    <div class="card-face card-back">${card.icon}</div>
+                `;
+                button.addEventListener('click', onCardClick);
+                boardEl.appendChild(button);
+                card.element = button;
+            });
+            turnsEl.textContent = turns;
+            timeEl.textContent = '0';
+        }
+
+        function onCardClick(e) {
+            const id = Number(e.currentTarget.dataset.id);
+            const card = deck[id];
+            if (lock || card.matched || flipped.includes(card) || flipped.length === 2) return;
+            card.element.classList.add('revealed');
+            flipped.push(card);
+            if (!startTime) startTimer();
+
+            if (flipped.length === 2) {
+                turns++;
+                turnsEl.textContent = turns;
+                if (flipped[0].icon === flipped[1].icon) {
+                    flipped.forEach(c => {
+                        c.matched = true;
+                        c.element.classList.add('matched');
+                    });
+                    matched += 2;
+                    flipped = [];
+                    checkVictory();
+                } else {
+                    lock = true;
+                    setTimeout(() => {
+                        flipped.forEach(c => c.element.classList.remove('revealed'));
+                        flipped = [];
+                        lock = false;
+                    }, 750);
+                }
+            }
+        }
+
+        function checkVictory() {
+            if (matched === deck.length) {
+                stopTimer();
+                const timeTaken = timeEl.textContent;
+                messageEl.textContent = `완벽합니다! ${turns}턴, ${timeTaken}초 만에 모든 카드를 맞췄어요.`;
+            }
+        }
+
+        function resetGame() {
+            stopTimer();
+            startTime = null;
+            turns = 0;
+            matched = 0;
+            flipped = [];
+            lock = false;
+            messageEl.textContent = '두 장의 카드를 뒤집어 짝을 찾아보세요.';
+            buildDeck();
+            renderBoard();
+        }
+
+        restartBtn.addEventListener('click', resetGame);
+
+        resetGame();
+    </script>
+    <script src="../global-enhancements.js" defer></script>
+<!-- Creator credit -->
+<div class="credit-banner" aria-hidden="true">Creator: 박은성</div>
+
+<!-- On-screen Controls -->
+<div class="osc-wrap" id="osc-wrap" role="group" aria-label="On-screen game controls">
+  <div class="osc">
+    <div class="dpad">
+      <button data-key="ArrowUp"    style="grid-area:up">▲</button>
+      <button data-key="ArrowLeft"  style="grid-area:left">◀</button>
+      <button data-key="ArrowRight" style="grid-area:right">▶</button>
+      <button data-key="ArrowDown"  style="grid-area:down">▼</button>
+    </div>
+    <div class="actions">
+      <button data-key="Space">A</button>
+      <button data-key="Enter">B</button>
+      <button class="pause" data-key="Escape">⏯︎</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // 일부 게임이 window/document/canvas 등 서로 다른 타깃을 구독하므로, 광범위 전파
+  function send(key, type){
+    const ev = new KeyboardEvent(type, { key, code:key, bubbles:true, cancelable:true });
+    const t = document.activeElement && document.activeElement !== document.body
+      ? document.activeElement : document;
+    t.dispatchEvent(ev); window.dispatchEvent(ev);
+  }
+  function pressStart(key){ send(key,'keydown'); }
+  function pressEnd(key){ send(key,'keyup'); }
+
+  // 버튼 터치/클릭 → 키 이벤트 변환
+  document.getElementById('osc-wrap')?.addEventListener('pointerdown', e=>{
+    const btn = e.target.closest('button[data-key]'); if(!btn) return;
+    e.preventDefault(); btn.setPointerCapture?.(e.pointerId);
+    pressStart(btn.dataset.key);
+    btn.addEventListener('pointerup',  ()=>pressEnd(btn.dataset.key), { once:true });
+    btn.addEventListener('pointercancel',()=>pressEnd(btn.dataset.key), { once:true });
+    btn.addEventListener('lostpointercapture',()=>pressEnd(btn.dataset.key), { once:true });
+  });
+
+  // 스와이프 제스처 → 방향키
+  let sx=0, sy=0, tracking=false;
+  const TH=24; // 스와이프 임계값(px)
+  document.addEventListener('touchstart', (e)=>{
+    // 오버레이 위 스와이프는 무시
+    if(e.target.closest('#osc-wrap')) return;
+    tracking=true; const t=e.changedTouches[0]; sx=t.clientX; sy=t.clientY;
+  }, {passive:true});
+  document.addEventListener('touchend', (e)=>{
+    if(!tracking) return; tracking=false;
+    const t=e.changedTouches[0]; const dx=t.clientX-sx, dy=t.clientY-sy;
+    if(Math.abs(dx)<TH && Math.abs(dy)<TH) return;
+    const key = Math.abs(dx)>Math.abs(dy) ? (dx>0?'ArrowRight':'ArrowLeft')
+                                          : (dy>0?'ArrowDown':'ArrowUp');
+    pressStart(key); setTimeout(()=>pressEnd(key), 50);
+  }, {passive:true});
+  document.addEventListener('touchcancel', ()=>{
+    tracking=false;
+  }, {passive:true});
+})();
+</script>
+</body>
+</html>
