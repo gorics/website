@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <title>창고지기 소코반 챌린지</title>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at 20% 20%, #382465, #14102b 58%, #06070f 100%);
+            color: #f5f2ff;
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(20px, 4vw, 48px);
+        }
+        main {
+            width: min(100%, 960px);
+            display: grid;
+            gap: clamp(16px, 3vw, 32px);
+            grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+        }
+        @media (max-width: 960px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+        .board {
+            background: rgba(18, 12, 38, 0.72);
+            border-radius: 18px;
+            padding: clamp(18px, 3vw, 26px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+        }
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+        td {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            position: relative;
+            transition: transform 0.14s ease;
+        }
+        td.wall {
+            background: linear-gradient(130deg, #352966, #1a1234);
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+        }
+        td.floor {
+            background: rgba(255, 255, 255, 0.04);
+        }
+        td.goal {
+            background: radial-gradient(circle, rgba(255, 214, 102, 0.7) 0%, rgba(255, 214, 102, 0.05) 72%);
+            border: 1px solid rgba(255, 214, 102, 0.35);
+        }
+        .crate {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, #e7b86f, #ba782f);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .crate.goal {
+            background: linear-gradient(135deg, #ffe58f, #e7b86f);
+            box-shadow: 0 0 16px rgba(255, 214, 102, 0.6);
+        }
+        .player {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(140deg, #52f2ff, #705dff);
+            border: 3px solid rgba(255, 255, 255, 0.85);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        section {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            background: rgba(16, 12, 32, 0.76);
+            border-radius: 18px;
+            padding: clamp(20px, 3vw, 32px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(14px);
+        }
+        h1 {
+            margin: 0;
+            font-size: clamp(28px, 4vw, 40px);
+        }
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 16px;
+            font-weight: 600;
+        }
+        .chip {
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        p, ul {
+            margin: 0;
+            line-height: 1.6;
+            color: rgba(238, 235, 255, 0.85);
+        }
+        ul {
+            padding-left: 18px;
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        button {
+            border: none;
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-weight: 600;
+            cursor: pointer;
+            color: #0d0b1f;
+            background: linear-gradient(135deg, #ffdc8f, #ff9c5c);
+            box-shadow: 0 10px 22px rgba(255, 156, 92, 0.35);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 34px rgba(255, 156, 92, 0.38);
+        }
+        button.secondary {
+            background: rgba(255, 255, 255, 0.12);
+            color: #f8f7ff;
+            box-shadow: none;
+        }
+        .toast {
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: rgba(82, 245, 214, 0.12);
+            border: 1px solid rgba(82, 245, 214, 0.28);
+            color: #dffef5;
+        }
+    </style>
+    <style>
+      :root { --osc-gap: 10px; --osc-btn: 56px; --osc-z: 9999; }
+      .credit-banner{
+        position:fixed; top:env(safe-area-inset-top,0); left:env(safe-area-inset-left,0);
+        margin:8px; padding:6px 10px; font:600 14px/1.2 system-ui, sans-serif;
+        background:rgba(0,0,0,.55); color:#fff; border-radius:8px; z-index:var(--osc-z);
+        -webkit-backdrop-filter:saturate(150%) blur(6px); backdrop-filter:saturate(150%) blur(6px);
+        user-select:none; pointer-events:none;
+      }
+      .osc-wrap{
+        position:fixed; inset:auto 0 env(safe-area-inset-bottom,0) 0;
+        display:flex; justify-content:center; gap:24px; padding:var(--osc-gap);
+        z-index:var(--osc-z); touch-action:manipulation;
+        opacity:0; transform:translateY(18px);
+        transition:opacity .28s ease, transform .28s ease;
+      }
+      .osc-wrap.is-active{ opacity:1; transform:translateY(0); }
+      .osc { display:flex; align-items:center; gap:16px; }
+      .osc .dpad{ display:grid; grid-template-areas:
+          ".    up    ."
+          "left  mid  right"
+          ".   down   .";
+        gap:8px; align-items:center; justify-items:center;
+      }
+      .osc .actions{ display:flex; gap:10px; }
+      .osc button{
+        min-width:var(--osc-btn); min-height:var(--osc-btn);
+        border:0; border-radius:12px; font:700 16px system-ui, sans-serif;
+        background:rgba(255,255,255,.9); color:#111; box-shadow:0 2px 10px rgba(0,0,0,.2);
+        transition:transform .16s ease, background-color .16s ease, box-shadow .16s ease;
+        user-select:none; touch-action:none;
+      }
+      .osc button.is-pressed,
+      .osc button:active{
+        transform:scale(.94);
+        background:rgba(255,255,255,.82);
+        box-shadow:0 1px 6px rgba(0,0,0,.25);
+      }
+      .osc .pause{ min-width:72px; }
+      /* 게임 화면 가려짐 방지 */
+      body{ padding-bottom: calc(env(safe-area-inset-bottom,0) + 110px); }
+      @media (pointer:fine){ /* 데스크톱이면 패드 숨김 */
+        .osc-wrap{ display:none; } body{ padding-bottom:0; }
+      }
+      @media (prefers-reduced-motion: reduce){
+        .osc-wrap{ transition:none; }
+        .osc button{ transition:none; }
+      }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="board" aria-live="polite">
+            <table id="board" aria-label="소코반 보드"></table>
+        </div>
+        <section>
+            <h1>창고지기 소코반 챌린지</h1>
+            <div class="stats">
+                <span class="chip">레벨 <strong id="level">1</strong></span>
+                <span class="chip">이동 <strong id="moves">0</strong></span>
+                <span class="chip">밀기 <strong id="pushes">0</strong></span>
+            </div>
+            <p>창고지기가 상자를 목표 지점으로 밀어 넣도록 도와주세요. 상자는 끌 수 없고, 한 번에 하나의 상자만 밀 수 있습니다. 치밀하게 동선을 설계해 최소 이동으로 클리어에 도전하세요!</p>
+            <ul>
+                <li>방향키 또는 WASD로 이동합니다.</li>
+                <li>Z 키는 직전 상태로 되돌립니다. 실수했을 때 유용합니다.</li>
+                <li>다음 레벨로 갈 때는 모든 상자를 목표에 올려야 합니다.</li>
+            </ul>
+            <div class="controls">
+                <button id="reset">현재 레벨 재시작</button>
+                <button id="undo" class="secondary">되돌리기</button>
+                <button id="next">다음 퍼즐</button>
+            </div>
+            <div class="toast" id="message" role="status">레벨 1을 공략 중!</div>
+        </section>
+    </main>
+    <script>
+        const LEVELS = [
+            [
+                '#####',
+                '#. @#',
+                '# $ #',
+                '#   #',
+                '#####'
+            ],
+            [
+                '  #####',
+                '###   #',
+                '#.$ $ #',
+                '#  ## #',
+                '# @   #',
+                '### .##',
+                '  #####'
+            ],
+            [
+                '########',
+                '#   .  #',
+                '# ###$ #',
+                '# #  $ #',
+                '# # ## #',
+                '# @  $ #',
+                '#   .  #',
+                '########'
+            ]
+        ];
+
+        const boardEl = document.getElementById('board');
+        const levelEl = document.getElementById('level');
+        const movesEl = document.getElementById('moves');
+        const pushesEl = document.getElementById('pushes');
+        const resetBtn = document.getElementById('reset');
+        const undoBtn = document.getElementById('undo');
+        const nextBtn = document.getElementById('next');
+        const messageEl = document.getElementById('message');
+
+        let levelIndex = 0;
+        let moves = 0;
+        let pushes = 0;
+        let board = [];
+        let player = { x: 0, y: 0 };
+        const history = [];
+
+        function loadLevel(index) {
+            levelIndex = index % LEVELS.length;
+            const layout = LEVELS[levelIndex].map((row) => row.split(''));
+            board = layout;
+            moves = 0;
+            pushes = 0;
+            history.length = 0;
+            for (let y = 0; y < board.length; y++) {
+                for (let x = 0; x < board[y].length; x++) {
+                    if (board[y][x] === '@' || board[y][x] === '+') {
+                        player = { x, y };
+                    }
+                }
+            }
+            render();
+            updateHUD();
+            messageEl.textContent = `레벨 ${levelIndex + 1}을 공략 중!`;
+        }
+
+        function cloneBoard(src) {
+            return src.map((row) => row.slice());
+        }
+
+        function pushHistory() {
+            history.push({
+                board: cloneBoard(board),
+                player: { ...player },
+                moves,
+                pushes
+            });
+            if (history.length > 200) history.shift();
+        }
+
+        function cell(x, y) {
+            return board[y]?.[x] ?? ' ';
+        }
+
+        function setCell(x, y, value) {
+            if (board[y]) board[y][x] = value;
+        }
+
+        function isGoal(x, y) {
+            return LEVELS[levelIndex][y]?.[x] === '.';
+        }
+
+        function move(dx, dy) {
+            const target = { x: player.x + dx, y: player.y + dy };
+            const targetCell = cell(target.x, target.y);
+            if (targetCell === '#' || targetCell === undefined) return;
+            const isCrate = targetCell === '$' || targetCell === '*';
+            const beyond = { x: target.x + dx, y: target.y + dy };
+            const beyondCell = cell(beyond.x, beyond.y);
+            if (isCrate) {
+                if (beyondCell === '#' || beyondCell === '$' || beyondCell === '*') return;
+                pushHistory();
+                moves += 1;
+                pushes += 1;
+                const crateOnGoal = beyondCell === '.';
+                setCell(beyond.x, beyond.y, crateOnGoal ? '*' : '$');
+                setCell(target.x, target.y, isGoal(target.x, target.y) ? '.' : ' ');
+            } else {
+                pushHistory();
+                moves += 1;
+            }
+            const playerWasOnGoal = isGoal(player.x, player.y);
+            setCell(player.x, player.y, playerWasOnGoal ? '.' : ' ');
+            player = target;
+            const playerNowOnGoal = isGoal(player.x, player.y);
+            setCell(player.x, player.y, playerNowOnGoal ? '+' : '@');
+            render();
+            updateHUD();
+            if (checkSolved()) {
+                messageEl.textContent = `완벽해요! 레벨 ${levelIndex + 1} 완료!`;
+                messageEl.style.background = 'rgba(122, 255, 204, 0.18)';
+                messageEl.style.borderColor = 'rgba(122, 255, 204, 0.4)';
+            }
+        }
+
+        function checkSolved() {
+            for (let y = 0; y < board.length; y++) {
+                for (let x = 0; x < board[y].length; x++) {
+                    if (LEVELS[levelIndex][y]?.[x] === '.' && board[y][x] !== '*' && board[y][x] !== '+') {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        function undo() {
+            const prev = history.pop();
+            if (!prev) return;
+            board = cloneBoard(prev.board);
+            player = { ...prev.player };
+            moves = prev.moves;
+            pushes = prev.pushes;
+            render();
+            updateHUD();
+            messageEl.textContent = '한 수 전으로 되돌렸습니다.';
+        }
+
+        function render() {
+            boardEl.innerHTML = '';
+            board.forEach((row, y) => {
+                const tr = document.createElement('tr');
+                row.forEach((cell, x) => {
+                    const td = document.createElement('td');
+                    const type = cell === '#' ? 'wall' : isGoal(x, y) ? 'goal' : 'floor';
+                    td.className = type;
+                    if (cell === '$' || cell === '*') {
+                        const crate = document.createElement('div');
+                        crate.className = 'crate' + (cell === '*' ? ' goal' : '');
+                        td.appendChild(crate);
+                    }
+                    if (cell === '@' || cell === '+') {
+                        const playerEl = document.createElement('div');
+                        playerEl.className = 'player';
+                        td.appendChild(playerEl);
+                    }
+                    tr.appendChild(td);
+                });
+                boardEl.appendChild(tr);
+            });
+        }
+
+        function updateHUD() {
+            levelEl.textContent = levelIndex + 1;
+            movesEl.textContent = moves;
+            pushesEl.textContent = pushes;
+        }
+
+        window.addEventListener('keydown', (event) => {
+            if (checkSolved()) return;
+            switch (event.key) {
+                case 'ArrowUp':
+                case 'w':
+                case 'W':
+                    move(0, -1);
+                    break;
+                case 'ArrowDown':
+                case 's':
+                case 'S':
+                    move(0, 1);
+                    break;
+                case 'ArrowLeft':
+                case 'a':
+                case 'A':
+                    move(-1, 0);
+                    break;
+                case 'ArrowRight':
+                case 'd':
+                case 'D':
+                    move(1, 0);
+                    break;
+                case 'z':
+                case 'Z':
+                    undo();
+                    break;
+            }
+        });
+
+        resetBtn.addEventListener('click', () => loadLevel(levelIndex));
+        undoBtn.addEventListener('click', undo);
+        nextBtn.addEventListener('click', () => {
+            loadLevel((levelIndex + 1) % LEVELS.length);
+            messageEl.style.background = 'rgba(82, 245, 214, 0.12)';
+            messageEl.style.borderColor = 'rgba(82, 245, 214, 0.28)';
+        });
+
+        loadLevel(0);
+    </script>
+    <script src="../global-enhancements.js" defer></script>
+<!-- Creator credit -->
+<div class="credit-banner" aria-hidden="true">Creator: 박은성</div>
+
+<!-- On-screen Controls -->
+<div class="osc-wrap" id="osc-wrap" role="group" aria-label="On-screen game controls">
+  <div class="osc">
+    <div class="dpad">
+      <button type="button" data-key="ArrowUp" aria-label="Up" style="grid-area:up">▲</button>
+      <button type="button" data-key="ArrowLeft" aria-label="Left" style="grid-area:left">◀</button>
+      <button type="button" data-key="ArrowRight" aria-label="Right" style="grid-area:right">▶</button>
+      <button type="button" data-key="ArrowDown" aria-label="Down" style="grid-area:down">▼</button>
+    </div>
+    <div class="actions">
+      <button type="button" data-key="Space" aria-label="Primary action">A</button>
+      <button type="button" data-key="Enter" aria-label="Secondary action">B</button>
+      <button type="button" class="pause" data-key="Escape" aria-label="Pause or resume">⏯︎</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const wrap = document.getElementById('osc-wrap');
+  const activeTouches = new Map();
+
+  if (wrap) {
+    requestAnimationFrame(() => wrap.classList.add('is-active'));
+  }
+
+  function send(key, type){
+    const ev = new KeyboardEvent(type, { key, code:key, bubbles:true, cancelable:true });
+    const activeEl = document.activeElement && document.activeElement !== document.body
+      ? document.activeElement : document;
+    activeEl.dispatchEvent(ev);
+    window.dispatchEvent(ev);
+  }
+  function pressStart(key){ send(key,'keydown'); }
+  function pressEnd(key){ send(key,'keyup'); }
+
+  if (wrap) {
+    if ('PointerEvent' in window) {
+      wrap.addEventListener('pointerdown', (e) => {
+        const btn = e.target.closest('button[data-key]');
+        if (!btn) return;
+        e.preventDefault();
+        const key = btn.dataset.key;
+        btn.classList.add('is-pressed');
+        pressStart(key);
+        btn.setPointerCapture?.(e.pointerId);
+        const finish = () => {
+          pressEnd(key);
+          btn.classList.remove('is-pressed');
+        };
+        btn.addEventListener('pointerup', finish, { once: true });
+        btn.addEventListener('pointercancel', finish, { once: true });
+        btn.addEventListener('lostpointercapture', finish, { once: true });
+      });
+    } else {
+      const endTouch = (touch) => {
+        const entry = activeTouches.get(touch.identifier);
+        if (!entry) return;
+        activeTouches.delete(touch.identifier);
+        entry.btn?.classList.remove('is-pressed');
+        pressEnd(entry.key);
+      };
+      wrap.addEventListener('touchstart', (e) => {
+        for (const touch of Array.from(e.changedTouches)) {
+          const el = document.elementFromPoint(touch.clientX, touch.clientY);
+          const btn = el && el.closest('button[data-key]');
+          if (!btn) continue;
+          e.preventDefault();
+          const key = btn.dataset.key;
+          activeTouches.set(touch.identifier, { key, btn });
+          btn.classList.add('is-pressed');
+          pressStart(key);
+        }
+      }, { passive: false });
+      wrap.addEventListener('touchend', (e) => {
+        for (const touch of Array.from(e.changedTouches)) endTouch(touch);
+      });
+      wrap.addEventListener('touchcancel', (e) => {
+        for (const touch of Array.from(e.changedTouches)) endTouch(touch);
+      });
+    }
+
+    wrap.addEventListener('contextmenu', (e) => {
+      if (e.target.closest('button[data-key]')) e.preventDefault();
+    });
+  }
+
+  let sx=0, sy=0, tracking=false;
+  const TH=24; // 스와이프 임계값(px)
+  document.addEventListener('touchstart', (e)=>{
+    if(e.target.closest('#osc-wrap')) return;
+    tracking=true; const t=e.changedTouches[0]; sx=t.clientX; sy=t.clientY;
+  }, {passive:true});
+  document.addEventListener('touchend', (e)=>{
+    if(!tracking) return; tracking=false;
+    const t=e.changedTouches[0]; const dx=t.clientX-sx, dy=t.clientY-sy;
+    if(Math.abs(dx)<TH && Math.abs(dy)<TH) return;
+    const key = Math.abs(dx)>Math.abs(dy) ? (dx>0?'ArrowRight':'ArrowLeft')
+                                          : (dy>0?'ArrowDown':'ArrowUp');
+    pressStart(key); setTimeout(()=>pressEnd(key), 50);
+  }, {passive:true});
+})();
+</script>
+</body>
+</html>
