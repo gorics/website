@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <title>두더지 팡팡 스튜디오</title>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at 50% 0%, #2d1848 0%, #0a0710 70%, #050309 100%);
+            color: #fff3ff;
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(24px, 5vw, 56px);
+        }
+        main {
+            width: min(100%, 960px);
+            display: grid;
+            gap: clamp(18px, 4vw, 32px);
+            grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+            align-items: center;
+        }
+        @media (max-width: 900px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+        .arena {
+            background: linear-gradient(160deg, rgba(53, 22, 84, 0.86), rgba(20, 9, 31, 0.92));
+            border-radius: 24px;
+            padding: clamp(18px, 3vw, 28px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 26px 60px rgba(0, 0, 0, 0.45);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: clamp(12px, 3vw, 20px);
+        }
+        .hole {
+            background: radial-gradient(circle at 50% 65%, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(255, 255, 255, 0.1) 100%);
+            border-radius: 50%;
+            position: relative;
+            width: 100%;
+            padding-top: 100%;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.12s ease;
+        }
+        .hole:active {
+            transform: scale(0.97);
+        }
+        .mole {
+            position: absolute;
+            left: 50%;
+            bottom: -60%;
+            width: 66%;
+            height: 66%;
+            transform: translate(-50%, 0);
+            background: radial-gradient(circle at 30% 30%, #fbd6a1, #8b5125 65%, #59311a 100%);
+            border-radius: 50% 50% 40% 40%;
+            border: 4px solid rgba(0, 0, 0, 0.25);
+            transition: bottom 0.16s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2c1a0c;
+            font-weight: 700;
+        }
+        .hole.active .mole {
+            bottom: 12%;
+        }
+        section {
+            background: rgba(14, 9, 24, 0.75);
+            border-radius: 24px;
+            padding: clamp(24px, 4vw, 36px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        h1 {
+            margin: 0;
+            font-size: clamp(30px, 4vw, 42px);
+            letter-spacing: -0.02em;
+        }
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 18px;
+            font-weight: 600;
+        }
+        .chip {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+            padding: 6px 14px;
+        }
+        label {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-weight: 600;
+        }
+        select {
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 15px;
+        }
+        button {
+            border: none;
+            border-radius: 14px;
+            padding: 12px 18px;
+            font-weight: 600;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff7bcd, #7158ff);
+            color: white;
+            box-shadow: 0 16px 40px rgba(113, 88, 255, 0.35);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 44px rgba(113, 88, 255, 0.42);
+        }
+        ul {
+            margin: 0;
+            padding-left: 18px;
+            color: rgba(240, 236, 255, 0.8);
+            line-height: 1.6;
+        }
+        .log {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 12px 16px;
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+    <style>
+      :root { --osc-gap: 10px; --osc-btn: 56px; --osc-z: 9999; }
+      .credit-banner{
+        position:fixed; top:env(safe-area-inset-top,0); left:env(safe-area-inset-left,0);
+        margin:8px; padding:6px 10px; font:600 14px/1.2 system-ui, sans-serif;
+        background:rgba(0,0,0,.55); color:#fff; border-radius:8px; z-index:var(--osc-z);
+        -webkit-backdrop-filter:saturate(150%) blur(6px); backdrop-filter:saturate(150%) blur(6px);
+        user-select:none; pointer-events:none;
+      }
+      .osc-wrap{
+        position:fixed; inset:auto 0 env(safe-area-inset-bottom,0) 0;
+        display:flex; justify-content:center; gap:24px; padding:var(--osc-gap);
+        z-index:var(--osc-z); touch-action:manipulation;
+      }
+      .osc { display:flex; align-items:center; gap:16px; }
+      .osc .dpad{ display:grid; grid-template-areas:
+          ".    up    ."
+          "left  mid  right"
+          ".   down   .";
+        gap:8px; align-items:center; justify-items:center;
+      }
+      .osc .actions{ display:flex; gap:10px; }
+      .osc button{
+        min-width:var(--osc-btn); min-height:var(--osc-btn);
+        border:0; border-radius:12px; font:700 16px system-ui, sans-serif;
+        background:rgba(255,255,255,.9); color:#111; box-shadow:0 2px 10px rgba(0,0,0,.2);
+      }
+      .osc .pause{ min-width:72px; }
+      /* 게임 화면 가려짐 방지 */
+      body{ padding-bottom: calc(env(safe-area-inset-bottom,0) + 110px); }
+      @media (pointer:fine){ /* 데스크톱이면 패드 숨김 */
+        .osc-wrap{ display:none; } body{ padding-bottom:0; }
+      }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="arena">
+            <div class="grid" id="holes" aria-live="polite"></div>
+        </div>
+        <section>
+            <h1>두더지 팡팡 스튜디오</h1>
+            <div class="stats">
+                <span class="chip">점수 <strong id="score">0</strong></span>
+                <span class="chip">콤보 <strong id="combo">x1</strong></span>
+                <span class="chip">남은 시간 <strong id="time">60</strong>s</span>
+                <span class="chip">최고 기록 <strong id="best">0</strong></span>
+            </div>
+            <label>
+                난이도 선택
+                <select id="difficulty">
+                    <option value="normal">노말 - 기본 속도</option>
+                    <option value="hard">하드 - 빠르게 등장</option>
+                    <option value="extreme">익스트림 - 랜덤 폭탄 주의</option>
+                </select>
+            </label>
+            <button id="start">게임 시작</button>
+            <ul>
+                <li>두더지가 올라왔을 때 빠르게 클릭해 점수를 획득하세요.</li>
+                <li>콤보를 유지하면 점수가 배로 올라갑니다.</li>
+                <li>익스트림 모드에서는 폭탄 두더지를 피해야 합니다!</li>
+            </ul>
+            <div class="log" id="log">준비되면 게임 시작 버튼을 누르세요.</div>
+        </section>
+    </main>
+    <script>
+        const holesContainer = document.getElementById('holes');
+        const startBtn = document.getElementById('start');
+        const difficultySelect = document.getElementById('difficulty');
+        const scoreEl = document.getElementById('score');
+        const comboEl = document.getElementById('combo');
+        const timeEl = document.getElementById('time');
+        const bestEl = document.getElementById('best');
+        const logEl = document.getElementById('log');
+
+        const HOLE_COUNT = 9;
+        const holes = [];
+        let timer = null;
+        let spawnTimer = null;
+        let remaining = 60;
+        let score = 0;
+        let combo = 1;
+        let comboTimer = 0;
+        let activeIndex = -1;
+        let isRunning = false;
+        let bombActive = false;
+
+        let bestScore = Number(localStorage.getItem('whack-best') || 0);
+        bestEl.textContent = bestScore;
+
+        function createHoles() {
+            for (let i = 0; i < HOLE_COUNT; i++) {
+                const hole = document.createElement('button');
+                hole.className = 'hole';
+                hole.setAttribute('aria-label', `두더지 구멍 ${i + 1}`);
+                hole.innerHTML = '<div class="mole">:)</div>';
+                hole.addEventListener('click', () => whack(i));
+                holesContainer.appendChild(hole);
+                holes.push(hole);
+            }
+        }
+
+        function resetGame() {
+            clearInterval(timer);
+            clearTimeout(spawnTimer);
+            holes.forEach((hole) => {
+                hole.classList.remove('active', 'bomb');
+                const mole = hole.querySelector('.mole');
+                if (mole) mole.textContent = ':)';
+            });
+            remaining = 60;
+            score = 0;
+            combo = 1;
+            comboTimer = 0;
+            activeIndex = -1;
+            bombActive = false;
+            isRunning = false;
+            updateHUD();
+            logEl.textContent = '준비되면 게임 시작 버튼을 누르세요.';
+            startBtn.disabled = false;
+        }
+
+        function updateHUD() {
+            scoreEl.textContent = score;
+            comboEl.textContent = `x${combo}`;
+            timeEl.textContent = remaining;
+            bestEl.textContent = bestScore;
+        }
+
+        function scheduleNextMole() {
+            const difficulty = difficultySelect.value;
+            let delay = 800;
+            if (difficulty === 'hard') delay = 550;
+            if (difficulty === 'extreme') delay = 400;
+            const jitter = Math.random() * 200;
+            spawnTimer = setTimeout(() => {
+                popMole();
+                if (isRunning) scheduleNextMole();
+            }, delay + jitter);
+        }
+
+        function popMole() {
+            holes.forEach((hole) => hole.classList.remove('active', 'bomb'));
+            activeIndex = Math.floor(Math.random() * HOLE_COUNT);
+            bombActive = false;
+            if (difficultySelect.value === 'extreme' && Math.random() < 0.2) {
+                holes[activeIndex].classList.add('bomb');
+                holes[activeIndex].querySelector('.mole').textContent = '!';
+                bombActive = true;
+            } else {
+                holes[activeIndex].querySelector('.mole').textContent = ':)';
+            }
+            holes[activeIndex].classList.add('active');
+            comboTimer = 1.8;
+        }
+
+        function whack(index) {
+            if (!isRunning) return;
+            if (index !== activeIndex) {
+                combo = 1;
+                updateHUD();
+                return;
+            }
+            if (bombActive) {
+                logEl.textContent = '앗! 폭탄을 건드렸어요. 점수가 크게 줄었습니다.';
+                score = Math.max(0, Math.floor(score * 0.6));
+                combo = 1;
+                bombActive = false;
+            } else {
+                const gained = 10 * combo;
+                score += gained;
+                combo = Math.min(10, combo + 1);
+                logEl.textContent = `훌륭해요! +${gained}점, 콤보 ${combo - 1} 유지 중.`;
+                if (difficultySelect.value === 'extreme' && Math.random() < 0.12) {
+                    logEl.textContent += ' 보너스 시간이 +2초 추가됐어요!';
+                    remaining = Math.min(99, remaining + 2);
+                }
+            }
+            updateHUD();
+            holes[index].classList.remove('active', 'bomb');
+            activeIndex = -1;
+        }
+
+        function tick() {
+            if (!isRunning) return;
+            remaining -= 1;
+            comboTimer = Math.max(0, comboTimer - 1);
+            if (comboTimer === 0) combo = 1;
+            if (remaining <= 0) {
+                endGame();
+                return;
+            }
+            updateHUD();
+        }
+
+        function startGame() {
+            resetGame();
+            isRunning = true;
+            startBtn.disabled = true;
+            logEl.textContent = '게임 시작! 두더지를 연속으로 잡아서 콤보를 노리세요.';
+            updateHUD();
+            scheduleNextMole();
+            timer = setInterval(tick, 1000);
+        }
+
+        function endGame() {
+            isRunning = false;
+            clearInterval(timer);
+            clearTimeout(spawnTimer);
+            holes.forEach((hole) => hole.classList.remove('active', 'bomb'));
+            if (score > bestScore) {
+                bestScore = score;
+                localStorage.setItem('whack-best', bestScore);
+                logEl.textContent = `새로운 최고 기록! ${score}점을 달성했습니다.`;
+            } else {
+                logEl.textContent = `게임 종료! 최종 점수는 ${score}점입니다.`;
+            }
+            startBtn.disabled = false;
+            updateHUD();
+        }
+
+        startBtn.addEventListener('click', startGame);
+        difficultySelect.addEventListener('change', () => {
+            if (!isRunning) return;
+            clearTimeout(spawnTimer);
+            scheduleNextMole();
+        });
+
+        createHoles();
+        resetGame();
+    </script>
+    <script src="../global-enhancements.js" defer></script>
+<!-- Creator credit -->
+<div class="credit-banner" aria-hidden="true">Creator: 박은성</div>
+
+<!-- On-screen Controls -->
+<div class="osc-wrap" id="osc-wrap" role="group" aria-label="On-screen game controls">
+  <div class="osc">
+    <div class="dpad">
+      <button data-key="ArrowUp"    style="grid-area:up">▲</button>
+      <button data-key="ArrowLeft"  style="grid-area:left">◀</button>
+      <button data-key="ArrowRight" style="grid-area:right">▶</button>
+      <button data-key="ArrowDown"  style="grid-area:down">▼</button>
+    </div>
+    <div class="actions">
+      <button data-key="Space">A</button>
+      <button data-key="Enter">B</button>
+      <button class="pause" data-key="Escape">⏯︎</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // 일부 게임이 window/document/canvas 등 서로 다른 타깃을 구독하므로, 광범위 전파
+  function send(key, type){
+    const ev = new KeyboardEvent(type, { key, code:key, bubbles:true, cancelable:true });
+    const t = document.activeElement && document.activeElement !== document.body
+      ? document.activeElement : document;
+    t.dispatchEvent(ev); window.dispatchEvent(ev);
+  }
+  function pressStart(key){ send(key,'keydown'); }
+  function pressEnd(key){ send(key,'keyup'); }
+
+  // 버튼 터치/클릭 → 키 이벤트 변환
+  document.getElementById('osc-wrap')?.addEventListener('pointerdown', e=>{
+    const btn = e.target.closest('button[data-key]'); if(!btn) return;
+    e.preventDefault(); btn.setPointerCapture?.(e.pointerId);
+    pressStart(btn.dataset.key);
+    btn.addEventListener('pointerup',  ()=>pressEnd(btn.dataset.key), { once:true });
+    btn.addEventListener('pointercancel',()=>pressEnd(btn.dataset.key), { once:true });
+    btn.addEventListener('lostpointercapture',()=>pressEnd(btn.dataset.key), { once:true });
+  });
+
+  // 스와이프 제스처 → 방향키
+  let sx=0, sy=0, tracking=false;
+  const TH=24; // 스와이프 임계값(px)
+  document.addEventListener('touchstart', (e)=>{
+    // 오버레이 위 스와이프는 무시
+    if(e.target.closest('#osc-wrap')) return;
+    tracking=true; const t=e.changedTouches[0]; sx=t.clientX; sy=t.clientY;
+  }, {passive:true});
+  document.addEventListener('touchend', (e)=>{
+    if(!tracking) return; tracking=false;
+    const t=e.changedTouches[0]; const dx=t.clientX-sx, dy=t.clientY-sy;
+    if(Math.abs(dx)<TH && Math.abs(dy)<TH) return;
+    const key = Math.abs(dx)>Math.abs(dy) ? (dx>0?'ArrowRight':'ArrowLeft')
+                                          : (dy>0?'ArrowDown':'ArrowUp');
+    pressStart(key); setTimeout(()=>pressEnd(key), 50);
+  }, {passive:true});
+})();
+</script>
+</body>
+</html>

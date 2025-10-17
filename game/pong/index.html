@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <title>레이저 핑퐁</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: clamp(16px, 5vw, 48px);
+            background: conic-gradient(from 120deg, #111827, #1f2937, #111827);
+            color: #f3f4f6;
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+        }
+        .frame {
+            background: rgba(11, 22, 34, 0.88);
+            border-radius: 22px;
+            padding: clamp(20px, 5vw, 32px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.55);
+            display: grid;
+            gap: 16px;
+            width: min(100%, 640px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        canvas {
+            background: rgba(2, 6, 14, 0.94);
+            border-radius: 16px;
+            border: 4px solid rgba(255,255,255,0.08);
+            image-rendering: pixelated;
+            width: min(100%, 640px);
+            height: auto;
+        }
+        .info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            color: rgba(243, 244, 246, 0.85);
+            flex-wrap: wrap;
+            gap: 8px 16px;
+        }
+        .hint {
+            font-size: 14px;
+            color: rgba(209, 213, 219, 0.7);
+            text-align: center;
+            line-height: 1.6;
+        }
+        .signature {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(56, 189, 248, 0.2);
+            color: #93c5fd;
+            font-weight: 700;
+            font-size: 12px;
+            justify-self: center;
+        }
+    </style>
+    <style>
+      :root { --osc-gap: 10px; --osc-btn: 56px; --osc-z: 9999; }
+      .credit-banner{
+        position:fixed; top:env(safe-area-inset-top,0); left:env(safe-area-inset-left,0);
+        margin:8px; padding:6px 10px; font:600 14px/1.2 system-ui, sans-serif;
+        background:rgba(0,0,0,.55); color:#fff; border-radius:8px; z-index:var(--osc-z);
+        -webkit-backdrop-filter:saturate(150%) blur(6px); backdrop-filter:saturate(150%) blur(6px);
+        user-select:none; pointer-events:none;
+      }
+      .osc-wrap{
+        position:fixed; inset:auto 0 env(safe-area-inset-bottom,0) 0;
+        display:flex; justify-content:center; gap:24px; padding:var(--osc-gap);
+        z-index:var(--osc-z); touch-action:manipulation;
+      }
+      .osc { display:flex; align-items:center; gap:16px; }
+      .osc .dpad{ display:grid; grid-template-areas:
+          ".    up    ."
+          "left  mid  right"
+          ".   down   .";
+        gap:8px; align-items:center; justify-items:center;
+      }
+      .osc .actions{ display:flex; gap:10px; }
+      .osc button{
+        min-width:var(--osc-btn); min-height:var(--osc-btn);
+        border:0; border-radius:12px; font:700 16px system-ui, sans-serif;
+        background:rgba(255,255,255,.9); color:#111; box-shadow:0 2px 10px rgba(0,0,0,.2);
+      }
+      .osc .pause{ min-width:72px; }
+      /* 게임 화면 가려짐 방지 */
+      body{ padding-bottom: calc(env(safe-area-inset-bottom,0) + 110px); }
+      @media (pointer:fine){ /* 데스크톱이면 패드 숨김 */
+        .osc-wrap{ display:none; } body{ padding-bottom:0; }
+      }
+    </style>
+</head>
+<body>
+    <div class="frame">
+        <div class="signature">박은성이 만든 게임</div>
+        <div class="info">
+            <span>플레이어: <strong id="player-score">0</strong></span>
+            <span>AI: <strong id="ai-score">0</strong></span>
+        </div>
+        <canvas id="game" width="640" height="360"></canvas>
+        <p class="hint">마우스나 터치로 패들을 움직여 공을 튕겨내세요. 10점을 먼저 획득하면 승리!</p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('game');
+        const ctx = canvas.getContext('2d');
+        const playerScoreEl = document.getElementById('player-score');
+        const aiScoreEl = document.getElementById('ai-score');
+
+        const paddle = { width: 14, height: 90 };
+        const player = { x: 20, y: canvas.height / 2 - paddle.height / 2, score: 0 };
+        const ai = { x: canvas.width - 20 - paddle.width, y: canvas.height / 2 - paddle.height / 2, score: 0, speed: 4 };
+        const ball = { x: canvas.width / 2, y: canvas.height / 2, radius: 8, speed: 5, vx: 4, vy: 3 };
+
+        let targetY = player.y;
+
+        canvas.addEventListener('mousemove', e => {
+            const rect = canvas.getBoundingClientRect();
+            targetY = e.clientY - rect.top - paddle.height / 2;
+        });
+        canvas.addEventListener('touchmove', e => {
+            const rect = canvas.getBoundingClientRect();
+            targetY = e.touches[0].clientY - rect.top - paddle.height / 2;
+            e.preventDefault();
+        }, { passive: false });
+        canvas.style.touchAction = 'none';
+
+        function clamp(value, min, max) {
+            return Math.max(min, Math.min(max, value));
+        }
+
+        function resetBall(direction = 1) {
+            ball.x = canvas.width / 2;
+            ball.y = canvas.height / 2;
+            const angle = (Math.random() * Math.PI / 3) - Math.PI / 6;
+            const speed = 5 + Math.random() * 1.5;
+            ball.vx = Math.cos(angle) * speed * direction;
+            ball.vy = Math.sin(angle) * speed;
+        }
+
+        function update() {
+            player.y += (targetY - player.y) * 0.2;
+            player.y = clamp(player.y, 0, canvas.height - paddle.height);
+
+            const aiCenter = ai.y + paddle.height / 2;
+            if (ball.y < aiCenter - 20) ai.y -= ai.speed;
+            else if (ball.y > aiCenter + 20) ai.y += ai.speed;
+            ai.y = clamp(ai.y, 0, canvas.height - paddle.height);
+
+            ball.x += ball.vx;
+            ball.y += ball.vy;
+
+            if (ball.y - ball.radius <= 0 || ball.y + ball.radius >= canvas.height) {
+                ball.vy *= -1;
+            }
+
+            function paddleCollision(p) {
+                if (
+                    ball.x - ball.radius < p.x + paddle.width &&
+                    ball.x + ball.radius > p.x &&
+                    ball.y + ball.radius > p.y &&
+                    ball.y - ball.radius < p.y + paddle.height
+                ) {
+                    const relativeIntersectY = (ball.y - (p.y + paddle.height / 2)) / (paddle.height / 2);
+                    const bounceAngle = relativeIntersectY * (Math.PI / 3);
+                    const direction = p === player ? 1 : -1;
+                    const speed = Math.min(10, Math.hypot(ball.vx, ball.vy) + 0.4);
+                    ball.vx = Math.cos(bounceAngle) * speed * direction;
+                    ball.vy = Math.sin(bounceAngle) * speed;
+                    ball.x = p === player ? p.x + paddle.width + ball.radius : p.x - ball.radius;
+                }
+            }
+
+            paddleCollision(player);
+            paddleCollision(ai);
+
+            if (ball.x < 0) {
+                ai.score++;
+                aiScoreEl.textContent = ai.score;
+                resetBall(1);
+            } else if (ball.x > canvas.width) {
+                player.score++;
+                playerScoreEl.textContent = player.score;
+                resetBall(-1);
+            }
+
+            if (player.score >= 10 || ai.score >= 10) {
+                alert((player.score > ai.score ? '플레이어 승리!' : 'AI 승리!') + ` (플레이어 ${player.score} : ${ai.score} AI)`);
+                player.score = 0;
+                ai.score = 0;
+                playerScoreEl.textContent = player.score;
+                aiScoreEl.textContent = ai.score;
+                resetBall(Math.random() < 0.5 ? 1 : -1);
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, 'rgba(59, 130, 246, 0.2)');
+            gradient.addColorStop(1, 'rgba(236, 72, 153, 0.2)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = 'rgba(148, 163, 184, 0.35)';
+            for (let y = 0; y < canvas.height; y += 24) {
+                ctx.fillRect(canvas.width / 2 - 2, y, 4, 12);
+            }
+
+            ctx.fillStyle = '#38bdf8';
+            ctx.fillRect(player.x, player.y, paddle.width, paddle.height);
+            ctx.fillStyle = '#f472b6';
+            ctx.fillRect(ai.x, ai.y, paddle.width, paddle.height);
+
+            ctx.beginPath();
+            ctx.fillStyle = '#f8fafc';
+            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function loop() {
+            update();
+            draw();
+            requestAnimationFrame(loop);
+        }
+
+        resetBall(Math.random() < 0.5 ? 1 : -1);
+        loop();
+    </script>
+    <script src="../global-enhancements.js" defer></script>
+<!-- Creator credit -->
+<div class="credit-banner" aria-hidden="true">Creator: 박은성</div>
+
+<!-- On-screen Controls -->
+<div class="osc-wrap" id="osc-wrap" role="group" aria-label="On-screen game controls">
+  <div class="osc">
+    <div class="dpad">
+      <button data-key="ArrowUp"    style="grid-area:up">▲</button>
+      <button data-key="ArrowLeft"  style="grid-area:left">◀</button>
+      <button data-key="ArrowRight" style="grid-area:right">▶</button>
+      <button data-key="ArrowDown"  style="grid-area:down">▼</button>
+    </div>
+    <div class="actions">
+      <button data-key="Space">A</button>
+      <button data-key="Enter">B</button>
+      <button class="pause" data-key="Escape">⏯︎</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // 일부 게임이 window/document/canvas 등 서로 다른 타깃을 구독하므로, 광범위 전파
+  function send(key, type){
+    const ev = new KeyboardEvent(type, { key, code:key, bubbles:true, cancelable:true });
+    const t = document.activeElement && document.activeElement !== document.body
+      ? document.activeElement : document;
+    t.dispatchEvent(ev); window.dispatchEvent(ev);
+  }
+  function pressStart(key){ send(key,'keydown'); }
+  function pressEnd(key){ send(key,'keyup'); }
+
+  // 버튼 터치/클릭 → 키 이벤트 변환
+  document.getElementById('osc-wrap')?.addEventListener('pointerdown', e=>{
+    const btn = e.target.closest('button[data-key]'); if(!btn) return;
+    e.preventDefault(); btn.setPointerCapture?.(e.pointerId);
+    pressStart(btn.dataset.key);
+    btn.addEventListener('pointerup',  ()=>pressEnd(btn.dataset.key), { once:true });
+    btn.addEventListener('pointercancel',()=>pressEnd(btn.dataset.key), { once:true });
+    btn.addEventListener('lostpointercapture',()=>pressEnd(btn.dataset.key), { once:true });
+  });
+
+  // 스와이프 제스처 → 방향키
+  let sx=0, sy=0, tracking=false;
+  const TH=24; // 스와이프 임계값(px)
+  document.addEventListener('touchstart', (e)=>{
+    // 오버레이 위 스와이프는 무시
+    if(e.target.closest('#osc-wrap')) return;
+    tracking=true; const t=e.changedTouches[0]; sx=t.clientX; sy=t.clientY;
+  }, {passive:true});
+  document.addEventListener('touchend', (e)=>{
+    if(!tracking) return; tracking=false;
+    const t=e.changedTouches[0]; const dx=t.clientX-sx, dy=t.clientY-sy;
+    if(Math.abs(dx)<TH && Math.abs(dy)<TH) return;
+    const key = Math.abs(dx)>Math.abs(dy) ? (dx>0?'ArrowRight':'ArrowLeft')
+                                          : (dy>0?'ArrowDown':'ArrowUp');
+    pressStart(key); setTimeout(()=>pressEnd(key), 50);
+  }, {passive:true});
+})();
+</script>
+</body>
+</html>
