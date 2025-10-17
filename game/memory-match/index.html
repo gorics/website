@@ -2,7 +2,6 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>카드 매칭</title>
     <style>
         :root {
@@ -129,6 +128,44 @@
             color: rgba(255, 255, 255, 0.75);
         }
     </style>
+
+    <!-- Mobile-friendly viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <style>
+      :root { --osc-gap: 10px; --osc-btn: 56px; --osc-z: 9999; }
+      .credit-banner{
+        position:fixed; top:env(safe-area-inset-top,0); left:env(safe-area-inset-left,0);
+        margin:8px; padding:6px 10px; font:600 14px/1.2 system-ui, sans-serif;
+        background:rgba(0,0,0,.55); color:#fff; border-radius:8px; z-index:var(--osc-z);
+        -webkit-backdrop-filter:saturate(150%) blur(6px); backdrop-filter:saturate(150%) blur(6px);
+        user-select:none; pointer-events:none;
+      }
+      .osc-wrap{
+        position:fixed; inset:auto 0 env(safe-area-inset-bottom,0) 0;
+        display:flex; justify-content:center; gap:24px; padding:var(--osc-gap);
+        z-index:var(--osc-z); touch-action:manipulation;
+      }
+      .osc { display:flex; align-items:center; gap:16px; }
+      .osc .dpad{ display:grid; grid-template-areas:
+          ".    up    ."
+          "left  mid  right"
+          ".   down   .";
+        gap:8px; align-items:center; justify-items:center;
+      }
+      .osc .actions{ display:flex; gap:10px; }
+      .osc button{
+        min-width:var(--osc-btn); min-height:var(--osc-btn);
+        border:0; border-radius:12px; font:700 16px system-ui, sans-serif;
+        background:rgba(255,255,255,.9); color:#111; box-shadow:0 2px 10px rgba(0,0,0,.2);
+      }
+      .osc .pause{ min-width:72px; }
+      /* 게임 화면 가려짐 방지 */
+      body{ padding-bottom: calc(env(safe-area-inset-bottom,0) + 110px); }
+      @media (pointer:fine){ /* 데스크톱이면 패드 숨김 */
+        .osc-wrap{ display:none; } body{ padding-bottom:0; }
+      }
+    </style>
+
 </head>
 <body>
     <div class="container">
@@ -265,5 +302,67 @@
         resetGame();
     </script>
     <script src="../global-enhancements.js" defer></script>
+
+    <!-- Creator credit -->
+    <div class="credit-banner" aria-hidden="true">Creator: 박은성</div>
+
+    <!-- On-screen Controls -->
+    <div class="osc-wrap" id="osc-wrap" role="group" aria-label="On-screen game controls">
+      <div class="osc">
+        <div class="dpad">
+          <button data-key="ArrowUp"    style="grid-area:up">▲</button>
+          <button data-key="ArrowLeft"  style="grid-area:left">◀</button>
+          <button data-key="ArrowRight" style="grid-area:right">▶</button>
+          <button data-key="ArrowDown"  style="grid-area:down">▼</button>
+        </div>
+        <div class="actions">
+          <button data-key="Space">A</button>
+          <button data-key="Enter">B</button>
+          <button class="pause" data-key="Escape">⏯︎</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+(function(){
+  // 일부 게임이 window/document/canvas 등 서로 다른 타깃을 구독하므로, 광범위 전파
+  function send(key, type){
+    const ev = new KeyboardEvent(type, { key, code:key, bubbles:true, cancelable:true });
+    const t = document.activeElement && document.activeElement !== document.body
+      ? document.activeElement : document;
+    t.dispatchEvent(ev); window.dispatchEvent(ev);
+  }
+  function pressStart(key){ send(key,'keydown'); }
+  function pressEnd(key){ send(key,'keyup'); }
+
+  // 버튼 터치/클릭 → 키 이벤트 변환
+  document.getElementById('osc-wrap')?.addEventListener('pointerdown', e=>{
+    const btn = e.target.closest('button[data-key]'); if(!btn) return;
+    e.preventDefault(); btn.setPointerCapture?.(e.pointerId);
+    pressStart(btn.dataset.key);
+    btn.addEventListener('pointerup',  ()=>pressEnd(btn.dataset.key), { once:true });
+    btn.addEventListener('pointercancel',()=>pressEnd(btn.dataset.key), { once:true });
+    btn.addEventListener('lostpointercapture',()=>pressEnd(btn.dataset.key), { once:true });
+  });
+
+  // 스와이프 제스처 → 방향키
+  let sx=0, sy=0, tracking=false;
+  const TH=24; // 스와이프 임계값(px)
+  document.addEventListener('touchstart', (e)=>{
+    // 오버레이 위 스와이프는 무시
+    if(e.target.closest('#osc-wrap')) return;
+    tracking=true; const t=e.changedTouches[0]; sx=t.clientX; sy=t.clientY;
+  }, {passive:true});
+  document.addEventListener('touchend', (e)=>{
+    if(!tracking) return; tracking=false;
+    const t=e.changedTouches[0]; const dx=t.clientX-sx, dy=t.clientY-sy;
+    if(Math.abs(dx)<TH && Math.abs(dy)<TH) return;
+    const key = Math.abs(dx)>Math.abs(dy) ? (dx>0?'ArrowRight':'ArrowLeft')
+                                          : (dy>0?'ArrowDown':'ArrowUp');
+    pressStart(key); setTimeout(()=>pressEnd(key), 50);
+  }, {passive:true});
+})();
+    </script>
+
 </body>
 </html>
