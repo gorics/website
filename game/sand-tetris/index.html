@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <title>모래 테트리스 실험실</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 30% 20%, #0f2027, #203a43 60%, #2c5364);
+            color: #eaf6ff;
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+        }
+        .layout {
+            display: grid;
+            gap: 24px;
+            background: rgba(5, 18, 26, 0.9);
+            padding: 32px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+        canvas {
+            border-radius: 18px;
+            border: 6px solid rgba(255,255,255,0.08);
+            background: linear-gradient(180deg, rgba(12,26,35,0.8), rgba(6,14,20,0.95));
+            image-rendering: pixelated;
+        }
+        .controls {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        button {
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            color: #021218;
+            border: none;
+            border-radius: 999px;
+            padding: 10px 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px rgba(0, 132, 176, 0.35);
+        }
+        .info {
+            max-width: 420px;
+            line-height: 1.6;
+            font-size: 14px;
+            color: rgba(234, 246, 255, 0.8);
+        }
+        strong { color: #9be7ff; }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <canvas id="board" width="320" height="480"></canvas>
+        <div class="controls">
+            <button id="dropShape">랜덤 블록 떨어뜨리기</button>
+            <button id="clear">초기화</button>
+        </div>
+        <div class="info">
+            <p><strong>사용 방법</strong></p>
+            <ul>
+                <li>마우스로 화면을 드래그하면 모래를 뿌릴 수 있습니다.</li>
+                <li>랜덤 블록 버튼을 누르면 테트리스 모양의 굳은 블록이 등장합니다.</li>
+                <li>모래는 중력에 따라 흘러내리고, 굳은 블록은 지형을 지탱합니다.</li>
+                <li>공간을 창의적으로 채우며 지형을 만들어 보세요!</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('board');
+        const ctx = canvas.getContext('2d');
+        const gridWidth = 32;
+        const gridHeight = 48;
+        const cellSize = canvas.width / gridWidth;
+        const sandColor = '#f1c27d';
+        const blockColor = '#4dd0e1';
+        const settledColor = '#80cbc4';
+
+        const grid = Array.from({ length: gridHeight }, () => Array(gridWidth).fill(0));
+        let dragging = false;
+        let currentShape = null;
+
+        const SHAPES = [
+            [[1, 1, 1, 1]],
+            [[1, 0, 0], [1, 1, 1]],
+            [[0, 0, 1], [1, 1, 1]],
+            [[1, 1], [1, 1]],
+            [[0, 1, 1], [1, 1, 0]],
+            [[0, 1, 0], [1, 1, 1]],
+            [[1, 1, 0], [0, 1, 1]]
+        ];
+
+        function spawnShape() {
+            const matrix = SHAPES[Math.floor(Math.random() * SHAPES.length)];
+            currentShape = {
+                matrix: matrix.map(row => [...row]),
+                x: Math.floor((gridWidth - matrix[0].length) / 2),
+                y: -matrix.length,
+                settled: false
+            };
+        }
+
+        function addSand(x, y) {
+            if (x < 0 || x >= gridWidth || y < 0 || y >= gridHeight) return;
+            grid[y][x] = 1;
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            dragging = true;
+            addSandFromEvent(e);
+        });
+        window.addEventListener('mouseup', () => dragging = false);
+        canvas.addEventListener('mousemove', (e) => {
+            if (dragging) addSandFromEvent(e);
+        });
+
+        function addSandFromEvent(e) {
+            const rect = canvas.getBoundingClientRect();
+            const x = Math.floor((e.clientX - rect.left) / cellSize);
+            const y = Math.floor((e.clientY - rect.top) / cellSize);
+            for (let dy = -1; dy <= 1; dy++) {
+                for (let dx = -1; dx <= 1; dx++) {
+                    addSand(x + dx, y + dy);
+                }
+            }
+        }
+
+        document.getElementById('dropShape').addEventListener('click', () => {
+            if (!currentShape) spawnShape();
+        });
+
+        document.getElementById('clear').addEventListener('click', () => {
+            for (let y = 0; y < gridHeight; y++) {
+                grid[y].fill(0);
+            }
+            currentShape = null;
+        });
+
+        function updateSand() {
+            for (let y = gridHeight - 2; y >= 0; y--) {
+                for (let x = 0; x < gridWidth; x++) {
+                    if (grid[y][x] === 1) {
+                        if (grid[y + 1][x] === 0) {
+                            grid[y + 1][x] = 1;
+                            grid[y][x] = 0;
+                        } else {
+                            const dir = Math.random() < 0.5 ? -1 : 1;
+                            if (x + dir >= 0 && x + dir < gridWidth && grid[y + 1][x + dir] === 0) {
+                                grid[y + 1][x + dir] = 1;
+                                grid[y][x] = 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        function canPlace(matrix, offsetX, offsetY) {
+            for (let y = 0; y < matrix.length; y++) {
+                for (let x = 0; x < matrix[y].length; x++) {
+                    if (!matrix[y][x]) continue;
+                    const gridX = offsetX + x;
+                    const gridY = offsetY + y;
+                    if (gridX < 0 || gridX >= gridWidth) return false;
+                    if (gridY >= gridHeight) return false;
+                    if (gridY >= 0 && grid[gridY][gridX]) return false;
+                }
+            }
+            return true;
+        }
+
+        function settleShape(shape) {
+            shape.matrix.forEach((row, y) => {
+                row.forEach((value, x) => {
+                    if (value) {
+                        const gridX = shape.x + x;
+                        const gridY = shape.y + y;
+                        if (gridY >= 0 && gridY < gridHeight) {
+                            grid[gridY][gridX] = 2;
+                        }
+                    }
+                });
+            });
+        }
+
+        function updateShape() {
+            if (!currentShape) return;
+            if (canPlace(currentShape.matrix, currentShape.x, currentShape.y + 1)) {
+                currentShape.y += 1;
+            } else {
+                settleShape(currentShape);
+                currentShape = null;
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let y = 0; y < gridHeight; y++) {
+                for (let x = 0; x < gridWidth; x++) {
+                    const value = grid[y][x];
+                    if (value) {
+                        ctx.fillStyle = value === 1 ? sandColor : settledColor;
+                        ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+                    }
+                }
+            }
+            if (currentShape) {
+                ctx.fillStyle = blockColor;
+                currentShape.matrix.forEach((row, y) => {
+                    row.forEach((value, x) => {
+                        if (value) {
+                            const drawX = (currentShape.x + x) * cellSize;
+                            const drawY = (currentShape.y + y) * cellSize;
+                            ctx.fillRect(drawX, drawY, cellSize, cellSize);
+                        }
+                    });
+                });
+            }
+        }
+
+        function loop() {
+            updateSand();
+            updateShape();
+            draw();
+            requestAnimationFrame(loop);
+        }
+
+        loop();
+    </script>
+    <script src="../global-enhancements.js" defer></script>
+</body>
+</html>
