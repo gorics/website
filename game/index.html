@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>브라우저 미니 게임 아케이드</title>
     <style>
         :root {
@@ -20,22 +20,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: clamp(24px, 6vw, 72px) clamp(12px, 4vw, 56px);
+            padding: clamp(32px, 5vw, 64px) clamp(16px, 3vw, 48px);
         }
         .container {
-            width: min(100%, 1160px);
+            width: min(100%, 1080px);
             background: rgba(10, 18, 32, 0.82);
-            border-radius: clamp(18px, 4vw, 32px);
+            border-radius: 28px;
             box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
-            padding: clamp(28px, 4.5vw, 60px);
+            padding: clamp(32px, 4vw, 56px);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         header {
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            margin-bottom: clamp(28px, 6vw, 40px);
+            gap: 12px;
+            margin-bottom: 32px;
         }
         header h1 {
             font-size: clamp(30px, 5vw, 46px);
@@ -47,26 +46,6 @@
             margin: 0;
             color: rgba(245, 246, 250, 0.78);
             line-height: 1.6;
-        }
-        .signature {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 14px;
-            background: linear-gradient(135deg, rgba(255, 94, 98, 0.9), rgba(255, 149, 58, 0.85));
-            color: #1b0f16;
-            border-radius: 999px;
-            font-size: 14px;
-            font-weight: 700;
-            width: fit-content;
-            box-shadow: 0 12px 24px rgba(255, 120, 62, 0.35);
-            letter-spacing: 0.01em;
-        }
-        .signature span {
-            display: inline-block;
-            padding: 2px 10px;
-            border-radius: 999px;
-            background: rgba(27, 15, 22, 0.18);
         }
         .grid {
             display: grid;
@@ -80,7 +59,7 @@
         .card {
             background: linear-gradient(150deg, rgba(40, 66, 102, 0.94), rgba(16, 30, 50, 0.92));
             border-radius: 20px;
-            padding: clamp(20px, 3vw, 28px);
+            padding: 24px;
             border: 1px solid rgba(255, 255, 255, 0.06);
             transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
             height: 100%;
@@ -122,56 +101,13 @@
             text-align: center;
             line-height: 1.6;
         }
-        .devices {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 12px;
-            margin-top: clamp(28px, 6vw, 40px);
-        }
-        .devices div {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 18px;
-            padding: 14px 16px;
-            font-size: 14px;
-            color: rgba(245, 246, 250, 0.85);
-            text-align: center;
-        }
-        @media (max-width: 600px) {
-            body {
-                padding: 16px;
-            }
-            .container {
-                border-radius: 20px;
-            }
-            header {
-                align-items: flex-start;
-            }
-            header h1 {
-                font-size: clamp(26px, 9vw, 34px);
-            }
-            .card {
-                border-radius: 18px;
-            }
-            footer {
-                font-size: 13px;
-            }
-        }
     </style>
 </head>
 <body>
     <main class="container">
-        <section style="padding:64px 20px; text-align:center">
-            <h1 style="margin:0 0 12px">Arcade by <strong>박은성</strong></h1>
-            <p style="margin:0 0 20px; font-size:1.1rem">
-                키보드 · 스와이프 · 온스크린 패드까지, 모든 기기에서 바로 플레이하세요.
-            </p>
-            <div style="opacity:.8; font-size:.95rem">Mobile · Tablet · Desktop</div>
-        </section>
         <header>
-            <div class="signature">박은성이 만든 <span>ALL-IN-ONE</span> 아케이드</div>
             <h1>브라우저 미니 게임 아케이드</h1>
             <p>클래식 아케이드부터 퍼즐, 전략, 카드, 단어 게임까지! 설치 없이 즐길 수 있는 미니 게임을 계속해서 확장 중입니다. 총 18가지의 미니 게임을 한 곳에서 만나보세요.</p>
-            <p style="margin:0;color:rgba(245,246,250,0.7);font-size:15px;">컴퓨터, 태블릿, 스마트폰 어디서든 부드럽게 플레이할 수 있도록 인터페이스를 새롭게 다듬었습니다.</p>
         </header>
         <section class="grid">
             <a href="./snake/">
@@ -301,16 +237,9 @@
                 </article>
             </a>
         </section>
-        <section class="devices" aria-label="지원 기기 안내">
-            <div>💻 데스크톱 &amp; 노트북 풀 화면 대응</div>
-            <div>📱 스마트폰 터치 조작 최적화</div>
-            <div>📟 태블릿 가로·세로 자동 레이아웃</div>
-        </section>
         <footer>
             계속해서 새로운 게임을 추가하고 오류를 수정하고 있습니다. 제안하고 싶은 게임이 있다면 알려주세요!
-            <br>모든 콘텐츠는 <strong>박은성</strong>이 직접 기획하고 제작했습니다.
         </footer>
     </main>
-    <script src="./global-enhancements.js" defer></script>
 </body>
 </html>

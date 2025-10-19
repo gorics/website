@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>지뢰찾기</title>
     <style>
         :root {
@@ -17,7 +17,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: clamp(16px, 5vw, 56px);
             background: radial-gradient(circle at 30% 20%, #102840, #050d18 70%);
             color: #f0f6ff;
             font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
@@ -28,7 +27,6 @@
             border-radius: 28px;
             padding: 32px clamp(20px, 4vw, 40px);
             box-shadow: 0 28px 70px rgba(0, 0, 0, 0.55);
-            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         header {
             display: flex;
@@ -39,18 +37,6 @@
         h1 {
             margin: 0;
             font-size: clamp(26px, 5vw, 34px);
-        }
-        .signature {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            border-radius: 999px;
-            background: rgba(0, 114, 255, 0.18);
-            color: #7ab7ff;
-            font-weight: 700;
-            font-size: 13px;
-            width: fit-content;
         }
         .status-row {
             display: flex;
@@ -78,10 +64,6 @@
             border-radius: 999px;
             font-weight: 600;
             cursor: pointer;
-        }
-        select:focus-visible, button.toggle:focus-visible {
-            outline: 2px solid rgba(0, 198, 255, 0.7);
-            outline-offset: 2px;
         }
         button.toggle.active {
             background: linear-gradient(135deg, #00c6ff, #0072ff);
@@ -143,7 +125,6 @@
 <body>
     <div class="wrapper">
         <header>
-            <div class="signature">박은성이 만든 게임</div>
             <h1>지뢰찾기</h1>
             <div class="status-row">
                 <div class="status">
@@ -390,6 +371,5 @@
 
         buildBoard();
     </script>
-    <script src="../global-enhancements.js" defer></script>
 </body>
 </html>

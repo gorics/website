@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2048 퍼즐</title>
     <style>
         body {
@@ -11,48 +11,31 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: clamp(16px, 5vw, 60px);
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: #fff;
             font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
         }
         .container {
             background: rgba(12, 32, 66, 0.85);
-            padding: clamp(22px, 5vw, 36px);
-            border-radius: clamp(20px, 4vw, 28px);
-            width: min(100%, 500px);
+            padding: 32px;
+            border-radius: 24px;
+            width: min(90vw, 460px);
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            gap: 12px;
-            flex-wrap: wrap;
         }
         h1 {
             margin: 0;
-            font-size: clamp(26px, 5vw, 32px);
+            font-size: 32px;
             letter-spacing: 1px;
-        }
-        .signature {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 12px;
-            border-radius: 999px;
-            background: rgba(116, 192, 252, 0.2);
-            color: #9ec5fe;
-            font-weight: 700;
-            font-size: 12px;
         }
         .score-board {
             display: flex;
             gap: 12px;
-            flex-wrap: wrap;
-            justify-content: flex-end;
         }
         .badge {
             background: rgba(255, 255, 255, 0.1);
@@ -115,10 +98,9 @@
             color: #273c75;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        button:hover, button:focus-visible {
+        button:hover {
             transform: translateY(-2px);
             box-shadow: 0 15px 25px rgba(251, 197, 49, 0.35);
-            outline: none;
         }
         p {
             margin-top: 16px;
@@ -132,10 +114,7 @@
 <body>
     <div class="container">
         <header>
-            <div style="display:flex;flex-direction:column;gap:6px;">
-                <div class="signature">박은성이 만든 게임</div>
-                <h1>2048</h1>
-            </div>
+            <h1>2048</h1>
             <div class="score-board">
                 <div class="badge">점수<br><span id="score">0</span></div>
                 <div class="badge">최고 기록<br><span id="best">0</span></div>
@@ -336,6 +315,5 @@
 
         createBoard();
     </script>
-    <script src="../global-enhancements.js" defer></script>
 </body>
 </html>
