@@ -1,0 +1,144 @@
+:root {
+  --osc-gap: 10px;
+  --osc-btn: 56px;
+  --osc-z: 9999;
+}
+
+.credit-banner {
+  position: fixed;
+  top: env(safe-area-inset-top, 0);
+  left: env(safe-area-inset-left, 0);
+  margin: 8px;
+  padding: 6px 10px;
+  font: 600 14px/1.2 system-ui, sans-serif;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border-radius: 8px;
+  z-index: var(--osc-z);
+  -webkit-backdrop-filter: saturate(150%) blur(6px);
+  backdrop-filter: saturate(150%) blur(6px);
+  user-select: none;
+  pointer-events: none;
+}
+
+.osc-wrap {
+  position: fixed;
+  inset: auto 0 env(safe-area-inset-bottom, 0) 0;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: var(--osc-gap);
+  z-index: var(--osc-z);
+  touch-action: manipulation;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.osc-wrap.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.osc {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.osc .dpad {
+  display: grid;
+  grid-template-areas:
+    ".    up    ."
+    "left  mid  right"
+    ".   down   .";
+  gap: 8px;
+  align-items: center;
+  justify-items: center;
+}
+
+.osc .actions {
+  display: flex;
+  gap: 10px;
+}
+
+.osc button {
+  min-width: var(--osc-btn);
+  min-height: var(--osc-btn);
+  border: 0;
+  border-radius: 12px;
+  font: 700 16px system-ui, sans-serif;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+  user-select: none;
+  touch-action: none;
+}
+
+.osc button.is-pressed,
+.osc button:active {
+  transform: scale(0.94);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+}
+
+.osc .pause {
+  min-width: 72px;
+}
+
+.gesture-tip {
+  position: fixed;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0) + 150px);
+  transform: translateX(-50%);
+  padding: 10px 16px;
+  border-radius: 999px;
+  font: 600 13px/1.4 system-ui, sans-serif;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: var(--osc-z);
+  pointer-events: none;
+  text-align: center;
+}
+
+.gesture-tip.is-visible {
+  opacity: 1;
+  transform: translate(-50%, -6px);
+}
+
+.gesture-tip.is-hidden {
+  opacity: 0;
+  transform: translate(-50%, 8px);
+}
+
+canvas[data-gesture-input] {
+  touch-action: none;
+}
+
+body.has-mobile-controls {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0) + 110px);
+}
+
+@media (pointer: fine) {
+  .osc-wrap {
+    display: none;
+  }
+
+  body.has-mobile-controls {
+    padding-bottom: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .osc-wrap {
+    transition: none;
+  }
+
+  .osc button {
+    transition: none;
+  }
+}
