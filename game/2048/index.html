@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
     <title>2048 퍼즐</title>
     <style>
         body {
@@ -11,31 +11,48 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: clamp(16px, 5vw, 60px);
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: #fff;
             font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
         }
         .container {
             background: rgba(12, 32, 66, 0.85);
-            padding: 32px;
-            border-radius: 24px;
-            width: min(90vw, 460px);
+            padding: clamp(22px, 5vw, 36px);
+            border-radius: clamp(20px, 4vw, 28px);
+            width: min(100%, 500px);
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            gap: 12px;
+            flex-wrap: wrap;
         }
         h1 {
             margin: 0;
-            font-size: 32px;
+            font-size: clamp(26px, 5vw, 32px);
             letter-spacing: 1px;
+        }
+        .signature {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(116, 192, 252, 0.2);
+            color: #9ec5fe;
+            font-weight: 700;
+            font-size: 12px;
         }
         .score-board {
             display: flex;
             gap: 12px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
         .badge {
             background: rgba(255, 255, 255, 0.1);
@@ -98,9 +115,10 @@
             color: #273c75;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        button:hover {
+        button:hover, button:focus-visible {
             transform: translateY(-2px);
             box-shadow: 0 15px 25px rgba(251, 197, 49, 0.35);
+            outline: none;
         }
         p {
             margin-top: 16px;
@@ -109,20 +127,29 @@
             line-height: 1.5;
             text-align: center;
         }
+        .hint {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 12px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>2048</h1>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+                <div class="signature">박은성이 만든 게임</div>
+                <h1>2048</h1>
+            </div>
             <div class="score-board">
                 <div class="badge">점수<br><span id="score">0</span></div>
                 <div class="badge">최고 기록<br><span id="best">0</span></div>
             </div>
         </header>
-        <div class="board" id="board"></div>
+        <div class="board" id="board" data-gesture-surface></div>
         <button id="restart">새 게임</button>
-        <p>방향키 또는 스와이프(모바일)로 타일을 이동하세요. 같은 숫자가 만나면 합쳐집니다!</p>
+        <p>방향키 · 스와이프 · 탭 · 스크롤로 타일을 이동하세요. 같은 숫자가 만나면 합쳐집니다!</p>
+        <p class="hint">보드를 짧게 탭하면 위치 기준으로 방향이 정해지고, 스와이프하면 해당 방향으로 이동합니다.</p>
     </div>
 
     <script>
@@ -294,26 +321,71 @@
             }
         });
 
-        let startX, startY;
-        boardEl.addEventListener('touchstart', e => {
-            const touch = e.touches[0];
-            startX = touch.clientX;
-            startY = touch.clientY;
+        const pointerState = { active: false, startX: 0, startY: 0, pointerId: null };
+        boardEl.style.touchAction = 'none';
+
+        boardEl.addEventListener('pointerdown', (event) => {
+            if (event.button !== undefined && event.button !== 0) return;
+            if (event.pointerType && event.pointerType !== 'mouse') event.preventDefault();
+            pointerState.active = true;
+            pointerState.pointerId = event.pointerId;
+            pointerState.startX = event.clientX;
+            pointerState.startY = event.clientY;
+            boardEl.setPointerCapture?.(event.pointerId);
         });
-        boardEl.addEventListener('touchend', e => {
-            const touch = e.changedTouches[0];
-            const dx = touch.clientX - startX;
-            const dy = touch.clientY - startY;
-            if (Math.abs(dx) > Math.abs(dy)) {
-                if (Math.abs(dx) > 30) handleMove(dx > 0 ? 'right' : 'left');
+
+        function resolvePointer(event) {
+            if (!pointerState.active) return;
+            if (pointerState.pointerId !== null && event.pointerId !== pointerState.pointerId) return;
+            pointerState.active = false;
+            boardEl.releasePointerCapture?.(event.pointerId);
+            pointerState.pointerId = null;
+
+            const dx = event.clientX - pointerState.startX;
+            const dy = event.clientY - pointerState.startY;
+            const threshold = Math.max(18, Math.min(boardEl.clientWidth, boardEl.clientHeight) * 0.08);
+            let direction = null;
+
+            if (Math.abs(dx) > threshold || Math.abs(dy) > threshold) {
+                direction = Math.abs(dx) > Math.abs(dy)
+                    ? (dx > 0 ? 'right' : 'left')
+                    : (dy > 0 ? 'down' : 'up');
             } else {
-                if (Math.abs(dy) > 30) handleMove(dy > 0 ? 'down' : 'up');
+                const rect = boardEl.getBoundingClientRect();
+                if (!rect.width || !rect.height) return;
+                const localX = event.clientX - rect.left;
+                const localY = event.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                if (Math.abs(localX - centerX) > Math.abs(localY - centerY)) {
+                    direction = localX > centerX ? 'right' : 'left';
+                } else {
+                    direction = localY > centerY ? 'down' : 'up';
+                }
             }
-        });
+
+            if (direction) {
+                handleMove(direction);
+            }
+        }
+
+        boardEl.addEventListener('pointerup', resolvePointer);
+        boardEl.addEventListener('pointercancel', resolvePointer);
+
+        boardEl.addEventListener('wheel', (event) => {
+            event.preventDefault();
+            const absX = Math.abs(event.deltaX);
+            const absY = Math.abs(event.deltaY);
+            const direction = absX > absY
+                ? (event.deltaX > 0 ? 'right' : 'left')
+                : (event.deltaY > 0 ? 'down' : 'up');
+            handleMove(direction);
+        }, { passive: false });
 
         restartBtn.addEventListener('click', createBoard);
 
         createBoard();
     </script>
+    <script src="../global-enhancements.js" defer></script>
 </body>
 </html>

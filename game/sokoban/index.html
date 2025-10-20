@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
     <title>창고지기 소코반 챌린지</title>
     <style>
         :root {
@@ -146,6 +146,12 @@
             color: #f8f7ff;
             box-shadow: none;
         }
+        .hint {
+            margin: 10px 0 0;
+            font-size: 14px;
+            color: rgba(223, 254, 245, 0.72);
+            line-height: 1.5;
+        }
         .toast {
             min-height: 40px;
             display: flex;
@@ -160,7 +166,7 @@
 </head>
 <body>
     <main>
-        <div class="board" aria-live="polite">
+        <div class="board" aria-live="polite" data-gesture-surface>
             <table id="board" aria-label="소코반 보드"></table>
         </div>
         <section>
@@ -173,9 +179,11 @@
             <p>창고지기가 상자를 목표 지점으로 밀어 넣도록 도와주세요. 상자는 끌 수 없고, 한 번에 하나의 상자만 밀 수 있습니다. 치밀하게 동선을 설계해 최소 이동으로 클리어에 도전하세요!</p>
             <ul>
                 <li>방향키 또는 WASD로 이동합니다.</li>
+                <li>보드를 스와이프하거나 칸을 탭해도 이동 방향을 지정할 수 있습니다.</li>
                 <li>Z 키는 직전 상태로 되돌립니다. 실수했을 때 유용합니다.</li>
                 <li>다음 레벨로 갈 때는 모든 상자를 목표에 올려야 합니다.</li>
             </ul>
+            <p class="hint">터치 기기에서는 짧게 탭하면 해당 위치 방향으로 이동하고, 드래그나 스와이프하면 그 방향으로 즉시 이동합니다.</p>
             <div class="controls">
                 <button id="reset">현재 레벨 재시작</button>
                 <button id="undo" class="secondary">되돌리기</button>
@@ -391,6 +399,93 @@
             }
         });
 
+        const gesture = { active: false, startX: 0, startY: 0, pointerId: null };
+        const boardWrapper = document.querySelector('.board');
+        boardWrapper.style.touchAction = 'none';
+
+        function performMove(direction) {
+            if (checkSolved()) return;
+            switch (direction) {
+                case 'left':
+                    move(-1, 0);
+                    break;
+                case 'right':
+                    move(1, 0);
+                    break;
+                case 'up':
+                    move(0, -1);
+                    break;
+                case 'down':
+                    move(0, 1);
+                    break;
+            }
+        }
+
+        boardWrapper.addEventListener('pointerdown', (event) => {
+            if (event.button !== undefined && event.button !== 0) return;
+            if (event.pointerType && event.pointerType !== 'mouse') event.preventDefault();
+            gesture.active = true;
+            gesture.pointerId = event.pointerId;
+            gesture.startX = event.clientX;
+            gesture.startY = event.clientY;
+            boardWrapper.setPointerCapture?.(event.pointerId);
+        });
+
+        function resolveGesture(event) {
+            if (!gesture.active) return;
+            if (gesture.pointerId !== null && event.pointerId !== gesture.pointerId) return;
+            gesture.active = false;
+            boardWrapper.releasePointerCapture?.(event.pointerId);
+            gesture.pointerId = null;
+
+            const dx = event.clientX - gesture.startX;
+            const dy = event.clientY - gesture.startY;
+            const threshold = Math.max(18, Math.min(boardWrapper.clientWidth, boardWrapper.clientHeight) * 0.06);
+            let direction = null;
+
+            if (Math.abs(dx) > threshold || Math.abs(dy) > threshold) {
+                direction = Math.abs(dx) > Math.abs(dy)
+                    ? (dx > 0 ? 'right' : 'left')
+                    : (dy > 0 ? 'down' : 'up');
+            } else {
+                const rect = boardWrapper.getBoundingClientRect();
+                if (!rect.width || !rect.height) return;
+                const localX = event.clientX - rect.left;
+                const localY = event.clientY - rect.top;
+                const columns = board[0]?.length || 0;
+                const rows = board.length || 0;
+                if (!columns || !rows) return;
+                const cellWidth = rect.width / columns;
+                const cellHeight = rect.height / rows;
+                const targetX = Math.floor(localX / cellWidth);
+                const targetY = Math.floor(localY / cellHeight);
+                const diffX = targetX - player.x;
+                const diffY = targetY - player.y;
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    if (diffX !== 0) direction = diffX > 0 ? 'right' : 'left';
+                } else if (diffY !== 0) {
+                    direction = diffY > 0 ? 'down' : 'up';
+                }
+            }
+
+            if (direction) {
+                performMove(direction);
+            }
+        }
+
+        boardWrapper.addEventListener('pointerup', resolveGesture);
+        boardWrapper.addEventListener('pointercancel', resolveGesture);
+
+        boardWrapper.addEventListener('wheel', (event) => {
+            event.preventDefault();
+            const absX = Math.abs(event.deltaX);
+            const absY = Math.abs(event.deltaY);
+            const direction = absX > absY
+                ? (event.deltaX > 0 ? 'right' : 'left')
+                : (event.deltaY > 0 ? 'down' : 'up');
+            performMove(direction);
+        }, { passive: false });
+
         resetBtn.addEventListener('click', () => loadLevel(levelIndex));
         undoBtn.addEventListener('click', undo);
         nextBtn.addEventListener('click', () => {
@@ -401,5 +496,6 @@
 
         loadLevel(0);
     </script>
+    <script src="../global-enhancements.js" defer></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
     <title>모래 테트리스 실험실</title>
     <style>
         body {
@@ -59,7 +59,7 @@
 </head>
 <body>
     <div class="layout">
-        <canvas id="board" width="320" height="480"></canvas>
+        <canvas id="board" width="320" height="480" data-gesture-ignore="true"></canvas>
         <div class="controls">
             <button id="dropShape">랜덤 블록 떨어뜨리기</button>
             <button id="clear">초기화</button>
@@ -67,7 +67,7 @@
         <div class="info">
             <p><strong>사용 방법</strong></p>
             <ul>
-                <li>마우스로 화면을 드래그하면 모래를 뿌릴 수 있습니다.</li>
+                <li>마우스나 손가락으로 화면을 드래그하면 모래를 뿌릴 수 있습니다.</li>
                 <li>랜덤 블록 버튼을 누르면 테트리스 모양의 굳은 블록이 등장합니다.</li>
                 <li>모래는 중력에 따라 흘러내리고, 굳은 블록은 지형을 지탱합니다.</li>
                 <li>공간을 창의적으로 채우며 지형을 만들어 보세요!</li>
@@ -122,6 +122,20 @@
         canvas.addEventListener('mousemove', (e) => {
             if (dragging) addSandFromEvent(e);
         });
+
+        canvas.addEventListener('touchstart', (e) => {
+            dragging = true;
+            addSandFromEvent(e.touches[0]);
+            e.preventDefault();
+        }, { passive: false });
+        canvas.addEventListener('touchmove', (e) => {
+            if (!dragging) return;
+            addSandFromEvent(e.touches[0]);
+            e.preventDefault();
+        }, { passive: false });
+        canvas.addEventListener('touchend', () => dragging = false);
+        canvas.addEventListener('touchcancel', () => dragging = false);
+        canvas.style.touchAction = 'none';
 
         function addSandFromEvent(e) {
             const rect = canvas.getBoundingClientRect();
@@ -236,5 +250,6 @@
 
         loop();
     </script>
+    <script src="../global-enhancements.js" defer></script>
 </body>
 </html>

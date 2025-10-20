@@ -138,6 +138,165 @@
         setTimeout(() => pressEnd(key), 50);
       }, { passive: true });
     }
+
+    setupGestureSurfaces();
+
+    function setupGestureSurfaces() {
+      const surfaces = Array.from(
+        doc.querySelectorAll('[data-gesture-input]')
+      );
+      if (!surfaces.length) return;
+
+      const pointerStates = new Map();
+      const tapMemory = new WeakMap();
+
+      const tipId = '__gesture_tip';
+      if (!doc.getElementById(tipId)) {
+        const tip = doc.createElement('div');
+        tip.id = tipId;
+        tip.className = 'gesture-tip';
+        tip.textContent = '화면을 탭하거나 스와이프하면 방향키와 액션이 입력됩니다.';
+        body.appendChild(tip);
+        requestAnimationFrame(() => {
+          tip.classList.add('is-visible');
+          setTimeout(() => {
+            tip.classList.add('is-hidden');
+            setTimeout(() => tip.remove(), 320);
+          }, 2600);
+        });
+      }
+
+      function surfaceOptions(surface) {
+        const dataset = surface.dataset || {};
+        const modes = (dataset.gestureInput || 'arrows')
+          .split(/[,\s]+/)
+          .map((token) => token.trim())
+          .filter(Boolean);
+        const baseDeadzone = parseFloat(dataset.gestureDeadzone || '')
+          || Math.min(surface.clientWidth, surface.clientHeight) * 0.08;
+
+        return {
+          modes,
+          tapKey: dataset.gestureTapKey || 'Space',
+          doubleTapKey: dataset.gestureDoubleTapKey || dataset.gestureTapKey || 'Space',
+          centerDeadZone: baseDeadzone,
+        };
+      }
+
+      function keyFromPoint(surface, clientX, clientY) {
+        const { modes } = surfaceOptions(surface);
+        if (!modes.includes('arrows')) return null;
+        const rect = surface.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const dx = x - centerX;
+        const dy = y - centerY;
+        const distance = Math.hypot(dx, dy);
+        const { centerDeadZone } = surfaceOptions(surface);
+        if (distance < centerDeadZone) {
+          return null;
+        }
+        if (Math.abs(dx) > Math.abs(dy)) {
+          return dx > 0 ? 'ArrowRight' : 'ArrowLeft';
+        }
+        return dy > 0 ? 'ArrowDown' : 'ArrowUp';
+      }
+
+      function rememberTap(surface, clientX, clientY) {
+        const now = performance.now();
+        const prev = tapMemory.get(surface);
+        const rect = surface.getBoundingClientRect();
+        const opts = surfaceOptions(surface);
+        const threshold = Math.min(rect.width, rect.height) * 0.18;
+        if (prev && now - prev.time < 320) {
+          const dist = Math.hypot(prev.x - clientX, prev.y - clientY);
+          if (dist < threshold) {
+            if (opts.modes.includes('actions')) {
+              pressStart(opts.doubleTapKey);
+              setTimeout(() => pressEnd(opts.doubleTapKey), 70);
+            }
+            tapMemory.delete(surface);
+            return;
+          }
+        }
+        tapMemory.set(surface, { time: now, x: clientX, y: clientY });
+      }
+
+      surfaces.forEach((surface) => {
+        if (!surface.hasAttribute('tabindex')) {
+          surface.setAttribute('tabindex', '0');
+        }
+
+        surface.classList.add('gesture-surface');
+        const opts = surfaceOptions(surface);
+
+        const endPointer = (e) => {
+          const state = pointerStates.get(e.pointerId);
+          if (state) {
+            pressEnd(state.key);
+            pointerStates.delete(e.pointerId);
+          }
+          if (e.pointerType === 'touch' || e.pointerType === 'pen') {
+            rememberTap(surface, e.clientX, e.clientY);
+          }
+        };
+
+        surface.addEventListener('pointerdown', (e) => {
+          if (e.pointerType === 'mouse' && e.button !== 0) return;
+          const key = keyFromPoint(surface, e.clientX, e.clientY);
+          if (!key) {
+            if (e.pointerType === 'touch' || e.pointerType === 'pen') {
+              rememberTap(surface, e.clientX, e.clientY);
+            }
+            return;
+          }
+          if (e.pointerType !== 'mouse') e.preventDefault();
+          surface.setPointerCapture?.(e.pointerId);
+          pointerStates.set(e.pointerId, { key });
+          pressStart(key);
+        });
+
+        surface.addEventListener('pointermove', (e) => {
+          const state = pointerStates.get(e.pointerId);
+          if (!state) return;
+          const nextKey = keyFromPoint(surface, e.clientX, e.clientY);
+          if (!nextKey || nextKey === state.key) {
+            return;
+          }
+          pressEnd(state.key);
+          pressStart(nextKey);
+          pointerStates.set(e.pointerId, { key: nextKey });
+        });
+
+        surface.addEventListener('pointerup', endPointer);
+        surface.addEventListener('pointercancel', endPointer);
+        surface.addEventListener('lostpointercapture', endPointer);
+
+        surface.addEventListener('click', (e) => {
+          if (!opts.modes.includes('actions')) return;
+          const primary = opts.tapKey;
+          pressStart(primary);
+          setTimeout(() => pressEnd(primary), 60);
+        });
+
+        surface.addEventListener('wheel', (e) => {
+          const absX = Math.abs(e.deltaX);
+          const absY = Math.abs(e.deltaY);
+          const hasArrows = opts.modes.includes('arrows');
+          if (!hasArrows && !opts.modes.includes('actions')) return;
+          const key = hasArrows
+            ? (absX > absY
+              ? (e.deltaX > 0 ? 'ArrowRight' : 'ArrowLeft')
+              : (e.deltaY > 0 ? 'ArrowDown' : 'ArrowUp'))
+            : opts.tapKey;
+          pressStart(key);
+          setTimeout(() => pressEnd(key), 60);
+          e.preventDefault();
+        }, { passive: false });
+      });
+    }
   }
 
   if (document.readyState === 'loading') {

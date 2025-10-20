@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
     <title>카드 매칭</title>
     <style>
         :root {
@@ -28,6 +28,7 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         header {
             display: flex;
@@ -40,10 +41,22 @@
             margin: 0;
             font-size: clamp(26px, 5vw, 34px);
         }
+        .signature {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(66, 134, 244, 0.18);
+            color: #9ebdff;
+            font-weight: 700;
+            font-size: 13px;
+        }
         .stats {
             display: flex;
             gap: 16px;
             font-weight: 600;
+            flex-wrap: wrap;
         }
         #board {
             display: grid;
@@ -106,9 +119,10 @@
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        button.action:hover {
+        button.action:hover, button.action:focus-visible {
             transform: translateY(-2px);
             box-shadow: 0 16px 24px rgba(255, 255, 255, 0.2);
+            outline: none;
         }
         .message {
             font-size: 14px;
@@ -119,7 +133,10 @@
 <body>
     <div class="container">
         <header>
-            <h1>카드 매칭</h1>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+                <div class="signature">박은성이 만든 게임</div>
+                <h1>카드 매칭</h1>
+            </div>
             <div class="stats">
                 <div>턴: <span id="turns">0</span></div>
                 <div>시간: <span id="time">0</span>s</div>
@@ -247,5 +264,6 @@
 
         resetGame();
     </script>
+    <script src="../global-enhancements.js" defer></script>
 </body>
 </html>

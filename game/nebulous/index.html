@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
     <title>세포 성장 실험 (Nebulous)</title>
     <style>
         body {
@@ -14,20 +14,35 @@
         }
         header {
             position: fixed;
-            top: 20px;
+            top: 16px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(13, 26, 45, 0.75);
             padding: 12px 24px;
-            border-radius: 999px;
+            border-radius: 22px;
             backdrop-filter: blur(8px);
             display: flex;
-            gap: 18px;
+            flex-wrap: wrap;
+            gap: 12px 18px;
             align-items: center;
+            justify-content: center;
             box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            width: min(92vw, 640px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         header strong {
-            font-size: 18px;
+            font-size: clamp(16px, 4vw, 20px);
+        }
+        .signature {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(34, 211, 238, 0.18);
+            color: #67e8f9;
+            font-weight: 700;
+            font-size: 12px;
         }
         #game {
             display: block;
@@ -47,6 +62,7 @@
 </head>
 <body>
     <header>
+        <div class="signature">박은성이 만든 게임</div>
         <strong>세포 성장 실험</strong>
         <span>크기: <span id="size">10</span></span>
         <span>흡수한 입자: <span id="score">0</span></span>
@@ -256,7 +272,9 @@
         canvas.addEventListener('touchmove', (e) => {
             const touch = e.touches[0];
             pointer = { x: touch.clientX, y: touch.clientY };
+            e.preventDefault();
         }, { passive: false });
+        canvas.style.touchAction = 'none';
 
         function loop() {
             movePlayer();
@@ -270,5 +288,6 @@
         updateHUD();
         loop();
     </script>
+    <script src="../global-enhancements.js" defer></script>
 </body>
 </html>
