@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>스카이 러너</title>
     <style>
         :root {
@@ -72,9 +72,9 @@
             <div>최고: <span id="best">0</span>m</div>
             <div>속도: <span id="speed">0</span>m/s</div>
         </div>
-        <canvas id="game" width="640" height="360" data-gesture-ignore="true"></canvas>
+        <canvas id="game" width="640" height="360"></canvas>
         <button id="restart">다시 시작</button>
-        <p>스페이스·방향키·온스크린 패드 외에도 화면을 탭하면 점프, 아래로 스와이프하면 구르기가 가능합니다. 장애물을 피하며 더 멀리 달려 보세요!</p>
+        <p>스페이스/위 키로 점프, 아래 키로 구르기. 장애물을 피하며 더 멀리 달려 보세요!</p>
     </div>
 
     <script>
@@ -103,11 +103,6 @@
         let slideTimer = 0;
 
         const keys = new Set();
-
-        function tapKey(key, hold = 160) {
-            keys.add(key);
-            setTimeout(() => keys.delete(key), hold);
-        }
 
         bestEl.textContent = best;
 
@@ -299,53 +294,6 @@
             requestAnimationFrame(update);
         });
 
-        const gestureState = { active: false, startX: 0, startY: 0, time: 0 };
-
-        canvas.addEventListener('pointerdown', (e) => {
-            if (e.pointerType !== 'mouse') e.preventDefault();
-            gestureState.active = true;
-            gestureState.startX = e.clientX;
-            gestureState.startY = e.clientY;
-            gestureState.time = performance.now();
-            canvas.setPointerCapture?.(e.pointerId);
-            if (!running) {
-                resetGame();
-                requestAnimationFrame(update);
-            }
-        });
-
-        function resolveGesture(e) {
-            if (!gestureState.active) return;
-            gestureState.active = false;
-            canvas.releasePointerCapture?.(e.pointerId);
-            const dx = e.clientX - gestureState.startX;
-            const dy = e.clientY - gestureState.startY;
-            const elapsed = performance.now() - gestureState.time;
-            const absX = Math.abs(dx);
-            const absY = Math.abs(dy);
-            const threshold = 28;
-            if (absY > absX && absY > threshold) {
-                if (dy > 0) {
-                    tapKey('ArrowDown', 320);
-                } else {
-                    tapKey('ArrowUp');
-                }
-                return;
-            }
-            if (elapsed < 260 && absX < threshold && absY < threshold) {
-                tapKey('ArrowUp');
-                return;
-            }
-            if (dy > threshold) {
-                tapKey('ArrowDown', 320);
-            } else {
-                tapKey('ArrowUp');
-            }
-        }
-
-        canvas.addEventListener('pointerup', resolveGesture);
-        canvas.addEventListener('pointercancel', resolveGesture);
-
         document.addEventListener('keydown', e => {
             keys.add(e.key);
             if (e.key === ' ') e.preventDefault();
@@ -364,6 +312,5 @@
         drawObstacles();
         drawPlayer();
     </script>
-    <script src="../global-enhancements.js" defer></script>
 </body>
 </html>

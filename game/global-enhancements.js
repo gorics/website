@@ -118,26 +118,6 @@
     body.classList.remove('has-mobile-controls');
   }
 
-  const autoGestureTargets = () => {
-    const autoSelectors = [
-      ['canvas', 'arrows actions'],
-      ['[data-gesture-surface]', 'arrows'],
-    ];
-    autoSelectors.forEach(([selector, fallback]) => {
-      doc.querySelectorAll(selector).forEach((el) => {
-        if (el.dataset.gestureInput || el.hasAttribute('data-gesture-ignore')) return;
-        el.dataset.gestureInput = fallback;
-      });
-    });
-  };
-
-  if (wantsMobileControls) {
-    autoGestureTargets();
-    const observer = new MutationObserver(() => autoGestureTargets());
-    observer.observe(body, { childList: true, subtree: true });
-    window.addEventListener('beforeunload', () => observer.disconnect(), { once: true });
-  }
-
   const style = doc.createElement('style');
   style.textContent = `
     .global-signature {

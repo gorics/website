@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>우주 방위전</title>
     <style>
         :root {
@@ -72,9 +72,9 @@
             <div>쉴드: <span id="shield">100</span></div>
             <div>웨이브: <span id="wave">1</span></div>
         </div>
-        <canvas id="game" width="540" height="720" data-gesture-ignore="true"></canvas>
+        <canvas id="game" width="540" height="720"></canvas>
         <button id="restart">다시 시작</button>
-        <p>WASD/방향키, 온스크린 패드, 화면 드래그·탭으로 이동과 사격이 가능합니다. 파워업을 모아 우주를 지키세요!</p>
+        <p>WASD/방향키로 이동하고 스페이스 또는 클릭으로 레이저를 발사하세요. 파워업을 모아 우주를 지키세요!</p>
     </div>
 
     <script>
@@ -90,7 +90,6 @@
 
         const keys = new Set();
         let pointerDown = false;
-        let pointerAim = null;
 
         const particles = [];
         const bullets = [];
@@ -132,7 +131,6 @@
             lastTime = performance.now();
             shoot.lastShot = 0;
             pointerDown = false;
-            pointerAim = null;
             keys.clear();
             updateHUD();
         }
@@ -203,13 +201,6 @@
             if (keys.has('ArrowRight') || keys.has('d')) player.x += velocity;
             if (keys.has('ArrowUp') || keys.has('w')) player.y -= velocity;
             if (keys.has('ArrowDown') || keys.has('s')) player.y += velocity;
-            if (pointerAim) {
-                const diffX = pointerAim.x - player.x;
-                const diffY = pointerAim.y - player.y;
-                const step = velocity * (pointerDown ? 1.8 : 1.2);
-                player.x += Math.max(-step, Math.min(step, diffX));
-                player.y += Math.max(-step, Math.min(step, diffY));
-            }
             player.x = Math.max(30, Math.min(WIDTH - 30, player.x));
             player.y = Math.max(60, Math.min(HEIGHT - 40, player.y));
             if (pointerDown || keys.has(' ') || keys.has('Space')) shoot();
@@ -412,36 +403,13 @@
             keys.delete(e.key);
         });
 
-        function updatePointerTarget(e) {
-            const rect = canvas.getBoundingClientRect();
-            pointerAim = {
-                x: ((e.clientX - rect.left) / rect.width) * WIDTH,
-                y: ((e.clientY - rect.top) / rect.height) * HEIGHT
-            };
-        }
-
-        canvas.addEventListener('pointerdown', (e) => {
+        canvas.addEventListener('mousedown', () => {
             pointerDown = true;
-            updatePointerTarget(e);
-            if (e.pointerType !== 'mouse') e.preventDefault();
-            canvas.setPointerCapture?.(e.pointerId);
         });
-
-        canvas.addEventListener('pointermove', (e) => {
-            if (!pointerDown && e.pointerType === 'mouse' && e.buttons === 0) return;
-            updatePointerTarget(e);
-            if (e.pointerType !== 'mouse') e.preventDefault();
-        });
-
-        const releasePointer = (e) => {
+        canvas.addEventListener('mouseup', () => {
             pointerDown = false;
-            if (!keys.size) pointerAim = null;
-            canvas.releasePointerCapture?.(e.pointerId);
-        };
-
-        canvas.addEventListener('pointerup', releasePointer);
-        canvas.addEventListener('pointercancel', releasePointer);
-        canvas.addEventListener('pointerleave', () => {
+        });
+        canvas.addEventListener('mouseleave', () => {
             pointerDown = false;
         });
 
@@ -449,6 +417,5 @@
         draw();
         requestAnimationFrame(update);
     </script>
-    <script src="../global-enhancements.js" defer></script>
 </body>
 </html>
