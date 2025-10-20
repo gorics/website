@@ -28,4 +28,4 @@ fi
 
 # 이미 우리가 푸시까지 수행하고 원래 푸시는 중단
 GIT_PREPUSH_RUNNING=1 git push origin HEAD
-exit 1
+exit 0
