@@ -1,31 +1,22 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
-# 재귀 방지
-if [ "${GIT_PREPUSH_RUNNING:-}" = "1" ]; then exit 0; fi
-
 branch="$(git rev-parse --abbrev-ref HEAD)"
-# main/master는 스킵
-if [[ "$branch" == "main" || "$branch" == "master" ]]; then exit 0; fi
+# main/master에서는 스킵
+[[ "$branch" == "main" || "$branch" == "master" ]] && exit 0
 
-echo "[pre-push] Auto-merge origin/main into $branch (prefer main: -X theirs)"
+# main 최신 반영 + 메인 기준 자동 병합
 git fetch origin main
-
-# 메인 우선 자동 병합
 git merge -s recursive -X theirs --no-edit origin/main || true
 
-# 남은 충돌이 있으면 전부 main 쪽으로 강제 선택
+# 남은 충돌이 있으면 모두 main 버전으로 강제
 if git diff --name-only --diff-filter=U | grep -q .; then
   git diff --name-only --diff-filter=U | xargs -I{} git checkout --theirs "{}"
   git add -A
 fi
 
-# 변경이 생겼다면 커밋
+# 변경이 있으면 커밋 (푸시는 훅 밖에서 1회만 진행)
 if ! git diff --cached --quiet || ! git diff --quiet; then
   git add -A
-  git commit -m "chore: auto-merge main (-X theirs) before push"
+  git commit -m "chore(pre-push): auto-merge main (-X theirs) before push"
 fi
-
-# 이미 우리가 푸시까지 수행하고 원래 푸시는 중단
-GIT_PREPUSH_RUNNING=1 git push origin HEAD
-exit 1
+exit 0
