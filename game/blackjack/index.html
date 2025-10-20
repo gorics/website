@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <title>네온 블랙잭 라운지</title>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(24px, 4vw, 56px);
+            background: radial-gradient(circle at 20% -10%, #2e0b35, #03050f 70%, #01030a 100%);
+            color: #fdf9ff;
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+        }
+        main {
+            width: min(100%, 960px);
+            background: rgba(11, 9, 24, 0.86);
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: clamp(28px, 4vw, 40px);
+            box-shadow: 0 36px 80px rgba(0, 0, 0, 0.55);
+            display: grid;
+            gap: clamp(24px, 4vw, 40px);
+        }
+        header {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        header h1 { margin: 0; font-size: clamp(32px, 4.4vw, 46px); letter-spacing: -0.02em; }
+        header p { margin: 0; color: rgba(246, 242, 255, 0.8); line-height: 1.6; }
+        .table {
+            display: grid;
+            gap: 22px;
+        }
+        .hand {
+            background: linear-gradient(160deg, rgba(35, 14, 46, 0.9), rgba(14, 8, 36, 0.92));
+            border-radius: 22px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .hand h2 {
+            margin: 0 0 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            letter-spacing: 0.02em;
+        }
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            min-height: 120px;
+        }
+        .card {
+            width: 72px;
+            height: 104px;
+            border-radius: 12px;
+            background: linear-gradient(140deg, rgba(255, 255, 255, 0.95), rgba(229, 232, 255, 0.92));
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: #0a0830;
+            font-weight: 700;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            padding: 8px;
+            box-shadow: 0 14px 26px rgba(0, 0, 0, 0.35);
+            position: relative;
+        }
+        .card.red { color: #b1203b; }
+        .card .symbol { text-align: center; font-size: 26px; }
+        .card .corner { font-size: 20px; }
+        .card.back {
+            background: repeating-linear-gradient(45deg, #211544, #211544 12px, #432f8a 12px, #432f8a 24px);
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        button {
+            border: none;
+            border-radius: 14px;
+            padding: 12px 20px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #6b5bff, #32d8ff);
+            color: white;
+            box-shadow: 0 20px 36px rgba(86, 94, 255, 0.32);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 24px 44px rgba(86, 94, 255, 0.4);
+        }
+        button:disabled { opacity: 0.4; cursor: not-allowed; }
+        .chip {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+            padding: 6px 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+        .status {
+            min-height: 48px;
+            border-radius: 16px;
+            padding: 14px 18px;
+            background: rgba(109, 253, 204, 0.12);
+            border: 1px solid rgba(109, 253, 204, 0.26);
+            color: #dffef5;
+        }
+        .balance {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        input[type="range"] { width: clamp(160px, 30vw, 320px); }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>네온 블랙잭 라운지</h1>
+            <p>딜러와 맞붙어 21점을 노려보세요. 전략적인 스탠드, 과감한 히트, 타이밍 좋은 더블다운으로 자금을 불려 보세요. 카드 카운팅 없이도 즐겁게 플레이할 수 있도록 라이트한 규칙을 적용했습니다.</p>
+        </header>
+        <div class="balance">
+            <span class="chip">보유 칩: <strong id="chips">1000</strong></span>
+            <label class="chip">베팅: <strong id="bet-value">50</strong>
+                <input type="range" id="bet" min="10" max="300" step="10" value="50" />
+            </label>
+            <button id="deal">딜 시작</button>
+        </div>
+        <div class="table">
+            <div class="hand" id="dealer">
+                <h2>딜러 <span id="dealer-total">0</span></h2>
+                <div class="cards" id="dealer-cards"></div>
+            </div>
+            <div class="hand" id="player">
+                <h2>플레이어 <span id="player-total">0</span></h2>
+                <div class="cards" id="player-cards"></div>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="hit" disabled>히트</button>
+            <button id="stand" disabled>스탠드</button>
+            <button id="double" disabled>더블다운</button>
+            <button id="surrender" disabled>서렌더</button>
+        </div>
+        <div class="status" id="status" role="status">베팅을 설정하고 딜을 시작하세요.</div>
+    </main>
+    <script>
+        const suits = ['♠', '♥', '♦', '♣'];
+        const ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+        let deck = [];
+        let playerHand = [];
+        let dealerHand = [];
+        let chips = Number(localStorage.getItem('blackjack-chips') || '1000');
+        let stake = 50;
+        let currentBet = 0;
+        let roundActive = false;
+        let playerTurn = false;
+        let doubleEligible = false;
+
+        const chipsEl = document.getElementById('chips');
+        const betRange = document.getElementById('bet');
+        const betValueEl = document.getElementById('bet-value');
+        const dealerCardsEl = document.getElementById('dealer-cards');
+        const playerCardsEl = document.getElementById('player-cards');
+        const dealerTotalEl = document.getElementById('dealer-total');
+        const playerTotalEl = document.getElementById('player-total');
+        const statusEl = document.getElementById('status');
+        const hitBtn = document.getElementById('hit');
+        const standBtn = document.getElementById('stand');
+        const doubleBtn = document.getElementById('double');
+        const surrenderBtn = document.getElementById('surrender');
+        const dealBtn = document.getElementById('deal');
+
+        function initDeck() {
+            deck = [];
+            for (let s of suits) {
+                for (let r of ranks) {
+                    deck.push({ suit: s, rank: r });
+                }
+            }
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+        }
+
+        function cardValue(card) {
+            if (card.rank === 'A') return 11;
+            if (['K', 'Q', 'J'].includes(card.rank)) return 10;
+            return Number(card.rank);
+        }
+
+        function handValue(hand) {
+            let total = 0;
+            let aces = 0;
+            for (const card of hand) {
+                total += cardValue(card);
+                if (card.rank === 'A') aces += 1;
+            }
+            while (total > 21 && aces > 0) {
+                total -= 10;
+                aces -= 1;
+            }
+            return total;
+        }
+
+        function renderHand(container, hand, hideFirst = false) {
+            container.innerHTML = '';
+            hand.forEach((card, index) => {
+                const div = document.createElement('div');
+                div.className = 'card';
+                const isRed = card.suit === '♥' || card.suit === '♦';
+                if (hideFirst && index === 0) {
+                    div.classList.add('back');
+                    container.appendChild(div);
+                    return;
+                }
+                if (isRed) div.classList.add('red');
+                div.innerHTML = `
+                    <div class="corner">${card.rank}</div>
+                    <div class="symbol">${card.suit}</div>
+                    <div class="corner" style="justify-self: end;">${card.rank}</div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function updateTotals(hideDealer = true) {
+            const playerTotal = handValue(playerHand);
+            const dealerTotal = handValue(dealerHand);
+            playerTotalEl.textContent = playerTotal;
+            dealerTotalEl.textContent = hideDealer && playerTurn ? '?' : dealerTotal;
+        }
+
+        function updateChips() {
+            chipsEl.textContent = chips;
+            localStorage.setItem('blackjack-chips', String(chips));
+        }
+
+        function canDeal() {
+            return !roundActive && stake <= chips && stake >= 10;
+        }
+
+        function setControls(active) {
+            hitBtn.disabled = !active;
+            standBtn.disabled = !active;
+            doubleBtn.disabled = !(active && doubleEligible && chips >= currentBet);
+            surrenderBtn.disabled = !active || playerHand.length !== 2;
+        }
+
+        function deal() {
+            if (!canDeal()) {
+                statusEl.textContent = '베팅이 보유 칩보다 크지 않은지 확인하세요.';
+                return;
+            }
+            roundActive = true;
+            playerTurn = true;
+            doubleEligible = true;
+            currentBet = stake;
+            chips -= currentBet;
+            updateChips();
+            betRange.disabled = true;
+            initDeck();
+            playerHand = [deck.pop(), deck.pop()];
+            dealerHand = [deck.pop(), deck.pop()];
+            renderHand(playerCardsEl, playerHand);
+            renderHand(dealerCardsEl, dealerHand, true);
+            updateTotals(true);
+            statusEl.textContent = '히트 혹은 스탠드를 선택하세요. 서렌더는 초반 두 장일 때만 가능합니다.';
+            dealBtn.disabled = true;
+            setControls(true);
+            renderBetValue();
+            if (handValue(playerHand) === 21) {
+                settle('blackjack');
+            }
+        }
+
+        function hit() {
+            if (!playerTurn) return;
+            doubleEligible = false;
+            playerHand.push(deck.pop());
+            renderHand(playerCardsEl, playerHand);
+            const total = handValue(playerHand);
+            updateTotals(true);
+            if (total > 21) {
+                settle('player-bust');
+            }
+        }
+
+        function stand() {
+            if (!playerTurn) return;
+            playerTurn = false;
+            setControls(false);
+            playDealer();
+        }
+
+        function doubleDown() {
+            if (!playerTurn || !doubleEligible || chips < currentBet) return;
+            chips -= currentBet;
+            currentBet *= 2;
+            updateChips();
+            renderBetValue();
+            playerHand.push(deck.pop());
+            renderHand(playerCardsEl, playerHand);
+            updateTotals(true);
+            doubleEligible = false;
+            playerTurn = false;
+            setControls(false);
+            if (handValue(playerHand) > 21) {
+                settle('player-bust');
+            } else {
+                playDealer();
+            }
+        }
+
+        function surrender() {
+            if (!playerTurn || playerHand.length !== 2) return;
+            playerTurn = false;
+            const refund = Math.floor(currentBet / 2);
+            chips += refund;
+            updateChips();
+            statusEl.textContent = '서렌더! 베팅의 절반을 되찾았습니다.';
+            endRound();
+        }
+
+        function playDealer() {
+            renderHand(dealerCardsEl, dealerHand, false);
+            updateTotals(false);
+            let total = handValue(dealerHand);
+            while (total < 17) {
+                dealerHand.push(deck.pop());
+                renderHand(dealerCardsEl, dealerHand, false);
+                total = handValue(dealerHand);
+            }
+            if (total > 21) {
+                settle('dealer-bust');
+            } else {
+                settle('compare');
+            }
+        }
+
+        function settle(reason) {
+            const playerTotal = handValue(playerHand);
+            const dealerTotal = handValue(dealerHand);
+            let payout = 0;
+            let message = '';
+            switch (reason) {
+                case 'blackjack':
+                    payout = Math.floor(currentBet * 2.5);
+                    message = '블랙잭! 3:2 배당으로 승리했습니다.';
+                    break;
+                case 'player-bust':
+                    payout = 0;
+                    message = '버스트! 21을 초과했습니다.';
+                    break;
+                case 'dealer-bust':
+                    payout = currentBet * 2;
+                    message = '딜러 버스트! 깔끔한 승리입니다.';
+                    break;
+                case 'compare':
+                    if (playerTotal > dealerTotal) {
+                        payout = currentBet * 2;
+                        message = `${playerTotal} vs ${dealerTotal}, 승리!`;
+                    } else if (playerTotal < dealerTotal) {
+                        payout = 0;
+                        message = `${playerTotal} vs ${dealerTotal}, 패배했습니다.`;
+                    } else {
+                        payout = currentBet;
+                        message = '푸시! 베팅이 반환됩니다.';
+                    }
+                    break;
+            }
+            chips += payout;
+            updateChips();
+            statusEl.textContent = message;
+            endRound();
+        }
+
+        function endRound() {
+            roundActive = false;
+            playerTurn = false;
+            dealBtn.disabled = false;
+            setControls(false);
+            currentBet = 0;
+            renderBetValue();
+            betRange.disabled = false;
+        }
+
+        function renderBetValue() {
+            betValueEl.textContent = roundActive ? `${currentBet} (진행 중)` : stake;
+        }
+
+        betRange.addEventListener('input', () => {
+            stake = Number(betRange.value);
+            if (!roundActive) renderBetValue();
+        });
+
+        hitBtn.addEventListener('click', hit);
+        standBtn.addEventListener('click', stand);
+        doubleBtn.addEventListener('click', doubleDown);
+        surrenderBtn.addEventListener('click', surrender);
+        dealBtn.addEventListener('click', deal);
+
+        updateChips();
+        renderBetValue();
+        setControls(false);
+    </script>
+    <script src="../global-enhancements.js" defer></script>
+</body>
+</html>
