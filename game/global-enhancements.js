@@ -25,15 +25,48 @@
       return;
     }
 
-    const existingTokens = viewport.content
+    const tokens = viewport.content
       .split(',')
       .map((token) => token.trim())
       .filter(Boolean);
 
-    const normalized = existingTokens.slice();
-    requiredEntries.forEach(([key, value]) => {
-      if (!existingTokens.some((token) => token.startsWith(key))) {
+    const requiredMap = new Map(
+      requiredEntries.map(([key, value]) => [key.toLowerCase(), value])
+    );
+
+    const normalized = [];
+    const seen = new Set();
+
+    tokens.forEach((token) => {
+      const trimmedToken = token.trim();
+      if (!trimmedToken) return;
+      const eqIndex = trimmedToken.indexOf('=');
+      if (eqIndex !== -1) {
+        const rawKey = trimmedToken.slice(0, eqIndex).trim();
+        const rawValue = trimmedToken.slice(eqIndex + 1).trim();
+        const normalizedKey = rawKey.toLowerCase();
+        const requiredValue = requiredMap.get(normalizedKey);
+        if (requiredValue) {
+          const normalizedRequired = requiredValue.toLowerCase();
+          const normalizedToken = `${normalizedKey}=${rawValue}`.toLowerCase();
+          if (normalizedToken === normalizedRequired && !seen.has(requiredValue)) {
+            normalized.push(requiredValue);
+            seen.add(requiredValue);
+          }
+          return;
+        }
+      }
+
+      if (!seen.has(trimmedToken)) {
+        normalized.push(trimmedToken);
+        seen.add(trimmedToken);
+      }
+    });
+
+    requiredEntries.forEach(([, value]) => {
+      if (!seen.has(value)) {
         normalized.push(value);
+        seen.add(value);
       }
     });
 
