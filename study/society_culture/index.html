@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2027 사문 GOD EDITION (By 박은성)</title>
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Pretendard', 'Noto Sans KR', 'sans-serif'],
+                        jua: ['Jua', 'sans-serif'],
+                        dohyeon: ['Do Hyeon', 'sans-serif'],
+                    },
+                    animation: {
+                        'spin-slow': 'spin 3s linear infinite',
+                        'bounce-slight': 'bounceSlight 2s infinite',
+                        'slide-in': 'slideIn 0.4s ease-out forwards',
+                        'slide-in-right': 'slideInRight 0.3s ease-out forwards',
+                        'pop': 'pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                        'pulse-glow': 'pulseGlow 2s infinite',
+                    },
+                    keyframes: {
+                        bounceSlight: {
+                            '0%, 100%': { transform: 'translateY(-2%)' },
+                            '50%': { transform: 'translateY(0)' },
+                        },
+                        slideIn: {
+                            'from': { opacity: 0, transform: 'translateY(20px)' },
+                            'to': { opacity: 1, transform: 'translateY(0)' },
+                        },
+                        slideInRight: {
+                            'from': { transform: 'translateX(100%)' },
+                            'to': { transform: 'translateX(0)' },
+                        },
+                        pop: {
+                            '0%': { transform: 'scale(0.9)', opacity: 0 },
+                            '100%': { transform: 'scale(1)', opacity: 1 },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 10px rgba(99, 102, 241, 0.5)' },
+                            '50%': { boxShadow: '0 0 20px rgba(99, 102, 241, 0.8)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Jua&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    
+    <style>
+        body { -webkit-font-smoothing: antialiased; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
+        .dark .glass { background: rgba(17, 24, 39, 0.8); border: 1px solid rgba(255,255,255,0.1); }
+        
+        /* 암기 빵(빈칸) 스타일 */
+        .blind-text { background-color: #3b82f6; color: #3b82f6; border-radius: 4px; cursor: pointer; user-select: none; transition: all 0.2s; padding: 0 4px; font-weight: bold; }
+        .dark .blind-text { background-color: #6366f1; color: #6366f1; }
+        .blind-text.revealed { background-color: transparent; color: #ef4444; text-decoration: underline; }
+        .dark .blind-text.revealed { color: #f87171; }
+        
+        /* 형광펜 효과 */
+        .highlight-ani {
+            background: linear-gradient(120deg, rgba(255,255,0,0) 0%, rgba(255,255,0,0) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 88%;
+            transition: background 0.5s;
+        }
+        .highlight-ani:hover {
+            background: linear-gradient(120deg, rgba(255, 226, 89, 0.5) 0%, rgba(255, 167, 81, 0.5) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 88%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300 font-sans">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef, useMemo } = React;
+        
+        // --------------------------------------------------------
+        // 📚 데이터베이스: 2027 수능 대비 완벽 보강 (박은성 Ver.)
+        // --------------------------------------------------------
+        const societyData = [
+            {
+                id: 1,
+                title: "1. 사회·문화 현상의 탐구",
+                icon: "microscope",
+                color: "from-blue-500 to-cyan-400",
+                concepts: [
+                    {
+                        subTitle: "자연 현상 vs 사회·문화 현상",
+                        content: "자연 현상은 몰가치적이며 '존재 법칙(Sein)'과 필연성(확실성)을 따릅니다. 보편성만 존재합니다. 반면 사회·문화 현상은 가치 함축적이며 '당위 법칙(Sollen)'과 개연성(확률)을 따릅니다. 보편성과 특수성이 공존합니다.",
+                        keyPoints: ["몰가치성", "가치함축성", "존재법칙(Sein)", "당위법칙(Sollen)", "필연성", "개연성"]
+                    },
+                    {
+                        subTitle: "현상을 보는 관점 (거시 vs 미시)",
+                        content: "거시적 관점은 사회 구조와 제도의 영향력을 중시합니다. 기능론(사회 유기체설, 조화/균형, 기득권 옹호 비판)과 갈등론(지배/피지배, 갈등은 발전의 원동력)이 있습니다. 미시적 관점은 개인의 능동성과 의미 부여를 중시하며 상징적 상호 작용론(상황 정의, 상징 해석)이 대표적입니다.",
+                        keyPoints: ["기능론", "갈등론", "상징적 상호작용론", "사회 유기체설", "상황 정의"]
+                    },
+                    {
+                        subTitle: "연구 방법 (양적 vs 질적)",
+                        content: "양적 연구(실증적)는 방법론적 일원론을 전제로 하며, 개념의 조작적 정의를 통해 일반화와 법칙 발견을 목적으로 합니다. 질적 연구(해석적)는 방법론적 이원론을 전제로 하며, 연구자의 직관적 통찰과 감정이입적 이해를 통해 심층적 의미를 파악합니다.",
+                        keyPoints: ["방법론적 일원론", "방법론적 이원론", "개념의 조작적 정의", "일반화", "감정이입적 이해"]
+                    },
+                    {
+                        subTitle: "자료 수집 방법",
+                        content: "질문지법(대량, 통계 용이, 문맹 적용 곤란), 실험법(인과관계, 변인통제, 윤리 문제), 면접법(심층성, 라포 형성, 시간 비용↑), 참여관찰법(실제성, 비언어적 자료, 돌발 상황 대처 곤란), 문헌연구법(시공간 초월, 2차 자료, 신뢰성 문제).",
+                        keyPoints: ["구조화/비구조화", "라포", "변인 통제", "1차/2차 자료"]
+                    },
+                    {
+                        subTitle: "연구 윤리와 태도",
+                        content: "객관적 태도(제3자 입장), 개방적 태도(비판 수용), 상대주의적 태도(맥락 고려), 성찰적 태도(되돌아봄). 연구 윤리로는 표절 금지, 동의 구하기, 익명성 보장, 결과 왜곡 금지 등이 있습니다.",
+                        keyPoints: ["객관적 태도", "개방적 태도", "상대주의적 태도", "성찰적 태도"]
+                    }
+                ],
+                quiz: [
+                    { id: '1-1', type: 'OX', q: "사회·문화 현상은 '반드시 그렇게 된다'는 필연성의 법칙을 따른다.", a: false, comment: "❌ 개연성(확률)의 법칙을 따릅니다. 필연성은 자연 현상입니다." },
+                    { id: '1-2', type: 'OX', q: "기능론은 사회의 각 부분이 상호 의존적이라고 본다.", a: true, comment: "⭕ 사회 유기체설에 따르면 각 부분은 전체의 생존을 위해 상호 의존합니다." },
+                    { id: '1-3', type: 'choice', q: "다음 중 양적 연구의 특징이 아닌 것은?", options: ["수치화된 자료 활용", "법칙 발견 및 일반화", "방법론적 일원론", "연구자의 직관적 통찰"], answer: 3, comment: "직관적 통찰은 질적 연구의 핵심입니다." },
+                    { id: '1-4', type: 'choice', q: "가장 엄격한 변인 통제가 필요한 자료 수집 방법은?", options: ["면접법", "질문지법", "실험법", "참여관찰법"], answer: 2, comment: "실험법은 독립변인 외 외생변인을 철저히 통제해야 합니다." },
+                    { id: '1-5', type: 'choice', q: "상징적 상호 작용론의 핵심 설명은?", options: ["사회 구조가 개인을 구속한다.", "갈등은 사회 발전의 원동력이다.", "인간은 자율성을 지닌 능동적 존재다.", "사회는 균형을 유지하려는 속성이 있다."], answer: 2, comment: "상상론은 인간이 상황을 정의하고 의미를 부여하는 주체적 존재라고 봅니다." },
+                    { id: '1-6', type: 'OX', q: "면접법은 문맹자에게 활용하기 어렵다.", a: false, comment: "❌ 질문지법이 문맹자 활용이 어렵고, 면접법은 말로 하므로 가능합니다." },
+                    { id: '1-7', type: 'choice', q: "2차 자료를 주로 활용하는 연구 방법은?", options: ["참여관찰법", "문헌연구법", "실험법", "질문지법"], answer: 1, comment: "기존의 연구 결과나 통계 자료 등을 활용하는 것은 문헌 연구법입니다." },
+                    { id: '1-8', type: 'OX', q: "개방적 태도는 자신의 주장이 틀릴 수 있음을 인정하는 것이다.", a: true, comment: "⭕ 비판을 허용하고 가설의 잠정적 진리성을 인정하는 태도입니다." },
+                    { id: '1-9', type: 'choice', q: "갈등론에 대한 비판으로 가장 적절한 것은?", options: ["사회의 안정과 통합을 경시한다.", "기득권층의 이익을 대변한다.", "개인의 주관적 의미 부여를 간과한다.", "사회 변동을 설명하기 어렵다."], answer: 0, comment: "갈등론은 갈등과 변동을 강조하느라 안정과 통합을 경시한다는 비판을 받습니다." }
+                ]
+            },
+            {
+                id: 2,
+                title: "2. 개인과 사회 구조",
+                icon: "users",
+                color: "from-emerald-500 to-teal-400",
+                concepts: [
+                    {
+                        subTitle: "지위와 역할",
+                        content: "귀속 지위(선천적) vs 성취 지위(후천적). 역할은 지위에 대한 사회적 기대이며, 실제 수행은 '역할 행동'입니다. 보상은 역할 행동에 대해 주어집니다. 역할 갈등은 역할 긴장(단일 지위 내)과 역할 모순(복수 지위 간)이 있습니다.",
+                        keyPoints: ["귀속/성취 지위", "역할 행동", "역할 갈등", "역할 긴장/모순"]
+                    },
+                    {
+                        subTitle: "사회화 기관",
+                        content: "설립 목적: 공식적(학교, 연수원) vs 비공식적(가족, 대중매체, 회사). 내용 깊이: 1차(가족, 또래 - 기초/인격) vs 2차(학교, 직장 - 전문/지식).",
+                        keyPoints: ["공식적 사회화 기관", "비공식적 사회화 기관", "1차/2차 사회화 기관"]
+                    },
+                    {
+                        subTitle: "개인과 사회의 관계",
+                        content: "사회 실재론(사회 유기체설, 뒤르켐): 사회는 개인의 합 이상이며 독자적 실체임. 사회 명목론(사회 계약설, 베버): 사회는 개인의 합에 붙여진 이름일 뿐임. 실재론은 구조의 구속성을, 명목론은 개인의 자율성을 강조.",
+                        keyPoints: ["사회 실재론", "사회 명목론", "구조의 구속성", "개인의 자율성"]
+                    },
+                    {
+                        subTitle: "일탈 이론 완전 정복",
+                        content: "아노미(뒤르켐): 급격한 변동으로 인한 무규범 상태. 아노미(머튼): 문화적 목표와 제도적 수단의 괴리. 차별적 교제 이론: 일탈자와의 접촉을 통해 학습(사회화). 낙인 이론: 1차 일탈 → 사회적 낙인 → 부정적 자아 정체성 형성 → 2차 일탈(반복).",
+                        keyPoints: ["무규범(뒤르켐)", "목표-수단 괴리(머튼)", "학습(차별적 교제)", "낙인과 2차 일탈"]
+                    },
+                    {
+                        subTitle: "사회 집단과 조직",
+                        content: "결합 의지: 공동 사회(가족) vs 이익 사회(회사, 학교). 접촉 방식: 1차 집단 vs 2차 집단. 소속감: 내집단 vs 외집단. 준거 집단. 자발적 결사체(친목, 시민단체, 이익집단)는 가입/탈퇴 자유, 1차+2차적 성격 공존. 관료제(효율성) vs 탈관료제(유연성).",
+                        keyPoints: ["공동/이익 사회", "내/외 집단", "준거 집단", "자발적 결사체", "관료제/탈관료제"]
+                    }
+                ],
+                quiz: [
+                    { id: '2-1', type: 'OX', q: "학교는 공식적 사회화 기관이자 1차 사회화 기관이다.", a: false, comment: "❌ 학교는 공식적이며 '2차' 사회화 기관입니다." },
+                    { id: '2-2', type: 'OX', q: "낙인 이론은 일탈 행동의 객관적 기준이 없다고 본다.", a: true, comment: "⭕ 낙인 이론은 일탈이 행위 자체의 속성이 아니라 사회적 반응(규정)의 결과라고 봅니다. (상대성)" },
+                    { id: '2-3', type: 'choice', q: "머튼의 아노미 이론에서 일탈의 원인은?", options: ["규범의 부재", "나쁜 친구와의 교제", "목표와 수단의 불일치", "부정적 자아 개념"], answer: 2, comment: "문화적 목표는 공유하나 제도적 수단이 없을 때 일탈이 발생한다고 봅니다." },
+                    { id: '2-4', type: 'choice', q: "다음 중 자발적 결사체에 해당하는 것은?", options: ["가족", "군대", "노동 조합", "교도소"], answer: 2, comment: "노동 조합, 동호회, 시민 단체 등은 가입과 탈퇴가 자유로운 자발적 결사체입니다." },
+                    { id: '2-5', type: 'choice', q: "사회 실재론에 대한 설명으로 옳은 것은?", options: ["사회는 개인의 합에 불과하다.", "개인의 능동성을 강조한다.", "사회 구조가 개인을 구속한다.", "사회 계약설을 배경으로 한다."], answer: 2, comment: "실재론은 사회가 독자적인 힘을 가지고 개인에게 영향(구속)을 미친다고 봅니다." },
+                    { id: '2-6', type: 'OX', q: "내집단과 외집단의 구분은 고정 불변이다.", a: false, comment: "❌ 상황과 소속감의 변화에 따라 달라질 수 있는 상대적 개념입니다." },
+                    { id: '2-7', type: 'choice', q: "관료제의 역기능이 아닌 것은?", options: ["목적 전치 현상", "인간 소외", "무사안일주의", "의사 결정의 신속성 저하", "연공서열 무시"], answer: 4, comment: "연공서열 중시는 관료제의 특징이며, 이를 무시하는 것은 성과 위주의 탈관료제입니다." },
+                    { id: '2-8', type: 'OX', q: "차별적 교제 이론은 일탈 행동이 학습된다고 본다.", a: true, comment: "⭕ 정상적인 행동과 마찬가지로 일탈 행동도 학습을 통해 배운다고 봅니다." }
+                ]
+            },
+            {
+                id: 3,
+                title: "3. 문화와 일상생활",
+                icon: "palette",
+                color: "from-violet-500 to-purple-400",
+                concepts: [
+                    { subTitle: "문화의 속성", content: "공유성(예측가능성, 원활한 상호작용), 학습성(후천적), 축적성(세대 전승, 발전), 변동성(변화), 전체성(유기적 연관/총체적).", keyPoints: ["공유성", "학습성", "축적성", "변동성", "전체성"] },
+                    { subTitle: "문화를 보는 관점", content: "총체론적(전체 맥락, 연관성), 비교론적(공통점/차이점, 보편성/특수성), 상대론적(그 사회의 맥락 존중, 역사적 환경적 배경).", keyPoints: ["총체론", "비교론", "상대론"] },
+                    { subTitle: "문화 이해 태도", content: "자문화 중심주의(국수주의, 결속력↑, 마찰↑), 문화 사대주의(주체성↓, 선진문물 수용 용이), 문화 상대주의(존중). *극단적 상대주의(인류 보편 가치 훼손)는 경계.", keyPoints: ["자문화 중심주의", "문화 사대주의", "문화 상대주의"] },
+                    { subTitle: "문화 변동 요인", content: "내재적: 발명(1차-기존에 없던 것/2차-조합), 발견. 외재적: 전파(직접-사람/간접-매체/자극-아이디어).", keyPoints: ["발명", "발견", "직접/간접/자극 전파"] },
+                    { subTitle: "문화 변동 양상", content: "문화 동화(A+B=B, 정체성 상실), 문화 병존(A+B=A,B, 나란히 존재), 문화 융합(A+B=C, 새로운 제3의 문화). 강제적/자발적 접변.", keyPoints: ["동화", "병존", "융합"] }
+                ],
+                quiz: [
+                    { id: '3-1', type: 'OX', q: "문화의 축적성은 인간이 동물과 구별되는 가장 큰 특징이다.", a: true, comment: "⭕ 언어와 문자를 통해 지식을 쌓아가는 것은 인간만의 특징입니다." },
+                    { id: '3-2', type: 'OX', q: "자극 전파는 아이디어만 전파되어 새로운 발명이 일어나는 것이다.", a: true, comment: "⭕ 예: 이두, 구결 등." },
+                    { id: '3-3', type: 'choice', q: "비빔밥 버거, 돌침대 등은 어떤 문화 변동 양상인가?", options: ["문화 동화", "문화 병존", "문화 융합", "문화 지체"], answer: 2, comment: "두 문화 요소가 결합하여 제3의 새로운 문화(C)가 된 문화 융합입니다." },
+                    { id: '3-4', type: 'choice', q: "물질 문화의 속도가 빨라 비물질 문화가 따라가지 못하는 현상은?", options: ["기술 지체", "문화 지체", "아노미", "문화 충격"], answer: 1, comment: "반대는 기술 지체입니다." },
+                    { id: '3-5', type: 'OX', q: "문화 사대주의는 자문화의 정체성을 상실할 우려가 있다.", a: true, comment: "⭕ 타 문화를 맹목적으로 동경하기 때문입니다." },
+                    { id: '3-6', type: 'choice', q: "대중 매체를 통해 외국 드라마를 보고 유행을 따라하는 것은?", options: ["직접 전파", "간접 전파", "자극 전파", "발명"], answer: 1, comment: "매체(TV, 인터넷 등)를 통한 전파는 간접 전파입니다." },
+                    { id: '3-7', type: 'OX', q: "반문화는 하위 문화에 속하지 않는다.", a: false, comment: "❌ 반문화도 하위 문화의 일종입니다." }
+                ]
+            },
+            {
+                id: 4,
+                title: "4. 사회 불평등 현상",
+                icon: "scale",
+                color: "from-orange-500 to-red-400",
+                concepts: [
+                    { subTitle: "불평등 이론 (기능 vs 갈등)", content: "기능론: 불평등은 불가피하고 필요함(동기부여, 인재배치). 차등 보상은 정당함. 갈등론: 불평등은 지배집단의 기득권 유지 수단임. 철폐 대상.", keyPoints: ["차등 보상(기능)", "기득권 유지(갈등)"] },
+                    { subTitle: "계급론 vs 계층론", content: "계급론(마르크스): 경제적 단일 요인(생산수단), 이분법(유산/무산), 불연속적, 대립적. 계층론(베버): 다원적 요인(경제/사회/정치), 연속적 서열, 지위 불일치 설명 가능.", keyPoints: ["이분법(계급)", "지위 불일치(계층)"] },
+                    { subTitle: "사회 이동과 빈곤", content: "수직(상승/하강)/수평, 세대내/세대간, 구조적(사회변동)/개인적 이동. 절대적 빈곤(최저생계비 미만) vs 상대적 빈곤(중위소득 50% 미만). *우리나라는 둘 다 객관적 기준 사용(주관적 아님).", keyPoints: ["구조적 이동", "상대적 빈곤", "객관적 빈곤선"] },
+                    { subTitle: "사회 복지 제도", content: "사회 보험(1차): 예방, 기여금(능력별), 강제가입, 상호부조, 보편적. 공공 부조(2차): 처방, 조세(국가전액), 선별적, 소득재분배 효과 큼. 사회 서비스(3차): 비금전적 지원(상담, 재활 등).", keyPoints: ["상호부조(보험)", "소득재분배(부조)", "비금전(서비스)"] },
+                    { subTitle: "사회적 소수자", content: "식별 가능성, 권력의 열세, 차별 대우, 집합적 정체성. *수는 기준이 아님.", keyPoints: ["권력의 열세", "수(Number) 아님"] }
+                ],
+                quiz: [
+                    { id: '4-1', type: 'OX', q: "계층론은 지위 불일치 현상을 설명하기에 적합하다.", a: true, comment: "⭕ 경제적으로 부유해도 존경받지 못하는 경우 등을 설명할 수 있습니다." },
+                    { id: '4-2', type: 'OX', q: "사회 보험은 소득 재분배 효과가 없다.", a: false, comment: "❌ 사회 보험도 소득 재분배 효과가 있으나, 공공 부조보다 작을 뿐입니다." },
+                    { id: '4-3', type: 'choice', q: "빈곤에 대한 설명으로 옳은 것은?", options: ["상대적 빈곤은 주관적 빈곤이다.", "우리나라는 중위 소득의 50%를 기준으로 한다.", "절대적 빈곤선 이상이면 상대적 빈곤이 아니다.", "상대적 빈곤은 선진국에는 없다."], answer: 1, comment: "우리나라는 상대적 빈곤선(중위소득 50%)을 공식 지표로 사용합니다. 객관적 기준입니다." },
+                    { id: '4-4', type: 'choice', q: "강제 가입을 원칙으로 하며 미래의 위험에 대비하는 제도는?", options: ["공공 부조", "사회 보험", "사회 서비스", "자선 사업"], answer: 1, comment: "국민연금, 건강보험 등 사회 보험의 특징입니다." },
+                    { id: '4-5', type: 'OX', q: "사회적 소수자는 반드시 인구 수가 적어야 한다.", a: false, comment: "❌ 남아공의 흑인처럼 수가 많아도 권력에서 열세라면 소수자가 될 수 있습니다." },
+                    { id: '4-6', type: 'choice', q: "기능론적 관점에서 사회 불평등을 보는 시각은?", options: ["사회 통합을 저해한다.", "개인의 능력 차이에 따른 정당한 결과다.", "기득권 유지를 위한 수단이다.", "사회 구조적 모순에서 기인한다."], answer: 1, comment: "기능론은 차등 보상이 인재를 적재적소에 배치하는 동기가 된다고 봅니다." },
+                    { id: '4-7', type: 'OX', q: "공공 부조는 수혜자 부담 원칙을 따른다.", a: false, comment: "❌ 전액 국가나 지자체가 부담합니다 (무상)." }
+                ]
+            },
+            {
+                id: 5,
+                title: "5. 사회 변동과 미래",
+                icon: "rocket",
+                color: "from-indigo-500 to-blue-600",
+                concepts: [
+                    { subTitle: "사회 변동 이론", content: "진화론: 사회는 일정 방향(복잡/진보)으로 발전. 서구 중심적, 제국주의 옹호, 변동=발전. 순환론: 생성-성장-쇠퇴-소멸 반복. 운명론, 미래 예측 곤란, 서구 중심 탈피.", keyPoints: ["진보(진화)", "반복(순환)"] },
+                    { subTitle: "근대화와 저개발", content: "근대화론(진화론 기반): 저개발은 내부(전통) 탓. 서구화=발전. 종속이론(갈등론 기반): 저개발은 외부(제국주의 착취) 탓. 주체적 발전 강조. 남미 국가 설명 용이.", keyPoints: ["서구화(근대화)", "중심부/주변부(종속)"] },
+                    { subTitle: "사회 운동과 인구 문제", content: "사회 운동: 뚜렷한 목표, 조직적, 지속적, 변화 지향/저지. 저출산 고령화: 총부양비 증가. 다문화: 용광로(동화) vs 샐러드볼(다문화/조화) vs 국수(병존).", keyPoints: ["조직적/지속적", "총부양비", "샐러드볼"] },
+                    { subTitle: "정보 사회", content: "특징: 지식/정보 가치 증대, 탈관료제, 다품종 소량 생산, 재택근무. 낙관론(참여 민주주의, 편의 증대) vs 비관론(정보 격차, 사생활 침해, 감시 사회-파놉티콘).", keyPoints: ["정보 격차", "전자 민주주의", "파놉티콘"] }
+                ],
+                quiz: [
+                    { id: '5-1', type: 'OX', q: "순환론은 사회가 항상 발전한다고 본다.", a: false, comment: "❌ 발전과 퇴보를 반복한다고 봅니다. 항상 발전은 진화론입니다." },
+                    { id: '5-2', type: 'choice', q: "종속 이론의 핵심 주장은?", options: ["전통 사회의 가치를 버려야 한다.", "선진국과의 교류를 확대해야 한다.", "저개발은 세계 자본주의 체제의 구조적 모순 때문이다.", "서구의 발전 경로를 따라야 한다."], answer: 2, comment: "선진국(중심부)이 저개발국(주변부)을 착취하는 구조가 원인이라고 봅니다." },
+                    { id: '5-3', type: 'choice', q: "정보 사회의 특징으로 옳은 것은?", options: ["소품종 대량 생산", "관료제 조직 강화", "면대면 접촉 증가", "가정과 일터의 통합"], answer: 3, comment: "재택근무 등으로 인해 가정과 일터가 통합되는 경향이 있습니다." },
+                    { id: '5-4', type: 'OX', q: "샐러드 볼 이론은 이주민의 문화를 주류 문화에 동화시키려 한다.", a: false, comment: "❌ 각 문화를 고유한 맛을 내는 샐러드 재료처럼 존중하는 다문화주의입니다." },
+                    { id: '5-5', type: 'choice', q: "사회 운동의 요소가 아닌 것은?", options: ["자발성", "지속성", "조직성", "우발성"], answer: 3, comment: "사회 운동은 계획적이고 지속적인 활동이며, 폭동 같은 우발적 행동과는 다릅니다." }
+                ]
+            }
+        ];
+
+        // --------------------------------------------------------
+        // 🛠️ 유틸리티 & 커스텀 훅
+        // --------------------------------------------------------
+        const usePersistedState = (key, defaultValue) => {
+            const [state, setState] = useState(() => {
+                try {
+                    const stored = localStorage.getItem(key);
+                    return stored ? JSON.parse(stored) : defaultValue;
+                } catch { return defaultValue; }
+            });
+            useEffect(() => {
+                localStorage.setItem(key, JSON.stringify(state));
+            }, [key, state]);
+            return [state, setState];
+        };
+
+        const Icon = ({ name, size = 20, className, fill = "none" }) => {
+            useEffect(() => { if (window.lucide) window.lucide.createIcons(); });
+            return <i data-lucide={name} className={className} fill={fill} style={{ fontSize: size }}></i>;
+        };
+
+        // TTS 기능
+        const speakText = (text) => {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ko-KR';
+                utterance.rate = 1.1;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("음성 지원 미지원 브라우저입니다.");
+            }
+        };
+
+        // Fisher-Yates Shuffle
+        const shuffleArray = (array) => {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        };
+
+        // --------------------------------------------------------
+        // 🚀 메인 앱 컴포넌트
+        // --------------------------------------------------------
+        const App = () => {
+            const [darkMode, setDarkMode] = usePersistedState('god_mode_dark', false);
+            const [userData, setUserData] = usePersistedState('god_mode_user_v2', {
+                level: 1, xp: 0, wrongAnswers: [], notes: {}, bookmarks: []
+            });
+            const [currentTab, setCurrentTab] = useState('dashboard');
+            const [currentUnitId, setCurrentUnitId] = useState(1);
+            const [showConfetti, setShowConfetti] = useState(false);
+            const [isSidebarOpen, setIsSidebarOpen] = useState(false); // 모바일 사이드바
+
+            useEffect(() => {
+                if (darkMode) document.documentElement.classList.add('dark');
+                else document.documentElement.classList.remove('dark');
+            }, [darkMode]);
+
+            // 레벨업 체크
+            useEffect(() => {
+                const reqXp = userData.level * 300;
+                if (userData.xp >= reqXp) {
+                    setUserData(p => ({ ...p, level: p.level + 1, xp: p.xp - reqXp }));
+                    setShowConfetti(true);
+                    setTimeout(() => setShowConfetti(false), 3000);
+                }
+            }, [userData.xp]);
+
+            // D-Day (2027 수능: 2026.11.19)
+            const dDay = useMemo(() => {
+                const targetDate = new Date('2026-11-19');
+                const today = new Date();
+                const diff = targetDate - today;
+                return Math.ceil(diff / (1000 * 60 * 60 * 24));
+            }, []);
+
+            const currentUnit = societyData.find(u => u.id === currentUnitId);
+
+            return (
+                <div className="flex h-screen overflow-hidden bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
+                    {showConfetti && <div className="fixed inset-0 pointer-events-none z-50 flex justify-center items-center"><div className="text-6xl animate-bounce drop-shadow-lg">🎉 LEVEL UP! 🎉</div></div>}
+
+                    {/* 📱 모바일 헤더 */}
+                    <header className="lg:hidden fixed top-0 w-full bg-white/90 dark:bg-gray-800/90 backdrop-blur z-30 px-4 py-3 flex justify-between items-center border-b dark:border-gray-700 shadow-sm">
+                        <div className="flex items-center gap-2">
+                            <button onClick={() => setIsSidebarOpen(true)} className="p-2 -ml-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <Icon name="menu" />
+                            </button>
+                            <span className="font-dohyeon text-xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500">GOD EDITION</span>
+                        </div>
+                        <div className="text-xs font-bold text-gray-400">By Park Eun-sung</div>
+                    </header>
+
+                    {/* 사이드바 */}
+                    <div className={`fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden transition-opacity ${isSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={() => setIsSidebarOpen(false)}></div>
+                    <aside className={`fixed lg:static top-0 left-0 h-full w-72 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col z-50 shadow-2xl transform transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
+                        <div className="p-6 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 bg-gradient-to-tr from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg animate-pulse-glow">P</div>
+                                <div>
+                                    <h1 className="font-black font-dohyeon text-xl tracking-tight">GOD EDITION</h1>
+                                    <p className="text-[10px] font-bold text-indigo-500 uppercase tracking-widest">Created by Eun-sung</p>
+                                </div>
+                            </div>
+                            <button onClick={() => setIsSidebarOpen(false)} className="lg:hidden p-2 text-gray-400"><Icon name="x" /></button>
+                        </div>
+
+                        <div className="flex-1 overflow-y-auto p-4 space-y-2 scrollbar-hide">
+                            <MenuBtn active={currentTab === 'dashboard'} onClick={() => {setCurrentTab('dashboard'); setIsSidebarOpen(false);}} icon="layout-dashboard" label="대시보드" />
+                            <MenuBtn active={currentTab === 'mock_exam'} onClick={() => {setCurrentTab('mock_exam'); setIsSidebarOpen(false);}} icon="file-text" label="실전 모의고사" isNew />
+                            <MenuBtn active={currentTab === 'wrong_note'} onClick={() => {setCurrentTab('wrong_note'); setIsSidebarOpen(false);}} icon="book-x" label="오답 노트" badge={userData.wrongAnswers.length} />
+                            <MenuBtn active={currentTab === 'calc_tool'} onClick={() => {setCurrentTab('calc_tool'); setIsSidebarOpen(false);}} icon="calculator" label="도표 분석기" isNew />
+                            <MenuBtn active={currentTab === 'pomodoro'} onClick={() => {setCurrentTab('pomodoro'); setIsSidebarOpen(false);}} icon="timer" label="집중 타이머" />
+                            <MenuBtn active={currentTab === 'bookmarks'} onClick={() => {setCurrentTab('bookmarks'); setIsSidebarOpen(false);}} icon="bookmark" label="북마크" badge={userData.bookmarks.length} />
+                            
+                            <div className="my-4 border-t border-gray-200 dark:border-gray-700"></div>
+                            <div className="px-2 text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">Chapter Study</div>
+                            
+                            {societyData.map(unit => (
+                                <button key={unit.id} onClick={() => { setCurrentUnitId(unit.id); setCurrentTab('study'); setIsSidebarOpen(false); }}
+                                    className={`w-full text-left p-3 rounded-xl transition-all flex items-center gap-3 group relative overflow-hidden ${
+                                        currentUnitId === unit.id && currentTab === 'study'
+                                        ? `bg-gradient-to-r ${unit.color} text-white shadow-lg` 
+                                        : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400'
+                                    }`}
+                                >
+                                    <Icon name={unit.icon} className={currentUnitId === unit.id && currentTab === 'study' ? 'text-white' : 'text-gray-400 group-hover:text-indigo-500'} />
+                                    <span className="font-bold text-sm truncate">{unit.title}</span>
+                                </button>
+                            ))}
+                        </div>
+                        
+                        <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+                            <button onClick={() => setDarkMode(!darkMode)} className="w-full p-3 rounded-xl bg-gray-100 dark:bg-gray-700 flex items-center justify-center gap-2 hover:bg-gray-200 dark:hover:bg-gray-600 transition">
+                                <Icon name={darkMode ? "sun" : "moon"} size={18} />
+                                <span className="font-bold text-sm">{darkMode ? "라이트 모드" : "다크 모드"}</span>
+                            </button>
+                            <div className="text-center mt-2 text-[10px] text-gray-300 dark:text-gray-600 font-bold">
+                                © 2026 Park Eun-sung
+                            </div>
+                        </div>
+                    </aside>
+
+                    {/* 메인 컨텐츠 영역 */}
+                    <main className="flex-1 flex flex-col h-screen relative pt-14 lg:pt-0">
+                        {/* PC 헤더 */}
+                        <header className="hidden lg:flex bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 p-6 justify-between items-center z-30 sticky top-0 shadow-sm">
+                            <div>
+                                <h2 className="text-2xl font-black font-dohyeon tracking-tight flex items-center gap-2">
+                                    {currentTab === 'dashboard' ? `2027 수능 D-${dDay} 🔥` : 
+                                     currentTab === 'mock_exam' ? '실전 모의고사 💯' :
+                                     currentTab === 'wrong_note' ? '오답 노트 📝' :
+                                     currentTab === 'calc_tool' ? '도표 분석 계산기 🧮' :
+                                     currentTab === 'pomodoro' ? '집중 타이머 ⏱️' :
+                                     currentTab === 'bookmarks' ? '나만의 북마크 ⭐' :
+                                     currentUnit.title}
+                                </h2>
+                                <p className="text-xs text-gray-500 font-bold mt-1">
+                                    Designed by Park Eun-sung | Social Studies & Culture Master Class
+                                </p>
+                            </div>
+                            
+                            <div className="flex items-center gap-6">
+                                <div className="text-right">
+                                    <div className="text-xs font-bold text-gray-400">LV.{userData.level} 사탐전사</div>
+                                    <div className="w-32 h-2.5 bg-gray-200 dark:bg-gray-700 rounded-full mt-1 overflow-hidden">
+                                        <div className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-1000" style={{ width: `${(userData.xp % 300) / 3}%` }}></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div className="flex-1 overflow-y-auto p-4 lg:p-8 pb-32 scroll-smooth">
+                            <div className="max-w-5xl mx-auto">
+                                {currentTab === 'dashboard' && <Dashboard userData={userData} societyData={societyData} dDay={dDay} />}
+                                {currentTab === 'study' && <StudyUnit unit={currentUnit} userData={userData} setUserData={setUserData} />}
+                                {currentTab === 'mock_exam' && <MockExam societyData={societyData} setUserData={setUserData} />}
+                                {currentTab === 'wrong_note' && <WrongNote userData={userData} societyData={societyData} />}
+                                {currentTab === 'calc_tool' && <CalcTool />}
+                                {currentTab === 'pomodoro' && <PomodoroTimer />}
+                                {currentTab === 'bookmarks' && <BookmarkList userData={userData} societyData={societyData} />}
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            );
+        };
+
+        // --------------------------------------------------------
+        // 🧩 서브 컴포넌트들
+        // --------------------------------------------------------
+        const MenuBtn = ({ active, onClick, icon, label, badge, isNew }) => (
+            <button onClick={onClick} className={`w-full p-3 lg:px-4 rounded-xl flex items-center justify-center lg:justify-between transition-all ${
+                active ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+            }`}>
+                <div className="flex items-center gap-3">
+                    <Icon name={icon} />
+                    <span className="lg:block">{label}</span>
+                </div>
+                <div className="flex gap-2">
+                    {isNew && <span className="px-1.5 py-0.5 bg-red-500 text-white text-[10px] rounded font-bold animate-pulse">NEW</span>}
+                    {badge > 0 && <span className="flex w-5 h-5 bg-indigo-500 text-white text-xs rounded-full items-center justify-center font-bold">{badge}</span>}
+                </div>
+            </button>
+        );
+
+        // --- Dashboard ---
+        const Dashboard = ({ userData, societyData, dDay }) => (
+            <div className="space-y-8 animate-slide-in">
+                <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 group-hover:scale-105 transition-transform duration-1000"></div>
+                    <div className="relative z-10">
+                        <div className="flex justify-between items-start">
+                            <div>
+                                <div className="text-indigo-200 font-bold mb-2">2027학년도 대학수학능력시험</div>
+                                <div className="text-5xl md:text-7xl font-black font-jua">D-{dDay}</div>
+                                <p className="mt-4 opacity-90 font-medium">"박은성님과 함께라면 1등급은 당연한 결과입니다."</p>
+                            </div>
+                            <div className="hidden md:block bg-white/20 p-4 rounded-2xl backdrop-blur-sm text-center">
+                                <div className="text-xs font-bold opacity-80">CREATOR</div>
+                                <div className="text-xl font-black mt-1">Park Eun-sung</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <StatBox title="현재 레벨" value={`Lv.${userData.level}`} icon="crown" color="bg-yellow-500" />
+                    <StatBox title="오답 노트" value={`${userData.wrongAnswers.length}개`} icon="alert-circle" color="bg-red-500" />
+                    <StatBox title="북마크" value={`${userData.bookmarks.length}개`} icon="bookmark" color="bg-blue-500" />
+                    <StatBox title="학습 상태" value="열공중 🔥" icon="zap" color="bg-green-500" />
+                </div>
+            </div>
+        );
+
+        const StatBox = ({ title, value, icon, color }) => (
+            <div className="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col md:flex-row items-center gap-4 hover:-translate-y-1 transition-transform">
+                <div className={`w-10 h-10 ${color} rounded-xl flex items-center justify-center text-white shadow-md`}>
+                    <Icon name={icon} size={20} />
+                </div>
+                <div className="text-center md:text-left">
+                    <div className="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase">{title}</div>
+                    <div className="text-lg font-black">{value}</div>
+                </div>
+            </div>
+        );
+
+        // --- Study Unit ---
+        const StudyUnit = ({ unit, userData, setUserData }) => {
+            const [blindMode, setBlindMode] = useState(false);
+            const [localNote, setLocalNote] = useState(userData.notes[unit.id] || "");
+
+            const handleNoteSave = () => {
+                setUserData(prev => ({ ...prev, notes: { ...prev.notes, [unit.id]: localNote } }));
+                alert("노트 저장 완료! 💾");
+            };
+
+            const toggleBookmark = (conceptIdx) => {
+                const bookmarkId = `${unit.id}-${conceptIdx}`;
+                setUserData(prev => {
+                    const isBookmarked = prev.bookmarks.includes(bookmarkId);
+                    return {
+                        ...prev,
+                        bookmarks: isBookmarked ? prev.bookmarks.filter(id => id !== bookmarkId) : [...prev.bookmarks, bookmarkId]
+                    };
+                });
+            };
+
+            return (
+                <div className="space-y-6 animate-slide-in">
+                    <div className="sticky top-0 z-20 bg-gray-50/95 dark:bg-gray-900/95 p-3 -mx-4 lg:-mx-8 mb-6 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 flex justify-end">
+                        <button onClick={() => setBlindMode(!blindMode)} 
+                            className={`px-4 py-2 rounded-xl font-bold text-sm flex items-center gap-2 transition-all shadow-sm hover:scale-105 active:scale-95 ${blindMode ? 'bg-indigo-600 text-white ring-2 ring-indigo-300 dark:ring-indigo-900' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700'}`}>
+                            <Icon name={blindMode ? "eye-off" : "eye"} size={18} />
+                            {blindMode ? "암기 모드 ON" : "암기 모드 OFF"}
+                        </button>
+                    </div>
+
+                    {unit.concepts.map((concept, idx) => {
+                        const isBookmarked = userData.bookmarks.includes(`${unit.id}-${idx}`);
+                        return (
+                            <div key={idx} className="bg-white dark:bg-gray-800 rounded-3xl p-6 lg:p-8 shadow-sm border border-gray-100 dark:border-gray-700 relative group transition-all hover:shadow-md">
+                                <button onClick={() => toggleBookmark(idx)} className="absolute top-6 right-6 text-gray-300 hover:text-yellow-400 transition">
+                                    <Icon name="star" fill={isBookmarked ? "gold" : "none"} className={isBookmarked ? "text-yellow-400" : ""} />
+                                </button>
+                                
+                                <h3 className="text-xl lg:text-2xl font-black mb-4 flex items-center gap-3">
+                                    <span className={`w-8 h-8 rounded-lg bg-gradient-to-br ${unit.color} flex items-center justify-center text-white text-sm font-bold`}>{idx + 1}</span>
+                                    {concept.subTitle}
+                                </h3>
+                                
+                                <p className="text-base lg:text-lg leading-loose text-gray-600 dark:text-gray-300 mb-6 font-medium break-keep">
+                                    {concept.content.split(' ').map((word, i) => {
+                                        const isKeyword = unit.concepts[idx].keyPoints.some(kp => word.includes(kp) || kp.includes(word.replace(/[.,()]/g, '')));
+                                        if (blindMode && (isKeyword || word.includes('법칙') || word.includes('론'))) {
+                                            return <span key={i} className="blind-text mx-1" onClick={(e) => e.target.classList.toggle('revealed')}>{word}</span>;
+                                        }
+                                        return <span key={i} className={isKeyword ? "highlight-ani mx-0.5 cursor-text" : "mx-0.5"}>{word}</span>;
+                                    })}
+                                </p>
+                                
+                                <div className="flex justify-between items-center mt-4">
+                                    <div className="flex flex-wrap gap-2">
+                                        {concept.keyPoints.map((kp, k) => (
+                                            <span key={k} className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md text-xs font-bold text-gray-500 dark:text-gray-400">#{kp}</span>
+                                        ))}
+                                    </div>
+                                    <button onClick={() => speakText(concept.content)} className="p-2 text-gray-400 hover:text-indigo-500"><Icon name="volume-2" size={18} /></button>
+                                </div>
+                            </div>
+                        );
+                    })}
+
+                    <div className="bg-yellow-50 dark:bg-gray-800 rounded-3xl p-6 border border-yellow-200 dark:border-gray-700 mt-8">
+                        <h3 className="font-black mb-2 flex items-center gap-2"><Icon name="pen-tool" size={16} /> MEMO</h3>
+                        <textarea value={localNote} onChange={(e) => setLocalNote(e.target.value)} placeholder="필기 공간..." className="w-full h-32 p-3 rounded-xl bg-white dark:bg-gray-900 border border-yellow-100 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm"></textarea>
+                        <div className="text-right mt-2"><button onClick={handleNoteSave} className="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-1.5 rounded-lg text-sm font-bold shadow-sm">저장</button></div>
+                    </div>
+                </div>
+            );
+        };
+
+        // --- Mock Exam 2.0 (완전히 새로워진 실전 모의고사) ---
+        const MockExam = ({ societyData, setUserData }) => {
+            const [status, setStatus] = useState('intro'); // intro, playing, result
+            const [questions, setQuestions] = useState([]);
+            const [answers, setAnswers] = useState({});
+            const [result, setResult] = useState(null);
+            const [timeLeft, setTimeLeft] = useState(1200);
+
+            // 문제 출제 (랜덤 섞기 강화)
+            const startExam = () => {
+                // societyData의 모든 퀴즈를 하나의 배열로 만듦 (unitId, unitTitle 포함)
+                const allQuiz = societyData.flatMap(u => u.quiz.map(q => ({
+                    ...q, 
+                    unitTitle: u.title, 
+                    unitId: u.id
+                })));
+                
+                // 랜덤 셔플 (Fisher-Yates)
+                const shuffled = shuffleArray(allQuiz);
+                const selected = shuffled.slice(0, 20); // 20문제 선택
+                
+                setQuestions(selected);
+                setAnswers({});
+                setStatus('playing');
+                setTimeLeft(1200);
+            };
+
+            // 타이머 로직
+            useEffect(() => {
+                if (status === 'playing' && timeLeft > 0) {
+                    const timer = setInterval(() => setTimeLeft(t => t - 1), 1000);
+                    return () => clearInterval(timer);
+                } else if (status === 'playing' && timeLeft === 0) {
+                    submitExam(true); // 시간 종료 시 강제 제출
+                }
+            }, [status, timeLeft]);
+
+            // 제출 로직
+            const submitExam = (force = false) => {
+                // 미응답 체크
+                const answeredCount = Object.keys(answers).length;
+                if (!force && answeredCount < questions.length) {
+                    if (!confirm(`아직 풀지 않은 문제가 ${questions.length - answeredCount}개 있습니다. 그래도 제출하시겠습니까?`)) {
+                        return;
+                    }
+                }
+
+                let score = 0;
+                let correctCount = 0;
+                const wrongList = [];
+
+                questions.forEach((q, idx) => {
+                    const userAns = answers[idx];
+                    const correctAns = q.type === 'OX' ? q.a : q.answer;
+                    
+                    if (userAns === correctAns) {
+                        score += 5;
+                        correctCount++;
+                    } else {
+                        // 틀린 문제 정보 저장 (오답노트용)
+                        wrongList.push({ id: q.id, unitId: q.unitId, count: 1 });
+                    }
+                });
+
+                // 오답노트 저장 (안정적인 업데이트)
+                if (wrongList.length > 0) {
+                    setUserData(prev => {
+                        let updatedWrongs = [...prev.wrongAnswers];
+                        wrongList.forEach(w => {
+                            const idx = updatedWrongs.findIndex(nw => nw.id === w.id);
+                            if (idx > -1) {
+                                // 이미 있는 오답이면 count 증가
+                                updatedWrongs[idx] = { ...updatedWrongs[idx], count: updatedWrongs[idx].count + 1 };
+                            } else {
+                                // 새로운 오답이면 추가
+                                updatedWrongs.push(w);
+                            }
+                        });
+                        return { ...prev, wrongAnswers: updatedWrongs, xp: prev.xp + score };
+                    });
+                } else {
+                    setUserData(prev => ({ ...prev, xp: prev.xp + score }));
+                }
+
+                setResult({ score, correctCount });
+                setStatus('result');
+                window.scrollTo(0, 0); // 맨 위로 스크롤
+            };
+
+            if (status === 'intro') return (
+                <div className="flex flex-col items-center justify-center py-20 text-center animate-pop">
+                    <div className="w-24 h-24 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mb-6 animate-pulse">
+                        <Icon name="file-text" size={48} className="text-red-500" />
+                    </div>
+                    <h2 className="text-3xl font-black font-dohyeon mb-4">실전 모의고사 (20문항)</h2>
+                    <p className="text-gray-500 dark:text-gray-400 mb-8 max-w-md">
+                        2027 수능 완벽 대비!<br/>
+                        박은성 선생님이 엄선한 문제들로 실력을 점검하세요.<br/>
+                        제한 시간은 20분입니다.
+                    </p>
+                    <button onClick={startExam} className="px-10 py-4 bg-red-500 hover:bg-red-600 text-white text-xl font-bold rounded-2xl shadow-xl transition transform hover:scale-105 active:scale-95">
+                        시험 시작하기
+                    </button>
+                </div>
+            );
+
+            // 결과 화면 (상세 복습 모드)
+            if (status === 'result') return (
+                <div className="max-w-3xl mx-auto animate-slide-in pb-20">
+                    <div className="text-center py-10 bg-white dark:bg-gray-800 rounded-3xl shadow-lg mb-8 border border-gray-100 dark:border-gray-700">
+                        <div className="text-6xl mb-4">{result.score >= 90 ? '🏆' : result.score >= 70 ? '👏' : '💪'}</div>
+                        <h2 className="text-5xl font-black mb-2 text-indigo-600 dark:text-indigo-400">{result.score}점</h2>
+                        <p className="text-gray-500 dark:text-gray-400 font-bold mb-6">
+                            20문제 중 <span className="text-blue-500">{result.correctCount}개 정답</span> / <span className="text-red-500">{20 - result.correctCount}개 오답</span>
+                        </p>
+                        <div className="flex justify-center gap-4">
+                            <button onClick={startExam} className="px-6 py-3 bg-indigo-500 text-white font-bold rounded-xl hover:bg-indigo-600 transition">다시 응시하기</button>
+                            <button onClick={() => setStatus('intro')} className="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-bold rounded-xl hover:bg-gray-300 dark:hover:bg-gray-600 transition">나가기</button>
+                        </div>
+                    </div>
+
+                    <h3 className="text-2xl font-black font-dohyeon mb-6 pl-2 border-l-4 border-indigo-500">📝 문제별 상세 분석</h3>
+                    
+                    <div className="space-y-6">
+                        {questions.map((q, idx) => {
+                            const userAns = answers[idx];
+                            const correctAns = q.type === 'OX' ? q.a : q.answer;
+                            const isCorrect = userAns === correctAns;
+                            
+                            return (
+                                <div key={idx} className={`bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border-2 ${isCorrect ? 'border-transparent' : 'border-red-400'}`}>
+                                    <div className="flex gap-2 mb-3">
+                                        <span className={`font-black text-lg ${isCorrect ? 'text-blue-500' : 'text-red-500'}`}>
+                                            {idx + 1}. {isCorrect ? '정답' : '오답'}
+                                        </span>
+                                        <span className="text-xs font-bold bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-500 h-fit mt-1">{q.unitTitle}</span>
+                                    </div>
+                                    <h3 className="text-lg font-bold mb-4">{q.q}</h3>
+                                    
+                                    {/* 내가 고른 답 vs 정답 표시 */}
+                                    <div className="mb-4 text-sm">
+                                        <div className="flex gap-4">
+                                            <span className="font-bold text-gray-500">내가 쓴 답: 
+                                                <span className={`ml-2 ${isCorrect ? 'text-blue-500' : 'text-red-500'}`}>
+                                                    {userAns === undefined ? '미응답' : (q.type === 'OX' ? (userAns ? 'O' : 'X') : userAns + 1)}
+                                                </span>
+                                            </span>
+                                            <span className="font-bold text-gray-500">정답: 
+                                                <span className="ml-2 text-blue-500">
+                                                    {q.type === 'OX' ? (correctAns ? 'O' : 'X') : correctAns + 1}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-xl text-sm">
+                                        <div className="font-bold text-indigo-600 dark:text-indigo-400 mb-1 flex items-center gap-1">
+                                            <Icon name="check-circle" size={14} /> 해설
+                                        </div>
+                                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{q.comment}</p>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            );
+
+            // 문제 풀이 화면
+            return (
+                <div className="max-w-3xl mx-auto relative">
+                    <div className="sticky top-14 lg:top-20 z-30 bg-white/90 dark:bg-gray-900/90 backdrop-blur p-4 flex justify-between items-center mb-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700">
+                        <div className="flex flex-col">
+                            <span className="font-bold text-gray-500 text-xs">남은 시간</span>
+                            <span className={`text-xl font-mono font-black ${timeLeft < 60 ? 'text-red-500 animate-pulse' : 'text-gray-800 dark:text-white'}`}>
+                                {Math.floor(timeLeft/60)}:{String(timeLeft%60).padStart(2,'0')}
+                            </span>
+                        </div>
+                        <div className="flex items-center gap-4">
+                            <span className="font-bold text-gray-500 text-sm">
+                                <span className="text-indigo-600">{Object.keys(answers).length}</span> / 20 문제
+                            </span>
+                            <button onClick={() => submitExam(false)} className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg text-sm transition shadow-md">
+                                답안 제출
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="space-y-8">
+                        {questions.map((q, idx) => (
+                            <div key={idx} className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 transition-all hover:shadow-md">
+                                <div className="flex justify-between mb-4">
+                                    <div className="flex gap-2 items-center">
+                                        <span className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-black text-lg">{idx + 1}</span>
+                                        <span className="text-xs font-bold bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-500">{q.unitTitle}</span>
+                                    </div>
+                                    {answers[idx] !== undefined && <Icon name="check" className="text-green-500" />}
+                                </div>
+                                
+                                <h3 className="text-lg font-bold mb-6 leading-relaxed text-gray-800 dark:text-gray-100">{q.q}</h3>
+                                
+                                {q.type === 'OX' ? (
+                                    <div className="flex gap-3">
+                                        {[true, false].map((opt) => (
+                                            <button 
+                                                key={opt.toString()} 
+                                                onClick={() => setAnswers(p => ({...p, [idx]: opt}))} 
+                                                className={`flex-1 py-4 rounded-xl font-black text-xl border-2 transition-all active:scale-95 ${
+                                                    answers[idx] === opt 
+                                                    ? 'bg-indigo-500 border-indigo-500 text-white shadow-lg' 
+                                                    : 'bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-400 hover:border-indigo-300'
+                                                }`}
+                                            >
+                                                {opt ? 'O' : 'X'}
+                                            </button>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className="space-y-2.5">
+                                        {q.options.map((opt, i) => (
+                                            <button 
+                                                key={i} 
+                                                onClick={() => setAnswers(p => ({...p, [idx]: i}))} 
+                                                className={`w-full text-left p-4 rounded-xl border-2 transition-all active:scale-[0.99] flex items-center gap-3 ${
+                                                    answers[idx] === i 
+                                                    ? 'bg-indigo-50 dark:bg-indigo-900/40 border-indigo-500 text-indigo-700 dark:text-indigo-300 shadow-md' 
+                                                    : 'bg-white dark:bg-gray-700 border-gray-100 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
+                                                }`}
+                                            >
+                                                <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
+                                                    answers[idx] === i ? 'bg-indigo-500 text-white' : 'bg-gray-200 dark:bg-gray-600 text-gray-500'
+                                                }`}>
+                                                    {i+1}
+                                                </span>
+                                                <span className="font-medium">{opt}</span>
+                                            </button>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        // --- Wrong Note ---
+        const WrongNote = ({ userData, societyData }) => {
+            if (userData.wrongAnswers.length === 0) return <div className="text-center py-20 opacity-50"><Icon name="check-circle" size={64} className="mx-auto mb-4" /><p>오답이 없습니다. 완벽해요!</p></div>;
+            return (
+                <div className="grid gap-6 animate-slide-in">
+                    {userData.wrongAnswers.map((w, i) => {
+                        const unit = societyData.find(u => u.id === w.unitId);
+                        const quiz = unit?.quiz.find(q => q.id === w.id);
+                        if (!quiz) return null;
+                        return (
+                            <div key={i} className="bg-white dark:bg-gray-800 rounded-2xl p-6 border-l-8 border-red-400 shadow-sm relative overflow-hidden group">
+                                <Icon name="x-circle" size={100} className="absolute -top-4 -right-4 text-red-100 dark:text-red-900/20 group-hover:scale-110 transition" />
+                                <div className="relative z-10">
+                                    <div className="flex justify-between mb-2"><span className="text-xs font-black bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">{unit.title}</span><span className="text-red-500 font-bold text-xs">{w.count}회 오답</span></div>
+                                    <h3 className="text-lg font-bold mb-3">{quiz.q}</h3>
+                                    <div className="bg-gray-50 dark:bg-gray-900/50 p-4 rounded-xl text-sm"><p className="font-bold text-indigo-500 mb-1">💡 정답 및 해설</p>{quiz.comment}</div>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            );
+        };
+
+        // --- Calc Tool (New) ---
+        const CalcTool = () => {
+            const [youth, setYouth] = useState('');
+            const [working, setWorking] = useState('');
+            const [elderly, setElderly] = useState('');
+            const [result, setResult] = useState(null);
+
+            const calculate = () => {
+                const y = Number(youth), w = Number(working), e = Number(elderly);
+                if (!y || !w || !e) return;
+                const dependency = ((y + e) / w) * 100;
+                const agingIndex = (e / y) * 100;
+                setResult({ dependency: dependency.toFixed(1), agingIndex: agingIndex.toFixed(1) });
+            };
+
+            return (
+                <div className="max-w-md mx-auto bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl animate-pop">
+                    <h3 className="text-2xl font-black mb-6 text-center font-dohyeon">📊 인구 부양비 계산기</h3>
+                    <div className="space-y-4">
+                        <div><label className="text-xs font-bold text-gray-400">유소년 인구(0-14세)</label><input type="number" value={youth} onChange={e=>setYouth(e.target.value)} className="w-full p-3 rounded-xl border bg-gray-50 dark:bg-gray-700 dark:border-gray-600" /></div>
+                        <div><label className="text-xs font-bold text-gray-400">부양 인구(15-64세)</label><input type="number" value={working} onChange={e=>setWorking(e.target.value)} className="w-full p-3 rounded-xl border bg-gray-50 dark:bg-gray-700 dark:border-gray-600" /></div>
+                        <div><label className="text-xs font-bold text-gray-400">노년 인구(65세+)</label><input type="number" value={elderly} onChange={e=>setElderly(e.target.value)} className="w-full p-3 rounded-xl border bg-gray-50 dark:bg-gray-700 dark:border-gray-600" /></div>
+                        <button onClick={calculate} className="w-full py-4 bg-indigo-600 text-white font-bold rounded-xl shadow-lg">계산하기</button>
+                    </div>
+                    {result && (
+                        <div className="mt-6 p-6 bg-indigo-50 dark:bg-indigo-900/30 rounded-2xl text-center animate-slide-in">
+                            <div className="mb-4">
+                                <div className="text-sm text-gray-500 dark:text-gray-400">총부양비</div>
+                                <div className="text-3xl font-black text-indigo-600 dark:text-indigo-400">{result.dependency}%</div>
+                            </div>
+                            <div>
+                                <div className="text-sm text-gray-500 dark:text-gray-400">노령화 지수</div>
+                                <div className="text-3xl font-black text-pink-600 dark:text-pink-400">{result.agingIndex}%</div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        // --- Pomodoro (New) ---
+        const PomodoroTimer = () => {
+            const [time, setTime] = useState(1500);
+            const [isActive, setIsActive] = useState(false);
+            
+            useEffect(() => {
+                let interval = null;
+                if (isActive && time > 0) interval = setInterval(() => setTime(t => t - 1), 1000);
+                else if (time === 0) { setIsActive(false); alert("집중 시간 종료! 휴식하세요 ☕"); }
+                return () => clearInterval(interval);
+            }, [isActive, time]);
+
+            return (
+                <div className="text-center py-10 animate-pop">
+                    <div className="inline-block p-10 rounded-full border-8 border-indigo-100 dark:border-gray-700 mb-8 relative">
+                         <div className="text-6xl lg:text-8xl font-black font-mono tracking-tighter">
+                            {Math.floor(time/60)}:{String(time%60).padStart(2,'0')}
+                        </div>
+                        {isActive && <div className="absolute inset-0 border-8 border-indigo-500 rounded-full animate-spin-slow border-t-transparent border-r-transparent"></div>}
+                    </div>
+                    <div className="flex justify-center gap-4">
+                        <button onClick={() => setIsActive(!isActive)} className={`px-8 py-3 rounded-xl font-bold text-white shadow-lg transition transform active:scale-95 ${isActive ? 'bg-red-500' : 'bg-indigo-500'}`}>{isActive ? '일시정지' : '시작하기'}</button>
+                        <button onClick={() => {setIsActive(false); setTime(1500);}} className="px-8 py-3 rounded-xl font-bold bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300">리셋</button>
+                    </div>
+                    <div className="mt-8 flex justify-center gap-2">
+                        <button onClick={() => {setIsActive(false); setTime(1500);}} className="text-xs font-bold px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full">25분 (공부)</button>
+                        <button onClick={() => {setIsActive(false); setTime(300);}} className="text-xs font-bold px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full">5분 (휴식)</button>
+                    </div>
+                </div>
+            );
+        };
+
+        // --- Bookmark List (New) ---
+        const BookmarkList = ({ userData, societyData }) => {
+             if (userData.bookmarks.length === 0) return <div className="text-center py-20 opacity-50"><Icon name="bookmark" size={64} className="mx-auto mb-4" /><p>북마크한 개념이 없습니다.</p></div>;
+             
+             return (
+                 <div className="space-y-6 animate-slide-in">
+                     {userData.bookmarks.map((bm, i) => {
+                         const [uId, cIdx] = bm.split('-');
+                         const unit = societyData.find(u => u.id == uId);
+                         const concept = unit?.concepts[cIdx];
+                         if (!concept) return null;
+                         return (
+                             <div key={i} className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-yellow-200 dark:border-yellow-900/30">
+                                 <div className="flex justify-between items-center mb-2">
+                                     <span className="text-xs font-black bg-yellow-100 text-yellow-600 px-2 py-1 rounded">{unit.title}</span>
+                                     <Icon name="star" size={16} fill="gold" className="text-yellow-400" />
+                                 </div>
+                                 <h3 className="text-lg font-bold mb-2">{concept.subTitle}</h3>
+                                 <p className="text-sm text-gray-600 dark:text-gray-300">{concept.content}</p>
+                             </div>
+                         );
+                     })}
+                 </div>
+             );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
