@@ -143,6 +143,23 @@ body.focus-mode .toc {
   box-shadow: var(--shadow);
 }
 
+.toolbar,
+.dashboard__card,
+.quiz-card,
+.unit,
+.playground__panel,
+.side-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard__card:hover,
+.quiz-card:hover,
+.playground__panel:hover,
+.side-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(18, 24, 45, 0.12);
+}
+
 .toolbar__group {
   display: flex;
   flex-wrap: wrap;
@@ -189,6 +206,17 @@ body.focus-mode .toc {
   border-color: var(--accent);
   color: var(--accent);
   box-shadow: 0 8px 18px rgba(47, 107, 255, 0.12);
+}
+
+.btn:focus-visible,
+.pill:focus-visible,
+.tab:focus-visible,
+.search input:focus-visible,
+.blank-input input:focus-visible,
+.goal-input input:focus-visible,
+.note-card textarea:focus-visible {
+  outline: 3px solid rgba(58, 107, 255, 0.35);
+  outline-offset: 2px;
 }
 
 .btn--ghost {
@@ -242,7 +270,7 @@ body.focus-mode .toc {
 
 .dashboard__stats {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 12px;
   margin: 18px 0;
 }

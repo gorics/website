@@ -1627,7 +1627,6 @@
             playSound(false);
           }
           speedScore.textContent = speedScoreValue;
-          updateMetrics();
           updateGoal();
           renderSpeedQuestion();
         });
@@ -1737,7 +1736,6 @@
             addHistory('팝퀴즈', '오답', 0);
             playSound(false);
           }
-          updateMetrics();
           updateGoal();
         });
         popQuizOptions.appendChild(button);
@@ -1827,7 +1825,6 @@
           playSound(false);
         }
         updateAccuracy();
-        updateMetrics();
         updateGoal();
       });
     });
@@ -1863,7 +1860,6 @@
         playSound(false);
       }
       updateAccuracy();
-      updateMetrics();
       updateGoal();
     });
 
@@ -2026,6 +2022,7 @@
     updateCompletion();
     updateXp();
     updateBadges();
+    goalInput.value = localStorage.getItem(goalKey) || '30';
     updateGoal();
     updateHistory();
     updateRoutine();
@@ -2035,7 +2032,6 @@
     renderBlankQuestion();
     renderFlashcard();
     renderTimer();
-    goalInput.value = localStorage.getItem(goalKey) || '30';
     studyNote.value = localStorage.getItem(noteKey) || '';
     if (localStorage.getItem(themeKey) === 'dark') {
       document.body.classList.add('theme-dark');
