@@ -267,9 +267,9 @@
             return [state, setState];
         };
 
-        const Icon = ({ name, size = 20, className }) => {
+        const Icon = ({ name, size = 20, className, fill = "none" }) => {
             useEffect(() => { if (window.lucide) window.lucide.createIcons(); });
-            return <i data-lucide={name} className={className} style={{ fontSize: size }}></i>;
+            return <i data-lucide={name} className={className} fill={fill} style={{ fontSize: size }}></i>;
         };
 
         // TTS 기능
@@ -283,6 +283,16 @@
             } else {
                 alert("음성 지원 미지원 브라우저입니다.");
             }
+        };
+
+        // Fisher-Yates Shuffle
+        const shuffleArray = (array) => {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
         };
 
         // --------------------------------------------------------
@@ -391,7 +401,7 @@
                     {/* 메인 컨텐츠 영역 */}
                     <main className="flex-1 flex flex-col h-screen relative pt-14 lg:pt-0">
                         {/* PC 헤더 */}
-                        <header className="hidden lg:flex bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 p-6 justify-between items-center z-10 sticky top-0 shadow-sm">
+                        <header className="hidden lg:flex bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 p-6 justify-between items-center z-30 sticky top-0 shadow-sm">
                             <div>
                                 <h2 className="text-2xl font-black font-dohyeon tracking-tight flex items-center gap-2">
                                     {currentTab === 'dashboard' ? `2027 수능 D-${dDay} 🔥` : 
@@ -515,10 +525,10 @@
 
             return (
                 <div className="space-y-6 animate-slide-in">
-                    <div className="sticky top-14 lg:top-20 z-20 bg-gray-50/90 dark:bg-gray-900/90 p-2 -mx-2 rounded-xl backdrop-blur-sm flex justify-between items-center">
+                    <div className="sticky top-0 z-20 bg-gray-50/95 dark:bg-gray-900/95 p-3 -mx-4 lg:-mx-8 mb-6 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 flex justify-end">
                         <button onClick={() => setBlindMode(!blindMode)} 
-                            className={`px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2 transition-all shadow-sm ${blindMode ? 'bg-indigo-600 text-white' : 'bg-white dark:bg-gray-800 border dark:border-gray-600'}`}>
-                            <Icon name={blindMode ? "eye-off" : "eye"} size={16} />
+                            className={`px-4 py-2 rounded-xl font-bold text-sm flex items-center gap-2 transition-all shadow-sm hover:scale-105 active:scale-95 ${blindMode ? 'bg-indigo-600 text-white ring-2 ring-indigo-300 dark:ring-indigo-900' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700'}`}>
+                            <Icon name={blindMode ? "eye-off" : "eye"} size={18} />
                             {blindMode ? "암기 모드 ON" : "암기 모드 OFF"}
                         </button>
                     </div>
@@ -567,100 +577,244 @@
             );
         };
 
-        // --- Mock Exam ---
+        // --- Mock Exam 2.0 (완전히 새로워진 실전 모의고사) ---
         const MockExam = ({ societyData, setUserData }) => {
-            const [status, setStatus] = useState('intro');
+            const [status, setStatus] = useState('intro'); // intro, playing, result
             const [questions, setQuestions] = useState([]);
             const [answers, setAnswers] = useState({});
             const [result, setResult] = useState(null);
             const [timeLeft, setTimeLeft] = useState(1200);
 
+            // 문제 출제 (랜덤 섞기 강화)
             const startExam = () => {
-                const allQuiz = societyData.flatMap(u => u.quiz.map(q => ({...q, unitTitle: u.title, unitId: u.id})));
-                const random20 = allQuiz.sort(() => Math.random() - 0.5).slice(0, 20);
-                setQuestions(random20);
+                // societyData의 모든 퀴즈를 하나의 배열로 만듦 (unitId, unitTitle 포함)
+                const allQuiz = societyData.flatMap(u => u.quiz.map(q => ({
+                    ...q, 
+                    unitTitle: u.title, 
+                    unitId: u.id
+                })));
+                
+                // 랜덤 셔플 (Fisher-Yates)
+                const shuffled = shuffleArray(allQuiz);
+                const selected = shuffled.slice(0, 20); // 20문제 선택
+                
+                setQuestions(selected);
                 setAnswers({});
                 setStatus('playing');
                 setTimeLeft(1200);
             };
 
+            // 타이머 로직
             useEffect(() => {
                 if (status === 'playing' && timeLeft > 0) {
                     const timer = setInterval(() => setTimeLeft(t => t - 1), 1000);
                     return () => clearInterval(timer);
-                } else if (status === 'playing' && timeLeft === 0) submitExam();
+                } else if (status === 'playing' && timeLeft === 0) {
+                    submitExam(true); // 시간 종료 시 강제 제출
+                }
             }, [status, timeLeft]);
 
-            const submitExam = () => {
+            // 제출 로직
+            const submitExam = (force = false) => {
+                // 미응답 체크
+                const answeredCount = Object.keys(answers).length;
+                if (!force && answeredCount < questions.length) {
+                    if (!confirm(`아직 풀지 않은 문제가 ${questions.length - answeredCount}개 있습니다. 그래도 제출하시겠습니까?`)) {
+                        return;
+                    }
+                }
+
                 let score = 0;
                 let correctCount = 0;
                 const wrongList = [];
+
                 questions.forEach((q, idx) => {
+                    const userAns = answers[idx];
                     const correctAns = q.type === 'OX' ? q.a : q.answer;
-                    if (answers[idx] === correctAns) { score += 5; correctCount++; }
-                    else wrongList.push({ id: q.id, unitId: q.unitId, count: 1 });
+                    
+                    if (userAns === correctAns) {
+                        score += 5;
+                        correctCount++;
+                    } else {
+                        // 틀린 문제 정보 저장 (오답노트용)
+                        wrongList.push({ id: q.id, unitId: q.unitId, count: 1 });
+                    }
                 });
-                
+
+                // 오답노트 저장 (안정적인 업데이트)
                 if (wrongList.length > 0) {
                     setUserData(prev => {
-                        const newWrongs = [...prev.wrongAnswers];
+                        let updatedWrongs = [...prev.wrongAnswers];
                         wrongList.forEach(w => {
-                            const exists = newWrongs.find(nw => nw.id === w.id);
-                            if(exists) exists.count++; else newWrongs.push(w);
+                            const idx = updatedWrongs.findIndex(nw => nw.id === w.id);
+                            if (idx > -1) {
+                                // 이미 있는 오답이면 count 증가
+                                updatedWrongs[idx] = { ...updatedWrongs[idx], count: updatedWrongs[idx].count + 1 };
+                            } else {
+                                // 새로운 오답이면 추가
+                                updatedWrongs.push(w);
+                            }
                         });
-                        return { ...prev, wrongAnswers: newWrongs, xp: prev.xp + score };
+                        return { ...prev, wrongAnswers: updatedWrongs, xp: prev.xp + score };
                     });
                 } else {
                     setUserData(prev => ({ ...prev, xp: prev.xp + score }));
                 }
+
                 setResult({ score, correctCount });
                 setStatus('result');
+                window.scrollTo(0, 0); // 맨 위로 스크롤
             };
 
             if (status === 'intro') return (
                 <div className="flex flex-col items-center justify-center py-20 text-center animate-pop">
                     <div className="w-24 h-24 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mb-6 animate-pulse">
-                        <Icon name="timer" size={48} className="text-red-500" />
+                        <Icon name="file-text" size={48} className="text-red-500" />
                     </div>
                     <h2 className="text-3xl font-black font-dohyeon mb-4">실전 모의고사 (20문항)</h2>
-                    <p className="text-gray-500 dark:text-gray-400 mb-8 max-w-md">2027 수능 완벽 대비! 박은성 선생님이 엄선한 문제들로 실력을 점검하세요.</p>
-                    <button onClick={startExam} className="px-10 py-4 bg-red-500 hover:bg-red-600 text-white text-xl font-bold rounded-2xl shadow-xl transition transform hover:scale-105">시작하기</button>
+                    <p className="text-gray-500 dark:text-gray-400 mb-8 max-w-md">
+                        2027 수능 완벽 대비!<br/>
+                        박은성 선생님이 엄선한 문제들로 실력을 점검하세요.<br/>
+                        제한 시간은 20분입니다.
+                    </p>
+                    <button onClick={startExam} className="px-10 py-4 bg-red-500 hover:bg-red-600 text-white text-xl font-bold rounded-2xl shadow-xl transition transform hover:scale-105 active:scale-95">
+                        시험 시작하기
+                    </button>
                 </div>
             );
 
+            // 결과 화면 (상세 복습 모드)
             if (status === 'result') return (
-                <div className="flex flex-col items-center justify-center py-20 animate-pop">
-                    <div className="text-6xl mb-4">{result.score >= 90 ? '🏆' : '💪'}</div>
-                    <h2 className="text-5xl font-black mb-2">{result.score}점</h2>
-                    <p className="text-gray-500 mb-8 font-bold">20문제 중 {result.correctCount}문제 정답 (+{result.score} XP)</p>
-                    <div className="flex gap-4">
-                        <button onClick={startExam} className="px-6 py-3 bg-indigo-500 text-white font-bold rounded-xl">다시 응시</button>
-                        <button onClick={() => setStatus('intro')} className="px-6 py-3 bg-gray-200 text-gray-700 font-bold rounded-xl">나가기</button>
+                <div className="max-w-3xl mx-auto animate-slide-in pb-20">
+                    <div className="text-center py-10 bg-white dark:bg-gray-800 rounded-3xl shadow-lg mb-8 border border-gray-100 dark:border-gray-700">
+                        <div className="text-6xl mb-4">{result.score >= 90 ? '🏆' : result.score >= 70 ? '👏' : '💪'}</div>
+                        <h2 className="text-5xl font-black mb-2 text-indigo-600 dark:text-indigo-400">{result.score}점</h2>
+                        <p className="text-gray-500 dark:text-gray-400 font-bold mb-6">
+                            20문제 중 <span className="text-blue-500">{result.correctCount}개 정답</span> / <span className="text-red-500">{20 - result.correctCount}개 오답</span>
+                        </p>
+                        <div className="flex justify-center gap-4">
+                            <button onClick={startExam} className="px-6 py-3 bg-indigo-500 text-white font-bold rounded-xl hover:bg-indigo-600 transition">다시 응시하기</button>
+                            <button onClick={() => setStatus('intro')} className="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-bold rounded-xl hover:bg-gray-300 dark:hover:bg-gray-600 transition">나가기</button>
+                        </div>
+                    </div>
+
+                    <h3 className="text-2xl font-black font-dohyeon mb-6 pl-2 border-l-4 border-indigo-500">📝 문제별 상세 분석</h3>
+                    
+                    <div className="space-y-6">
+                        {questions.map((q, idx) => {
+                            const userAns = answers[idx];
+                            const correctAns = q.type === 'OX' ? q.a : q.answer;
+                            const isCorrect = userAns === correctAns;
+                            
+                            return (
+                                <div key={idx} className={`bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border-2 ${isCorrect ? 'border-transparent' : 'border-red-400'}`}>
+                                    <div className="flex gap-2 mb-3">
+                                        <span className={`font-black text-lg ${isCorrect ? 'text-blue-500' : 'text-red-500'}`}>
+                                            {idx + 1}. {isCorrect ? '정답' : '오답'}
+                                        </span>
+                                        <span className="text-xs font-bold bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-500 h-fit mt-1">{q.unitTitle}</span>
+                                    </div>
+                                    <h3 className="text-lg font-bold mb-4">{q.q}</h3>
+                                    
+                                    {/* 내가 고른 답 vs 정답 표시 */}
+                                    <div className="mb-4 text-sm">
+                                        <div className="flex gap-4">
+                                            <span className="font-bold text-gray-500">내가 쓴 답: 
+                                                <span className={`ml-2 ${isCorrect ? 'text-blue-500' : 'text-red-500'}`}>
+                                                    {userAns === undefined ? '미응답' : (q.type === 'OX' ? (userAns ? 'O' : 'X') : userAns + 1)}
+                                                </span>
+                                            </span>
+                                            <span className="font-bold text-gray-500">정답: 
+                                                <span className="ml-2 text-blue-500">
+                                                    {q.type === 'OX' ? (correctAns ? 'O' : 'X') : correctAns + 1}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-xl text-sm">
+                                        <div className="font-bold text-indigo-600 dark:text-indigo-400 mb-1 flex items-center gap-1">
+                                            <Icon name="check-circle" size={14} /> 해설
+                                        </div>
+                                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{q.comment}</p>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             );
 
+            // 문제 풀이 화면
             return (
                 <div className="max-w-3xl mx-auto relative">
                     <div className="sticky top-14 lg:top-20 z-30 bg-white/90 dark:bg-gray-900/90 backdrop-blur p-4 flex justify-between items-center mb-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700">
-                        <span className="font-bold text-gray-500">문항 {Object.keys(answers).length} / 20</span>
-                        <div className={`text-xl font-mono font-black ${timeLeft < 60 ? 'text-red-500 animate-pulse' : ''}`}>{Math.floor(timeLeft/60)}:{String(timeLeft%60).padStart(2,'0')}</div>
-                        <button onClick={submitExam} className="px-4 py-2 bg-indigo-600 text-white font-bold rounded-lg text-sm">제출</button>
+                        <div className="flex flex-col">
+                            <span className="font-bold text-gray-500 text-xs">남은 시간</span>
+                            <span className={`text-xl font-mono font-black ${timeLeft < 60 ? 'text-red-500 animate-pulse' : 'text-gray-800 dark:text-white'}`}>
+                                {Math.floor(timeLeft/60)}:{String(timeLeft%60).padStart(2,'0')}
+                            </span>
+                        </div>
+                        <div className="flex items-center gap-4">
+                            <span className="font-bold text-gray-500 text-sm">
+                                <span className="text-indigo-600">{Object.keys(answers).length}</span> / 20 문제
+                            </span>
+                            <button onClick={() => submitExam(false)} className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg text-sm transition shadow-md">
+                                답안 제출
+                            </button>
+                        </div>
                     </div>
-                    <div className="space-y-6">
+
+                    <div className="space-y-8">
                         {questions.map((q, idx) => (
-                            <div key={idx} className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                                <div className="flex gap-2 mb-3"><span className="font-black text-indigo-500 text-lg">{idx + 1}.</span><span className="text-xs font-bold bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-500">{q.unitTitle}</span></div>
-                                <h3 className="text-lg font-bold mb-6">{q.q}</h3>
+                            <div key={idx} className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 transition-all hover:shadow-md">
+                                <div className="flex justify-between mb-4">
+                                    <div className="flex gap-2 items-center">
+                                        <span className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-black text-lg">{idx + 1}</span>
+                                        <span className="text-xs font-bold bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-500">{q.unitTitle}</span>
+                                    </div>
+                                    {answers[idx] !== undefined && <Icon name="check" className="text-green-500" />}
+                                </div>
+                                
+                                <h3 className="text-lg font-bold mb-6 leading-relaxed text-gray-800 dark:text-gray-100">{q.q}</h3>
+                                
                                 {q.type === 'OX' ? (
-                                    <div className="flex gap-2">{[true, false].map(opt => (
-                                        <button key={opt.toString()} onClick={() => setAnswers(p => ({...p, [idx]: opt}))} className={`flex-1 py-3 rounded-xl font-black border-2 transition ${answers[idx] === opt ? 'bg-indigo-500 border-indigo-500 text-white' : 'border-gray-200 dark:border-gray-600'}`}>{opt ? 'O' : 'X'}</button>
-                                    ))}</div>
+                                    <div className="flex gap-3">
+                                        {[true, false].map((opt) => (
+                                            <button 
+                                                key={opt.toString()} 
+                                                onClick={() => setAnswers(p => ({...p, [idx]: opt}))} 
+                                                className={`flex-1 py-4 rounded-xl font-black text-xl border-2 transition-all active:scale-95 ${
+                                                    answers[idx] === opt 
+                                                    ? 'bg-indigo-500 border-indigo-500 text-white shadow-lg' 
+                                                    : 'bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-400 hover:border-indigo-300'
+                                                }`}
+                                            >
+                                                {opt ? 'O' : 'X'}
+                                            </button>
+                                        ))}
+                                    </div>
                                 ) : (
-                                    <div className="space-y-2">{q.options.map((opt, i) => (
-                                        <button key={i} onClick={() => setAnswers(p => ({...p, [idx]: i}))} className={`w-full text-left p-3 rounded-xl border-2 transition flex gap-3 ${answers[idx] === i ? 'bg-indigo-50 dark:bg-indigo-900/30 border-indigo-500 text-indigo-700 dark:text-indigo-300' : 'border-gray-100 dark:border-gray-700'}`}>
-                                            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${answers[idx] === i ? 'bg-indigo-500 text-white' : 'bg-gray-200 dark:bg-gray-600'}`}>{i+1}</span>{opt}</button>
-                                    ))}</div>
+                                    <div className="space-y-2.5">
+                                        {q.options.map((opt, i) => (
+                                            <button 
+                                                key={i} 
+                                                onClick={() => setAnswers(p => ({...p, [idx]: i}))} 
+                                                className={`w-full text-left p-4 rounded-xl border-2 transition-all active:scale-[0.99] flex items-center gap-3 ${
+                                                    answers[idx] === i 
+                                                    ? 'bg-indigo-50 dark:bg-indigo-900/40 border-indigo-500 text-indigo-700 dark:text-indigo-300 shadow-md' 
+                                                    : 'bg-white dark:bg-gray-700 border-gray-100 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
+                                                }`}
+                                            >
+                                                <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
+                                                    answers[idx] === i ? 'bg-indigo-500 text-white' : 'bg-gray-200 dark:bg-gray-600 text-gray-500'
+                                                }`}>
+                                                    {i+1}
+                                                </span>
+                                                <span className="font-medium">{opt}</span>
+                                            </button>
+                                        ))}
+                                    </div>
                                 )}
                             </div>
                         ))}
