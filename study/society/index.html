@@ -24,7 +24,7 @@
         <span>권장 학습: 1회독(개념) → 2회독(문제)</span>
       </div>
       <div class="hero__cta">
-        <button class="pill" data-filter="all">전체 보기</button>
+        <button class="pill is-active" data-filter="all">전체 보기</button>
         <button class="pill" data-filter="concept">개념만</button>
         <button class="pill" data-filter="question">문제만</button>
         <button class="pill" id="toggleAnswers">정답 숨기기/보이기</button>
@@ -46,13 +46,228 @@
     <div class="toolbar__group">
       <button class="btn" id="expandAll">전체 펼치기</button>
       <button class="btn" id="collapseAll">전체 접기</button>
+      <button class="btn" id="themeToggle">테마 전환</button>
+      <button class="btn" id="focusToggle">집중 모드</button>
       <button class="btn" id="scrollTop">위로</button>
+    </div>
+  </section>
+
+  <section class="dashboard" aria-label="학습 대시보드">
+    <div class="dashboard__card">
+      <h3>학습 대시보드</h3>
+      <p class="dashboard__hint">리스트 항목을 클릭하면 완료로 체크됩니다. 진행률은 자동 저장됩니다.</p>
+      <div class="dashboard__stats">
+        <div>
+          <span class="stat__label">전체 항목</span>
+          <strong id="totalCount">0</strong>
+        </div>
+        <div>
+          <span class="stat__label">완료 항목</span>
+          <strong id="completedCount">0</strong>
+        </div>
+        <div>
+          <span class="stat__label">진행률</span>
+          <strong id="completionRate">0%</strong>
+        </div>
+        <div>
+          <span class="stat__label">학습 XP</span>
+          <strong id="xpPoints">0</strong>
+        </div>
+        <div>
+          <span class="stat__label">연속 정답</span>
+          <strong id="streakCount">0</strong>
+        </div>
+      </div>
+      <div class="dashboard__bar">
+        <div class="dashboard__bar-fill" id="completionBar"></div>
+      </div>
+      <div class="dashboard__actions">
+        <button class="btn" id="randomQuestion">랜덤 문제 뽑기</button>
+        <button class="btn" id="resetProgress">완료 초기화</button>
+      </div>
+    </div>
+    <div class="quiz-card" id="quizCard">
+      <p class="quiz-card__label">오늘의 랜덤 문제</p>
+      <h3 id="quizQuestion">버튼을 눌러 문제를 뽑으세요.</h3>
+      <button class="btn btn--ghost" id="revealQuizAnswer">정답 보기</button>
+      <p class="quiz-card__answer" id="quizAnswer">정답이 여기에 표시됩니다.</p>
+    </div>
+  </section>
+
+  <section class="playground" id="interactive-lab" aria-label="퀴즈 놀이터">
+    <div class="playground__intro">
+      <div>
+        <h2>인터랙티브 퀴즈 놀이터</h2>
+        <p>정답을 맞힐수록 XP가 올라가고, 연속 정답 스택이 쌓입니다. 랜덤 퀴즈, 스피드 챌린지, 빈칸/플래시 카드로 즐겁게 복습하세요.</p>
+      </div>
+      <div class="playground__controls">
+        <button class="btn" id="startPopQuiz">팝퀴즈 시작</button>
+        <button class="btn" id="rouletteMode">모드 룰렛</button>
+        <button class="btn" id="toggleQuizSound">효과음: OFF</button>
+      </div>
+    </div>
+    <div class="playground__grid">
+      <div class="playground__panel">
+        <div class="combo-meter" aria-label="콤보 진행도">
+          <span>콤보 게이지</span>
+          <div class="combo-meter__track">
+            <div class="combo-meter__fill" id="comboFill"></div>
+          </div>
+          <strong id="comboLabel">0 / 10</strong>
+        </div>
+        <div class="tabs" role="tablist" aria-label="퀴즈 모드 선택">
+          <button class="tab is-active" type="button" data-tab="speed" role="tab">스피드 퀴즈</button>
+          <button class="tab" type="button" data-tab="ox" role="tab">OX 챌린지</button>
+          <button class="tab" type="button" data-tab="blank" role="tab">빈칸 퀴즈</button>
+          <button class="tab" type="button" data-tab="flash" role="tab">플래시 카드</button>
+        </div>
+
+        <div class="tab-panel is-active" id="tab-speed" role="tabpanel">
+          <div class="quiz-meta">
+            <span>남은 시간: <strong id="speedTimer">60</strong>s</span>
+            <span>스코어: <strong id="speedScore">0</strong></span>
+          </div>
+          <h3 id="speedQuestion">시작 버튼을 눌러 퀴즈를 진행하세요.</h3>
+          <div class="option-grid" id="speedOptions"></div>
+          <div class="quiz-actions">
+            <button class="btn" id="startSpeedQuiz">시작</button>
+            <button class="btn btn--ghost" id="skipSpeedQuiz">건너뛰기</button>
+          </div>
+          <p class="quiz-feedback" id="speedFeedback">정답을 선택하면 피드백이 표시됩니다.</p>
+        </div>
+
+        <div class="tab-panel" id="tab-ox" role="tabpanel">
+          <div class="quiz-meta">
+            <span>연속 정답: <strong id="oxStreak">0</strong></span>
+            <span>정답률: <strong id="oxAccuracy">0%</strong></span>
+          </div>
+          <h3 id="oxQuestion">OX 챌린지 질문이 여기에 표시됩니다.</h3>
+          <div class="option-grid">
+            <button class="btn btn--success" data-ox="O">O</button>
+            <button class="btn btn--danger" data-ox="X">X</button>
+          </div>
+          <p class="quiz-feedback" id="oxFeedback">O 또는 X를 골라보세요.</p>
+          <button class="btn btn--ghost" id="nextOx">다음 문제</button>
+        </div>
+
+        <div class="tab-panel" id="tab-blank" role="tabpanel">
+          <div class="quiz-meta">
+            <span>누적 점수: <strong id="blankScore">0</strong></span>
+            <span>정답률: <strong id="blankAccuracy">0%</strong></span>
+          </div>
+          <h3 id="blankQuestion">빈칸 문제를 불러오는 중...</h3>
+          <label class="blank-input">
+            <span>정답 입력</span>
+            <input type="text" id="blankAnswer" placeholder="예: 문화 상대주의" />
+          </label>
+          <div class="quiz-actions">
+            <button class="btn" id="checkBlank">채점</button>
+            <button class="btn btn--ghost" id="nextBlank">다음 문제</button>
+          </div>
+          <p class="quiz-feedback" id="blankFeedback">정답을 입력하고 채점하세요.</p>
+        </div>
+
+        <div class="tab-panel" id="tab-flash" role="tabpanel">
+          <div class="flashcard" id="flashcard">
+            <div class="flashcard__front">
+              <span class="flashcard__label">개념 카드</span>
+              <h3 id="flashTerm">개념을 눌러 뒤집기</h3>
+            </div>
+            <div class="flashcard__back">
+              <span class="flashcard__label">설명</span>
+              <p id="flashDefinition">카드를 클릭하면 정리가 표시됩니다.</p>
+            </div>
+          </div>
+          <div class="quiz-actions">
+            <button class="btn" id="prevFlash">이전</button>
+            <button class="btn" id="nextFlash">다음</button>
+            <button class="btn btn--ghost" id="shuffleFlash">셔플</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="playground__side">
+        <div class="side-card">
+          <h3>학습 미션</h3>
+          <ul class="mission-list">
+            <li><span>🎯 오늘 10문제 풀기</span><button class="btn btn--ghost mission-btn" data-mission="10">체크</button></li>
+            <li><span>⚡ 스피드 퀴즈 5연속 정답</span><button class="btn btn--ghost mission-btn" data-mission="streak-5">체크</button></li>
+            <li><span>🧠 플래시 카드 15장 넘기기</span><button class="btn btn--ghost mission-btn" data-mission="flash-15">체크</button></li>
+          </ul>
+          <p class="mission-feedback" id="missionFeedback">미션을 완료하면 배지가 활성화됩니다.</p>
+        </div>
+        <div class="side-card goal-card">
+          <h3>오늘의 목표</h3>
+          <label class="goal-input">
+            <span>목표 문제 수</span>
+            <input type="number" id="goalInput" min="5" max="200" step="5" value="30" />
+          </label>
+          <div class="goal-progress">
+            <div class="goal-progress__fill" id="goalProgress"></div>
+          </div>
+          <p class="goal-meta"><span id="goalStatus">0</span> / <span id="goalTotal">30</span> 문제</p>
+          <button class="btn btn--ghost" id="resetGoal">목표 초기화</button>
+        </div>
+        <div class="side-card timer-card">
+          <h3>스마트 집중 타이머</h3>
+          <p class="timer-display" id="timerDisplay">25:00</p>
+          <div class="quiz-actions">
+            <button class="btn" id="startTimer">시작</button>
+            <button class="btn btn--ghost" id="pauseTimer">일시정지</button>
+            <button class="btn btn--ghost" id="resetTimer">리셋</button>
+          </div>
+          <div class="timer-presets">
+            <button class="btn btn--ghost preset-btn" data-minutes="15">15분</button>
+            <button class="btn btn--ghost preset-btn" data-minutes="25">25분</button>
+            <button class="btn btn--ghost preset-btn" data-minutes="45">45분</button>
+          </div>
+          <p class="timer-hint" id="timerHint">타이머 완료 시 XP 보너스가 지급됩니다.</p>
+        </div>
+        <div class="side-card badges">
+          <h3>획득 배지</h3>
+          <div class="badge-grid">
+            <span class="badge" data-badge="quiz">퀴즈 마스터</span>
+            <span class="badge" data-badge="speed">스피드러너</span>
+            <span class="badge" data-badge="flash">플래시 히어로</span>
+          </div>
+          <p class="badge-hint">배지는 로컬에 저장됩니다.</p>
+        </div>
+        <div class="side-card history-card">
+          <h3>최근 정답 기록</h3>
+          <ol class="history-list" id="historyList">
+            <li>기록이 아직 없습니다.</li>
+          </ol>
+        </div>
+        <div class="side-card note-card">
+          <h3>학습 메모</h3>
+          <textarea id="studyNote" placeholder="중요 개념, 헷갈리는 포인트를 기록하세요."></textarea>
+          <div class="quiz-actions">
+            <button class="btn" id="saveNote">메모 저장</button>
+            <button class="btn btn--ghost" id="clearNote">메모 비우기</button>
+          </div>
+          <p class="note-status" id="noteStatus">자동 저장됩니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pop-quiz" id="popQuiz" aria-live="polite">
+    <div class="pop-quiz__card" role="dialog" aria-modal="true" aria-labelledby="popQuizTitle">
+      <div class="pop-quiz__header">
+        <h3 id="popQuizTitle">팝퀴즈 타임!</h3>
+        <button class="btn btn--ghost" id="closePopQuiz">닫기</button>
+      </div>
+      <p class="pop-quiz__meta">랜덤 문제를 풀고 XP를 획득하세요.</p>
+      <h4 id="popQuizQuestion">문제를 불러오는 중...</h4>
+      <div class="option-grid" id="popQuizOptions"></div>
+      <p class="quiz-feedback" id="popQuizFeedback">정답을 선택해보세요.</p>
     </div>
   </section>
 
   <nav class="toc">
     <h2>빠른 이동</h2>
     <ol>
+      <li><a href="#interactive-lab">퀴즈 놀이터</a></li>
       <li><a href="#unit-1">I. 사회문화 현상의 이해</a></li>
       <li><a href="#unit-2">II. 연구 방법과 자료 해석</a></li>
       <li><a href="#unit-3">III. 사회 구조와 사회 제도</a></li>
@@ -863,8 +1078,116 @@
     const toggleAnswers = document.getElementById('toggleAnswers');
     const expandAll = document.getElementById('expandAll');
     const collapseAll = document.getElementById('collapseAll');
+    const themeToggle = document.getElementById('themeToggle');
+    const focusToggle = document.getElementById('focusToggle');
     const scrollTopBtn = document.getElementById('scrollTop');
     const progressBar = document.getElementById('progressBar');
+    const totalCount = document.getElementById('totalCount');
+    const completedCount = document.getElementById('completedCount');
+    const completionRate = document.getElementById('completionRate');
+    const completionBar = document.getElementById('completionBar');
+    const xpPoints = document.getElementById('xpPoints');
+    const streakCount = document.getElementById('streakCount');
+    const randomQuestion = document.getElementById('randomQuestion');
+    const resetProgress = document.getElementById('resetProgress');
+    const quizQuestion = document.getElementById('quizQuestion');
+    const quizAnswer = document.getElementById('quizAnswer');
+    const revealQuizAnswer = document.getElementById('revealQuizAnswer');
+    const comboFill = document.getElementById('comboFill');
+    const comboLabel = document.getElementById('comboLabel');
+
+    const tabButtons = Array.from(document.querySelectorAll('.tab'));
+    const tabPanels = Array.from(document.querySelectorAll('.tab-panel'));
+    const speedTimer = document.getElementById('speedTimer');
+    const speedScore = document.getElementById('speedScore');
+    const speedQuestion = document.getElementById('speedQuestion');
+    const speedOptions = document.getElementById('speedOptions');
+    const speedFeedback = document.getElementById('speedFeedback');
+    const startSpeedQuiz = document.getElementById('startSpeedQuiz');
+    const skipSpeedQuiz = document.getElementById('skipSpeedQuiz');
+    const oxQuestion = document.getElementById('oxQuestion');
+    const oxFeedback = document.getElementById('oxFeedback');
+    const oxStreak = document.getElementById('oxStreak');
+    const oxAccuracy = document.getElementById('oxAccuracy');
+    const nextOx = document.getElementById('nextOx');
+    const blankQuestion = document.getElementById('blankQuestion');
+    const blankAnswer = document.getElementById('blankAnswer');
+    const blankFeedback = document.getElementById('blankFeedback');
+    const blankScore = document.getElementById('blankScore');
+    const blankAccuracy = document.getElementById('blankAccuracy');
+    const checkBlank = document.getElementById('checkBlank');
+    const nextBlank = document.getElementById('nextBlank');
+    const flashcard = document.getElementById('flashcard');
+    const flashTerm = document.getElementById('flashTerm');
+    const flashDefinition = document.getElementById('flashDefinition');
+    const prevFlash = document.getElementById('prevFlash');
+    const nextFlash = document.getElementById('nextFlash');
+    const shuffleFlash = document.getElementById('shuffleFlash');
+    const missionButtons = Array.from(document.querySelectorAll('.mission-btn'));
+    const missionFeedback = document.getElementById('missionFeedback');
+    const badgeNodes = Array.from(document.querySelectorAll('.badge'));
+    const startPopQuiz = document.getElementById('startPopQuiz');
+    const rouletteMode = document.getElementById('rouletteMode');
+    const toggleQuizSound = document.getElementById('toggleQuizSound');
+    const popQuiz = document.getElementById('popQuiz');
+    const closePopQuiz = document.getElementById('closePopQuiz');
+    const popQuizQuestion = document.getElementById('popQuizQuestion');
+    const popQuizOptions = document.getElementById('popQuizOptions');
+    const popQuizFeedback = document.getElementById('popQuizFeedback');
+    const goalInput = document.getElementById('goalInput');
+    const goalProgress = document.getElementById('goalProgress');
+    const goalStatus = document.getElementById('goalStatus');
+    const goalTotal = document.getElementById('goalTotal');
+    const resetGoal = document.getElementById('resetGoal');
+    const timerDisplay = document.getElementById('timerDisplay');
+    const startTimer = document.getElementById('startTimer');
+    const pauseTimer = document.getElementById('pauseTimer');
+    const resetTimer = document.getElementById('resetTimer');
+    const presetButtons = Array.from(document.querySelectorAll('.preset-btn'));
+    const timerHint = document.getElementById('timerHint');
+    const historyList = document.getElementById('historyList');
+    const studyNote = document.getElementById('studyNote');
+    const saveNote = document.getElementById('saveNote');
+    const clearNote = document.getElementById('clearNote');
+    const noteStatus = document.getElementById('noteStatus');
+
+    const storageKey = 'society-progress-v2';
+    const themeKey = 'society-theme';
+    const focusKey = 'society-focus';
+    const xpKey = 'society-xp';
+    const streakKey = 'society-streak';
+    const missionKey = 'society-missions';
+    const badgeKey = 'society-badges';
+    const metricsKey = 'society-metrics';
+    const goalKey = 'society-goal';
+    const historyKey = 'society-history';
+    const timerKey = 'society-timer';
+    const noteKey = 'society-note';
+
+    const doneState = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    const missionState = JSON.parse(localStorage.getItem(missionKey) || '{}');
+    const badgeState = JSON.parse(localStorage.getItem(badgeKey) || '{}');
+    const metricsState = JSON.parse(
+      localStorage.getItem(metricsKey) || '{"totalAnswered":0,"speedStreakMax":0,"flashViewed":0}'
+    );
+
+    let xp = Number(localStorage.getItem(xpKey) || 0);
+    let streak = Number(localStorage.getItem(streakKey) || 0);
+    let speedInterval = null;
+    let speedTimeLeft = 60;
+    let speedScoreValue = 0;
+    let speedStreak = 0;
+    let oxAnswered = 0;
+    let oxCorrect = 0;
+    let blankAnswered = 0;
+    let blankCorrect = 0;
+    let flashIndex = 0;
+    let soundOn = false;
+    let timerInterval = null;
+    let timerMinutes = Number(localStorage.getItem(timerKey) || 25);
+    let timerSeconds = 0;
+    let timerRunning = false;
+    let historyItems = JSON.parse(localStorage.getItem(historyKey) || '[]');
 
     const updateTime = () => {
       const now = new Date();
@@ -899,6 +1222,415 @@
       updateMatchCount(count);
     };
 
+    const updateCompletion = () => {
+      const trackables = Array.from(
+        document.querySelectorAll('.concept-block li, .question-block li')
+      );
+      const doneCount = trackables.filter((item) => item.classList.contains('is-done')).length;
+      const total = trackables.length;
+      totalCount.textContent = total;
+      completedCount.textContent = doneCount;
+      const rate = total > 0 ? Math.round((doneCount / total) * 100) : 0;
+      completionRate.textContent = `${rate}%`;
+      completionBar.style.width = `${rate}%`;
+      localStorage.setItem(storageKey, JSON.stringify(doneState));
+    };
+
+    const updateXp = (points = 0, isCorrect = null) => {
+      xp += points;
+      if (isCorrect === true) {
+        streak += 1;
+      }
+      if (isCorrect === false) {
+        streak = 0;
+      }
+      xpPoints.textContent = xp;
+      streakCount.textContent = streak;
+      comboLabel.textContent = `${streak} / 10`;
+      comboFill.style.width = `${Math.min((streak / 10) * 100, 100)}%`;
+      localStorage.setItem(xpKey, String(xp));
+      localStorage.setItem(streakKey, String(streak));
+    };
+
+    const updateGoal = () => {
+      const target = Number(goalInput.value || 0);
+      goalTotal.textContent = target;
+      goalStatus.textContent = metricsState.totalAnswered;
+      const progress = target > 0 ? Math.min((metricsState.totalAnswered / target) * 100, 100) : 0;
+      goalProgress.style.width = `${progress}%`;
+    };
+
+    const updateMetrics = () => {
+      localStorage.setItem(metricsKey, JSON.stringify(metricsState));
+    };
+
+    const updateHistory = () => {
+      const trimmed = historyItems.slice(-5).reverse();
+      historyList.innerHTML = '';
+      if (trimmed.length === 0) {
+        historyList.innerHTML = '<li>기록이 아직 없습니다.</li>';
+        return;
+      }
+      trimmed.forEach((entry) => {
+        const item = document.createElement('li');
+        item.textContent = `${entry.mode}: ${entry.result} (+${entry.xp} XP)`;
+        historyList.appendChild(item);
+      });
+    };
+
+    const addHistory = (mode, result, xpDelta) => {
+      historyItems.push({
+        mode,
+        result,
+        xp: xpDelta,
+      });
+      historyItems = historyItems.slice(-10);
+      localStorage.setItem(historyKey, JSON.stringify(historyItems));
+      updateHistory();
+    };
+
+    const playSound = (isCorrect) => {
+      if (!soundOn || typeof window.AudioContext === 'undefined') return;
+      const audioContext = new AudioContext();
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      oscillator.type = 'sine';
+      oscillator.frequency.value = isCorrect ? 640 : 220;
+      gainNode.gain.value = 0.08;
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      oscillator.start();
+      setTimeout(() => {
+        oscillator.stop();
+        audioContext.close();
+      }, 180);
+    };
+
+    const formatTime = (minutes, seconds) => {
+      const mm = String(minutes).padStart(2, '0');
+      const ss = String(seconds).padStart(2, '0');
+      return `${mm}:${ss}`;
+    };
+
+    const renderTimer = () => {
+      timerDisplay.textContent = formatTime(timerMinutes, timerSeconds);
+    };
+
+    const setTimerMinutes = (minutes) => {
+      timerMinutes = minutes;
+      localStorage.setItem(timerKey, String(minutes));
+      renderTimer();
+    };
+
+    const tickTimer = () => {
+      if (!timerRunning) return;
+      if (timerMinutes === 0 && timerSeconds === 0) {
+        timerRunning = false;
+        clearInterval(timerInterval);
+        timerHint.textContent = '완료! +20 XP 보너스 획득';
+        updateXp(20, true);
+        addHistory('타이머', '완료', 20);
+        playSound(true);
+        return;
+      }
+      if (timerSeconds === 0) {
+        timerMinutes = Math.max(timerMinutes - 1, 0);
+        timerSeconds = 59;
+      } else {
+        timerSeconds -= 1;
+      }
+      renderTimer();
+    };
+
+    const trackables = Array.from(
+      document.querySelectorAll('.concept-block li, .question-block li')
+    );
+
+    trackables.forEach((item, index) => {
+      const id = `item-${index}`;
+      item.dataset.trackId = id;
+      if (doneState[id]) {
+        item.classList.add('is-done');
+      }
+      item.addEventListener('click', () => {
+        item.classList.toggle('is-done');
+        doneState[id] = item.classList.contains('is-done');
+        updateCompletion();
+      });
+    });
+
+    resetProgress.addEventListener('click', () => {
+      trackables.forEach((item) => item.classList.remove('is-done'));
+      Object.keys(doneState).forEach((key) => {
+        doneState[key] = false;
+      });
+      updateCompletion();
+    });
+
+    const questionItems = Array.from(document.querySelectorAll('.question-block li'));
+    const questionBank = questionItems.map((item) => {
+      const clone = item.cloneNode(true);
+      clone.querySelectorAll('ul, .answer').forEach((node) => node.remove());
+      const questionText = clone.textContent.trim().replace(/\s+/g, ' ');
+      const answerNode = item.querySelector('.answer');
+      const answerFromNode = answerNode ? answerNode.textContent.trim() : '';
+      const match = questionText.match(/\(([^)]+)\)\s*$/);
+      const extractedAnswer = match ? match[1] : '';
+      return {
+        question: match ? questionText.replace(/\(([^)]+)\)\s*$/, '').trim() : questionText,
+        answer: answerFromNode || extractedAnswer || '정답 정보 없음',
+      };
+    });
+
+    const choiceItems = questionItems.filter((item) => item.querySelector('ul') && item.querySelector('.answer'));
+    const answerSymbolMap = { '①': 0, '②': 1, '③': 2, '④': 3, '⑤': 4 };
+    const choiceQuestions = choiceItems.map((item) => {
+      const questionText = item.childNodes[0].textContent.trim();
+      const options = Array.from(item.querySelectorAll('ul li')).map((li) =>
+        li.textContent.trim().replace(/^(\d+\.|[①-⑤])\s*/, '')
+      );
+      const answerNode = item.querySelector('.answer');
+      const match = answerNode.textContent.match(/정답:\s*([①-⑤1-5])/);
+      const answerIndex = match
+        ? answerSymbolMap[match[1]] ?? Number(match[1]) - 1
+        : options.findIndex((option) => answerNode.textContent.includes(option));
+      return {
+        question: questionText.replace(/\s+/g, ' '),
+        options,
+        answerIndex,
+      };
+    });
+
+    const oxQuestions = questionItems
+      .map((item) => {
+        const text = item.textContent.trim().replace(/\s+/g, ' ');
+        const match = text.match(/\((O|X)\)\s*$/);
+        if (!match) return null;
+        return {
+          question: text.replace(/\((O|X)\)\s*$/, '').trim(),
+          answer: match[1],
+        };
+      })
+      .filter(Boolean);
+
+    const blankQuestions = questionItems
+      .map((item) => {
+        const text = item.textContent.trim().replace(/\s+/g, ' ');
+        const match = text.match(/\(([^)]+)\)\s*$/);
+        if (!match || text.includes('정답:')) return null;
+        if (['O', 'X'].includes(match[1])) return null;
+        return {
+          question: text.replace(/\(([^)]+)\)\s*$/, '').trim(),
+          answer: match[1],
+        };
+      })
+      .filter(Boolean);
+
+    const flashcards = [
+      {
+        term: '사회문화 현상의 특징',
+        definition: '사회성·역동성·규범성·총체성·외재성을 가지며 의미/가치가 포함된다.',
+      },
+      {
+        term: '문화 상대주의',
+        definition: '자기 문화 기준 대신 해당 사회의 가치·맥락으로 문화를 이해하려는 태도.',
+      },
+      {
+        term: '사회화',
+        definition: '사회 구성원으로 필요한 가치·규범·기술을 학습하는 과정.',
+      },
+      {
+        term: '문화 지체',
+        definition: '물질문화 변화 속도가 비물질문화보다 빠르게 진행될 때 발생하는 간극.',
+      },
+      {
+        term: '아노미 이론',
+        definition: '사회적 목표와 합법적 수단의 괴리가 커지면 일탈이 증가한다는 관점.',
+      },
+      {
+        term: '사회 이동',
+        definition: '개인 또는 집단이 사회적 지위·계층을 이동하는 현상.',
+      },
+      {
+        term: '사회적 자본',
+        definition: '신뢰·네트워크·규범 등 협력을 가능하게 하는 관계 자원.',
+      },
+      {
+        term: '일탈의 상대성',
+        definition: '일탈의 기준은 시대·문화·집단에 따라 달라진다.',
+      },
+    ];
+
+    const renderFlashcard = () => {
+      const card = flashcards[flashIndex];
+      if (!card) return;
+      flashTerm.textContent = card.term;
+      flashDefinition.textContent = card.definition;
+      flashcard.classList.remove('is-flipped');
+    };
+
+    const renderRandomQuestion = () => {
+      const pick = questionBank[Math.floor(Math.random() * questionBank.length)];
+      if (!pick) {
+        quizQuestion.textContent = '문제를 불러올 수 없습니다.';
+        quizAnswer.textContent = '정답 정보 없음';
+        return;
+      }
+      quizQuestion.textContent = pick.question;
+      quizAnswer.textContent = pick.answer;
+      quizAnswer.classList.remove('is-visible');
+    };
+
+    const renderSpeedQuestion = () => {
+      if (choiceQuestions.length === 0) {
+        speedQuestion.textContent = '선택형 문제 데이터가 없습니다.';
+        speedOptions.innerHTML = '';
+        return;
+      }
+      const pick = choiceQuestions[Math.floor(Math.random() * choiceQuestions.length)];
+      speedQuestion.textContent = pick.question;
+      speedOptions.innerHTML = '';
+      pick.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.className = 'btn btn--option';
+        button.textContent = option;
+        button.addEventListener('click', () => {
+          const isCorrect = index === pick.answerIndex;
+          metricsState.totalAnswered += 1;
+          updateMetrics();
+          if (isCorrect) {
+            speedScoreValue += 10;
+            speedStreak += 1;
+            metricsState.speedStreakMax = Math.max(metricsState.speedStreakMax, speedStreak);
+            speedFeedback.textContent = '정답! +10 XP';
+            updateXp(10, true);
+            addHistory('스피드', '정답', 10);
+            playSound(true);
+          } else {
+            speedFeedback.textContent = `오답! 정답: ${pick.options[pick.answerIndex] ?? '정보 없음'}`;
+            speedStreak = 0;
+            updateXp(0, false);
+            addHistory('스피드', '오답', 0);
+            playSound(false);
+          }
+          speedScore.textContent = speedScoreValue;
+          updateMetrics();
+          updateGoal();
+          renderSpeedQuestion();
+        });
+        speedOptions.appendChild(button);
+      });
+    };
+
+    const startSpeed = () => {
+      speedScoreValue = 0;
+      speedStreak = 0;
+      speedTimeLeft = 60;
+      speedScore.textContent = speedScoreValue;
+      speedTimer.textContent = speedTimeLeft;
+      speedFeedback.textContent = '타이머가 시작되었습니다!';
+      clearInterval(speedInterval);
+      speedInterval = setInterval(() => {
+        speedTimeLeft -= 1;
+        speedTimer.textContent = speedTimeLeft;
+        if (speedTimeLeft <= 0) {
+          clearInterval(speedInterval);
+          speedFeedback.textContent = `종료! 총 점수 ${speedScoreValue}`;
+        }
+      }, 1000);
+      renderSpeedQuestion();
+    };
+
+    const renderOxQuestion = () => {
+      if (oxQuestions.length === 0) {
+        oxQuestion.textContent = 'OX 문제 데이터가 없습니다.';
+        return;
+      }
+      const pick = oxQuestions[Math.floor(Math.random() * oxQuestions.length)];
+      oxQuestion.dataset.answer = pick.answer;
+      oxQuestion.textContent = pick.question;
+    };
+
+    const renderBlankQuestion = () => {
+      if (blankQuestions.length === 0) {
+        blankQuestion.textContent = '빈칸 문제 데이터가 없습니다.';
+        return;
+      }
+      const pick = blankQuestions[Math.floor(Math.random() * blankQuestions.length)];
+      blankQuestion.dataset.answer = pick.answer;
+      blankQuestion.textContent = pick.question;
+      blankAnswer.value = '';
+    };
+
+    const updateAccuracy = () => {
+      const oxRate = oxAnswered > 0 ? Math.round((oxCorrect / oxAnswered) * 100) : 0;
+      const blankRate = blankAnswered > 0 ? Math.round((blankCorrect / blankAnswered) * 100) : 0;
+      oxAccuracy.textContent = `${oxRate}%`;
+      blankAccuracy.textContent = `${blankRate}%`;
+      blankScore.textContent = String(blankCorrect * 10);
+      oxStreak.textContent = String(streak);
+    };
+
+    const updateBadges = () => {
+      badgeNodes.forEach((badge) => {
+        badge.classList.toggle('is-earned', Boolean(badgeState[badge.dataset.badge]));
+      });
+      localStorage.setItem(badgeKey, JSON.stringify(badgeState));
+    };
+
+    const awardBadge = (badge) => {
+      badgeState[badge] = true;
+      updateBadges();
+    };
+
+    const updateMissionState = (mission) => {
+      missionState[mission] = true;
+      localStorage.setItem(missionKey, JSON.stringify(missionState));
+    };
+
+    const renderPopQuiz = () => {
+      const pool = [
+        ...choiceQuestions.map((item) => ({
+          type: 'choice',
+          ...item,
+        })),
+        ...oxQuestions.map((item) => ({
+          type: 'ox',
+          options: ['O', 'X'],
+          answerIndex: item.answer === 'O' ? 0 : 1,
+          question: item.question,
+        })),
+      ];
+      const pick = pool[Math.floor(Math.random() * pool.length)];
+      if (!pick) return;
+      popQuizQuestion.textContent = pick.question;
+      popQuizOptions.innerHTML = '';
+      pick.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.className = 'btn btn--option';
+        button.textContent = option;
+        button.addEventListener('click', () => {
+          const isCorrect = index === pick.answerIndex;
+          metricsState.totalAnswered += 1;
+          updateMetrics();
+          if (isCorrect) {
+            popQuizFeedback.textContent = '정답! +12 XP';
+            updateXp(12, true);
+            addHistory('팝퀴즈', '정답', 12);
+            playSound(true);
+          } else {
+            popQuizFeedback.textContent = `오답! 정답: ${pick.options[pick.answerIndex] ?? '정보 없음'}`;
+            updateXp(0, false);
+            addHistory('팝퀴즈', '오답', 0);
+            playSound(false);
+          }
+          updateMetrics();
+          updateGoal();
+        });
+        popQuizOptions.appendChild(button);
+      });
+    };
+
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => {
         filterButtons.forEach((btn) => btn.classList.remove('is-active'));
@@ -912,6 +1644,16 @@
 
     toggleAnswers.addEventListener('click', () => {
       document.body.classList.toggle('show-answers');
+    });
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('theme-dark');
+      localStorage.setItem(themeKey, document.body.classList.contains('theme-dark') ? 'dark' : 'light');
+    });
+
+    focusToggle.addEventListener('click', () => {
+      document.body.classList.toggle('focus-mode');
+      localStorage.setItem(focusKey, document.body.classList.contains('focus-mode') ? 'on' : 'off');
     });
 
     expandAll.addEventListener('click', () => {
@@ -930,6 +1672,223 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    randomQuestion.addEventListener('click', renderRandomQuestion);
+    revealQuizAnswer.addEventListener('click', () => {
+      quizAnswer.classList.toggle('is-visible');
+    });
+
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        tabButtons.forEach((btn) => btn.classList.remove('is-active'));
+        tabPanels.forEach((panel) => panel.classList.remove('is-active'));
+        button.classList.add('is-active');
+        const target = document.getElementById(`tab-${button.dataset.tab}`);
+        if (target) target.classList.add('is-active');
+      });
+    });
+
+    startSpeedQuiz.addEventListener('click', startSpeed);
+    skipSpeedQuiz.addEventListener('click', renderSpeedQuestion);
+
+    document.querySelectorAll('[data-ox]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const answer = oxQuestion.dataset.answer;
+        const pick = button.dataset.ox;
+        const isCorrect = pick === answer;
+        oxAnswered += 1;
+        metricsState.totalAnswered += 1;
+        updateMetrics();
+        if (isCorrect) {
+          oxCorrect += 1;
+          speedStreak += 1;
+          metricsState.speedStreakMax = Math.max(metricsState.speedStreakMax, speedStreak);
+          oxFeedback.textContent = '정답! OX 연속 정답 상승!';
+          updateXp(6, true);
+          addHistory('OX', '정답', 6);
+          playSound(true);
+        } else {
+          speedStreak = 0;
+          oxFeedback.textContent = `오답! 정답: ${answer}`;
+          updateXp(0, false);
+          addHistory('OX', '오답', 0);
+          playSound(false);
+        }
+        updateAccuracy();
+        updateMetrics();
+        updateGoal();
+      });
+    });
+
+    nextOx.addEventListener('click', () => {
+      renderOxQuestion();
+      oxFeedback.textContent = 'O 또는 X를 골라보세요.';
+    });
+
+    checkBlank.addEventListener('click', () => {
+      const answer = blankQuestion.dataset.answer || '';
+      const response = blankAnswer.value.trim();
+      if (!response) {
+        blankFeedback.textContent = '정답을 입력해주세요.';
+        return;
+      }
+      blankAnswered += 1;
+      metricsState.totalAnswered += 1;
+      updateMetrics();
+      if (response === answer) {
+        blankCorrect += 1;
+        speedStreak += 1;
+        metricsState.speedStreakMax = Math.max(metricsState.speedStreakMax, speedStreak);
+        blankFeedback.textContent = '정답입니다! +8 XP';
+        updateXp(8, true);
+        addHistory('빈칸', '정답', 8);
+        playSound(true);
+      } else {
+        speedStreak = 0;
+        blankFeedback.textContent = `오답입니다. 정답: ${answer}`;
+        updateXp(0, false);
+        addHistory('빈칸', '오답', 0);
+        playSound(false);
+      }
+      updateAccuracy();
+      updateMetrics();
+      updateGoal();
+    });
+
+    nextBlank.addEventListener('click', () => {
+      renderBlankQuestion();
+      blankFeedback.textContent = '정답을 입력하고 채점하세요.';
+    });
+
+    flashcard.addEventListener('click', () => {
+      flashcard.classList.toggle('is-flipped');
+      metricsState.flashViewed += 1;
+    });
+
+    prevFlash.addEventListener('click', () => {
+      flashIndex = (flashIndex - 1 + flashcards.length) % flashcards.length;
+      renderFlashcard();
+    });
+
+    nextFlash.addEventListener('click', () => {
+      flashIndex = (flashIndex + 1) % flashcards.length;
+      renderFlashcard();
+    });
+
+    shuffleFlash.addEventListener('click', () => {
+      flashcards.sort(() => Math.random() - 0.5);
+      flashIndex = 0;
+      renderFlashcard();
+    });
+
+    missionButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const mission = button.dataset.mission;
+        let completed = false;
+        if (mission === '10') {
+          completed = metricsState.totalAnswered >= 10;
+          if (completed) awardBadge('quiz');
+        }
+        if (mission === 'streak-5') {
+          completed = metricsState.speedStreakMax >= 5;
+          if (completed) awardBadge('speed');
+        }
+        if (mission === 'flash-15') {
+          completed = metricsState.flashViewed >= 15;
+          if (completed) awardBadge('flash');
+        }
+        if (completed) {
+          button.classList.add('is-complete');
+          missionFeedback.textContent = '미션 완료! 배지가 활성화되었습니다.';
+          updateMissionState(mission);
+        } else {
+          missionFeedback.textContent = '아직 조건을 충족하지 못했습니다.';
+        }
+      });
+    });
+
+    startPopQuiz.addEventListener('click', () => {
+      popQuiz.classList.add('is-active');
+      popQuizFeedback.textContent = '정답을 선택해보세요.';
+      renderPopQuiz();
+    });
+
+    closePopQuiz.addEventListener('click', () => {
+      popQuiz.classList.remove('is-active');
+    });
+
+    rouletteMode.addEventListener('click', () => {
+      const tabs = ['speed', 'ox', 'blank', 'flash'];
+      const pick = tabs[Math.floor(Math.random() * tabs.length)];
+      tabButtons.forEach((btn) => {
+        btn.classList.toggle('is-active', btn.dataset.tab === pick);
+      });
+      tabPanels.forEach((panel) => panel.classList.toggle('is-active', panel.id === `tab-${pick}`));
+      if (pick === 'speed') startSpeed();
+      if (pick === 'ox') renderOxQuestion();
+      if (pick === 'blank') renderBlankQuestion();
+      if (pick === 'flash') renderFlashcard();
+    });
+
+    toggleQuizSound.addEventListener('click', () => {
+      soundOn = !soundOn;
+      toggleQuizSound.textContent = `효과음: ${soundOn ? 'ON' : 'OFF'}`;
+    });
+
+    goalInput.addEventListener('input', () => {
+      updateGoal();
+      localStorage.setItem(goalKey, String(goalInput.value));
+    });
+
+    resetGoal.addEventListener('click', () => {
+      goalInput.value = '30';
+      localStorage.setItem(goalKey, '30');
+      updateGoal();
+    });
+
+    startTimer.addEventListener('click', () => {
+      if (timerRunning) return;
+      timerRunning = true;
+      timerHint.textContent = '집중 시작! 완료 시 XP 보너스.';
+      clearInterval(timerInterval);
+      timerInterval = setInterval(tickTimer, 1000);
+    });
+
+    pauseTimer.addEventListener('click', () => {
+      timerRunning = false;
+      timerHint.textContent = '일시정지 중입니다.';
+    });
+
+    resetTimer.addEventListener('click', () => {
+      timerRunning = false;
+      setTimerMinutes(Number(goalInput.value || 25) || 25);
+      timerSeconds = 0;
+      timerHint.textContent = '타이머가 리셋되었습니다.';
+    });
+
+    presetButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        setTimerMinutes(Number(button.dataset.minutes));
+        timerSeconds = 0;
+        timerHint.textContent = `${button.dataset.minutes}분 타이머가 설정되었습니다.`;
+      });
+    });
+
+    studyNote.addEventListener('input', () => {
+      localStorage.setItem(noteKey, studyNote.value);
+      noteStatus.textContent = '자동 저장됨';
+    });
+
+    saveNote.addEventListener('click', () => {
+      localStorage.setItem(noteKey, studyNote.value);
+      noteStatus.textContent = '메모가 저장되었습니다.';
+    });
+
+    clearNote.addEventListener('click', () => {
+      studyNote.value = '';
+      localStorage.removeItem(noteKey);
+      noteStatus.textContent = '메모가 비워졌습니다.';
+    });
+
     const updateProgress = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -942,6 +1901,30 @@
     updateTime();
     updateProgress();
     updateMatchCount(blocks.length);
+    updateCompletion();
+    updateXp();
+    updateBadges();
+    updateGoal();
+    updateHistory();
+    renderRandomQuestion();
+    renderSpeedQuestion();
+    renderOxQuestion();
+    renderBlankQuestion();
+    renderFlashcard();
+    renderTimer();
+    goalInput.value = localStorage.getItem(goalKey) || '30';
+    studyNote.value = localStorage.getItem(noteKey) || '';
+    if (localStorage.getItem(themeKey) === 'dark') {
+      document.body.classList.add('theme-dark');
+    }
+    if (localStorage.getItem(focusKey) === 'on') {
+      document.body.classList.add('focus-mode');
+    }
+    missionButtons.forEach((button) => {
+      if (missionState[button.dataset.mission]) {
+        button.classList.add('is-complete');
+      }
+    });
     setInterval(updateTime, 1000 * 30);
   </script>
 </body>
