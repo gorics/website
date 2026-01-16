@@ -605,6 +605,24 @@ body.focus-mode .toc {
   font-size: 0.9rem;
 }
 
+.routine-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.routine-hint,
+.routine-status {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 8px 0 12px;
+}
+
+.routine-btn.is-complete {
+  border-color: rgba(46, 196, 135, 0.5);
+  color: #1a7f52;
+}
+
 .pop-quiz {
   position: fixed;
   inset: 0;
