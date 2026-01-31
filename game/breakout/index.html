@@ -465,9 +465,18 @@
             requestAnimationFrame(update);
         });
 
+        let canvasRect = canvas.getBoundingClientRect();
+
+        function updateCanvasRect() {
+            canvasRect = canvas.getBoundingClientRect();
+        }
+
+        window.addEventListener('resize', updateCanvasRect);
+        window.addEventListener('scroll', updateCanvasRect);
+        window.addEventListener('load', updateCanvasRect);
+
         function updatePointerPosition(clientX) {
-            const rect = canvas.getBoundingClientRect();
-            mouseX = clientX - rect.left;
+            mouseX = clientX - canvasRect.left;
         }
 
         document.addEventListener('mousemove', e => {
