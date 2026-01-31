@@ -198,6 +198,8 @@
         };
 
         let board, current, next, dropCounter, dropInterval, lastTime;
+        let boardDirty = true;
+        let nextDirty = true;
         let scoreEl = document.getElementById('score');
         let linesEl = document.getElementById('lines');
         let levelEl = document.getElementById('level');
@@ -319,6 +321,7 @@
 
         function drop() {
             current.pos.y++;
+            boardDirty = true;
             if (collide(board, current)) {
                 current.pos.y--;
                 merge(board, current);
@@ -346,6 +349,8 @@
             current.pos.x += dir;
             if (collide(board, current)) {
                 current.pos.x -= dir;
+            } else {
+                boardDirty = true;
             }
         }
 
@@ -363,6 +368,7 @@
                     return;
                 }
             }
+            boardDirty = true;
         }
 
         function update(time = 0) {
@@ -372,8 +378,14 @@
             if (dropCounter > dropInterval) {
                 drop();
             }
-            drawBoard();
-            drawNext();
+            if (boardDirty) {
+                drawBoard();
+                boardDirty = false;
+            }
+            if (nextDirty) {
+                drawNext();
+                nextDirty = false;
+            }
             requestAnimationFrame(update);
         }
 
@@ -381,7 +393,8 @@
             current = next;
             current.pos = { x: Math.floor(COLS / 2) - Math.ceil(current.matrix[0].length / 2), y: -1 };
             next = randomPiece();
-            drawNext();
+            boardDirty = true;
+            nextDirty = true;
         }
 
         function updateUI() {
