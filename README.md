@@ -1,3 +1,3 @@
 # website
 
-https://gorics.github.io/website/
+http://gorics.cloud
