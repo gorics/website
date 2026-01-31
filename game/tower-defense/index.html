@@ -367,12 +367,15 @@
 
         function findTarget(tower, range) {
             let nearest = null;
-            let nearestDist = Infinity;
+            let nearestDistSq = Infinity;
+            const rangeSq = range * range;
             enemies.forEach((enemy) => {
-                const dist = distance(tower, enemy);
-                if (dist <= range && dist < nearestDist) {
+                const dx = tower.x - enemy.x;
+                const dy = tower.y - enemy.y;
+                const distSq = dx * dx + dy * dy;
+                if (distSq <= rangeSq && distSq < nearestDistSq) {
                     nearest = enemy;
-                    nearestDist = dist;
+                    nearestDistSq = distSq;
                 }
             });
             return nearest;
