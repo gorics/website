@@ -13,6 +13,8 @@ let animationId = null;
 let particles = [];
 let cosmicBursts = [];
 let palette = [];
+let paletteColors = [];
+let gradientCache = {};
 let flowLayers = [];
 let auraSeeds = [];
 let currentSeed = 0;
@@ -41,6 +43,27 @@ function createMulberry32(seed) {
 
 function mix(a, b, t) {
   return a + (b - a) * t;
+}
+
+function parseColor(color) {
+  const match = /hsla?\(([^)]+)\)/.exec(color);
+  if (!match) return [0, 0, 0, 1];
+  const parts = match[1].split(/[,\s]+/).filter(Boolean);
+  const h = parseFloat(parts[0]);
+  const s = parseFloat(parts[1]);
+  const l = parseFloat(parts[2]);
+  const a = parts.length > 3 ? parseFloat(parts[3]) : 1;
+  return [h, s, l, a];
+}
+
+function lerpColorNumeric(c1, c2, t) {
+  const [h1, s1, l1, a1] = c1;
+  const [h2, s2, l2, a2] = c2;
+  const hueDiff = ((((h2 - h1 + 540) % 360) - 180) / 360) * t;
+  const h = (h1 + hueDiff * 360 + 360) % 360;
+  const s = mix(s1, s2, t);
+  const l = mix(l1, l2, t);
+  return [h, s, l];
 }
 
 function lerpColor(colorA, colorB, t) {
@@ -209,18 +232,35 @@ function updateParticles(dt) {
 
     const px = particle.x * width;
     const py = particle.y * height;
-    const baseColor = palette[particle.layer % palette.length];
-    const nextColor = palette[(particle.layer + 1) % palette.length];
-    const colorMix = (Math.sin(time * 0.8 + particle.phase) * 0.5 + 0.5) ** 1.5;
-    ctx.fillStyle = lerpColor(baseColor, nextColor, colorMix);
+
+    const rawMix = (Math.sin(time * 0.8 + particle.phase) * 0.5 + 0.5) ** 1.5;
+    const mixStep = Math.floor(rawMix * 100);
+    const cacheKey = `${particle.layer}_${mixStep}`;
+
+    let gradient = gradientCache[cacheKey];
+    if (!gradient) {
+      const baseColor = paletteColors[particle.layer % palette.length];
+      const nextColor = paletteColors[(particle.layer + 1) % palette.length];
+      const t = mixStep / 100;
+      const [h, s, l] = lerpColorNumeric(baseColor, nextColor, t);
+
+      gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 1);
+      gradient.addColorStop(0, `hsla(${h.toFixed(2)}, ${s.toFixed(2)}%, ${l.toFixed(2)}%, 1)`);
+      gradient.addColorStop(1, `hsla(${h.toFixed(2)}, ${s.toFixed(2)}%, ${l.toFixed(2)}%, 0)`);
+      gradientCache[cacheKey] = gradient;
+    }
+
     const r = mix(0.5, 2.4, particle.scale) * (1 + Math.sin(time * 0.9 + particle.phase) * 0.35);
-    const gradient = ctx.createRadialGradient(px, py, 0, px, py, r * 40);
-    gradient.addColorStop(0, ctx.fillStyle.replace(/\d?\.\d+\)/, "1)"));
-    gradient.addColorStop(1, ctx.fillStyle.replace(/\d?\.\d+\)/, "0)"));
+    const radius = r * 40;
+
+    ctx.save();
+    ctx.translate(px, py);
+    ctx.scale(radius, radius);
     ctx.fillStyle = gradient;
     ctx.beginPath();
-    ctx.arc(px, py, r * mix(18, 48, particle.glow), 0, Math.PI * 2);
+    ctx.arc(0, 0, mix(18, 48, particle.glow) / 40, 0, Math.PI * 2);
     ctx.fill();
+    ctx.restore();
   });
 
   ctx.globalCompositeOperation = "screen";
@@ -276,6 +316,8 @@ function setSeed(seed) {
 
   const rng = createMulberry32(normalized);
   palette = generatePalette(rng);
+  paletteColors = palette.map(parseColor);
+  gradientCache = {};
   flowLayers = createFlowLayers(rng);
   auraSeeds = createAuraSeeds(rng);
   particles = createParticles(rng);
