@@ -3,295 +3,843 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>브라우저 Linux</title>
+  <title>브라우저 Linux 2.0</title>
   <style>
     * { box-sizing: border-box; }
     body {
-      margin: 0;
-      background: #0b1020;
-      color: #e5e7eb;
+      margin: 0; background: #0b1020; color: #e5e7eb;
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
-    .wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .title {
-      font-size: 28px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-    .sub {
-      color: #aab3c5;
-      margin-bottom: 18px;
-      line-height: 1.5;
-    }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 20px; }
+    .title { font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+    .sub { color: #aab3c5; margin-bottom: 18px; line-height: 1.5; font-size: 13px; }
     .panel {
-      background: #111827;
-      border: 1px solid #263041;
-      border-radius: 16px;
-      overflow: hidden;
+      background: #111827; border: 1px solid #263041;
+      border-radius: 16px; overflow: hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,.35);
     }
     .toolbar {
-      display: flex;
-      gap: 10px;
-      padding: 12px;
-      border-bottom: 1px solid #263041;
-      background: #0f172a;
-      flex-wrap: wrap;
+      display: flex; gap: 10px; padding: 10px 12px;
+      border-bottom: 1px solid #263041; background: #0f172a; flex-wrap: wrap;
     }
     button {
-      border: 0;
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-weight: 700;
-      cursor: pointer;
-      color: white;
+      border: 0; border-radius: 10px; padding: 8px 14px;
+      font-weight: 700; cursor: pointer; color: white; font-size: 13px;
+      font-family: inherit;
     }
-    .btn-run { background: #2563eb; }
+    .btn-run   { background: #2563eb; }
+    .btn-run:hover { background: #1d4ed8; }
     .btn-clear { background: #374151; }
+    .btn-clear:hover { background: #4b5563; }
     .btn-reboot { background: #dc2626; }
+    .btn-reboot:hover { background: #b91c1c; }
     .terminal {
-      height: 500px;
-      overflow: auto;
-      padding: 14px;
-      white-space: pre-wrap;
-      word-break: break-word;
-      line-height: 1.5;
-      background: #020617;
+      height: 460px; overflow-y: auto; padding: 14px;
+      white-space: pre-wrap; word-break: break-word;
+      line-height: 1.55; background: #020617; font-size: 13px;
     }
-    .ok { color: #86efac; }
+    .ok  { color: #86efac; }
     .err { color: #fca5a5; }
-    .muted { color: #94a3b8; }
+    .dim { color: #94a3b8; }
+    .cmd { color: #67e8f9; }
+    .warn { color: #fde68a; }
     .inputbox {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
-      padding: 12px;
-      border-top: 1px solid #263041;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 10px; padding: 12px; border-top: 1px solid #263041;
       background: #0f172a;
     }
     textarea {
-      width: 100%;
-      min-height: 78px;
-      resize: vertical;
-      border-radius: 12px;
-      border: 1px solid #334155;
-      background: #020617;
-      color: #e5e7eb;
-      padding: 12px;
-      font: inherit;
-      outline: none;
+      width: 100%; min-height: 72px; resize: vertical;
+      border-radius: 12px; border: 1px solid #334155;
+      background: #020617; color: #e5e7eb;
+      padding: 10px 12px; font: 13px/1.5 ui-monospace, monospace; outline: none;
     }
-    .hint {
-      padding: 0 12px 12px;
-      color: #94a3b8;
-      font-size: 13px;
-      background: #0f172a;
-    }
-    iframe {
-      width: 0;
-      height: 0;
-      border: 0;
-      position: absolute;
-      left: -9999px;
-      top: -9999px;
-    }
+    textarea:focus { border-color: #3b82f6; }
+    .hint { padding: 0 12px 10px; color: #94a3b8; font-size: 12px; background: #0f172a; }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="title">브라우저 Linux</div>
-    <div class="sub">
-      index.html 하나만 GitHub Pages에 올리면 부팅되는 실제 Linux 명령 실행기<br>
-      Linux 준비 완료 시 명령어를 입력하면 실제 셸로 전달됨
-    </div>
-
-    <div class="panel">
-      <div class="toolbar">
-        <button class="btn-clear" id="clearBtn">출력 지우기</button>
-        <button class="btn-reboot" id="rebootBtn">재부팅</button>
-      </div>
-
-      <div class="terminal" id="terminal"></div>
-
-      <div class="inputbox">
-        <textarea id="cmd" spellcheck="false" placeholder='예: uname -a, ls, cat /etc/os-release&#10;여러 줄 붙여넣기도 가능'></textarea>
-        <button class="btn-run" id="runBtn">실행</button>
-      </div>
-      <div class="hint">Shift+Enter = 줄바꿈, Enter = 실행</div>
-    </div>
-
-    <!-- 예시용 숨김 iframe -->
-    <!-- 네가 실제 Linux를 띄우는 iframe/webvm/v86 iframe이 있다면 id="linuxFrame"만 맞추면 됨 -->
-    <iframe id="linuxFrame" src="about:blank"></iframe>
+<div class="wrap">
+  <div class="title">🐧 브라우저 Linux 2.0</div>
+  <div class="sub">
+    완전한 가상 파일시스템과 셸 환경 · 파이프·리다이렉션·변수 지원
   </div>
+  <div class="panel">
+    <div class="toolbar">
+      <button class="btn-clear" id="clearBtn">화면 지우기</button>
+      <button class="btn-reboot" id="rebootBtn">재부팅</button>
+    </div>
+    <div class="terminal" id="terminal"></div>
+    <div class="inputbox">
+      <textarea id="cmd" spellcheck="false"
+        placeholder="명령어 입력 (예: ls -la, cat /etc/os-release, ps aux)&#10;여러 줄 붙여넣기 가능"></textarea>
+      <button class="btn-run" id="runBtn">실행</button>
+    </div>
+    <div class="hint">Shift+Enter = 줄바꿈 &nbsp;|&nbsp; Enter = 실행</div>
+  </div>
+</div>
 
-  <script>
-    const term = document.getElementById('terminal');
-    const cmdEl = document.getElementById('cmd');
-    const runBtn = document.getElementById('runBtn');
-    const clearBtn = document.getElementById('clearBtn');
-    const rebootBtn = document.getElementById('rebootBtn');
-    const linuxFrame = document.getElementById('linuxFrame');
+<script>
+(function() {
+'use strict';
 
-    let linuxReady = true; // 네 환경에 맞게 실제 ready 신호로 바꿔도 됨
-    let busy = false;
+/* ══════════════════════════════════════════
+   가상 파일시스템
+══════════════════════════════════════════ */
+const fs = {
+  '/': { type:'dir', perm:'drwxr-xr-x', owner:'root' },
+  '/bin': { type:'dir', perm:'drwxr-xr-x', owner:'root' },
+  '/etc': { type:'dir', perm:'drwxr-xr-x', owner:'root' },
+  '/home': { type:'dir', perm:'drwxr-xr-x', owner:'root' },
+  '/home/user': { type:'dir', perm:'drwxr-xr-x', owner:'user' },
+  '/home/user/documents': { type:'dir', perm:'drwxr-xr-x', owner:'user' },
+  '/home/user/projects': { type:'dir', perm:'drwxr-xr-x', owner:'user' },
+  '/tmp': { type:'dir', perm:'drwxrwxrwt', owner:'root' },
+  '/proc': { type:'dir', perm:'dr-xr-xr-x', owner:'root' },
+  '/var': { type:'dir', perm:'drwxr-xr-x', owner:'root' },
+  '/var/log': { type:'dir', perm:'drwxr-xr-x', owner:'root' },
+  '/etc/hostname':    { type:'file', content:'browser-linux\n', perm:'-rw-r--r--', owner:'root' },
+  '/etc/os-release':  { type:'file', content:'NAME="Browser Linux"\nVERSION="2.0.0"\nID=browserlinux\nPRETTY_NAME="Browser Linux 2.0"\n', perm:'-rw-r--r--', owner:'root' },
+  '/etc/hosts':       { type:'file', content:'127.0.0.1\tlocalhost\n127.0.1.1\tbrowser-linux\n', perm:'-rw-r--r--', owner:'root' },
+  '/etc/passwd':      { type:'file', content:'root:x:0:0:root:/root:/bin/bash\nuser:x:1000:1000:user:/home/user:/bin/bash\n', perm:'-rw-r--r--', owner:'root' },
+  '/proc/version':    { type:'file', content:'Browser Linux version 2.0.0 (JavaScript Engine) #1 SMP\n', perm:'-r--r--r--', owner:'root' },
+  '/proc/uptime':     { type:'file', content:'', perm:'-r--r--r--', owner:'root', dynamic:'uptime' },
+  '/proc/meminfo':    { type:'file', content:'', perm:'-r--r--r--', owner:'root', dynamic:'meminfo' },
+  '/proc/cpuinfo':    { type:'file', content:'processor\t: 0\nvendor_id\t: JavaScriptEngine\nmodel name\t: Browser vCPU @ 2.0GHz\ncpu cores\t: 1\n', perm:'-r--r--r--', owner:'root' },
+  '/var/log/syslog':  { type:'file', content:'', perm:'-rw-r-----', owner:'root', dynamic:'syslog' },
+  '/home/user/.bashrc': { type:'file', content:'# ~/.bashrc\nexport PS1="\\u@\\h:\\w$ "\nalias ll="ls -la"\nalias la="ls -a"\n', perm:'-rw-r--r--', owner:'user' },
+  '/home/user/readme.txt': { type:'file', content:'Browser Linux 2.0\n\n브라우저에서 실행되는 완전한 Linux 셸 시뮬레이터.\n\n지원 명령어: help 입력\n', perm:'-rw-r--r--', owner:'user' },
+  '/home/user/documents/notes.md': { type:'file', content:'# 메모\n\n## 할 일\n- [ ] 프로젝트 기획\n- [ ] 코드 리뷰\n- [x] 문서 작성\n', perm:'-rw-r--r--', owner:'user' },
+  '/home/user/projects/hello.py': { type:'file', content:'#!/usr/bin/env python3\nprint("Hello from Browser Linux!")\n', perm:'-rwxr-xr-x', owner:'user' },
+  '/home/user/projects/server.js': { type:'file', content:'const http = require("http");\nconst server = http.createServer((req, res) => {\n  res.end("Hello World\\n");\n});\nserver.listen(3000);\n', perm:'-rw-r--r--', owner:'user' },
+};
 
-    function print(text = '', cls = '') {
-      const line = document.createElement('div');
-      if (cls) line.className = cls;
-      line.textContent = text;
-      term.appendChild(line);
-      term.scrollTop = term.scrollHeight;
-    }
+const bootTime = Date.now();
+let cwd = '/home/user';
+let env = { HOME:'/home/user', USER:'user', HOSTNAME:'browser-linux', SHELL:'/bin/bash', PWD:'/home/user', TERM:'xterm-256color' };
+let aliases = { ll:'ls -la', la:'ls -a', '..':'cd ..', cls:'clear' };
+let history = [];
+let variables = {};
 
-    function printHtml(html, cls = '') {
-      const line = document.createElement('div');
-      if (cls) line.className = cls;
-      line.innerHTML = html;
-      term.appendChild(line);
-      term.scrollTop = term.scrollHeight;
-    }
+/* ── 동적 컨텐츠 ── */
+function dynContent(key) {
+  if (key === 'uptime') {
+    const s = ((Date.now() - bootTime) / 1000).toFixed(2);
+    return s + ' ' + (s * 0.3).toFixed(2) + '\n';
+  }
+  if (key === 'meminfo') {
+    const free = Math.floor(Math.random() * 50000 + 150000);
+    return 'MemTotal:\t262144 kB\nMemFree:\t' + free + ' kB\nMemAvailable:\t' + (free + 20000) + ' kB\n';
+  }
+  if (key === 'syslog') {
+    return new Date().toLocaleString() + ' browser-linux kernel: Browser Linux booted\n';
+  }
+  return '';
+}
 
-    function bootMessage() {
-      term.innerHTML = '';
-      print('Linux booted successfully.', 'ok');
-      print('실행 가능한 실제 Linux 셸이 준비됨.', 'ok');
-      print('');
-      print('추천 명령: uname -a, cat /etc/os-release, ls /, free, ps', 'muted');
-      print('');
-    }
+/* ── 경로 해석 ── */
+function resolve(p) {
+  if (!p || p === '~') return env.HOME;
+  if (p.startsWith('~/')) p = env.HOME + p.slice(1);
+  if (!p.startsWith('/')) p = cwd + '/' + p;
+  const parts = p.split('/').filter(Boolean);
+  const out = [];
+  for (const pt of parts) {
+    if (pt === '.') continue;
+    if (pt === '..') { out.pop(); continue; }
+    out.push(pt);
+  }
+  return '/' + out.join('/');
+}
 
-    bootMessage();
+function getNode(path) {
+  const n = fs[path];
+  if (!n) return null;
+  if (n.dynamic) return { ...n, content: dynContent(n.dynamic) };
+  return n;
+}
 
-    async function sendCommandToRealShell(command) {
-      // 핵심: "화면에만 출력" 말고 실제 셸 stdin으로 보내야 함
-      // 아래는 최대한 여러 방식에 대응하는 범용 코드
-      const cmdWithNewline = command.endsWith('\n') ? command : command + '\n';
+function children(path) {
+  const prefix = path === '/' ? '/' : path + '/';
+  return Object.keys(fs).filter(k => {
+    if (k === path) return false;
+    const rest = k.startsWith(prefix) ? k.slice(prefix.length) : null;
+    return rest && !rest.includes('/');
+  }).map(k => k.split('/').pop());
+}
 
-      // 1) postMessage 기반
-      try {
-        linuxFrame.contentWindow?.postMessage({
-          type: 'linux-command',
-          command: cmdWithNewline
-        }, '*');
-      } catch (e) {}
+function fileContent(path) {
+  const n = getNode(path);
+  return (n && n.type === 'file') ? n.content : null;
+}
 
-      // 2) 전역 shell 객체가 있는 경우
-      if (window.shell && typeof window.shell.write === 'function') {
-        window.shell.write(cmdWithNewline);
-        return true;
-      }
+/* ════════════════════════════════════════
+   터미널 출력
+════════════════════════════════════════ */
+const term = document.getElementById('terminal');
 
-      // 3) 전역 pty 객체가 있는 경우
-      if (window.pty && typeof window.pty.write === 'function') {
-        window.pty.write(cmdWithNewline);
-        return true;
-      }
+function print(text, cls) {
+  const d = document.createElement('div');
+  if (cls) d.className = cls;
+  d.textContent = text;
+  term.appendChild(d);
+  term.scrollTop = term.scrollHeight;
+}
 
-      // 4) wasm tty 입력 함수가 있는 경우
-      if (window.termProcess && typeof window.termProcess.input === 'function') {
-        window.termProcess.input(cmdWithNewline);
-        return true;
-      }
+function printHTML(html) {
+  const d = document.createElement('div');
+  d.innerHTML = html;
+  term.appendChild(d);
+  term.scrollTop = term.scrollHeight;
+}
 
-      // 5) writer API 기반
-      if (window.shellWriter && typeof window.shellWriter.write === 'function') {
-        await window.shellWriter.write(cmdWithNewline);
-        return true;
-      }
+/* ════════════════════════════════════════
+   명령어 구현
+════════════════════════════════════════ */
+function cmdHelp() {
+  const cmds = [
+    ['파일/디렉토리', 'ls, cd, pwd, mkdir, rm, rmdir, cp, mv, touch, find, tree'],
+    ['텍스트',        'cat, head, tail, grep, wc, echo, printf, sort, uniq, rev'],
+    ['시스템',        'uname, whoami, hostname, uptime, date, df, free, ps, env, export'],
+    ['유틸리티',      'clear, history, alias, which, file, base64, seq, expr, factor, yes'],
+    ['재미',          'cowsay, fortune, neofetch, sl, cal'],
+    ['기타',          'help, exit, true, false, sleep, test'],
+  ];
+  print('Browser Linux 2.0 — 사용 가능한 명령어', 'ok');
+  print('');
+  cmds.forEach(([cat, list]) => print('  ' + cat.padEnd(14) + ' ' + list, 'dim'));
+  print('');
+  print('  파이프(|), 리다이렉션(>, >>), 세미콜론(;), &&, ||, 변수($VAR) 지원', 'dim');
+}
 
-      // 6) Module 기반 커스텀 훅
-      if (window.Module && typeof window.Module.sendToShell === 'function') {
-        window.Module.sendToShell(cmdWithNewline);
-        return true;
-      }
+function cmdLs(args) {
+  const flags = args.filter(a => a.startsWith('-')).join('');
+  const all  = flags.includes('a');
+  const long = flags.includes('l');
+  const target = args.find(a => !a.startsWith('-'));
+  const path = resolve(target || cwd);
+  const node = getNode(path);
+  if (!node || node.type !== 'dir') { print('ls: ' + (target||cwd) + ': 디렉토리 없음', 'err'); return; }
 
-      // 아무것도 없으면 실패
-      return false;
-    }
+  let list = children(path);
+  if (all) list = ['.', '..'].concat(list);
 
-    async function runCommand() {
-      if (busy) return;
-      const raw = cmdEl.value;
-      if (!raw.trim()) return;
+  if (long) {
+    print('total ' + list.length * 4);
+    list.forEach(name => {
+      const cp = path === '/' ? '/' + name : path + '/' + name;
+      const cn = getNode(cp) || {};
+      const isDir = (name === '.' || name === '..') || (cn.type === 'dir');
+      const perm = cn.perm || (isDir ? 'drwxr-xr-x' : '-rw-r--r--');
+      const owner = cn.owner || 'user';
+      const size = (cn.content || '').length || (isDir ? 4096 : 0);
+      const color = isDir ? '#93c5fd' : (name.endsWith('.py')||name.endsWith('.sh') ? '#86efac' : (name.startsWith('.') ? '#a5b4fc' : '#e5e7eb'));
+      printHTML(`<span style="color:#94a3b8">${perm}  1 ${owner.padEnd(6)} ${owner.padEnd(6)} ${String(size).padStart(6)} Mar 28 </span><span style="color:${color}">${name}</span>`);
+    });
+  } else {
+    let line = '';
+    list.forEach(name => {
+      const cp = path === '/' ? '/' + name : path + '/' + name;
+      const cn = getNode(cp) || {};
+      const isDir = name === '.' || name === '..' || cn.type === 'dir';
+      const color = isDir ? '#93c5fd' : (name.endsWith('.py')||name.endsWith('.sh') ? '#86efac' : (name.startsWith('.') ? '#a5b4fc' : '#e5e7eb'));
+      line += `<span style="color:${color}">${name}</span>  `;
+    });
+    printHTML(line || '<span style="color:#94a3b8">(비어있음)</span>');
+  }
+}
 
-      if (!linuxReady) {
-        print('[error] Linux가 아직 준비되지 않음', 'err');
-        return;
-      }
+function cmdCd(args) {
+  const target = args[0] || '~';
+  const path = resolve(target);
+  const node = getNode(path);
+  if (!node || node.type !== 'dir') { print('cd: ' + target + ': 디렉토리 없음', 'err'); return; }
+  cwd = path;
+  env.PWD = cwd;
+}
 
-      busy = true;
-      runBtn.disabled = true;
+function cmdCat(args) {
+  args.filter(a => !a.startsWith('-')).forEach(a => {
+    const c = fileContent(resolve(a));
+    if (c === null) { print('cat: ' + a + ': 파일 없음', 'err'); return; }
+    c.split('\n').forEach(l => print(l));
+  });
+  return args.map(a => fileContent(resolve(a)) || '').join('');
+}
 
-      try {
-        // 여러 줄 붙여넣기 대응
-        const lines = raw.replace(/\r\n/g, '\n').split('\n');
-        for (const line of lines) {
-          const command = line.trim();
-          if (!command) continue;
+function cmdHead(args) {
+  let n = 10;
+  const ni = args.indexOf('-n');
+  if (ni !== -1 && args[ni+1]) { n = parseInt(args[ni+1]); args.splice(ni,2); }
+  const file = args.find(a => !a.startsWith('-'));
+  if (!file) { print('head: 파일명 필요', 'err'); return; }
+  const c = fileContent(resolve(file));
+  if (c === null) { print('head: ' + file + ': 파일 없음', 'err'); return; }
+  const lines = c.split('\n').slice(0, n);
+  lines.forEach(l => print(l));
+  return lines.join('\n');
+}
 
-          print('$ ' + command);
+function cmdTail(args) {
+  let n = 10;
+  const ni = args.indexOf('-n');
+  if (ni !== -1 && args[ni+1]) { n = parseInt(args[ni+1]); args.splice(ni,2); }
+  const file = args.find(a => !a.startsWith('-'));
+  if (!file) { print('tail: 파일명 필요', 'err'); return; }
+  const c = fileContent(resolve(file));
+  if (c === null) { print('tail: ' + file + ': 파일 없음', 'err'); return; }
+  const lines = c.split('\n').slice(-n);
+  lines.forEach(l => print(l));
+  return lines.join('\n');
+}
 
-          const ok = await sendCommandToRealShell(command);
-          if (!ok) {
-            print('[error] 실제 셸로 명령 전달 실패', 'err');
-            print('[hint] 지금 페이지는 명령을 화면에만 찍고 있었을 가능성이 큼', 'muted');
-            break;
-          }
-        }
+function cmdEcho(args) {
+  let text = args.join(' ').replace(/\$(\w+)/g, (_, k) => env[k] || variables[k] || '');
+  if ((text.startsWith('"')&&text.endsWith('"')) || (text.startsWith("'")&&text.endsWith("'"))) text = text.slice(1,-1);
+  print(text);
+  return text;
+}
 
-        cmdEl.value = '';
-      } catch (e) {
-        print('[error] ' + (e?.message || String(e)), 'err');
-      } finally {
-        busy = false;
-        runBtn.disabled = false;
-        cmdEl.focus();
-      }
-    }
+function cmdMkdir(args) {
+  args.filter(a => !a.startsWith('-')).forEach(name => {
+    const path = resolve(name);
+    if (fs[path]) { print('mkdir: ' + name + ': 이미 존재', 'err'); return; }
+    fs[path] = { type:'dir', perm:'drwxr-xr-x', owner:'user' };
+  });
+}
 
-    runBtn.addEventListener('click', runCommand);
+function cmdTouch(args) {
+  args.forEach(name => {
+    const path = resolve(name);
+    if (!fs[path]) fs[path] = { type:'file', content:'', perm:'-rw-r--r--', owner:'user' };
+  });
+}
 
-    cmdEl.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        runCommand();
+function cmdRm(args) {
+  const rFlag = args.some(a => a.includes('r') || a.includes('R'));
+  args.filter(a => !a.startsWith('-')).forEach(name => {
+    const path = resolve(name);
+    if (!fs[path]) { print('rm: ' + name + ': 파일 없음', 'err'); return; }
+    if (fs[path].type === 'dir' && !rFlag) { print('rm: ' + name + ': 디렉토리입니다 (-r 필요)', 'err'); return; }
+    Object.keys(fs).filter(k => k === path || k.startsWith(path + '/')).forEach(k => delete fs[k]);
+  });
+}
+
+function cmdCp(args) {
+  if (args.length < 2) { print('cp: 인자 부족', 'err'); return; }
+  const src = resolve(args[0]), dst = resolve(args[1]);
+  if (!fs[src]) { print('cp: ' + args[0] + ': 파일 없음', 'err'); return; }
+  fs[dst] = { ...fs[src] };
+}
+
+function cmdMv(args) {
+  if (args.length < 2) { print('mv: 인자 부족', 'err'); return; }
+  cmdCp(args);
+  delete fs[resolve(args[0])];
+}
+
+function cmdGrep(args) {
+  const flags = args.filter(a => a.startsWith('-')).join('');
+  const nonFlags = args.filter(a => !a.startsWith('-'));
+  if (nonFlags.length < 1) { print('grep: 패턴 필요', 'err'); return ''; }
+  const pattern = nonFlags[0];
+  const files = nonFlags.slice(1);
+  const ignoreCase = flags.includes('i');
+  const showNum = flags.includes('n');
+  const results = [];
+
+  const process = (content, label) => {
+    content.split('\n').forEach((line, i) => {
+      const match = ignoreCase ? line.toLowerCase().includes(pattern.toLowerCase()) : line.includes(pattern);
+      if (match) {
+        const num = showNum ? (i+1) + ':' : '';
+        const prefix = label ? label + ':' : '';
+        print(prefix + num + line, 'ok');
+        results.push(line);
       }
     });
+  };
 
-    clearBtn.addEventListener('click', () => {
-      term.innerHTML = '';
+  if (files.length === 0) return '';
+  files.forEach(f => {
+    const c = fileContent(resolve(f));
+    if (c === null) { print('grep: ' + f + ': 파일 없음', 'err'); return; }
+    process(c, files.length > 1 ? f : '');
+  });
+  return results.join('\n');
+}
+
+function cmdWc(args) {
+  args.filter(a => !a.startsWith('-')).forEach(f => {
+    const c = fileContent(resolve(f));
+    if (c === null) { print('wc: ' + f + ': 파일 없음', 'err'); return; }
+    const lines = c.split('\n').length - (c.endsWith('\n') ? 1 : 0);
+    const words = c.trim().split(/\s+/).filter(Boolean).length;
+    print('  ' + lines + '\t' + words + '\t' + c.length + '\t' + f);
+  });
+}
+
+function cmdFind(args) {
+  const startPath = resolve(args[0] || '.');
+  const ni = args.indexOf('-name');
+  const pattern = ni !== -1 ? args[ni+1] : null;
+  const ti = args.indexOf('-type');
+  const typeFilter = ti !== -1 ? args[ti+1] : null;
+
+  Object.keys(fs).forEach(path => {
+    if (!path.startsWith(startPath === '/' ? '/' : startPath)) return;
+    const node = fs[path];
+    if (typeFilter === 'f' && node.type !== 'file') return;
+    if (typeFilter === 'd' && node.type !== 'dir') return;
+    if (pattern) {
+      const name = path.split('/').pop();
+      const regex = new RegExp('^' + pattern.replace(/\*/g,'.*').replace(/\?/g,'.') + '$');
+      if (!regex.test(name)) return;
+    }
+    print(path);
+  });
+}
+
+function cmdTree(args) {
+  const startPath = resolve(args[0] || '.');
+  print(startPath === cwd ? '.' : startPath);
+  let dirs = 0, files = 0;
+  function walk(p, prefix) {
+    const list = children(p);
+    list.forEach((name, i) => {
+      const isLast = i === list.length - 1;
+      const cp = p === '/' ? '/'+name : p+'/'+name;
+      const node = fs[cp];
+      const isDir = node && node.type === 'dir';
+      const conn = isLast ? '└── ' : '├── ';
+      const color = isDir ? '#93c5fd' : '#e5e7eb';
+      printHTML(`${prefix}${conn}<span style="color:${color}">${name}</span>`);
+      if (isDir) { dirs++; walk(cp, prefix + (isLast ? '    ' : '│   ')); }
+      else files++;
     });
+  }
+  walk(startPath, '');
+  print('\n' + dirs + '개 디렉토리, ' + files + '개 파일', 'dim');
+}
 
-    rebootBtn.addEventListener('click', () => {
-      linuxReady = false;
-      term.innerHTML = '';
-      print('재부팅 중...', 'muted');
+function cmdSort(args, stdin) {
+  const input = stdin || (args[0] ? (fileContent(resolve(args[0])) || '') : '');
+  const rFlag = args.includes('-r');
+  const lines = input.trim().split('\n').sort();
+  if (rFlag) lines.reverse();
+  const result = lines.join('\n');
+  if (!stdin) lines.forEach(l => print(l));
+  return result;
+}
 
-      setTimeout(() => {
-        linuxReady = true;
-        bootMessage();
-      }, 1200);
-    });
+function cmdUniq(args, stdin) {
+  const input = stdin || (args[0] ? (fileContent(resolve(args[0])) || '') : '');
+  const lines = input.trim().split('\n');
+  const result = lines.filter((l, i) => i === 0 || l !== lines[i-1]).join('\n');
+  if (!stdin) result.split('\n').forEach(l => print(l));
+  return result;
+}
 
-    // 실제 Linux iframe/worker 쪽에서 출력 보내주면 여기서 받아서 터미널에 표시
-    window.addEventListener('message', (event) => {
-      const data = event.data;
-      if (!data) return;
+function cmdNeofetch() {
+  const up = Math.floor((Date.now() - bootTime) / 60000);
+  printHTML(`<span style="color:#67e8f9;font-weight:700">user@browser-linux</span>`);
+  printHTML(`<span style="color:#94a3b8">──────────────────────</span>`);
+  [
+    ['OS',      'Browser Linux 2.0'],
+    ['Kernel',  '2.0.0-browser'],
+    ['Uptime',  up + ' 분'],
+    ['Shell',   'bash 5.2.0'],
+    ['Terminal','xterm-256color'],
+    ['CPU',     'Browser vCPU @ 2.0GHz'],
+    ['Memory',  '64MiB / 256MiB'],
+  ].forEach(([k, v]) => {
+    printHTML(`<span style="color:#67e8f9;font-weight:600">${k}</span>: ${v}`);
+  });
+}
 
-      if (data.type === 'linux-output') {
-        print(String(data.output ?? ''));
-      } else if (data.type === 'linux-error') {
-        print(String(data.error ?? ''), 'err');
-      } else if (data.type === 'linux-ready') {
-        linuxReady = true;
-        print('Linux 준비 완료', 'ok');
+function cmdCowsay(args) {
+  const msg = args.join(' ') || 'Moo!';
+  const bar = '_'.repeat(msg.length + 2);
+  print(' ' + bar);
+  print('< ' + msg + ' >');
+  print(' ' + '-'.repeat(msg.length + 2));
+  print('        \\   ^__^');
+  print('         \\  (oo)\\_______');
+  print('            (__)\\       )\\/\\');
+  print('                ||----w |');
+  print('                ||     ||');
+}
+
+function cmdFortune() {
+  const f = [
+    'Talk is cheap. Show me the code. — Linus Torvalds',
+    'The best way to predict the future is to invent it. — Alan Kay',
+    'Any sufficiently advanced technology is indistinguishable from magic.',
+    'Simplicity is the ultimate sophistication.',
+    'First, solve the problem. Then, write the code.',
+  ];
+  print(f[Math.floor(Math.random() * f.length)]);
+}
+
+function cmdCal() {
+  const d = new Date();
+  const month = d.toLocaleString('ko-KR', {month:'long'});
+  const year = d.getFullYear();
+  const today = d.getDate();
+  print('      ' + month + ' ' + year);
+  print('일 월 화 수 목 금 토');
+  const first = new Date(year, d.getMonth(), 1).getDay();
+  const last  = new Date(year, d.getMonth()+1, 0).getDate();
+  let line = '   '.repeat(first);
+  for (let i = 1; i <= last; i++) {
+    const s = String(i).padStart(2);
+    line += (i === today ? '[' + s + ']' : ' ' + s + ' ');
+    if ((first + i) % 7 === 0) { print(line); line = ''; }
+  }
+  if (line.trim()) print(line);
+}
+
+function cmdFactor(args) {
+  let n = parseInt(args[0]);
+  if (!n || n < 2) { print('factor: 2 이상의 숫자 필요', 'err'); return; }
+  const orig = n, factors = [];
+  for (let d = 2; d * d <= n; d++) while (n % d === 0) { factors.push(d); n /= d; }
+  if (n > 1) factors.push(n);
+  print(orig + ': ' + factors.join(' '));
+}
+
+/* ══════════════════════════════════════════
+   명령어 파서
+══════════════════════════════════════════ */
+function parseTokens(str) {
+  const tokens = [];
+  let cur = '', inSingle = false, inDouble = false;
+  for (let i = 0; i < str.length; i++) {
+    const c = str[i];
+    if (c === "'" && !inDouble) { inSingle = !inSingle; continue; }
+    if (c === '"'  && !inSingle) { inDouble = !inDouble; continue; }
+    if (c === ' ' && !inSingle && !inDouble) {
+      if (cur) { tokens.push(cur); cur = ''; }
+    } else cur += c;
+  }
+  if (cur) tokens.push(cur);
+  return tokens;
+}
+
+/* 변수 대입 처리: VAR=value */
+function handleAssign(str) {
+  const m = str.match(/^([A-Za-z_]\w*)=(.*)$/);
+  if (m) { variables[m[1]] = m[2].replace(/\$(\w+)/g, (_, k) => env[k] || variables[k] || ''); return true; }
+  return false;
+}
+
+/* 리다이렉션 파싱 */
+function parseRedirect(str) {
+  let redirect = null, append = false;
+  let cmd = str;
+  const ar = cmd.match(/(.*?)>>(.*)/);
+  if (ar) { cmd = ar[1].trim(); redirect = ar[2].trim(); append = true; }
+  else {
+    const r = cmd.match(/(.*?)>(.*)/);
+    if (r) { cmd = r[1].trim(); redirect = r[2].trim(); }
+  }
+  return { cmd, redirect, append };
+}
+
+/* 단일 명령 실행 (stdin 선택) */
+function runOne(raw, stdin) {
+  raw = raw.trim();
+  if (!raw) return '';
+
+  // 별칭 치환
+  const firstWord = raw.split(/\s+/)[0];
+  if (aliases[firstWord]) raw = aliases[firstWord] + raw.slice(firstWord.length);
+
+  // 변수 대입
+  if (handleAssign(raw)) return '';
+
+  // 변수 치환
+  raw = raw.replace(/\$(\w+)/g, (_, k) => env[k] || variables[k] || '');
+
+  const { cmd, redirect, append } = parseRedirect(raw);
+  const tokens = parseTokens(cmd);
+  const [command, ...args] = tokens;
+  if (!command) return '';
+
+  // 출력 캡처 (리다이렉션용)
+  let captured = null;
+  if (redirect) {
+    captured = '';
+    const origPrint = window._capturedLines = [];
+  }
+
+  let result = '';
+
+  switch (command) {
+    case 'help':    cmdHelp(); break;
+    case 'ls':      cmdLs(args); break;
+    case 'cd':      cmdCd(args); break;
+    case 'pwd':     print(cwd); result = cwd; break;
+    case 'cat':     result = cmdCat(args) || ''; break;
+    case 'head':    result = cmdHead(args) || ''; break;
+    case 'tail':    result = cmdTail(args) || ''; break;
+    case 'echo':    result = cmdEcho(args); break;
+    case 'mkdir':   cmdMkdir(args); break;
+    case 'touch':   cmdTouch(args); break;
+    case 'rm':      cmdRm(args); break;
+    case 'rmdir':   cmdRm(args); break;
+    case 'cp':      cmdCp(args); break;
+    case 'mv':      cmdMv(args); break;
+    case 'grep':    result = cmdGrep(args, stdin||undefined) || ''; break;
+    case 'wc':      cmdWc(args); break;
+    case 'find':    cmdFind(args); break;
+    case 'tree':    cmdTree(args); break;
+    case 'sort':    result = cmdSort(args, stdin||undefined); break;
+    case 'uniq':    result = cmdUniq(args, stdin||undefined); break;
+    case 'rev': {
+      const input2 = stdin || (args[0] ? (fileContent(resolve(args[0]))||'') : '');
+      result = input2.trim().split('\n').map(l => [...l].reverse().join('')).join('\n');
+      if (!stdin) result.split('\n').forEach(l => print(l));
+      break;
+    }
+    case 'wc': cmdWc(args); break;
+    case 'uname':
+      if (args.includes('-a') || !args.length) print('Browser Linux browser-linux 2.0.0-browser #1 SMP wasm32 GNU/Linux');
+      else if (args.includes('-r')) print('2.0.0-browser');
+      else if (args.includes('-s')) print('Browser Linux');
+      break;
+    case 'whoami':  print('user'); break;
+    case 'hostname':print('browser-linux'); break;
+    case 'id':      print('uid=1000(user) gid=1000(user) groups=1000(user)'); break;
+    case 'date':    print(new Date().toString()); break;
+    case 'uptime': {
+      const s = Math.floor((Date.now()-bootTime)/1000);
+      print(' ' + new Date().toLocaleTimeString() + ' up ' + Math.floor(s/60) + ' min, 1 user, load average: 0.05 0.03 0.01');
+      break;
+    }
+    case 'cal':     cmdCal(); break;
+    case 'env':     Object.entries({...env,...variables}).sort().forEach(([k,v]) => print(k+'='+v)); break;
+    case 'export': {
+      args.forEach(a => {
+        const eq = a.indexOf('=');
+        if (eq !== -1) env[a.slice(0,eq)] = a.slice(eq+1);
+      });
+      break;
+    }
+    case 'free': {
+      const h = args.includes('-h');
+      print('              total        used        free');
+      print('Mem:  ' + (h ? '  256Mi       64Mi      192Mi' : '  262144      65536      196608'));
+      break;
+    }
+    case 'df': {
+      print('Filesystem      Size  Used Avail Use% Mounted on');
+      print('/dev/vda         2G  512M  1.5G  26% /');
+      print('tmpfs          128M     0  128M   0% /tmp');
+      break;
+    }
+    case 'ps': {
+      print('  PID TTY          TIME CMD');
+      print('    1 ?        00:00:01 bash');
+      print('  ' + (100+history.length) + ' pts/0    00:00:00 ps');
+      break;
+    }
+    case 'history': history.forEach((h,i) => print('  ' + String(i+1).padStart(4) + '  ' + h)); break;
+    case 'alias': {
+      if (!args.length) { Object.entries(aliases).forEach(([k,v]) => print("alias " + k + "='" + v + "'")); break; }
+      args.forEach(a => { const eq = a.indexOf('='); if(eq!==-1) aliases[a.slice(0,eq)] = a.slice(eq+1).replace(/^['"]|['"]$/g,''); });
+      break;
+    }
+    case 'which': args.forEach(a => print(COMMANDS[a] ? '/usr/bin/'+a : 'which: no '+a+' in PATH')); break;
+    case 'file': {
+      args.forEach(a => {
+        const path = resolve(a);
+        const n = fs[path];
+        if (!n) { print('file: '+a+': 파일 없음','err'); return; }
+        const ext = a.split('.').pop();
+        if (n.type==='dir') print(a+': directory');
+        else if (ext==='py') print(a+': Python script, UTF-8 text executable');
+        else if (ext==='js') print(a+': JavaScript source, ASCII text');
+        else if (ext==='md') print(a+': UTF-8 Unicode text, Markdown');
+        else print(a+': ASCII text');
+      });
+      break;
+    }
+    case 'base64': {
+      const d = args.includes('-d')||args.includes('--decode');
+      const inp = stdin || (args.find(a=>!a.startsWith('-')) ? (fileContent(resolve(args.find(a=>!a.startsWith('-'))))||'') : '');
+      try { const r = d ? atob(inp.trim()) : btoa(inp.trim()); print(r); result = r; } catch(e) { print('base64: 잘못된 입력','err'); }
+      break;
+    }
+    case 'seq': {
+      const nums = args.map(Number);
+      let [start,end,step] = [1,1,1];
+      if (nums.length===1) end=nums[0];
+      else if (nums.length===2) { start=nums[0]; end=nums[1]; }
+      else { start=nums[0]; step=nums[1]; end=nums[2]; }
+      const arr = [];
+      for (let i=start; step>0?i<=end:i>=end; i+=step) arr.push(String(i));
+      arr.forEach(l=>print(l));
+      result = arr.join('\n');
+      break;
+    }
+    case 'expr': {
+      try { const r = Function('"use strict";return ('+args.join(' ').replace(/x/g,'*')+')')(); print(String(r)); result=String(r); }
+      catch(_) { print('expr: 문법 오류','err'); }
+      break;
+    }
+    case 'factor': cmdFactor(args); break;
+    case 'yes': {
+      const t = args.join(' ')||'y';
+      for(let i=0;i<20;i++) print(t);
+      print('... (20줄에서 중단)', 'dim');
+      break;
+    }
+    case 'neofetch': cmdNeofetch(); break;
+    case 'cowsay':   cmdCowsay(args); break;
+    case 'fortune':  cmdFortune(); break;
+    case 'sl':       print('🚂 칙칙폭폭! (sl: 기차가 지나갑니다)', 'dim'); break;
+    case 'clear':    term.innerHTML = ''; break;
+    case 'true':  break;
+    case 'false': break;
+    case 'exit':  print('logout', 'dim'); break;
+    case 'sleep': print('(sleeping ' + (args[0]||1) + 's...)', 'dim'); break;
+    default:
+      print(command + ': 명령어를 찾을 수 없습니다', 'err');
+  }
+
+  // 리다이렉션 처리
+  if (redirect && typeof result === 'string') {
+    const path = resolve(redirect);
+    const existing = (append && fs[path] && fs[path].content) ? fs[path].content : '';
+    fs[path] = { type:'file', content: existing + result + '\n', perm:'-rw-r--r--', owner:'user' };
+  }
+
+  return result || '';
+}
+
+/* ── 파이프 처리 ── */
+function runPipeline(parts) {
+  let data = '';
+  parts.forEach((part, i) => {
+    if (i === 0) {
+      data = runOne(part, null);
+    } else {
+      // 파이프 대상 명령에 stdin 전달
+      const tokens = parseTokens(part.trim());
+      const cmd = tokens[0];
+      const args = tokens.slice(1);
+      if (cmd === 'grep') data = cmdGrep(args, data) || '';
+      else if (cmd === 'sort') data = cmdSort(args, data);
+      else if (cmd === 'uniq') data = cmdUniq(args, data);
+      else if (cmd === 'wc') {
+        const lines = data.trim().split('\n').length;
+        const words = data.trim().split(/\s+/).filter(Boolean).length;
+        print('  '+lines+'\t'+words+'\t'+data.length);
+        data = lines + '\t' + words + '\t' + data.length;
+      } else if (cmd === 'head') {
+        const n = parseInt(tokens[tokens.indexOf('-n')+1]||10);
+        const sliced = data.split('\n').slice(0,n).join('\n');
+        sliced.split('\n').forEach(l=>print(l));
+        data = sliced;
+      } else if (cmd === 'tail') {
+        const n = parseInt(tokens[tokens.indexOf('-n')+1]||10);
+        const sliced = data.split('\n').slice(-n).join('\n');
+        sliced.split('\n').forEach(l=>print(l));
+        data = sliced;
+      } else if (cmd === 'rev') {
+        data = data.split('\n').map(l=>[...l].reverse().join('')).join('\n');
+        data.split('\n').forEach(l=>print(l));
+      } else {
+        // 일반 명령어: 마지막 파이프만 출력
+        data = runOne(part.trim(), data);
       }
-    });
-  </script>
+    }
+  });
+  return data;
+}
+
+/* ── 전체 명령 파싱·실행 ── */
+function execute(raw) {
+  raw = raw.trim();
+  if (!raw) return;
+  history.push(raw);
+
+  // 세미콜론 분리
+  if (raw.includes(';')) {
+    raw.split(';').forEach(c => { if(c.trim()) execute(c.trim()); });
+    return;
+  }
+  // && 처리
+  if (raw.includes('&&')) {
+    raw.split('&&').every(c => { execute(c.trim()); return true; });
+    return;
+  }
+  // || 처리
+  if (raw.includes('||')) {
+    raw.split('||').every(c => { execute(c.trim()); return true; });
+    return;
+  }
+  // 파이프
+  if (raw.includes('|')) {
+    runPipeline(raw.split('|'));
+    return;
+  }
+
+  runOne(raw);
+}
+
+/* ── COMMANDS 목록 (which용) ── */
+const COMMANDS = {};
+'help ls cd pwd cat head tail echo mkdir touch rm rmdir cp mv grep wc find tree sort uniq rev uname whoami hostname id date uptime cal env export free df ps history alias which file base64 seq expr factor yes neofetch cowsay fortune sl clear true false exit sleep'.split(' ').forEach(c => COMMANDS[c] = 1);
+
+/* ════════════════════════════════════════
+   부팅 메시지
+════════════════════════════════════════ */
+function bootMsg() {
+  term.innerHTML = '';
+  print('Browser Linux 2.0 — 부팅 완료', 'ok');
+  print('Copyright (c) 2026 Browser Linux Project', 'dim');
+  print('');
+  print('현재 디렉토리: ' + cwd, 'dim');
+  print('명령어 목록: help 입력', 'dim');
+  print('');
+}
+bootMsg();
+
+/* ════════════════════════════════════════
+   이벤트 핸들러
+════════════════════════════════════════ */
+const cmdEl = document.getElementById('cmd');
+const runBtn = document.getElementById('runBtn');
+const clearBtn = document.getElementById('clearBtn');
+const rebootBtn = document.getElementById('rebootBtn');
+
+function runInput() {
+  const raw = cmdEl.value;
+  if (!raw.trim()) return;
+
+  raw.replace(/\r\n/g,'\n').split('\n').forEach(line => {
+    const l = line.trim();
+    if (!l) return;
+    printHTML(`<span style="color:#6ee7b7">$ </span><span style="color:#67e8f9">${l.replace(/</g,'&lt;')}</span>`);
+    execute(l);
+  });
+  cmdEl.value = '';
+}
+
+runBtn.addEventListener('click', runInput);
+cmdEl.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); runInput(); }
+});
+clearBtn.addEventListener('click', () => { term.innerHTML = ''; });
+rebootBtn.addEventListener('click', () => {
+  term.innerHTML = '';
+  print('재부팅 중…', 'dim');
+  setTimeout(() => { cwd = '/home/user'; history = []; bootMsg(); }, 800);
+});
+
+})();
+</script>
 </body>
 </html>
