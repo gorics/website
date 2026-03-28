@@ -2,116 +2,233 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>GORICS.CLOUD FULL_SCRAPER v1.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INDEX OF GORICS.CLOUD</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        :root { --cmd-green: #00ff41; --cmd-bg: #0d0d0d; }
-        body { background: var(--cmd-bg); color: var(--cmd-green); font-family: 'Courier New', Courier, monospace; padding: 30px; margin: 0; }
-        .terminal { border: 1px solid var(--cmd-green); padding: 20px; min-height: 80vh; overflow-y: auto; box-shadow: 0 0 20px rgba(0, 255, 65, 0.2); }
-        .log-entry { margin: 5px 0; border-left: 2px solid #333; padding-left: 10px; }
-        .path { color: #fff; font-weight: bold; }
-        .status-scanning { color: #ffff00; }
-        .status-done { color: #00ff41; font-weight: bold; }
-        .controls { margin-bottom: 20px; display: flex; gap: 10px; }
-        button { background: var(--cmd-green); color: #000; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; }
-        button:hover { opacity: 0.8; }
-        .stats { margin-top: 10px; color: #888; font-size: 0.9em; }
+        :root {
+            --bg: #0a0c10;
+            --panel: #161b22;
+            --accent: #58a6ff;
+            --text: #c9d1d9;
+            --border: #30363d;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-bar {
+            padding: 15px 20px;
+            background: rgba(0,0,0,0.2);
+            border-bottom: 1px solid var(--border);
+        }
+
+        input {
+            width: 100%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .list-container {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--text);
+            transition: background 0.2s;
+        }
+
+        .item:hover {
+            background: rgba(88, 166, 255, 0.1);
+        }
+
+        .item-icon {
+            margin-right: 15px;
+            color: #8b949e;
+        }
+
+        .item-info {
+            flex-grow: 1;
+        }
+
+        .item-name {
+            font-weight: 600;
+            display: block;
+        }
+
+        .item-path {
+            font-size: 0.75rem;
+            color: #8b949e;
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: #21262d;
+            border: 1px solid var(--border);
+        }
+
+        #loading {
+            padding: 40px;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        /* 스크롤바 커스텀 */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <div class="controls">
-        <button onclick="startFullCrawl()">사이트 전체 스캔 시작</button>
-        <div id="counter" class="stats">탐색된 경로: 0 | 대기열: 0</div>
-    </div>
-
-    <div class="terminal" id="terminal">
-        [SYSTEM] 준비 완료. '스캔 시작' 버튼을 누르면 gorics.cloud 전체 탐색을 시작합니다.
-    </div>
-
-<script>
-    const TARGET_DOMAIN = 'gorics.cloud';
-    const START_URL = 'https://gorics.cloud/';
-    const PROXY_BASE = 'https://api.allorigins.win/get?url=';
-    
-    let visitedPaths = new Set();
-    let queue = [];
-    let isScanning = false;
-
-    async function fetchPage(url) {
-        try {
-            const response = await fetch(PROXY_BASE + encodeURIComponent(url));
-            if (!response.ok) return null;
-            const data = await response.json();
-            return data.contents;
-        } catch (e) {
-            return null;
-        }
-    }
-
-    function log(message, type = '') {
-        const term = document.getElementById('terminal');
-        const div = document.createElement('div');
-        div.className = `log-entry ${type}`;
-        div.innerHTML = `[${new Date().toLocaleTimeString()}] ${message}`;
-        term.appendChild(div);
-        term.scrollTop = term.scrollHeight;
-    }
-
-    function updateStats() {
-        document.getElementById('counter').innerText = 
-            `탐색된 경로: ${visitedPaths.size} | 대기열: ${queue.length}`;
-    }
-
-    async function startFullCrawl() {
-        if (isScanning) return;
-        isScanning = true;
-        visitedPaths.clear();
-        queue = [START_URL];
+    <div class="container">
+        <div class="header">
+            <h1><i data-lucide="folder-search"></i> GORICS.CLOUD EXPLORER</h1>
+            <span id="count" class="badge">0 Items Found</span>
+        </div>
         
-        log(`[START] ${TARGET_DOMAIN} 탐색을 시작합니다...`, 'status-scanning');
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search directories or files..." oninput="filterList()">
+        </div>
 
-        while (queue.length > 0) {
-            const currentUrl = queue.shift();
-            if (visitedPaths.has(currentUrl)) continue;
+        <div id="loading">
+            <i data-lucide="loader-2" class="spin"></i> 탐색 중...
+        </div>
 
-            visitedPaths.add(currentUrl);
-            updateStats();
-            log(`탐색 중: <span class="path">${currentUrl}</span>`);
+        <div id="list" class="list-container"></div>
+    </div>
 
-            const html = await fetchPage(currentUrl);
-            if (!html) {
-                log(`[FAIL] 접근 불가: ${currentUrl}`, 'error');
-                continue;
-            }
+    <script>
+        let allItems = [];
+        const TARGET_URL = 'https://gorics.cloud/';
+        const PROXY = 'https://api.allorigins.win/get?url=';
 
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            const links = doc.querySelectorAll('a');
-
-            links.forEach(link => {
-                let href = link.getAttribute('href');
-                if (!href) return;
-
-                // 절대 경로로 변환
-                try {
-                    const absolute = new URL(href, currentUrl).href;
-                    // 외부 도메인 제외 및 중복 제외
-                    if (absolute.includes(TARGET_DOMAIN) && !visitedPaths.has(absolute) && !queue.includes(absolute)) {
-                        // 앵커나 파라미터 제거하여 순수 경로만 추출
-                        const cleanUrl = absolute.split('#')[0].split('?')[0];
-                        queue.push(cleanUrl);
-                    }
-                } catch (e) {}
-            });
+        async function fetchIndex() {
+            const listElement = document.getElementById('list');
+            const loading = document.getElementById('loading');
             
-            // 브라우저 과부하 방지를 위한 미세 지연
-            await new Promise(r => setTimeout(r, 100));
+            try {
+                // CORS 우회 프록시를 통한 HTML Fetch
+                const response = await fetch(PROXY + encodeURIComponent(TARGET_URL));
+                const data = await response.json();
+                const html = data.contents;
+
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const links = doc.querySelectorAll('a');
+
+                links.forEach(link => {
+                    const href = link.getAttribute('href');
+                    const text = link.textContent.trim();
+
+                    // 유효한 경로만 필터링
+                    if (href && !href.startsWith('?') && !href.startsWith('#')) {
+                        const isDir = href.endsWith('/');
+                        const fullUrl = href.startsWith('http') ? href : TARGET_URL + href;
+                        
+                        allItems.push({
+                            name: text || href,
+                            path: fullUrl,
+                            isDir: isDir
+                        });
+                    }
+                });
+
+                renderList(allItems);
+                loading.style.display = 'none';
+            } catch (err) {
+                loading.innerHTML = '<span style="color: #f85149">데이터를 불러오지 못했습니다. 서버 상태를 확인하세요.</span>';
+            }
         }
 
-        isScanning = false;
-        log(`[COMPLETE] ${TARGET_DOMAIN} 전체 스캔 완료. 총 ${visitedPaths.size}개의 유효 경로를 발견했습니다.`, 'status-done');
-    }
-</script>
+        function renderList(items) {
+            const listElement = document.getElementById('list');
+            const countElement = document.getElementById('count');
+            listElement.innerHTML = '';
+            countElement.innerText = `${items.length} Items Found`;
 
+            items.forEach(item => {
+                const icon = item.isDir ? 'folder' : 'file-text';
+                const el = document.createElement('a');
+                el.href = item.path;
+                el.target = "_blank";
+                el.className = 'item';
+                el.innerHTML = `
+                    <div class="item-icon"><i data-lucide="${icon}"></i></div>
+                    <div class="item-info">
+                        <span class="item-name">${item.name}</span>
+                        <span class="item-path">${item.path}</span>
+                    </div>
+                    <i data-lucide="external-link" size="16" style="opacity: 0.3"></i>
+                `;
+                listElement.appendChild(el);
+            });
+            lucide.createIcons();
+        }
+
+        function filterList() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = allItems.filter(i => 
+                i.name.toLowerCase().includes(term) || i.path.toLowerCase().includes(term)
+            );
+            renderList(filtered);
+        }
+
+        fetchIndex();
+    </script>
+
+    <style>
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .spin { animation: spin 1s linear infinite; }
+    </style>
 </body>
 </html>
