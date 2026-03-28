@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windows 11</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --win-accent: #0078d4;
+  --win-bg: #f3f3f3;
+  --win-dark: #202020;
+  --win-border: #e5e5e5;
+  --win-hover: #e9e9e9;
+  --win-text: #1a1a1a;
+  --win-text-secondary: #666;
+  --taskbar-h: 48px;
+  --titlebar-h: 32px;
+  --radius: 8px;
+}
+html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',system-ui,sans-serif; user-select:none; }
+
+/* ── Boot Screen ── */
+#boot-screen {
+  position:fixed; inset:0; z-index:100000; background:#000;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  transition: opacity 0.8s;
+}
+#boot-screen.hidden { opacity:0; pointer-events:none; }
+#boot-logo { width:80px; height:80px; display:grid; grid-template:1fr 1fr/1fr 1fr; gap:4px; margin-bottom:40px; }
+#boot-logo div { background:#0078d4; border-radius:2px; animation: bootPulse 1.5s ease-in-out infinite; }
+#boot-logo div:nth-child(2) { animation-delay:0.15s; }
+#boot-logo div:nth-child(3) { animation-delay:0.3s; }
+#boot-logo div:nth-child(4) { animation-delay:0.45s; }
+@keyframes bootPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+.boot-spinner { width:30px; height:30px; border:3px solid transparent; border-top:3px solid #0078d4; border-radius:50%; animation:spin 1s linear infinite; }
+@keyframes spin { to{transform:rotate(360deg)} }
+
+/* ── Lock Screen ── */
+#lock-screen {
+  position:fixed; inset:0; z-index:99999;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  cursor:pointer; transition: opacity 0.5s, transform 0.5s;
+}
+#lock-screen.hidden { opacity:0; transform:translateY(-100%); pointer-events:none; }
+#lock-time { font-size:96px; color:#fff; font-weight:300; letter-spacing:-2px; }
+#lock-date { font-size:18px; color:rgba(255,255,255,0.7); margin-top:4px; }
+#lock-hint { position:absolute; bottom:60px; color:rgba(255,255,255,0.5); font-size:14px; animation: fadeInOut 2s infinite; }
+@keyframes fadeInOut { 0%,100%{opacity:0.3} 50%{opacity:0.8} }
+
+/* ── Desktop ── */
+#desktop {
+  width:100%; height:calc(100% - var(--taskbar-h));
+  background-size:cover; background-position:center;
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position:relative; overflow:hidden;
+}
+
+/* Desktop Icons */
+.desktop-icon {
+  width:76px; display:flex; flex-direction:column; align-items:center;
+  padding:6px; border-radius:6px; cursor:pointer; position:absolute;
+  transition: background 0.15s;
+}
+.desktop-icon:hover { background:rgba(255,255,255,0.15); }
+.desktop-icon.selected { background:rgba(255,255,255,0.25); border:1px solid rgba(255,255,255,0.4); }
+.desktop-icon .icon { width:42px; height:42px; display:flex; align-items:center; justify-content:center; font-size:32px; margin-bottom:4px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3)); }
+.desktop-icon .label { font-size:11px; color:#fff; text-align:center; text-shadow:0 1px 3px rgba(0,0,0,0.5); line-height:1.3; word-break:break-word; }
+
+/* ── Context Menu ── */
+.context-menu {
+  position:fixed; background:rgba(252,252,252,0.95); backdrop-filter:blur(20px);
+  border:1px solid #e0e0e0; border-radius:8px; padding:4px; min-width:200px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.15); z-index:90000; display:none;
+}
+.context-menu.show { display:block; }
+.ctx-item {
+  padding:7px 24px 7px 12px; border-radius:4px; font-size:12px; color:var(--win-text);
+  cursor:pointer; display:flex; align-items:center; gap:10px;
+}
+.ctx-item:hover { background:var(--win-hover); }
+.ctx-separator { height:1px; background:#e5e5e5; margin:4px 8px; }
+
+/* ── Windows ── */
+.window {
+  position:absolute; background:#fff; border-radius:8px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.05);
+  display:flex; flex-direction:column; min-width:300px; min-height:200px;
+  overflow:hidden; transition: box-shadow 0.2s;
+}
+.window.active { box-shadow:0 12px 48px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.08); z-index:1000; }
+.window.maximized { border-radius:0; }
+.window.minimized { display:none !important; }
+
+.titlebar {
+  height:var(--titlebar-h); background:#f9f9f9; display:flex; align-items:center;
+  padding:0 4px 0 12px; flex-shrink:0; border-bottom:1px solid #eee;
+  cursor:default;
+}
+.titlebar .title { flex:1; font-size:12px; color:#333; font-weight:400; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.titlebar .title .app-icon { margin-right:8px; font-size:14px; }
+.win-btn { width:46px; height:var(--titlebar-h); border:none; background:transparent; cursor:pointer; font-size:11px; display:flex; align-items:center; justify-content:center; color:#555; transition:background 0.1s; }
+.win-btn:hover { background:#e5e5e5; }
+.win-btn.close:hover { background:#c42b1c; color:#fff; }
+
+.window-body { flex:1; overflow:auto; position:relative; }
+
+/* Resize handles */
+.resize-handle { position:absolute; z-index:10; }
+.resize-handle.n { top:-3px; left:8px; right:8px; height:6px; cursor:n-resize; }
+.resize-handle.s { bottom:-3px; left:8px; right:8px; height:6px; cursor:s-resize; }
+.resize-handle.e { right:-3px; top:8px; bottom:8px; width:6px; cursor:e-resize; }
+.resize-handle.w { left:-3px; top:8px; bottom:8px; width:6px; cursor:w-resize; }
+.resize-handle.ne { top:-3px; right:-3px; width:12px; height:12px; cursor:ne-resize; }
+.resize-handle.nw { top:-3px; left:-3px; width:12px; height:12px; cursor:nw-resize; }
+.resize-handle.se { bottom:-3px; right:-3px; width:12px; height:12px; cursor:se-resize; }
+.resize-handle.sw { bottom:-3px; left:-3px; width:12px; height:12px; cursor:sw-resize; }
+
+/* ── Taskbar ── */
+#taskbar {
+  position:fixed; bottom:0; left:0; right:0; height:var(--taskbar-h);
+  background:rgba(252,252,252,0.85); backdrop-filter:blur(30px) saturate(1.5);
+  border-top:1px solid rgba(0,0,0,0.05); display:flex; align-items:center;
+  justify-content:center; z-index:50000; padding:0 8px;
+}
+.taskbar-center { display:flex; align-items:center; gap:2px; }
+.taskbar-btn {
+  width:44px; height:40px; border:none; background:transparent; border-radius:6px;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  font-size:20px; color:#333; transition:background 0.15s; position:relative;
+}
+.taskbar-btn:hover { background:rgba(0,0,0,0.06); }
+.taskbar-btn.active { background:rgba(0,0,0,0.08); }
+.taskbar-btn.active::after { content:''; position:absolute; bottom:2px; left:50%; transform:translateX(-50%); width:16px; height:3px; background:var(--win-accent); border-radius:2px; }
+.taskbar-btn.has-window::after { content:''; position:absolute; bottom:2px; left:50%; transform:translateX(-50%); width:6px; height:3px; background:#999; border-radius:2px; }
+.taskbar-btn.has-window.active::after { width:16px; background:var(--win-accent); }
+
+#taskbar-right { position:absolute; right:0; display:flex; align-items:center; height:100%; padding:0 12px; gap:4px; }
+#taskbar-right .sys-icon { font-size:14px; color:#555; padding:4px; }
+#clock { font-size:12px; color:#444; text-align:right; line-height:1.4; padding:4px 8px; border-radius:4px; cursor:pointer; }
+#clock:hover { background:rgba(0,0,0,0.05); }
+
+/* ── Start Menu ── */
+#start-menu {
+  position:fixed; bottom:calc(var(--taskbar-h) + 12px); left:50%; transform:translateX(-50%) scale(0.95);
+  width:600px; height:580px; background:rgba(252,252,252,0.92); backdrop-filter:blur(30px);
+  border-radius:12px; border:1px solid rgba(0,0,0,0.06);
+  box-shadow:0 16px 64px rgba(0,0,0,0.2); z-index:60000;
+  display:none; flex-direction:column; opacity:0;
+  transition: opacity 0.2s, transform 0.2s;
+}
+#start-menu.show { display:flex; opacity:1; transform:translateX(-50%) scale(1); }
+#start-search { margin:16px 24px 12px; padding:10px 16px; border:1px solid #ddd; border-radius:24px; font-size:13px; outline:none; background:#f5f5f5; font-family:inherit; }
+#start-search:focus { border-color:var(--win-accent); background:#fff; }
+.start-section { padding:0 24px; margin-bottom:8px; }
+.start-section h3 { font-size:13px; font-weight:600; color:#333; margin-bottom:8px; }
+.start-apps { display:grid; grid-template-columns:repeat(6,1fr); gap:4px; }
+.start-app {
+  display:flex; flex-direction:column; align-items:center; padding:10px 4px;
+  border-radius:6px; cursor:pointer; transition:background 0.15s;
+}
+.start-app:hover { background:rgba(0,0,0,0.05); }
+.start-app .icon { font-size:28px; margin-bottom:6px; }
+.start-app .name { font-size:11px; color:#333; text-align:center; }
+.start-bottom { margin-top:auto; padding:16px 24px; border-top:1px solid #eee; display:flex; align-items:center; justify-content:space-between; }
+.start-user { display:flex; align-items:center; gap:10px; cursor:pointer; padding:6px; border-radius:6px; }
+.start-user:hover { background:rgba(0,0,0,0.05); }
+.user-avatar { width:32px; height:32px; background:var(--win-accent); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; }
+.start-power { width:32px; height:32px; display:flex; align-items:center; justify-content:center; border-radius:6px; cursor:pointer; }
+.start-power:hover { background:rgba(0,0,0,0.05); }
+
+/* ── Notepad ── */
+.notepad-menu { display:flex; gap:0; padding:0 8px; background:#f9f9f9; border-bottom:1px solid #eee; }
+.notepad-menu button { padding:4px 12px; font-size:12px; background:none; border:none; cursor:pointer; color:#333; border-radius:4px; font-family:inherit; }
+.notepad-menu button:hover { background:#e9e9e9; }
+.notepad-editor { width:100%; height:100%; border:none; outline:none; padding:8px 12px; font-family:'Consolas','Courier New',monospace; font-size:14px; resize:none; line-height:1.6; background:#fff; color:#1a1a1a; }
+
+/* ── Calculator ── */
+.calc-display { background:#f8f8f8; padding:16px 20px; text-align:right; border-bottom:1px solid #eee; }
+.calc-display .expr { font-size:13px; color:#888; height:18px; }
+.calc-display .result { font-size:36px; font-weight:300; color:#1a1a1a; }
+.calc-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; padding:8px; }
+.calc-btn { padding:16px; border:none; font-size:16px; cursor:pointer; border-radius:4px; font-family:inherit; transition:background 0.1s; }
+.calc-btn { background:#f8f8f8; color:#1a1a1a; }
+.calc-btn:hover { background:#ebebeb; }
+.calc-btn.op { background:#f0f0f0; color:var(--win-accent); font-weight:600; }
+.calc-btn.op:hover { background:#e0e0e0; }
+.calc-btn.eq { background:var(--win-accent); color:#fff; }
+.calc-btn.eq:hover { background:#006cbe; }
+.calc-btn.wide { grid-column:span 2; }
+
+/* ── File Explorer ── */
+.explorer-toolbar { display:flex; align-items:center; gap:4px; padding:6px 12px; background:#f9f9f9; border-bottom:1px solid #eee; }
+.explorer-toolbar button { background:none; border:none; padding:4px 8px; cursor:pointer; border-radius:4px; font-size:14px; }
+.explorer-toolbar button:hover { background:#e9e9e9; }
+.explorer-path { flex:1; padding:5px 10px; border:1px solid #ddd; border-radius:4px; font-size:12px; background:#fff; font-family:inherit; }
+.explorer-content { display:flex; height:100%; }
+.explorer-sidebar { width:180px; background:#f5f5f5; border-right:1px solid #eee; padding:8px; overflow-y:auto; flex-shrink:0; }
+.explorer-sidebar-item { padding:6px 10px; font-size:12px; border-radius:4px; cursor:pointer; display:flex; align-items:center; gap:8px; }
+.explorer-sidebar-item:hover { background:#e9e9e9; }
+.explorer-sidebar-item.active { background:#e0e7f1; color:var(--win-accent); }
+.explorer-main { flex:1; padding:8px; overflow-y:auto; display:flex; flex-wrap:wrap; align-content:flex-start; gap:4px; }
+.explorer-item { width:80px; display:flex; flex-direction:column; align-items:center; padding:8px 4px; border-radius:6px; cursor:pointer; }
+.explorer-item:hover { background:#e9e9e9; }
+.explorer-item.selected { background:#cde4f7; }
+.explorer-item .icon { font-size:32px; margin-bottom:4px; }
+.explorer-item .name { font-size:11px; text-align:center; word-break:break-word; color:#333; }
+
+/* ── Terminal ── */
+.terminal { background:#0c0c0c; color:#ccc; font-family:'Consolas','Courier New',monospace; font-size:13px; padding:12px; height:100%; overflow-y:auto; }
+.terminal .line { margin-bottom:2px; white-space:pre-wrap; word-break:break-all; }
+.terminal .prompt { color:#6ec6ff; }
+.terminal .input-line { display:flex; }
+.terminal input { background:transparent; border:none; color:#ccc; font-family:inherit; font-size:inherit; outline:none; flex:1; caret-color:#fff; }
+
+/* ── Settings ── */
+.settings-layout { display:flex; height:100%; }
+.settings-nav { width:200px; background:#f5f5f5; border-right:1px solid #eee; padding:12px 8px; }
+.settings-nav-item { padding:8px 12px; font-size:13px; border-radius:6px; cursor:pointer; margin-bottom:2px; }
+.settings-nav-item:hover { background:#e9e9e9; }
+.settings-nav-item.active { background:#e0e7f1; color:var(--win-accent); }
+.settings-panel { flex:1; padding:24px; overflow-y:auto; }
+.settings-panel h2 { font-size:24px; font-weight:300; margin-bottom:20px; }
+.settings-group { margin-bottom:20px; background:#f9f9f9; border-radius:8px; padding:16px; }
+.settings-group label { display:flex; align-items:center; justify-content:space-between; font-size:13px; padding:8px 0; cursor:pointer; }
+.toggle { width:40px; height:22px; background:#999; border-radius:11px; position:relative; cursor:pointer; transition:background 0.2s; }
+.toggle.on { background:var(--win-accent); }
+.toggle::after { content:''; position:absolute; top:3px; left:3px; width:16px; height:16px; background:#fff; border-radius:50%; transition:transform 0.2s; }
+.toggle.on::after { transform:translateX(18px); }
+.wallpaper-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:12px; }
+.wallpaper-opt { height:60px; border-radius:6px; cursor:pointer; border:2px solid transparent; transition:border 0.2s; }
+.wallpaper-opt.active { border-color:var(--win-accent); }
+
+/* ── Browser ── */
+.browser-toolbar { display:flex; align-items:center; gap:4px; padding:6px 10px; background:#f1f3f4; border-bottom:1px solid #ddd; }
+.browser-toolbar button { background:none; border:none; padding:4px 8px; cursor:pointer; border-radius:50%; font-size:16px; width:32px; height:32px; display:flex; align-items:center; justify-content:center; }
+.browser-toolbar button:hover { background:#ddd; }
+.browser-url { flex:1; padding:6px 14px; border:none; border-radius:20px; font-size:13px; background:#e8eaed; outline:none; font-family:inherit; }
+.browser-url:focus { background:#fff; box-shadow:0 1px 6px rgba(0,0,0,0.15); }
+.browser-body { background:#fff; height:100%; overflow:auto; }
+.browser-page { padding:24px; }
+.browser-page h1 { font-size:20px; margin-bottom:12px; }
+.browser-page p { color:#555; line-height:1.6; margin-bottom:12px; font-size:14px; }
+
+/* ── Paint ── */
+.paint-toolbar { display:flex; align-items:center; gap:8px; padding:6px 12px; background:#f5f5f5; border-bottom:1px solid #eee; }
+.paint-toolbar button { padding:4px 8px; border:1px solid #ddd; border-radius:4px; cursor:pointer; background:#fff; font-size:14px; }
+.paint-toolbar button.active { border-color:var(--win-accent); background:#e0edf7; }
+.paint-toolbar input[type="color"] { width:32px; height:28px; border:1px solid #ddd; border-radius:4px; cursor:pointer; padding:2px; }
+.paint-toolbar input[type="range"] { width:80px; }
+.paint-canvas { cursor:crosshair; display:block; background:#fff; }
+
+/* ── Photos viewer ── */
+.photos-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:4px; padding:8px; }
+.photos-thumb { aspect-ratio:1; border-radius:4px; overflow:hidden; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:48px; background:#f0f0f0; }
+.photos-thumb:hover { opacity:0.85; }
+
+/* ── Snipping / Screenshot overlay ── */
+#screenshot-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,0.3); z-index:95000; cursor:crosshair; display:none;
+}
+
+/* Notification */
+.notification {
+  position:fixed; top:16px; right:16px; background:rgba(252,252,252,0.95); backdrop-filter:blur(20px);
+  padding:14px 20px; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.15);
+  border:1px solid #e5e5e5; z-index:99998; font-size:13px;
+  transform:translateX(120%); transition:transform 0.3s;
+}
+.notification.show { transform:translateX(0); }
+
+/* Animations */
+.window-open { animation:windowOpen 0.2s ease-out; }
+@keyframes windowOpen { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
+
+/* Scrollbar */
+::-webkit-scrollbar { width:8px; height:8px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:#c1c1c1; border-radius:4px; }
+::-webkit-scrollbar-thumb:hover { background:#a1a1a1; }
+</style>
+</head>
+<body>
+
+<!-- Boot Screen -->
+<div id="boot-screen">
+  <div id="boot-logo"><div></div><div></div><div></div><div></div></div>
+  <div class="boot-spinner"></div>
+</div>
+
+<!-- Lock Screen -->
+<div id="lock-screen" class="hidden">
+  <div id="lock-time">12:00</div>
+  <div id="lock-date"></div>
+  <div id="lock-hint">클릭하여 잠금 해제</div>
+</div>
+
+<!-- Desktop -->
+<div id="desktop"></div>
+
+<!-- Taskbar -->
+<div id="taskbar">
+  <div class="taskbar-center">
+    <button class="taskbar-btn" id="start-btn" title="시작">🪟</button>
+    <button class="taskbar-btn" data-app="explorer" title="파일 탐색기">📁</button>
+    <button class="taskbar-btn" data-app="browser" title="Edge">🌐</button>
+    <button class="taskbar-btn" data-app="terminal" title="터미널">⬛</button>
+    <button class="taskbar-btn" data-app="notepad" title="메모장">📝</button>
+  </div>
+  <div id="taskbar-right">
+    <span class="sys-icon">🔊</span>
+    <span class="sys-icon">📶</span>
+    <span class="sys-icon">🔋</span>
+    <div id="clock"></div>
+  </div>
+</div>
+
+<!-- Start Menu -->
+<div id="start-menu">
+  <input type="text" id="start-search" placeholder="앱, 설정 및 문서 검색">
+  <div class="start-section">
+    <h3>고정됨</h3>
+    <div class="start-apps" id="pinned-apps"></div>
+  </div>
+  <div class="start-section" style="flex:1;overflow:auto">
+    <h3>추천</h3>
+    <div id="recommended" style="font-size:12px;color:#888;padding:8px">최근 항목이 여기에 표시됩니다</div>
+  </div>
+  <div class="start-bottom">
+    <div class="start-user"><div class="user-avatar">👤</div><span style="font-size:13px">사용자</span></div>
+    <div class="start-power" title="전원" onclick="showShutdown()">⏻</div>
+  </div>
+</div>
+
+<!-- Context Menu -->
+<div class="context-menu" id="ctx-menu"></div>
+
+<!-- Notification -->
+<div class="notification" id="notification"></div>
+
+<script>
+// ══════════════════════════════════════════════════════════════
+// WINDOWS OS - Full Implementation
+// ══════════════════════════════════════════════════════════════
+
+// ── Virtual File System ──
+const FS = {
+  'C:': {
+    type:'folder', children: {
+      'Users': { type:'folder', children: {
+        'User': { type:'folder', children: {
+          'Desktop': { type:'folder', children: {
+            '새 텍스트.txt': { type:'file', content:'안녕하세요!\n이것은 Windows OS 시뮬레이션입니다.', ext:'txt' },
+            '메모.txt': { type:'file', content:'할 일 목록:\n1. 프로젝트 완성\n2. 보고서 작성\n3. 미팅 준비', ext:'txt' },
+          }},
+          'Documents': { type:'folder', children: {
+            '보고서.txt': { type:'file', content:'2026년 1분기 보고서\n\n매출: 1,200만원\n성장률: 15%', ext:'txt' },
+            '프로젝트': { type:'folder', children: {
+              '계획서.txt': { type:'file', content:'프로젝트 계획서\n\n1단계: 기획\n2단계: 개발\n3단계: 테스트', ext:'txt' },
+            }},
+          }},
+          'Downloads': { type:'folder', children: {} },
+          'Pictures': { type:'folder', children: {
+            '스크린샷': { type:'folder', children: {} },
+          }},
+          'Music': { type:'folder', children: {} },
+          'Videos': { type:'folder', children: {} },
+        }}
+      }},
+      'Windows': { type:'folder', children: { 'System32': { type:'folder', children: {} } } },
+      'Program Files': { type:'folder', children: {} },
+    }
+  }
+};
+
+function getNode(path) {
+  const parts = path.split('/').filter(Boolean);
+  let node = FS;
+  for (const p of parts) {
+    if (!node || !node[p]) {
+      if (node?.children?.[p]) node = node.children[p];
+      else if (node?.[p]) node = node[p];
+      else return null;
+    } else node = node[p];
+  }
+  return node;
+}
+
+function getChildren(path) {
+  const node = getNode(path);
+  if (!node) return {};
+  return node.children || {};
+}
+
+function createFile(path, name, content='') {
+  const node = getNode(path);
+  if (node && node.children !== undefined) {
+    const ext = name.split('.').pop();
+    node.children[name] = { type:'file', content, ext };
+    return true;
+  }
+  return false;
+}
+
+function createFolder(path, name) {
+  const node = getNode(path);
+  if (node && node.children !== undefined) {
+    node.children[name] = { type:'folder', children:{} };
+    return true;
+  }
+  return false;
+}
+
+function deleteItem(path, name) {
+  const node = getNode(path);
+  if (node?.children?.[name]) {
+    delete node.children[name];
+    return true;
+  }
+  return false;
+}
+
+// ── Apps Definition ──
+const APPS = {
+  notepad: { name:'메모장', icon:'📝', w:650, h:450 },
+  calculator: { name:'계산기', icon:'🔢', w:320, h:480 },
+  explorer: { name:'파일 탐색기', icon:'📁', w:800, h:500 },
+  terminal: { name:'터미널', icon:'⬛', w:700, h:450 },
+  settings: { name:'설정', icon:'⚙️', w:800, h:550 },
+  browser: { name:'Edge', icon:'🌐', w:900, h:600 },
+  paint: { name:'그림판', icon:'🎨', w:800, h:550 },
+  photos: { name:'사진', icon:'🖼️', w:700, h:500 },
+  weather: { name:'날씨', icon:'🌤️', w:400, h:500 },
+  store: { name:'Store', icon:'🛍️', w:800, h:550 },
+  camera: { name:'카메라', icon:'📸', w:500, h:400 },
+  clock: { name:'시계', icon:'🕐', w:400, h:420 },
+  music: { name:'음악', icon:'🎵', w:450, h:500 },
+  maps: { name:'지도', icon:'🗺️', w:700, h:500 },
+  mail: { name:'메일', icon:'✉️', w:750, h:500 },
+  todo: { name:'할 일', icon:'✅', w:400, h:500 },
+};
+
+// ── State ──
+let windows = [];
+let windowIdCounter = 0;
+let activeWindowId = null;
+let zCounter = 100;
+let startMenuOpen = false;
+let dragState = null;
+let resizeState = null;
+let wallpapers = [
+  'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+  'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+  'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+  'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+  'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+  'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
+  'linear-gradient(135deg, #0c3483 0%, #a2b6df 100%)',
+  'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
+];
+let currentWallpaper = 0;
+let darkMode = false;
+
+// ── Boot Sequence ──
+setTimeout(()=>{
+  document.getElementById('boot-screen').classList.add('hidden');
+  document.getElementById('lock-screen').classList.remove('hidden');
+  updateLockClock();
+}, 2500);
+
+document.getElementById('lock-screen').addEventListener('click',()=>{
+  document.getElementById('lock-screen').classList.add('hidden');
+  initDesktop();
+});
+
+function updateLockClock() {
+  const now = new Date();
+  document.getElementById('lock-time').textContent = now.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',hour12:false});
+  const opts = {weekday:'long',year:'numeric',month:'long',day:'numeric'};
+  document.getElementById('lock-date').textContent = now.toLocaleDateString('ko-KR',opts);
+}
+setInterval(updateLockClock, 1000);
+
+// ── Clock ──
+function updateClock() {
+  const now = new Date();
+  const time = now.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',hour12:true});
+  const date = now.toLocaleDateString('ko-KR',{year:'numeric',month:'2-digit',day:'2-digit'});
+  document.getElementById('clock').innerHTML = `<div>${time}</div><div style="font-size:11px">${date}</div>`;
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+// ── Desktop Init ──
+function initDesktop() {
+  renderDesktopIcons();
+  renderPinnedApps();
+  applyWallpaper();
+}
+
+const desktopIcons = [
+  { name:'내 PC', icon:'💻', action:()=>openApp('explorer') },
+  { name:'휴지통', icon:'🗑️', action:()=>notify('휴지통이 비어 있습니다') },
+  { name:'메모장', icon:'📝', action:()=>openApp('notepad') },
+  { name:'Edge', icon:'🌐', action:()=>openApp('browser') },
+  { name:'설정', icon:'⚙️', action:()=>openApp('settings') },
+  { name:'터미널', icon:'⬛', action:()=>openApp('terminal') },
+  { name:'그림판', icon:'🎨', action:()=>openApp('paint') },
+  { name:'계산기', icon:'🔢', action:()=>openApp('calculator') },
+];
+
+function renderDesktopIcons() {
+  const d = document.getElementById('desktop');
+  d.innerHTML = '';
+  desktopIcons.forEach((ic,i)=>{
+    const el = document.createElement('div');
+    el.className = 'desktop-icon';
+    el.style.left = '16px';
+    el.style.top = (16 + i * 90) + 'px';
+    el.innerHTML = `<div class="icon">${ic.icon}</div><div class="label">${ic.name}</div>`;
+    el.addEventListener('dblclick', ic.action);
+    el.addEventListener('click',(e)=>{
+      document.querySelectorAll('.desktop-icon').forEach(x=>x.classList.remove('selected'));
+      el.classList.add('selected');
+      e.stopPropagation();
+    });
+    d.appendChild(el);
+  });
+  d.addEventListener('click',()=>{
+    document.querySelectorAll('.desktop-icon').forEach(x=>x.classList.remove('selected'));
+  });
+  d.addEventListener('contextmenu',(e)=>{
+    e.preventDefault();
+    showContextMenu(e.clientX, e.clientY, [
+      { label:'새로 만들기 → 폴더', icon:'📁', action:()=>notify('새 폴더가 생성되었습니다') },
+      { label:'새로 만들기 → 텍스트 문서', icon:'📄', action:()=>{ createFile('C:/Users/User/Desktop','새 문서.txt',''); openApp('notepad'); } },
+      'sep',
+      { label:'화면 해상도 설정', icon:'🖥️', action:()=>openApp('settings') },
+      { label:'개인 설정', icon:'🎨', action:()=>openApp('settings') },
+      'sep',
+      { label:'새로 고침', icon:'🔄', action:()=>renderDesktopIcons() },
+      { label:'터미널에서 열기', icon:'⬛', action:()=>openApp('terminal') },
+    ]);
+  });
+}
+
+function renderPinnedApps() {
+  const c = document.getElementById('pinned-apps');
+  c.innerHTML = '';
+  Object.entries(APPS).forEach(([id,app])=>{
+    const el = document.createElement('div');
+    el.className = 'start-app';
+    el.innerHTML = `<div class="icon">${app.icon}</div><div class="name">${app.name}</div>`;
+    el.addEventListener('click',()=>{ openApp(id); toggleStartMenu(false); });
+    c.appendChild(el);
+  });
+}
+
+// ── Start Menu ──
+document.getElementById('start-btn').addEventListener('click',(e)=>{
+  e.stopPropagation();
+  toggleStartMenu(!startMenuOpen);
+});
+document.addEventListener('click',(e)=>{
+  if (startMenuOpen && !document.getElementById('start-menu').contains(e.target) && e.target.id !== 'start-btn') toggleStartMenu(false);
+  const ctx = document.getElementById('ctx-menu');
+  if (ctx.classList.contains('show') && !ctx.contains(e.target)) ctx.classList.remove('show');
+});
+function toggleStartMenu(show) {
+  startMenuOpen = show;
+  document.getElementById('start-menu').classList.toggle('show', show);
+}
+
+// ── Search ──
+document.getElementById('start-search').addEventListener('input',(e)=>{
+  const q = e.target.value.toLowerCase();
+  document.querySelectorAll('.start-app').forEach(el=>{
+    el.style.display = el.querySelector('.name').textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+});
+
+// ── Context Menu ──
+function showContextMenu(x, y, items) {
+  const menu = document.getElementById('ctx-menu');
+  menu.innerHTML = '';
+  items.forEach(item=>{
+    if (item === 'sep') { menu.innerHTML += '<div class="ctx-separator"></div>'; return; }
+    const el = document.createElement('div');
+    el.className = 'ctx-item';
+    el.innerHTML = `<span>${item.icon||''}</span><span>${item.label}</span>`;
+    el.addEventListener('click',()=>{ item.action(); menu.classList.remove('show'); });
+    menu.appendChild(el);
+  });
+  menu.style.left = Math.min(x, window.innerWidth-220) + 'px';
+  menu.style.top = Math.min(y, window.innerHeight-items.length*36) + 'px';
+  menu.classList.add('show');
+}
+
+// ── Notification ──
+function notify(msg) {
+  const n = document.getElementById('notification');
+  n.textContent = msg;
+  n.classList.add('show');
+  setTimeout(()=>n.classList.remove('show'), 3000);
+}
+
+// ── Window Management ──
+function createWindow(appId, title, width, height, bodyHTML) {
+  const id = ++windowIdCounter;
+  const x = 80 + (id % 8) * 30;
+  const y = 40 + (id % 6) * 30;
+  const win = {
+    id, appId, title, x, y, width, height,
+    maximized:false, minimized:false, z:++zCounter,
+    prevRect:null
+  };
+  windows.push(win);
+  const el = document.createElement('div');
+  el.className = 'window window-open active';
+  el.id = 'win-'+id;
+  el.style.cssText = `left:${x}px;top:${y}px;width:${width}px;height:${height}px;z-index:${win.z}`;
+  el.innerHTML = `
+    <div class="titlebar" data-winid="${id}">
+      <div class="title"><span class="app-icon">${APPS[appId]?.icon||'📄'}</span>${title}</div>
+      <button class="win-btn minimize" data-winid="${id}">─</button>
+      <button class="win-btn maximize" data-winid="${id}">☐</button>
+      <button class="win-btn close" data-winid="${id}">✕</button>
+    </div>
+    <div class="window-body" id="winbody-${id}">${bodyHTML}</div>
+    <div class="resize-handle n"></div><div class="resize-handle s"></div>
+    <div class="resize-handle e"></div><div class="resize-handle w"></div>
+    <div class="resize-handle ne"></div><div class="resize-handle nw"></div>
+    <div class="resize-handle se"></div><div class="resize-handle sw"></div>
+  `;
+  document.getElementById('desktop').appendChild(el);
+  focusWindow(id);
+  updateTaskbar();
+
+  // Titlebar dragging
+  const tb = el.querySelector('.titlebar');
+  tb.addEventListener('mousedown',(e)=>{
+    if (e.target.classList.contains('win-btn')) return;
+    focusWindow(id);
+    dragState = { winId:id, startX:e.clientX, startY:e.clientY, origX:win.x, origY:win.y };
+    e.preventDefault();
+  });
+  tb.addEventListener('dblclick',()=>toggleMaximize(id));
+
+  // Buttons
+  el.querySelector('.minimize').addEventListener('click',()=>minimizeWindow(id));
+  el.querySelector('.maximize').addEventListener('click',()=>toggleMaximize(id));
+  el.querySelector('.close').addEventListener('click',()=>closeWindow(id));
+
+  // Resize handles
+  el.querySelectorAll('.resize-handle').forEach(h=>{
+    h.addEventListener('mousedown',(e)=>{
+      e.preventDefault(); e.stopPropagation();
+      focusWindow(id);
+      const dir = [...h.classList].find(c=>c!=='resize-handle');
+      resizeState = { winId:id, dir, startX:e.clientX, startY:e.clientY, origX:win.x, origY:win.y, origW:win.width, origH:win.height };
+    });
+  });
+
+  el.addEventListener('mousedown',()=>focusWindow(id));
+  return id;
+}
+
+function focusWindow(id) {
+  const win = windows.find(w=>w.id===id);
+  if (!win) return;
+  win.z = ++zCounter;
+  activeWindowId = id;
+  document.querySelectorAll('.window').forEach(el=>{
+    el.classList.toggle('active', el.id === 'win-'+id);
+    const w = windows.find(ww=>ww.id===parseInt(el.id.split('-')[1]));
+    if (w) el.style.zIndex = w.z;
+  });
+  updateTaskbar();
+}
+
+function minimizeWindow(id) {
+  const win = windows.find(w=>w.id===id);
+  if (!win) return;
+  win.minimized = true;
+  document.getElementById('win-'+id)?.classList.add('minimized');
+  if (activeWindowId === id) activeWindowId = null;
+  updateTaskbar();
+}
+
+function restoreWindow(id) {
+  const win = windows.find(w=>w.id===id);
+  if (!win) return;
+  win.minimized = false;
+  document.getElementById('win-'+id)?.classList.remove('minimized');
+  focusWindow(id);
+}
+
+function toggleMaximize(id) {
+  const win = windows.find(w=>w.id===id);
+  if (!win) return;
+  const el = document.getElementById('win-'+id);
+  if (win.maximized) {
+    win.maximized = false;
+    el.classList.remove('maximized');
+    if (win.prevRect) { win.x=win.prevRect.x; win.y=win.prevRect.y; win.width=win.prevRect.w; win.height=win.prevRect.h; }
+    el.style.left=win.x+'px'; el.style.top=win.y+'px'; el.style.width=win.width+'px'; el.style.height=win.height+'px';
+  } else {
+    win.prevRect = { x:win.x, y:win.y, w:win.width, h:win.height };
+    win.maximized = true;
+    el.classList.add('maximized');
+    const dh = document.getElementById('desktop').offsetHeight;
+    el.style.left='0'; el.style.top='0'; el.style.width='100%'; el.style.height=dh+'px';
+  }
+}
+
+function closeWindow(id) {
+  const idx = windows.findIndex(w=>w.id===id);
+  if (idx>=0) windows.splice(idx,1);
+  document.getElementById('win-'+id)?.remove();
+  if (activeWindowId===id) activeWindowId=null;
+  updateTaskbar();
+}
+
+// Mouse move/up for drag & resize
+document.addEventListener('mousemove',(e)=>{
+  if (dragState) {
+    const win = windows.find(w=>w.id===dragState.winId);
+    if (!win || win.maximized) return;
+    win.x = dragState.origX + (e.clientX - dragState.startX);
+    win.y = Math.max(0, dragState.origY + (e.clientY - dragState.startY));
+    const el = document.getElementById('win-'+win.id);
+    el.style.left=win.x+'px'; el.style.top=win.y+'px';
+  }
+  if (resizeState) {
+    const win = windows.find(w=>w.id===resizeState.winId);
+    if (!win) return;
+    const dx = e.clientX - resizeState.startX;
+    const dy = e.clientY - resizeState.startY;
+    const dir = resizeState.dir;
+    let nx=win.x, ny=win.y, nw=win.width, nh=win.height;
+    if (dir.includes('e')) nw = Math.max(300, resizeState.origW + dx);
+    if (dir.includes('w')) { nw = Math.max(300, resizeState.origW - dx); nx = resizeState.origX + dx; }
+    if (dir.includes('s')) nh = Math.max(200, resizeState.origH + dy);
+    if (dir.includes('n')) { nh = Math.max(200, resizeState.origH - dy); ny = resizeState.origY + dy; }
+    win.x=nx; win.y=ny; win.width=nw; win.height=nh;
+    const el = document.getElementById('win-'+win.id);
+    el.style.left=nx+'px'; el.style.top=ny+'px'; el.style.width=nw+'px'; el.style.height=nh+'px';
+  }
+});
+document.addEventListener('mouseup',()=>{ dragState=null; resizeState=null; });
+
+// ── Taskbar Update ──
+function updateTaskbar() {
+  document.querySelectorAll('.taskbar-btn[data-app]').forEach(btn=>{
+    const app = btn.dataset.app;
+    const hasWin = windows.some(w=>w.appId===app && !w.minimized);
+    const hasAny = windows.some(w=>w.appId===app);
+    const isActive = windows.some(w=>w.appId===app && w.id===activeWindowId);
+    btn.classList.toggle('has-window', hasAny);
+    btn.classList.toggle('active', isActive);
+  });
+}
+
+// Taskbar btn clicks
+document.querySelectorAll('.taskbar-btn[data-app]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const app = btn.dataset.app;
+    const appWins = windows.filter(w=>w.appId===app);
+    if (appWins.length === 0) { openApp(app); return; }
+    const focused = appWins.find(w=>w.id===activeWindowId);
+    if (focused && !focused.minimized) { minimizeWindow(focused.id); return; }
+    const minWin = appWins.find(w=>w.minimized);
+    if (minWin) { restoreWindow(minWin.id); return; }
+    focusWindow(appWins[appWins.length-1].id);
+  });
+});
+
+// ── Open App ──
+function openApp(appId, params={}) {
+  const app = APPS[appId];
+  if (!app) return;
+  switch(appId) {
+    case 'notepad': openNotepad(params); break;
+    case 'calculator': openCalculator(); break;
+    case 'explorer': openExplorer(params.path||'C:/Users/User'); break;
+    case 'terminal': openTerminal(); break;
+    case 'settings': openSettings(); break;
+    case 'browser': openBrowser(params.url); break;
+    case 'paint': openPaint(); break;
+    case 'photos': openPhotos(); break;
+    case 'weather': openWeather(); break;
+    case 'store': openStore(); break;
+    case 'clock': openClockApp(); break;
+    case 'music': openMusic(); break;
+    case 'mail': openMail(); break;
+    case 'todo': openTodo(); break;
+    default: createWindow(appId, app.name, app.w, app.h, `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#999;font-size:48px">${app.icon}</div>`);
+  }
+}
+
+// ══════════════════ APP IMPLEMENTATIONS ══════════════════
+
+// ── Notepad ──
+function openNotepad(params={}) {
+  const content = params.content || '';
+  const fname = params.filename || '제목 없음';
+  const html = `
+    <div class="notepad-menu">
+      <button onclick="notepadAction(this,'new')">파일</button>
+      <button onclick="notepadAction(this,'edit')">편집</button>
+      <button onclick="notepadAction(this,'view')">보기</button>
+    </div>
+    <textarea class="notepad-editor" spellcheck="false">${content}</textarea>
+  `;
+  const id = createWindow('notepad', `${fname} - 메모장`, 650, 450, html);
+  const ta = document.querySelector(`#winbody-${id} .notepad-editor`);
+  ta.addEventListener('keydown',(e)=>{
+    if (e.ctrlKey && e.key==='s') { e.preventDefault(); notify('파일이 저장되었습니다'); }
+  });
+}
+
+function notepadAction(btn, action) {
+  if (action==='new') {
+    const wid = btn.closest('.window').id.split('-')[1];
+    const ta = document.querySelector(`#winbody-${wid} .notepad-editor`);
+    if (ta) ta.value='';
+    notify('새 문서');
+  }
+}
+
+// ── Calculator ──
+function openCalculator() {
+  const html = `
+    <div class="calc-display"><div class="expr" id="calc-expr"></div><div class="result" id="calc-result">0</div></div>
+    <div class="calc-grid" id="calc-grid"></div>
+  `;
+  const id = createWindow('calculator','계산기',320,480,html);
+  const btns = ['%','CE','C','⌫','⅟x','x²','√x','÷','7','8','9','×','4','5','6','-','1','2','3','+','+/-','0','.','='];
+  const grid = document.getElementById('calc-grid');
+  let expr='', display='0', newInput=true;
+  btns.forEach(b=>{
+    const el = document.createElement('button');
+    el.className = 'calc-btn' + (['÷','×','-','+','%','⅟x','x²','√x'].includes(b)?' op':'') + (b==='='?' eq':'') + (b==='0'?' wide':'');
+    el.textContent = b;
+    el.addEventListener('click',()=>{
+      const res = document.getElementById('calc-result');
+      const exp = document.getElementById('calc-expr');
+      if (!res || !exp) return;
+      if ('0123456789'.includes(b)) {
+        display = newInput ? b : display + b; newInput=false;
+      } else if (b==='.') {
+        if (!display.includes('.')) display += '.'; newInput=false;
+      } else if (b==='C') { display='0'; expr=''; newInput=true; }
+      else if (b==='CE') { display='0'; newInput=true; }
+      else if (b==='⌫') { display = display.length>1 ? display.slice(0,-1) : '0'; }
+      else if (b==='+/-') { display = display.startsWith('-') ? display.slice(1) : '-'+display; }
+      else if (['+','-','×','÷'].includes(b)) {
+        expr = display + ' ' + b + ' '; newInput=true;
+      }
+      else if (b==='x²') { display = String(Math.pow(parseFloat(display),2)); newInput=true; }
+      else if (b==='√x') { display = String(Math.sqrt(parseFloat(display))); newInput=true; }
+      else if (b==='⅟x') { display = String(1/parseFloat(display)); newInput=true; }
+      else if (b==='%') { display = String(parseFloat(display)/100); newInput=true; }
+      else if (b==='=') {
+        try {
+          const e = (expr+display).replace(/×/g,'*').replace(/÷/g,'/');
+          display = String(eval(e));
+          expr = ''; newInput=true;
+        } catch(_) { display='Error'; newInput=true; }
+      }
+      res.textContent = display;
+      exp.textContent = expr;
+    });
+    grid.appendChild(el);
+  });
+}
+
+// ── File Explorer ──
+function openExplorer(startPath) {
+  let currentPath = startPath || 'C:/Users/User';
+  const html = `
+    <div class="explorer-toolbar">
+      <button onclick="explorerNav(this,-1)">←</button>
+      <button onclick="explorerNav(this,1)">→</button>
+      <button onclick="explorerNav(this,0)">↑</button>
+      <input class="explorer-path" value="${currentPath}" onkeydown="if(event.key==='Enter')explorerGo(this)">
+    </div>
+    <div class="explorer-content">
+      <div class="explorer-sidebar">
+        <div class="explorer-sidebar-item" onclick="explorerSidebar(this,'C:/Users/User/Desktop')">🖥️ 바탕화면</div>
+        <div class="explorer-sidebar-item" onclick="explorerSidebar(this,'C:/Users/User/Documents')">📄 문서</div>
+        <div class="explorer-sidebar-item" onclick="explorerSidebar(this,'C:/Users/User/Downloads')">⬇️ 다운로드</div>
+        <div class="explorer-sidebar-item" onclick="explorerSidebar(this,'C:/Users/User/Pictures')">🖼️ 사진</div>
+        <div class="explorer-sidebar-item" onclick="explorerSidebar(this,'C:/Users/User/Music')">🎵 음악</div>
+        <div class="explorer-sidebar-item" onclick="explorerSidebar(this,'C:/Users/User/Videos')">🎬 비디오</div>
+        <div style="height:1px;background:#ddd;margin:8px 4px"></div>
+        <div class="explorer-sidebar-item" onclick="explorerSidebar(this,'C:')">💻 내 PC</div>
+      </div>
+      <div class="explorer-main"></div>
+    </div>
+  `;
+  const id = createWindow('explorer','파일 탐색기',800,500,html);
+  const body = document.getElementById('winbody-'+id);
+  body.dataset.path = currentPath;
+
+  function render() {
+    const path = body.dataset.path;
+    body.querySelector('.explorer-path').value = path;
+    const main = body.querySelector('.explorer-main');
+    main.innerHTML = '';
+    const children = getChildren(path);
+    if (!children || Object.keys(children).length===0) {
+      main.innerHTML = '<div style="padding:40px;color:#999;font-size:14px;text-align:center">이 폴더는 비어 있습니다</div>';
+      return;
+    }
+    // Sort folders first
+    const entries = Object.entries(children).sort((a,b)=>{
+      if (a[1].type==='folder' && b[1].type!=='folder') return -1;
+      if (a[1].type!=='folder' && b[1].type==='folder') return 1;
+      return a[0].localeCompare(b[0]);
+    });
+    entries.forEach(([name,node])=>{
+      const isFolder = node.type==='folder';
+      const el = document.createElement('div');
+      el.className = 'explorer-item';
+      el.innerHTML = `<div class="icon">${isFolder?'📁':'📄'}</div><div class="name">${name}</div>`;
+      el.addEventListener('dblclick',()=>{
+        if (isFolder) { body.dataset.path = path+'/'+name; render(); }
+        else if (node.ext==='txt') openApp('notepad',{content:node.content,filename:name});
+      });
+      el.addEventListener('contextmenu',(e)=>{
+        e.preventDefault(); e.stopPropagation();
+        showContextMenu(e.clientX,e.clientY,[
+          { label:'열기', icon:'📂', action:()=>{ if(isFolder){body.dataset.path=path+'/'+name;render();} else if(node.ext==='txt') openApp('notepad',{content:node.content,filename:name}); }},
+          'sep',
+          { label:'이름 바꾸기', icon:'✏️', action:()=>notify('이름 바꾸기: '+name) },
+          { label:'삭제', icon:'🗑️', action:()=>{ deleteItem(path,name); render(); notify(name+' 삭제됨'); }},
+          'sep',
+          { label:'속성', icon:'ℹ️', action:()=>notify(`${name}\n유형: ${isFolder?'폴더':'파일'}\n크기: ${isFolder?'-':node.content?.length||0+'B'}`) },
+        ]);
+      });
+      main.appendChild(el);
+    });
+  }
+  render();
+
+  // Expose nav functions
+  window.explorerNav = function(btn, dir) {
+    const b = btn.closest('.window-body') || btn.closest('.window').querySelector('.window-body');
+    const p = b.dataset.path;
+    if (dir===0) {
+      const parts = p.split('/'); if(parts.length>1){parts.pop(); b.dataset.path=parts.join('/')||'C:'; render();}
+    }
+  };
+  window.explorerGo = function(inp) {
+    const b = inp.closest('.window-body') || inp.closest('.window').querySelector('.window-body');
+    b.dataset.path = inp.value; render();
+  };
+  window.explorerSidebar = function(el, path) {
+    const b = el.closest('.window-body') || el.closest('.window').querySelector('.window-body');
+    b.dataset.path = path;
+    b.querySelectorAll('.explorer-sidebar-item').forEach(x=>x.classList.remove('active'));
+    el.classList.add('active');
+    render();
+  };
+
+  // Context menu on main area
+  body.querySelector('.explorer-main').addEventListener('contextmenu',(e)=>{
+    if (e.target.closest('.explorer-item')) return;
+    e.preventDefault();
+    const path = body.dataset.path;
+    showContextMenu(e.clientX,e.clientY,[
+      { label:'새 폴더', icon:'📁', action:()=>{ createFolder(path,'새 폴더'); render(); }},
+      { label:'새 텍스트 문서', icon:'📄', action:()=>{ createFile(path,'새 문서.txt',''); render(); }},
+      'sep',
+      { label:'새로 고침', icon:'🔄', action:render },
+    ]);
+  });
+}
+
+// ── Terminal ──
+function openTerminal() {
+  const html = `<div class="terminal" id="term-content"></div>`;
+  const id = createWindow('terminal','터미널',700,450,html);
+  const term = document.getElementById('term-content');
+  let cwd = 'C:\\Users\\User';
+  let history = [];
+
+  function prompt() {
+    const line = document.createElement('div');
+    line.className = 'input-line';
+    line.innerHTML = `<span class="prompt">${cwd}&gt; </span><input type="text" autofocus>`;
+    term.appendChild(line);
+    const inp = line.querySelector('input');
+    inp.focus();
+    inp.addEventListener('keydown',(e)=>{
+      if (e.key==='Enter') {
+        const cmd = inp.value;
+        inp.disabled = true;
+        history.push(cmd);
+        executeCmd(cmd);
+      }
+    });
+    term.scrollTop = term.scrollHeight;
+  }
+
+  function print(text, cls='') {
+    const d = document.createElement('div');
+    d.className = 'line '+(cls||'');
+    d.textContent = text;
+    term.appendChild(d);
+  }
+
+  function executeCmd(cmd) {
+    const parts = cmd.trim().split(/\s+/);
+    const c = parts[0]?.toLowerCase();
+    const args = parts.slice(1).join(' ');
+
+    if (!c) { prompt(); return; }
+    switch(c) {
+      case 'help':
+        print('사용 가능한 명령어:');
+        print('  dir, ls    - 디렉토리 목록');
+        print('  cd         - 디렉토리 변경');
+        print('  mkdir      - 폴더 생성');
+        print('  echo       - 텍스트 출력');
+        print('  type, cat  - 파일 내용 표시');
+        print('  del, rm    - 파일 삭제');
+        print('  cls, clear - 화면 지우기');
+        print('  date       - 현재 날짜');
+        print('  time       - 현재 시간');
+        print('  whoami     - 사용자 이름');
+        print('  hostname   - 컴퓨터 이름');
+        print('  ipconfig   - IP 설정');
+        print('  tasklist   - 실행 중인 프로세스');
+        print('  calc       - 계산기 실행');
+        print('  notepad    - 메모장 실행');
+        print('  color      - 색상 변경');
+        break;
+      case 'dir': case 'ls': {
+        const fsPath = cwd.replace(/\\/g,'/');
+        const children = getChildren(fsPath);
+        print(` ${cwd} 디렉토리`);
+        print('');
+        let fc=0,dc=0;
+        Object.entries(children||{}).forEach(([name,node])=>{
+          const isDir = node.type==='folder';
+          print(`  ${isDir?'<DIR>':'     '}  ${name}`);
+          if(isDir) dc++; else fc++;
+        });
+        print(`\n  ${fc}개 파일, ${dc}개 디렉토리`);
+        break;
+      }
+      case 'cd': {
+        if (!args || args==='~') { cwd='C:\\Users\\User'; break; }
+        if (args==='..') { const p=cwd.split('\\'); if(p.length>1){p.pop();cwd=p.join('\\');} break; }
+        const tryPath = cwd.replace(/\\/g,'/')+'/'+args;
+        const node = getNode(tryPath);
+        if (node && (node.type==='folder' || node.children)) { cwd=cwd+'\\'+args; }
+        else print(`시스템이 지정된 경로를 찾을 수 없습니다.`);
+        break;
+      }
+      case 'mkdir':
+        if (args) { createFolder(cwd.replace(/\\/g,'/'), args); print(`디렉토리 생성: ${args}`); }
+        else print('사용법: mkdir <이름>');
+        break;
+      case 'echo':
+        print(args);
+        break;
+      case 'type': case 'cat': {
+        const fp = cwd.replace(/\\/g,'/')+'/'+args;
+        const n = getNode(fp);
+        if (n && n.content!==undefined) print(n.content);
+        else print('파일을 찾을 수 없습니다: '+args);
+        break;
+      }
+      case 'del': case 'rm':
+        if (args) { deleteItem(cwd.replace(/\\/g,'/'), args); print(`삭제됨: ${args}`); }
+        break;
+      case 'cls': case 'clear':
+        term.innerHTML='';
+        break;
+      case 'date': print(new Date().toLocaleDateString('ko-KR')); break;
+      case 'time': print(new Date().toLocaleTimeString('ko-KR')); break;
+      case 'whoami': print('User'); break;
+      case 'hostname': print('WINDOWS-WEB'); break;
+      case 'ver': print('Microsoft Windows [Version 11.0.26100]'); break;
+      case 'ipconfig':
+        print('Windows IP 구성\n');
+        print('이더넷 어댑터 이더넷:');
+        print('   IPv4 주소 . . . . . : 192.168.1.100');
+        print('   서브넷 마스크  . . . : 255.255.255.0');
+        print('   기본 게이트웨이 . . : 192.168.1.1');
+        break;
+      case 'tasklist':
+        print('이미지 이름                PID  메모리 사용');
+        print('========================  ===  ==========');
+        windows.forEach(w=>print(`${(w.title||'').padEnd(24)} ${w.id}    ${Math.floor(Math.random()*100+20)}MB`));
+        print(`System                    0    128MB`);
+        print(`explorer.exe              1    64MB`);
+        break;
+      case 'calc': openApp('calculator'); print('계산기를 시작합니다...'); break;
+      case 'notepad': openApp('notepad'); print('메모장을 시작합니다...'); break;
+      case 'exit': closeWindow(id); return;
+      case 'systeminfo':
+        print('호스트 이름:       WINDOWS-WEB');
+        print('OS 이름:          Windows 11 Pro');
+        print('OS 버전:          11.0.26100');
+        print('시스템 제조업체:   Web Technologies');
+        print('시스템 유형:       x64-based PC');
+        print('프로세서:          Browser Engine v8');
+        print('총 실제 메모리:    16,384 MB');
+        break;
+      case 'ping':
+        if (args) {
+          print(`\n${args} [127.0.0.1]에 대한 Ping:`);
+          for(let i=0;i<4;i++) print(`  응답: 바이트=32 시간=${Math.floor(Math.random()*30+1)}ms TTL=128`);
+          print('\nPing 통계:');
+          print('    패킷: 보냄 = 4, 받음 = 4, 손실 = 0 (0% 손실)');
+        } else print('사용법: ping <호스트명>');
+        break;
+      case 'tree':
+        print(cwd);
+        const treeNode = getNode(cwd.replace(/\\/g,'/'));
+        if(treeNode?.children) printTree(treeNode.children, '');
+        break;
+      default:
+        print(`'${c}'은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는 배치 파일이 아닙니다.`);
+    }
+    prompt();
+  }
+
+  function printTree(children, prefix) {
+    const entries = Object.entries(children);
+    entries.forEach(([name,node],i)=>{
+      const isLast = i===entries.length-1;
+      print(prefix+(isLast?'└──':'├──')+' '+(node.type==='folder'?'📁':'📄')+' '+name);
+      if(node.children) printTree(node.children, prefix+(isLast?'    ':'│   '));
+    });
+  }
+
+  print('Microsoft Windows [Version 11.0.26100]');
+  print('(c) Windows Corporation. All rights reserved.\n');
+  prompt();
+}
+
+// ── Settings ──
+function openSettings() {
+  const html = `
+    <div class="settings-layout">
+      <div class="settings-nav">
+        <div class="settings-nav-item active" onclick="settingsTab(this,'personalization')">🎨 개인 설정</div>
+        <div class="settings-nav-item" onclick="settingsTab(this,'system')">💻 시스템</div>
+        <div class="settings-nav-item" onclick="settingsTab(this,'display')">🖥️ 디스플레이</div>
+        <div class="settings-nav-item" onclick="settingsTab(this,'apps')">📦 앱</div>
+        <div class="settings-nav-item" onclick="settingsTab(this,'about')">ℹ️ 정보</div>
+      </div>
+      <div class="settings-panel" id="settings-content"></div>
+    </div>
+  `;
+  const id = createWindow('settings','설정',800,550,html);
+
+  window.settingsTab = function(el, tab) {
+    el.closest('.settings-nav').querySelectorAll('.settings-nav-item').forEach(x=>x.classList.remove('active'));
+    el.classList.add('active');
+    renderSettingsTab(tab, el.closest('.settings-layout').querySelector('.settings-panel'));
+  };
+
+  function renderSettingsTab(tab, panel) {
+    switch(tab) {
+      case 'personalization':
+        panel.innerHTML = `
+          <h2>개인 설정</h2>
+          <div class="settings-group">
+            <label>배경</label>
+            <div class="wallpaper-grid">
+              ${wallpapers.map((w,i)=>`<div class="wallpaper-opt ${i===currentWallpaper?'active':''}" style="background:${w}" onclick="setWallpaper(${i},this)"></div>`).join('')}
+            </div>
+          </div>
+          <div class="settings-group">
+            <label>다크 모드 <div class="toggle ${darkMode?'on':''}" onclick="toggleDark(this)"></div></label>
+            <label>투명 효과 <div class="toggle on"></div></label>
+            <label>애니메이션 효과 <div class="toggle on"></div></label>
+          </div>
+        `;
+        break;
+      case 'system':
+        panel.innerHTML = `
+          <h2>시스템</h2>
+          <div class="settings-group">
+            <label>알림 <div class="toggle on"></div></label>
+            <label>소리 <div class="toggle on"></div></label>
+            <label>집중 지원 <div class="toggle"></div></label>
+          </div>
+          <div class="settings-group">
+            <label>저장소<span>128 GB 사용 / 256 GB</span></label>
+            <div style="height:8px;background:#e0e0e0;border-radius:4px;margin-top:8px"><div style="width:50%;height:100%;background:var(--win-accent);border-radius:4px"></div></div>
+          </div>
+        `;
+        break;
+      case 'about':
+        panel.innerHTML = `
+          <h2>정보</h2>
+          <div class="settings-group">
+            <div style="text-align:center;padding:20px">
+              <div style="font-size:48px;margin-bottom:12px">🪟</div>
+              <div style="font-size:18px;font-weight:600">Windows 11 Pro</div>
+              <div style="color:#666;margin-top:4px">버전 24H2 (OS 빌드 26100.1)</div>
+              <div style="color:#666;margin-top:12px">© 2024 Windows Web Edition</div>
+              <div style="color:#666;margin-top:4px">브라우저 기반 Windows OS 시뮬레이션</div>
+            </div>
+          </div>
+          <div class="settings-group">
+            <label>장치 이름 <span>WINDOWS-WEB</span></label>
+            <label>프로세서 <span>Browser Engine v8</span></label>
+            <label>RAM <span>16.0 GB</span></label>
+            <label>시스템 유형 <span>64비트 운영 체제</span></label>
+          </div>
+        `;
+        break;
+      default:
+        panel.innerHTML = `<h2>${tab}</h2><div class="settings-group"><p style="color:#666;padding:12px">설정 항목이 여기에 표시됩니다.</p></div>`;
+    }
+  }
+
+  window.setWallpaper = function(i, el) {
+    currentWallpaper = i;
+    applyWallpaper();
+    el.closest('.wallpaper-grid').querySelectorAll('.wallpaper-opt').forEach(x=>x.classList.remove('active'));
+    el.classList.add('active');
+  };
+
+  window.toggleDark = function(el) {
+    darkMode = !darkMode;
+    el.classList.toggle('on', darkMode);
+    document.body.style.colorScheme = darkMode ? 'dark' : 'light';
+  };
+
+  renderSettingsTab('personalization', document.getElementById('settings-content'));
+}
+
+function applyWallpaper() {
+  document.getElementById('desktop').style.backgroundImage = wallpapers[currentWallpaper];
+}
+
+// ── Browser ──
+function openBrowser(url) {
+  const startUrl = url || 'about:blank';
+  const html = `
+    <div class="browser-toolbar">
+      <button>←</button><button>→</button><button>⟳</button>
+      <input class="browser-url" value="${startUrl}" onkeydown="if(event.key==='Enter')browserGo(this)">
+    </div>
+    <div class="browser-body">
+      <div class="browser-page">
+        <div style="text-align:center;padding:60px 20px">
+          <div style="font-size:48px;margin-bottom:16px">🌐</div>
+          <h1 style="font-size:28px;font-weight:300;margin-bottom:24px">새 탭</h1>
+          <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+            <div onclick="browserNavigate(this,'search')" style="width:80px;text-align:center;cursor:pointer;padding:12px;border-radius:8px;background:#f5f5f5">
+              <div style="font-size:24px;margin-bottom:4px">🔍</div><div style="font-size:11px">검색</div>
+            </div>
+            <div onclick="browserNavigate(this,'news')" style="width:80px;text-align:center;cursor:pointer;padding:12px;border-radius:8px;background:#f5f5f5">
+              <div style="font-size:24px;margin-bottom:4px">📰</div><div style="font-size:11px">뉴스</div>
+            </div>
+            <div onclick="browserNavigate(this,'mail')" style="width:80px;text-align:center;cursor:pointer;padding:12px;border-radius:8px;background:#f5f5f5">
+              <div style="font-size:24px;margin-bottom:4px">✉️</div><div style="font-size:11px">메일</div>
+            </div>
+            <div onclick="browserNavigate(this,'games')" style="width:80px;text-align:center;cursor:pointer;padding:12px;border-radius:8px;background:#f5f5f5">
+              <div style="font-size:24px;margin-bottom:4px">🎮</div><div style="font-size:11px">게임</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  createWindow('browser','Edge',900,600,html);
+
+  window.browserGo = function(inp) {
+    const url = inp.value;
+    const body = inp.closest('.window').querySelector('.browser-body');
+    body.innerHTML = `<div class="browser-page"><h1>${url}</h1><p>이 페이지를 로드할 수 없습니다. 정적 시뮬레이션에서는 실제 웹사이트에 연결할 수 없습니다.</p><p style="margin-top:20px;color:#0078d4;cursor:pointer" onclick="this.closest('.browser-body').querySelector('.browser-page').innerHTML='<div style=padding:60px;text-align:center><div style=font-size:48px>🔍</div><h2 style=margin:16px>검색 결과</h2><p style=color:#666>시뮬레이션된 검색 결과가 여기에 표시됩니다</p></div>'">🔍 검색해 보기</p></div>`;
+  };
+
+  window.browserNavigate = function(el, page) {
+    const body = el.closest('.browser-body');
+    const pages = {
+      search: `<div style="padding:40px;max-width:600px;margin:0 auto"><h1 style="font-size:32px;text-align:center;margin-bottom:24px">🔍 검색</h1><input style="width:100%;padding:12px 16px;border:2px solid #ddd;border-radius:24px;font-size:16px;outline:none" placeholder="검색어를 입력하세요..."><div style="margin-top:32px;color:#666"><p>추천 검색어:</p><ul style="margin-top:8px;list-style:none"><li style="padding:8px 0;border-bottom:1px solid #eee;cursor:pointer">🔥 인기 검색어</li><li style="padding:8px 0;border-bottom:1px solid #eee;cursor:pointer">📈 실시간 트렌드</li><li style="padding:8px 0;cursor:pointer">🌍 세계 뉴스</li></ul></div></div>`,
+      news: `<div style="padding:24px"><h1>📰 오늘의 뉴스</h1><div style="margin-top:16px">${['기술 혁신: AI가 바꾸는 미래','글로벌 경제 동향 분석','우주 탐사 새로운 발견','환경 보호 국제 협약 체결','스포츠: 월드컵 예선 결과'].map(t=>`<div style="padding:16px;border-bottom:1px solid #eee;cursor:pointer"><h3 style="font-size:15px;margin-bottom:4px">${t}</h3><p style="font-size:12px;color:#666">2026.03.28 - 상세 기사 보기</p></div>`).join('')}</div></div>`,
+      mail: `<div style="padding:40px;text-align:center"><div style="font-size:48px;margin-bottom:16px">✉️</div><h2>웹 메일</h2><p style="color:#666;margin-top:8px">받은 편지함: 3개의 새 메시지</p><div style="margin-top:24px;text-align:left;max-width:500px;margin-left:auto;margin-right:auto">${['[중요] 프로젝트 미팅 안내','주간 보고서 요청','환영합니다! 계정이 생성되었습니다'].map((t,i)=>`<div style="padding:12px;border:1px solid #eee;border-radius:8px;margin-bottom:8px;cursor:pointer"><div style="font-weight:600;font-size:13px">${t}</div><div style="font-size:11px;color:#888;margin-top:4px">${['팀장','인사팀','시스템'][i]} · ${['10분','1시간','어제'][i]} 전</div></div>`).join('')}</div></div>`,
+      games: `<div style="padding:24px"><h1>🎮 게임</h1><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px">${[['🧩','퍼즐'],['♟️','체스'],['🎯','타겟'],['🃏','카드'],['🎲','주사위'],['🏃','러너']].map(([e,n])=>`<div style="padding:24px;background:#f5f5f5;border-radius:12px;text-align:center;cursor:pointer"><div style="font-size:36px">${e}</div><div style="margin-top:8px;font-size:13px">${n}</div></div>`).join('')}</div></div>`,
+    };
+    body.innerHTML = `<div class="browser-page">${pages[page]||''}</div>`;
+  };
+}
+
+// ── Paint ──
+function openPaint() {
+  const html = `
+    <div class="paint-toolbar">
+      <button class="active" data-tool="brush" onclick="paintTool(this,'brush')">🖌️</button>
+      <button data-tool="eraser" onclick="paintTool(this,'eraser')">🧹</button>
+      <button data-tool="line" onclick="paintTool(this,'line')">📏</button>
+      <button data-tool="rect" onclick="paintTool(this,'rect')">⬜</button>
+      <button data-tool="circle" onclick="paintTool(this,'circle')">⭕</button>
+      <input type="color" value="#000000" id="paint-color">
+      <input type="range" min="1" max="20" value="3" id="paint-size">
+      <button onclick="paintClear(this)">🗑️ 지우기</button>
+    </div>
+    <canvas class="paint-canvas"></canvas>
+  `;
+  const id = createWindow('paint','그림판',800,550,html);
+  const body = document.getElementById('winbody-'+id);
+  const canvas = body.querySelector('canvas');
+  const ctx = canvas.getContext('2d');
+  let tool = 'brush', drawing = false, lastX=0, lastY=0;
+
+  function resizeCanvas() {
+    canvas.width = body.offsetWidth;
+    canvas.height = body.offsetHeight - 40;
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+  }
+  setTimeout(resizeCanvas, 100);
+
+  canvas.addEventListener('mousedown',(e)=>{
+    drawing=true;
+    const r=canvas.getBoundingClientRect();
+    lastX=e.clientX-r.left; lastY=e.clientY-r.top;
+  });
+  canvas.addEventListener('mousemove',(e)=>{
+    if(!drawing) return;
+    const r=canvas.getBoundingClientRect();
+    const x=e.clientX-r.left, y=e.clientY-r.top;
+    const color = body.querySelector('#paint-color')?.value || '#000';
+    const size = body.querySelector('#paint-size')?.value || 3;
+    ctx.strokeStyle = tool==='eraser' ? '#fff' : color;
+    ctx.lineWidth = tool==='eraser' ? size*3 : size;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    ctx.moveTo(lastX,lastY);
+    ctx.lineTo(x,y);
+    ctx.stroke();
+    lastX=x; lastY=y;
+  });
+  canvas.addEventListener('mouseup',()=>drawing=false);
+  canvas.addEventListener('mouseleave',()=>drawing=false);
+
+  window.paintTool = function(btn, t) {
+    tool=t;
+    btn.closest('.paint-toolbar').querySelectorAll('button[data-tool]').forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active');
+  };
+  window.paintClear = function(btn) {
+    const c = btn.closest('.window').querySelector('canvas');
+    const cx = c.getContext('2d');
+    cx.fillStyle='#fff'; cx.fillRect(0,0,c.width,c.height);
+  };
+}
+
+// ── Weather ──
+function openWeather() {
+  const html = `
+    <div style="background:linear-gradient(135deg,#4facfe,#00f2fe);height:100%;padding:24px;color:#fff">
+      <div style="font-size:16px;font-weight:600">서울</div>
+      <div style="font-size:64px;font-weight:200;margin:12px 0">18°</div>
+      <div style="font-size:14px;opacity:0.8">맑음 ☀️</div>
+      <div style="margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        ${[['💨','바람','12 km/h'],['💧','습도','45%'],['🌡️','체감','16°']].map(([i,l,v])=>`<div style="background:rgba(255,255,255,0.15);border-radius:12px;padding:16px;text-align:center"><div style="font-size:24px">${i}</div><div style="font-size:11px;opacity:0.7;margin:4px 0">${l}</div><div style="font-size:16px;font-weight:500">${v}</div></div>`).join('')}
+      </div>
+      <div style="margin-top:24px">
+        <div style="font-size:13px;margin-bottom:12px">주간 예보</div>
+        ${['월','화','수','목','금','토','일'].map((d,i)=>{
+          const temps = [18,20,17,15,19,22,21];
+          const icons = ['☀️','⛅','🌤️','🌧️','⛅','☀️','☀️'];
+          return `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1)"><span>${d}</span><span>${icons[i]}</span><span>${temps[i]}°</span></div>`;
+        }).join('')}
+      </div>
+    </div>
+  `;
+  createWindow('weather','날씨',400,500,html);
+}
+
+// ── Store ──
+function openStore() {
+  const apps = [
+    { name:'Spotify', icon:'🎵', desc:'음악 스트리밍', rating:'4.5' },
+    { name:'Netflix', icon:'🎬', desc:'영상 스트리밍', rating:'4.3' },
+    { name:'Notion', icon:'📋', desc:'생산성 도구', rating:'4.7' },
+    { name:'Discord', icon:'💬', desc:'커뮤니케이션', rating:'4.2' },
+    { name:'VSCode', icon:'💻', desc:'코드 편집기', rating:'4.8' },
+    { name:'Telegram', icon:'📱', desc:'메신저', rating:'4.4' },
+    { name:'Figma', icon:'🎨', desc:'디자인 도구', rating:'4.6' },
+    { name:'Slack', icon:'💼', desc:'업무 메신저', rating:'4.1' },
+  ];
+  const html = `
+    <div style="padding:24px">
+      <h1 style="font-size:24px;font-weight:300;margin-bottom:20px">Microsoft Store</h1>
+      <input style="width:100%;padding:10px 16px;border:1px solid #ddd;border-radius:8px;margin-bottom:24px;font-size:14px;outline:none;font-family:inherit" placeholder="앱, 게임, 영화 검색...">
+      <h3 style="font-size:14px;margin-bottom:12px">인기 앱</h3>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+        ${apps.map(a=>`<div style="display:flex;gap:12px;padding:16px;background:#f8f8f8;border-radius:12px;cursor:pointer">
+          <div style="font-size:36px">${a.icon}</div>
+          <div><div style="font-weight:600;font-size:14px">${a.name}</div><div style="font-size:12px;color:#666">${a.desc}</div><div style="font-size:11px;color:#f5a623;margin-top:2px">⭐ ${a.rating}</div></div>
+          <button style="margin-left:auto;align-self:center;padding:6px 16px;background:var(--win-accent);color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:12px">받기</button>
+        </div>`).join('')}
+      </div>
+    </div>
+  `;
+  createWindow('store','Microsoft Store',800,550,html);
+}
+
+// ── Photos ──
+function openPhotos() {
+  const emojis = ['🌄','🌅','🌆','🌇','🏔️','🏖️','🌸','🌺','🦋','🌈','🎆','🌃'];
+  const html = `
+    <div style="padding:12px">
+      <h2 style="font-size:18px;font-weight:400;margin-bottom:12px">사진 컬렉션</h2>
+      <div class="photos-grid">
+        ${emojis.map(e=>`<div class="photos-thumb" onclick="this.style.fontSize='72px'">${e}</div>`).join('')}
+      </div>
+    </div>
+  `;
+  createWindow('photos','사진',700,500,html);
+}
+
+// ── Clock App ──
+function openClockApp() {
+  const html = `
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;background:#1a1a1a;color:#fff">
+      <div id="clock-face" style="font-size:72px;font-weight:200;letter-spacing:-2px">00:00:00</div>
+      <div style="margin-top:24px;display:flex;gap:12px">
+        <button onclick="clockStartStop(this)" style="padding:10px 28px;background:#0078d4;color:#fff;border:none;border-radius:20px;cursor:pointer;font-size:14px">시작</button>
+        <button onclick="clockReset(this)" style="padding:10px 28px;background:#333;color:#fff;border:none;border-radius:20px;cursor:pointer;font-size:14px">초기화</button>
+      </div>
+    </div>
+  `;
+  const id = createWindow('clock','스톱워치',400,420,html);
+  let running=false, elapsed=0, interval=null;
+  const face = document.getElementById('clock-face');
+
+  function updateFace() {
+    const h = String(Math.floor(elapsed/3600000)).padStart(2,'0');
+    const m = String(Math.floor((elapsed%3600000)/60000)).padStart(2,'0');
+    const s = String(Math.floor((elapsed%60000)/1000)).padStart(2,'0');
+    if(face) face.textContent = `${h}:${m}:${s}`;
+  }
+
+  window.clockStartStop = function(btn) {
+    running=!running;
+    btn.textContent = running?'정지':'시작';
+    if(running) { const start=Date.now()-elapsed; interval=setInterval(()=>{elapsed=Date.now()-start;updateFace();},50); }
+    else clearInterval(interval);
+  };
+  window.clockReset = function() { running=false; elapsed=0; clearInterval(interval); updateFace(); };
+}
+
+// ── Music Player ──
+function openMusic() {
+  const tracks = [
+    { title:'봄날', artist:'아티스트 1', duration:'3:52' },
+    { title:'밤편지', artist:'아티스트 2', duration:'4:15' },
+    { title:'에너지', artist:'아티스트 3', duration:'3:30' },
+    { title:'좋은 날', artist:'아티스트 4', duration:'4:02' },
+    { title:'첫눈처럼', artist:'아티스트 5', duration:'3:45' },
+  ];
+  const html = `
+    <div style="background:linear-gradient(180deg,#2d1b69,#1a1a2e);height:100%;color:#fff;display:flex;flex-direction:column">
+      <div style="flex:1;padding:20px;overflow:auto">
+        <h3 style="font-weight:400;margin-bottom:16px">🎵 재생 목록</h3>
+        ${tracks.map((t,i)=>`<div onclick="this.style.background='rgba(255,255,255,0.1)'" style="display:flex;align-items:center;padding:12px;border-radius:8px;cursor:pointer;margin-bottom:4px;transition:background 0.2s">
+          <span style="width:24px;color:#888;font-size:13px">${i+1}</span>
+          <div style="flex:1"><div style="font-size:14px">${t.title}</div><div style="font-size:12px;color:#888">${t.artist}</div></div>
+          <span style="font-size:12px;color:#888">${t.duration}</span>
+        </div>`).join('')}
+      </div>
+      <div style="padding:16px;border-top:1px solid rgba(255,255,255,0.1);text-align:center">
+        <div style="font-size:14px;margin-bottom:4px">${tracks[0].title}</div>
+        <div style="font-size:11px;color:#888;margin-bottom:12px">${tracks[0].artist}</div>
+        <div style="height:3px;background:rgba(255,255,255,0.1);border-radius:2px;margin-bottom:12px"><div style="width:35%;height:100%;background:#0078d4;border-radius:2px"></div></div>
+        <div style="display:flex;justify-content:center;gap:20px;font-size:20px">
+          <span style="cursor:pointer;opacity:0.7">⏮️</span>
+          <span style="cursor:pointer" onclick="this.textContent=this.textContent==='▶️'?'⏸️':'▶️'">▶️</span>
+          <span style="cursor:pointer;opacity:0.7">⏭️</span>
+        </div>
+      </div>
+    </div>
+  `;
+  createWindow('music','음악',450,500,html);
+}
+
+// ── Mail ──
+function openMail() {
+  const html = `
+    <div style="display:flex;height:100%">
+      <div style="width:200px;background:#f0f0f0;border-right:1px solid #ddd;padding:12px">
+        <button style="width:100%;padding:8px;background:var(--win-accent);color:#fff;border:none;border-radius:6px;cursor:pointer;margin-bottom:12px;font-family:inherit">✉️ 새 메일</button>
+        <div style="font-size:12px">
+          <div style="padding:8px;background:#e0e7f1;border-radius:4px;margin-bottom:2px;cursor:pointer">📥 받은 편지함 <span style="float:right;background:var(--win-accent);color:#fff;padding:0 6px;border-radius:8px;font-size:10px">3</span></div>
+          <div style="padding:8px;border-radius:4px;margin-bottom:2px;cursor:pointer">📤 보낸 편지함</div>
+          <div style="padding:8px;border-radius:4px;margin-bottom:2px;cursor:pointer">📝 임시 보관</div>
+          <div style="padding:8px;border-radius:4px;cursor:pointer">🗑️ 휴지통</div>
+        </div>
+      </div>
+      <div style="flex:1;overflow:auto">
+        ${[
+          { from:'팀장', subject:'[중요] 내일 미팅 안내', preview:'안녕하세요, 내일 오전 10시 회의실에서...', time:'10:30' },
+          { from:'인사팀', subject:'3월 급여 명세서', preview:'3월 급여 명세서가 발행되었습니다...', time:'09:15' },
+          { from:'시스템', subject:'보안 알림', preview:'새로운 기기에서 로그인이 감지되었습니다...', time:'어제' },
+        ].map(m=>`<div style="padding:14px 16px;border-bottom:1px solid #eee;cursor:pointer;transition:background 0.15s" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background=''">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-weight:600;font-size:13px">${m.from}</span><span style="font-size:11px;color:#888">${m.time}</span></div>
+          <div style="font-size:13px;margin-bottom:2px">${m.subject}</div>
+          <div style="font-size:12px;color:#888">${m.preview}</div>
+        </div>`).join('')}
+      </div>
+    </div>
+  `;
+  createWindow('mail','메일',750,500,html);
+}
+
+// ── Todo ──
+function openTodo() {
+  const html = `
+    <div style="padding:20px;height:100%;display:flex;flex-direction:column">
+      <h2 style="font-size:20px;font-weight:400;margin-bottom:16px">✅ 할 일</h2>
+      <div style="display:flex;gap:8px;margin-bottom:16px">
+        <input id="todo-input" style="flex:1;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-size:13px;outline:none;font-family:inherit" placeholder="할 일 추가...">
+        <button onclick="addTodoItem()" style="padding:10px 20px;background:var(--win-accent);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-family:inherit">추가</button>
+      </div>
+      <div id="todo-list" style="flex:1;overflow:auto">
+        <div class="todo-item" style="display:flex;align-items:center;padding:12px;border-bottom:1px solid #eee;gap:10px">
+          <input type="checkbox" style="width:18px;height:18px;cursor:pointer">
+          <span style="font-size:13px">프로젝트 기획서 작성</span>
+        </div>
+        <div class="todo-item" style="display:flex;align-items:center;padding:12px;border-bottom:1px solid #eee;gap:10px">
+          <input type="checkbox" style="width:18px;height:18px;cursor:pointer">
+          <span style="font-size:13px">디자인 리뷰 미팅</span>
+        </div>
+        <div class="todo-item" style="display:flex;align-items:center;padding:12px;border-bottom:1px solid #eee;gap:10px">
+          <input type="checkbox" checked style="width:18px;height:18px;cursor:pointer">
+          <span style="font-size:13px;text-decoration:line-through;color:#999">이메일 확인</span>
+        </div>
+      </div>
+    </div>
+  `;
+  createWindow('todo','할 일',400,500,html);
+
+  window.addTodoItem = function() {
+    const inp = document.getElementById('todo-input');
+    if (!inp?.value.trim()) return;
+    const list = document.getElementById('todo-list');
+    const item = document.createElement('div');
+    item.className = 'todo-item';
+    item.style.cssText = 'display:flex;align-items:center;padding:12px;border-bottom:1px solid #eee;gap:10px';
+    item.innerHTML = `<input type="checkbox" style="width:18px;height:18px;cursor:pointer" onchange="this.nextElementSibling.style.textDecoration=this.checked?'line-through':'';this.nextElementSibling.style.color=this.checked?'#999':''"><span style="font-size:13px">${inp.value}</span>`;
+    list.prepend(item);
+    inp.value='';
+  };
+
+  document.getElementById('todo-input')?.addEventListener('keydown',(e)=>{
+    if(e.key==='Enter') addTodoItem();
+  });
+}
+
+// ── Shutdown ──
+function showShutdown() {
+  toggleStartMenu(false);
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:99999;display:flex;align-items:center;justify-content:center';
+  overlay.innerHTML = `
+    <div style="background:#fff;border-radius:12px;padding:32px;text-align:center;box-shadow:0 16px 64px rgba(0,0,0,0.3);min-width:320px">
+      <div style="font-size:36px;margin-bottom:16px">⏻</div>
+      <div style="font-size:16px;margin-bottom:24px">종료하시겠습니까?</div>
+      <div style="display:flex;gap:12px;justify-content:center">
+        <button onclick="this.closest('div[style]').parentElement.remove()" style="padding:8px 24px;border:1px solid #ddd;border-radius:6px;background:#fff;cursor:pointer;font-family:inherit">취소</button>
+        <button onclick="doShutdown()" style="padding:8px 24px;border:none;border-radius:6px;background:#c42b1c;color:#fff;cursor:pointer;font-family:inherit">종료</button>
+        <button onclick="doRestart()" style="padding:8px 24px;border:none;border-radius:6px;background:var(--win-accent);color:#fff;cursor:pointer;font-family:inherit">다시 시작</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  window.doShutdown = function() {
+    document.body.innerHTML = '<div style="position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px">전원이 꺼졌습니다. 페이지를 새로고침하여 다시 시작하세요.</div>';
+  };
+  window.doRestart = function() {
+    location.reload();
+  };
+}
+
+// ── Keyboard Shortcuts ──
+document.addEventListener('keydown',(e)=>{
+  // Win+E = Explorer
+  if (e.metaKey && e.key==='e') { e.preventDefault(); openApp('explorer'); }
+  // Ctrl+Shift+Esc = Task Manager style (tasklist in terminal)
+  if (e.ctrlKey && e.shiftKey && e.key==='Escape') { e.preventDefault(); openApp('terminal'); }
+  // Alt+F4 = Close
+  if (e.altKey && e.key==='F4') { e.preventDefault(); if(activeWindowId) closeWindow(activeWindowId); }
+  // Escape = Close start menu
+  if (e.key==='Escape' && startMenuOpen) toggleStartMenu(false);
+});
+
+</script>
+</body>
+</html>
