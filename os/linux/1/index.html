@@ -93,7 +93,7 @@ body {
 /* ═══ V86 SCREEN ═══ */
 #screen_container { width: 100%; height: 100%; background: #000; cursor: text; overflow: hidden; -webkit-overflow-scrolling: touch; }
 #screen_container > div { font-family: 'Fira Code', monospace !important; font-size: var(--tf) !important; line-height: 1.3 !important; padding: clamp(2px,.4vw,4px) !important; overflow-y: auto !important; height: 100% !important; -webkit-overflow-scrolling: touch; white-space: pre-wrap !important; word-wrap: break-word !important; }
-#screen_container canvas { display: none; }
+#screen_container canvas { display: block !important; width: 100% !important; height: 100% !important; image-rendering: pixelated; }
 /* ═══ BOTTOM ═══ */
 .bot {
   flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
@@ -179,10 +179,7 @@ body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-in
     <div class="pmsg" id="pm">System Ready...</div>
     <div class="plog" id="pl"></div>
   </div>
-  <div id="screen_container">
-    <div style="white-space: pre; font: 14px 'Fira Code', monospace; line-height: 1.2;"></div>
-    <canvas style="display: none;"></canvas>
-  </div>
+  <div id="screen_container"></div>
 </div>
 <footer class="bot">
   <div class="keys">
@@ -297,7 +294,7 @@ body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-in
       wasm: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/build/v86.wasm',
       bios: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/bios/seabios.bin',
       vga: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/bios/vgabios.bin',
-      iso: 'https://i.copy.sh/linux.iso' 
+      iso: 'https://copy.sh/v86/images/linux.iso'
     },
     {
       name: 'unpkg (Fallback)',
@@ -305,7 +302,7 @@ body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-in
       wasm: 'https://unpkg.com/v86@0.5.44/build/v86.wasm',
       bios: 'https://unpkg.com/v86@0.5.44/bios/seabios.bin',
       vga: 'https://unpkg.com/v86@0.5.44/bios/vgabios.bin',
-      iso: 'https://i.copy.sh/linux3.iso'
+      iso: 'https://copy.sh/v86/images/linux.iso'
     },
     {
       name: 'copy.sh (Fallback 2)',
@@ -394,6 +391,7 @@ body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-in
   function bindEmulatorEvents() {
     let bootDone = false;
     let maxDlPercent = 0;
+    let readySeen = false;
 
     // Listen to real download progress instead of faking it
     emu.add_listener('download-progress', (e) => {
@@ -418,8 +416,16 @@ body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-in
     });
 
     emu.add_listener('emulator-ready', () => {
+      readySeen = true;
       logMsg('JIT Compiler active. Booting Linux kernel...');
       setProgress(85, 'Booting Kernel...');
+      // Some builds do not emit serial text early; avoid endless boot overlay.
+      setTimeout(() => {
+        if (!bootDone) {
+          logMsg('Kernel ready detected. Switching to live display...');
+          finalizeBoot();
+        }
+      }, 6000);
     });
 
     // Detect actual terminal output to remove boot screen
@@ -437,14 +443,26 @@ body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-in
     const checkScreen = setInterval(() => {
       if (bootDone) { clearInterval(checkScreen); return; }
       const textDiv = document.querySelector('#screen_container > div');
+      const canvas = document.querySelector('#screen_container canvas');
       if (textDiv && textDiv.textContent.length > 50) {
         bootDone = true;
         clearInterval(checkScreen);
         finalizeBoot();
       }
+      if (!bootDone && canvas && canvas.width > 0 && canvas.height > 0 && readySeen && screenTicks > 8) {
+        bootDone = true;
+        clearInterval(checkScreen);
+        finalizeBoot();
+      }
       screenTicks++;
-      // Stop checking after 30 seconds to save resources (Do NOT force close bootscreen)
-      if (screenTicks > 60) clearInterval(checkScreen);
+      // Hard timeout so users are never stuck in infinite loading screen.
+      if (screenTicks > 90) {
+        clearInterval(checkScreen);
+        if (!bootDone) {
+          logMsg('Boot timeout reached. Opening display anyway...');
+          finalizeBoot();
+        }
+      }
     }, 500);
   }
 
