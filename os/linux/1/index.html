@@ -289,16 +289,31 @@ body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-in
     }
   };
 
-  // 1. Validated sources from reliable CDNs
-  const v86_version = '0.3.0'; 
+  // v0.5.44 : The most stable recent version of v86
   const cdnList = [
     {
-      name: 'UNPKG (Official)',
-      js: `https://unpkg.com/v86@${v86_version}/build/libv86.js`,
-      wasm: `https://unpkg.com/v86@${v86_version}/build/v86.wasm`,
-      bios: `https://unpkg.com/v86@${v86_version}/bios/seabios.bin`,
-      vga: `https://unpkg.com/v86@${v86_version}/bios/vgabios.bin`,
-      iso: `https://i.copy.sh/linux4.iso` // i.copy.sh allows unrestricted CORS
+      name: 'jsDelivr (Primary)',
+      js: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/build/libv86.js',
+      wasm: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/build/v86.wasm',
+      bios: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/bios/seabios.bin',
+      vga: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/bios/vgabios.bin',
+      iso: 'https://i.copy.sh/linux.iso' 
+    },
+    {
+      name: 'unpkg (Fallback)',
+      js: 'https://unpkg.com/v86@0.5.44/build/libv86.js',
+      wasm: 'https://unpkg.com/v86@0.5.44/build/v86.wasm',
+      bios: 'https://unpkg.com/v86@0.5.44/bios/seabios.bin',
+      vga: 'https://unpkg.com/v86@0.5.44/bios/vgabios.bin',
+      iso: 'https://i.copy.sh/linux3.iso'
+    },
+    {
+      name: 'copy.sh (Fallback 2)',
+      js: 'https://copy.sh/v86/build/libv86.js',
+      wasm: 'https://copy.sh/v86/build/v86.wasm',
+      bios: 'https://copy.sh/v86/bios/seabios.bin',
+      vga: 'https://copy.sh/v86/bios/vgabios.bin',
+      iso: 'https://copy.sh/v86/images/linux.iso'
     }
   ];
 
@@ -350,7 +365,10 @@ body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-in
     logMsg('CPU: x86 32-bit | RAM: 64MB | VGA: 2MB');
 
     try {
-      emu = new window.V86({
+      // Handle newer v86 versions vs legacy V86Starter
+      const V86Constructor = window.V86 || window.V86Starter;
+      
+      emu = new V86Constructor({
         wasm_path: cdn.wasm,
         memory_size: 64 * 1024 * 1024,
         vga_memory_size: 2 * 1024 * 1024,
