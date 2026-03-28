@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Selection Buttons</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --accent-color: #e74c3c;
+            --bg-color: #f4f7f6;
+            --text-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .os-button {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 15px 35px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 개별 버튼 스타일 */
+        .btn-1 { background-color: var(--primary-color); }
+        .btn-2 { background-color: var(--secondary-color); }
+        .btn-3 { background-color: var(--accent-color); }
+
+        /* 마우스 호버 효과 */
+        .os-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            filter: brightness(1.1);
+        }
+
+        /* 클릭 시 효과 */
+        .os-button:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            .button-container {
+                flex-direction: column;
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="button-container">
+        <a href="https://gorics.cloud/os/linux/1" class="os-button btn-1">Linux 1 선택</a>
+        <a href="https://gorics.cloud/os/linux/2" class="os-button btn-2">Linux 2 선택</a>
+        <a href="https://gorics.cloud/os/linux/3" class="os-button btn-3">Linux 3 선택</a>
+    </div>
+
+</body>
+</html>
