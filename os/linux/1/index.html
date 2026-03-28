@@ -1,23 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-  <title>WASM Linux Terminal – Local ISO</title>
-  <!--
-    This index file is based on the original WASM Linux Terminal page
-    but has been updated to load the Linux ISO image from the same
-    directory instead of an external CDN.  The original implementation
-    attempted to fetch linux.iso from copy.sh/jsDelivr, which is now
-    returning 403 responses and causing the boot sequence to hang.
-
-    To use this file, place a valid linux.iso (for example the one
-    provided in the v86 repository) alongside index.html.  When
-    deployed via GitHub Pages or any other static host, the browser
-    will load the ISO from the current directory without needing
-    external CORS permissions.
-  -->
+  <title>WASM Linux Terminal</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=DM+Sans:wght@400;500;700&display=swap');
     :root {
@@ -29,59 +15,83 @@
       --safe-l: env(safe-area-inset-left,0px); --safe-r: env(safe-area-inset-right,0px);
       --tf: clamp(10px,1.6vw,14px);
     }
-    *,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { height: 100%; height: -webkit-fill-available; overflow: hidden; background: var(--void); }
+    *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+    html { height:100%; overflow:hidden; background:var(--void); }
     body {
-      min-height: 100vh; min-height: -webkit-fill-available; height: 100%; overflow: hidden;
-      background: var(--void); color: var(--bright); font-family: 'Fira Code', monospace;
-      display: flex; flex-direction: column;
-      padding: var(--safe-t) var(--safe-r) var(--safe-b) var(--safe-l);
-      -webkit-text-size-adjust: none; text-size-adjust: none;
+      min-height:100vh; height:100%; overflow:hidden;
+      background:var(--void); color:var(--bright);
+      font-family:'Fira Code',monospace;
+      display:flex; flex-direction:column;
+      padding:var(--safe-t) var(--safe-r) var(--safe-b) var(--safe-l);
+      -webkit-text-size-adjust:none; text-size-adjust:none;
     }
-    /* Top bar styles */
     .top {
-      flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
-      height: clamp(34px,6vh,46px); padding: 0 clamp(8px,2vw,16px);
-      background: var(--panel); border-bottom: 1px solid var(--edge); gap: 8px;
+      flex-shrink:0; display:flex; align-items:center; justify-content:space-between;
+      height:clamp(34px,6vh,46px); padding:0 clamp(8px,2vw,16px);
+      background:var(--panel); border-bottom:1px solid var(--edge); gap:8px;
     }
-    .top-l { display: flex; align-items: center; gap: clamp(6px,1.5vw,10px); min-width: 0; flex: 1; }
+    .top-l { display:flex; align-items:center; gap:clamp(6px,1.5vw,10px); min-width:0; flex:1; }
     .logo {
-      width: clamp(20px,4vw,28px); height: clamp(20px,4vw,28px); border-radius: 5px; flex-shrink: 0;
-      background: linear-gradient(135deg,var(--green),var(--cyan));
-      display: flex; align-items: center; justify-content: center;
-      font-size: clamp(9px,1.8vw,13px); font-weight: 700; color: var(--void);
-      box-shadow: 0 0 12px var(--green-g);
+      width:clamp(20px,4vw,28px); height:clamp(20px,4vw,28px); border-radius:5px; flex-shrink:0;
+      background:linear-gradient(135deg,var(--green),var(--cyan));
+      display:flex; align-items:center; justify-content:center;
+      font-size:clamp(9px,1.8vw,13px); font-weight:700; color:var(--void);
+      box-shadow:0 0 12px var(--green-g);
     }
-    .brand { min-width: 0; overflow: hidden; }
-    .brand h1 { font-family: 'DM Sans', sans-serif; font-size: clamp(10px,2vw,13px); font-weight: 700; color: var(--green); letter-spacing: .8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .brand small { font-size: clamp(6px,1.1vw,8.5px); color: var(--dim); letter-spacing: clamp(.5px,.15vw,1.4px); text-transform: uppercase; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .leds { display: flex; align-items: center; gap: clamp(5px,1.2vw,14px); flex-shrink: 0; }
-    .led { display: flex; align-items: center; gap: 3px; font-size: clamp(7px,1.1vw,9.5px); color: var(--dim); text-transform: uppercase; letter-spacing: .4px; }
-    .led i { width: clamp(4px,.7vw,6px); height: clamp(4px,.7vw,6px); border-radius: 50%; background: var(--dim); transition: .4s; }
-    .led i.on { background: var(--green); box-shadow: 0 0 8px var(--green); }
-    .led i.warn { background: var(--amber); box-shadow: 0 0 6px var(--amber); animation: pulse 1s infinite; }
-    .led i.err { background: var(--red); box-shadow: 0 0 6px var(--red); }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
-    /* Main layout and boot overlay */
-    .main { flex: 1; position: relative; overflow: hidden; min-height: 0; }
-    .boot { position: absolute; inset: 0; z-index: 10; background: var(--void); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(10px,2vh,20px); padding: clamp(8px,2vw,20px); transition: opacity .8s, visibility .8s; }
-    .boot.gone { opacity: 0; visibility: hidden; pointer-events: none; }
-    .ascii { color: var(--green); font-size: clamp(4.5px,1.1vw,9px); line-height: 1.2; white-space: pre; text-align: center; text-shadow: 0 0 6px var(--green-g); opacity: 0; animation: up .5s .1s forwards; max-width: 100%; overflow: hidden; }
-    @keyframes up { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-    .ptrack { width: clamp(140px,45vw,280px); height: 2px; background: var(--raised); border-radius: 1px; overflow: hidden; }
-    .pfill { height: 100%; width: 0%; background: linear-gradient(90deg,var(--green),var(--cyan)); transition: width .1s ease-out; box-shadow: 0 0 10px var(--green-g); }
-    .pmsg { font-size: clamp(7px,1.3vw,10px); color: var(--mid); min-height: 14px; text-align: center; }
-    .plog { width: clamp(180px,55vw,340px); max-height: clamp(40px,10vh,90px); overflow: hidden; font-size: clamp(6px,1vw,8.5px); color: var(--dim); line-height: 1.7; opacity: 0; animation: up .5s .3s forwards; }
-    .plog div { animation: lin .2s; }
-    @keyframes lin { from { opacity: 0; transform: translateX(-3px); } to { opacity: 1; transform: translateX(0); } }
-    #screen_container { width: 100%; height: 100%; background: #000; cursor: text; overflow: hidden; -webkit-overflow-scrolling: touch; }
-    #screen_container > div { font-family: 'Fira Code', monospace !important; font-size: var(--tf) !important; line-height: 1.3 !important; padding: clamp(2px,.4vw,4px) !important; overflow-y: auto !important; height: 100% !important; -webkit-overflow-scrolling: touch; white-space: pre-wrap !important; word-wrap: break-word !important; }
-    #screen_container canvas { display: block !important; width: 100% !important; height: 100% !important; image-rendering: pixelated; }
-    .bot { flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; height: clamp(24px,4vh,32px); padding: 0 clamp(8px,2vw,16px); background: var(--panel); border-top: 1px solid var(--edge); font-size: clamp(6.5px,1vw,8.5px); color: var(--dim); letter-spacing: .4px; gap: 6px; }
-    .keys { display: flex; gap: clamp(5px,1.2vw,12px); flex-shrink: 0; overflow: hidden; }
-    .key { display: flex; align-items: center; gap: 2px; white-space: nowrap; }
-    .key kbd { font-family: 'Fira Code', monospace; font-size: clamp(5.5px,.9vw,8px); background: var(--raised); border: 1px solid var(--edge); border-radius: 2px; padding: 0 3px; color: var(--mid); }
-    .bot-r { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+    .brand { min-width:0; overflow:hidden; }
+    .brand h1 { font-family:'DM Sans',sans-serif; font-size:clamp(10px,2vw,13px); font-weight:700; color:var(--green); letter-spacing:.8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .brand small { font-size:clamp(6px,1.1vw,8.5px); color:var(--dim); letter-spacing:clamp(.5px,.15vw,1.4px); text-transform:uppercase; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .leds { display:flex; align-items:center; gap:clamp(5px,1.2vw,14px); flex-shrink:0; }
+    .led { display:flex; align-items:center; gap:3px; font-size:clamp(7px,1.1vw,9.5px); color:var(--dim); text-transform:uppercase; letter-spacing:.4px; }
+    .led i { width:clamp(4px,.7vw,6px); height:clamp(4px,.7vw,6px); border-radius:50%; background:var(--dim); transition:.4s; }
+    .led i.on { background:var(--green); box-shadow:0 0 8px var(--green); }
+    .led i.warn { background:var(--amber); box-shadow:0 0 6px var(--amber); animation:pulse 1s infinite; }
+    .led i.err { background:var(--red); box-shadow:0 0 6px var(--red); }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+    .main { flex:1; position:relative; overflow:hidden; min-height:0; }
+    .boot {
+      position:absolute; inset:0; z-index:10; background:var(--void);
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      gap:clamp(10px,2vh,20px); padding:clamp(8px,2vw,20px);
+      transition:opacity .8s, visibility .8s;
+    }
+    .boot.gone { opacity:0; visibility:hidden; pointer-events:none; }
+    .ascii {
+      color:var(--green); font-size:clamp(4.5px,1.1vw,9px); line-height:1.2;
+      white-space:pre; text-align:center; text-shadow:0 0 6px var(--green-g);
+      opacity:0; animation:up .5s .1s forwards; max-width:100%; overflow:hidden;
+    }
+    @keyframes up { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+    .ptrack { width:clamp(140px,45vw,280px); height:2px; background:var(--raised); border-radius:1px; overflow:hidden; }
+    .pfill { height:100%; width:0%; background:linear-gradient(90deg,var(--green),var(--cyan)); transition:width .3s ease-out; box-shadow:0 0 10px var(--green-g); }
+    .pmsg { font-size:clamp(7px,1.3vw,10px); color:var(--mid); min-height:14px; text-align:center; }
+    .plog { width:clamp(180px,55vw,340px); max-height:clamp(40px,10vh,90px); overflow:hidden; font-size:clamp(6px,1vw,8.5px); color:var(--dim); line-height:1.7; opacity:0; animation:up .5s .3s forwards; }
+    .plog div { animation:lin .2s; }
+    @keyframes lin { from{opacity:0;transform:translateX(-3px)} to{opacity:1;transform:translateX(0)} }
+    #screen_container { width:100%; height:100%; background:#000; cursor:text; overflow:hidden; -webkit-overflow-scrolling:touch; }
+    #screen_container > div { font-family:'Fira Code',monospace !important; font-size:var(--tf) !important; line-height:1.3 !important; padding:clamp(2px,.4vw,4px) !important; overflow-y:auto !important; height:100% !important; -webkit-overflow-scrolling:touch; white-space:pre-wrap !important; word-wrap:break-word !important; }
+    #screen_container canvas { display:block !important; width:100% !important; height:100% !important; image-rendering:pixelated; }
+    .error-box {
+      position:absolute; inset:0; z-index:20; background:var(--void);
+      display:none; flex-direction:column; align-items:center; justify-content:center;
+      gap:16px; padding:24px; text-align:center;
+    }
+    .error-box.show { display:flex; }
+    .error-box h2 { color:var(--red); font-size:14px; }
+    .error-box p { color:var(--mid); font-size:11px; line-height:1.8; max-width:400px; }
+    .error-box a { color:var(--cyan); text-decoration:none; font-size:11px; }
+    .error-box a:hover { text-decoration:underline; }
+    .bot {
+      flex-shrink:0; display:flex; align-items:center; justify-content:space-between;
+      height:clamp(24px,4vh,32px); padding:0 clamp(8px,2vw,16px);
+      background:var(--panel); border-top:1px solid var(--edge);
+      font-size:clamp(6.5px,1vw,8.5px); color:var(--dim); letter-spacing:.4px; gap:6px;
+    }
+    .keys { display:flex; gap:clamp(5px,1.2vw,12px); flex-shrink:0; overflow:hidden; }
+    .key { display:flex; align-items:center; gap:2px; white-space:nowrap; }
+    .key kbd { font-family:'Fira Code',monospace; font-size:clamp(5.5px,.9vw,8px); background:var(--raised); border:1px solid var(--edge); border-radius:2px; padding:0 3px; color:var(--mid); }
+    .bot-r { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; }
+    #mi { position:absolute; left:-9999px; opacity:0; }
   </style>
 </head>
 <body>
@@ -115,6 +125,13 @@
       <div class="pmsg" id="pm">System Ready...</div>
       <div class="plog" id="pl"></div>
     </div>
+    <div class="error-box" id="err">
+      <h2>⚠ 부팅 실패</h2>
+      <p id="err-msg">linux.iso 파일을 찾을 수 없습니다.<br>
+      index.html과 같은 폴더에 <strong>linux.iso</strong>를 배치하세요.<br><br>
+      GitHub Pages에서는 반드시 HTTPS로 접근해야 합니다.</p>
+      <a href="javascript:location.reload()">↻ 다시 시도</a>
+    </div>
     <div id="screen_container"></div>
   </div>
   <footer class="bot">
@@ -125,232 +142,277 @@
     </div>
     <div class="bot-r">v86 · Linux x86 · Client‑Side Execution</div>
   </footer>
-  <input class="mi" id="mi" type="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false">
-  <button class="kbb" id="kbb" aria-label="Toggle keyboard">⌨</button>
+  <input id="mi" type="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false">
+
   <script>
   (function() {
+    'use strict';
+
+    // ── UI refs ──
     const UI = {
       pf: document.getElementById('pf'),
       pm: document.getElementById('pm'),
       pl: document.getElementById('pl'),
       bo: document.getElementById('boot'),
+      err: document.getElementById('err'),
+      errMsg: document.getElementById('err-msg'),
       d1: document.getElementById('d1'),
       d2: document.getElementById('d2'),
       d3: document.getElementById('d3'),
       st: document.getElementById('st'),
       mi: document.getElementById('mi'),
-      kbb: document.getElementById('kbb')
     };
+
     let emu = null;
-    let ctrlOn = false;
-    function setProgress(percent, msg) {
-      UI.pf.style.width = percent + '%';
+    let bootFinalized = false;
+
+    // ── 진행률 표시 ──
+    function setProgress(pct, msg) {
+      UI.pf.style.width = Math.min(100, pct) + '%';
       if (msg) UI.pm.textContent = msg;
     }
-    function logMsg(text, isError = false) {
+
+    function logMsg(text, isError) {
       const div = document.createElement('div');
       div.textContent = '› ' + text;
       if (isError) div.style.color = 'var(--red)';
       UI.pl.appendChild(div);
+      // 오래된 로그 제거 (메모리 절약)
+      while (UI.pl.children.length > 20) UI.pl.removeChild(UI.pl.firstChild);
       UI.pl.scrollTop = UI.pl.scrollHeight;
     }
-    function setStatus(statusClass, labelText) {
-      UI.d1.className = statusClass;
-      UI.d2.className = statusClass;
-      UI.d3.className = statusClass;
-      UI.st.textContent = labelText;
+
+    function setStatus(cls, label) {
+      [UI.d1, UI.d2, UI.d3].forEach(el => el.className = cls);
+      UI.st.textContent = label;
     }
-    function fixHeight() { document.body.style.height = window.innerHeight + 'px'; }
+
+    // ── viewport 높이 보정 (모바일) ──
+    function fixHeight() {
+      document.body.style.height = window.innerHeight + 'px';
+    }
     fixHeight();
     window.addEventListener('resize', fixHeight);
-    window.addEventListener('orientationchange', () => setTimeout(fixHeight, 200));
-    UI.kbb.onclick = (e) => { e.preventDefault(); UI.mi.focus(); };
-    UI.mi.addEventListener('input', () => {
+    window.addEventListener('orientationchange', () => setTimeout(fixHeight, 300));
+
+    // ── 모바일 키보드 포워딩 ──
+    UI.mi.addEventListener('input', function() {
       if (!emu) return;
-      const v = UI.mi.value;
+      const v = this.value;
       if (v.length > 0) {
-        const ch = v.charCodeAt(v.length - 1);
-        if (ctrlOn && ch >= 97 && ch <= 122) {
-          emu.serial0_send(String.fromCharCode(ch - 96));
-          ctrlOn = false;
-        } else {
-          emu.serial0_send(String.fromCharCode(ch));
-        }
+        emu.serial0_send(String.fromCharCode(v.charCodeAt(v.length - 1)));
       }
-      UI.mi.value = '';
+      this.value = '';
     });
-    UI.mi.addEventListener('keydown', (e) => {
+    UI.mi.addEventListener('keydown', function(e) {
       if (!emu) return;
-      const map = { Enter: '\n', Backspace: '\x7f', ArrowUp: '\x1b[A', ArrowDown: '\x1b[B', ArrowLeft: '\x1b[D', ArrowRight: '\x1b[C', Tab: '\t', Escape: '\x1b' };
+      const map = {
+        Enter: '\n', Backspace: '\x7f',
+        ArrowUp: '\x1b[A', ArrowDown: '\x1b[B',
+        ArrowLeft: '\x1b[D', ArrowRight: '\x1b[C',
+        Tab: '\t', Escape: '\x1b',
+      };
       if (map[e.key]) { e.preventDefault(); emu.serial0_send(map[e.key]); }
     });
-    document.getElementById('screen_container').onclick = function() {
+    document.getElementById('screen_container').addEventListener('click', function() {
       if ('ontouchstart' in window) UI.mi.focus();
-      else {
-        const t = this.querySelector('[tabindex]');
-        if (t) t.focus(); else this.focus();
-      }
-    };
-    const cdnList = [
+    });
+
+    // ── 오류 표시 ──
+    function showError(msg) {
+      setStatus('err', 'ERROR');
+      if (msg) UI.errMsg.innerHTML = msg;
+      UI.bo.classList.add('gone');
+      UI.err.classList.add('show');
+    }
+
+    // ── 환경 체크 ──
+    if (window.location.protocol === 'file:') {
+      showError('file:// 프로토콜에서는 실행할 수 없습니다.<br>GitHub Pages 또는 로컬 HTTP 서버를 사용하세요.<br><br><code>npx serve .</code> 명령으로 로컬 서버 실행 가능');
+      return;
+    }
+
+    // ── CDN 목록 (JS·WASM·BIOS만 CDN, ISO는 항상 로컬) ──
+    const CDN_LIST = [
       {
         name: 'jsDelivr',
-        js: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/build/libv86.js',
+        js:   'https://cdn.jsdelivr.net/npm/v86@0.5.44/build/libv86.js',
         wasm: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/build/v86.wasm',
         bios: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/bios/seabios.bin',
-        vga: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/bios/vgabios.bin',
-        iso: './linux.iso'
+        vga:  'https://cdn.jsdelivr.net/npm/v86@0.5.44/bios/vgabios.bin',
       },
       {
         name: 'unpkg',
-        js: 'https://unpkg.com/v86@0.5.44/build/libv86.js',
+        js:   'https://unpkg.com/v86@0.5.44/build/libv86.js',
         wasm: 'https://unpkg.com/v86@0.5.44/build/v86.wasm',
         bios: 'https://unpkg.com/v86@0.5.44/bios/seabios.bin',
-        vga: 'https://unpkg.com/v86@0.5.44/bios/vgabios.bin',
-        iso: './linux.iso'
+        vga:  'https://unpkg.com/v86@0.5.44/bios/vgabios.bin',
       },
       {
         name: 'copy.sh',
-        js: 'https://copy.sh/v86/build/libv86.js',
+        js:   'https://copy.sh/v86/build/libv86.js',
         wasm: 'https://copy.sh/v86/build/v86.wasm',
         bios: 'https://copy.sh/v86/bios/seabios.bin',
-        vga: 'https://copy.sh/v86/bios/vgabios.bin',
-        iso: './linux.iso'
-      }
+        vga:  'https://copy.sh/v86/bios/vgabios.bin',
+      },
     ];
-    let currentCdnIndex = 0;
-    function initBootSeq() {
-      setStatus('warn', 'BOOTING');
-      setProgress(5, 'Injecting Engine...');
-      logMsg('Initializing WebAssembly x86 emulator');
-      if (window.location.protocol === 'file:') {
-        setStatus('err', 'ERROR');
-        setProgress(0, 'CORS Blocked');
-        logMsg('FATAL: Cannot run v86 over file:// protocol.', true);
-        return;
-      }
-      loadScript();
-    }
-    function loadScript() {
-      if (currentCdnIndex >= cdnList.length) {
-        setStatus('err', 'ERROR');
-        setProgress(0, 'Init Failed');
-        logMsg('FATAL: All CDN sources failed to load.', true);
-        return;
-      }
-      const cdn = cdnList[currentCdnIndex];
-      logMsg(`Fetching libv86.js from ${cdn.name}...`);
-      const script = document.createElement('script');
-      script.src = cdn.js;
-      script.crossOrigin = 'anonymous';
-      script.onload = () => setupEmulator(cdn);
-      script.onerror = () => {
-        logMsg(`Failed to load from ${cdn.name}.`, true);
-        currentCdnIndex++;
-        loadScript();
-      };
-      document.head.appendChild(script);
-    }
-    function setupEmulator(cdn) {
-      setProgress(15, 'Engine Loaded');
-      logMsg('V86 engine successfully injected.');
-      setProgress(25, 'Allocating Hardware...');
-      logMsg('CPU: x86 32-bit | RAM: 64MB | VGA: 2MB');
+
+    // ── ISO 존재 여부 확인 ──
+    async function checkISO() {
       try {
-        const V86Constructor = window.V86 || window.V86Starter;
-        emu = new V86Constructor({
-          wasm_path: cdn.wasm,
-          memory_size: 64 * 1024 * 1024,
-          vga_memory_size: 2 * 1024 * 1024,
-          screen_container: document.getElementById('screen_container'),
-          bios: { url: cdn.bios },
-          vga_bios: { url: cdn.vga },
-          cdrom: { url: cdn.iso },
-          autostart: true,
-          disable_mouse: true,
-          disable_keyboard: false
-        });
-        window.emulator = emu;
-        bindEmulatorEvents();
-      } catch (err) {
-        setStatus('err', 'ERROR');
-        setProgress(0, 'Emulator Crash');
-        logMsg('FATAL: ' + err.message, true);
+        const res = await fetch('./linux.iso', { method: 'HEAD', cache: 'no-store' });
+        return res.ok;
+      } catch (_) {
+        return false;
       }
     }
-    function bindEmulatorEvents() {
-      let bootDone = false;
-      let maxDlPercent = 0;
-      let readySeen = false;
-      emu.add_listener('download-progress', (e) => {
-        if (bootDone) return;
-        if (e.total && e.total > 0) {
-          let pct = Math.floor((e.loaded / e.total) * 100);
-          if (pct > maxDlPercent) maxDlPercent = pct;
-          let mappedProgress = 25 + Math.floor(maxDlPercent * 0.55);
-          setProgress(mappedProgress, `Downloading OS (${maxDlPercent}%)...`);
-          if (maxDlPercent === 10 || maxDlPercent === 50 || maxDlPercent === 90) {
-            logMsg(`Fetch progress: ${maxDlPercent}%`);
-          }
+
+    // ── 스크립트 로드 ──
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = src;
+        s.crossOrigin = 'anonymous';
+        s.onload = resolve;
+        s.onerror = () => reject(new Error('load failed: ' + src));
+        document.head.appendChild(s);
+      });
+    }
+
+    // ── 에뮬레이터 이벤트 바인딩 ──
+    function bindEvents() {
+      let maxDlPct = 0;
+
+      emu.add_listener('download-progress', function(e) {
+        if (bootFinalized) return;
+        if (e && e.total > 0) {
+          const pct = Math.floor((e.loaded / e.total) * 100);
+          if (pct > maxDlPct) maxDlPct = pct;
+          setProgress(25 + Math.floor(maxDlPct * 0.55), 'ISO 로딩 중 (' + maxDlPct + '%)…');
         }
       });
-      emu.add_listener('download-error', (e) => {
-        setStatus('err', 'ERROR');
-        setProgress(0, 'Download Failed');
-        logMsg(`FATAL: Failed to download ${e.url}`, true);
+
+      emu.add_listener('download-error', function(e) {
+        showError('ISO 다운로드 실패: ' + (e && e.url ? e.url : '알 수 없는 오류'));
       });
-      emu.add_listener('emulator-ready', () => {
-        readySeen = true;
-        logMsg('JIT Compiler active. Booting Linux kernel...');
-        setProgress(85, 'Booting Kernel...');
-        setTimeout(() => {
-          if (!bootDone) {
-            logMsg('Kernel ready detected. Switching to live display...');
-            finalizeBoot();
-          }
-        }, 6000);
-      });
-      let outputBytes = 0;
-      emu.add_listener('serial0-output-byte', () => {
-        outputBytes++;
-        if (!bootDone && outputBytes > 100) {
-          bootDone = true;
-          finalizeBoot();
+
+      emu.add_listener('emulator-ready', function() {
+        if (!bootFinalized) {
+          setProgress(85, '커널 부팅 중…');
+          logMsg('에뮬레이터 준비 완료. 리눅스 커널 로딩…');
         }
+        // ready 후 10초 타임아웃으로 강제 finalize
+        setTimeout(function() {
+          if (!bootFinalized) finalizeBoot();
+        }, 10000);
       });
-      let screenTicks = 0;
-      const checkScreen = setInterval(() => {
-        if (bootDone) { clearInterval(checkScreen); return; }
+
+      // 시리얼 출력 감지 → 셸 프롬프트 도달 판단
+      let serialBytes = 0;
+      emu.add_listener('serial0-output-byte', function() {
+        serialBytes++;
+        if (!bootFinalized && serialBytes > 50) finalizeBoot();
+      });
+
+      // 캔버스/텍스트 출력 폴링
+      let ticks = 0;
+      const poll = setInterval(function() {
+        if (bootFinalized) { clearInterval(poll); return; }
         const textDiv = document.querySelector('#screen_container > div');
-        const canvas = document.querySelector('#screen_container canvas');
-        if (textDiv && textDiv.textContent.length > 50) {
-          bootDone = true;
-          clearInterval(checkScreen);
-          finalizeBoot();
+        const canvas  = document.querySelector('#screen_container canvas');
+        if (textDiv && textDiv.textContent.length > 30) {
+          clearInterval(poll); finalizeBoot(); return;
         }
-        if (!bootDone && canvas && canvas.width > 0 && canvas.height > 0 && readySeen && screenTicks > 8) {
-          bootDone = true;
-          clearInterval(checkScreen);
-          finalizeBoot();
+        if (canvas && canvas.width > 0 && canvas.height > 0 && ticks > 6) {
+          clearInterval(poll); finalizeBoot(); return;
         }
-        screenTicks++;
-        if (screenTicks > 90) {
-          clearInterval(checkScreen);
-          if (!bootDone) {
-            logMsg('Boot timeout reached. Opening display anyway...');
-            finalizeBoot();
-          }
+        ticks++;
+        // 90초 하드 타임아웃
+        if (ticks > 180) {
+          clearInterval(poll);
+          if (!bootFinalized) finalizeBoot();
         }
       }, 500);
     }
+
     function finalizeBoot() {
+      if (bootFinalized) return;
+      bootFinalized = true;
       setProgress(100, 'System Online');
-      logMsg('Terminal prompt reached.');
       setStatus('on', 'RUNNING');
-      setTimeout(() => {
-        UI.bo.classList.add('gone');
-      }, 600);
+      logMsg('터미널 준비 완료.');
+      setTimeout(function() { UI.bo.classList.add('gone'); }, 600);
     }
-    initBootSeq();
+
+    // ── 메인 부팅 시퀀스 ──
+    async function boot() {
+      setStatus('warn', 'BOOTING');
+      setProgress(5, 'ISO 확인 중…');
+      logMsg('WASM x86 에뮬레이터 초기화');
+
+      // ISO 존재 확인
+      const isoOk = await checkISO();
+      if (!isoOk) {
+        showError(
+          '<strong>linux.iso</strong> 파일을 찾을 수 없습니다.<br><br>' +
+          'index.html과 같은 폴더에 linux.iso를 배치해 주세요.<br>' +
+          'v86 저장소에서 샘플 ISO를 다운로드할 수 있습니다:<br><br>' +
+          '<a href="https://github.com/copy/v86/releases" target="_blank" rel="noopener">→ github.com/copy/v86/releases</a>'
+        );
+        return;
+      }
+
+      setProgress(10, '엔진 로딩 중…');
+
+      // CDN 순서대로 시도
+      let cdn = null;
+      for (const c of CDN_LIST) {
+        try {
+          logMsg(c.name + ' 에서 libv86.js 로딩 중…');
+          await loadScript(c.js);
+          cdn = c;
+          logMsg(c.name + ' 로드 성공');
+          break;
+        } catch (_) {
+          logMsg(c.name + ' 실패, 다음 CDN 시도…', true);
+        }
+      }
+
+      if (!cdn) {
+        showError('모든 CDN에서 libv86.js 로드 실패.<br>네트워크 연결을 확인하세요.');
+        return;
+      }
+
+      const V86Ctor = window.V86 || window.V86Starter;
+      if (typeof V86Ctor !== 'function') {
+        showError('V86 생성자를 찾을 수 없습니다. 페이지를 새로고침해 주세요.');
+        return;
+      }
+
+      setProgress(20, '하드웨어 할당 중…');
+      logMsg('CPU: x86 32-bit | RAM: 64MB | VGA: 2MB');
+
+      try {
+        emu = new V86Ctor({
+          wasm_path:        cdn.wasm,
+          memory_size:      64 * 1024 * 1024,
+          vga_memory_size:  2  * 1024 * 1024,
+          screen_container: document.getElementById('screen_container'),
+          bios:     { url: cdn.bios },
+          vga_bios: { url: cdn.vga },
+          cdrom:    { url: './linux.iso' },
+          autostart: true,
+          disable_mouse: true,
+        });
+        window.emulator = emu;
+        bindEvents();
+        setProgress(25, '부팅 중…');
+      } catch (e) {
+        showError('에뮬레이터 초기화 실패:<br>' + (e && e.message ? e.message : String(e)));
+      }
+    }
+
+    boot();
   })();
   </script>
 </body>
