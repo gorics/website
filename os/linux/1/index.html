@@ -93,7 +93,7 @@ body {
 /* ═══ V86 SCREEN ═══ */
 #screen_container { width: 100%; height: 100%; background: #000; cursor: text; overflow: hidden; -webkit-overflow-scrolling: touch; }
 #screen_container > div { font-family: 'Fira Code', monospace !important; font-size: var(--tf) !important; line-height: 1.3 !important; padding: clamp(2px,.4vw,4px) !important; overflow-y: auto !important; height: 100% !important; -webkit-overflow-scrolling: touch; white-space: pre-wrap !important; word-wrap: break-word !important; }
-#screen_container canvas { display: none; }
+#screen_container canvas { display: block !important; width: 100% !important; height: 100% !important; image-rendering: pixelated; }
 /* ═══ BOTTOM ═══ */
 .bot {
   flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
@@ -179,10 +179,7 @@ body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-in
     <div class="pmsg" id="pm">System Ready...</div>
     <div class="plog" id="pl"></div>
   </div>
-  <div id="screen_container">
-    <div style="white-space: pre; font: 14px 'Fira Code', monospace; line-height: 1.2;"></div>
-    <canvas style="display: none;"></canvas>
-  </div>
+  <div id="screen_container"></div>
 </div>
 <footer class="bot">
   <div class="keys">
