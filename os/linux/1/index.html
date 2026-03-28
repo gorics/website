@@ -10,127 +10,126 @@
 <title>WASM Linux Terminal</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=DM+Sans:wght@400;500;700&display=swap');
-:root{
-  --void:#030306;--panel:#0a0a10;--raised:#111119;--surface:#1a1a26;
-  --edge:#22223a;--bright:#e2e4f0;--mid:#7a7c94;--dim:#3e4058;
-  --green:#00e87b;--green-g:rgba(0,232,123,.10);--cyan:#22ccee;
-  --amber:#ffaa22;--red:#ff3355;
-  --safe-t:env(safe-area-inset-top,0px);--safe-b:env(safe-area-inset-bottom,0px);
-  --safe-l:env(safe-area-inset-left,0px);--safe-r:env(safe-area-inset-right,0px);
-  --tf:clamp(10px,1.6vw,14px);
+:root {
+  --void: #030306; --panel: #0a0a10; --raised: #111119; --surface: #1a1a26;
+  --edge: #22223a; --bright: #e2e4f0; --mid: #7a7c94; --dim: #3e4058;
+  --green: #00e87b; --green-g: rgba(0,232,123,.10); --cyan: #22ccee;
+  --amber: #ffaa22; --red: #ff3355;
+  --safe-t: env(safe-area-inset-top,0px); --safe-b: env(safe-area-inset-bottom,0px);
+  --safe-l: env(safe-area-inset-left,0px); --safe-r: env(safe-area-inset-right,0px);
+  --tf: clamp(10px,1.6vw,14px);
 }
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{height:100%;height:-webkit-fill-available;overflow:hidden;background:var(--void)}
-body{
-  min-height:100vh;min-height:-webkit-fill-available;height:100%;overflow:hidden;
-  background:var(--void);color:var(--bright);font-family:'Fira Code',monospace;
-  display:flex;flex-direction:column;
-  padding:var(--safe-t) var(--safe-r) var(--safe-b) var(--safe-l);
-  -webkit-text-size-adjust:none;text-size-adjust:none;
+*,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { height: 100%; height: -webkit-fill-available; overflow: hidden; background: var(--void); }
+body {
+  min-height: 100vh; min-height: -webkit-fill-available; height: 100%; overflow: hidden;
+  background: var(--void); color: var(--bright); font-family: 'Fira Code', monospace;
+  display: flex; flex-direction: column;
+  padding: var(--safe-t) var(--safe-r) var(--safe-b) var(--safe-l);
+  -webkit-text-size-adjust: none; text-size-adjust: none;
 }
 /* ═══ TOP ═══ */
-.top{
-  flex-shrink:0;display:flex;align-items:center;justify-content:space-between;
-  height:clamp(34px,6vh,46px);padding:0 clamp(8px,2vw,16px);
-  background:var(--panel);border-bottom:1px solid var(--edge);gap:8px;
+.top {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+  height: clamp(34px,6vh,46px); padding: 0 clamp(8px,2vw,16px);
+  background: var(--panel); border-bottom: 1px solid var(--edge); gap: 8px;
 }
-.top-l{display:flex;align-items:center;gap:clamp(6px,1.5vw,10px);min-width:0;flex:1}
-.logo{
-  width:clamp(20px,4vw,28px);height:clamp(20px,4vw,28px);border-radius:5px;flex-shrink:0;
-  background:linear-gradient(135deg,var(--green),var(--cyan));
-  display:flex;align-items:center;justify-content:center;
-  font-size:clamp(9px,1.8vw,13px);font-weight:700;color:var(--void);
-  box-shadow:0 0 12px var(--green-g);
+.top-l { display: flex; align-items: center; gap: clamp(6px,1.5vw,10px); min-width: 0; flex: 1; }
+.logo {
+  width: clamp(20px,4vw,28px); height: clamp(20px,4vw,28px); border-radius: 5px; flex-shrink: 0;
+  background: linear-gradient(135deg,var(--green),var(--cyan));
+  display: flex; align-items: center; justify-content: center;
+  font-size: clamp(9px,1.8vw,13px); font-weight: 700; color: var(--void);
+  box-shadow: 0 0 12px var(--green-g);
 }
-.brand{min-width:0;overflow:hidden}
-.brand h1{font-family:'DM Sans',sans-serif;font-size:clamp(10px,2vw,13px);font-weight:700;color:var(--green);letter-spacing:.8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.brand small{font-size:clamp(6px,1.1vw,8.5px);color:var(--dim);letter-spacing:clamp(.5px,.15vw,1.4px);text-transform:uppercase;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.leds{display:flex;align-items:center;gap:clamp(5px,1.2vw,14px);flex-shrink:0}
-.led{display:flex;align-items:center;gap:3px;font-size:clamp(7px,1.1vw,9.5px);color:var(--dim);text-transform:uppercase;letter-spacing:.4px}
-.led i{width:clamp(4px,.7vw,6px);height:clamp(4px,.7vw,6px);border-radius:50%;background:var(--dim);transition:.4s}
-.led i.on{background:var(--green);box-shadow:0 0 8px var(--green)}
-.led i.warn{background:var(--amber);box-shadow:0 0 6px var(--amber);animation:pulse 1s infinite}
-.led i.err{background:var(--red);box-shadow:0 0 6px var(--red)}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.brand { min-width: 0; overflow: hidden; }
+.brand h1 { font-family: 'DM Sans', sans-serif; font-size: clamp(10px,2vw,13px); font-weight: 700; color: var(--green); letter-spacing: .8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.brand small { font-size: clamp(6px,1.1vw,8.5px); color: var(--dim); letter-spacing: clamp(.5px,.15vw,1.4px); text-transform: uppercase; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.leds { display: flex; align-items: center; gap: clamp(5px,1.2vw,14px); flex-shrink: 0; }
+.led { display: flex; align-items: center; gap: 3px; font-size: clamp(7px,1.1vw,9.5px); color: var(--dim); text-transform: uppercase; letter-spacing: .4px; }
+.led i { width: clamp(4px,.7vw,6px); height: clamp(4px,.7vw,6px); border-radius: 50%; background: var(--dim); transition: .4s; }
+.led i.on { background: var(--green); box-shadow: 0 0 8px var(--green); }
+.led i.warn { background: var(--amber); box-shadow: 0 0 6px var(--amber); animation: pulse 1s infinite; }
+.led i.err { background: var(--red); box-shadow: 0 0 6px var(--red); }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
 /* ═══ SPECIAL KEYS (mobile) ═══ */
-.specbar{
-  display:none;flex-shrink:0;height:clamp(30px,5vh,36px);
-  background:var(--panel);border-bottom:1px solid var(--edge);
-  padding:0 clamp(4px,1vw,8px);gap:clamp(3px,.6vw,5px);
-  align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+.specbar {
+  display: none; flex-shrink: 0; height: clamp(30px,5vh,36px);
+  background: var(--panel); border-bottom: 1px solid var(--edge);
+  padding: 0 clamp(4px,1vw,8px); gap: clamp(3px,.6vw,5px);
+  align-items: center; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
 }
-.specbar::-webkit-scrollbar{display:none}
-.specbar button{
-  flex-shrink:0;height:clamp(22px,3.2vh,28px);padding:0 clamp(6px,1.3vw,10px);
-  border-radius:4px;border:1px solid var(--edge);background:var(--raised);
-  color:var(--mid);font-family:'Fira Code',monospace;font-size:clamp(8px,1.2vw,10px);
-  cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .1s;
+.specbar::-webkit-scrollbar { display: none; }
+.specbar button {
+  flex-shrink: 0; height: clamp(22px,3.2vh,28px); padding: 0 clamp(6px,1.3vw,10px);
+  border-radius: 4px; border: 1px solid var(--edge); background: var(--raised);
+  color: var(--mid); font-family: 'Fira Code', monospace; font-size: clamp(8px,1.2vw,10px);
+  cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background .1s;
 }
-.specbar button:active{background:var(--surface);color:var(--bright)}
-.specbar button.active{background:var(--green);color:var(--void);border-color:var(--green)}
+.specbar button:active { background: var(--surface); color: var(--bright); }
+.specbar button.active { background: var(--green); color: var(--void); border-color: var(--green); }
 /* ═══ MAIN ═══ */
-.main{flex:1;position:relative;overflow:hidden;min-height:0}
+.main { flex: 1; position: relative; overflow: hidden; min-height: 0; }
 /* ═══ BOOT ═══ */
-.boot{
-  position:absolute;inset:0;z-index:10;background:var(--void);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:clamp(10px,2vh,20px);padding:clamp(8px,2vw,20px);
-  transition:opacity .8s,visibility .8s;
+.boot {
+  position: absolute; inset: 0; z-index: 10; background: var(--void);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: clamp(10px,2vh,20px); padding: clamp(8px,2vw,20px);
+  transition: opacity .8s, visibility .8s;
 }
-.boot.gone{opacity:0;visibility:hidden;pointer-events:none}
-.ascii{
-  color:var(--green);font-size:clamp(4.5px,1.1vw,9px);line-height:1.2;
-  white-space:pre;text-align:center;text-shadow:0 0 6px var(--green-g);
-  opacity:0;animation:up .5s .1s forwards;max-width:100%;overflow:hidden;
+.boot.gone { opacity: 0; visibility: hidden; pointer-events: none; }
+.ascii {
+  color: var(--green); font-size: clamp(4.5px,1.1vw,9px); line-height: 1.2;
+  white-space: pre; text-align: center; text-shadow: 0 0 6px var(--green-g);
+  opacity: 0; animation: up .5s .1s forwards; max-width: 100%; overflow: hidden;
 }
-@keyframes up{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.ptrack{width:clamp(140px,45vw,280px);height:2px;background:var(--raised);border-radius:1px;overflow:hidden}
-.pfill{height:100%;width:0%;background:linear-gradient(90deg,var(--green),var(--cyan));transition:width .35s;box-shadow:0 0 10px var(--green-g)}
-.pmsg{font-size:clamp(7px,1.3vw,10px);color:var(--mid);min-height:14px;text-align:center}
-.plog{width:clamp(180px,55vw,340px);max-height:clamp(40px,10vh,90px);overflow:hidden;font-size:clamp(6px,1vw,8.5px);color:var(--dim);line-height:1.7;opacity:0;animation:up .5s .3s forwards}
-.plog div{animation:lin .2s}
-@keyframes lin{from{opacity:0;transform:translateX(-3px)}to{opacity:1;transform:translateX(0)}}
+@keyframes up { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.ptrack { width: clamp(140px,45vw,280px); height: 2px; background: var(--raised); border-radius: 1px; overflow: hidden; }
+.pfill { height: 100%; width: 0%; background: linear-gradient(90deg,var(--green),var(--cyan)); transition: width .1s ease-out; box-shadow: 0 0 10px var(--green-g); }
+.pmsg { font-size: clamp(7px,1.3vw,10px); color: var(--mid); min-height: 14px; text-align: center; }
+.plog { width: clamp(180px,55vw,340px); max-height: clamp(40px,10vh,90px); overflow: hidden; font-size: clamp(6px,1vw,8.5px); color: var(--dim); line-height: 1.7; opacity: 0; animation: up .5s .3s forwards; }
+.plog div { animation: lin .2s; }
+@keyframes lin { from { opacity: 0; transform: translateX(-3px); } to { opacity: 1; transform: translateX(0); } }
 /* ═══ V86 SCREEN ═══ */
-#screen_container{width:100%;height:100%;background:#000;cursor:text;overflow:hidden;-webkit-overflow-scrolling:touch}
-#screen_container>div{font-family:'Fira Code',monospace!important;font-size:var(--tf)!important;line-height:1.3!important;padding:clamp(2px,.4vw,4px)!important;overflow-y:auto!important;height:100%!important;-webkit-overflow-scrolling:touch}
-#screen_container canvas{display:none}
+#screen_container { width: 100%; height: 100%; background: #000; cursor: text; overflow: hidden; -webkit-overflow-scrolling: touch; }
+#screen_container > div { font-family: 'Fira Code', monospace !important; font-size: var(--tf) !important; line-height: 1.3 !important; padding: clamp(2px,.4vw,4px) !important; overflow-y: auto !important; height: 100% !important; -webkit-overflow-scrolling: touch; white-space: pre-wrap !important; word-wrap: break-word !important; }
+#screen_container canvas { display: none; }
 /* ═══ BOTTOM ═══ */
-.bot{
-  flex-shrink:0;display:flex;align-items:center;justify-content:space-between;
-  height:clamp(24px,4vh,32px);padding:0 clamp(8px,2vw,16px);
-  background:var(--panel);border-top:1px solid var(--edge);
-  font-size:clamp(6.5px,1vw,8.5px);color:var(--dim);letter-spacing:.4px;gap:6px;
+.bot {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+  height: clamp(24px,4vh,32px); padding: 0 clamp(8px,2vw,16px);
+  background: var(--panel); border-top: 1px solid var(--edge);
+  font-size: clamp(6.5px,1vw,8.5px); color: var(--dim); letter-spacing: .4px; gap: 6px;
 }
-.keys{display:flex;gap:clamp(5px,1.2vw,12px);flex-shrink:0;overflow:hidden}
-.key{display:flex;align-items:center;gap:2px;white-space:nowrap}
-.key kbd{font-family:'Fira Code',monospace;font-size:clamp(5.5px,.9vw,8px);background:var(--raised);border:1px solid var(--edge);border-radius:2px;padding:0 3px;color:var(--mid)}
-.bot-r{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.keys { display: flex; gap: clamp(5px,1.2vw,12px); flex-shrink: 0; overflow: hidden; }
+.key { display: flex; align-items: center; gap: 2px; white-space: nowrap; }
+.key kbd { font-family: 'Fira Code', monospace; font-size: clamp(5.5px,.9vw,8px); background: var(--raised); border: 1px solid var(--edge); border-radius: 2px; padding: 0 3px; color: var(--mid); }
+.bot-r { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 /* ═══ MOBILE KB BUTTON ═══ */
-.kbb{
-  display:none;position:fixed;z-index:20;
-  bottom:calc(clamp(24px,4vh,32px) + var(--safe-b) + 8px);
-  right:calc(8px + var(--safe-r));
-  width:clamp(34px,7vw,42px);height:clamp(34px,7vw,42px);
-  border-radius:50%;border:1px solid var(--edge);background:var(--panel);
-  color:var(--green);font-size:clamp(13px,2.8vw,18px);cursor:pointer;
-  box-shadow:0 2px 12px rgba(0,0,0,.5);transition:transform .12s;
-  -webkit-tap-highlight-color:transparent;
-  align-items:center;justify-content:center;
+.kbb {
+  display: none; position: fixed; z-index: 20;
+  bottom: calc(clamp(24px,4vh,32px) + var(--safe-b) + 8px);
+  right: calc(8px + var(--safe-r));
+  width: clamp(34px,7vw,42px); height: clamp(34px,7vw,42px);
+  border-radius: 50%; border: 1px solid var(--edge); background: var(--panel);
+  color: var(--green); font-size: clamp(13px,2.8vw,18px); cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,.5); transition: transform .12s;
+  -webkit-tap-highlight-color: transparent; align-items: center; justify-content: center;
 }
-.kbb:active{transform:scale(.9)}
-.mi{position:fixed;left:-9999px;top:-9999px;opacity:0;width:1px;height:1px;font-size:16px}
+.kbb:active { transform: scale(.9); }
+.mi { position: fixed; left: -9999px; top: -9999px; opacity: 0; width: 1px; height: 1px; font-size: 16px; }
 /* ═══ CRT ═══ */
-body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;background:repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(0,0,0,.02) 1px,rgba(0,0,0,.02) 2px)}
+body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; background: repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(0,0,0,.02) 1px,rgba(0,0,0,.02) 2px); }
 /* ═══ RESPONSIVE ═══ */
-@media(hover:none)and(pointer:coarse){.kbb{display:flex}.specbar{display:flex}.keys .key:nth-child(n+3){display:none}}
-@media(max-width:379px){.brand small{display:none}.led span{display:none}:root{--tf:9px}}
-@media(min-width:380px)and(max-width:480px){.brand small{display:none}:root{--tf:10px}}
-@media(min-width:481px)and(max-width:768px){:root{--tf:11px}}
-@media(min-width:769px)and(max-width:1024px){:root{--tf:12px}}
-@media(min-width:1025px){:root{--tf:14px}}
-@media(max-height:420px)and(orientation:landscape){.top{height:28px}.bot{height:22px}.specbar{height:26px}.ascii{font-size:4px}.plog{max-height:30px}.boot{gap:6px;padding:4px}.brand small{display:none}:root{--tf:10px}}
-@media(min-width:1800px){:root{--tf:16px}#screen_container>div{max-width:1600px;margin:0 auto}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}body::after{display:none}}
+@media(hover:none) and (pointer:coarse) { .kbb { display: flex; } .specbar { display: flex; } .keys .key:nth-child(n+3) { display: none; } }
+@media(max-width:379px) { .brand small { display: none; } .led span { display: none; } :root { --tf: 9px; } }
+@media(min-width:380px) and (max-width:480px) { .brand small { display: none; } :root { --tf: 10px; } }
+@media(min-width:481px) and (max-width:768px) { :root { --tf: 11px; } }
+@media(min-width:769px) and (max-width:1024px) { :root { --tf: 12px; } }
+@media(min-width:1025px) { :root { --tf: 14px; } }
+@media(max-height:420px) and (orientation:landscape) { .top { height: 28px; } .bot { height: 22px; } .specbar { height: 26px; } .ascii { font-size: 4px; } .plog { max-height: 30px; } .boot { gap: 6px; padding: 4px; } .brand small { display: none; } :root { --tf: 10px; } }
+@media(min-width:1800px) { :root { --tf: 16px; } #screen_container > div { max-width: 1600px; margin: 0 auto; } }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } body::after { display: none; } }
 </style>
 </head>
 <body>
@@ -177,12 +176,12 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;b
  ╚══════════════════════════════════════╝
     </pre>
     <div class="ptrack"><div class="pfill" id="pf"></div></div>
-    <div class="pmsg" id="pm">Initializing…</div>
+    <div class="pmsg" id="pm">System Ready...</div>
     <div class="plog" id="pl"></div>
   </div>
   <div id="screen_container">
-    <div style="white-space:pre;font:14px 'Fira Code',monospace;line-height:18px"></div>
-    <canvas style="display:none"></canvas>
+    <div style="white-space: pre; font: 14px 'Fira Code', monospace; line-height: 1.2;"></div>
+    <canvas style="display: none;"></canvas>
   </div>
 </div>
 <footer class="bot">
@@ -191,156 +190,258 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;b
     <div class="key"><kbd>Tab</kbd> complete</div>
     <div class="key"><kbd>↑↓</kbd> history</div>
   </div>
-  <div class="bot-r">v86 · WASM x86 · Client-Side</div>
+  <div class="bot-r">v86 · Linux x86 · Client-Side Execution</div>
 </footer>
 <input class="mi" id="mi" type="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false">
 <button class="kbb" id="kbb" aria-label="Toggle keyboard">⌨</button>
 
 <script>
-(function(){
-  var pf=document.getElementById('pf'), pm=document.getElementById('pm'),
-      pl=document.getElementById('pl'), bo=document.getElementById('boot'),
-      d1=document.getElementById('d1'), d2=document.getElementById('d2'),
-      d3=document.getElementById('d3'), st=document.getElementById('st'),
-      mi=document.getElementById('mi'), kbb=document.getElementById('kbb'),
-      ctrlBtn=document.getElementById('ctrlBtn');
-  var emu=null, ctrlOn=false;
-
-  function P(v,m){ pf.style.width=v+'%'; if(m)pm.textContent=m; }
-  function L(t){ var d=document.createElement('div'); d.textContent='\u203a '+t; pl.appendChild(d); pl.scrollTop=pl.scrollHeight; }
-  function D(c){ d1.className=c; d2.className=c; d3.className=c; }
-
-  /* Viewport fix for mobile browsers */
-  function fixH(){ document.body.style.height=window.innerHeight+'px'; }
-  fixH(); window.addEventListener('resize',fixH); window.addEventListener('orientationchange',function(){setTimeout(fixH,200)});
-
-  /* ═══ MOBILE KB ═══ */
-  kbb.onclick=function(e){ e.preventDefault(); mi.focus(); };
-
-  mi.addEventListener('input',function(){
-    if(!emu)return;
-    var v=mi.value;
-    if(v.length>0){
-      var ch=v.charCodeAt(v.length-1);
-      if(ctrlOn&&ch>=97&&ch<=122){ emu.serial0_send(String.fromCharCode(ch-96)); ctrlOn=false; ctrlBtn.classList.remove('active'); }
-      else emu.serial0_send(String.fromCharCode(ch));
-    }
-    mi.value='';
-  });
-
-  mi.addEventListener('keydown',function(e){
-    if(!emu)return;
-    var map={Enter:'\n',Backspace:'\x7f',ArrowUp:'\x1b[A',ArrowDown:'\x1b[B',ArrowLeft:'\x1b[D',ArrowRight:'\x1b[C',Tab:'\t',Escape:'\x1b'};
-    if(map[e.key]){ e.preventDefault(); emu.serial0_send(map[e.key]); }
-  });
-
-  document.getElementById('specbar').onclick=function(e){
-    var b=e.target.closest('button'); if(!b||!emu)return;
-    var k=b.dataset.k;
-    if(k==='ctrl'){ ctrlOn=!ctrlOn; ctrlBtn.classList.toggle('active',ctrlOn); mi.focus(); return; }
-    var map={tab:'\t',esc:'\x1b',up:'\x1b[A',down:'\x1b[B',left:'\x1b[D',right:'\x1b[C',pipe:'|',slash:'/',dash:'-',tilde:'~',bslash:'\\',amp:'&',gt:'>'};
-    if(map[k])emu.serial0_send(map[k]);
-    mi.focus();
+(function() {
+  const UI = {
+    pf: document.getElementById('pf'),
+    pm: document.getElementById('pm'),
+    pl: document.getElementById('pl'),
+    bo: document.getElementById('boot'),
+    d1: document.getElementById('d1'),
+    d2: document.getElementById('d2'),
+    d3: document.getElementById('d3'),
+    st: document.getElementById('st'),
+    mi: document.getElementById('mi'),
+    kbb: document.getElementById('kbb'),
+    ctrlBtn: document.getElementById('ctrlBtn')
   };
 
-  document.getElementById('screen_container').onclick=function(){
-    if('ontouchstart' in window) mi.focus();
-    else{ var t=this.querySelector('[tabindex]'); if(t)t.focus(); else this.focus(); }
-  };
+  let emu = null;
+  let ctrlOn = false;
 
-  /* ═══ BOOT ═══ */
-  D('warn'); st.textContent='BOOTING'; P(3,'Loading v86 engine\u2026'); L('Starting WebAssembly x86 emulator');
+  // UI Updates
+  function setProgress(percent, msg) {
+    UI.pf.style.width = percent + '%';
+    if (msg) UI.pm.textContent = msg;
+  }
   
-  // CDN 소스 전면 교체 (jsDelivr 공식 릴리즈를 우선 적용)
-  var srcs=[
-    {
-      n: 'jsDelivr (Primary)',
-      js: 'https://cdn.jsdelivr.net/npm/v86@latest/build/libv86.js',
-      w:  'https://cdn.jsdelivr.net/npm/v86@latest/build/v86.wasm',
-      b:  'https://cdn.jsdelivr.net/npm/v86@latest/bios/seabios.bin',
-      v:  'https://cdn.jsdelivr.net/npm/v86@latest/bios/vgabios.bin',
-      o:  'https://cdn.jsdelivr.net/gh/copy/v86@master/images/linux4.iso'
-    },
-    {
-      n: 'copy.sh (Fallback)',
-      js: 'https://copy.sh/v86/build/libv86.js',
-      w:  'https://copy.sh/v86/build/v86.wasm',
-      b:  'https://copy.sh/v86/bios/seabios.bin',
-      v:  'https://copy.sh/v86/bios/vgabios.bin',
-      o:  'https://copy.sh/v86/images/linux4.iso'
-    }
-  ];
-  var si=0;
+  function logMsg(text, isError = false) {
+    const div = document.createElement('div');
+    div.textContent = '› ' + text;
+    if (isError) div.style.color = 'var(--red)';
+    UI.pl.appendChild(div);
+    UI.pl.scrollTop = UI.pl.scrollHeight;
+  }
+  
+  function setStatus(statusClass, labelText) {
+    UI.d1.className = statusClass;
+    UI.d2.className = statusClass;
+    UI.d3.className = statusClass;
+    UI.st.textContent = labelText;
+  }
 
-  function tryLoad(){
-    if(window.location.protocol === 'file:') {
-      D('err'); st.textContent='ERROR'; P(0,'File Protocol Blocked');
-      L('FATAL: Browser CORS policy blocked execution.');
-      pm.innerHTML='Cannot load WebAssembly via file://<br><span style="font-size:clamp(6px,1vw,9px);color:var(--amber)">Please start a local HTTP server (e.g. VS Code Live Server).</span>';
+  // Mobile / Viewport Fixes
+  function fixHeight() { document.body.style.height = window.innerHeight + 'px'; }
+  fixHeight();
+  window.addEventListener('resize', fixHeight);
+  window.addEventListener('orientationchange', () => setTimeout(fixHeight, 200));
+
+  // Keyboard Event Handlers
+  UI.kbb.onclick = (e) => { e.preventDefault(); UI.mi.focus(); };
+
+  UI.mi.addEventListener('input', () => {
+    if (!emu) return;
+    const v = UI.mi.value;
+    if (v.length > 0) {
+      const ch = v.charCodeAt(v.length - 1);
+      if (ctrlOn && ch >= 97 && ch <= 122) {
+        emu.serial0_send(String.fromCharCode(ch - 96));
+        ctrlOn = false;
+        UI.ctrlBtn.classList.remove('active');
+      } else {
+        emu.serial0_send(String.fromCharCode(ch));
+      }
+    }
+    UI.mi.value = '';
+  });
+
+  UI.mi.addEventListener('keydown', (e) => {
+    if (!emu) return;
+    const map = { Enter: '\n', Backspace: '\x7f', ArrowUp: '\x1b[A', ArrowDown: '\x1b[B', ArrowLeft: '\x1b[D', ArrowRight: '\x1b[C', Tab: '\t', Escape: '\x1b' };
+    if (map[e.key]) { e.preventDefault(); emu.serial0_send(map[e.key]); }
+  });
+
+  document.getElementById('specbar').onclick = (e) => {
+    const b = e.target.closest('button');
+    if (!b || !emu) return;
+    const k = b.dataset.k;
+    if (k === 'ctrl') {
+      ctrlOn = !ctrlOn;
+      UI.ctrlBtn.classList.toggle('active', ctrlOn);
+      UI.mi.focus();
       return;
     }
-    if(si>=srcs.length){
-      D('err'); st.textContent='ERROR'; P(0,'All CDNs failed'); L('FATAL: No CDN available');
-      pm.innerHTML='Cannot load v86 engine.<br><span style="font-size:clamp(6px,1vw,9px);color:var(--dim)">Check internet connection or CORS extensions.</span>';
+    const map = { tab: '\t', esc: '\x1b', up: '\x1b[A', down: '\x1b[B', left: '\x1b[D', right: '\x1b[C', pipe: '|', slash: '/', dash: '-', tilde: '~', bslash: '\\', amp: '&', gt: '>' };
+    if (map[k]) emu.serial0_send(map[k]);
+    UI.mi.focus();
+  };
+
+  document.getElementById('screen_container').onclick = function() {
+    if ('ontouchstart' in window) UI.mi.focus();
+    else {
+      const t = this.querySelector('[tabindex]');
+      if (t) t.focus(); else this.focus();
+    }
+  };
+
+  // 1. Validated sources from reliable CDNs
+  const v86_version = '0.3.0'; 
+  const cdnList = [
+    {
+      name: 'UNPKG (Official)',
+      js: `https://unpkg.com/v86@${v86_version}/build/libv86.js`,
+      wasm: `https://unpkg.com/v86@${v86_version}/build/v86.wasm`,
+      bios: `https://unpkg.com/v86@${v86_version}/bios/seabios.bin`,
+      vga: `https://unpkg.com/v86@${v86_version}/bios/vgabios.bin`,
+      iso: `https://i.copy.sh/linux4.iso` // i.copy.sh allows unrestricted CORS
+    }
+  ];
+
+  let currentCdnIndex = 0;
+
+  function initBootSeq() {
+    setStatus('warn', 'BOOTING');
+    setProgress(5, 'Injecting Engine...');
+    logMsg('Initializing WebAssembly x86 emulator');
+    
+    if (window.location.protocol === 'file:') {
+      setStatus('err', 'ERROR');
+      setProgress(0, 'CORS Blocked');
+      logMsg('FATAL: Cannot run v86 over file:// protocol.', true);
       return;
     }
     
-    var s=srcs[si]; L('Trying '+s.n+'\u2026');
-    var el=document.createElement('script'); el.src=s.js; el.crossOrigin='anonymous';
-    el.onload=function(){ go(s); };
-    el.onerror=function(){ L(s.n+' failed'); si++; tryLoad(); };
-    document.head.appendChild(el);
+    loadScript();
   }
-  
-  tryLoad();
 
-  function go(s){
-    P(20,'v86 from '+s.n); L('Engine ready');
-    setTimeout(function(){
-      P(40,'Configuring VM\u2026'); L('x86 CPU + 64MB RAM');
-      setTimeout(function(){
-        P(50,'Downloading BIOS + OS\u2026'); L('Fetching firmware & Linux ISO');
-        try{
-          emu=new V86({
-            wasm_path: s.w,
-            memory_size: 64*1024*1024,
-            vga_memory_size: 2*1024*1024,
-            screen_container: document.getElementById('screen_container'),
-            bios: { url: s.b },
-            vga_bios: { url: s.v },
-            cdrom: { url: s.o },
-            autostart: true, disable_mouse: true, disable_keyboard: false
-          });
-          window.emulator=emu;
-          P(60,'Booting\u2026'); L('VM started');
-          
-          var p=60, tk=setInterval(function(){ if(p<93){p++; P(p,'Booting Linux\u2026');} },600);
-          var done=false;
-          
-          function reveal(){
-            if(done)return; done=true; clearInterval(tk);
-            P(100,'Linux is running!'); L('Boot complete'); D('on'); st.textContent='RUNNING';
-            setTimeout(function(){ bo.classList.add('gone'); },500);
-          }
-          
-          var bytes=0;
-          emu.add_listener('serial0-output-byte', function(){ bytes++; if(bytes>400) reveal(); });
-          emu.add_listener('emulator-ready', function(){ P(88,'WASM core ready\u2026'); L('x86 JIT active'); });
-          
-          var chk=0, ci=setInterval(function(){
-            chk++;
-            var sd=document.querySelector('#screen_container>div');
-            if(sd && sd.textContent.length>100){ reveal(); clearInterval(ci); }
-            if(chk>60) clearInterval(ci);
-          },500);
-          
-          setTimeout(reveal,35000); // 35초 경과 시 강제 화면 전환
-        }catch(err){
-          D('err'); st.textContent='ERROR'; P(0,err.message); L('FATAL: '+err.message);
-        }
-      },300);
-    },200);
+  function loadScript() {
+    if (currentCdnIndex >= cdnList.length) {
+      setStatus('err', 'ERROR');
+      setProgress(0, 'Init Failed');
+      logMsg('FATAL: All CDN sources failed to load.', true);
+      return;
+    }
+
+    const cdn = cdnList[currentCdnIndex];
+    logMsg(`Fetching libv86.js from ${cdn.name}...`);
+    
+    const script = document.createElement('script');
+    script.src = cdn.js;
+    script.crossOrigin = 'anonymous';
+    script.onload = () => setupEmulator(cdn);
+    script.onerror = () => {
+      logMsg(`Failed to load from ${cdn.name}.`, true);
+      currentCdnIndex++;
+      loadScript();
+    };
+    document.head.appendChild(script);
   }
+
+  function setupEmulator(cdn) {
+    setProgress(15, 'Engine Loaded');
+    logMsg('V86 engine successfully injected.');
+    
+    setProgress(25, 'Allocating Hardware...');
+    logMsg('CPU: x86 32-bit | RAM: 64MB | VGA: 2MB');
+
+    try {
+      emu = new window.V86({
+        wasm_path: cdn.wasm,
+        memory_size: 64 * 1024 * 1024,
+        vga_memory_size: 2 * 1024 * 1024,
+        screen_container: document.getElementById('screen_container'),
+        bios: { url: cdn.bios },
+        vga_bios: { url: cdn.vga },
+        cdrom: { url: cdn.iso },
+        autostart: true,
+        disable_mouse: true,
+        disable_keyboard: false
+      });
+      
+      window.emulator = emu;
+      bindEmulatorEvents();
+
+    } catch (err) {
+      setStatus('err', 'ERROR');
+      setProgress(0, 'Emulator Crash');
+      logMsg('FATAL: ' + err.message, true);
+    }
+  }
+
+  function bindEmulatorEvents() {
+    let bootDone = false;
+    let maxDlPercent = 0;
+
+    // Listen to real download progress instead of faking it
+    emu.add_listener('download-progress', (e) => {
+      if (bootDone) return;
+      if (e.total && e.total > 0) {
+        let pct = Math.floor((e.loaded / e.total) * 100);
+        if (pct > maxDlPercent) maxDlPercent = pct;
+        // Remap download 0-100% to progress bar 25-80%
+        let mappedProgress = 25 + Math.floor(maxDlPercent * 0.55);
+        setProgress(mappedProgress, `Downloading OS (${maxDlPercent}%)...`);
+        
+        if (maxDlPercent === 10 || maxDlPercent === 50 || maxDlPercent === 90) {
+           logMsg(`Fetch progress: ${maxDlPercent}%`);
+        }
+      }
+    });
+
+    emu.add_listener('download-error', (e) => {
+       setStatus('err', 'ERROR');
+       setProgress(0, 'Download Failed');
+       logMsg(`FATAL: Failed to download ${e.url}`, true);
+    });
+
+    emu.add_listener('emulator-ready', () => {
+      logMsg('JIT Compiler active. Booting Linux kernel...');
+      setProgress(85, 'Booting Kernel...');
+    });
+
+    // Detect actual terminal output to remove boot screen
+    let outputBytes = 0;
+    emu.add_listener('serial0-output-byte', () => {
+      outputBytes++;
+      if (!bootDone && outputBytes > 100) {
+        bootDone = true;
+        finalizeBoot();
+      }
+    });
+
+    // Fallback detection (Screen character changes)
+    let screenTicks = 0;
+    const checkScreen = setInterval(() => {
+      if (bootDone) { clearInterval(checkScreen); return; }
+      const textDiv = document.querySelector('#screen_container > div');
+      if (textDiv && textDiv.textContent.length > 50) {
+        bootDone = true;
+        clearInterval(checkScreen);
+        finalizeBoot();
+      }
+      screenTicks++;
+      // Stop checking after 30 seconds to save resources (Do NOT force close bootscreen)
+      if (screenTicks > 60) clearInterval(checkScreen);
+    }, 500);
+  }
+
+  function finalizeBoot() {
+    setProgress(100, 'System Online');
+    logMsg('Terminal prompt reached.');
+    setStatus('on', 'RUNNING');
+    setTimeout(() => {
+      UI.bo.classList.add('gone');
+    }, 600);
+  }
+
+  // Start sequence
+  initBootSeq();
+
 })();
 </script>
 </body>
