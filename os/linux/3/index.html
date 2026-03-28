@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebASM Linux Terminal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0a0e14;
+    --fg: #b3b1ad;
+    --green: #7fd962;
+    --blue: #59c2ff;
+    --cyan: #73d0ff;
+    --yellow: #e6b450;
+    --red: #f07178;
+    --magenta: #d2a6ff;
+    --orange: #ff8f40;
+    --dim: #475266;
+    --selection: #1a1f29;
+    --border: #1b2130;
+    --prompt-user: #7fd962;
+    --prompt-host: #59c2ff;
+    --prompt-path: #e6b450;
+    --scanline: rgba(10, 14, 20, 0.08);
+    --glow: rgba(127, 217, 98, 0.03);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: #050810;
+    overflow: hidden;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .monitor-frame {
+    width: 100%;
+    max-width: 960px;
+    height: calc(100vh - 32px);
+    max-height: 700px;
+    background: var(--bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.03),
+      0 20px 60px rgba(0,0,0,0.6),
+      0 0 120px rgba(127, 217, 98, 0.02);
+    position: relative;
+  }
+
+  .monitor-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      var(--scanline) 2px,
+      var(--scanline) 4px
+    );
+    pointer-events: none;
+    z-index: 10;
+    border-radius: 12px;
+  }
+
+  .monitor-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, var(--glow), transparent 70%);
+    pointer-events: none;
+    z-index: 11;
+    border-radius: 12px;
+  }
+
+  .titlebar {
+    height: 40px;
+    background: #0d1119;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    gap: 8px;
+    flex-shrink: 0;
+    user-select: none;
+    position: relative;
+    z-index: 5;
+  }
+
+  .titlebar-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    position: relative;
+  }
+  .titlebar-dot.red { background: #f07178; }
+  .titlebar-dot.yellow { background: #e6b450; }
+  .titlebar-dot.green { background: #7fd962; }
+  .titlebar-dot::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: inherit;
+    opacity: 0.15;
+    filter: blur(3px);
+  }
+
+  .titlebar-title {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    color: var(--dim);
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
+
+  .titlebar-badge {
+    font-size: 9px;
+    background: rgba(127,217,98,0.1);
+    color: var(--green);
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .boot-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--dim);
+    font-size: 13px;
+    gap: 16px;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .boot-logo {
+    font-size: 11px;
+    color: var(--green);
+    line-height: 1.2;
+    white-space: pre;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(127,217,98,0.15);
+  }
+
+  .boot-progress {
+    width: 280px;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .boot-progress-bar {
+    height: 100%;
+    background: var(--green);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px rgba(127,217,98,0.3);
+  }
+
+  .boot-status {
+    font-size: 11px;
+    color: var(--dim);
+    min-height: 16px;
+  }
+
+  #terminal-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 16px;
+    display: none;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+  }
+
+  #terminal-container::-webkit-scrollbar { width: 6px; }
+  #terminal-container::-webkit-scrollbar-track { background: transparent; }
+  #terminal-container::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+
+  .output-line {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--fg);
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .output-line.error { color: var(--red); }
+  .output-line.success { color: var(--green); }
+  .output-line.info { color: var(--cyan); }
+  .output-line.warning { color: var(--yellow); }
+  .output-line.dim { color: var(--dim); }
+  .output-line.magenta { color: var(--magenta); }
+
+  .input-row {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-top: 2px;
+  }
+
+  .prompt {
+    white-space: pre;
+    flex-shrink: 0;
+  }
+
+  .prompt .user { color: var(--prompt-user); font-weight: 500; }
+  .prompt .at { color: var(--dim); }
+  .prompt .host { color: var(--prompt-host); font-weight: 500; }
+  .prompt .colon { color: var(--dim); }
+  .prompt .path { color: var(--prompt-path); }
+  .prompt .dollar { color: var(--fg); }
+
+  #cmd-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--fg);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    caret-color: var(--green);
+    line-height: 1.6;
+    margin-left: 4px;
+  }
+
+  .status-bar {
+    height: 26px;
+    background: #0d1119;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    font-size: 10px;
+    color: var(--dim);
+    gap: 16px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 5;
+  }
+
+  .status-item { display: flex; align-items: center; gap: 4px; }
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .cursor-blink {
+    animation: blink 1s step-end infinite;
+    color: var(--green);
+  }
+
+  .file-blue { color: var(--blue); font-weight: 500; }
+  .file-green { color: var(--green); }
+  .file-cyan { color: var(--cyan); }
+  .file-yellow { color: var(--yellow); }
+  .file-red { color: var(--red); }
+  .file-magenta { color: var(--magenta); }
+
+  .neofetch-box {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 0; }
+    .monitor-frame {
+      border-radius: 0;
+      max-height: 100vh;
+      height: 100vh;
+    }
+    .output-line, #cmd-input, .prompt { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="monitor-frame">
+  <div class="titlebar">
+    <div class="titlebar-dot red"></div>
+    <div class="titlebar-dot yellow"></div>
+    <div class="titlebar-dot green"></div>
+    <div class="titlebar-title">user@wasm-linux — bash</div>
+    <div class="titlebar-badge">WASM</div>
+  </div>
+
+  <div class="boot-screen" id="boot-screen">
+    <div class="boot-logo" id="boot-logo"></div>
+    <div class="boot-progress"><div class="boot-progress-bar" id="boot-bar"></div></div>
+    <div class="boot-status" id="boot-status">Initializing WebAssembly runtime...</div>
+  </div>
+
+  <div id="terminal-container">
+    <div id="output"></div>
+    <div class="input-row" id="input-row">
+      <span class="prompt" id="prompt"></span>
+      <input type="text" id="cmd-input" autofocus autocomplete="off" autocapitalize="off" spellcheck="false">
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <div class="status-item"><div class="status-dot"></div> wasm-runtime</div>
+    <div class="status-item" id="status-mem">MEM: 256MB</div>
+    <div class="status-item" id="status-cpu">CPU: 0%</div>
+    <div class="status-item" style="margin-left:auto" id="status-time"></div>
+  </div>
+</div>
+
+<script>
+const HOSTNAME = 'wasm-linux';
+const USERNAME = 'user';
+let cwd = '/home/user';
+let env = {
+  HOME: '/home/user',
+  USER: USERNAME,
+  HOSTNAME: HOSTNAME,
+  SHELL: '/bin/bash',
+  PATH: '/usr/local/bin:/usr/bin:/bin',
+  TERM: 'xterm-256color',
+  LANG: 'en_US.UTF-8',
+  PWD: '/home/user',
+  EDITOR: 'nano',
+};
+let cmdHistory = [];
+let historyIdx = -1;
+let aliases = { ll: 'ls -la', la: 'ls -a', '..': 'cd ..', cls: 'clear' };
+
+// Virtual filesystem
+const fs = {
+  '/': { type: 'dir', children: ['bin','dev','etc','home','proc','tmp','usr','var','mnt','opt','sys'], perm: 'drwxr-xr-x', owner: 'root' },
+  '/bin': { type: 'dir', children: ['bash','ls','cat','echo','mkdir','rm','cp','mv','grep','chmod','chown','ps','kill','tar','gzip'], perm: 'drwxr-xr-x', owner: 'root' },
+  '/dev': { type: 'dir', children: ['null','zero','random','urandom','tty','stdin','stdout','stderr'], perm: 'drwxr-xr-x', owner: 'root' },
+  '/etc': { type: 'dir', children: ['hostname','passwd','hosts','resolv.conf','os-release','motd','fstab','shells'], perm: 'drwxr-xr-x', owner: 'root' },
+  '/etc/hostname': { type: 'file', content: 'wasm-linux\n', perm: '-rw-r--r--', owner: 'root', size: 11 },
+  '/etc/passwd': { type: 'file', content: 'root:x:0:0:root:/root:/bin/bash\nuser:x:1000:1000:user:/home/user:/bin/bash\nnobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin\n', perm: '-rw-r--r--', owner: 'root', size: 152 },
+  '/etc/hosts': { type: 'file', content: '127.0.0.1\tlocalhost\n127.0.1.1\twasm-linux\n::1\t\tlocalhost ip6-localhost\n', perm: '-rw-r--r--', owner: 'root', size: 74 },
+  '/etc/resolv.conf': { type: 'file', content: 'nameserver 8.8.8.8\nnameserver 8.8.4.4\n', perm: '-rw-r--r--', owner: 'root', size: 40 },
+  '/etc/os-release': { type: 'file', content: 'NAME="WebASM Linux"\nVERSION="1.0.0"\nID=wasmlinux\nPRETTY_NAME="WebASM Linux 1.0 (Chromium)"\nHOME_URL="https://github.com/user/wasm-linux"\n', perm: '-rw-r--r--', owner: 'root', size: 148 },
+  '/etc/motd': { type: 'file', content: 'Welcome to WebASM Linux 1.0 — A Linux terminal running in your browser via WebAssembly.\nType "help" for available commands.\n', perm: '-rw-r--r--', owner: 'root', size: 124 },
+  '/etc/fstab': { type: 'file', content: '# <device>  <mount>  <type>  <options>  <dump>  <pass>\n/dev/wasm    /        ext4    defaults   0       1\ntmpfs        /tmp     tmpfs   defaults   0       0\n', perm: '-rw-r--r--', owner: 'root', size: 155 },
+  '/etc/shells': { type: 'file', content: '/bin/bash\n/bin/sh\n', perm: '-rw-r--r--', owner: 'root', size: 20 },
+  '/home': { type: 'dir', children: ['user'], perm: 'drwxr-xr-x', owner: 'root' },
+  '/home/user': { type: 'dir', children: ['.bashrc','.profile','documents','projects','readme.txt'], perm: 'drwxr-xr-x', owner: 'user' },
+  '/home/user/.bashrc': { type: 'file', content: '# ~/.bashrc\nexport PS1="\\u@\\h:\\w$ "\nalias ll="ls -la"\nalias la="ls -a"\nexport EDITOR=nano\n', perm: '-rw-r--r--', owner: 'user', size: 98 },
+  '/home/user/.profile': { type: 'file', content: '# ~/.profile\nif [ -f "$HOME/.bashrc" ]; then\n  . "$HOME/.bashrc"\nfi\n', perm: '-rw-r--r--', owner: 'user', size: 68 },
+  '/home/user/readme.txt': { type: 'file', content: '╔══════════════════════════════════════════╗\n║   WebASM Linux Terminal v1.0             ║\n╠══════════════════════════════════════════╣\n║                                          ║\n║  This is a Linux terminal emulator       ║\n║  running entirely in your browser        ║\n║  using WebAssembly technology.           ║\n║                                          ║\n║  Try: ls, cd, cat, echo, mkdir,          ║\n║       touch, rm, grep, find, wc,         ║\n║       head, tail, neofetch, htop,        ║\n║       df, free, uname, whoami, date      ║\n║                                          ║\n║  Type "help" for the full command list.  ║\n╚══════════════════════════════════════════╝\n', perm: '-rw-r--r--', owner: 'user', size: 512 },
+  '/home/user/documents': { type: 'dir', children: ['notes.md','todo.txt','journal.log'], perm: 'drwxr-xr-x', owner: 'user' },
+  '/home/user/documents/notes.md': { type: 'file', content: '# My Notes\n\n## WebAssembly\n- Wasm is a binary instruction format\n- Runs at near-native speed\n- Supports C/C++, Rust, Go\n- Used for high-performance web apps\n\n## Linux\n- Open source operating system\n- Kernel created by Linus Torvalds in 1991\n- Powers most servers worldwide\n', perm: '-rw-r--r--', owner: 'user', size: 267 },
+  '/home/user/documents/todo.txt': { type: 'file', content: '[ ] Learn Rust\n[ ] Build a WebAssembly project\n[x] Set up Linux terminal\n[ ] Study kernel internals\n[x] Read WASM specification\n', perm: '-rw-r--r--', owner: 'user', size: 132 },
+  '/home/user/documents/journal.log': { type: 'file', content: '[2026-03-28 09:00] System boot completed\n[2026-03-28 09:01] WebAssembly runtime initialized\n[2026-03-28 09:01] Virtual filesystem mounted\n[2026-03-28 09:02] User session started\n', perm: '-rw-r--r--', owner: 'user', size: 178 },
+  '/home/user/projects': { type: 'dir', children: ['hello.c','Makefile','fibonacci.py','server.js'], perm: 'drwxr-xr-x', owner: 'user' },
+  '/home/user/projects/hello.c': { type: 'file', content: '#include <stdio.h>\n#include <emscripten.h>\n\nint main() {\n    printf("Hello from WebAssembly!\\n");\n    return 0;\n}\n', perm: '-rw-r--r--', owner: 'user', size: 107 },
+  '/home/user/projects/Makefile': { type: 'file', content: 'CC=emcc\nCFLAGS=-O2 -s WASM=1\n\nall: hello.wasm\n\nhello.wasm: hello.c\n\t$(CC) $(CFLAGS) hello.c -o hello.html\n\nclean:\n\trm -f hello.html hello.js hello.wasm\n\n.PHONY: all clean\n', perm: '-rw-r--r--', owner: 'user', size: 168 },
+  '/home/user/projects/fibonacci.py': { type: 'file', content: '#!/usr/bin/env python3\n"""Fibonacci sequence generator"""\n\ndef fib(n):\n    a, b = 0, 1\n    for _ in range(n):\n        yield a\n        a, b = b, a + b\n\nif __name__ == "__main__":\n    for i, num in enumerate(fib(20)):\n        print(f"F({i}) = {num}")\n', perm: '-rwxr-xr-x', owner: 'user', size: 236 },
+  '/home/user/projects/server.js': { type: 'file', content: 'const http = require("http");\n\nconst server = http.createServer((req, res) => {\n  res.writeHead(200, { "Content-Type": "text/plain" });\n  res.end("Hello from WASM Linux!\\n");\n});\n\nserver.listen(3000, () => {\n  console.log("Server running on port 3000");\n});\n', perm: '-rw-r--r--', owner: 'user', size: 254 },
+  '/proc': { type: 'dir', children: ['cpuinfo','meminfo','version','uptime','loadavg'], perm: 'dr-xr-xr-x', owner: 'root' },
+  '/proc/cpuinfo': { type: 'file', content: 'processor\t: 0\nvendor_id\t: WebAssembly\nmodel name\t: WASM Virtual CPU @ 2.0GHz\ncpu MHz\t\t: 2000.000\ncache size\t: 256 KB\ncpu cores\t: 1\nbogomips\t: 4000.00\nflags\t\t: wasm simd threads atomics bulk-memory\n', perm: '-r--r--r--', owner: 'root', size: 214, dynamic: 'cpuinfo' },
+  '/proc/meminfo': { type: 'file', content: '', perm: '-r--r--r--', owner: 'root', size: 0, dynamic: 'meminfo' },
+  '/proc/version': { type: 'file', content: 'WebASM Linux version 1.0.0-wasm (emcc@12.0.0) (WebAssembly 2.0) #1 SMP Sat Mar 28 2026\n', perm: '-r--r--r--', owner: 'root', size: 88 },
+  '/proc/uptime': { type: 'file', content: '', perm: '-r--r--r--', owner: 'root', size: 0, dynamic: 'uptime' },
+  '/proc/loadavg': { type: 'file', content: '0.12 0.08 0.05 1/42 128\n', perm: '-r--r--r--', owner: 'root', size: 26 },
+  '/tmp': { type: 'dir', children: [], perm: 'drwxrwxrwt', owner: 'root' },
+  '/usr': { type: 'dir', children: ['bin','lib','share','local'], perm: 'drwxr-xr-x', owner: 'root' },
+  '/usr/bin': { type: 'dir', children: ['env','wc','head','tail','sort','uniq','find','xargs','tee','tr','cut','awk','sed'], perm: 'drwxr-xr-x', owner: 'root' },
+  '/usr/lib': { type: 'dir', children: ['libc.so','libm.so','libpthread.so'], perm: 'drwxr-xr-x', owner: 'root' },
+  '/usr/share': { type: 'dir', children: ['doc','man'], perm: 'drwxr-xr-x', owner: 'root' },
+  '/usr/local': { type: 'dir', children: ['bin','lib'], perm: 'drwxr-xr-x', owner: 'root' },
+  '/var': { type: 'dir', children: ['log','tmp','cache'], perm: 'drwxr-xr-x', owner: 'root' },
+  '/var/log': { type: 'dir', children: ['syslog','kern.log','boot.log'], perm: 'drwxr-xr-x', owner: 'root' },
+  '/var/log/syslog': { type: 'file', content: 'Mar 28 09:00:01 wasm-linux kernel: [    0.000000] WebASM Linux 1.0.0\nMar 28 09:00:01 wasm-linux kernel: [    0.001234] Memory: 262144K available\nMar 28 09:00:01 wasm-linux kernel: [    0.002000] CPU: WASM Virtual CPU initialized\nMar 28 09:00:02 wasm-linux systemd[1]: Started WebAssembly Runtime\n', perm: '-rw-r-----', owner: 'root', size: 292 },
+  '/var/log/kern.log': { type: 'file', content: 'Mar 28 09:00:01 wasm-linux kernel: WebASM runtime v1.0.0 loaded\nMar 28 09:00:01 wasm-linux kernel: Virtual filesystem mounted at /\n', perm: '-rw-r-----', owner: 'root', size: 132 },
+  '/var/log/boot.log': { type: 'file', content: 'Starting WebASM Linux...\n[  OK  ] Started WASM Runtime Service\n[  OK  ] Mounted Virtual Filesystem\n[  OK  ] Started User Session\n', perm: '-rw-r-----', owner: 'root', size: 132 },
+  '/mnt': { type: 'dir', children: [], perm: 'drwxr-xr-x', owner: 'root' },
+  '/opt': { type: 'dir', children: [], perm: 'drwxr-xr-x', owner: 'root' },
+  '/sys': { type: 'dir', children: ['kernel','devices'], perm: 'dr-xr-xr-x', owner: 'root' },
+};
+
+const bootTime = Date.now();
+
+function getDynamicContent(key) {
+  if (key === 'meminfo') {
+    const total = 262144;
+    const used = Math.floor(Math.random()*30000+60000);
+    const free = total - used;
+    const buffers = Math.floor(Math.random()*10000+5000);
+    return `MemTotal:       ${total} kB\nMemFree:        ${free} kB\nMemAvailable:   ${free+buffers} kB\nBuffers:        ${buffers} kB\nCached:         ${Math.floor(Math.random()*20000+30000)} kB\nSwapTotal:      524288 kB\nSwapFree:       524288 kB\n`;
+  }
+  if (key === 'uptime') {
+    const secs = ((Date.now() - bootTime)/1000).toFixed(2);
+    return `${secs} ${(secs*0.3).toFixed(2)}\n`;
+  }
+  return '';
+}
+
+function resolvePath(p) {
+  if (!p) return cwd;
+  if (p === '~' || p === '$HOME') return env.HOME;
+  if (p.startsWith('~/')) p = env.HOME + p.slice(1);
+  if (!p.startsWith('/')) p = cwd + '/' + p;
+  const parts = p.split('/').filter(Boolean);
+  const resolved = [];
+  for (const part of parts) {
+    if (part === '.') continue;
+    if (part === '..') { resolved.pop(); continue; }
+    resolved.push(part);
+  }
+  return '/' + resolved.join('/');
+}
+
+function getFileContent(path) {
+  const node = fs[path];
+  if (!node || node.type !== 'file') return null;
+  if (node.dynamic) return getDynamicContent(node.dynamic);
+  return node.content;
+}
+
+function formatPrompt() {
+  const displayPath = cwd === env.HOME ? '~' : (cwd.startsWith(env.HOME) ? '~' + cwd.slice(env.HOME.length) : cwd);
+  return `<span class="user">${USERNAME}</span><span class="at">@</span><span class="host">${HOSTNAME}</span><span class="colon">:</span><span class="path">${displayPath}</span><span class="dollar">$ </span>`;
+}
+
+const outputEl = document.getElementById('output');
+const inputEl = document.getElementById('cmd-input');
+const promptEl = document.getElementById('prompt');
+const termContainer = document.getElementById('terminal-container');
+
+function print(text, cls = '') {
+  const line = document.createElement('div');
+  line.className = 'output-line' + (cls ? ' ' + cls : '');
+  line.innerHTML = text;
+  outputEl.appendChild(line);
+}
+
+function printRaw(text, cls = '') {
+  const line = document.createElement('div');
+  line.className = 'output-line' + (cls ? ' ' + cls : '');
+  line.textContent = text;
+  outputEl.appendChild(line);
+}
+
+function scrollBottom() {
+  termContainer.scrollTop = termContainer.scrollHeight;
+}
+
+function updatePrompt() {
+  promptEl.innerHTML = formatPrompt();
+  env.PWD = cwd;
+}
+
+// Commands
+const commands = {
+  help() {
+    print(`<span style="color:var(--green);font-weight:700">WebASM Linux — Available Commands</span>`);
+    print('');
+    const cmds = [
+      ['Navigation',    'ls, cd, pwd, find, tree'],
+      ['Files',         'cat, head, tail, touch, mkdir, rm, rmdir, cp, mv, echo, wc'],
+      ['Search',        'grep, which, whereis'],
+      ['System',        'uname, whoami, hostname, uptime, date, cal, env, export'],
+      ['Process',       'ps, kill, htop, free, df'],
+      ['Text',          'sort, uniq, rev, base64'],
+      ['Utility',       'clear, history, alias, unalias, type, file'],
+      ['Fun',           'neofetch, cowsay, fortune, factor, yes, sl'],
+      ['Other',         'echo, printf, sleep, seq, expr, test, true, false, exit'],
+    ];
+    for (const [cat, list] of cmds) {
+      print(`  <span style="color:var(--cyan)">${cat.padEnd(14)}</span> ${list}`);
+    }
+    print('');
+    print('  <span style="color:var(--dim)">Supports pipes (|), redirects (>, >>), and command chaining (;, &&, ||)</span>');
+  },
+
+  ls(args) {
+    const flags = args.filter(a => a.startsWith('-')).join('');
+    const showAll = flags.includes('a');
+    const showLong = flags.includes('l');
+    const target = args.find(a => !a.startsWith('-'));
+    const path = resolvePath(target || cwd);
+    const node = fs[path];
+    if (!node || node.type !== 'dir') { print(`ls: cannot access '${target||cwd}': No such file or directory`, 'error'); return; }
+
+    let entries = [...(node.children || [])];
+    if (showAll) entries = ['.', '..', ...entries];
+
+    if (showLong) {
+      print(`total ${entries.length * 4}`);
+      for (const name of entries) {
+        const childPath = path === '/' ? '/' + name : path + '/' + name;
+        const child = fs[childPath];
+        const isDir = name === '.' || name === '..' || (child && child.type === 'dir');
+        const perm = child ? child.perm : (isDir ? 'drwxr-xr-x' : '-rw-r--r--');
+        const owner = child ? child.owner : 'user';
+        const size = child && child.size ? child.size : (isDir ? 4096 : 0);
+        const colorClass = isDir ? 'file-blue' : (name.endsWith('.py') || name.endsWith('.sh') ? 'file-green' : (name.startsWith('.') ? 'file-cyan' : ''));
+        const displayName = colorClass ? `<span class="${colorClass}">${escHtml(name)}</span>` : escHtml(name);
+        print(`${perm}  1 ${owner.padEnd(6)} ${owner.padEnd(6)} ${String(size).padStart(6)} Mar 28 09:00 ${displayName}`);
+      }
+    } else {
+      let line = '';
+      for (const name of entries) {
+        const childPath = path === '/' ? '/' + name : path + '/' + name;
+        const child = fs[childPath];
+        const isDir = name === '.' || name === '..' || (child && child.type === 'dir');
+        if (isDir) line += `<span class="file-blue">${escHtml(name)}</span>  `;
+        else if (name.endsWith('.py')||name.endsWith('.sh')) line += `<span class="file-green">${escHtml(name)}</span>  `;
+        else if (name.startsWith('.')) line += `<span class="file-cyan">${escHtml(name)}</span>  `;
+        else line += escHtml(name) + '  ';
+      }
+      print(line);
+    }
+  },
+
+  cd(args) {
+    const target = args[0] || '~';
+    const path = resolvePath(target);
+    if (!fs[path] || fs[path].type !== 'dir') {
+      print(`bash: cd: ${target}: No such file or directory`, 'error');
+      return;
+    }
+    cwd = path;
+  },
+
+  pwd() { printRaw(cwd); },
+
+  cat(args) {
+    if (!args.length) { print('cat: missing operand', 'error'); return; }
+    for (const a of args) {
+      const path = resolvePath(a);
+      const content = getFileContent(path);
+      if (content === null) { print(`cat: ${a}: No such file or directory`, 'error'); continue; }
+      for (const line of content.split('\n')) {
+        if (line !== '' || content.endsWith('\n')) printRaw(line);
+      }
+    }
+  },
+
+  head(args) {
+    let n = 10;
+    const ni = args.indexOf('-n');
+    if (ni !== -1 && args[ni+1]) { n = parseInt(args[ni+1]); args.splice(ni,2); }
+    const file = args.find(a=>!a.startsWith('-'));
+    if (!file) { print('head: missing operand','error'); return; }
+    const content = getFileContent(resolvePath(file));
+    if (!content) { print(`head: ${file}: No such file or directory`,'error'); return; }
+    content.split('\n').slice(0,n).forEach(l=>printRaw(l));
+  },
+
+  tail(args) {
+    let n = 10;
+    const ni = args.indexOf('-n');
+    if (ni !== -1 && args[ni+1]) { n = parseInt(args[ni+1]); args.splice(ni,2); }
+    const file = args.find(a=>!a.startsWith('-'));
+    if (!file) { print('tail: missing operand','error'); return; }
+    const content = getFileContent(resolvePath(file));
+    if (!content) { print(`tail: ${file}: No such file or directory`,'error'); return; }
+    const lines = content.split('\n');
+    lines.slice(-n).forEach(l=>printRaw(l));
+  },
+
+  echo(args) {
+    let text = args.join(' ');
+    text = text.replace(/\$(\w+)/g, (_, k) => env[k] || '');
+    if ((text.startsWith('"')&&text.endsWith('"'))||(text.startsWith("'")&&text.endsWith("'")))
+      text = text.slice(1,-1);
+    printRaw(text);
+    return text;
+  },
+
+  touch(args) {
+    for (const name of args) {
+      const path = resolvePath(name);
+      if (!fs[path]) {
+        fs[path] = { type:'file', content:'', perm:'-rw-r--r--', owner:'user', size:0 };
+        const parent = path.substring(0, path.lastIndexOf('/')) || '/';
+        if (fs[parent] && fs[parent].children) {
+          const base = path.split('/').pop();
+          if (!fs[parent].children.includes(base)) fs[parent].children.push(base);
+        }
+      }
+    }
+  },
+
+  mkdir(args) {
+    const pFlag = args.includes('-p');
+    for (const name of args.filter(a=>!a.startsWith('-'))) {
+      const path = resolvePath(name);
+      if (fs[path]) { print(`mkdir: cannot create directory '${name}': File exists`,'error'); continue; }
+      fs[path] = { type:'dir', children:[], perm:'drwxr-xr-x', owner:'user' };
+      const parent = path.substring(0, path.lastIndexOf('/')) || '/';
+      if (fs[parent] && fs[parent].children) {
+        const base = path.split('/').pop();
+        if (!fs[parent].children.includes(base)) fs[parent].children.push(base);
+      }
+    }
+  },
+
+  rm(args) {
+    const rFlag = args.includes('-r') || args.includes('-rf') || args.includes('-R');
+    for (const name of args.filter(a=>!a.startsWith('-'))) {
+      const path = resolvePath(name);
+      if (!fs[path]) { print(`rm: cannot remove '${name}': No such file or directory`,'error'); continue; }
+      if (fs[path].type === 'dir' && !rFlag) { print(`rm: cannot remove '${name}': Is a directory`,'error'); continue; }
+      const parent = path.substring(0, path.lastIndexOf('/')) || '/';
+      const base = path.split('/').pop();
+      if (fs[parent] && fs[parent].children) {
+        fs[parent].children = fs[parent].children.filter(c => c !== base);
+      }
+      // Remove all children recursively
+      const keysToRemove = Object.keys(fs).filter(k => k === path || k.startsWith(path + '/'));
+      keysToRemove.forEach(k => delete fs[k]);
+    }
+  },
+
+  rmdir(args) {
+    for (const name of args) {
+      const path = resolvePath(name);
+      if (!fs[path]) { print(`rmdir: ${name}: No such file or directory`,'error'); continue; }
+      if (fs[path].type!=='dir') { print(`rmdir: ${name}: Not a directory`,'error'); continue; }
+      if (fs[path].children && fs[path].children.length) { print(`rmdir: ${name}: Directory not empty`,'error'); continue; }
+      commands.rm([name]);
+    }
+  },
+
+  cp(args) {
+    if (args.length < 2) { print('cp: missing operand','error'); return; }
+    const src = resolvePath(args[0]);
+    const dst = resolvePath(args[1]);
+    if (!fs[src]) { print(`cp: cannot stat '${args[0]}': No such file or directory`,'error'); return; }
+    fs[dst] = { ...fs[src], content: fs[src].content };
+    const parent = dst.substring(0, dst.lastIndexOf('/')) || '/';
+    const base = dst.split('/').pop();
+    if (fs[parent]&&fs[parent].children&&!fs[parent].children.includes(base)) fs[parent].children.push(base);
+  },
+
+  mv(args) {
+    if (args.length < 2) { print('mv: missing operand','error'); return; }
+    commands.cp(args);
+    commands.rm([args[0]]);
+  },
+
+  grep(args) {
+    if (args.length < 2) { print('grep: missing operand','error'); return; }
+    const flags = args.filter(a=>a.startsWith('-')).join('');
+    const nonFlags = args.filter(a=>!a.startsWith('-'));
+    const pattern = nonFlags[0];
+    const files = nonFlags.slice(1);
+    const ignoreCase = flags.includes('i');
+    const showNum = flags.includes('n');
+    const regex = new RegExp(pattern, ignoreCase ? 'gi' : 'g');
+
+    for (const f of files) {
+      const content = getFileContent(resolvePath(f));
+      if (!content) { print(`grep: ${f}: No such file or directory`,'error'); continue; }
+      content.split('\n').forEach((line, i) => {
+        if (regex.test(line)) {
+          const prefix = files.length > 1 ? `<span style="color:var(--magenta)">${escHtml(f)}</span>:` : '';
+          const num = showNum ? `<span style="color:var(--green)">${i+1}</span>:` : '';
+          const highlighted = escHtml(line).replace(new RegExp(escHtml(pattern), ignoreCase?'gi':'g'),
+            m => `<span style="color:var(--red);font-weight:700">${m}</span>`);
+          print(prefix + num + highlighted);
+        }
+      });
+    }
+  },
+
+  wc(args) {
+    for (const f of args.filter(a=>!a.startsWith('-'))) {
+      const content = getFileContent(resolvePath(f));
+      if (!content) { print(`wc: ${f}: No such file or directory`,'error'); continue; }
+      const lines = content.split('\n').length - (content.endsWith('\n')?1:0);
+      const words = content.trim().split(/\s+/).length;
+      const bytes = content.length;
+      printRaw(`  ${lines}   ${words}  ${bytes} ${f}`);
+    }
+  },
+
+  find(args) {
+    const startPath = resolvePath(args[0] || '.');
+    const nameIdx = args.indexOf('-name');
+    const pattern = nameIdx !== -1 ? args[nameIdx+1] : null;
+    const typeIdx = args.indexOf('-type');
+    const typeFilter = typeIdx !== -1 ? args[typeIdx+1] : null;
+
+    for (const [path, node] of Object.entries(fs)) {
+      if (!path.startsWith(startPath)) continue;
+      if (typeFilter === 'f' && node.type !== 'file') continue;
+      if (typeFilter === 'd' && node.type !== 'dir') continue;
+      if (pattern) {
+        const name = path.split('/').pop();
+        const regex = new RegExp('^' + pattern.replace(/\*/g, '.*').replace(/\?/g, '.') + '$');
+        if (!regex.test(name)) continue;
+      }
+      printRaw(path);
+    }
+  },
+
+  tree(args) {
+    const startPath = resolvePath(args[0] || '.');
+    const node = fs[startPath];
+    if (!node || node.type !== 'dir') { print(`tree: ${args[0]||'.'}: not a directory`,'error'); return; }
+    printRaw(startPath === cwd ? '.' : startPath);
+    let dirs = 0, files = 0;
+    function walk(p, prefix) {
+      const n = fs[p];
+      if (!n || !n.children) return;
+      const children = n.children;
+      children.forEach((child, i) => {
+        const isLast = i === children.length - 1;
+        const connector = isLast ? '└── ' : '├── ';
+        const childPath = p === '/' ? '/' + child : p + '/' + child;
+        const cn = fs[childPath];
+        const isDir = cn && cn.type === 'dir';
+        if (isDir) { dirs++; print(prefix + connector + `<span class="file-blue">${escHtml(child)}</span>`); }
+        else { files++; printRaw(prefix + connector + child); }
+        if (isDir) walk(childPath, prefix + (isLast ? '    ' : '│   '));
+      });
+    }
+    walk(startPath, '');
+    print(`\n<span style="color:var(--dim)">${dirs} directories, ${files} files</span>`);
+  },
+
+  uname(args) {
+    const flags = args.filter(a=>a.startsWith('-')).join('');
+    if (flags.includes('a') || !flags) {
+      printRaw('WebASM Linux wasm-linux 1.0.0-wasm #1 SMP Sat Mar 28 2026 wasm32 GNU/Linux');
+    } else if (flags.includes('r')) printRaw('1.0.0-wasm');
+    else if (flags.includes('s')) printRaw('WebASM Linux');
+    else if (flags.includes('m')) printRaw('wasm32');
+  },
+
+  whoami() { printRaw(USERNAME); },
+  hostname() { printRaw(HOSTNAME); },
+  id() { printRaw(`uid=1000(${USERNAME}) gid=1000(${USERNAME}) groups=1000(${USERNAME}),27(sudo),100(users)`); },
+
+  date() { printRaw(new Date().toString()); },
+
+  cal() {
+    const d = new Date();
+    const month = d.toLocaleString('en-US',{month:'long'});
+    const year = d.getFullYear();
+    const today = d.getDate();
+    print(`     <span style="font-weight:700">${month} ${year}</span>`);
+    printRaw('Su Mo Tu We Th Fr Sa');
+    const first = new Date(year, d.getMonth(), 1).getDay();
+    const last = new Date(year, d.getMonth()+1, 0).getDate();
+    let line = '   '.repeat(first);
+    for (let i = 1; i <= last; i++) {
+      const s = String(i).padStart(2);
+      if (i === today) line += `<span style="background:var(--fg);color:var(--bg);font-weight:700">${s}</span> `;
+      else line += s + ' ';
+      if ((first + i) % 7 === 0) { print(line); line = ''; }
+    }
+    if (line) print(line);
+  },
+
+  uptime() {
+    const secs = Math.floor((Date.now()-bootTime)/1000);
+    const h = Math.floor(secs/3600);
+    const m = Math.floor((secs%3600)/60);
+    printRaw(` ${new Date().toLocaleTimeString()} up ${h}:${String(m).padStart(2,'0')}, 1 user, load average: 0.12, 0.08, 0.05`);
+  },
+
+  free(args) {
+    const h = args.includes('-h');
+    print('              total        used        free      shared  buff/cache   available');
+    if (h) {
+      print('Mem:          256Mi        87Mi       142Mi        4Mi        27Mi       164Mi');
+      print('Swap:         512Mi          0B       512Mi');
+    } else {
+      print('Mem:         262144       89120      145440        4096       27584      168064');
+      print('Swap:        524288           0      524288');
+    }
+  },
+
+  df(args) {
+    const h = args.includes('-h');
+    print('Filesystem      Size  Used Avail Use% Mounted on');
+    if (h) {
+      print('/dev/wasm       2.0G  412M  1.6G  21% /');
+      print('tmpfs           128M     0  128M   0% /tmp');
+      print('devfs           256M     0  256M   0% /dev');
+    } else {
+      print('/dev/wasm     2097152  421888 1675264  21% /');
+      print('tmpfs          131072       0  131072   0% /tmp');
+    }
+  },
+
+  ps(args) {
+    const all = args.includes('-ef') || args.includes('aux') || args.includes('-a');
+    print('  PID TTY          TIME CMD');
+    print('    1 ?        00:00:01 systemd');
+    if (all) {
+      print('    2 ?        00:00:00 kthreadd');
+      print('   10 ?        00:00:00 wasm-runtime');
+      print('   42 ?        00:00:00 sshd');
+      print('   56 tty1     00:00:00 login');
+    }
+    print(`  128 pts/0    00:00:00 bash`);
+    print(`  ${129+cmdHistory.length} pts/0    00:00:00 ps`);
+  },
+
+  kill(args) {
+    if (!args.length) { print('kill: missing operand','error'); return; }
+    print(`bash: kill: (${args[args.length-1]}) - Operation not permitted`, 'warning');
+  },
+
+  htop() {
+    const cpu = (Math.random()*15+2).toFixed(1);
+    const mem = (Math.random()*20+30).toFixed(1);
+    print(`<span style="color:var(--green);font-weight:700">  htop - ${new Date().toLocaleTimeString()}</span>`);
+    print('');
+    const cpuBar = Math.floor(cpu/2);
+    const memBar = Math.floor(mem/2);
+    print(`  CPU [<span style="color:var(--green)">${'|'.repeat(cpuBar)}</span>${' '.repeat(50-cpuBar)}] ${cpu}%`);
+    print(`  MEM [<span style="color:var(--cyan)">${'|'.repeat(memBar)}</span>${' '.repeat(50-memBar)}] ${mem}%`);
+    print(`  SWP [                                                  ]  0.0%`);
+    print('');
+    print('  <span style="font-weight:500">PID  USER     PRI  NI  VIRT   RES   SHR S CPU%  MEM%   TIME+ Command</span>');
+    print('    1 root      20   0 16844  3408  2204 S  0.0   1.3  0:01.23 systemd');
+    print('   10 root      20   0  8432  2104  1780 S  0.3   0.8  0:00.45 wasm-runtime');
+    print(`  128 user      20   0  7896  3652  3100 S  ${cpu}  ${mem}  0:00.12 bash`);
+    print('');
+    print('  <span style="color:var(--dim)">Tasks: 6, 1 running. Load average: 0.12 0.08 0.05</span>');
+  },
+
+  env() {
+    for (const [k,v] of Object.entries(env).sort((a,b)=>a[0].localeCompare(b[0]))) {
+      printRaw(`${k}=${v}`);
+    }
+  },
+
+  export(args) {
+    for (const a of args) {
+      const eq = a.indexOf('=');
+      if (eq === -1) continue;
+      env[a.slice(0,eq)] = a.slice(eq+1);
+    }
+  },
+
+  history() {
+    cmdHistory.forEach((cmd, i) => {
+      print(`  <span style="color:var(--dim)">${String(i+1).padStart(4)}</span>  ${escHtml(cmd)}`);
+    });
+  },
+
+  alias(args) {
+    if (!args.length) {
+      for (const [k,v] of Object.entries(aliases)) printRaw(`alias ${k}='${v}'`);
+      return;
+    }
+    for (const a of args) {
+      const eq = a.indexOf('=');
+      if (eq === -1) continue;
+      aliases[a.slice(0,eq)] = a.slice(eq+1).replace(/^['"]|['"]$/g,'');
+    }
+  },
+
+  unalias(args) { args.forEach(a => delete aliases[a]); },
+
+  type(args) {
+    for (const a of args) {
+      if (commands[a]) printRaw(`${a} is a shell builtin`);
+      else if (aliases[a]) printRaw(`${a} is aliased to '${aliases[a]}'`);
+      else print(`bash: type: ${a}: not found`,'error');
+    }
+  },
+
+  which(args) {
+    for (const a of args) {
+      if (commands[a]) printRaw(`/usr/bin/${a}`);
+      else print(`which: no ${a} in (${env.PATH})`,'error');
+    }
+  },
+
+  file(args) {
+    for (const a of args) {
+      const path = resolvePath(a);
+      const node = fs[path];
+      if (!node) { print(`file: ${a}: No such file or directory`,'error'); continue; }
+      if (node.type === 'dir') printRaw(`${a}: directory`);
+      else if (a.endsWith('.c')) printRaw(`${a}: C source, ASCII text`);
+      else if (a.endsWith('.py')) printRaw(`${a}: Python script, UTF-8 text executable`);
+      else if (a.endsWith('.js')) printRaw(`${a}: JavaScript source, ASCII text`);
+      else if (a.endsWith('.md')) printRaw(`${a}: UTF-8 Unicode text, Markdown`);
+      else printRaw(`${a}: ASCII text`);
+    }
+  },
+
+  clear() { outputEl.innerHTML = ''; },
+
+  sort(args, stdin) {
+    const input = stdin || (args[0] ? getFileContent(resolvePath(args[0])) : null);
+    if (!input) return '';
+    const lines = input.trim().split('\n');
+    const rFlag = args.includes('-r');
+    lines.sort();
+    if (rFlag) lines.reverse();
+    const result = lines.join('\n');
+    if (!stdin) result.split('\n').forEach(l => printRaw(l));
+    return result;
+  },
+
+  uniq(args, stdin) {
+    const input = stdin || (args[0] ? getFileContent(resolvePath(args[0])) : null);
+    if (!input) return '';
+    const lines = input.trim().split('\n');
+    const result = lines.filter((l,i) => i===0 || l!==lines[i-1]).join('\n');
+    if (!stdin) result.split('\n').forEach(l => printRaw(l));
+    return result;
+  },
+
+  rev(args, stdin) {
+    const input = stdin || (args[0] ? getFileContent(resolvePath(args[0])) : null);
+    if (!input) return '';
+    const result = input.trim().split('\n').map(l => [...l].reverse().join('')).join('\n');
+    if (!stdin) result.split('\n').forEach(l => printRaw(l));
+    return result;
+  },
+
+  base64(args, stdin) {
+    const decode = args.includes('-d') || args.includes('--decode');
+    const input = stdin || (args.filter(a=>!a.startsWith('-'))[0] ? getFileContent(resolvePath(args.filter(a=>!a.startsWith('-'))[0])) : null);
+    if (!input) { print('base64: missing operand','error'); return ''; }
+    try {
+      const result = decode ? atob(input.trim()) : btoa(input.trim());
+      if (!stdin) printRaw(result);
+      return result;
+    } catch { print('base64: invalid input','error'); return ''; }
+  },
+
+  seq(args) {
+    const nums = args.map(Number);
+    let start=1, end=1, step=1;
+    if (nums.length===1) end=nums[0];
+    else if (nums.length===2) { start=nums[0]; end=nums[1]; }
+    else { start=nums[0]; step=nums[1]; end=nums[2]; }
+    const result = [];
+    for (let i=start; step>0?i<=end:i>=end; i+=step) result.push(String(i));
+    const text = result.join('\n');
+    result.forEach(l => printRaw(l));
+    return text;
+  },
+
+  expr(args) {
+    try {
+      const result = Function('"use strict";return (' + args.join(' ').replace(/x/g,'*') + ')')();
+      printRaw(String(result));
+    } catch { print('expr: syntax error','error'); }
+  },
+
+  factor(args) {
+    let n = parseInt(args[0]);
+    if (!n||n<2) { print('factor: invalid number','error'); return; }
+    const factors = [];
+    let d = 2;
+    let orig = n;
+    while (d*d<=n) { while (n%d===0) { factors.push(d); n/=d; } d++; }
+    if (n>1) factors.push(n);
+    printRaw(`${orig}: ${factors.join(' ')}`);
+  },
+
+  yes(args) {
+    const text = args.join(' ') || 'y';
+    for (let i = 0; i < 20; i++) printRaw(text);
+    print('<span style="color:var(--dim)">... (stopped after 20 lines)</span>');
+  },
+
+  sl() {
+    const train = [
+      '      ====        ________                ___________',
+      '  _D _|  |_______/        \\__I_I_____===__|_________|',
+      '   |(_)---  |   H\\________/ |   |        =|___ ___|',
+      '   /     |  |   H  |  |     |   |         ||_| |_||',
+      '  |      |  |   H  |__--------------------| [___] |',
+      '  | ________|___H__/__|_____/[][]~\\_______|       |',
+      '  |/ |   |-----------I_____I [][] []  D   |=======|__',
+    ];
+    train.forEach(l => print(`<span style="color:var(--green)">${escHtml(l)}</span>`));
+    print('');
+    print(`<span style="color:var(--dim)">🚂 Choo choo!</span>`);
+  },
+
+  cowsay(args) {
+    const msg = args.join(' ') || 'Moo!';
+    const top = ' ' + '_'.repeat(msg.length + 2);
+    const mid = '< ' + msg + ' >';
+    const bot = ' ' + '-'.repeat(msg.length + 2);
+    printRaw(top);
+    printRaw(mid);
+    printRaw(bot);
+    printRaw('        \\   ^__^');
+    printRaw('         \\  (oo)\\_______');
+    printRaw('            (__)\\       )\\/\\');
+    printRaw('                ||----w |');
+    printRaw('                ||     ||');
+  },
+
+  fortune() {
+    const fortunes = [
+      'The best way to predict the future is to invent it. — Alan Kay',
+      'Talk is cheap. Show me the code. — Linus Torvalds',
+      'Any sufficiently advanced technology is indistinguishable from magic. — Arthur C. Clarke',
+      'First, solve the problem. Then, write the code. — John Johnson',
+      'UNIX is simple. It just takes a genius to understand its simplicity. — Dennis Ritchie',
+      'The computer was born to solve problems that did not exist before. — Bill Gates',
+      'In theory, there is no difference between theory and practice. In practice, there is. — Yogi Berra',
+      'Simplicity is the ultimate sophistication. — Leonardo da Vinci',
+    ];
+    printRaw(fortunes[Math.floor(Math.random()*fortunes.length)]);
+  },
+
+  neofetch() {
+    const upSecs = Math.floor((Date.now()-bootTime)/1000);
+    const upMin = Math.floor(upSecs/60);
+    const logo = [
+      '<span style="color:var(--cyan)">        .--.        </span>',
+      '<span style="color:var(--cyan)">       |o_o |       </span>',
+      '<span style="color:var(--cyan)">       |:_/ |       </span>',
+      '<span style="color:var(--cyan)">      //   \\ \\      </span>',
+      '<span style="color:var(--cyan)">     (|     | )     </span>',
+      '<span style="color:var(--cyan)">    /\'\\_   _/\'\\     </span>',
+      '<span style="color:var(--cyan)">    \\___)=(___/     </span>',
+    ];
+    const info = [
+      `<span style="color:var(--green);font-weight:700">${USERNAME}@${HOSTNAME}</span>`,
+      `<span style="color:var(--dim)">──────────────────</span>`,
+      `<span style="color:var(--cyan);font-weight:500">OS</span>: WebASM Linux 1.0.0 wasm32`,
+      `<span style="color:var(--cyan);font-weight:500">Host</span>: Browser Virtual Machine`,
+      `<span style="color:var(--cyan);font-weight:500">Kernel</span>: 1.0.0-wasm`,
+      `<span style="color:var(--cyan);font-weight:500">Uptime</span>: ${upMin} mins`,
+      `<span style="color:var(--cyan);font-weight:500">Shell</span>: bash 5.2.0`,
+      `<span style="color:var(--cyan);font-weight:500">Terminal</span>: xterm-256color`,
+      `<span style="color:var(--cyan);font-weight:500">CPU</span>: WASM Virtual CPU @ 2.0GHz`,
+      `<span style="color:var(--cyan);font-weight:500">Memory</span>: 87MiB / 256MiB`,
+    ];
+    for (let i = 0; i < Math.max(logo.length, info.length); i++) {
+      const l = logo[i] || '                    ';
+      const r = info[i] || '';
+      print(l + '  ' + r);
+    }
+    print('');
+    let colors = '';
+    ['var(--bg)','var(--red)','var(--green)','var(--yellow)','var(--blue)','var(--magenta)','var(--cyan)','var(--fg)'].forEach(c => {
+      colors += `<span style="background:${c}">   </span>`;
+    });
+    print('                    ' + '  ' + colors);
+  },
+
+  true() {},
+  false() {},
+
+  exit() { print('logout', 'dim'); print('<span style="color:var(--dim)">Connection to wasm-linux closed.</span>'); },
+
+  test() { /* noop */ },
+
+  sleep(args) {
+    const secs = parseFloat(args[0]) || 1;
+    print(`<span style="color:var(--dim)">(sleeping ${secs}s...)</span>`);
+  },
+
+  printf(args) {
+    let fmt = args[0] || '';
+    fmt = fmt.replace(/\\n/g, '\n').replace(/\\t/g, '\t');
+    const rest = args.slice(1);
+    let i = 0;
+    const result = fmt.replace(/%s/g, () => rest[i++] || '');
+    result.split('\n').forEach(l => printRaw(l));
+  },
+};
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function execCommand(raw) {
+  if (!raw.trim()) return;
+  cmdHistory.push(raw.trim());
+
+  // Handle aliases
+  const parts = raw.trim().split(/\s+/);
+  if (aliases[parts[0]]) {
+    raw = aliases[parts[0]] + ' ' + parts.slice(1).join(' ');
+  }
+
+  // Handle semicolons
+  if (raw.includes(';')) {
+    raw.split(';').forEach(c => execCommand(c.trim()));
+    return;
+  }
+
+  // Handle && and ||
+  if (raw.includes('&&')) {
+    for (const c of raw.split('&&')) {
+      execCommand(c.trim());
+    }
+    return;
+  }
+
+  // Handle redirect >
+  let redirectFile = null;
+  let appendMode = false;
+  if (raw.includes('>>')) {
+    const rp = raw.split('>>');
+    raw = rp[0].trim();
+    redirectFile = rp[1].trim();
+    appendMode = true;
+  } else if (raw.includes('>')) {
+    const rp = raw.split('>');
+    raw = rp[0].trim();
+    redirectFile = rp[1].trim();
+  }
+
+  // Handle pipes
+  if (raw.includes('|')) {
+    const pipeParts = raw.split('|').map(s => s.trim());
+    let pipeData = '';
+    for (let i = 0; i < pipeParts.length; i++) {
+      const [cmd, ...args] = parseArgs(pipeParts[i]);
+      if (i === 0) {
+        // First command: capture output
+        const origPrint = window._printCapture = [];
+        const oldPrint = outputEl.appendChild.bind(outputEl);
+        // Quick hack: run command and capture text
+        const prevInner = outputEl.innerHTML;
+        if (commands[cmd]) commands[cmd](args, pipeData || undefined);
+        else { print(`bash: ${cmd}: command not found`, 'error'); return; }
+        // Get new output
+        const newEls = outputEl.querySelectorAll('.output-line');
+        const newTexts = [];
+        const prevCount = prevInner.split('output-line').length - 1;
+        for (let j = prevCount; j < newEls.length; j++) {
+          newTexts.push(newEls[j].textContent);
+        }
+        pipeData = newTexts.join('\n');
+        // Remove printed output for intermediate pipe stages
+        if (i < pipeParts.length - 1) {
+          for (let j = prevCount; j < newEls.length; j++) {
+            newEls[j].remove();
+          }
+        }
+      } else {
+        // Subsequent: feed pipe data
+        const prevInner2 = outputEl.innerHTML;
+        if (commands[cmd]) {
+          const result = commands[cmd](args, pipeData);
+          if (typeof result === 'string') pipeData = result;
+        } else {
+          print(`bash: ${cmd}: command not found`, 'error');
+          return;
+        }
+      }
+    }
+    return;
+  }
+
+  const [cmd, ...args] = parseArgs(raw);
+  if (!cmd) return;
+
+  if (redirectFile) {
+    // Capture output to file
+    const prevCount = outputEl.children.length;
+    if (commands[cmd]) commands[cmd](args);
+    else { print(`bash: ${cmd}: command not found`, 'error'); return; }
+    const newEls = [];
+    for (let i = prevCount; i < outputEl.children.length; i++) {
+      newEls.push(outputEl.children[i].textContent);
+    }
+    // Remove from display
+    while (outputEl.children.length > prevCount) outputEl.lastChild.remove();
+    const content = newEls.join('\n') + '\n';
+    const path = resolvePath(redirectFile);
+    if (appendMode && fs[path]) {
+      fs[path].content += content;
+      fs[path].size = fs[path].content.length;
+    } else {
+      fs[path] = { type:'file', content, perm:'-rw-r--r--', owner:'user', size:content.length };
+      const parent = path.substring(0, path.lastIndexOf('/')) || '/';
+      const base = path.split('/').pop();
+      if (fs[parent]&&fs[parent].children&&!fs[parent].children.includes(base)) fs[parent].children.push(base);
+    }
+    return;
+  }
+
+  if (commands[cmd]) {
+    commands[cmd](args);
+  } else {
+    print(`bash: ${cmd}: command not found`, 'error');
+  }
+}
+
+function parseArgs(str) {
+  const args = [];
+  let current = '';
+  let inSingle = false, inDouble = false;
+  for (let i = 0; i < str.length; i++) {
+    const c = str[i];
+    if (c === "'" && !inDouble) { inSingle = !inSingle; continue; }
+    if (c === '"' && !inSingle) { inDouble = !inDouble; continue; }
+    if (c === ' ' && !inSingle && !inDouble) {
+      if (current) { args.push(current); current = ''; }
+      continue;
+    }
+    current += c;
+  }
+  if (current) args.push(current);
+  return args;
+}
+
+// Tab completion
+function tabComplete(partial) {
+  const parts = partial.split(/\s+/);
+  const last = parts[parts.length - 1] || '';
+
+  if (parts.length <= 1) {
+    // Command completion
+    const matches = Object.keys(commands).filter(c => c.startsWith(last));
+    return matches;
+  }
+
+  // File/dir completion
+  let dir, prefix;
+  if (last.includes('/')) {
+    const li = last.lastIndexOf('/');
+    dir = resolvePath(last.slice(0, li) || '/');
+    prefix = last.slice(li + 1);
+  } else {
+    dir = cwd;
+    prefix = last;
+  }
+
+  const node = fs[dir];
+  if (!node || !node.children) return [];
+  return node.children.filter(c => c.startsWith(prefix)).map(c => {
+    const base = parts.slice(0, -1).join(' ');
+    const sep = last.includes('/') ? last.slice(0, last.lastIndexOf('/') + 1) : '';
+    return (base ? base + ' ' : '') + sep + c;
+  });
+}
+
+// Input handling
+inputEl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const cmd = inputEl.value;
+    // Print command line to output
+    const cmdLine = document.createElement('div');
+    cmdLine.className = 'output-line';
+    cmdLine.innerHTML = formatPrompt() + escHtml(cmd);
+    outputEl.appendChild(cmdLine);
+
+    inputEl.value = '';
+    historyIdx = -1;
+    execCommand(cmd);
+    updatePrompt();
+    scrollBottom();
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (cmdHistory.length) {
+      if (historyIdx === -1) historyIdx = cmdHistory.length - 1;
+      else if (historyIdx > 0) historyIdx--;
+      inputEl.value = cmdHistory[historyIdx];
+    }
+  } else if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (historyIdx !== -1) {
+      historyIdx++;
+      if (historyIdx >= cmdHistory.length) { historyIdx = -1; inputEl.value = ''; }
+      else inputEl.value = cmdHistory[historyIdx];
+    }
+  } else if (e.key === 'Tab') {
+    e.preventDefault();
+    const matches = tabComplete(inputEl.value);
+    if (matches.length === 1) inputEl.value = matches[0];
+    else if (matches.length > 1) {
+      const cmdLine = document.createElement('div');
+      cmdLine.className = 'output-line';
+      cmdLine.innerHTML = formatPrompt() + escHtml(inputEl.value);
+      outputEl.appendChild(cmdLine);
+      printRaw(matches.join('  '));
+      scrollBottom();
+    }
+  } else if (e.key === 'l' && e.ctrlKey) {
+    e.preventDefault();
+    commands.clear();
+  } else if (e.key === 'c' && e.ctrlKey) {
+    e.preventDefault();
+    const cmdLine = document.createElement('div');
+    cmdLine.className = 'output-line';
+    cmdLine.innerHTML = formatPrompt() + escHtml(inputEl.value) + '^C';
+    outputEl.appendChild(cmdLine);
+    inputEl.value = '';
+    scrollBottom();
+  }
+});
+
+// Focus input on click
+document.addEventListener('click', () => inputEl.focus());
+
+// Status bar time
+setInterval(() => {
+  document.getElementById('status-time').textContent = new Date().toLocaleTimeString();
+  document.getElementById('status-cpu').textContent = `CPU: ${(Math.random()*5).toFixed(1)}%`;
+}, 1000);
+
+// Boot sequence
+async function boot() {
+  const logo = `
+ __        __   _    ___  __  __   _     _
+ \\ \\      / /__| |__/ _ \\/ _|/  \\ | |   (_)_ __  _   ___  __
+  \\ \\ /\\ / / _ \\ '_ \\ | |\\_ \\| |\\/| |   | | '_ \\| | | \\ \\/ /
+   \\ V  V /  __/ |_) | |_|_) | |  | |___|| | | | | |_| |>  <
+    \\_/\\_/ \\___|_.__/\\___/|__/|_|  |_____|_|_| |_|\\__,_/_/\\_\\
+`.trim();
+
+  document.getElementById('boot-logo').textContent = logo;
+  const bar = document.getElementById('boot-bar');
+  const status = document.getElementById('boot-status');
+
+  const steps = [
+    ['Loading WebAssembly binary...', 15],
+    ['Compiling WASM modules...', 30],
+    ['Initializing virtual CPU...', 45],
+    ['Mounting filesystem...', 55],
+    ['Loading kernel modules...', 65],
+    ['Starting system services...', 78],
+    ['Configuring network interfaces...', 88],
+    ['Starting user session...', 95],
+    ['Ready.', 100],
+  ];
+
+  for (const [msg, pct] of steps) {
+    status.textContent = msg;
+    bar.style.width = pct + '%';
+    await new Promise(r => setTimeout(r, 200 + Math.random() * 300));
+  }
+
+  await new Promise(r => setTimeout(r, 400));
+
+  document.getElementById('boot-screen').style.display = 'none';
+  termContainer.style.display = 'flex';
+  termContainer.style.flexDirection = 'column';
+
+  // Print MOTD
+  print(`<span style="color:var(--green);font-weight:700">WebASM Linux 1.0.0</span> <span style="color:var(--dim)">(wasm32)</span>`);
+  print('');
+  print(`<span style="color:var(--dim)">  * Welcome to WebASM Linux — a Linux terminal in your browser</span>`);
+  print(`<span style="color:var(--dim)">  * Type <span style="color:var(--cyan)">help</span> for available commands</span>`);
+  print(`<span style="color:var(--dim)">  * System booted at ${new Date().toLocaleString()}</span>`);
+  print('');
+
+  updatePrompt();
+  inputEl.focus();
+}
+
+boot();
+</script>
+</body>
+</html>
