@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gorics.cloud | Directory Index</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent-primary: #38bdf8;
+            --accent-secondary: #818cf8;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Pretendard', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.15) 0, transparent 50%);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            color: var(--text-dim);
+            margin-top: 10px;
+        }
+
+        /* 메인 컨테이너 */
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* 검색 바 */
+        .search-wrapper {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+        }
+
+        /* 디렉토리 리스트 */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .item-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .item-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+        }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+        }
+
+        .info h3 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .info p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        /* 애니메이션 */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 640px) {
+            .directory-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>GORICS.CLOUD</h1>
+        <p>System Directory Index & Navigator</p>
+    </div>
+
+    <div class="container">
+        <div class="search-wrapper">
+            <i data-lucide="search" class="search-icon"></i>
+            <input type="text" id="searchInput" class="search-input" placeholder="디렉터리 또는 파일 검색...">
+        </div>
+
+        <div id="directoryGrid" class="directory-grid">
+            </div>
+    </div>
+
+    <script>
+        // 1. 디렉터리 데이터 시뮬레이션 (실제 서버 API와 연결 가능)
+        const directoryData = [
+            { name: "Linux Kernel 1.0", path: "/os/linux/1", type: "system", desc: "Core OS binary v1" },
+            { name: "Linux Kernel 2.0", path: "/os/linux/2", type: "system", desc: "Stable distribution v2" },
+            { name: "Linux Kernel 3.0", path: "/os/linux/3", type: "system", desc: "Experimental build v3" },
+            { name: "User Assets", path: "/assets/images", type: "folder", desc: "Global image resources" },
+            { name: "Documentation", path: "/docs/api", type: "file", desc: "Cloud API specification" },
+            { name: "Security Logs", path: "/admin/logs", type: "lock", desc: "Access restricted" },
+            { name: "Backup Node", path: "/storage/backup", type: "folder", desc: "Redundant data storage" }
+        ];
+
+        const grid = document.getElementById('directoryGrid');
+        const searchInput = document.getElementById('searchInput');
+
+        // 2. 렌더링 함수
+        function renderDirectory(data) {
+            grid.innerHTML = '';
+            data.forEach(item => {
+                const iconType = item.type === 'system' ? 'cpu' : (item.type === 'lock' ? 'shield-check' : 'folder');
+                
+                const card = document.createElement('a');
+                card.href = `https://gorics.cloud${item.path}`;
+                card.target = "_blank";
+                card.className = 'item-card';
+                card.innerHTML = `
+                    <div class="icon-box">
+                        <i data-lucide="${iconType}"></i>
+                    </div>
+                    <div class="info">
+                        <h3>${item.name}</h3>
+                        <p>${item.path}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons(); // 아이콘 새로고침
+        }
+
+        // 3. 실시간 검색 로직
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = directoryData.filter(item => 
+                item.name.toLowerCase().includes(term) || 
+                item.path.toLowerCase().includes(term)
+            );
+            renderDirectory(filtered);
+        });
+
+        // 초기 렌더링
+        renderDirectory(directoryData);
+    </script>
+</body>
+</html>
