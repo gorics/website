@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Windows Web Boot</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="hero">
+      <div>
+        <h1>Windows 자동 부팅 페이지</h1>
+        <p class="sub">파일 하나만 넣으면 페이지 열자마자 바로 부팅 시도한다.</p>
+      </div>
+      <div class="pill-row">
+        <span class="pill">GitHub Pages</span>
+        <span class="pill">Auto Boot</span>
+        <span class="pill">v86</span>
+      </div>
+    </header>
+
+    <section class="machine panel">
+      <div class="machine-top">
+        <div>
+          <div class="label">상태</div>
+          <div id="status" class="status">boot.img 찾는 중</div>
+        </div>
+        <div class="actions">
+          <button id="retryBtn">다시 시도</button>
+          <button id="focusBtn">포커스</button>
+          <button id="fullBtn">전체화면</button>
+        </div>
+      </div>
+
+      <div id="screen_container" class="screen-wrap">
+        <div class="screen-text"></div>
+        <canvas></canvas>
+      </div>
+    </section>
+
+    <section class="info-grid">
+      <article class="panel card success">
+        <h2>딱 하나만 하면 됨</h2>
+        <p><code>assets/boot.img</code> 파일만 넣고 그대로 GitHub에 올리면 된다.</p>
+        <p>페이지가 열리면 자동으로 그 파일을 찾아서 바로 부팅한다.</p>
+      </article>
+
+      <article class="panel card warn">
+        <h2>실패하면 여기부터 봐</h2>
+        <p><code>boot.img</code>가 없거나 파일명이 다르면 안 된다.</p>
+        <p>가능하면 설치가 끝난 Windows 98 raw HDD 이미지로 가는 게 맞다.</p>
+      </article>
+    </section>
+
+    <section class="panel log-panel">
+      <div class="log-head">
+        <div class="label">로그</div>
+      </div>
+      <pre id="log"></pre>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/v86@0.5.319/build/libv86.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
