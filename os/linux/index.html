@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium OS Selection</title>
     <style>
-        /* 변수 설정: 유지보수 및 색상 통일성 */
         :root {
             --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --glass-bg: rgba(255, 255, 255, 0.15);
@@ -15,7 +14,6 @@
             --btn-linux3: linear-gradient(to right, #fa709a 0%, #fee140 100%);
         }
 
-        /* 배경 레이아웃: 생동감 있는 메시 그라데이션 */
         body {
             margin: 0;
             padding: 0;
@@ -24,13 +22,12 @@
             justify-content: center;
             align-items: center;
             font-family: 'Pretendard', sans-serif;
-            background: #0f172a; /* 폴백 색상 */
+            background: #0f172a;
             background: radial-gradient(circle at top left, #1e293b, #0f172a),
                         radial-gradient(circle at bottom right, #334155, #0f172a);
             overflow: hidden;
         }
 
-        /* 배경 장식 요소 (선택 사항: 더 예쁜 배경을 위해) */
         body::before {
             content: "";
             position: absolute;
@@ -45,7 +42,6 @@
             opacity: 0.5;
         }
 
-        /* 메인 컨테이너: 글래스모피즘 효과 */
         .container {
             backdrop-filter: blur(16px) saturate(180%);
             -webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -72,7 +68,6 @@
             gap: 20px;
         }
 
-        /* 공통 버튼 스타일 */
         .os-link {
             text-decoration: none;
             color: #ffffff;
@@ -87,9 +82,8 @@
             box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
         }
 
-        /* 개별 버튼 색상 및 호버 애니메이션 */
         .btn-1 { background: var(--btn-linux1); }
-        .btn-2 { background: var(--btn-linux2); color: #1e293b; } /* 밝은 배경엔 어두운 글자 */
+        .btn-2 { background: var(--btn-linux2); color: #1e293b; }
         .btn-3 { background: var(--btn-linux3); color: #1e293b; }
 
         .os-link:hover {
@@ -102,7 +96,6 @@
             transform: translateY(-2px);
         }
 
-        /* 반응형 대응 */
         @media (max-width: 768px) {
             .button-group {
                 flex-direction: column;
@@ -119,9 +112,9 @@
     <div class="container">
         <h1>Select Linux Version</h1>
         <div class="button-group">
-            <a href="https://gorics.cloud/os/linux/1" class="os-link btn-1" target="_blank" rel="noopener noreferrer">Linux 1.0</a>
-            <a href="https://gorics.cloud/os/linux/2" class="os-link btn-2" target="_blank" rel="noopener noreferrer">Linux 2.0</a>
-            <a href="https://gorics.cloud/os/linux/3" class="os-link btn-3" target="_blank" rel="noopener noreferrer">Linux 3.0</a>
+            <a href="./1/" class="os-link btn-1">Linux 1.0</a>
+            <a href="./2/" class="os-link btn-2">Linux 2.0</a>
+            <a href="./3/" class="os-link btn-3">Linux 3.0</a>
         </div>
     </div>
 
