@@ -3,80 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OS Selection Buttons</title>
+    <title>Premium OS Selection</title>
     <style>
+        /* 변수 설정: 유지보수 및 색상 통일성 */
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2ecc71;
-            --accent-color: #e74c3c;
-            --bg-color: #f4f7f6;
-            --text-color: #2c3e50;
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --btn-linux1: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            --btn-linux2: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+            --btn-linux3: linear-gradient(to right, #fa709a 0%, #fee140 100%);
         }
 
+        /* 배경 레이아웃: 생동감 있는 메시 그라데이션 */
         body {
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            font-family: 'Pretendard', sans-serif;
+            background: #0f172a; /* 폴백 색상 */
+            background: radial-gradient(circle at top left, #1e293b, #0f172a),
+                        radial-gradient(circle at bottom right, #334155, #0f172a);
+            overflow: hidden;
         }
 
-        .button-container {
+        /* 배경 장식 요소 (선택 사항: 더 예쁜 배경을 위해) */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--primary-gradient);
+            filter: blur(80px);
+            border-radius: 50%;
+            top: 10%;
+            left: 15%;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* 메인 컨테이너: 글래스모피즘 효과 */
+        .container {
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            background-color: var(--glass-bg);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .button-group {
             display: flex;
             gap: 20px;
-            padding: 40px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .os-button {
+        /* 공통 버튼 스타일 */
+        .os-link {
             text-decoration: none;
-            color: white;
-            font-weight: 600;
-            font-size: 1.1rem;
-            padding: 15px 35px;
+            color: #ffffff;
+            font-weight: 700;
+            padding: 16px 40px;
             border-radius: 12px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+            text-align: center;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
         }
 
-        /* 개별 버튼 스타일 */
-        .btn-1 { background-color: var(--primary-color); }
-        .btn-2 { background-color: var(--secondary-color); }
-        .btn-3 { background-color: var(--accent-color); }
+        /* 개별 버튼 색상 및 호버 애니메이션 */
+        .btn-1 { background: var(--btn-linux1); }
+        .btn-2 { background: var(--btn-linux2); color: #1e293b; } /* 밝은 배경엔 어두운 글자 */
+        .btn-3 { background: var(--btn-linux3); color: #1e293b; }
 
-        /* 마우스 호버 효과 */
-        .os-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        .os-link:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
             filter: brightness(1.1);
         }
 
-        /* 클릭 시 효과 */
-        .os-button:active {
-            transform: translateY(0);
+        .os-link:active {
+            transform: translateY(-2px);
         }
 
-        @media (max-width: 600px) {
-            .button-container {
+        /* 반응형 대응 */
+        @media (max-width: 768px) {
+            .button-group {
                 flex-direction: column;
-                width: 80%;
+                width: 100%;
+            }
+            .os-link {
+                width: 200px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="button-container">
-        <a href="https://gorics.cloud/os/linux/1" class="os-button btn-1">Linux 1 선택</a>
-        <a href="https://gorics.cloud/os/linux/2" class="os-button btn-2">Linux 2 선택</a>
-        <a href="https://gorics.cloud/os/linux/3" class="os-button btn-3">Linux 3 선택</a>
+    <div class="container">
+        <h1>Select Linux Version</h1>
+        <div class="button-group">
+            <a href="https://gorics.cloud/os/linux/1" class="os-link btn-1" target="_blank" rel="noopener noreferrer">Linux 1.0</a>
+            <a href="https://gorics.cloud/os/linux/2" class="os-link btn-2" target="_blank" rel="noopener noreferrer">Linux 2.0</a>
+            <a href="https://gorics.cloud/os/linux/3" class="os-link btn-3" target="_blank" rel="noopener noreferrer">Linux 3.0</a>
+        </div>
     </div>
 
 </body>
