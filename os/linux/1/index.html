@@ -1,168 +1,104 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#030306">
-<title>WASM Linux Terminal</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=DM+Sans:wght@400;500;700&display=swap');
-:root {
-  --void: #030306; --panel: #0a0a10; --raised: #111119; --surface: #1a1a26;
-  --edge: #22223a; --bright: #e2e4f0; --mid: #7a7c94; --dim: #3e4058;
-  --green: #00e87b; --green-g: rgba(0,232,123,.10); --cyan: #22ccee;
-  --amber: #ffaa22; --red: #ff3355;
-  --safe-t: env(safe-area-inset-top,0px); --safe-b: env(safe-area-inset-bottom,0px);
-  --safe-l: env(safe-area-inset-left,0px); --safe-r: env(safe-area-inset-right,0px);
-  --tf: clamp(10px,1.6vw,14px);
-}
-*,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { height: 100%; height: -webkit-fill-available; overflow: hidden; background: var(--void); }
-body {
-  min-height: 100vh; min-height: -webkit-fill-available; height: 100%; overflow: hidden;
-  background: var(--void); color: var(--bright); font-family: 'Fira Code', monospace;
-  display: flex; flex-direction: column;
-  padding: var(--safe-t) var(--safe-r) var(--safe-b) var(--safe-l);
-  -webkit-text-size-adjust: none; text-size-adjust: none;
-}
-/* ═══ TOP ═══ */
-.top {
-  flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
-  height: clamp(34px,6vh,46px); padding: 0 clamp(8px,2vw,16px);
-  background: var(--panel); border-bottom: 1px solid var(--edge); gap: 8px;
-}
-.top-l { display: flex; align-items: center; gap: clamp(6px,1.5vw,10px); min-width: 0; flex: 1; }
-.logo {
-  width: clamp(20px,4vw,28px); height: clamp(20px,4vw,28px); border-radius: 5px; flex-shrink: 0;
-  background: linear-gradient(135deg,var(--green),var(--cyan));
-  display: flex; align-items: center; justify-content: center;
-  font-size: clamp(9px,1.8vw,13px); font-weight: 700; color: var(--void);
-  box-shadow: 0 0 12px var(--green-g);
-}
-.brand { min-width: 0; overflow: hidden; }
-.brand h1 { font-family: 'DM Sans', sans-serif; font-size: clamp(10px,2vw,13px); font-weight: 700; color: var(--green); letter-spacing: .8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.brand small { font-size: clamp(6px,1.1vw,8.5px); color: var(--dim); letter-spacing: clamp(.5px,.15vw,1.4px); text-transform: uppercase; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.leds { display: flex; align-items: center; gap: clamp(5px,1.2vw,14px); flex-shrink: 0; }
-.led { display: flex; align-items: center; gap: 3px; font-size: clamp(7px,1.1vw,9.5px); color: var(--dim); text-transform: uppercase; letter-spacing: .4px; }
-.led i { width: clamp(4px,.7vw,6px); height: clamp(4px,.7vw,6px); border-radius: 50%; background: var(--dim); transition: .4s; }
-.led i.on { background: var(--green); box-shadow: 0 0 8px var(--green); }
-.led i.warn { background: var(--amber); box-shadow: 0 0 6px var(--amber); animation: pulse 1s infinite; }
-.led i.err { background: var(--red); box-shadow: 0 0 6px var(--red); }
-@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
-/* ═══ SPECIAL KEYS (mobile) ═══ */
-.specbar {
-  display: none; flex-shrink: 0; height: clamp(30px,5vh,36px);
-  background: var(--panel); border-bottom: 1px solid var(--edge);
-  padding: 0 clamp(4px,1vw,8px); gap: clamp(3px,.6vw,5px);
-  align-items: center; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
-}
-.specbar::-webkit-scrollbar { display: none; }
-.specbar button {
-  flex-shrink: 0; height: clamp(22px,3.2vh,28px); padding: 0 clamp(6px,1.3vw,10px);
-  border-radius: 4px; border: 1px solid var(--edge); background: var(--raised);
-  color: var(--mid); font-family: 'Fira Code', monospace; font-size: clamp(8px,1.2vw,10px);
-  cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background .1s;
-}
-.specbar button:active { background: var(--surface); color: var(--bright); }
-.specbar button.active { background: var(--green); color: var(--void); border-color: var(--green); }
-/* ═══ MAIN ═══ */
-.main { flex: 1; position: relative; overflow: hidden; min-height: 0; }
-/* ═══ BOOT ═══ */
-.boot {
-  position: absolute; inset: 0; z-index: 10; background: var(--void);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: clamp(10px,2vh,20px); padding: clamp(8px,2vw,20px);
-  transition: opacity .8s, visibility .8s;
-}
-.boot.gone { opacity: 0; visibility: hidden; pointer-events: none; }
-.ascii {
-  color: var(--green); font-size: clamp(4.5px,1.1vw,9px); line-height: 1.2;
-  white-space: pre; text-align: center; text-shadow: 0 0 6px var(--green-g);
-  opacity: 0; animation: up .5s .1s forwards; max-width: 100%; overflow: hidden;
-}
-@keyframes up { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-.ptrack { width: clamp(140px,45vw,280px); height: 2px; background: var(--raised); border-radius: 1px; overflow: hidden; }
-.pfill { height: 100%; width: 0%; background: linear-gradient(90deg,var(--green),var(--cyan)); transition: width .1s ease-out; box-shadow: 0 0 10px var(--green-g); }
-.pmsg { font-size: clamp(7px,1.3vw,10px); color: var(--mid); min-height: 14px; text-align: center; }
-.plog { width: clamp(180px,55vw,340px); max-height: clamp(40px,10vh,90px); overflow: hidden; font-size: clamp(6px,1vw,8.5px); color: var(--dim); line-height: 1.7; opacity: 0; animation: up .5s .3s forwards; }
-.plog div { animation: lin .2s; }
-@keyframes lin { from { opacity: 0; transform: translateX(-3px); } to { opacity: 1; transform: translateX(0); } }
-/* ═══ V86 SCREEN ═══ */
-#screen_container { width: 100%; height: 100%; background: #000; cursor: text; overflow: hidden; -webkit-overflow-scrolling: touch; }
-#screen_container > div { font-family: 'Fira Code', monospace !important; font-size: var(--tf) !important; line-height: 1.3 !important; padding: clamp(2px,.4vw,4px) !important; overflow-y: auto !important; height: 100% !important; -webkit-overflow-scrolling: touch; white-space: pre-wrap !important; word-wrap: break-word !important; }
-#screen_container canvas { display: block !important; width: 100% !important; height: 100% !important; image-rendering: pixelated; }
-/* ═══ BOTTOM ═══ */
-.bot {
-  flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
-  height: clamp(24px,4vh,32px); padding: 0 clamp(8px,2vw,16px);
-  background: var(--panel); border-top: 1px solid var(--edge);
-  font-size: clamp(6.5px,1vw,8.5px); color: var(--dim); letter-spacing: .4px; gap: 6px;
-}
-.keys { display: flex; gap: clamp(5px,1.2vw,12px); flex-shrink: 0; overflow: hidden; }
-.key { display: flex; align-items: center; gap: 2px; white-space: nowrap; }
-.key kbd { font-family: 'Fira Code', monospace; font-size: clamp(5.5px,.9vw,8px); background: var(--raised); border: 1px solid var(--edge); border-radius: 2px; padding: 0 3px; color: var(--mid); }
-.bot-r { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-/* ═══ MOBILE KB BUTTON ═══ */
-.kbb {
-  display: none; position: fixed; z-index: 20;
-  bottom: calc(clamp(24px,4vh,32px) + var(--safe-b) + 8px);
-  right: calc(8px + var(--safe-r));
-  width: clamp(34px,7vw,42px); height: clamp(34px,7vw,42px);
-  border-radius: 50%; border: 1px solid var(--edge); background: var(--panel);
-  color: var(--green); font-size: clamp(13px,2.8vw,18px); cursor: pointer;
-  box-shadow: 0 2px 12px rgba(0,0,0,.5); transition: transform .12s;
-  -webkit-tap-highlight-color: transparent; align-items: center; justify-content: center;
-}
-.kbb:active { transform: scale(.9); }
-.mi { position: fixed; left: -9999px; top: -9999px; opacity: 0; width: 1px; height: 1px; font-size: 16px; }
-/* ═══ CRT ═══ */
-body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; background: repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(0,0,0,.02) 1px,rgba(0,0,0,.02) 2px); }
-/* ═══ RESPONSIVE ═══ */
-@media(hover:none) and (pointer:coarse) { .kbb { display: flex; } .specbar { display: flex; } .keys .key:nth-child(n+3) { display: none; } }
-@media(max-width:379px) { .brand small { display: none; } .led span { display: none; } :root { --tf: 9px; } }
-@media(min-width:380px) and (max-width:480px) { .brand small { display: none; } :root { --tf: 10px; } }
-@media(min-width:481px) and (max-width:768px) { :root { --tf: 11px; } }
-@media(min-width:769px) and (max-width:1024px) { :root { --tf: 12px; } }
-@media(min-width:1025px) { :root { --tf: 14px; } }
-@media(max-height:420px) and (orientation:landscape) { .top { height: 28px; } .bot { height: 22px; } .specbar { height: 26px; } .ascii { font-size: 4px; } .plog { max-height: 30px; } .boot { gap: 6px; padding: 4px; } .brand small { display: none; } :root { --tf: 10px; } }
-@media(min-width:1800px) { :root { --tf: 16px; } #screen_container > div { max-width: 1600px; margin: 0 auto; } }
-@media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } body::after { display: none; } }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>WASM Linux Terminal – Local ISO</title>
+  <!--
+    This index file is based on the original WASM Linux Terminal page
+    but has been updated to load the Linux ISO image from the same
+    directory instead of an external CDN.  The original implementation
+    attempted to fetch linux.iso from copy.sh/jsDelivr, which is now
+    returning 403 responses and causing the boot sequence to hang.
+
+    To use this file, place a valid linux.iso (for example the one
+    provided in the v86 repository) alongside index.html.  When
+    deployed via GitHub Pages or any other static host, the browser
+    will load the ISO from the current directory without needing
+    external CORS permissions.
+  -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=DM+Sans:wght@400;500;700&display=swap');
+    :root {
+      --void: #030306; --panel: #0a0a10; --raised: #111119; --surface: #1a1a26;
+      --edge: #22223a; --bright: #e2e4f0; --mid: #7a7c94; --dim: #3e4058;
+      --green: #00e87b; --green-g: rgba(0,232,123,.10); --cyan: #22ccee;
+      --amber: #ffaa22; --red: #ff3355;
+      --safe-t: env(safe-area-inset-top,0px); --safe-b: env(safe-area-inset-bottom,0px);
+      --safe-l: env(safe-area-inset-left,0px); --safe-r: env(safe-area-inset-right,0px);
+      --tf: clamp(10px,1.6vw,14px);
+    }
+    *,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { height: 100%; height: -webkit-fill-available; overflow: hidden; background: var(--void); }
+    body {
+      min-height: 100vh; min-height: -webkit-fill-available; height: 100%; overflow: hidden;
+      background: var(--void); color: var(--bright); font-family: 'Fira Code', monospace;
+      display: flex; flex-direction: column;
+      padding: var(--safe-t) var(--safe-r) var(--safe-b) var(--safe-l);
+      -webkit-text-size-adjust: none; text-size-adjust: none;
+    }
+    /* Top bar styles */
+    .top {
+      flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+      height: clamp(34px,6vh,46px); padding: 0 clamp(8px,2vw,16px);
+      background: var(--panel); border-bottom: 1px solid var(--edge); gap: 8px;
+    }
+    .top-l { display: flex; align-items: center; gap: clamp(6px,1.5vw,10px); min-width: 0; flex: 1; }
+    .logo {
+      width: clamp(20px,4vw,28px); height: clamp(20px,4vw,28px); border-radius: 5px; flex-shrink: 0;
+      background: linear-gradient(135deg,var(--green),var(--cyan));
+      display: flex; align-items: center; justify-content: center;
+      font-size: clamp(9px,1.8vw,13px); font-weight: 700; color: var(--void);
+      box-shadow: 0 0 12px var(--green-g);
+    }
+    .brand { min-width: 0; overflow: hidden; }
+    .brand h1 { font-family: 'DM Sans', sans-serif; font-size: clamp(10px,2vw,13px); font-weight: 700; color: var(--green); letter-spacing: .8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .brand small { font-size: clamp(6px,1.1vw,8.5px); color: var(--dim); letter-spacing: clamp(.5px,.15vw,1.4px); text-transform: uppercase; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .leds { display: flex; align-items: center; gap: clamp(5px,1.2vw,14px); flex-shrink: 0; }
+    .led { display: flex; align-items: center; gap: 3px; font-size: clamp(7px,1.1vw,9.5px); color: var(--dim); text-transform: uppercase; letter-spacing: .4px; }
+    .led i { width: clamp(4px,.7vw,6px); height: clamp(4px,.7vw,6px); border-radius: 50%; background: var(--dim); transition: .4s; }
+    .led i.on { background: var(--green); box-shadow: 0 0 8px var(--green); }
+    .led i.warn { background: var(--amber); box-shadow: 0 0 6px var(--amber); animation: pulse 1s infinite; }
+    .led i.err { background: var(--red); box-shadow: 0 0 6px var(--red); }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+    /* Main layout and boot overlay */
+    .main { flex: 1; position: relative; overflow: hidden; min-height: 0; }
+    .boot { position: absolute; inset: 0; z-index: 10; background: var(--void); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(10px,2vh,20px); padding: clamp(8px,2vw,20px); transition: opacity .8s, visibility .8s; }
+    .boot.gone { opacity: 0; visibility: hidden; pointer-events: none; }
+    .ascii { color: var(--green); font-size: clamp(4.5px,1.1vw,9px); line-height: 1.2; white-space: pre; text-align: center; text-shadow: 0 0 6px var(--green-g); opacity: 0; animation: up .5s .1s forwards; max-width: 100%; overflow: hidden; }
+    @keyframes up { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .ptrack { width: clamp(140px,45vw,280px); height: 2px; background: var(--raised); border-radius: 1px; overflow: hidden; }
+    .pfill { height: 100%; width: 0%; background: linear-gradient(90deg,var(--green),var(--cyan)); transition: width .1s ease-out; box-shadow: 0 0 10px var(--green-g); }
+    .pmsg { font-size: clamp(7px,1.3vw,10px); color: var(--mid); min-height: 14px; text-align: center; }
+    .plog { width: clamp(180px,55vw,340px); max-height: clamp(40px,10vh,90px); overflow: hidden; font-size: clamp(6px,1vw,8.5px); color: var(--dim); line-height: 1.7; opacity: 0; animation: up .5s .3s forwards; }
+    .plog div { animation: lin .2s; }
+    @keyframes lin { from { opacity: 0; transform: translateX(-3px); } to { opacity: 1; transform: translateX(0); } }
+    #screen_container { width: 100%; height: 100%; background: #000; cursor: text; overflow: hidden; -webkit-overflow-scrolling: touch; }
+    #screen_container > div { font-family: 'Fira Code', monospace !important; font-size: var(--tf) !important; line-height: 1.3 !important; padding: clamp(2px,.4vw,4px) !important; overflow-y: auto !important; height: 100% !important; -webkit-overflow-scrolling: touch; white-space: pre-wrap !important; word-wrap: break-word !important; }
+    #screen_container canvas { display: block !important; width: 100% !important; height: 100% !important; image-rendering: pixelated; }
+    .bot { flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; height: clamp(24px,4vh,32px); padding: 0 clamp(8px,2vw,16px); background: var(--panel); border-top: 1px solid var(--edge); font-size: clamp(6.5px,1vw,8.5px); color: var(--dim); letter-spacing: .4px; gap: 6px; }
+    .keys { display: flex; gap: clamp(5px,1.2vw,12px); flex-shrink: 0; overflow: hidden; }
+    .key { display: flex; align-items: center; gap: 2px; white-space: nowrap; }
+    .key kbd { font-family: 'Fira Code', monospace; font-size: clamp(5.5px,.9vw,8px); background: var(--raised); border: 1px solid var(--edge); border-radius: 2px; padding: 0 3px; color: var(--mid); }
+    .bot-r { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  </style>
 </head>
 <body>
-<header class="top">
-  <div class="top-l">
-    <div class="logo">⟩_</div>
-    <div class="brand"><h1>WASM LINUX</h1><small>Real x86 VM · WebAssembly · v86</small></div>
-  </div>
-  <div class="leds">
-    <div class="led"><span>CPU</span><i id="d1"></i></div>
-    <div class="led"><span>64MB</span><i id="d2"></i></div>
-    <div class="led"><span id="st">IDLE</span><i id="d3"></i></div>
-  </div>
-</header>
-<div class="specbar" id="specbar">
-  <button data-k="ctrl" id="ctrlBtn">Ctrl</button>
-  <button data-k="tab">Tab</button>
-  <button data-k="esc">Esc</button>
-  <button data-k="up">↑</button>
-  <button data-k="down">↓</button>
-  <button data-k="left">←</button>
-  <button data-k="right">→</button>
-  <button data-k="pipe">|</button>
-  <button data-k="slash">/</button>
-  <button data-k="dash">-</button>
-  <button data-k="tilde">~</button>
-  <button data-k="bslash">\</button>
-  <button data-k="amp">&amp;</button>
-  <button data-k="gt">&gt;</button>
-</div>
-<div class="main">
-  <div class="boot" id="boot">
-    <pre class="ascii">
+  <header class="top">
+    <div class="top-l">
+      <div class="logo">⟩_</div>
+      <div class="brand"><h1>WASM LINUX</h1><small>Real x86 VM · WebAssembly · v86</small></div>
+    </div>
+    <div class="leds">
+      <div class="led"><span>CPU</span><i id="d1"></i></div>
+      <div class="led"><span>64MB</span><i id="d2"></i></div>
+      <div class="led"><span id="st">IDLE</span><i id="d3"></i></div>
+    </div>
+  </header>
+  <div class="main">
+    <div class="boot" id="boot">
+      <pre class="ascii">
  ╔══════════════════════════════════════╗
  ║                                      ║
  ║   ██╗     ██╗███╗   ██╗██╗   ██╗    ║
@@ -174,311 +110,248 @@ body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-in
  ║                                      ║
  ║    x86 · WebAssembly · Browser VM    ║
  ╚══════════════════════════════════════╝
-    </pre>
-    <div class="ptrack"><div class="pfill" id="pf"></div></div>
-    <div class="pmsg" id="pm">System Ready...</div>
-    <div class="plog" id="pl"></div>
+      </pre>
+      <div class="ptrack"><div class="pfill" id="pf"></div></div>
+      <div class="pmsg" id="pm">System Ready...</div>
+      <div class="plog" id="pl"></div>
+    </div>
+    <div id="screen_container"></div>
   </div>
-  <div id="screen_container"></div>
-</div>
-<footer class="bot">
-  <div class="keys">
-    <div class="key"><kbd>Ctrl+C</kbd> kill</div>
-    <div class="key"><kbd>Tab</kbd> complete</div>
-    <div class="key"><kbd>↑↓</kbd> history</div>
-  </div>
-  <div class="bot-r">v86 · Linux x86 · Client-Side Execution</div>
-</footer>
-<input class="mi" id="mi" type="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false">
-<button class="kbb" id="kbb" aria-label="Toggle keyboard">⌨</button>
-
-<script>
-(function() {
-  const UI = {
-    pf: document.getElementById('pf'),
-    pm: document.getElementById('pm'),
-    pl: document.getElementById('pl'),
-    bo: document.getElementById('boot'),
-    d1: document.getElementById('d1'),
-    d2: document.getElementById('d2'),
-    d3: document.getElementById('d3'),
-    st: document.getElementById('st'),
-    mi: document.getElementById('mi'),
-    kbb: document.getElementById('kbb'),
-    ctrlBtn: document.getElementById('ctrlBtn')
-  };
-
-  let emu = null;
-  let ctrlOn = false;
-
-  // UI Updates
-  function setProgress(percent, msg) {
-    UI.pf.style.width = percent + '%';
-    if (msg) UI.pm.textContent = msg;
-  }
-  
-  function logMsg(text, isError = false) {
-    const div = document.createElement('div');
-    div.textContent = '› ' + text;
-    if (isError) div.style.color = 'var(--red)';
-    UI.pl.appendChild(div);
-    UI.pl.scrollTop = UI.pl.scrollHeight;
-  }
-  
-  function setStatus(statusClass, labelText) {
-    UI.d1.className = statusClass;
-    UI.d2.className = statusClass;
-    UI.d3.className = statusClass;
-    UI.st.textContent = labelText;
-  }
-
-  // Mobile / Viewport Fixes
-  function fixHeight() { document.body.style.height = window.innerHeight + 'px'; }
-  fixHeight();
-  window.addEventListener('resize', fixHeight);
-  window.addEventListener('orientationchange', () => setTimeout(fixHeight, 200));
-
-  // Keyboard Event Handlers
-  UI.kbb.onclick = (e) => { e.preventDefault(); UI.mi.focus(); };
-
-  UI.mi.addEventListener('input', () => {
-    if (!emu) return;
-    const v = UI.mi.value;
-    if (v.length > 0) {
-      const ch = v.charCodeAt(v.length - 1);
-      if (ctrlOn && ch >= 97 && ch <= 122) {
-        emu.serial0_send(String.fromCharCode(ch - 96));
-        ctrlOn = false;
-        UI.ctrlBtn.classList.remove('active');
-      } else {
-        emu.serial0_send(String.fromCharCode(ch));
-      }
-    }
-    UI.mi.value = '';
-  });
-
-  UI.mi.addEventListener('keydown', (e) => {
-    if (!emu) return;
-    const map = { Enter: '\n', Backspace: '\x7f', ArrowUp: '\x1b[A', ArrowDown: '\x1b[B', ArrowLeft: '\x1b[D', ArrowRight: '\x1b[C', Tab: '\t', Escape: '\x1b' };
-    if (map[e.key]) { e.preventDefault(); emu.serial0_send(map[e.key]); }
-  });
-
-  document.getElementById('specbar').onclick = (e) => {
-    const b = e.target.closest('button');
-    if (!b || !emu) return;
-    const k = b.dataset.k;
-    if (k === 'ctrl') {
-      ctrlOn = !ctrlOn;
-      UI.ctrlBtn.classList.toggle('active', ctrlOn);
-      UI.mi.focus();
-      return;
-    }
-    const map = { tab: '\t', esc: '\x1b', up: '\x1b[A', down: '\x1b[B', left: '\x1b[D', right: '\x1b[C', pipe: '|', slash: '/', dash: '-', tilde: '~', bslash: '\\', amp: '&', gt: '>' };
-    if (map[k]) emu.serial0_send(map[k]);
-    UI.mi.focus();
-  };
-
-  document.getElementById('screen_container').onclick = function() {
-    if ('ontouchstart' in window) UI.mi.focus();
-    else {
-      const t = this.querySelector('[tabindex]');
-      if (t) t.focus(); else this.focus();
-    }
-  };
-
-  // v0.5.44 : The most stable recent version of v86
-  const cdnList = [
-    {
-      name: 'jsDelivr (Primary)',
-      js: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/build/libv86.js',
-      wasm: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/build/v86.wasm',
-      bios: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/bios/seabios.bin',
-      vga: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/bios/vgabios.bin',
-      iso: 'https://copy.sh/v86/images/linux.iso'
-    },
-    {
-      name: 'unpkg (Fallback)',
-      js: 'https://unpkg.com/v86@0.5.44/build/libv86.js',
-      wasm: 'https://unpkg.com/v86@0.5.44/build/v86.wasm',
-      bios: 'https://unpkg.com/v86@0.5.44/bios/seabios.bin',
-      vga: 'https://unpkg.com/v86@0.5.44/bios/vgabios.bin',
-      iso: 'https://copy.sh/v86/images/linux.iso'
-    },
-    {
-      name: 'copy.sh (Fallback 2)',
-      js: 'https://copy.sh/v86/build/libv86.js',
-      wasm: 'https://copy.sh/v86/build/v86.wasm',
-      bios: 'https://copy.sh/v86/bios/seabios.bin',
-      vga: 'https://copy.sh/v86/bios/vgabios.bin',
-      iso: 'https://copy.sh/v86/images/linux.iso'
-    }
-  ];
-
-  let currentCdnIndex = 0;
-
-  function initBootSeq() {
-    setStatus('warn', 'BOOTING');
-    setProgress(5, 'Injecting Engine...');
-    logMsg('Initializing WebAssembly x86 emulator');
-    
-    if (window.location.protocol === 'file:') {
-      setStatus('err', 'ERROR');
-      setProgress(0, 'CORS Blocked');
-      logMsg('FATAL: Cannot run v86 over file:// protocol.', true);
-      return;
-    }
-    
-    loadScript();
-  }
-
-  function loadScript() {
-    if (currentCdnIndex >= cdnList.length) {
-      setStatus('err', 'ERROR');
-      setProgress(0, 'Init Failed');
-      logMsg('FATAL: All CDN sources failed to load.', true);
-      return;
-    }
-
-    const cdn = cdnList[currentCdnIndex];
-    logMsg(`Fetching libv86.js from ${cdn.name}...`);
-    
-    const script = document.createElement('script');
-    script.src = cdn.js;
-    script.crossOrigin = 'anonymous';
-    script.onload = () => setupEmulator(cdn);
-    script.onerror = () => {
-      logMsg(`Failed to load from ${cdn.name}.`, true);
-      currentCdnIndex++;
-      loadScript();
+  <footer class="bot">
+    <div class="keys">
+      <div class="key"><kbd>Ctrl+C</kbd> kill</div>
+      <div class="key"><kbd>Tab</kbd> complete</div>
+      <div class="key"><kbd>↑↓</kbd> history</div>
+    </div>
+    <div class="bot-r">v86 · Linux x86 · Client‑Side Execution</div>
+  </footer>
+  <input class="mi" id="mi" type="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false">
+  <button class="kbb" id="kbb" aria-label="Toggle keyboard">⌨</button>
+  <script>
+  (function() {
+    const UI = {
+      pf: document.getElementById('pf'),
+      pm: document.getElementById('pm'),
+      pl: document.getElementById('pl'),
+      bo: document.getElementById('boot'),
+      d1: document.getElementById('d1'),
+      d2: document.getElementById('d2'),
+      d3: document.getElementById('d3'),
+      st: document.getElementById('st'),
+      mi: document.getElementById('mi'),
+      kbb: document.getElementById('kbb')
     };
-    document.head.appendChild(script);
-  }
-
-  function setupEmulator(cdn) {
-    setProgress(15, 'Engine Loaded');
-    logMsg('V86 engine successfully injected.');
-    
-    setProgress(25, 'Allocating Hardware...');
-    logMsg('CPU: x86 32-bit | RAM: 64MB | VGA: 2MB');
-
-    try {
-      // Handle newer v86 versions vs legacy V86Starter
-      const V86Constructor = window.V86 || window.V86Starter;
-      
-      emu = new V86Constructor({
-        wasm_path: cdn.wasm,
-        memory_size: 64 * 1024 * 1024,
-        vga_memory_size: 2 * 1024 * 1024,
-        screen_container: document.getElementById('screen_container'),
-        bios: { url: cdn.bios },
-        vga_bios: { url: cdn.vga },
-        cdrom: { url: cdn.iso },
-        autostart: true,
-        disable_mouse: true,
-        disable_keyboard: false
-      });
-      
-      window.emulator = emu;
-      bindEmulatorEvents();
-
-    } catch (err) {
-      setStatus('err', 'ERROR');
-      setProgress(0, 'Emulator Crash');
-      logMsg('FATAL: ' + err.message, true);
+    let emu = null;
+    let ctrlOn = false;
+    function setProgress(percent, msg) {
+      UI.pf.style.width = percent + '%';
+      if (msg) UI.pm.textContent = msg;
     }
-  }
-
-  function bindEmulatorEvents() {
-    let bootDone = false;
-    let maxDlPercent = 0;
-    let readySeen = false;
-
-    // Listen to real download progress instead of faking it
-    emu.add_listener('download-progress', (e) => {
-      if (bootDone) return;
-      if (e.total && e.total > 0) {
-        let pct = Math.floor((e.loaded / e.total) * 100);
-        if (pct > maxDlPercent) maxDlPercent = pct;
-        // Remap download 0-100% to progress bar 25-80%
-        let mappedProgress = 25 + Math.floor(maxDlPercent * 0.55);
-        setProgress(mappedProgress, `Downloading OS (${maxDlPercent}%)...`);
-        
-        if (maxDlPercent === 10 || maxDlPercent === 50 || maxDlPercent === 90) {
-           logMsg(`Fetch progress: ${maxDlPercent}%`);
+    function logMsg(text, isError = false) {
+      const div = document.createElement('div');
+      div.textContent = '› ' + text;
+      if (isError) div.style.color = 'var(--red)';
+      UI.pl.appendChild(div);
+      UI.pl.scrollTop = UI.pl.scrollHeight;
+    }
+    function setStatus(statusClass, labelText) {
+      UI.d1.className = statusClass;
+      UI.d2.className = statusClass;
+      UI.d3.className = statusClass;
+      UI.st.textContent = labelText;
+    }
+    function fixHeight() { document.body.style.height = window.innerHeight + 'px'; }
+    fixHeight();
+    window.addEventListener('resize', fixHeight);
+    window.addEventListener('orientationchange', () => setTimeout(fixHeight, 200));
+    UI.kbb.onclick = (e) => { e.preventDefault(); UI.mi.focus(); };
+    UI.mi.addEventListener('input', () => {
+      if (!emu) return;
+      const v = UI.mi.value;
+      if (v.length > 0) {
+        const ch = v.charCodeAt(v.length - 1);
+        if (ctrlOn && ch >= 97 && ch <= 122) {
+          emu.serial0_send(String.fromCharCode(ch - 96));
+          ctrlOn = false;
+        } else {
+          emu.serial0_send(String.fromCharCode(ch));
         }
       }
+      UI.mi.value = '';
     });
-
-    emu.add_listener('download-error', (e) => {
-       setStatus('err', 'ERROR');
-       setProgress(0, 'Download Failed');
-       logMsg(`FATAL: Failed to download ${e.url}`, true);
+    UI.mi.addEventListener('keydown', (e) => {
+      if (!emu) return;
+      const map = { Enter: '\n', Backspace: '\x7f', ArrowUp: '\x1b[A', ArrowDown: '\x1b[B', ArrowLeft: '\x1b[D', ArrowRight: '\x1b[C', Tab: '\t', Escape: '\x1b' };
+      if (map[e.key]) { e.preventDefault(); emu.serial0_send(map[e.key]); }
     });
-
-    emu.add_listener('emulator-ready', () => {
-      readySeen = true;
-      logMsg('JIT Compiler active. Booting Linux kernel...');
-      setProgress(85, 'Booting Kernel...');
-      // Some builds do not emit serial text early; avoid endless boot overlay.
+    document.getElementById('screen_container').onclick = function() {
+      if ('ontouchstart' in window) UI.mi.focus();
+      else {
+        const t = this.querySelector('[tabindex]');
+        if (t) t.focus(); else this.focus();
+      }
+    };
+    const cdnList = [
+      {
+        name: 'jsDelivr',
+        js: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/build/libv86.js',
+        wasm: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/build/v86.wasm',
+        bios: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/bios/seabios.bin',
+        vga: 'https://cdn.jsdelivr.net/npm/v86@0.5.44/bios/vgabios.bin',
+        iso: './linux.iso'
+      },
+      {
+        name: 'unpkg',
+        js: 'https://unpkg.com/v86@0.5.44/build/libv86.js',
+        wasm: 'https://unpkg.com/v86@0.5.44/build/v86.wasm',
+        bios: 'https://unpkg.com/v86@0.5.44/bios/seabios.bin',
+        vga: 'https://unpkg.com/v86@0.5.44/bios/vgabios.bin',
+        iso: './linux.iso'
+      },
+      {
+        name: 'copy.sh',
+        js: 'https://copy.sh/v86/build/libv86.js',
+        wasm: 'https://copy.sh/v86/build/v86.wasm',
+        bios: 'https://copy.sh/v86/bios/seabios.bin',
+        vga: 'https://copy.sh/v86/bios/vgabios.bin',
+        iso: './linux.iso'
+      }
+    ];
+    let currentCdnIndex = 0;
+    function initBootSeq() {
+      setStatus('warn', 'BOOTING');
+      setProgress(5, 'Injecting Engine...');
+      logMsg('Initializing WebAssembly x86 emulator');
+      if (window.location.protocol === 'file:') {
+        setStatus('err', 'ERROR');
+        setProgress(0, 'CORS Blocked');
+        logMsg('FATAL: Cannot run v86 over file:// protocol.', true);
+        return;
+      }
+      loadScript();
+    }
+    function loadScript() {
+      if (currentCdnIndex >= cdnList.length) {
+        setStatus('err', 'ERROR');
+        setProgress(0, 'Init Failed');
+        logMsg('FATAL: All CDN sources failed to load.', true);
+        return;
+      }
+      const cdn = cdnList[currentCdnIndex];
+      logMsg(`Fetching libv86.js from ${cdn.name}...`);
+      const script = document.createElement('script');
+      script.src = cdn.js;
+      script.crossOrigin = 'anonymous';
+      script.onload = () => setupEmulator(cdn);
+      script.onerror = () => {
+        logMsg(`Failed to load from ${cdn.name}.`, true);
+        currentCdnIndex++;
+        loadScript();
+      };
+      document.head.appendChild(script);
+    }
+    function setupEmulator(cdn) {
+      setProgress(15, 'Engine Loaded');
+      logMsg('V86 engine successfully injected.');
+      setProgress(25, 'Allocating Hardware...');
+      logMsg('CPU: x86 32-bit | RAM: 64MB | VGA: 2MB');
+      try {
+        const V86Constructor = window.V86 || window.V86Starter;
+        emu = new V86Constructor({
+          wasm_path: cdn.wasm,
+          memory_size: 64 * 1024 * 1024,
+          vga_memory_size: 2 * 1024 * 1024,
+          screen_container: document.getElementById('screen_container'),
+          bios: { url: cdn.bios },
+          vga_bios: { url: cdn.vga },
+          cdrom: { url: cdn.iso },
+          autostart: true,
+          disable_mouse: true,
+          disable_keyboard: false
+        });
+        window.emulator = emu;
+        bindEmulatorEvents();
+      } catch (err) {
+        setStatus('err', 'ERROR');
+        setProgress(0, 'Emulator Crash');
+        logMsg('FATAL: ' + err.message, true);
+      }
+    }
+    function bindEmulatorEvents() {
+      let bootDone = false;
+      let maxDlPercent = 0;
+      let readySeen = false;
+      emu.add_listener('download-progress', (e) => {
+        if (bootDone) return;
+        if (e.total && e.total > 0) {
+          let pct = Math.floor((e.loaded / e.total) * 100);
+          if (pct > maxDlPercent) maxDlPercent = pct;
+          let mappedProgress = 25 + Math.floor(maxDlPercent * 0.55);
+          setProgress(mappedProgress, `Downloading OS (${maxDlPercent}%)...`);
+          if (maxDlPercent === 10 || maxDlPercent === 50 || maxDlPercent === 90) {
+            logMsg(`Fetch progress: ${maxDlPercent}%`);
+          }
+        }
+      });
+      emu.add_listener('download-error', (e) => {
+        setStatus('err', 'ERROR');
+        setProgress(0, 'Download Failed');
+        logMsg(`FATAL: Failed to download ${e.url}`, true);
+      });
+      emu.add_listener('emulator-ready', () => {
+        readySeen = true;
+        logMsg('JIT Compiler active. Booting Linux kernel...');
+        setProgress(85, 'Booting Kernel...');
+        setTimeout(() => {
+          if (!bootDone) {
+            logMsg('Kernel ready detected. Switching to live display...');
+            finalizeBoot();
+          }
+        }, 6000);
+      });
+      let outputBytes = 0;
+      emu.add_listener('serial0-output-byte', () => {
+        outputBytes++;
+        if (!bootDone && outputBytes > 100) {
+          bootDone = true;
+          finalizeBoot();
+        }
+      });
+      let screenTicks = 0;
+      const checkScreen = setInterval(() => {
+        if (bootDone) { clearInterval(checkScreen); return; }
+        const textDiv = document.querySelector('#screen_container > div');
+        const canvas = document.querySelector('#screen_container canvas');
+        if (textDiv && textDiv.textContent.length > 50) {
+          bootDone = true;
+          clearInterval(checkScreen);
+          finalizeBoot();
+        }
+        if (!bootDone && canvas && canvas.width > 0 && canvas.height > 0 && readySeen && screenTicks > 8) {
+          bootDone = true;
+          clearInterval(checkScreen);
+          finalizeBoot();
+        }
+        screenTicks++;
+        if (screenTicks > 90) {
+          clearInterval(checkScreen);
+          if (!bootDone) {
+            logMsg('Boot timeout reached. Opening display anyway...');
+            finalizeBoot();
+          }
+        }
+      }, 500);
+    }
+    function finalizeBoot() {
+      setProgress(100, 'System Online');
+      logMsg('Terminal prompt reached.');
+      setStatus('on', 'RUNNING');
       setTimeout(() => {
-        if (!bootDone) {
-          logMsg('Kernel ready detected. Switching to live display...');
-          finalizeBoot();
-        }
-      }, 6000);
-    });
-
-    // Detect actual terminal output to remove boot screen
-    let outputBytes = 0;
-    emu.add_listener('serial0-output-byte', () => {
-      outputBytes++;
-      if (!bootDone && outputBytes > 100) {
-        bootDone = true;
-        finalizeBoot();
-      }
-    });
-
-    // Fallback detection (Screen character changes)
-    let screenTicks = 0;
-    const checkScreen = setInterval(() => {
-      if (bootDone) { clearInterval(checkScreen); return; }
-      const textDiv = document.querySelector('#screen_container > div');
-      const canvas = document.querySelector('#screen_container canvas');
-      if (textDiv && textDiv.textContent.length > 50) {
-        bootDone = true;
-        clearInterval(checkScreen);
-        finalizeBoot();
-      }
-      if (!bootDone && canvas && canvas.width > 0 && canvas.height > 0 && readySeen && screenTicks > 8) {
-        bootDone = true;
-        clearInterval(checkScreen);
-        finalizeBoot();
-      }
-      screenTicks++;
-      // Hard timeout so users are never stuck in infinite loading screen.
-      if (screenTicks > 90) {
-        clearInterval(checkScreen);
-        if (!bootDone) {
-          logMsg('Boot timeout reached. Opening display anyway...');
-          finalizeBoot();
-        }
-      }
-    }, 500);
-  }
-
-  function finalizeBoot() {
-    setProgress(100, 'System Online');
-    logMsg('Terminal prompt reached.');
-    setStatus('on', 'RUNNING');
-    setTimeout(() => {
-      UI.bo.classList.add('gone');
-    }, 600);
-  }
-
-  // Start sequence
-  initBootSeq();
-
-})();
-</script>
+        UI.bo.classList.add('gone');
+      }, 600);
+    }
+    initBootSeq();
+  })();
+  </script>
 </body>
 </html>
