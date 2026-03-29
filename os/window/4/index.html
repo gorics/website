@@ -1101,7 +1101,8 @@ function browser() {
 
   urlInput.addEventListener('keydown', e => {
     if (e.key !== 'Enter') return;
-    content.innerHTML = '<div class="browser-page" style="text-align:center;padding:60px"><div style="font-size:48px">🌐</div><h2 style="font-weight:400;margin:16px">' + urlInput.value + '</h2><p style="color:#666">정적 시뮬레이션 환경 — 실제 URL 접속 불가</p></div>';
+    content.innerHTML = '<div class="browser-page" style="text-align:center;padding:60px"><div style="font-size:48px">🌐</div><h2 style="font-weight:400;margin:16px"></h2><p style="color:#666">정적 시뮬레이션 환경 — 실제 URL 접속 불가</p></div>';
+    content.querySelector('h2').textContent = urlInput.value;
   });
 }
 
