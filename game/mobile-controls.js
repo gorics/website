@@ -86,7 +86,8 @@
         pressEnd(entry.key);
       };
       wrap.addEventListener('touchstart', (e) => {
-        for (const touch of Array.from(e.changedTouches)) {
+        for (let i = 0; i < e.changedTouches.length; i++) {
+          const touch = e.changedTouches[i];
           const el = doc.elementFromPoint(touch.clientX, touch.clientY);
           const btn = el && el.closest('button[data-key]');
           if (!btn) continue;
@@ -98,10 +99,10 @@
         }
       }, { passive: false });
       wrap.addEventListener('touchend', (e) => {
-        for (const touch of Array.from(e.changedTouches)) endTouch(touch);
+        for (let i = 0; i < e.changedTouches.length; i++) endTouch(e.changedTouches[i]);
       });
       wrap.addEventListener('touchcancel', (e) => {
-        for (const touch of Array.from(e.changedTouches)) endTouch(touch);
+        for (let i = 0; i < e.changedTouches.length; i++) endTouch(e.changedTouches[i]);
       });
     }
 
