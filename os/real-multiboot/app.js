@@ -13,6 +13,9 @@
       memorySize: 128 * 1024 * 1024,
       setup: {
         cdrom: { url: 'https://gorics.github.io/website/os/linux/1/linux.iso', async: true },
+        bzimage: { url: 'https://copy.sh/v86/images/buildroot-bzimage.bin', async: true },
+        initrd: { url: 'https://copy.sh/v86/images/buildroot-rootfs.ext2', async: true },
+        cmdline: 'root=/dev/ram0 console=ttyS0',
       },
     },
     {
@@ -21,6 +24,7 @@
       memorySize: 192 * 1024 * 1024,
       setup: {
         cdrom: { url: 'https://gorics.github.io/website/os/linux/1/linux.iso', async: true },
+        cdrom: { url: 'https://copy.sh/v86/images/linux4.iso', async: true },
       },
     },
     {
