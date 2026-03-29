@@ -27,6 +27,7 @@
       description: '실제 Linux ISO 이미지(linux4.iso)로 부팅합니다.',
       memory: 192 * 1024 * 1024,
       boot: {
+        cdrom: { url: 'https://gorics.github.io/website/os/linux/1/linux.iso', async: true }
         cdrom: { url: 'https://copy.sh/v86/images/linux4.iso', async: true }
       }
     };

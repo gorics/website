@@ -22,6 +22,7 @@
       description: 'Buildroot 커널/루트FS를 다른 커널 커맨드라인으로 부팅하는 버전입니다.',
       memory: 192 * 1024 * 1024,
       boot: {
+        cdrom: { url: 'https://gorics.github.io/website/os/linux/1/linux.iso', async: true }
         bzimage: { url: 'https://copy.sh/v86/images/buildroot-bzimage.bin', async: true },
         initrd: { url: 'https://copy.sh/v86/images/buildroot-rootfs.ext2', async: true },
         cmdline: 'rw root=/dev/ram0 console=ttyS0 init=/sbin/init'
