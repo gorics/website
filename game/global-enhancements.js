@@ -243,8 +243,15 @@
 
   resizeWrappers();
   adjustCanvases();
+  let resizeTicking = false;
   window.addEventListener('resize', () => {
-    resizeWrappers();
-    adjustCanvases();
+    if (!resizeTicking) {
+      window.requestAnimationFrame(() => {
+        resizeWrappers();
+        adjustCanvases();
+        resizeTicking = false;
+      });
+      resizeTicking = true;
+    }
   });
 })();
