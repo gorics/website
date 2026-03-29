@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real OS Multiboot (Linux + Windows)</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>Real OS Multiboot</h1>
+      <p>
+        기존 <code>os/</code> 코드는 수정하지 않고, 새 폴더에 실제 부팅 가능한 OS 런처를 추가했습니다.
+        (v86 + 공개 이미지)
+      </p>
+    </header>
+
+    <section class="panel">
+      <label for="os-select">부팅할 OS 선택</label>
+      <select id="os-select"></select>
+      <div class="actions">
+        <button id="boot-btn">선택한 OS 부팅</button>
+        <button id="stop-btn" class="danger">중지</button>
+        <button id="fullscreen-btn" class="secondary">전체화면</button>
+      </div>
+      <p class="hint">Linux/Windows 모두 실제 디스크/ISO 이미지로 부팅됩니다. (가짜 UI 아님)</p>
+    </section>
+
+    <section class="panel status-panel">
+      <h2>상태 로그</h2>
+      <pre id="log" aria-live="polite">[ready] 런처 준비 완료.</pre>
+    </section>
+
+    <section class="screen-wrap">
+      <div id="screen" class="screen"></div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
