@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linux 8 - Real Boot</title>
+  <link rel="stylesheet" href="../../real-os/launcher.css" />
+</head>
+<body>
+  <main>
+    <section class="card">
+      <h1 id="title"></h1>
+      <p id="desc"></p>
+      <div class="actions"><button id="boot-btn">부팅</button><button id="stop-btn" class="danger">중지</button><button id="full-btn" class="secondary">전체화면</button></div>
+      <pre id="log">[ready]</pre>
+    </section>
+    <section class="card" id="screen-wrap"><div id="screen"></div></section>
+  </main>
+  <script>
+    window.REAL_OS_CONFIG = {
+      name: 'Linux 8 (Buildroot + serial console, Real VM)',
+      description: 'Buildroot 커널/루트FS를 다른 커널 커맨드라인으로 부팅하는 버전입니다.',
+      memory: 192 * 1024 * 1024,
+      boot: {
+        cdrom: { url: 'https://gorics.github.io/website/os/linux/1/linux.iso', async: true }
+      }
+    };
+  </script>
+  <script src="../../real-os/launcher.js"></script>
+</body>
+</html>
