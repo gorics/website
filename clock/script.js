@@ -295,19 +295,21 @@ function regenerateStars(density) {
   starField.style.backgroundImage = stars.join(',');
 }
 
-accentColorInput.addEventListener('input', event => {
-  updateCSSVariable('--accent', event.target.value);
+function handleThemeUpdate() {
   if (!ignoreThemeUpdate) {
     themePresetSelect.value = 'custom';
   }
+}
+
+accentColorInput.addEventListener('input', event => {
+  updateCSSVariable('--accent', event.target.value);
+  handleThemeUpdate();
 });
 
 glowColorInput.addEventListener('input', event => {
   const color = event.target.value;
   updateCSSVariable('--glow', hexToRgba(color, 0.6));
-  if (!ignoreThemeUpdate) {
-    themePresetSelect.value = 'custom';
-  }
+  handleThemeUpdate();
 });
 
 bgTopInput.addEventListener('input', event => {
