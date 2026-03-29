@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linux 5 - Real Boot</title>
+  <link rel="stylesheet" href="../../real-os/launcher.css" />
+</head>
+<body>
+  <main>
+    <section class="card">
+      <h1 id="title"></h1>
+      <p id="desc"></p>
+      <div class="actions">
+        <button id="boot-btn">부팅</button>
+        <button id="stop-btn" class="danger">중지</button>
+        <button id="full-btn" class="secondary">전체화면</button>
+      </div>
+      <pre id="log">[ready]</pre>
+    </section>
+    <section class="card" id="screen-wrap"><div id="screen"></div></section>
+  </main>
+
+  <script>
+    window.REAL_OS_CONFIG = {
+      name: 'Linux 5 (DSL ISO, Real VM)',
+      description: '실제 Linux ISO 이미지(linux4.iso)로 부팅합니다.',
+      memory: 192 * 1024 * 1024,
+      boot: {
+        cdrom: { url: 'https://copy.sh/v86/images/linux4.iso', async: true }
+      }
+    };
+  </script>
+  <script src="../../real-os/launcher.js"></script>
+</body>
+</html>
