@@ -1127,7 +1127,7 @@ function paint() {
   const canvas = body.querySelector('canvas');
   const wrap   = body.querySelector('.paint-canvas-wrap');
   const ctx    = canvas.getContext('2d');
-  let drawing = false, lastX = 0, lastY = 0;
+  let drawing = false, lastX = 0, lastY = 0, canvasRect = null;
   const state = { tool:'brush', color:'#000', size:3 };
 
   // 버그수정: ResizeObserver로 캔버스 크기 신뢰성있게 초기화
@@ -1152,13 +1152,12 @@ function paint() {
 
   canvas.addEventListener('mousedown', e => {
     drawing = true;
-    const r = canvas.getBoundingClientRect();
-    lastX = e.clientX - r.left; lastY = e.clientY - r.top;
+    canvasRect = canvas.getBoundingClientRect();
+    lastX = e.clientX - canvasRect.left; lastY = e.clientY - canvasRect.top;
   });
   canvas.addEventListener('mousemove', e => {
-    if (!drawing) return;
-    const r = canvas.getBoundingClientRect();
-    const x = e.clientX - r.left, y = e.clientY - r.top;
+    if (!drawing || !canvasRect) return;
+    const x = e.clientX - canvasRect.left, y = e.clientY - canvasRect.top;
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
     ctx.lineTo(x, y);
