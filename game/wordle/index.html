@@ -135,6 +135,7 @@
         <div class="status" id="status" role="status">단어를 입력하세요.</div>
         <button id="restart">새 게임</button>
     </main>
+    <script src="wordle.js"></script>
     <script>
         const WORD_LIST = [
             'ARRAY', 'DEBUG', 'CYCLE', 'PIXEL', 'SCOPE', 'ALERT', 'STACK', 'GUESS', 'HONEY', 'SHAPE',
@@ -199,8 +200,10 @@
         }
 
         function handleInput(key) {
-            if (state.finished) return;
-            if (key === 'DEL') {
+            const result = getInputAction(key, state.finished, col, COLS);
+            if (result.action === 'none') return;
+
+            if (result.action === 'delete') {
                 if (col > 0) {
                     col -= 1;
                     const cell = grid[row][col];
@@ -209,17 +212,18 @@
                 }
                 return;
             }
-            if (key === 'ENTER') {
+
+            if (result.action === 'submit') {
                 submitRow();
                 return;
             }
-            if (col >= COLS) return;
-            const letter = key.toUpperCase();
-            if (!/^[A-Z]$/.test(letter)) return;
-            const cell = grid[row][col];
-            cell.textContent = letter;
-            cell.classList.add('filled');
-            col += 1;
+
+            if (result.action === 'add') {
+                const cell = grid[row][col];
+                cell.textContent = result.letter;
+                cell.classList.add('filled');
+                col += 1;
+            }
         }
 
         function submitRow() {
