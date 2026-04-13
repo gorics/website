@@ -209,7 +209,7 @@
     </div>
 
     <h1>지금부터 <strong id="wakeLabel">오전 7:00</strong>까지</h1>
-    <p class="sleep-hours"><span id="hoursDecimal">0.00</span><small>시간 수면 가능</small></p>
+    <p class="sleep-hours"><span id="exactSleep">0시간 00분</span><small>잘 수 있어요</small></p>
 
     <section class="control" aria-label="기상 시간 설정">
       <p>기상 시간 변경 (기본값: <strong>07:00</strong>)<br>원하는 시간으로 바꿔서 바로 확인하세요.</p>
@@ -330,7 +330,6 @@
       const target = getNextKstWakeDate(now, state.wakeHour, state.wakeMinute);
       let diff = Math.max(0, target.getTime() - now.getTime());
 
-      const totalHours = diff / HOUR_MS;
       const hours = Math.floor(diff / HOUR_MS);
       diff -= hours * HOUR_MS;
       const minutes = Math.floor(diff / MIN_MS);
@@ -338,7 +337,7 @@
       const seconds = Math.floor(diff / 1000);
 
       $('wakeLabel').textContent = formatKoreanWakeLabel(state.wakeHour, state.wakeMinute);
-      $('hoursDecimal').textContent = totalHours.toFixed(2);
+      $('exactSleep').textContent = `${hours}시간 ${pad(minutes)}분`;
       $('hours').textContent = pad(hours);
       $('minutes').textContent = pad(minutes);
       $('seconds').textContent = pad(seconds);
