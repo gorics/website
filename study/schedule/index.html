@@ -193,8 +193,12 @@
       { start: "17:50", end: "18:50", type: "meal", label: "저녁시간" }
     ];
 
-    const STUDY_START = "08:10";
-    const STUDY_END = "22:00";
+    const DAY_STUDY_START = "08:10";
+    const DAY_STUDY_END = "22:00";
+    const NIGHT_STUDY_START = "22:00";
+    const NIGHT_STUDY_END = "24:00";
+    const REST_START = "00:00";
+    const REST_END = "07:50";
 
     const toMinutes = (hhmm) => {
       const [h, m] = hhmm.split(":").map(Number);
@@ -231,8 +235,10 @@
     function getCurrentState(now, dayIndex) {
       const blocks = getTodayBlocks(dayIndex);
       const nowM = now.getHours() * 60 + now.getMinutes();
-      const studyStart = toMinutes(STUDY_START);
-      const studyEnd = toMinutes(STUDY_END);
+      const dayStudyStart = toMinutes(DAY_STUDY_START);
+      const dayStudyEnd = toMinutes(DAY_STUDY_END);
+      const nightStudyStart = toMinutes(NIGHT_STUDY_START);
+      const nightStudyEnd = toMinutes(NIGHT_STUDY_END);
 
       let currentBlock = null;
       for (const b of blocks) {
@@ -246,11 +252,12 @@
       const nextBlock = futureBlocks[0] || null;
 
       let totalStudyRemain = 0;
-      if (nowM < studyEnd) {
-        for (let m = Math.max(nowM, studyStart); m < studyEnd; m++) {
-          const blocked = blocks.some((b) => m >= toMinutes(b.start) && m < toMinutes(b.end));
-          if (!blocked) totalStudyRemain++;
-        }
+      for (let m = Math.max(nowM, dayStudyStart); m < dayStudyEnd; m++) {
+        const blocked = blocks.some((b) => m >= toMinutes(b.start) && m < toMinutes(b.end));
+        if (!blocked) totalStudyRemain++;
+      }
+      for (let m = Math.max(nowM, nightStudyStart); m < nightStudyEnd; m++) {
+        totalStudyRemain++;
       }
 
       return { currentBlock, nextBlock, totalStudyRemain };
@@ -270,7 +277,17 @@
       const statusDetail = document.getElementById("statusDetail");
       const studyDetail = document.getElementById("studyDetail");
 
-      if (currentBlock?.type === "class") {
+      const nowM = now.getHours() * 60 + now.getMinutes();
+      const isRestTime = nowM >= toMinutes(REST_START) && nowM < toMinutes(REST_END);
+      const isNightStudyTime = nowM >= toMinutes(NIGHT_STUDY_START) && nowM < toMinutes(NIGHT_STUDY_END);
+
+      if (isRestTime) {
+        const restRemain = toMinutes(REST_END) - nowM;
+        badge.textContent = "휴식 시간";
+        badge.className = "pill";
+        mainStatus.textContent = "현재는 휴식시간입니다.";
+        statusDetail.textContent = `휴식시간 종료까지 ${formatRemain(restRemain)} 남았습니다.`;
+      } else if (currentBlock?.type === "class") {
         const remain = toMinutes(currentBlock.end) - (now.getHours() * 60 + now.getMinutes());
         badge.textContent = "수업 중";
         badge.className = "pill warn";
@@ -285,7 +302,7 @@
       } else {
         badge.textContent = "자습 가능";
         badge.className = "pill ok";
-        mainStatus.textContent = "현재는 자습시간입니다.";
+        mainStatus.textContent = isNightStudyTime ? "현재는 자율자습시간입니다. (22:00~24:00)" : "현재는 자습시간입니다.";
 
         if (nextBlock) {
           const minsToNext = toMinutes(nextBlock.start) - (now.getHours() * 60 + now.getMinutes());
@@ -295,8 +312,8 @@
         }
       }
 
-      const studyEndRemain = Math.max(0, toMinutes(STUDY_END) - (now.getHours() * 60 + now.getMinutes()));
-      studyDetail.textContent = `22:00 기준 남은 시간: ${formatRemain(studyEndRemain)} / 남은 자습 가능 시간 합계: ${formatRemain(totalStudyRemain)}.`;
+      const midnightRemain = Math.max(0, toMinutes(NIGHT_STUDY_END) - nowM);
+      studyDetail.textContent = `24:00 기준 남은 시간: ${formatRemain(midnightRemain)} / 남은 자습 가능 시간 합계: ${formatRemain(totalStudyRemain)}.`;
 
       document.getElementById("todayClassCount").textContent = `오늘 수업 수: ${todayClasses.length}개`;
 
@@ -307,7 +324,7 @@
         document.getElementById("nextClass").textContent = "다음 일정: 없음";
       }
 
-      document.getElementById("dayEnd").textContent = `학습 기준 종료 시각: ${STUDY_END}`;
+      document.getElementById("dayEnd").textContent = `자율자습 종료 시각: ${NIGHT_STUDY_END}`;
 
       const timeline = document.getElementById("todayTimeline");
       timeline.innerHTML = "";
