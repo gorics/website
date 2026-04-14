@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>스케줄 매니저</title>
   <title>나만의 스케줄 매니저</title>
   <style>
     :root {
@@ -120,7 +121,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>📘 나만의 스케줄 관리 사이트</h1>
+    <h1>📘 스케줄 매니저</h1>
     <div class="now" id="nowText">현재 시간 계산 중...</div>
 
     <div class="grid">
@@ -235,8 +236,6 @@
       const nowM = now.getHours() * 60 + now.getMinutes();
       const dayStudyStart = toMinutes(DAY_STUDY_START);
       const dayStudyEnd = toMinutes(DAY_STUDY_END);
-      const nightStudyStart = toMinutes(NIGHT_STUDY_START);
-      const nightStudyEnd = toMinutes(NIGHT_STUDY_END);
 
       let currentBlock = null;
       for (const b of blocks) {
@@ -253,9 +252,6 @@
       for (let m = Math.max(nowM, dayStudyStart); m < dayStudyEnd; m++) {
         const blocked = blocks.some((b) => m >= toMinutes(b.start) && m < toMinutes(b.end));
         if (!blocked) totalStudyRemain++;
-      }
-      for (let m = Math.max(nowM, nightStudyStart); m < nightStudyEnd; m++) {
-        totalStudyRemain++;
       }
 
       return { currentBlock, nextBlock, totalStudyRemain };
@@ -310,8 +306,8 @@
         }
       }
 
-      const midnightRemain = Math.max(0, toMinutes(NIGHT_STUDY_END) - nowM);
-      studyDetail.textContent = `24:00 기준 남은 시간: ${formatRemain(midnightRemain)} / 남은 자습 가능 시간 합계: ${formatRemain(totalStudyRemain)}.`;
+      const tenPmRemain = Math.max(0, toMinutes(DAY_STUDY_END) - nowM);
+      studyDetail.textContent = `22:00 기준 남은 시간: ${formatRemain(tenPmRemain)} / 남은 자습 가능 시간 합계: ${formatRemain(totalStudyRemain)}.`;
 
       document.getElementById("todayClassCount").textContent = `오늘 수업 수: ${todayClasses.length}개`;
 
