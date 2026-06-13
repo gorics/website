@@ -1,94 +1,40 @@
 {
-  "generatedAt": "2026-06-13T10:32:43.384Z",
+  "site": "GORICS.CLOUD NEWS",
+  "generatedAt": "2026-06-13T11:15:00.000Z",
+  "generated_at": "2026-06-13T11:15:00.000Z",
   "source": "compatibility mirror for old /news/ page path",
-  "page": "news-hub-compat",
-  "total": 3,
+  "page": "news-hub-compat-live-fix",
+  "total": 5,
   "errors": [],
   "categories": [
-    { "id": "top", "name": "종합 핫뉴스", "icon": "🔥", "count": 3 }
+    { "id": "top", "name": "종합 핫뉴스", "icon": "🔥", "count": 5 },
+    { "id": "politics", "name": "정치·정책", "icon": "🏛️", "count": 2 },
+    { "id": "economy", "name": "경제·금융", "icon": "💹", "count": 2 },
+    { "id": "study", "name": "스터디", "icon": "📚", "count": 1 }
   ],
-  "byCategory": {
-    "top": [
-      {
-        "id": "compat-top-1",
-        "category": "top",
-        "categoryName": "종합 핫뉴스",
-        "categoryIcon": "🔥",
-        "title": "뉴스 데이터 경로 복구 완료",
-        "description": "구버전 뉴스 페이지가 잘못 요청하던 news/data.json 호환 경로를 복구했습니다. 최신 뉴스 허브 배포 전까지 빈 화면을 막습니다.",
-        "url": "https://gorics.github.io/website/news/",
-        "source": { "name": "GORICS", "url": "https://gorics.github.io/website/" },
-        "publishedAt": "2026-06-13T10:32:43.384Z",
-        "guid": "compat-top-1",
-        "score": 100
-      },
-      {
-        "id": "compat-top-2",
-        "category": "top",
-        "categoryName": "종합 핫뉴스",
-        "categoryIcon": "🔥",
-        "title": "금융 뉴스 바로가기",
-        "description": "증시, 금리, 환율, 기업, 부동산, 가상자산 뉴스는 금융 뉴스 전용 페이지에서 확인할 수 있습니다.",
-        "url": "https://gorics.github.io/website/news/financial/",
-        "source": { "name": "GORICS FINANCIAL NEWS", "url": "https://gorics.github.io/website/news/financial/" },
-        "publishedAt": "2026-06-13T10:32:43.384Z",
-        "guid": "compat-top-2",
-        "score": 90
-      },
-      {
-        "id": "compat-top-3",
-        "category": "top",
-        "categoryName": "종합 핫뉴스",
-        "categoryIcon": "🔥",
-        "title": "스터디 허브 바로가기",
-        "description": "학습 스케줄과 사회문화 자료는 스터디 허브에서 확인할 수 있습니다.",
-        "url": "https://gorics.github.io/website/study/",
-        "source": { "name": "GORICS STUDY", "url": "https://gorics.github.io/website/study/" },
-        "publishedAt": "2026-06-13T10:32:43.384Z",
-        "guid": "compat-top-3",
-        "score": 80
-      }
-    ]
+  "theme_order": ["종합 핫뉴스", "정치·정책", "경제·금융", "스터디"],
+  "items": [
+    { "id": "live-fix-001", "title": "[속보] 이재명 대통령, ‘기자 선행매매’에 경고…“주가조작 이제 그만해야”", "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFAwYkJiOVF0TUpra2UxYmxOTjM3djAwZmNETXVnOVlQOFB6ODI0YzliMm03bVcxNXcxRU5JRVdjTUU3MXVQX0Q1SUJ2RF8wMzhYVDFVRThmcGRudUdjU0U2cUh0ZTM?oc=5", "source": "강원일보", "theme": "정치·정책", "published_at": "2026-06-13T09:15:04.000Z", "summary": "이재명 대통령이 기자 선행매매와 주가조작 관련 사안에 경고 메시지를 냈습니다.", "tags": ["정치·정책", "속보", "경제"], "score": 100 },
+    { "id": "live-fix-002", "title": "[속보] 윤석열, 종합특검 조사 출석 약 9시간 만에 종료", "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1ONUJ6OFJSWWtzaXVwSzB5YVdmSlp6elZiUGZFZVM0TmJmTnV1bWVOTmtRdkJTMHREZl91SEE2YlJnTzhTTzgwYTF4Q0pUc2R1cU1DR3I1d0lLTU1XN1pyLVlDWUNxS1ZpVWlr0gFwQVVfeXFMTkdJNF9hamYtTVZ6RjF5QmNNT1RQU21oRTRhb1lBS2toekkxOVFTbDRHaU51czVwWm04bXUxYy1OQ3c5X2JDNUV6T2hIWV9ndmRJSHhVcExYZ05YRjlIbFh1NlBTbnhxWlpvNlEwb2hpWA?oc=5", "source": "머니투데이", "theme": "정치·정책", "published_at": "2026-06-13T10:11:20.000Z", "summary": "윤석열 전 대통령 관련 종합특검 조사 출석 일정이 약 9시간 만에 종료됐다는 보도입니다.", "tags": ["정치·정책", "속보"], "score": 96 },
+    { "id": "live-fix-003", "title": "[단독] 미래에셋, 스페이스X IPO 투자 위해 자기자본 펀드 결성", "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQN2NSMW00endpb3BORU9sa1pqZ2c0eWJaUXZWZ2xuZG41S08yWkNLNWowZ0w5WGNCemY1ejBWVEhwMFhfNlJVNDYydmlLZXdObXpKRTRONUNvZC1BOG1FUk0yRGpyWDlWY1c2ZUN0Qkw1MEJWSHE1LU5oQlFXWXJDaHZrZHJkNHfSAZsBQVVfeXFMTVNLeTJsaU1ZN3JiTTQ5ZW02RE5adzRsMWl5MGdrNmRyV01FY3haZmdwMDM5Y3pLWGJPV0FZM3IxbnBKbVN4MjMzODVQNlQ4SXlUaE4teFNfZldGR3kwYVpJRlBLY0xpdjQ0a0NnNGVoeDh3NVdfY3pQM3VoWk9XM1FxNDRLV2RhdExleFNrNU5BOXJ2LVJrRTVwczQ?oc=5", "source": "Chosunbiz", "theme": "경제·금융", "published_at": "2026-06-13T08:40:00.000Z", "summary": "미래에셋이 스페이스X IPO 투자 확대를 위해 자기자본 기반 펀드를 결성한다는 보도입니다.", "tags": ["경제·금융", "단독", "IPO"], "score": 94 },
+    { "id": "live-fix-004", "title": "금융 뉴스 전용 페이지 바로가기", "link": "https://gorics.github.io/website/news/financial/", "source": "GORICS FINANCIAL NEWS", "theme": "경제·금융", "published_at": "2026-06-13T11:15:00.000Z", "summary": "증시, 금리, 환율, 기업, 부동산, 가상자산 뉴스는 금융 뉴스 전용 페이지에서 확인할 수 있습니다.", "tags": ["경제·금융", "증시", "환율"], "score": 90 },
+    { "id": "live-fix-005", "title": "스터디 허브 바로가기", "link": "https://gorics.github.io/website/study/", "source": "GORICS STUDY", "theme": "스터디", "published_at": "2026-06-13T11:15:00.000Z", "summary": "스케줄 매니저와 사회문화 학습 자료는 스터디 허브에서 확인할 수 있습니다.", "tags": ["스터디", "수능"], "score": 80 }
+  ],
+  "themes": {
+    "종합 핫뉴스": [
+      { "id": "live-fix-001", "title": "[속보] 이재명 대통령, ‘기자 선행매매’에 경고…“주가조작 이제 그만해야”", "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFAwYkJiOVF0TUpra2UxYmxOTjM3djAwZmNETXVnOVlQOFB6ODI0YzliMm03bVcxNXcxRU5JRVdjTUU3MXVQX0Q1SUJ2RF8wMzhYVDFVRThmcGRudUdjU0U2cUh0ZTM?oc=5", "source": "강원일보", "theme": "정치·정책", "published_at": "2026-06-13T09:15:04.000Z", "summary": "이재명 대통령이 기자 선행매매와 주가조작 관련 사안에 경고 메시지를 냈습니다.", "tags": ["정치·정책", "속보", "경제"], "score": 100 },
+      { "id": "live-fix-002", "title": "[속보] 윤석열, 종합특검 조사 출석 약 9시간 만에 종료", "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1ONUJ6OFJSWWtzaXVwSzB5YVdmSlp6elZiUGZFZVM0TmJmTnV1bWVOTmtRdkJTMHREZl91SEE2YlJnTzhTTzgwYTF4Q0pUc2R1cU1DR3I1d0lLTU1XN1pyLVlDWUNxS1ZpVWlr0gFwQVVfeXFMTkdJNF9hamYtTVZ6RjF5QmNNT1RQU21oRTRhb1lBS2toekkxOVFTbDRHaU51czVwWm04bXUxYy1OQ3c5X2JDNUV6T2hIWV9ndmRJSHhVcExYZ05YRjlIbFh1NlBTbnhxWlpvNlEwb2hpWA?oc=5", "source": "머니투데이", "theme": "정치·정책", "published_at": "2026-06-13T10:11:20.000Z", "summary": "윤석열 전 대통령 관련 종합특검 조사 출석 일정이 약 9시간 만에 종료됐다는 보도입니다.", "tags": ["정치·정책", "속보"], "score": 96 },
+      { "id": "live-fix-003", "title": "[단독] 미래에셋, 스페이스X IPO 투자 위해 자기자본 펀드 결성", "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQN2NSMW00endpb3BORU9sa1pqZ2c0eWJaUXZWZ2xuZG41S08yWkNLNWowZ0w5WGNCemY1ejBWVEhwMFhfNlJVNDYydmlLZXdObXpKRTRONUNvZC1BOG1FUk0yRGpyWDlWY1c2ZUN0Qkw1MEJWSHE1LU5oQlFXWXJDaHZrZHJkNHfSAZsBQVVfeXFMTVNLeTJsaU1ZN3JiTTQ5ZW02RE5adzRsMWl5MGdrNmRyV01FY3haZmdwMDM5Y3pLWGJPV0FZM3IxbnBKbVN4MjMzODVQNlQ4SXlUaE4teFNfZldGR3kwYVpJRlBLY0xpdjQ0a0NnNGVoeDh3NVdfY3pQM3VoWk9XM1FxNDRLV2RhdExleFNrNU5BOXJ2LVJrRTVwczQ?oc=5", "source": "Chosunbiz", "theme": "경제·금융", "published_at": "2026-06-13T08:40:00.000Z", "summary": "미래에셋이 스페이스X IPO 투자 확대를 위해 자기자본 기반 펀드를 결성한다는 보도입니다.", "tags": ["경제·금융", "단독", "IPO"], "score": 94 }
+    ],
+    "정치·정책": [],
+    "경제·금융": [],
+    "스터디": []
   },
-  "allItems": [
-    {
-      "id": "compat-top-1",
-      "category": "top",
-      "categoryName": "종합 핫뉴스",
-      "categoryIcon": "🔥",
-      "title": "뉴스 데이터 경로 복구 완료",
-      "description": "구버전 뉴스 페이지가 잘못 요청하던 news/data.json 호환 경로를 복구했습니다. 최신 뉴스 허브 배포 전까지 빈 화면을 막습니다.",
-      "url": "https://gorics.github.io/website/news/",
-      "source": { "name": "GORICS", "url": "https://gorics.github.io/website/" },
-      "publishedAt": "2026-06-13T10:32:43.384Z",
-      "guid": "compat-top-1",
-      "score": 100
-    },
-    {
-      "id": "compat-top-2",
-      "category": "top",
-      "categoryName": "종합 핫뉴스",
-      "categoryIcon": "🔥",
-      "title": "금융 뉴스 바로가기",
-      "description": "증시, 금리, 환율, 기업, 부동산, 가상자산 뉴스는 금융 뉴스 전용 페이지에서 확인할 수 있습니다.",
-      "url": "https://gorics.github.io/website/news/financial/",
-      "source": { "name": "GORICS FINANCIAL NEWS", "url": "https://gorics.github.io/website/news/financial/" },
-      "publishedAt": "2026-06-13T10:32:43.384Z",
-      "guid": "compat-top-2",
-      "score": 90
-    },
-    {
-      "id": "compat-top-3",
-      "category": "top",
-      "categoryName": "종합 핫뉴스",
-      "categoryIcon": "🔥",
-      "title": "스터디 허브 바로가기",
-      "description": "학습 스케줄과 사회문화 자료는 스터디 허브에서 확인할 수 있습니다.",
-      "url": "https://gorics.github.io/website/study/",
-      "source": { "name": "GORICS STUDY", "url": "https://gorics.github.io/website/study/" },
-      "publishedAt": "2026-06-13T10:32:43.384Z",
-      "guid": "compat-top-3",
-      "score": 80
-    }
-  ]
+  "byCategory": {
+    "top": [],
+    "politics": [],
+    "economy": [],
+    "study": []
+  },
+  "allItems": []
 }
