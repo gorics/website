@@ -1,0 +1,45 @@
+name: Hourly Hot News Update
+
+on:
+  schedule:
+    - cron: '7 * * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/update-hot-news.mjs'
+      - '.github/workflows/hourly-hot-news.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hourly-hot-news
+  cancel-in-progress: true
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Generate privacy-redacted hot news
+        run: node scripts/update-hot-news.mjs
+
+      - name: Commit generated news files
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add news/index.html news/data.json news/feed.xml
+          if git diff --cached --quiet; then
+            echo "No news changes to commit."
+          else
+            git commit -m "chore(news): hourly hot news update [skip ci]"
+            git push
+          fi
