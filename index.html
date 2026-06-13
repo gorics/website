@@ -1,234 +1,631 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INDEX OF GORICS.CLOUD</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        :root {
-            --bg: #0a0c10;
-            --panel: #161b22;
-            --accent: #58a6ff;
-            --text: #c9d1d9;
-            --border: #30363d;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="개인정보 수집 없이 공개 RSS 기반으로 매시간 갱신되는 GORICS.CLOUD 테마별 핫 뉴스." />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none';" />
+  <title>GORICS.CLOUD NEWS</title>
+  <style>
+    :root {
+      --bg: #070a12;
+      --panel: #101827;
+      --panel-2: #142033;
+      --line: rgba(148, 163, 184, 0.18);
+      --text: #e5edf8;
+      --muted: #93a4b8;
+      --accent: #67e8f9;
+      --accent-2: #a78bfa;
+      --danger: #fb7185;
+      --ok: #34d399;
+      --shadow: 0 22px 80px rgba(0, 0, 0, 0.38);
+    }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(103, 232, 249, 0.18), transparent 32rem),
+        radial-gradient(circle at top right, rgba(167, 139, 250, 0.16), transparent 30rem),
+        linear-gradient(180deg, #050816 0%, var(--bg) 48%, #040711 100%);
+    }
 
-        .container {
-            width: 100%;
-            max-width: 900px;
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+    a { color: inherit; }
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
 
-        .header {
-            padding: 20px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255,255,255,0.02);
-        }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 30px;
+      background: linear-gradient(135deg, rgba(16, 24, 39, 0.94), rgba(12, 18, 31, 0.88));
+      box-shadow: var(--shadow);
+    }
 
-        .header h1 {
-            margin: 0;
-            font-size: 1.25rem;
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -12% -50% 42%;
+      height: 260px;
+      background: radial-gradient(circle, rgba(103, 232, 249, 0.2), transparent 68%);
+      pointer-events: none;
+    }
 
-        .search-bar {
-            padding: 15px 20px;
-            background: rgba(0,0,0,0.2);
-            border-bottom: 1px solid var(--border);
-        }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 34px;
+      position: relative;
+      z-index: 1;
+    }
 
-        input {
-            width: 100%;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 6px;
-            outline: none;
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      font-size: clamp(1.25rem, 3vw, 1.7rem);
+    }
 
-        .list-container {
-            max-height: 600px;
-            overflow-y: auto;
-        }
+    .brand-badge {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #05101c;
+      box-shadow: 0 10px 30px rgba(103, 232, 249, 0.22);
+    }
 
-        .item {
-            display: flex;
-            align-items: center;
-            padding: 12px 20px;
-            border-bottom: 1px solid var(--border);
-            text-decoration: none;
-            color: var(--text);
-            transition: background 0.2s;
-        }
+    .privacy-link {
+      text-decoration: none;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.035);
+      white-space: nowrap;
+    }
 
-        .item:hover {
-            background: rgba(88, 166, 255, 0.1);
-        }
+    .privacy-link:hover { color: var(--text); border-color: rgba(103, 232, 249, 0.45); }
 
-        .item-icon {
-            margin-right: 15px;
-            color: #8b949e;
-        }
+    h1 {
+      margin: 0;
+      max-width: 820px;
+      font-size: clamp(2.3rem, 7vw, 5.7rem);
+      line-height: 0.92;
+      letter-spacing: -0.08em;
+      position: relative;
+      z-index: 1;
+    }
 
-        .item-info {
-            flex-grow: 1;
-        }
+    .lede {
+      max-width: 760px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.2vw, 1.22rem);
+      line-height: 1.72;
+      position: relative;
+      z-index: 1;
+    }
 
-        .item-name {
-            font-weight: 600;
-            display: block;
-        }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+      position: relative;
+      z-index: 1;
+    }
 
-        .item-path {
-            font-size: 0.75rem;
-            color: #8b949e;
-        }
+    .stat {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.035);
+      border-radius: 20px;
+      padding: 18px;
+      min-height: 104px;
+    }
 
-        .badge {
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 10px;
-            background: #21262d;
-            border: 1px solid var(--border);
-        }
+    .stat strong {
+      display: block;
+      font-size: 1.8rem;
+      letter-spacing: -0.04em;
+    }
 
-        #loading {
-            padding: 40px;
-            text-align: center;
-            color: var(--accent);
-        }
+    .stat span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
 
-        /* 스크롤바 커스텀 */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
-    </style>
+    .controls {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      margin: 20px 0;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(7, 10, 18, 0.76);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    input, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.045);
+      color: var(--text);
+      padding: 13px 14px;
+      outline: none;
+      font: inherit;
+    }
+
+    select { min-width: 160px; cursor: pointer; }
+    input:focus, select:focus { border-color: rgba(103, 232, 249, 0.72); box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.1); }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: thin;
+    }
+
+    .tab {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.035);
+      padding: 10px 13px;
+      white-space: nowrap;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .tab.active {
+      color: #06111e;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      font-weight: 800;
+    }
+
+    .ticker {
+      margin: 20px 0;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .ticker-inner {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      padding: 13px 16px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .ticker strong { color: var(--accent); }
+    .ticker span { overflow: hidden; text-overflow: ellipsis; }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 26px 2px 14px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      letter-spacing: -0.04em;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+      text-align: right;
+      font-size: 0.94rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      min-height: 272px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 23px;
+      text-decoration: none;
+      background: linear-gradient(180deg, rgba(20, 32, 51, 0.94), rgba(12, 18, 31, 0.94));
+      box-shadow: 0 14px 42px rgba(0, 0, 0, 0.18);
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(103, 232, 249, 0.58);
+      background: linear-gradient(180deg, rgba(24, 39, 64, 0.98), rgba(13, 21, 36, 0.98));
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+      border: 1px solid rgba(103, 232, 249, 0.22);
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(103, 232, 249, 0.08);
+      padding: 6px 10px;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    time {
+      color: var(--muted);
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.42;
+      letter-spacing: -0.035em;
+    }
+
+    .summary {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.58;
+      font-size: 0.94rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .meta {
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      padding-top: 16px;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      padding: 5px 8px;
+      font-size: 0.73rem;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .source {
+      color: var(--ok);
+      border-color: rgba(52, 211, 153, 0.28);
+    }
+
+    .empty, .error {
+      border: 1px dashed var(--line);
+      border-radius: 24px;
+      padding: 42px 20px;
+      color: var(--muted);
+      text-align: center;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .error { color: var(--danger); border-color: rgba(251, 113, 133, 0.32); }
+
+    footer {
+      color: var(--muted);
+      text-align: center;
+      margin-top: 34px;
+      line-height: 1.8;
+      font-size: 0.92rem;
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 900px) {
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 22px, 1180px); padding-top: 12px; }
+      .hero { padding: 22px; border-radius: 22px; }
+      .topbar { align-items: flex-start; }
+      .privacy-link { padding: 9px 11px; font-size: 0.86rem; }
+      .stats, .grid { grid-template-columns: 1fr; }
+      .search-row { grid-template-columns: 1fr; }
+      .section-title { display: block; }
+      .section-title p { margin-top: 6px; text-align: left; }
+      .card { min-height: 238px; }
+    }
+  </style>
 </head>
 <body>
-
-    <div class="container">
-        <div class="header">
-            <h1><i data-lucide="folder-search"></i> GORICS.CLOUD EXPLORER</h1>
-            <span id="count" class="badge">0 Items Found</span>
+  <main class="wrap">
+    <section class="hero">
+      <div class="topbar">
+        <div class="brand">
+          <span class="brand-badge">G</span>
+          <span>GORICS.CLOUD NEWS</span>
         </div>
-        
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Search directories or files..." oninput="filterList()">
-        </div>
+        <a class="privacy-link" href="privacy.html">개인정보 0 수집</a>
+      </div>
 
-        <div id="loading">
-            <i data-lucide="loader-2" class="spin"></i> 탐색 중...
-        </div>
+      <h1>테마별 핫 뉴스 자동 업데이트</h1>
+      <p class="lede">
+        공개 RSS만 기반으로 정치·사회, 경제, 국제, AI·테크, 과학, 건강, 문화, 스포츠, 교육 뉴스를 한 화면에 모읍니다.
+        로그인·쿠키·분석 스크립트 없이 운영됩니다.
+      </p>
 
-        <div id="list" class="list-container"></div>
-    </div>
+      <div class="stats" aria-label="뉴스 상태">
+        <div class="stat"><strong id="statTotal">0</strong><span>표시 가능한 기사</span></div>
+        <div class="stat"><strong id="statThemes">0</strong><span>테마</span></div>
+        <div class="stat"><strong id="statUpdated">-</strong><span>마지막 갱신</span></div>
+        <div class="stat"><strong>1h</strong><span>자동 갱신 주기</span></div>
+      </div>
+    </section>
 
-    <script>
-        let allItems = [];
-        const TARGET_URL = 'https://gorics.cloud/';
-        const PROXY = 'https://api.allorigins.win/get?url=';
+    <section class="controls" aria-label="뉴스 필터">
+      <div class="search-row">
+        <input id="searchInput" type="search" placeholder="키워드 검색: AI, 경제, 수능, 반도체..." autocomplete="off" />
+        <select id="sortSelect" aria-label="정렬">
+          <option value="hot">핫한 순</option>
+          <option value="new">최신 순</option>
+          <option value="source">언론사 순</option>
+        </select>
+      </div>
+      <div id="tabs" class="tabs" role="tablist"></div>
+    </section>
 
-        async function fetchIndex() {
-            const listElement = document.getElementById('list');
-            const loading = document.getElementById('loading');
-            
-            try {
-                // CORS 우회 프록시를 통한 HTML Fetch
-                const response = await fetch(PROXY + encodeURIComponent(TARGET_URL));
-                const data = await response.json();
-                const html = data.contents;
+    <section class="ticker" aria-label="긴급 뉴스 티커">
+      <div class="ticker-inner">
+        <strong>LIVE</strong>
+        <span id="tickerText">뉴스 데이터를 불러오는 중...</span>
+      </div>
+    </section>
 
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const links = doc.querySelectorAll('a');
+    <section>
+      <div class="section-title">
+        <h2 id="currentTitle">전체 핫 뉴스</h2>
+        <p id="resultInfo">로딩 중</p>
+      </div>
+      <div id="newsGrid" class="grid"></div>
+    </section>
 
-                links.forEach(link => {
-                    const href = link.getAttribute('href');
-                    const text = link.textContent.trim();
+    <footer>
+      © <span id="year"></span> GORICS.CLOUD NEWS · 공개 RSS 기반 자동 큐레이션 ·
+      <a href="privacy.html">개인정보 처리 안내</a>
+    </footer>
+  </main>
 
-                    // 유효한 경로만 필터링
-                    if (href && !href.startsWith('?') && !href.startsWith('#')) {
-                        const isDir = href.endsWith('/');
-                        const fullUrl = href.startsWith('http') ? href : TARGET_URL + href;
-                        
-                        allItems.push({
-                            name: text || href,
-                            path: fullUrl,
-                            isDir: isDir
-                        });
-                    }
-                });
+  <script>
+    const DATA_URL = "data/news.json";
+    const MAX_RENDER = 180;
 
-                renderList(allItems);
-                loading.style.display = 'none';
-            } catch (err) {
-                loading.innerHTML = '<span style="color: #f85149">데이터를 불러오지 못했습니다. 서버 상태를 확인하세요.</span>';
-            }
-        }
+    let state = {
+      items: [],
+      themeOrder: [],
+      activeTheme: "전체",
+      query: "",
+      sort: "hot",
+      generatedAt: null
+    };
 
-        function renderList(items) {
-            const listElement = document.getElementById('list');
-            const countElement = document.getElementById('count');
-            listElement.innerHTML = '';
-            countElement.innerText = `${items.length} Items Found`;
+    const $ = (id) => document.getElementById(id);
 
-            items.forEach(item => {
-                const icon = item.isDir ? 'folder' : 'file-text';
-                const el = document.createElement('a');
-                el.href = item.path;
-                el.target = "_blank";
-                el.className = 'item';
-                el.innerHTML = `
-                    <div class="item-icon"><i data-lucide="${icon}"></i></div>
-                    <div class="item-info">
-                        <span class="item-name">${item.name}</span>
-                        <span class="item-path">${item.path}</span>
-                    </div>
-                    <i data-lucide="external-link" size="16" style="opacity: 0.3"></i>
-                `;
-                listElement.appendChild(el);
-            });
-            lucide.createIcons();
-        }
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
 
-        function filterList() {
-            const term = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = allItems.filter(i => 
-                i.name.toLowerCase().includes(term) || i.path.toLowerCase().includes(term)
-            );
-            renderList(filtered);
-        }
+    function formatRelative(iso) {
+      if (!iso) return "-";
+      const date = new Date(iso);
+      const diff = Date.now() - date.getTime();
+      const minutes = Math.max(0, Math.floor(diff / 60000));
+      if (minutes < 1) return "방금 전";
+      if (minutes < 60) return `${minutes}분 전`;
+      const hours = Math.floor(minutes / 60);
+      if (hours < 24) return `${hours}시간 전`;
+      const days = Math.floor(hours / 24);
+      return `${days}일 전`;
+    }
 
-        fetchIndex();
-    </script>
+    function shortUpdated(iso) {
+      if (!iso) return "-";
+      const date = new Date(iso);
+      return new Intl.DateTimeFormat("ko-KR", {
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      }).format(date);
+    }
 
-    <style>
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .spin { animation: spin 1s linear infinite; }
-    </style>
+    function uniqueThemes(items, preferred) {
+      const found = new Set(items.map((item) => item.theme).filter(Boolean));
+      const ordered = ["전체", ...preferred.filter((theme) => found.has(theme))];
+      for (const theme of found) {
+        if (!ordered.includes(theme)) ordered.push(theme);
+      }
+      return ordered;
+    }
+
+    function renderTabs() {
+      const tabs = uniqueThemes(state.items, state.themeOrder);
+      $("tabs").innerHTML = tabs.map((theme) => {
+        const active = theme === state.activeTheme ? "active" : "";
+        return `<button class="tab ${active}" type="button" role="tab" data-theme="${escapeHtml(theme)}">${escapeHtml(theme)}</button>`;
+      }).join("");
+
+      document.querySelectorAll(".tab").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.activeTheme = button.dataset.theme;
+          render();
+        });
+      });
+    }
+
+    function getFilteredItems() {
+      const query = state.query.trim().toLowerCase();
+      let items = [...state.items];
+
+      if (state.activeTheme !== "전체") {
+        items = items.filter((item) => item.theme === state.activeTheme);
+      }
+
+      if (query) {
+        items = items.filter((item) => {
+          const haystack = [
+            item.title,
+            item.summary,
+            item.source,
+            item.theme,
+            ...(item.tags || [])
+          ].join(" ").toLowerCase();
+          return haystack.includes(query);
+        });
+      }
+
+      if (state.sort === "new") {
+        items.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
+      } else if (state.sort === "source") {
+        items.sort((a, b) => String(a.source || "").localeCompare(String(b.source || ""), "ko"));
+      } else {
+        items.sort((a, b) => (b.score || 0) - (a.score || 0));
+      }
+
+      return items;
+    }
+
+    function renderCards(items) {
+      if (!items.length) {
+        $("newsGrid").className = "";
+        $("newsGrid").innerHTML = `<div class="empty">조건에 맞는 뉴스가 없습니다. 자동 갱신 직후 다시 확인하세요.</div>`;
+        return;
+      }
+
+      $("newsGrid").className = "grid";
+      $("newsGrid").innerHTML = items.slice(0, MAX_RENDER).map((item) => {
+        const tags = (item.tags || []).slice(0, 4).map((tag) => `<span class="pill">${escapeHtml(tag)}</span>`).join("");
+        const summary = item.summary ? `<p class="summary">${escapeHtml(item.summary)}</p>` : `<p class="summary">원문 링크에서 전체 내용을 확인하세요. 이 사이트는 저작권 보호를 위해 짧은 RSS 요약만 표시합니다.</p>`;
+        return `
+          <a class="card" href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer">
+            <div class="card-top">
+              <span class="chip">${escapeHtml(item.theme || "뉴스")}</span>
+              <time datetime="${escapeHtml(item.published_at)}">${formatRelative(item.published_at)}</time>
+            </div>
+            <h3>${escapeHtml(item.title)}</h3>
+            ${summary}
+            <div class="meta">
+              <span class="pill source">${escapeHtml(item.source || "공개 RSS")}</span>
+              ${tags}
+            </div>
+          </a>
+        `;
+      }).join("");
+    }
+
+    function renderTicker(items) {
+      const top = items.slice(0, 8).map((item) => item.title).filter(Boolean);
+      $("tickerText").textContent = top.length ? top.join(" · ") : "뉴스 데이터가 아직 생성되지 않았습니다.";
+    }
+
+    function render() {
+      renderTabs();
+
+      const filtered = getFilteredItems();
+      $("currentTitle").textContent = state.activeTheme === "전체" ? "전체 핫 뉴스" : `${state.activeTheme} 핫 뉴스`;
+      $("resultInfo").textContent = `${filtered.length.toLocaleString("ko-KR")}개 결과 · 최대 ${MAX_RENDER}개 표시`;
+      renderTicker(filtered.length ? filtered : state.items);
+      renderCards(filtered);
+    }
+
+    async function loadNews() {
+      $("year").textContent = new Date().getFullYear();
+
+      try {
+        const response = await fetch(`${DATA_URL}?v=${Date.now()}`, { cache: "no-store" });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+
+        state.items = Array.isArray(data.items) ? data.items : [];
+        state.themeOrder = Array.isArray(data.theme_order) ? data.theme_order : [];
+        state.generatedAt = data.generated_at || null;
+
+        $("statTotal").textContent = state.items.length.toLocaleString("ko-KR");
+        $("statThemes").textContent = uniqueThemes(state.items, state.themeOrder).filter((t) => t !== "전체").length;
+        $("statUpdated").textContent = shortUpdated(state.generatedAt);
+        $("resultInfo").textContent = "로딩 완료";
+
+        render();
+      } catch (error) {
+        $("tickerText").textContent = "뉴스 데이터를 불러오지 못했습니다.";
+        $("newsGrid").className = "";
+        $("newsGrid").innerHTML = `<div class="error">data/news.json을 아직 불러올 수 없습니다. GitHub Actions 첫 실행 후 자동으로 채워집니다.</div>`;
+        console.error(error);
+      }
+    }
+
+    $("searchInput").addEventListener("input", (event) => {
+      state.query = event.target.value;
+      render();
+    });
+
+    $("sortSelect").addEventListener("change", (event) => {
+      state.sort = event.target.value;
+      render();
+    });
+
+    loadNews();
+  </script>
 </body>
 </html>
