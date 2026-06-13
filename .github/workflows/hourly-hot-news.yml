@@ -1,4 +1,4 @@
-# Manual trigger: 2026-06-13T17:57:00+09:00
+# Manual trigger: 2026-06-13T19:45:00+09:00
 name: Hourly Hot News Update
 
 on:
@@ -13,14 +13,19 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
-  group: hourly-hot-news
+  group: pages
   cancel-in-progress: true
 
 jobs:
   update-news:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -48,3 +53,15 @@ jobs:
             git commit -m "chore(news): hourly hot news update"
             git push
           fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
