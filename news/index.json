@@ -1,15 +1,16 @@
 {
-  "generatedAt": "2026-06-13T21:08:21+09:00",
-  "source": "Compatibility pointer for GitHub Pages news index; canonical live overlay is latest.json and base is data.json",
+  "generatedAt": "2026-06-14T02:25:16+09:00",
+  "source": "Compatibility pointer for GitHub Pages news index; canonical rendering merges latest.json with data.json",
   "page": "news-index-compatibility",
   "categories": [
-    {"id":"economy","name":"경제·금융","icon":"💹","count":6},
-    {"id":"tech","name":"AI·과학기술","icon":"🤖","count":3},
+    {"id":"economy","name":"경제·금융","icon":"💹","count":8},
+    {"id":"tech","name":"AI·과학기술","icon":"🤖","count":5},
     {"id":"world","name":"국제","icon":"🌍","count":6},
-    {"id":"sports","name":"스포츠","icon":"⚽","count":2},
-    {"id":"culture","name":"문화·엔터","icon":"🎬","count":2}
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"sports","name":"스포츠","icon":"⚽","count":3},
+    {"id":"culture","name":"문화·엔터","icon":"🎬","count":3}
   ],
-  "total": 19,
+  "total": 26,
   "allItems": [],
   "note": "Use news/latest.json plus news/data.json for full merged rendering."
 }
