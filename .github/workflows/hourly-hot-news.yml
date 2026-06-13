@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - 'scripts/update-hot-news.mjs'
+      - 'scripts/update-financial-news.mjs'
       - '.github/workflows/hourly-hot-news.yml'
 
 permissions:
@@ -31,12 +32,15 @@ jobs:
       - name: Generate privacy-redacted hot news
         run: node scripts/update-hot-news.mjs
 
+      - name: Generate privacy-redacted financial news
+        run: node scripts/update-financial-news.mjs
+
       - name: Commit generated news files
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add news/index.html news/data.json news/feed.xml
+          git add news/index.html news/data.json news/feed.xml news/financial/index.html news/financial/data.json news/financial/feed.xml
           if git diff --cached --quiet; then
             echo "No news changes to commit."
           else
