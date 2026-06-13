@@ -6,18 +6,29 @@
   box-sizing: border-box;
 }
 
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   background: #05070b;
   color: #eef2ff;
 }
 
 .app {
-  min-height: 100vh;
-  padding: 20px;
+  min-height: 100svh;
+  padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
   display: grid;
-  grid-template-columns: 380px 1fr;
+  grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
   gap: 16px;
 }
 
@@ -27,6 +38,7 @@ header,
   background: #0d1320;
   border: 1px solid #273044;
   border-radius: 12px;
+  min-width: 0;
 }
 
 header {
@@ -36,13 +48,15 @@ header {
 
 header h1 {
   margin: 0 0 8px;
-  font-size: 1.45rem;
+  font-size: clamp(1.18rem, 3vw, 1.45rem);
+  overflow-wrap: anywhere;
 }
 
 header p {
   margin: 0;
   color: #c5cee0;
   line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .panel {
@@ -62,6 +76,7 @@ button {
 
 select {
   width: 100%;
+  min-height: 42px;
   background: #05070b;
   color: #eef2ff;
   border: 1px solid #3b4a69;
@@ -77,6 +92,7 @@ select {
 }
 
 button {
+  min-height: 42px;
   border: 0;
   border-radius: 10px;
   padding: 10px 12px;
@@ -84,6 +100,7 @@ button {
   background: linear-gradient(135deg, #2563eb, #0891b2);
   cursor: pointer;
   font-weight: 700;
+  touch-action: manipulation;
 }
 
 button.secondary {
@@ -103,6 +120,7 @@ button:disabled {
   margin: 10px 0 0;
   color: #9fb0cf;
   font-size: 0.92rem;
+  overflow-wrap: anywhere;
 }
 
 .status-panel h2 {
@@ -121,10 +139,11 @@ button:disabled {
   padding: 8px;
   font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .screen-wrap {
-  min-height: 75vh;
+  min-height: 75svh;
   overflow: hidden;
 }
 
@@ -147,6 +166,83 @@ button:disabled {
   }
 
   .screen-wrap {
-    min-height: 60vh;
+    min-height: 60svh;
+  }
+}
+
+@media (max-width: 560px) {
+  .app {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  header,
+  .panel,
+  .screen-wrap {
+    border-radius: 10px;
+  }
+
+  header,
+  .panel {
+    padding: 12px;
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  #log {
+    max-height: 34svh;
+  }
+
+  .screen-wrap {
+    min-height: 52svh;
+  }
+}
+
+@media (max-width: 380px) {
+  header h1 {
+    font-size: 1.08rem;
+  }
+
+  header p,
+  .hint,
+  select,
+  button {
+    font-size: 0.92rem;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 560px) {
+  .app {
+    grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+    padding: 10px;
+  }
+
+  header {
+    display: none;
+  }
+
+  .screen-wrap {
+    min-height: calc(100svh - 20px);
+  }
+
+  #log {
+    max-height: 42svh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
