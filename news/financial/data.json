@@ -1,0 +1,64 @@
+{
+  "generatedAt": "2026-06-13T05:30:00Z",
+  "source": "Bootstrap financial links; hourly workflow replaces this file with Google News RSS results",
+  "page": "financial",
+  "privacy": {
+    "policy": "No account, email, phone, resident ID, card number, IP address, or precise street-address patterns are intentionally published.",
+    "redaction": [
+      "email",
+      "phone",
+      "resident-registration-like number",
+      "card-like number",
+      "IP address",
+      "street-address-like pattern"
+    ]
+  },
+  "categories": [
+    {"id": "market", "name": "증시·시장", "icon": "📈", "count": 3},
+    {"id": "macro", "name": "금리·환율·거시", "icon": "🏦", "count": 0},
+    {"id": "company", "name": "기업·실적·산업", "icon": "🏭", "count": 4},
+    {"id": "finance", "name": "은행·증권·보험", "icon": "💳", "count": 1},
+    {"id": "realestate", "name": "부동산·PF", "icon": "🏙️", "count": 0},
+    {"id": "crypto", "name": "가상자산", "icon": "₿", "count": 0},
+    {"id": "global", "name": "글로벌 경제", "icon": "🌐", "count": 1},
+    {"id": "policy", "name": "정책·세금·재정", "icon": "📜", "count": 0},
+    {"id": "consumer", "name": "소비·유통·생활경제", "icon": "🛒", "count": 0}
+  ],
+  "total": 9,
+  "byCategory": {
+    "market": [
+      {"id": "financial-kospi-tech-rout-20260608", "category": "market", "categoryName": "증시·시장", "categoryIcon": "📈", "title": "코스피 8%대 급락, 연준 우려와 기술주 매도 확산", "description": "미국 금리 인상 우려와 글로벌 기술주 약세가 겹치며 한국 증시가 큰 폭으로 흔들렸다는 보도다. 삼성전자·SK하이닉스 등 반도체 대형주의 비중 확대가 지수 변동성을 키운 변수로 지목된다.", "url": "https://www.reuters.com/world/asia-pacific/south-koreas-kospi-craters-nearly-9-fed-fears-hammer-tech-stocks-2026-06-08/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-06-08T06:32:17Z", "score": 93},
+      {"id": "financial-kospi-7000-20260506", "category": "market", "categoryName": "증시·시장", "categoryIcon": "📈", "title": "코스피 7000 돌파, AI 랠리로 삼성전자 시총 1조달러 클럽 진입", "description": "AI 반도체 수요 확대를 배경으로 한국 증시가 기록적 상승을 보였고, 삼성전자와 SK하이닉스가 지수 상승을 주도했다는 보도다. 금융 전용판의 시장 맥락 기사로 보관한다.", "url": "https://www.reuters.com/world/asia-pacific/south-koreas-kospi-share-index-tops-7000-first-time-2026-05-06/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-05-06T00:16:25Z", "score": 84},
+      {"id": "financial-sk-hynix-retail-risk-20260527", "category": "market", "categoryName": "증시·시장", "categoryIcon": "📈", "title": "SK하이닉스 랠리, 개인투자자를 AI 변동성 중심으로 밀어넣다", "description": "AI 반도체 랠리가 개인투자자 자금과 레버리지 상품 수요를 끌어들이면서 한국 증시의 집중도·변동성 리스크가 커지고 있다는 해설이다.", "url": "https://www.reuters.com/commentary/breakingviews/sk-hynix-rally-lobs-retail-investors-into-ai-fire-2026-05-27/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-05-27T04:01:23Z", "score": 82}
+    ],
+    "macro": [],
+    "company": [
+      {"id": "financial-sk-hynix-nasdaq-20260612", "category": "company", "categoryName": "기업·실적·산업", "categoryIcon": "🏭", "title": "SK하이닉스, 미국 상장 후보로 나스닥 선택 전망", "description": "SK하이닉스가 AI 관련 투자 수요와 글로벌 투자자 접근성을 고려해 미국 상장 시장으로 나스닥을 택할 가능성이 커졌다는 보도다. HBM·AI 서버 공급망 내 위상이 핵심 배경으로 꼽힌다.", "url": "https://www.reuters.com/business/retail-consumer/south-koreas-sk-hynix-opt-nasdaq-planned-us-listing-sources-say-2026-06-12/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-06-12T11:27:54Z", "score": 99},
+      {"id": "financial-nvidia-sk-ai-deals-20260607", "category": "company", "categoryName": "기업·실적·산업", "categoryIcon": "🏭", "title": "엔비디아, SK그룹 등 한국 기업과 AI 인프라 협력 확대", "description": "엔비디아가 SK하이닉스·SK텔레콤 등 한국 기업과 AI 데이터센터, 메모리, 로봇, 모빌리티 분야 협력을 확대했다. 반도체·AI 인프라 수요가 한국 주요 기업의 실적 기대와 연결되고 있다.", "url": "https://www.reuters.com/business/media-telecom/sk-hynix-announces-multi-year-tech-deal-with-nvidia-ai-factories-2026-06-07/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-06-07T23:27:12Z", "score": 92},
+      {"id": "financial-nvidia-sk-shortage-20260607", "category": "company", "categoryName": "기업·실적·산업", "categoryIcon": "🏭", "title": "엔비디아·SK, 장기 메모리 부족 속 협력 계획 예고", "description": "엔비디아 CEO가 AI 슈퍼컴퓨터, CPU, 로봇 등 전방위 수요 확대로 메모리 부족이 수년간 이어질 수 있다고 언급했다. SK와의 협력 계획은 HBM 공급망과 국내 반도체 투자심리에 영향을 줄 수 있다.", "url": "https://www.reuters.com/business/media-telecom/nvidia-ceo-sk-chairman-announce-cooperation-plan-monday-report-2026-06-07/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-06-07T11:30:31Z", "score": 89},
+      {"id": "financial-sk-hynix-trillion-20260514", "category": "company", "categoryName": "기업·실적·산업", "categoryIcon": "🏭", "title": "AI 붐 속 SK하이닉스, 1조달러 가치에 근접", "description": "HBM과 AI 서버용 메모리 수요가 SK하이닉스의 기업가치 재평가를 이끌었다는 분석이다. 한국 증시의 AI·반도체 집중도와 기업 실적 기대를 동시에 보여주는 사례다.", "url": "https://www.reuters.com/world/asia-pacific/ai-boom-puts-sk-hynix-cusp-1-trillion-market-value-2026-05-14/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-05-14T02:48:42Z", "score": 83}
+    ],
+    "finance": [
+      {"id": "financial-retail-borrowing-limit-20260610", "category": "finance", "categoryName": "은행·증권·보험", "categoryIcon": "💳", "title": "한국 개인투자자, 증권사 신용공여 한도에 도달", "description": "한국 주식시장의 AI 주도 랠리 속 개인투자자의 레버리지 투자가 급증하면서 일부 증권사 신용공여 한도가 찼다는 분석이 나왔다. 차입 투자 확대가 시장 변동성 리스크로 연결될 수 있다.", "url": "https://www.reuters.com/world/asia-pacific/retail-investors-hit-borrowing-limits-south-korean-brokerages-think-tank-says-2026-06-10/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-06-10T07:07:15Z", "score": 95}
+    ],
+    "realestate": [],
+    "crypto": [],
+    "global": [
+      {"id": "financial-ai-chip-concentration-20260608", "category": "global", "categoryName": "글로벌 경제", "categoryIcon": "🌐", "title": "AI 칩 대형주 쏠림, 아시아 주식시장 종목 선택 게임을 바꾸다", "description": "TSMC, 삼성전자, SK하이닉스 등 AI 반도체 대형주가 아시아 지수에서 차지하는 비중이 커지면서 액티브 운용·패시브 자금 흐름·시장 집중도 리스크가 동시에 부각되고 있다.", "url": "https://www.reuters.com/business/finance/how-few-ai-chip-giants-warped-asias-stock-picking-game-2026-06-08/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-06-08T04:27:06Z", "score": 90}
+    ],
+    "policy": [],
+    "consumer": []
+  },
+  "allItems": [
+    {"id": "financial-sk-hynix-nasdaq-20260612", "category": "company", "categoryName": "기업·실적·산업", "categoryIcon": "🏭", "title": "SK하이닉스, 미국 상장 후보로 나스닥 선택 전망", "description": "SK하이닉스가 AI 관련 투자 수요와 글로벌 투자자 접근성을 고려해 미국 상장 시장으로 나스닥을 택할 가능성이 커졌다는 보도다. HBM·AI 서버 공급망 내 위상이 핵심 배경으로 꼽힌다.", "url": "https://www.reuters.com/business/retail-consumer/south-koreas-sk-hynix-opt-nasdaq-planned-us-listing-sources-say-2026-06-12/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-06-12T11:27:54Z", "score": 99},
+    {"id": "financial-retail-borrowing-limit-20260610", "category": "finance", "categoryName": "은행·증권·보험", "categoryIcon": "💳", "title": "한국 개인투자자, 증권사 신용공여 한도에 도달", "description": "한국 주식시장의 AI 주도 랠리 속 개인투자자의 레버리지 투자가 급증하면서 일부 증권사 신용공여 한도가 찼다는 분석이 나왔다. 차입 투자 확대가 시장 변동성 리스크로 연결될 수 있다.", "url": "https://www.reuters.com/world/asia-pacific/retail-investors-hit-borrowing-limits-south-korean-brokerages-think-tank-says-2026-06-10/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-06-10T07:07:15Z", "score": 95},
+    {"id": "financial-kospi-tech-rout-20260608", "category": "market", "categoryName": "증시·시장", "categoryIcon": "📈", "title": "코스피 8%대 급락, 연준 우려와 기술주 매도 확산", "description": "미국 금리 인상 우려와 글로벌 기술주 약세가 겹치며 한국 증시가 큰 폭으로 흔들렸다는 보도다. 삼성전자·SK하이닉스 등 반도체 대형주의 비중 확대가 지수 변동성을 키운 변수로 지목된다.", "url": "https://www.reuters.com/world/asia-pacific/south-koreas-kospi-craters-nearly-9-fed-fears-hammer-tech-stocks-2026-06-08/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-06-08T06:32:17Z", "score": 93},
+    {"id": "financial-nvidia-sk-ai-deals-20260607", "category": "company", "categoryName": "기업·실적·산업", "categoryIcon": "🏭", "title": "엔비디아, SK그룹 등 한국 기업과 AI 인프라 협력 확대", "description": "엔비디아가 SK하이닉스·SK텔레콤 등 한국 기업과 AI 데이터센터, 메모리, 로봇, 모빌리티 분야 협력을 확대했다. 반도체·AI 인프라 수요가 한국 주요 기업의 실적 기대와 연결되고 있다.", "url": "https://www.reuters.com/business/media-telecom/sk-hynix-announces-multi-year-tech-deal-with-nvidia-ai-factories-2026-06-07/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-06-07T23:27:12Z", "score": 92},
+    {"id": "financial-ai-chip-concentration-20260608", "category": "global", "categoryName": "글로벌 경제", "categoryIcon": "🌐", "title": "AI 칩 대형주 쏠림, 아시아 주식시장 종목 선택 게임을 바꾸다", "description": "TSMC, 삼성전자, SK하이닉스 등 AI 반도체 대형주가 아시아 지수에서 차지하는 비중이 커지면서 액티브 운용·패시브 자금 흐름·시장 집중도 리스크가 동시에 부각되고 있다.", "url": "https://www.reuters.com/business/finance/how-few-ai-chip-giants-warped-asias-stock-picking-game-2026-06-08/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-06-08T04:27:06Z", "score": 90},
+    {"id": "financial-nvidia-sk-shortage-20260607", "category": "company", "categoryName": "기업·실적·산업", "categoryIcon": "🏭", "title": "엔비디아·SK, 장기 메모리 부족 속 협력 계획 예고", "description": "엔비디아 CEO가 AI 슈퍼컴퓨터, CPU, 로봇 등 전방위 수요 확대로 메모리 부족이 수년간 이어질 수 있다고 언급했다. SK와의 협력 계획은 HBM 공급망과 국내 반도체 투자심리에 영향을 줄 수 있다.", "url": "https://www.reuters.com/business/media-telecom/nvidia-ceo-sk-chairman-announce-cooperation-plan-monday-report-2026-06-07/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-06-07T11:30:31Z", "score": 89},
+    {"id": "financial-kospi-7000-20260506", "category": "market", "categoryName": "증시·시장", "categoryIcon": "📈", "title": "코스피 7000 돌파, AI 랠리로 삼성전자 시총 1조달러 클럽 진입", "description": "AI 반도체 수요 확대를 배경으로 한국 증시가 기록적 상승을 보였고, 삼성전자와 SK하이닉스가 지수 상승을 주도했다는 보도다. 금융 전용판의 시장 맥락 기사로 보관한다.", "url": "https://www.reuters.com/world/asia-pacific/south-koreas-kospi-share-index-tops-7000-first-time-2026-05-06/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-05-06T00:16:25Z", "score": 84},
+    {"id": "financial-sk-hynix-trillion-20260514", "category": "company", "categoryName": "기업·실적·산업", "categoryIcon": "🏭", "title": "AI 붐 속 SK하이닉스, 1조달러 가치에 근접", "description": "HBM과 AI 서버용 메모리 수요가 SK하이닉스의 기업가치 재평가를 이끌었다는 분석이다. 한국 증시의 AI·반도체 집중도와 기업 실적 기대를 동시에 보여주는 사례다.", "url": "https://www.reuters.com/world/asia-pacific/ai-boom-puts-sk-hynix-cusp-1-trillion-market-value-2026-05-14/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-05-14T02:48:42Z", "score": 83},
+    {"id": "financial-sk-hynix-retail-risk-20260527", "category": "market", "categoryName": "증시·시장", "categoryIcon": "📈", "title": "SK하이닉스 랠리, 개인투자자를 AI 변동성 중심으로 밀어넣다", "description": "AI 반도체 랠리가 개인투자자 자금과 레버리지 상품 수요를 끌어들이면서 한국 증시의 집중도·변동성 리스크가 커지고 있다는 해설이다.", "url": "https://www.reuters.com/commentary/breakingviews/sk-hynix-rally-lobs-retail-investors-into-ai-fire-2026-05-27/", "source": {"name": "Reuters", "url": "https://www.reuters.com"}, "publishedAt": "2026-05-27T04:01:23Z", "score": 82}
+  ],
+  "errors": []
+}
