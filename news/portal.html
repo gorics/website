@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow">
+<meta name="description" content="GORICS 동적 뉴스 허브. 공개 뉴스 메타데이터를 검색·카테고리·HOT순으로 표시합니다.">
+<link rel="alternate" type="application/rss+xml" title="GORICS HOT NEWS RSS" href="feed.xml">
+<link rel="stylesheet" href="portal.css?v=20260613">
+<script defer src="app.js?v=20260613"></script>
+<title>GORICS NEWS</title>
+</head>
+<body>
+<header class="top"><nav class="wrap nav" aria-label="주요 메뉴"><a class="brand" href="../"><span class="mark">G</span><span>GORICS NEWS</span></a><div class="links"><a href="../">홈</a><a class="on" href="./">뉴스</a><a href="financial/">금융뉴스</a><a href="tech/">기술</a><a href="global/">국제</a><a href="politics/">정치</a><a href="play/">스포츠</a><a href="culture/">문화</a><a href="feed.xml">RSS</a></div></nav></header>
+<section class="hero"><div class="wrap"><div class="kicker">Dynamic news portal</div><div class="head"><h1>뉴스를 한눈에<br>빠르게 정리</h1><p class="desc"><b>news/data.json</b> 원본에 <b>latest.json</b> 최신 오버레이를 먼저 병합합니다. 기존 뉴스는 지우지 않고 카테고리·검색·HOT순으로 탐색합니다.</p></div><div class="searchbox" role="search"><input id="q" class="search" placeholder="뉴스 제목·요약·언론사 검색" autocomplete="off"><button id="searchBtn" class="searchbtn" type="button">검색</button></div><div class="quick"><span id="quick">뉴스 데이터 연결 중입니다.</span><span><a class="btn" href="financial/">💹 금융 뉴스</a> <a class="btn" href="feed.xml">📡 RSS</a> <button class="btn" id="retryTop" type="button">🔄 다시 읽기</button></span></div><div class="dash"><section id="featured" class="panel featured" aria-live="polite"><div><span class="badge">🔥 TOP HEADLINE</span><h2>뉴스 데이터를 불러오는 중입니다</h2><p>연결이 완료되면 가장 높은 HOT 점수의 기사가 먼저 표시됩니다.</p></div><div class="stats"><div class="stat"><span>상태</span><b>연결 중</b></div><div class="stat"><span>기사</span><b>-</b></div><div class="stat"><span>테마</span><b>-</b></div><div class="stat"><span>갱신</span><b>-</b></div></div></section><aside class="panel rankbox" aria-label="핫 뉴스 순위"><h2>🔥 많이 본 이슈</h2><ol id="rank" class="rank"><li><b>·</b><span>데이터 연결 중</span></li></ol></aside></div></div></section>
+<main><div class="wrap"><p class="notice">⚠️ 방문자 추적·쿠키·분석 스크립트는 넣지 않습니다. 공개 RSS/뉴스 메타데이터만 화면에 표시합니다.</p></div><section class="toolbar" aria-label="뉴스 필터"><div class="wrap"><div class="bar"><div id="tabs" class="tabs"></div><div class="tools"><select id="sort" class="select" aria-label="정렬 방식"><option value="hot">HOT순</option><option value="latest">최신순</option></select><button id="retry" class="btn" type="button">다시 읽기</button></div></div><div id="status" class="status">뉴스 데이터 연결 중입니다.</div></div></section><div class="wrap layout"><section id="grid" class="grid" aria-live="polite"></section><aside><section class="side"><h3>GORICS 빠른 이동</h3><p>카테고리별 페이지와 RSS를 바로 열 수 있습니다.</p><a href="financial/"><span>금융 뉴스</span><b>→</b></a><a href="tech/"><span>기술 뉴스</span><b>→</b></a><a href="global/"><span>국제 뉴스</span><b>→</b></a><a href="feed.xml"><span>RSS 피드</span><b>→</b></a></section></aside></div></main>
+</body>
+</html>
