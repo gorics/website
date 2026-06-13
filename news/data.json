@@ -1,6 +1,7 @@
 {
-  "generatedAt": "2026-06-13T10:26:52.247Z",
+  "generatedAt": "2026-06-13T10:32:43.384Z",
   "source": "Google News RSS search feeds; public metadata only",
+  "page": "news-hub",
   "privacy": {
     "policy": "No account, email, phone, resident ID, card number, IP address, or precise street-address patterns are intentionally published.",
     "redaction": [
@@ -35,7 +36,7 @@
       "id": "society",
       "name": "사회·교육",
       "icon": "🏫",
-      "count": 8
+      "count": 9
     },
     {
       "id": "world",
@@ -47,7 +48,7 @@
       "id": "tech",
       "name": "AI·과학기술",
       "icon": "🤖",
-      "count": 21
+      "count": 22
     },
     {
       "id": "climate",
@@ -74,7 +75,7 @@
       "count": 6
     }
   ],
-  "total": 184,
+  "total": 186,
   "byCategory": {
     "top": [
       {
@@ -206,22 +207,6 @@
         "score": 59
       },
       {
-        "id": "top-W-uLqOuPhV0g66",
-        "category": "top",
-        "categoryName": "종합 핫뉴스",
-        "categoryIcon": "🔥",
-        "title": "[단독] 미래에셋, 미국서 스페이스X 공모주 자체 투자… 목표액 7000억 중 절반 청약돼 - 조선비즈",
-        "description": "[단독] 미래에셋, 미국서 스페이스X 공모주 자체 투자… 목표액 7000억 중 절반 청약돼 - 조선비즈 &nbsp;&nbsp; Chosunbiz",
-        "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTTNyV3hqbW1ZY3pNTUNDaU1xeHMtT1VzTEpMTXE0Z0FZTUhseFdZVm0tM1pjak9ZcS1ieEFyRnc2dGFoM0JRY3hGeGhWTm5CTExkWnFRSWRpR0VmMjRiekRGNVEtRnd0WGh6TXlpaTdrUTVKNHR2Vl9JMXFESjNhUmprUmw1blZF0gGcAUFVX3lxTE10ZjJXV2x6OGZDYnFyM3N0R21xRVk2YVB6ZEl2VjVQMFV2MWZ4eHlzZVZteFRhQmRVTE91MUxPbF91YXJEdmFPRXBWN09xbTNaZzZJSWR5SUQyeXQyalBRdXB6TExhQ3JPa0tUVG53cDBaUWV6NFZnTmpIOEFpUEQxZXljRXZSWkk2M0FTdG44UDJyTHpqTS1PTEdldA?oc=5",
-        "source": {
-          "name": "Chosunbiz",
-          "url": "https://biz.chosun.com"
-        },
-        "publishedAt": "2026-06-13T08:45:00.000Z",
-        "guid": "CBMiiAFBVV95cUxNTTNyV3hqbW1ZY3pNTUNDaU1xeHMtT1VzTEpMTXE0Z0FZTUhseFdZVm0tM1pjak9ZcS1ieEFyRnc2dGFoM0JRY3hGeGhWTm5CTExkWnFRSWRpR0VmMjRiekRGNVEtRnd0WGh6TXlpaTdrUTVKNHR2Vl9JMXFESjNhUmprUmw1blZF0gGcAUFVX3lxTE10ZjJXV2x6OGZDYnFy…",
-        "score": 58
-      },
-      {
         "id": "top-W-yGjeuztF0g5p",
         "category": "top",
         "categoryName": "종합 핫뉴스",
@@ -254,35 +239,51 @@
         "score": 57
       },
       {
-        "id": "top-67aBLCDtlZzCt0",
+        "id": "top-W-yGjeuztF0g7J",
         "category": "top",
         "categoryName": "종합 핫뉴스",
         "categoryIcon": "🔥",
-        "title": "북, 한·EU 공동성명에 \"체제존중 위장 내던진 대결선언‥한국은 불변의 적국\"",
-        "description": "북, 한·EU 공동성명에 \"체제존중 위장 내던진 대결선언‥한국은 불변의 적국\" &nbsp;&nbsp; MBC 뉴스",
-        "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOT1ZMbXJaZk5ENjNIR3M1OHRVd0VEcHFObDYyLURCQ0tfaVdOOFdqWmV5ci1RRUVkNUVrN202TElQdlRLMVViNWdsNEt0LS01VXBUQ3pBc3ZYbEZwS3ExYjVFeW1UVEdkNmpRUmVzVVFTd3JINTFFYUZwd3NuNkU3cHprQTQtUmF4alFGZDNIZXlPenlfb21qRk81YU95eW5WTUx5MjR2eE5wTUFIOE5oekUyb1l6d3FiSU96NdIBdEFVX3lxTFBEcmk0elNrWEVCb1FGSWZXYXpDSXhsbkpwMGJwRHpOQlo0NGFXbVZJODNRREZPeDg0S25hb0RaV3VSSG1ObkVvdXZiRU9VNTJLVUo2UF81b2ZwNDRRbGxxYmU0ZWJGSDJEUGk5cWVYeW1HZHgw?oc=5",
+        "title": "[속보] 장동혁 “부정선거 음모론으로 입틀막 못해…재선거·특검 해야”",
+        "description": "[속보] 장동혁 “부정선거 음모론으로 입틀막 못해…재선거·특검 해야” &nbsp;&nbsp; 문화일보",
+        "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE04N0d3SE1BTVp4V2Q3MXVDQ0Mta0FTNEUzWTJTOFFId3I4Sl9GTGlxOU96dUswRzJNUkVLZTg1THdXSllQNjZMNDFjRWFOVW40?oc=5",
+        "source": {
+          "name": "문화일보",
+          "url": "https://www.munhwa.com"
+        },
+        "publishedAt": "2026-06-13T07:05:01.000Z",
+        "guid": "CBMiUEFVX3lxTE04N0d3SE1BTVp4V2Q3MXVDQ0Mta0FTNEUzWTJTOFFId3I4Sl9GTGlxOU96dUswRzJNUkVLZTg1THdXSllQNjZMNDFjRWFOVW40",
+        "score": 57
+      },
+      {
+        "id": "top-7Iqk7ZWE67KE6r",
+        "category": "top",
+        "categoryName": "종합 핫뉴스",
+        "categoryIcon": "🔥",
+        "title": "스필버그 기세 눌렀다…전지현·구교환 ‘군체’, 결국 500만 관객 돌파",
+        "description": "스필버그 기세 눌렀다…전지현·구교환 ‘군체’, 결국 500만 관객 돌파 &nbsp;&nbsp; 데일리안",
+        "url": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPZVZfaFFTc0R4OHpVRXNLYlJXWElod3lLWnlnMVpNS285c3FjcDFrVC1obUJ6RU90Z256OGctRkQ1RXBYUHNlTU03Q2RGWWh3U1czaURKb1p1MXBmY1dYRFVKTzNzWFdON1pEeXV0NDVfNm5wRDZjUXNvdFZDa0hEaXlLU2EtOGFjSENocjQzS195WEczb2dPREJqTy1tOHFvT2xWejFJbVlvRjBvWl8zV2c1OFBRRHc4Ty15YXJiZnlycUtFaDI0N24wbTJ3T0lWdFJxdnE3MlZKODAtZzc4a1hhcHBsOXRDaXZ5U1ZvYW5zbWZNcDdoT0JJdS14YmlRejZNbU1OYVdYTlZNZDJiQ0k1SDZxMFVBbGllNnQ3ZU1xVHZxNHpfQ3lSRWpqSVFC0gGwAkFVX3lxTE9lVl9oUVNzRHg4elVFc0tiUldYSWh3eUtaeWcxWk1LbzlzcWNwMWtULWhtQnpFT3Rnbno4Zy1GRDVFcFhQc2VNTTdDZEZZaHdTVzNpREpvWnUxcGZjV1hEVUpPM3NYV043WkR5dXQ0NV82bnBENmNRc290VkNrSERpeUtTYS04YWNIQ2hyNDNLX3lYRzNvZ09EQmpPLW04cW9PbFZ6MUltWW9GMG9aXzNXZzU4UFFEdzhPLXlhcmJmeXJxS0VoMjQ3bjBtMndPSVZ0UnF2cTcyVko4MC1nNzhrWGFwcGw5dENpdnlTVm9hbnNtZk1wN2hPQkl1LXhiaVF6Nk1tTU5hV1hOVk1kMmJDSTVINnEwVUFsaWU2dDdlTXFUdnE0el9DeVJFampJUUI?oc=5",
+        "source": {
+          "name": "데일리안",
+          "url": "https://m.dailian.co.kr"
+        },
+        "publishedAt": "2026-06-13T02:01:00.000Z",
+        "guid": "CBMisAJBVV95cUxPZVZfaFFTc0R4OHpVRXNLYlJXWElod3lLWnlnMVpNS285c3FjcDFrVC1obUJ6RU90Z256OGctRkQ1RXBYUHNlTU03Q2RGWWh3U1czaURKb1p1MXBmY1dYRFVKTzNzWFdON1pEeXV0NDVfNm5wRDZjUXNvdFZDa0hEaXlLU2EtOGFjSENocjQzS195WEczb2dPREJqTy1tOHFv…",
+        "score": 51
+      },
+      {
+        "id": "top-Iu2VnOq1rSwg7J",
+        "category": "top",
+        "categoryName": "종합 핫뉴스",
+        "categoryIcon": "🔥",
+        "title": "\"한국, 이달 말 CPTPP 가입 발표 조율‥수산물 규제 별도 논의\"",
+        "description": "\"한국, 이달 말 CPTPP 가입 발표 조율‥수산물 규제 별도 논의\" &nbsp;&nbsp; MBC 뉴스",
+        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1JV3BZdmhvREM2dWU0azVEUkhBOXd0WWo3M3RjYlBfeDZHQmU2SGx4VnVaT2g1czFBYnIyS1ZWS242dk9PblBoMV9NamYxeU1fcWRGSzNtTHRBVHZ4T3EzRE03cjdzczE0bXloWTdldVY2UUVL0gF0QVVfeXFMTUlXcFl2aG9EQzZ1ZTRrNURSSEE5d3RZajczdGNiUF94NkdCZTZIbHhWdVpPaDVzMUFicjJLVlZLbjZ2T09uUGgxX01qZjF5TV9xZEZLM21MdEFUdnhPcTNETTdyN3NzMTRteWhZN2V1VjZRRUs?oc=5",
         "source": {
           "name": "MBC 뉴스",
           "url": "https://imnews.imbc.com"
         },
-        "publishedAt": "2026-06-13T10:08:16.000Z",
-        "guid": "CBMivAFBVV95cUxOT1ZMbXJaZk5ENjNIR3M1OHRVd0VEcHFObDYyLURCQ0tfaVdOOFdqWmV5ci1RRUVkNUVrN202TElQdlRLMVViNWdsNEt0LS01VXBUQ3pBc3ZYbEZwS3ExYjVFeW1UVEdkNmpRUmVzVVFTd3JINTFFYUZwd3NuNkU3cHprQTQtUmF4alFGZDNIZXlPenlfb21qRk81YU95eW5W…",
-        "score": 52
-      },
-      {
-        "id": "top-7ZWc64iI7JeQIO",
-        "category": "top",
-        "categoryName": "종합 핫뉴스",
-        "categoryIcon": "🔥",
-        "title": "한눈에 보는 오늘의 뉴스",
-        "description": "한눈에 보는 오늘의 뉴스 &nbsp;&nbsp; 데일리바이트(DAILY BYTE)",
-        "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE5LSlZSN0Z1SjFXeTQ1X1duLVlieDFvTWpSTmtPVURZN1RseG5aN1RIQWdpX1NvMTlsZ2Q3dmNlZldJTThpOGlvRTFKVGY?oc=5",
-        "source": {
-          "name": "데일리바이트(DAILY BYTE)",
-          "url": "https://www.mydailybyte.com"
-        },
-        "publishedAt": "2026-06-13T09:40:13.000Z",
-        "guid": "CBMiTEFVX3lxTE5LSlZSN0Z1SjFXeTQ1X1duLVlieDFvTWpSTmtPVURZN1RseG5aN1RIQWdpX1NvMTlsZ2Q3dmNlZldJTThpOGlvRTFKVGY",
+        "publishedAt": "2026-06-13T01:22:52.000Z",
+        "guid": "CBMidEFVX3lxTE1JV3BZdmhvREM2dWU0azVEUkhBOXd0WWo3M3RjYlBfeDZHQmU2SGx4VnVaT2g1czFBYnIyS1ZWS242dk9PblBoMV9NamYxeU1fcWRGSzNtTHRBVHZ4T3EzRE03cjdzczE0bXloWTdldVY2UUVL0gF0QVVfeXFMTUlXcFl2aG9EQzZ1ZTRrNURSSEE5d3RZajczdGNiUF94NkdC…",
         "score": 51
       },
       {
@@ -299,7 +300,7 @@
         },
         "publishedAt": "2026-06-13T08:01:00.000Z",
         "guid": "CBMieEFVX3lxTE5PZTVQUmJ2WWNTc0I1SE9lZDdfcUd2VXJyMjhHb3dtMGw0eGRndzJJZGtKUWVKNXNhMkk5RFYzeFNTaTk4d2RhM1VCZkFYcXIxcGp5SlFqV0d4a1AwVzlDelpRSU9Cc2V1b0U1dzlPRm5wUEo2VmlDTQ",
-        "score": 50
+        "score": 49
       },
       {
         "id": "top-J-u2geykkeuvuC",
@@ -315,7 +316,7 @@
         },
         "publishedAt": "2026-06-13T08:00:00.000Z",
         "guid": "CBMiekFVX3lxTFB2UWhTeFk2bWpheDlLNmZtNXBsS0JYWnpzU1NESG5UNFh6Z0NpXzlnbmR2RXpBcEdicjhZNkdseTJnWnBBMFBneUIyUjRxUHJ5Zmp6YVE1MTh2RmRxQndWTW1ucXBIVHBNczdhYlZqOTQzZXB4bWtidFlB",
-        "score": 50
+        "score": 49
       },
       {
         "id": "top-7LqQ64KY64ukLe",
@@ -331,22 +332,6 @@
         },
         "publishedAt": "2026-06-13T07:41:00.000Z",
         "guid": "CBMiVEFVX3lxTE9ZdmRSYnRhc0wxQXgtYWI3S2VRTVZpWmlUd2VZUFc3TFhpUzU3aVdHVm1ZNEZVeENHQ3JTa2ZORXotbHM1R0dXbmIyRFZydFYxd3lyYw",
-        "score": 49
-      },
-      {
-        "id": "top-W0FJIDEw64WEIO",
-        "category": "top",
-        "categoryName": "종합 핫뉴스",
-        "categoryIcon": "🔥",
-        "title": "[AI 10년 전 오늘] 동해도 중국 어선 비상…싹쓸이 조업에 오징어 어획량 ‘1/3 토막’",
-        "description": "[AI 10년 전 오늘] 동해도 중국 어선 비상…싹쓸이 조업에 오징어 어획량 ‘1/3 토막’ &nbsp;&nbsp; 시선뉴스",
-        "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5JX3JMSkdGLWpYVEYxTWRGU2xKb00zUHdMS19mWnRIcHZibXR2MFBiZ0t5azhLZkNYZm9DRzNJV3pNU2g5Mk5CZkZrdWJkeTZrb0ZhdmVySmVrRWprdDdpbkIxUk9vdFRQdElwYUtR0gFyQVVfeXFMTjd5TFE3cVBuUjBtekx0cVg0RjZORHJDVW1nZGtWNWtNX0REMTRiRm9aVHY1TDRaMC0yTGRyV2daaVEzelF4NnYxVFpCWTE0Z3FEQ0J6bzhEcXRyRGs0ZGNZU0VnbVNLQzdWakM3UENrcE1B?oc=5",
-        "source": {
-          "name": "시선뉴스",
-          "url": "http://www.sisunnews.co.kr"
-        },
-        "publishedAt": "2026-06-12T22:58:00.000Z",
-        "guid": "CBMibkFVX3lxTE5JX3JMSkdGLWpYVEYxTWRGU2xKb00zUHdMS19mWnRIcHZibXR2MFBiZ0t5azhLZkNYZm9DRzNJV3pNU2g5Mk5CZkZrdWJkeTZrb0ZhdmVySmVrRWprdDdpbkIxUk9vdFRQdElwYUtR0gFyQVVfeXFMTjd5TFE3cVBuUjBtekx0cVg0RjZORHJDVW1nZGtWNWtNX0REMTRiRm9a…",
         "score": 49
       },
       {
@@ -379,38 +364,6 @@
         },
         "publishedAt": "2026-06-12T22:00:00.000Z",
         "guid": "CBMiakFVX3lxTFBraUZnZ0lnOTVNOGUzYnVpbUt5RE81akNTMGYzSXlWZnFGT3c4dXZvSndYTDdpNVUwblozcDlOY251N2czTGsyX2xGbjRnQ3VadE4yOXo4TFItSXRtNXZUMmQwcGN5dUdTNGc",
-        "score": 48
-      },
-      {
-        "id": "top-QlRTIOy9mOyEnO",
-        "category": "top",
-        "categoryName": "종합 핫뉴스",
-        "categoryIcon": "🔥",
-        "title": "BTS 콘서트 지연 / 김수현 복귀 시동 / ‘하시5’ 출연자 불륜 의혹 등 [주간 대중문화 이슈]",
-        "description": "BTS 콘서트 지연 / 김수현 복귀 시동 / ‘하시5’ 출연자 불륜 의혹 등 [주간 대중문화 이슈] &nbsp;&nbsp; 데일리안",
-        "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxOYTI1R2s4SERtdENhOWZWc2ZwZGxDNndCMjIxaWp3bk9XZVptc0w5MllQaDQ0N2NLS2lTcnljdmowZksxNEpEYWFMU05zZUV5YktkNG1tTFJnZnRnUVZKUmlJS1c3aGM3N1VVdG5LQ1JBaGFMRTExQ3NORHpmd0gwd2xkN09lX3NGekhjM05OdDVwVE4xaEhYeU5fT3B4cTdWLV8yQ2VvdzZZWGlFV0REamtMRDNWTnkxc195bzVxb1pheVAyLVIyaEhOeTJraS1iOW5hSXBMWXpFc0M0RGVjNDJoZDlzbE1KWnZpWGtadzNlTVFRWGJxdzlpb9IB-wFBVV95cUxOYTI1R2s4SERtdENhOWZWc2ZwZGxDNndCMjIxaWp3bk9XZVptc0w5MllQaDQ0N2NLS2lTcnljdmowZksxNEpEYWFMU05zZUV5YktkNG1tTFJnZnRnUVZKUmlJS1c3aGM3N1VVdG5LQ1JBaGFMRTExQ3NORHpmd0gwd2xkN09lX3NGekhjM05OdDVwVE4xaEhYeU5fT3B4cTdWLV8yQ2VvdzZZWGlFV0REamtMRDNWTnkxc195bzVxb1pheVAyLVIyaEhOeTJraS1iOW5hSXBMWXpFc0M0RGVjNDJoZDlzbE1KWnZpWGtadzNlTVFRWGJxdzlpbw?oc=5",
-        "source": {
-          "name": "데일리안",
-          "url": "https://m.dailian.co.kr"
-        },
-        "publishedAt": "2026-06-13T05:00:00.000Z",
-        "guid": "CBMi-wFBVV95cUxOYTI1R2s4SERtdENhOWZWc2ZwZGxDNndCMjIxaWp3bk9XZVptc0w5MllQaDQ0N2NLS2lTcnljdmowZksxNEpEYWFMU05zZUV5YktkNG1tTFJnZnRnUVZKUmlJS1c3aGM3N1VVdG5LQ1JBaGFMRTExQ3NORHpmd0gwd2xkN09lX3NGekhjM05OdDVwVE4xaEhYeU5fT3B4cTdW…",
-        "score": 47
-      },
-      {
-        "id": "top-7Jm47Iug7J20IO",
-        "category": "top",
-        "categoryName": "종합 핫뉴스",
-        "categoryIcon": "🔥",
-        "title": "외신이 평가한 '이재명정부 1년'…\"실용주의 외교·AI 공급망 핵심국\"",
-        "description": "외신이 평가한 '이재명정부 1년'…\"실용주의 외교·AI 공급망 핵심국\" &nbsp;&nbsp; 대한민국 정책브리핑",
-        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE02RU11Q0FQc3A4RE5qS1BLVkJCM0lDakstaVdETnQxaERTalVtbk1FVnJqN21wam1pYXVhVENsdEV5NG5SRVZRVzdSS25lVVd0RlhYSk1YQzQ5QWZ4UlB4Yzh1QmNnZmpBd0Q5cA?oc=5",
-        "source": {
-          "name": "대한민국 정책브리핑",
-          "url": "https://www.korea.kr"
-        },
-        "publishedAt": "2026-06-12T21:48:16.000Z",
-        "guid": "CBMibEFVX3lxTE02RU11Q0FQc3A4RE5qS1BLVkJCM0lDakstaVdETnQxaERTalVtbk1FVnJqN21wam1pYXVhVENsdEV5NG5SRVZRVzdSS25lVVd0RlhYSk1YQzQ5QWZ4UlB4Yzh1QmNnZmpBd0Q5cA",
         "score": 47
       },
       {
@@ -494,6 +447,38 @@
         "score": 43
       },
       {
+        "id": "top-7KKF7ZWp7Yq56r",
+        "category": "top",
+        "categoryName": "종합 핫뉴스",
+        "categoryIcon": "🔥",
+        "title": "종합특검, 오늘 尹 2차 조사… ‘반란 우두머리’ 피의자 신분",
+        "description": "종합특검, 오늘 尹 2차 조사… ‘반란 우두머리’ 피의자 신분 &nbsp;&nbsp; 서울경제",
+        "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE4xbmVOU1h1WmtndlJGakwxNTA3dEtUUTZaMThrTlJSSDlkbVpYczRGclc0aHN3WnFkT0p5czdEd29zZ3hQSkl2U3R6QXZxUUQ3c3h5cjVTaXZYM1d2N2tnQVJOczY3QdIBU0FVX3lxTE1yTEVzZC1JRm5PMmVpRVRvRUZTZ0VlZl9yVDU5Y1gwaXhTVm5JMUJKeXhIcUpHaklZcFFrZXNfbG9GdlExZFlCY3VTTDFjU2dmOGhj?oc=5",
+        "source": {
+          "name": "서울경제",
+          "url": "https://www.sedaily.com"
+        },
+        "publishedAt": "2026-06-13T01:10:58.000Z",
+        "guid": "CBMiZkFVX3lxTE4xbmVOU1h1WmtndlJGakwxNTA3dEtUUTZaMThrTlJSSDlkbVpYczRGclc0aHN3WnFkT0p5czdEd29zZ3hQSkl2U3R6QXZxUUQ3c3h5cjVTaXZYM1d2N2tnQVJOczY3QdIBU0FVX3lxTE1yTEVzZC1JRm5PMmVpRVRvRUZTZ0VlZl9yVDU5Y1gwaXhTVm5JMUJKeXhIcUpHaklZ…",
+        "score": 43
+      },
+      {
+        "id": "top-7YyM7JqwIOuPme",
+        "category": "top",
+        "categoryName": "종합 핫뉴스",
+        "categoryIcon": "🔥",
+        "title": "파우 동연, 오늘(13일) 부친상 \"슬픔 속 장례\" [공식입장]",
+        "description": "파우 동연, 오늘(13일) 부친상 \"슬픔 속 장례\" [공식입장] &nbsp;&nbsp; 네이트",
+        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1RdzN0bkhDYW56eW4wcmdHeHljYnpjaGNOWGRZZ2l2b0xsTzQzQ2NzVHpWUjY3bDkwNjRWUUZ6QnJGOG1GeWFSTWRfcFQyN2VtY0VjZjlWN0JNaEJreXROajN3akEzODBSUEFLTmFGeFlOV003MlVBVA?oc=5",
+        "source": {
+          "name": "네이트",
+          "url": "https://m.news.nate.com"
+        },
+        "publishedAt": "2026-06-13T01:03:00.000Z",
+        "guid": "CBMieEFVX3lxTE1RdzN0bkhDYW56eW4wcmdHeHljYnpjaGNOWGRZZ2l2b0xsTzQzQ2NzVHpWUjY3bDkwNjRWUUZ6QnJGOG1GeWFSTWRfcFQyN2VtY0VjZjlWN0JNaEJreXROajN3akEzODBSUEFLTmFGeFlOV003MlVBVA",
+        "score": 43
+      },
+      {
         "id": "top-4oCc64yA7ZWc66",
         "category": "top",
         "categoryName": "종합 핫뉴스",
@@ -524,9 +509,41 @@
         "publishedAt": "2026-06-12T22:26:00.000Z",
         "guid": "CBMipwFBVV95cUxNR0k5QlRWNGkxM2kyTGJaU0RTX2czLTJMZGk3RzNKZWtVYzROcm9BV3VzYnJmWWR5Z3hTOTVVREZQZndjTUhMVVBhY2cxWjJXYnVqTjllUEp2SzJ1ODZiQWEyN3pTOFUxY2tGQzdaR0U2U2ZrUFBjNnpvS3ZEa0hURlozcTlWcVdtakllTkp2SlNheE54dTNiLUZJX3JvS0lx…",
         "score": 40
+      },
+      {
+        "id": "top-5pWF7KCV7J247J",
+        "category": "top",
+        "categoryName": "종합 핫뉴스",
+        "categoryIcon": "🔥",
+        "title": "故정인아, 오늘(13일) 11주기…스카이다이빙 연습 중 실종 후 숨진 채 발견[Oh!쎈 이슈]",
+        "description": "故정인아, 오늘(13일) 11주기…스카이다이빙 연습 중 실종 후 숨진 채 발견[Oh!쎈 이슈] &nbsp;&nbsp; osen.co.kr",
+        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBkaG5RYjdCUDhvN3dmWjROelhVZHZvNGxZUzdvb3ViYXNlUUVhYjdwb081bVNTaW1VVEV5b25ZLXJwbm93WVU5a3RvdWFtUWY4WUFZ?oc=5",
+        "source": {
+          "name": "osen.co.kr",
+          "url": "http://www.osen.co.kr"
+        },
+        "publishedAt": "2026-06-12T22:26:00.000Z",
+        "guid": "CBMiU0FVX3lxTFBkaG5RYjdCUDhvN3dmWjROelhVZHZvNGxZUzdvb3ViYXNlUUVhYjdwb081bVNTaW1VVEV5b25ZLXJwbm93WVU5a3RvdWFtUWY4WUFZ",
+        "score": 40
       }
     ],
     "politics": [
+      {
+        "id": "politics-6YeOIO2VnOyEse",
+        "category": "politics",
+        "categoryName": "정치·정책",
+        "categoryIcon": "🏛️",
+        "title": "野 한성숙 '다주택' 논란 공세…\"자격미달·인사 실패\"",
+        "description": "野 한성숙 '다주택' 논란 공세…\"자격미달·인사 실패\" &nbsp;&nbsp; 한국일보",
+        "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBtN1FvRUNXUktmdEpuTEZzR0xKOWQ4QkNCcmttVTkyd2xBRkpheW9CM1NveVkxTlpLbk0tVzlVS0lmS3NWT1NyUDVsZHdEZ2FpbmM5Qmg4MzdrQmNPcGNEcWhyUHFjTzNtR1I3ZzN5VHpIOHfSAXNBVV95cUxQbTdRb0VDV1JLZnRKbkxGc0dMSjlkOEJDQnJrbVU5MndsQUZKYXlvQjNTb3lZMU5aS25NLVc5VUtJZktzVk9TclA1bGR3RGdhaW5jOUJoODM3a0JjT3BjRHFoclBxY08zbUdSN2czeVR6SDh3?oc=5",
+        "source": {
+          "name": "한국일보",
+          "url": "https://www.hankookilbo.com"
+        },
+        "publishedAt": "2026-06-13T08:56:00.000Z",
+        "guid": "CBMic0FVX3lxTFBtN1FvRUNXUktmdEpuTEZzR0xKOWQ4QkNCcmttVTkyd2xBRkpheW9CM1NveVkxTlpLbk0tVzlVS0lmS3NWT1NyUDVsZHdEZ2FpbmM5Qmg4MzdrQmNPcGNEcWhyUHFjTzNtR1I3ZzN5VHpIOHfSAXNBVV95cUxQbTdRb0VDV1JLZnRKbkxGc0dMSjlkOEJDQnJrbVU5MndsQUZK…",
+        "score": 58
+      },
       {
         "id": "politics-6rmA7JiB7Zi4LC",
         "category": "politics",
@@ -541,7 +558,7 @@
         },
         "publishedAt": "2026-06-13T10:00:12.000Z",
         "guid": "CBMidEFVX3lxTE9hTy1kdFhNTkdJUTZxSXV3d2I3SnMtU213bk1FSHpXYWFlYzZLS3J1cXVNTnBHMlFuWVctZHN0QVdQSnFlQVk2b0M4QzVNajVxU0piVm9oYkZWQUlLcWVDbHpILWlQTThmelRqRTh4MTB1OVZS",
-        "score": 52
+        "score": 51
       },
       {
         "id": "politics-7J6g7Iuk67KMIO",
@@ -589,22 +606,6 @@
         },
         "publishedAt": "2026-06-13T07:40:42.000Z",
         "guid": "CBMiaEFVX3lxTE1uRG9mTzZmdC1nWVJrMTVUR3ptc015ZkZJZzBOQThiZUowS21WT0w2TTF1VVB3SHUzN1NlakV2NWo0MDY0aWRpUl8zWUpqTUd6Tmc4MFg2MTczYmYwRzk2ajZBVTVaMy0w",
-        "score": 49
-      },
-      {
-        "id": "politics-7KCV7JuQ7JikIO",
-        "category": "politics",
-        "categoryName": "정치·정책",
-        "categoryIcon": "🏛️",
-        "title": "정원오 측, 정청래 '언팔'·송영길 '팔로우' 루머에 \"사실 아냐\"",
-        "description": "정원오 측, 정청래 '언팔'·송영길 '팔로우' 루머에 \"사실 아냐\" &nbsp;&nbsp; 한국일보",
-        "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5od1FNLWxVRG96ZmdmQXNJeDRsejczV2gyUXJ4M3pOWi1jbEtEdHFxRnlIV3diYXEzS3djeWNITlFRc2xiaGoydWdHTFl0RHNmR1V5NVU0LVdtdldfWVNYbHpYS05kWGpXU1k1NWxB0gFzQVVfeXFMTmFaVy1GMkp0cUk2VzF6Rnp2aTRVNnN6Z1BVdE9MRW5saEJJUmVxUEVXc2dGVS0zQ2lkazh2OWFNb2VJdUpZR0x6YmMxcWhIbUk4cTQ3OS1QT1IxX0l2Mlo5UGx2NUtEcHVDZmw0OWVqYkZXUQ?oc=5",
-        "source": {
-          "name": "한국일보",
-          "url": "https://www.hankookilbo.com"
-        },
-        "publishedAt": "2026-06-13T07:08:00.000Z",
-        "guid": "CBMibkFVX3lxTE5od1FNLWxVRG96ZmdmQXNJeDRsejczV2gyUXJ4M3pOWi1jbEtEdHFxRnlIV3diYXEzS3djeWNITlFRc2xiaGoydWdHTFl0RHNmR1V5NVU0LVdtdldfWVNYbHpYS05kWGpXU1k1NWxB0gFzQVVfeXFMTmFaVy1GMkp0cUk2VzF6Rnp2aTRVNnN6Z1BVdE9MRW5saEJJUmVxUEVX…",
         "score": 49
       },
       {
@@ -685,6 +686,22 @@
         },
         "publishedAt": "2026-06-13T05:13:49.000Z",
         "guid": "CBMidEFVX3lxTFAyUWprMjZ6dXM0U3dPUUFWblpGWUg4WE5LeDlxOXZ0VWo4dmdUTEpJLVJkRHVrVmc3YnhTbFVBUzZwN1F5VnZET0RXWU52MXFmQmZucTJuemR4cERnVV9MQm1QU0Z5bExFaF9WOVY2U0liUlJM",
+        "score": 47
+      },
+      {
+        "id": "politics-7Jm47Iug7J20IO",
+        "category": "politics",
+        "categoryName": "정치·정책",
+        "categoryIcon": "🏛️",
+        "title": "외신이 평가한 '이재명정부 1년'…\"실용주의 외교·AI 공급망 핵심국\"",
+        "description": "외신이 평가한 '이재명정부 1년'…\"실용주의 외교·AI 공급망 핵심국\" &nbsp;&nbsp; 대한민국 정책브리핑",
+        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE02RU11Q0FQc3A4RE5qS1BLVkJCM0lDakstaVdETnQxaERTalVtbk1FVnJqN21wam1pYXVhVENsdEV5NG5SRVZRVzdSS25lVVd0RlhYSk1YQzQ5QWZ4UlB4Yzh1QmNnZmpBd0Q5cA?oc=5",
+        "source": {
+          "name": "대한민국 정책브리핑",
+          "url": "https://www.korea.kr"
+        },
+        "publishedAt": "2026-06-12T21:48:16.000Z",
+        "guid": "CBMibEFVX3lxTE02RU11Q0FQc3A4RE5qS1BLVkJCM0lDakstaVdETnQxaERTalVtbk1FVnJqN21wam1pYXVhVENsdEV5NG5SRVZRVzdSS25lVVd0RlhYSk1YQzQ5QWZ4UlB4Yzh1QmNnZmpBd0Q5cA",
         "score": 47
       },
       {
@@ -781,7 +798,7 @@
         },
         "publishedAt": "2026-06-13T03:00:01.000Z",
         "guid": "CBMiZ0FVX3lxTE9iVkphOV9JWnlqa0lmQnBNUzlKcTYxTm5wZ3EzbExETFBzd2ZSdjVmQV9zMWFMeWdfdi1rbklRWThsRXB5UmoyNExkSUpNRWQ1WDFPTGlRQ2hjLUNFcUJJUks4TmFpTGc",
-        "score": 45
+        "score": 44
       },
       {
         "id": "politics-6Z-T6riw7JeFIC",
@@ -797,7 +814,7 @@
         },
         "publishedAt": "2026-06-13T03:00:00.000Z",
         "guid": "CBMiYEFVX3lxTFBLRkMxN3ZFeFNHTXJMd3FWTkloNWptVzc4UUVPaWJQVEpETEs5UkNmallYd0Z0Und6R1diRFdPWDJTd2FDN3k4T29weXJJY0N2QnA0NWVaeXZHOEhuUzJRMw",
-        "score": 45
+        "score": 44
       },
       {
         "id": "politics-6rWt66-87J2Y7Z",
@@ -877,7 +894,7 @@
         },
         "publishedAt": "2026-06-13T00:00:00.000Z",
         "guid": "CBMickFVX3lxTE1QbWJwcWZ0bkhfNWR1SmlJRFFpWnpEczdINUdtWnBZdkFvS3ZROThHUFpDeWQ5VTBMU1VyUnoyM2lPdlotbE8tM2QwUmN3RXEzd3FNZTJaSVNjU2Y2Z0NiYWlaMXlhaUJhd1AzbGU5X2JMZ9IBdkFVX3lxTE9KWUNPV1d6RURKSDNwZzVSMEJycHdoSmMxaGVWWThTN2ZXQU4z…",
-        "score": 42
+        "score": 41
       },
       {
         "id": "politics-W-ywveqwhDE07K",
@@ -912,19 +929,35 @@
         "score": 40
       },
       {
-        "id": "politics-MjAzMCAn67O07I",
+        "id": "politics-7J6l64-Z7ZiBIO",
         "category": "politics",
         "categoryName": "정치·정책",
         "categoryIcon": "🏛️",
-        "title": "2030 '보수 쏠림' 뚜렷하지만… 국힘이 맘놓고 못 웃는 이유",
-        "description": "2030 '보수 쏠림' 뚜렷하지만… 국힘이 맘놓고 못 웃는 이유 &nbsp;&nbsp; 한국일보",
-        "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1IYUJVWENCdkVNcTNLMFJFamE2MjBsY25LbkdGVWhsYmpQY1NQSFVpWDFWVDZmTVp5NHVoNGwzc0pNdm5iU3lwb2JwRWV0SlkxLXBQMmZDRG41OEtURjZINHgyUi1WUGcyOU9rMFJ30gFzQVVfeXFMTktxRnNqcEVaOVZZb1Y1akFmQ250TWFDTWNkSTRraVpqb3RyTFFKU0hxcWczZjJOYkp3aTZJXzZhY3JIZ3JXeTBNaTB4cDdaaHBBVG5DTS04N0dNR0hCdGtqZVJjbklBUmdRbnlyOUFzNHBFcw?oc=5",
+        "title": "장동혁 거취에 충돌하는 당권파와 소장파",
+        "description": "장동혁 거취에 충돌하는 당권파와 소장파 &nbsp;&nbsp; 조선일보",
+        "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1EdkJ6MUE4Q0xKNURobmt5UGxMaDJSc0pyY2RGNWU1Tjh3aE40NnBBQm1ORlFSU3NnM091T1ZNM2tjVmw3Y3k3QkpGNXZVajF2MGRSQk83WFVVN3EzeFpBdVJpcmo2YWtiNkHSAW5BVV95cUxQaDZfd0h6R3ZLclpJbVFuVVVwcTdLcHhJcW5YUF9XYXN3Yk9MYnhDRUhFbEFUV2JaTTBDcVBUelhEY2ZJb1NXZkhGUUUwLXZtc1h3T2pkLUJsZEZWVnpBdmttYklDanNNSzZWQjhOZw?oc=5",
         "source": {
-          "name": "한국일보",
-          "url": "https://www.hankookilbo.com"
+          "name": "조선일보",
+          "url": "http://weekly.chosun.com"
         },
-        "publishedAt": "2026-06-12T19:30:00.000Z",
-        "guid": "CBMibkFVX3lxTE1IYUJVWENCdkVNcTNLMFJFamE2MjBsY25LbkdGVWhsYmpQY1NQSFVpWDFWVDZmTVp5NHVoNGwzc0pNdm5iU3lwb2JwRWV0SlkxLXBQMmZDRG41OEtURjZINHgyUi1WUGcyOU9rMFJ30gFzQVVfeXFMTktxRnNqcEVaOVZZb1Y1akFmQ250TWFDTWNkSTRraVpqb3RyTFFKU0hx…",
+        "publishedAt": "2026-06-12T22:00:00.000Z",
+        "guid": "CBMiakFVX3lxTE1EdkJ6MUE4Q0xKNURobmt5UGxMaDJSc0pyY2RGNWU1Tjh3aE40NnBBQm1ORlFSU3NnM091T1ZNM2tjVmw3Y3k3QkpGNXZVajF2MGRSQk83WFVVN3EzeFpBdVJpcmo2YWtiNkHSAW5BVV95cUxQaDZfd0h6R3ZLclpJbVFuVVVwcTdLcHhJcW5YUF9XYXN3Yk9MYnhDRUhFbEFU…",
+        "score": 39
+      },
+      {
+        "id": "politics-7Jes64u5IOuLue",
+        "category": "politics",
+        "categoryName": "정치·정책",
+        "categoryIcon": "🏛️",
+        "title": "여당 당권싸움에 민생 뒷전…패인 분석 대신 이전투구",
+        "description": "여당 당권싸움에 민생 뒷전…패인 분석 대신 이전투구 &nbsp;&nbsp; 노컷뉴스",
+        "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE4wSjBSVWlPdllWb0xGQ1VaMUZYQ3JFM21GVWIzc1lGWjR6WWNRUUZTT2JIdFV5a0MxVGMyMWtjQ2JFRXozN2R3dVRZcWRuMl90QkE?oc=5",
+        "source": {
+          "name": "노컷뉴스",
+          "url": "https://www.nocutnews.co.kr"
+        },
+        "publishedAt": "2026-06-12T20:00:00.000Z",
+        "guid": "CBMiUkFVX3lxTE4wSjBSVWlPdllWb0xGQ1VaMUZYQ3JFM21GVWIzc1lGWjR6WWNRUUZTT2JIdFV5a0MxVGMyMWtjQ2JFRXozN2R3dVRZcWRuMl90QkE",
         "score": 37
       },
       {
@@ -942,38 +975,6 @@
         "publishedAt": "2026-06-12T19:23:03.000Z",
         "guid": "CBMiYEFVX3lxTE9DWkpUNmlOMVI4NEN1N3RLZVRvT3pkWVAyd0xsMU9ieVQyV3FnVndTVnFGRTYyQk11eU5YZHFXVnNtUk0wWVpCbEpEYWRMYmMtaWhpRFJTS2M3czdRRkRUUg",
         "score": 37
-      },
-      {
-        "id": "politics-W-yjvOqwhOaUv-",
-        "category": "politics",
-        "categoryName": "정치·정책",
-        "categoryIcon": "🏛️",
-        "title": "[주간政談] '정치 신인' 상임위 배정 주목…'법조인 출신' 한동훈은 어디로? - 정치 | 기사",
-        "description": "[주간政談] '정치 신인' 상임위 배정 주목…'법조인 출신' 한동훈은 어디로? - 정치 | 기사 &nbsp;&nbsp; 더팩트",
-        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5CODVhMFkzR2dtVUlMSmVxcVY0SWNGWjYtV2QyYzVjNkI3VFhUc1RYeEJZdjl2VDlJRGRKRmdWTWRYc1FtbUItWlA4RGVJSTFtSUg2SG5jRnE?oc=5",
-        "source": {
-          "name": "더팩트",
-          "url": "https://news.tf.co.kr"
-        },
-        "publishedAt": "2026-06-12T15:00:03.000Z",
-        "guid": "CBMiWEFVX3lxTE5CODVhMFkzR2dtVUlMSmVxcVY0SWNGWjYtV2QyYzVjNkI3VFhUc1RYeEJZdjl2VDlJRGRKRmdWTWRYc1FtbUItWlA4RGVJSTFtSUg2SG5jRnE",
-        "score": 33
-      },
-      {
-        "id": "politics-7J207J6s66qFIO",
-        "category": "politics",
-        "categoryName": "정치·정책",
-        "categoryIcon": "🏛️",
-        "title": "이재명 대통령, 로렌초 폰타나 이탈리아 하원의장 면담",
-        "description": "이재명 대통령, 로렌초 폰타나 이탈리아 하원의장 면담 &nbsp;&nbsp; 외교문화뉴스",
-        "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5ldXZKOWRHbVdhU2JoSXRDaEFUa2g4SE1OR2M3TEtsalVlelhrcHdaV2xESkFTcTlmNzVxQjRpWDNXRGdhRUFVY0Y3ZF8yX2piekVkX1ItTTdNNjd2NVN1ZnQ5cDA?oc=5",
-        "source": {
-          "name": "외교문화뉴스",
-          "url": "https://www.dcnews.kr"
-        },
-        "publishedAt": "2026-06-12T14:23:23.000Z",
-        "guid": "CBMiZEFVX3lxTE5ldXZKOWRHbVdhU2JoSXRDaEFUa2g4SE1OR2M3TEtsalVlelhrcHdaV2xESkFTcTlmNzVxQjRpWDNXRGdhRUFVY0Y3ZF8yX2piekVkX1ItTTdNNjd2NVN1ZnQ5cDA",
-        "score": 32
       }
     ],
     "economy": [
@@ -1042,19 +1043,35 @@
         "score": 51
       },
       {
-        "id": "economy-U3BhY2VY7J2YIO",
+        "id": "economy-7ZmN6rWt7ZGcIO",
         "category": "economy",
         "categoryName": "경제·금융",
         "categoryIcon": "💹",
-        "title": "SpaceX의 실적 급등이 미국 증시의 추가 상승세를 이끌고 있다.",
-        "description": "SpaceX의 실적 급등이 미국 증시의 추가 상승세를 이끌고 있다. &nbsp;&nbsp; Vietnam.vn",
-        "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPUERTcUk1UVpLU2MtQ3BuSGxTS1ZVWWdKS0xXajhwQzY3RXNCRExFM3IwenlOV2k3RDlCVzBMWk54NmJfX3VRRC1ueUFyc25tSHhfSXg5aEVqX3J1bEMxbmt4aXhURXlCWVJDR0FPeTZBQTBvVzZCN2VKa1lBU2loYkR4dw?oc=5",
+        "title": "홍국표 시의원 \"대출규제·토허제가 전월세난 키워\"... 서울시 \"공급 확대 속도 낸다\"",
+        "description": "홍국표 시의원 \"대출규제·토허제가 전월세난 키워\"... 서울시 \"공급 확대 속도 낸다\" &nbsp;&nbsp; 데일리환경",
+        "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9rSlBYaXhlWVU0NERacTVRTFlnZ3JHcnpPVWhVdnJJVG9OVWFHLWw2Zl9tbzRUM0tyMC04WVpDdGNhZnNXRnJydWRWZ3V2Vnk1T2tfazl5OWNPSGpPMnc?oc=5",
         "source": {
-          "name": "Vietnam.vn",
-          "url": "https://www.vietnam.vn"
+          "name": "데일리환경",
+          "url": "https://www.dailyt.co.kr"
         },
-        "publishedAt": "2026-06-12T22:59:57.000Z",
-        "guid": "CBMigwFBVV95cUxPUERTcUk1UVpLU2MtQ3BuSGxTS1ZVWWdKS0xXajhwQzY3RXNCRExFM3IwenlOV2k3RDlCVzBMWk54NmJfX3VRRC1ueUFyc25tSHhfSXg5aEVqX3J1bEMxbmt4aXhURXlCWVJDR0FPeTZBQTBvVzZCN2VKa1lBU2loYkR4dw",
+        "publishedAt": "2026-06-13T08:00:12.000Z",
+        "guid": "CBMiXkFVX3lxTE9rSlBYaXhlWVU0NERacTVRTFlnZ3JHcnpPVWhVdnJJVG9OVWFHLWw2Zl9tbzRUM0tyMC04WVpDdGNhZnNXRnJydWRWZ3V2Vnk1T2tfazl5OWNPSGpPMnc",
+        "score": 49
+      },
+      {
+        "id": "economy-7IOB7J6lIOyVnu",
+        "category": "economy",
+        "categoryName": "경제·금융",
+        "categoryIcon": "💹",
+        "title": "상장 앞둔 스페이스X 실적 공개 Luka Dončić (aQ6i2bG8Lf)",
+        "description": "상장 앞둔 스페이스X 실적 공개 Luka Dončić (aQ6i2bG8Lf) &nbsp;&nbsp; Mshale",
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFA5YTY3QlQzLXpEanBKLXhnUE00bzYxZmRHUFN3SU04MTZydWxiTHhFOEJKNVpsWjItdlBnRklFZzRhVG16c0I1ZF9uN0FXTUZDalRFTW1sSmZaUlE?oc=5",
+        "source": {
+          "name": "Mshale",
+          "url": "https://mshale.com"
+        },
+        "publishedAt": "2026-06-13T07:44:55.000Z",
+        "guid": "CBMiW0FVX3lxTFA5YTY3QlQzLXpEanBKLXhnUE00bzYxZmRHUFN3SU04MTZydWxiTHhFOEJKNVpsWjItdlBnRklFZzRhVG16c0I1ZF9uN0FXTUZDalRFTW1sSmZaUlE",
         "score": 49
       },
       {
@@ -1074,35 +1091,19 @@
         "score": 48
       },
       {
-        "id": "economy-7ZiE64yA7LCo6K",
+        "id": "economy-U3BhY2VY7J2YIO",
         "category": "economy",
         "categoryName": "경제·금융",
         "categoryIcon": "💹",
-        "title": "현대차證, 재무 안전성 관건은 부동산금융 '회수력'",
-        "description": "현대차證, 재무 안전성 관건은 부동산금융 '회수력' &nbsp;&nbsp; 블로터",
-        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE05MWhwOWVfU1FLOWhJd3pBcU84VHRTU2N1WGhqSnFRRFM3amtxSDMtNmVKa1pMQVVQUzFSTzRGLVFERGpTSk14dG92am01S0JIeHhJaGJUcHFKNmZJRjQtc2p3azhiMUhy0gFsQVVfeXFMTUY2LTZ5MmFZbTdNZzhFaUIxQzB6NkF5YnBPMTIyWXJDdHlNY3UxSFpIenE5OXoyYzdmR2FVMkQydXVHaWNvcWp1andJdFd0Qy00WFFqVjVId1BULUJCalJsRnlxZE5yM3ZaMDV4?oc=5",
-        "source": {
-          "name": "블로터",
-          "url": "https://www.bloter.net"
-        },
-        "publishedAt": "2026-06-13T06:00:00.000Z",
-        "guid": "CBMiaEFVX3lxTE05MWhwOWVfU1FLOWhJd3pBcU84VHRTU2N1WGhqSnFRRFM3amtxSDMtNmVKa1pMQVVQUzFSTzRGLVFERGpTSk14dG92am01S0JIeHhJaGJUcHFKNmZJRjQtc2p3azhiMUhy0gFsQVVfeXFMTUY2LTZ5MmFZbTdNZzhFaUIxQzB6NkF5YnBPMTIyWXJDdHlNY3UxSFpIenE5OXoy…",
-        "score": 48
-      },
-      {
-        "id": "economy-7KO86rCA6rCAIO",
-        "category": "economy",
-        "categoryName": "경제·금융",
-        "categoryIcon": "💹",
-        "title": "주가가 최고점에서 130포인트 폭락하고 유동성이 최저 수준으로 떨어졌습니다. 무슨 일이 벌어지고 있는 걸까요?",
-        "description": "주가가 최고점에서 130포인트 폭락하고 유동성이 최저 수준으로 떨어졌습니다. 무슨 일이 벌어지고 있는 걸까요? &nbsp;&nbsp; Vietnam.vn",
-        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNTXlKSmVCMDZ2bksxN196eTJEcEYwcDlWd2VIWGRRU2ZKQjdfcVVFT01mTmVHeVhUZXB6N0hESThHN0RrR0c3eFVxSjhHQ0o4Um40NEVfSnZ0bmRMRHpIQmMzY3p6bTZXQ3hhZDBrSzk2TjhobFZweW5ZTUE5RjhwUVU3ZG8zeWVNbFRBWUpOcGpwV0ZMUVlZQWRWYVJKOGs4?oc=5",
+        "title": "SpaceX의 실적 급등이 미국 증시의 추가 상승세를 이끌고 있다.",
+        "description": "SpaceX의 실적 급등이 미국 증시의 추가 상승세를 이끌고 있다. &nbsp;&nbsp; Vietnam.vn",
+        "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPUERTcUk1UVpLU2MtQ3BuSGxTS1ZVWWdKS0xXajhwQzY3RXNCRExFM3IwenlOV2k3RDlCVzBMWk54NmJfX3VRRC1ueUFyc25tSHhfSXg5aEVqX3J1bEMxbmt4aXhURXlCWVJDR0FPeTZBQTBvVzZCN2VKa1lBU2loYkR4dw?oc=5",
         "source": {
           "name": "Vietnam.vn",
           "url": "https://www.vietnam.vn"
         },
-        "publishedAt": "2026-06-12T22:46:15.000Z",
-        "guid": "CBMioAFBVV95cUxNTXlKSmVCMDZ2bksxN196eTJEcEYwcDlWd2VIWGRRU2ZKQjdfcVVFT01mTmVHeVhUZXB6N0hESThHN0RrR0c3eFVxSjhHQ0o4Um40NEVfSnZ0bmRMRHpIQmMzY3p6bTZXQ3hhZDBrSzk2TjhobFZweW5ZTUE5RjhwUVU3ZG8zeWVNbFRBWUpOcGpwV0ZMUVlZQWRWYVJKOGs4",
+        "publishedAt": "2026-06-12T22:59:57.000Z",
+        "guid": "CBMigwFBVV95cUxPUERTcUk1UVpLU2MtQ3BuSGxTS1ZVWWdKS0xXajhwQzY3RXNCRExFM3IwenlOV2k3RDlCVzBMWk54NmJfX3VRRC1ueUFyc25tSHhfSXg5aEVqX3J1bEMxbmt4aXhURXlCWVJDR0FPeTZBQTBvVzZCN2VKa1lBU2loYkR4dw",
         "score": 48
       },
       {
@@ -1120,6 +1121,22 @@
         "publishedAt": "2026-06-12T22:05:28.000Z",
         "guid": "CBMiakFVX3lxTE1qSXg1dXFqZFh5OFNnMmRHVFhzcmVUOGxkTGt3RGZOSHlfSUVzM1hMX1hBQ3JDYjZoSkVJUUlaMFBOdVhYcUlQZGRSVmZEMHprWUc0VmZVeXBmZ241Q2VwbmxKaXRiWmJQVUHSAW5BVV95cUxPRE9qY1c0b2lOemUyLVJUU0xJdEJNeW9nWTdhaHI3WXUtazdpU19jWE5LR3Et…",
         "score": 48
+      },
+      {
+        "id": "economy-7ZiE64yA7LCo6K",
+        "category": "economy",
+        "categoryName": "경제·금융",
+        "categoryIcon": "💹",
+        "title": "현대차證, 재무 안전성 관건은 부동산금융 '회수력'",
+        "description": "현대차證, 재무 안전성 관건은 부동산금융 '회수력' &nbsp;&nbsp; 블로터",
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE05MWhwOWVfU1FLOWhJd3pBcU84VHRTU2N1WGhqSnFRRFM3amtxSDMtNmVKa1pMQVVQUzFSTzRGLVFERGpTSk14dG92am01S0JIeHhJaGJUcHFKNmZJRjQtc2p3azhiMUhy0gFsQVVfeXFMTUY2LTZ5MmFZbTdNZzhFaUIxQzB6NkF5YnBPMTIyWXJDdHlNY3UxSFpIenE5OXoyYzdmR2FVMkQydXVHaWNvcWp1andJdFd0Qy00WFFqVjVId1BULUJCalJsRnlxZE5yM3ZaMDV4?oc=5",
+        "source": {
+          "name": "블로터",
+          "url": "https://www.bloter.net"
+        },
+        "publishedAt": "2026-06-13T06:00:00.000Z",
+        "guid": "CBMiaEFVX3lxTE05MWhwOWVfU1FLOWhJd3pBcU84VHRTU2N1WGhqSnFRRFM3amtxSDMtNmVKa1pMQVVQUzFSTzRGLVFERGpTSk14dG92am01S0JIeHhJaGJUcHFKNmZJRjQtc2p3azhiMUhy0gFsQVVfeXFMTUY2LTZ5MmFZbTdNZzhFaUIxQzB6NkF5YnBPMTIyWXJDdHlNY3UxSFpIenE5OXoy…",
+        "score": 47
       },
       {
         "id": "economy-7Iqk7Y6Y7J207I",
@@ -1144,29 +1161,13 @@
         "categoryIcon": "💹",
         "title": "[6월 둘째 주 세계경제동향 브리핑]코스피 숨 고르기…美 증시는 일제히 반등",
         "description": "[6월 둘째 주 세계경제동향 브리핑]코스피 숨 고르기…美 증시는 일제히 반등 &nbsp;&nbsp; v.daum.net",
-        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5QNjJLR1hua1ItRnF6SF9UNVpfOTlTSWtWUVlvSE5lS2NVdkdFNUZfMHBEaWRYaFRJQWhqYW1LanM3QlMwYzluYnB4LUhlZW8?oc=5",
+        "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE54Rkk5TUJpcGlIWXRjU3BTOGk4bjVDWXRMMFBNbENaQlE5TTVIRjFvNnRsaVZKSUJ1QW81Uklsdk1PRm9wVDZnZXlqeDctSHUxQWY0Rw?oc=5",
         "source": {
           "name": "v.daum.net",
           "url": "https://v.daum.net"
         },
         "publishedAt": "2026-06-13T04:34:32.000Z",
-        "guid": "CBMiT0FVX3lxTE5QNjJLR1hua1ItRnF6SF9UNVpfOTlTSWtWUVlvSE5lS2NVdkdFNUZfMHBEaWRYaFRJQWhqYW1LanM3QlMwYzluYnB4LUhlZW8",
-        "score": 46
-      },
-      {
-        "id": "economy-4oCc7Iqk7Y6Y7J",
-        "category": "economy",
-        "categoryName": "경제·금융",
-        "categoryIcon": "💹",
-        "title": "“스페이스X 주식 1주도 못 줘”···골드만삭스의 ‘코리아패싱’ 대체 왜?",
-        "description": "“스페이스X 주식 1주도 못 줘”···골드만삭스의 ‘코리아패싱’ 대체 왜? &nbsp;&nbsp; 매일경제",
-        "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNY2dhN2M4RTk2NkFDX0NYc0xkOXFSZkNRVjd1V21oOW1wTERpbHhOLUpwLTQwcXppUGR5MTVzWTU1MEYwQ0lqU25wQ1dLVEdtYnUzVHdqbVlERFc5Z1FRYl8yM1B1NklzRzUybl9LYk5vb0RlbVBlR1gxQzBUSFdBTGhuTFU2ei1E?oc=5",
-        "source": {
-          "name": "매일경제",
-          "url": "https://www.mk.co.kr"
-        },
-        "publishedAt": "2026-06-13T03:59:45.000Z",
-        "guid": "CBMiiAFBVV95cUxNY2dhN2M4RTk2NkFDX0NYc0xkOXFSZkNRVjd1V21oOW1wTERpbHhOLUpwLTQwcXppUGR5MTVzWTU1MEYwQ0lqU25wQ1dLVEdtYnUzVHdqbVlERFc5Z1FRYl8yM1B1NklzRzUybl9LYk5vb0RlbVBlR1gxQzBUSFdBTGhuTFU2ei1E",
+        "guid": "CBMiVEFVX3lxTE54Rkk5TUJpcGlIWXRjU3BTOGk4bjVDWXRMMFBNbENaQlE5TTVIRjFvNnRsaVZKSUJ1QW81Uklsdk1PRm9wVDZnZXlqeDctSHUxQWY0Rw",
         "score": 46
       },
       {
@@ -1184,6 +1185,22 @@
         "publishedAt": "2026-06-12T20:33:00.000Z",
         "guid": "CBMiYEFVX3lxTE5ra1FFZ0V4NWlTNEF5b3czaXBpTkNCRE5qQ3J2aUpaMlQ0SHdQVnJMQnBqcE9CNXpqTDNHOXU2OEhjR25hN3N5dExOWTNqV3o0VTh2OW5yVHpqNlQxOUdNbNIBeEFVX3lxTFBrVFBFblFhS0RuVHZ6OE5xSGNRSk14Qjk2Zi1ONGtGd1BYZ3pWVl80VWxJT1I4X1RwamxHVS1B…",
         "score": 46
+      },
+      {
+        "id": "economy-7ZSE66as642kIO",
+        "category": "economy",
+        "categoryName": "경제·금융",
+        "categoryIcon": "💹",
+        "title": "프리덤 홀딩스(FRHC)가 연간 수익성 개선으로 주당순이익(EPS)이 두 배로 늘었음에도 주가가 6.9% 하락한 이유",
+        "description": "프리덤 홀딩스(FRHC)가 연간 수익성 개선으로 주당순이익(EPS)이 두 배로 늘었음에도 주가가 6.9% 하락한 이유 &nbsp;&nbsp; simplywall.st",
+        "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOWU5oUF92cXpja0hrWVpEU2pTR2FvSjVWZzFhUDV5Q0J2TDNnTmtIMEREbGhhTHdTNkNPMmJlQzcyaktFUEJaRllsM0k1MzdubDBTN0xNSG5TMVpnZHYzX1JOcC1uN1lXNWhEQWpydmdqRWxUWW5udFBWLU01ZmxZdDNTT2t1YmpqMWtiU2JQVndDbFFmWWNLM2l6ZGtrOWlHeEtTRWtQbTNYYzkzMmZZZdIBsAFBVV95cUxOWU5oUF92cXpja0hrWVpEU2pTR2FvSjVWZzFhUDV5Q0J2TDNnTmtIMEREbGhhTHdTNkNPMmJlQzcyaktFUEJaRllsM0k1MzdubDBTN0xNSG5TMVpnZHYzX1JOcC1uN1lXNWhEQWpydmdqRWxUWW5udFBWLU01ZmxZdDNTT2t1YmpqMWtiU2JQVndDbFFmWWNLM2l6ZGtrOWlHeEtTRWtQbTNYYzkzMmZZZQ?oc=5",
+        "source": {
+          "name": "simplywall.st",
+          "url": "https://simplywall.st"
+        },
+        "publishedAt": "2026-06-13T03:41:06.000Z",
+        "guid": "CBMisAFBVV95cUxOWU5oUF92cXpja0hrWVpEU2pTR2FvSjVWZzFhUDV5Q0J2TDNnTmtIMEREbGhhTHdTNkNPMmJlQzcyaktFUEJaRllsM0k1MzdubDBTN0xNSG5TMVpnZHYzX1JOcC1uN1lXNWhEQWpydmdqRWxUWW5udFBWLU01ZmxZdDNTT2t1YmpqMWtiU2JQVndDbFFmWWNLM2l6ZGtrOWlH…",
+        "score": 45
       },
       {
         "id": "economy-UFBIQyDrspXrpa",
@@ -1231,7 +1248,7 @@
         },
         "publishedAt": "2026-06-13T02:01:00.000Z",
         "guid": "CBMiU0FVX3lxTE5BTzBDdm15M2poNEt3UG5tTnNRN3ZKRW5pLV9nemk1bXJZUEllZTQtblVVQnp1dTFPR3RzVlhmU0Fzbnk5REZ1NS13Yk5xdVVXQUk0",
-        "score": 44
+        "score": 43
       },
       {
         "id": "economy-6rWt7KCcIOyekO",
@@ -1298,6 +1315,22 @@
         "score": 42
       },
       {
+        "id": "economy-W-yLrOy4tV0g7J",
+        "category": "economy",
+        "categoryName": "경제·금융",
+        "categoryIcon": "💹",
+        "title": "[심층] 온탕·냉탕 오가는 롤러코스터 장세…‘역대급 널뛰기’ 국장 왜 이러나",
+        "description": "[심층] 온탕·냉탕 오가는 롤러코스터 장세…‘역대급 널뛰기’ 국장 왜 이러나 &nbsp;&nbsp; 알파경제",
+        "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5JRmdYbzhKeEJHSWEtdGNoOGtzbFZSdWtfNWlLaUJ6dHNMMXhmU2J3bjZrLUlXcTBhTWt5YU1kMnJKdmpaRU5MUHRCSzRlQVdZcEFKcHdxMnIyS29uZkHSAW5BVV95cUxQUUJOQ1ZRbGRoTHdOMFhQaVJ5cDVUUTVpdjAwZ1RZNHBTMzBvOVVKUThqODFvcTRaZWtSUTkyVnh4cmhHVkpxLXlRVi13cXJRaWF2dWpPX2M0NmxNdGk0R0hic0hpVzZwVy1fcjBWdw?oc=5",
+        "source": {
+          "name": "알파경제",
+          "url": "https://alphabiz.co.kr"
+        },
+        "publishedAt": "2026-06-13T00:26:20.000Z",
+        "guid": "CBMiXkFVX3lxTE5JRmdYbzhKeEJHSWEtdGNoOGtzbFZSdWtfNWlLaUJ6dHNMMXhmU2J3bjZrLUlXcTBhTWt5YU1kMnJKdmpaRU5MUHRCSzRlQVdZcEFKcHdxMnIyS29uZkHSAW5BVV95cUxQUUJOQ1ZRbGRoTHdOMFhQaVJ5cDVUUTVpdjAwZ1RZNHBTMzBvOVVKUThqODFvcTRaZWtSUTkyVnh4…",
+        "score": 42
+      },
+      {
         "id": "economy-W-u2gOuPmeyCsO",
         "category": "economy",
         "categoryName": "경제·금융",
@@ -1311,54 +1344,22 @@
         },
         "publishedAt": "2026-06-12T23:00:00.000Z",
         "guid": "CBMiT0FVX3lxTE9PZVRiU1dCdGp2LTFhdEdvV3dBRXgzd1JWNXk1UHJUTGV5OWx0YzB6VjZnbGRlSTZRSUdIejg5eElNeENWRWtZZU5KOGdhclE",
-        "score": 41
-      },
-      {
-        "id": "economy-W-yjvOqwhCDsvZ",
-        "category": "economy",
-        "categoryName": "경제·금융",
-        "categoryIcon": "💹",
-        "title": "[주간 코스닥 외국인] 알테오젠·리가켐바이오 집중 매수...브이엠 주성엔지니어링 원익IPS 팔았다",
-        "description": "[주간 코스닥 외국인] 알테오젠·리가켐바이오 집중 매수...브이엠 주성엔지니어링 원익IPS 팔았다 &nbsp;&nbsp; 핀포인트뉴스",
-        "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFB4ZEN6NDM5UzR4R2lOUGp0YWY0azFLRkV0VlBHMk1PRVJySllrSVJlbUpLYlc3eUN6a0t3bkZoUHFBdFBWdDIzTkhOOGozWXJyQUJ3cldvdmJGSUxmZTBYellUaFlkMEtOWWVQYzFXYjk0ZHBmMDFJ0gF3QVVfeXFMUHhkQ3o0MzlTNHhHaU5QanRhZjRrMUtGRXRWUEcyTU9FUnJKWWtJUmVtSktiVzd5Q3prS3duRmhQcUF0UFZ0MjNOSE44ajNZcnJBQndyV292YkZJTGZlMFh6WVRoWWQwS05ZZVBjMVdiOTRkcGYwMUk?oc=5",
-        "source": {
-          "name": "핀포인트뉴스",
-          "url": "https://www.pinpointnews.co.kr"
-        },
-        "publishedAt": "2026-06-12T22:47:28.000Z",
-        "guid": "CBMid0FVX3lxTFB4ZEN6NDM5UzR4R2lOUGp0YWY0azFLRkV0VlBHMk1PRVJySllrSVJlbUpLYlc3eUN6a0t3bkZoUHFBdFBWdDIzTkhOOGozWXJyQUJ3cldvdmJGSUxmZTBYellUaFlkMEtOWWVQYzFXYjk0ZHBmMDFJ0gF3QVVfeXFMUHhkQ3o0MzlTNHhHaU5QanRhZjRrMUtGRXRWUEcyTU9F…",
         "score": 40
       },
       {
-        "id": "economy-7Jqw66as6riw7I",
+        "id": "economy-64-E67CVIOyngO",
         "category": "economy",
         "categoryName": "경제·금융",
         "categoryIcon": "💹",
-        "title": "우리기술 투자분석",
-        "description": "우리기술 투자분석 &nbsp;&nbsp; 주달",
-        "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5Dc1hHZWZ4WHhUV3MxWk9YSk9sN1BPdlpJWFZvYkhMelNObzFnVmVqb2sySDRFeHd2Ulo2MEp5MHJiUG1ydThENGtlWmszTGtRdHhPSWhMSm9SWWF1SlJUdE9zNnFJUTQ0d05HU1B5Wl9xdTQ?oc=5",
+        "title": "도박 지능 투자 재테크로 보는 권위 있는 해석: 기초, 심화 및 마스터",
+        "description": "도박 지능 투자 재테크로 보는 권위 있는 해석: 기초, 심화 및 마스터 &nbsp;&nbsp; kmrk.ru",
+        "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBxSnNYT0xKVk04QmxLT3Bzel9oUDlDdGM4aVhDMWdreHFmWkJhN2VyLU95RmhaWGxoc1h6Sm1HdDdVWDNxcm1VLTN2OXVkS0w0RW9rSGEzTTdBQmNnUkdB?oc=5",
         "source": {
-          "name": "주달",
-          "url": "https://www.judal.co.kr"
+          "name": "kmrk.ru",
+          "url": "https://www.kmrk.ru"
         },
-        "publishedAt": "2026-06-12T22:29:41.000Z",
-        "guid": "CBMic0FVX3lxTE5Dc1hHZWZ4WHhUV3MxWk9YSk9sN1BPdlpJWFZvYkhMelNObzFnVmVqb2sySDRFeHd2Ulo2MEp5MHJiUG1ydThENGtlWmszTGtRdHhPSWhMSm9SWWF1SlJUdE9zNnFJUTQ0d05HU1B5Wl9xdTQ",
-        "score": 40
-      },
-      {
-        "id": "economy-7JWE66mU66as7L",
-        "category": "economy",
-        "categoryName": "경제·금융",
-        "categoryIcon": "💹",
-        "title": "아메리칸 익스프레스 (AXP) 주가, 실적 쇼크 후 CFO 낙관론 속 밸류에이션은 적정할까",
-        "description": "아메리칸 익스프레스 (AXP) 주가, 실적 쇼크 후 CFO 낙관론 속 밸류에이션은 적정할까 &nbsp;&nbsp; simplywall.st",
-        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPcE9qZnQwUzd1VDU2NzZtd0lxdzVGcFJlREtZOUJmVE9UVHN0cG0zckRDcmpDeGhVWnNKQlhvZlRXOHAyODVsVEpyb2lCT1l1bHdnV1JTUUVjU3JfcjZ3ajhEQW9hMVNOZElQNmxfOFM1dHNwbDNpY2pkOEd4TFRrLWZXWFFPMm9XUFloRHl6ejh2VGN0S2lmSUQxMncwRG9Rc2xqMlRQRG9wZS1MR0HSAa4BQVVfeXFMT3BPamZ0MFM3dVQ1Njc2bXdJcXc1RnBSZURLWTlCZlRPVFRzdHBtM3JEQ3JqQ3hoVVpzSkJYb2ZUVzhwMjg1bFRKcm9pQk9ZdWx3Z1dSU1FFY1NyX3I2d2o4REFvYTFTTmRJUDZsXzhTNXRzcGwzaWNqZDhHeExUay1mV1hRTzJvV1BZaER5eno4dlRjdEtpZklEMTJ3MERvUXNsajJUUERvcGUtTEdB?oc=5",
-        "source": {
-          "name": "simplywall.st",
-          "url": "https://simplywall.st"
-        },
-        "publishedAt": "2026-06-12T21:35:38.000Z",
-        "guid": "CBMirgFBVV95cUxPcE9qZnQwUzd1VDU2NzZtd0lxdzVGcFJlREtZOUJmVE9UVHN0cG0zckRDcmpDeGhVWnNKQlhvZlRXOHAyODVsVEpyb2lCT1l1bHdnV1JTUUVjU3JfcjZ3ajhEQW9hMVNOZElQNmxfOFM1dHNwbDNpY2pkOEd4TFRrLWZXWFFPMm9XUFloRHl6ejh2VGN0S2lmSUQxMncwRG9R…",
+        "publishedAt": "2026-06-12T21:03:46.000Z",
+        "guid": "CBMiX0FVX3lxTFBxSnNYT0xKVk04QmxLT3Bzel9oUDlDdGM4aVhDMWdreHFmWkJhN2VyLU95RmhaWGxoc1h6Sm1HdDdVWDNxcm1VLTN2OXVkS0w0RW9rSGEzTTdBQmNnUkdB",
         "score": 39
       },
       {
@@ -1394,22 +1395,6 @@
         "score": 38
       },
       {
-        "id": "economy-W-ymneyLnCBVUC",
-        "category": "economy",
-        "categoryName": "경제·금융",
-        "categoryIcon": "💹",
-        "title": "[증시 UP&DOWN] 숨고르기 진입한 코스피, 변동성에 강한 주도주 투자 유리",
-        "description": "[증시 UP&DOWN] 숨고르기 진입한 코스피, 변동성에 강한 주도주 투자 유리 &nbsp;&nbsp; 포인트데일리",
-        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE05TXYyLVFDVGIwbTdxdTNpbXh4RUtCNk80WU9xTFVtUUtoNXY0VVliaFo1b0pUVExtaTEwazRwZ0tZRDdwUEZrbEhpakRhQVI2Q1RuRVlqVXB4R05OV09Ka2VnZUlqdFdUQUZYN2pTOW7SAXRBVV95cUxNNHl0dGVVQ2REVWJfRmVQZG1Qa3ZGVk1pU3dXTkhwR25WdEgxR3ltSVg2d2dVSVFhZHFNTGxHUEhYeUJWYWhmczJpT01MSDJEVVdpYnoyVXRDMUhTU2VmZHBlenF6Mm5vTVBkcmZ2bEJNdXlyOQ?oc=5",
-        "source": {
-          "name": "포인트데일리",
-          "url": "https://www.pointdaily.co.kr"
-        },
-        "publishedAt": "2026-06-12T19:00:00.000Z",
-        "guid": "CBMicEFVX3lxTE05TXYyLVFDVGIwbTdxdTNpbXh4RUtCNk80WU9xTFVtUUtoNXY0VVliaFo1b0pUVExtaTEwazRwZ0tZRDdwUEZrbEhpakRhQVI2Q1RuRVlqVXB4R05OV09Ka2VnZUlqdFdUQUZYN2pTOW7SAXRBVV95cUxNNHl0dGVVQ2REVWJfRmVQZG1Qa3ZGVk1pU3dXTkhwR25WdEgxR3lt…",
-        "score": 37
-      },
-      {
         "id": "economy-W-2YhOyepStdIO",
         "category": "economy",
         "categoryName": "경제·금융",
@@ -1424,6 +1409,22 @@
         "publishedAt": "2026-06-12T11:09:50.000Z",
         "guid": "CBMicEFVX3lxTE04ZEFyU3dWbUtLLTBHZFpuV3g5WlAtNVdrSjJjbzZaV0YxcjZRcHFLT1kwLWdyR0FrSWxWeXppeWh0T3JwQVFOTTM1TUtiUHlJaTVidm54V2ZRU1AxV0MxRXNNLXM4OXZBQ19YamdlbDM",
         "score": 37
+      },
+      {
+        "id": "economy-W-ymneyLnCBVUC",
+        "category": "economy",
+        "categoryName": "경제·금융",
+        "categoryIcon": "💹",
+        "title": "[증시 UP&DOWN] 숨고르기 진입한 코스피, 변동성에 강한 주도주 투자 유리",
+        "description": "[증시 UP&DOWN] 숨고르기 진입한 코스피, 변동성에 강한 주도주 투자 유리 &nbsp;&nbsp; 포인트데일리",
+        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE05TXYyLVFDVGIwbTdxdTNpbXh4RUtCNk80WU9xTFVtUUtoNXY0VVliaFo1b0pUVExtaTEwazRwZ0tZRDdwUEZrbEhpakRhQVI2Q1RuRVlqVXB4R05OV09Ka2VnZUlqdFdUQUZYN2pTOW7SAXRBVV95cUxNNHl0dGVVQ2REVWJfRmVQZG1Qa3ZGVk1pU3dXTkhwR25WdEgxR3ltSVg2d2dVSVFhZHFNTGxHUEhYeUJWYWhmczJpT01MSDJEVVdpYnoyVXRDMUhTU2VmZHBlenF6Mm5vTVBkcmZ2bEJNdXlyOQ?oc=5",
+        "source": {
+          "name": "포인트데일리",
+          "url": "https://www.pointdaily.co.kr"
+        },
+        "publishedAt": "2026-06-12T19:00:00.000Z",
+        "guid": "CBMicEFVX3lxTE05TXYyLVFDVGIwbTdxdTNpbXh4RUtCNk80WU9xTFVtUUtoNXY0VVliaFo1b0pUVExtaTEwazRwZ0tZRDdwUEZrbEhpakRhQVI2Q1RuRVlqVXB4R05OV09Ka2VnZUlqdFdUQUZYN2pTOW7SAXRBVV95cUxNNHl0dGVVQ2REVWJfRmVQZG1Qa3ZGVk1pU3dXTkhwR25WdEgxR3lt…",
+        "score": 36
       }
     ],
     "society": [
@@ -1441,7 +1442,7 @@
         },
         "publishedAt": "2026-06-13T09:01:00.000Z",
         "guid": "CBMiU0FVX3lxTE9JSXQ3NXFIcWpwOV8waFJ2U0Vna004cy1fU2FkekhhUEtEQ0h4R1hqNmkxSTJWR09aVlc3TG5aUWZXandGWnU0UHV2UHJzRzVCT1dJ",
-        "score": 59
+        "score": 58
       },
       {
         "id": "society-64Ko7ZG47JilIO",
@@ -1460,6 +1461,22 @@
         "score": 51
       },
       {
+        "id": "society-IuuvvOykkeydmC",
+        "category": "society",
+        "categoryName": "사회·교육",
+        "categoryIcon": "🏫",
+        "title": "\"민중의 건강 호민관, 우리가 잇겠습니다\"",
+        "description": "\"민중의 건강 호민관, 우리가 잇겠습니다\" &nbsp;&nbsp; 네이트",
+        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5LMlpSZnYzaXNjYlg1SWdDajdkcEVpbzJOcnZvMnFJVHZrVEtOSGl2Ym03Vm5SemNZLWlCakllV0ZrTHRPYjB5Z2ROcU1GR3pxbzN3?oc=5",
+        "source": {
+          "name": "네이트",
+          "url": "https://news.nate.com"
+        },
+        "publishedAt": "2026-06-13T09:36:00.000Z",
+        "guid": "CBMiU0FVX3lxTE5LMlpSZnYzaXNjYlg1SWdDajdkcEVpbzJOcnZvMnFJVHZrVEtOSGl2Ym03Vm5SemNZLWlCakllV0ZrTHRPYjB5Z2ROcU1GR3pxbzN3",
+        "score": 51
+      },
+      {
         "id": "society-7L-g7YyhLCDqsJ",
         "category": "society",
         "categoryName": "사회·교육",
@@ -1473,7 +1490,7 @@
         },
         "publishedAt": "2026-06-13T00:00:00.000Z",
         "guid": "CBMiakFVX3lxTE9SLTB0NGljY1ZhUEMyYWZVZ1Vnb2Zvd3FySE85YkRFai1Md2xVdmt3UW9Tc3hpTlgtejNzZDhVaEMwX09GZTlqR2Z2VW9Pblp1UlFYc05jSjZ3bW8tTy1nR005dGhuSENiS0E",
-        "score": 50
+        "score": 49
       },
       {
         "id": "society-64Ko7ZSE7Ja17I",
@@ -1505,7 +1522,7 @@
         },
         "publishedAt": "2026-06-12T21:00:00.000Z",
         "guid": "CBMiX0FVX3lxTE5oZW9YMzVNTk9yVzcxYm1TcElPUnNpXzB5RzV0dVVtSWIyX0Y2cEhEeHRUOFZ6Tl9iTldhaFJwdURPUU5uenRhS09Eb1ZBNHdPQy1GU0xKb2R5aVozZ1dR0gFfQVVfeXFMTmhlb1gzNU1OT3JXNzFibVNwSU9Sc2lfMHlHNXR1VW1JYjJfRjZwSER4dFQ4VnpOX2JOV2FoUnB1…",
-        "score": 39
+        "score": 38
       },
       {
         "id": "society-7ISsIOyWtOultO",
@@ -1537,7 +1554,7 @@
         },
         "publishedAt": "2026-06-12T13:02:00.000Z",
         "guid": "CBMiU0FVX3lxTFBPMlFFS0VObGZfeW5xM3NWRmcxaUc0ZHV2dHdrM2lkNlVlSFc4Zzlmb0ExaGhiZ3NiOUh6aHFIdG0taTNnSlhibUxoOWpfenBtVzgw",
-        "score": 31
+        "score": 30
       },
       {
         "id": "society-4oCY6rCA7Kec7K",
@@ -1606,6 +1623,22 @@
         "score": 56
       },
       {
+        "id": "world-66-4wrfsnbTrno",
+        "category": "world",
+        "categoryName": "국제",
+        "categoryIcon": "🌍",
+        "title": "미·이란 종전 임박…정부, '호르무즈' 상황 촉각",
+        "description": "미·이란 종전 임박…정부, '호르무즈' 상황 촉각 &nbsp;&nbsp; 네이트",
+        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9yTzVyNGk1M3JabE1hcnN2ZDRXUWI1Y0VzbW9pTGsxRzUxWW9VcFhubnBBTlpYZERMOGd6U3ZJSWowUjFEd3NrcGwxV01zMkNQdF8w?oc=5",
+        "source": {
+          "name": "네이트",
+          "url": "https://news.nate.com"
+        },
+        "publishedAt": "2026-06-13T10:25:00.000Z",
+        "guid": "CBMiU0FVX3lxTE9yTzVyNGk1M3JabE1hcnN2ZDRXUWI1Y0VzbW9pTGsxRzUxWW9VcFhubnBBTlpYZERMOGd6U3ZJSWowUjFEd3NrcGwxV01zMkNQdF8w",
+        "score": 52
+      },
+      {
         "id": "world-W-yVhOyjvCDsgq",
         "category": "world",
         "categoryName": "국제",
@@ -1620,22 +1653,6 @@
         "publishedAt": "2026-06-12T23:41:20.000Z",
         "guid": "CBMiWEFVX3lxTE1ydEpFQ0EzZ3pNR1k5b0V2bXBpUG5OMmo2NTV4Z082VXRMS1U1U0tHUWJFVm1JcG1Jb2s5S3p5WWtCbThBeU1xclRnOE94NHhELWZTSXlUQnLSAVhBVV95cUxNcnRKRUNBM2d6TUdZOW9Fdm1waVBuTjJqNjU1eGdPNlV0TEtVNVNLR1FiRVZtSXBtSW9rOUt6eVlrQm04QXlN…",
         "score": 49
-      },
-      {
-        "id": "world-66-4wrfsnbTrno",
-        "category": "world",
-        "categoryName": "국제",
-        "categoryIcon": "🌍",
-        "title": "미·이란 종전 임박…정부, '호르무즈' 상황 촉각",
-        "description": "미·이란 종전 임박…정부, '호르무즈' 상황 촉각 &nbsp;&nbsp; 네이트",
-        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9HM21mUlVBR3N0YnVWdDRuY3NBUEx6N1pFNWFsQm5OTEFwUWd3R0h2VjVxZUtoN0VoY2ljblY3REdzZDRSUjFGc0EyczZ0OW4tNm1F?oc=5",
-        "source": {
-          "name": "네이트",
-          "url": "https://news.nate.com"
-        },
-        "publishedAt": "2026-06-13T06:18:00.000Z",
-        "guid": "CBMiU0FVX3lxTE9HM21mUlVBR3N0YnVWdDRuY3NBUEx6N1pFNWFsQm5OTEFwUWd3R0h2VjVxZUtoN0VoY2ljblY3REdzZDRSUjFGc0EyczZ0OW4tNm1F",
-        "score": 48
       },
       {
         "id": "world-7J2866GgIOuouO",
@@ -1654,22 +1671,6 @@
         "score": 47
       },
       {
-        "id": "world-QVNNTOydgCDslr",
-        "category": "world",
-        "categoryName": "국제",
-        "categoryIcon": "🌍",
-        "title": "ASML은 어떻게 세계 반도체 업계를 정복했나 [PADO]",
-        "description": "ASML은 어떻게 세계 반도체 업계를 정복했나 [PADO] &nbsp;&nbsp; 네이트",
-        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9IcnU4UWxVWjRxWTNrdDlLdm9vSFZZaU9MTG5pQmRFckpRRmRpMnUwZTNyRGxRYmthSG1LY1NBQ0VUTFB1b3poVU9BaURvYXhYWEpWUVRhZ0o2OGRVSlZNM2JwcjlYUU1iS1ZUdERYWXVuOV9QR2Jldw?oc=5",
-        "source": {
-          "name": "네이트",
-          "url": "https://m.news.nate.com"
-        },
-        "publishedAt": "2026-06-12T21:01:00.000Z",
-        "guid": "CBMieEFVX3lxTE9IcnU4UWxVWjRxWTNrdDlLdm9vSFZZaU9MTG5pQmRFckpRRmRpMnUwZTNyRGxRYmthSG1LY1NBQ0VUTFB1b3poVU9BaURvYXhYWEpWUVRhZ0o2OGRVSlZNM2JwcjlYUU1iS1ZUdERYWXVuOV9QR2Jldw",
-        "score": 47
-      },
-      {
         "id": "world-66-46rWt6rO8IO",
         "category": "world",
         "categoryName": "국제",
@@ -1683,6 +1684,22 @@
         },
         "publishedAt": "2026-06-13T04:51:03.000Z",
         "guid": "CBMidEFVX3lxTFBzX2NxMW45eTctdGRLdmNfRWZQOC1NdnU1ajhUMEpOUGU1M2M5N3FkTHYzWnY4SGRlajB4a3pXSHpnVDlWZGRiZ1M3ZE1WSThNSUh4ZkVPTjJ0bGJMTExXSGRHeFI2a3Y0QlNGTF9KOW1xQ0Jq",
+        "score": 46
+      },
+      {
+        "id": "world-QVNNTOydgCDslr",
+        "category": "world",
+        "categoryName": "국제",
+        "categoryIcon": "🌍",
+        "title": "ASML은 어떻게 세계 반도체 업계를 정복했나 [PADO]",
+        "description": "ASML은 어떻게 세계 반도체 업계를 정복했나 [PADO] &nbsp;&nbsp; 네이트",
+        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9IcnU4UWxVWjRxWTNrdDlLdm9vSFZZaU9MTG5pQmRFckpRRmRpMnUwZTNyRGxRYmthSG1LY1NBQ0VUTFB1b3poVU9BaURvYXhYWEpWUVRhZ0o2OGRVSlZNM2JwcjlYUU1iS1ZUdERYWXVuOV9QR2Jldw?oc=5",
+        "source": {
+          "name": "네이트",
+          "url": "https://m.news.nate.com"
+        },
+        "publishedAt": "2026-06-12T21:01:00.000Z",
+        "guid": "CBMieEFVX3lxTE9IcnU4UWxVWjRxWTNrdDlLdm9vSFZZaU9MTG5pQmRFckpRRmRpMnUwZTNyRGxRYmthSG1LY1NBQ0VUTFB1b3poVU9BaURvYXhYWEpWUVRhZ0o2OGRVSlZNM2JwcjlYUU1iS1ZUdERYWXVuOV9QR2Jldw",
         "score": 46
       },
       {
@@ -1715,7 +1732,7 @@
         },
         "publishedAt": "2026-06-13T02:58:05.000Z",
         "guid": "CBMiT0FVX3lxTE9nWlVoWGhQRTdyd0EtVDd1RzhOd0M5dDJmRTR0UXZhN09DbGRONTRNdGxuUlBnaTYwb1dDQ1RGdmpRMjJHRkd6elVCd3VvcnM",
-        "score": 45
+        "score": 44
       },
       {
         "id": "world-7ZWcLeyYgSwg7J",
@@ -1747,7 +1764,7 @@
         },
         "publishedAt": "2026-06-12T22:00:00.000Z",
         "guid": "CBMiZEFVX3lxTE4zSEZIUjdxS3lqUnM5RXZVWWx5VnNJRnA3LWlzdjd6bEJjc2xZUWZwd3AwUTNUZ1hZSTZlQk1zVzUxUGFPR1o2aHlZemlLMWl3X05ob2VSbjZvT2loeGVUaHpBQ28",
-        "score": 40
+        "score": 39
       },
       {
         "id": "world-U3Rha2UgU3Rha2",
@@ -1763,22 +1780,6 @@
         },
         "publishedAt": "2026-06-12T21:03:46.000Z",
         "guid": "CBMiX0FVX3lxTFBkRno3endjRzdxblU5TzBDbHZoVjBIVjR4Z01uaHc1eVJmTThNU2ZLSldFZ05aOGh2SUlqaHZod0JocG9xczJFUWNuRERlTURHSF9YbWI2WUFBSXR1SzlF",
-        "score": 39
-      },
-      {
-        "id": "world-J-ykkeqyrOq1rS",
-        "category": "world",
-        "categoryName": "국제",
-        "categoryIcon": "🌍",
-        "title": "'중견국' 착각 [PADO] - 머니투데이",
-        "description": "'중견국' 착각 [PADO] - 머니투데이 &nbsp;&nbsp; 머니투데이",
-        "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBlYVU3LXN3bFREOUNKWllTeHktS1BiUFRiWVFhOGlIajhwU25DdFhlNzlBeVFkamdZbXlTXzJLaWs0ZnVIbjJ2WUhFd3pBZ0hhMXBiZF9nRlNUTGJ0THFFdVVYRnBsTEgtMmJ4M2ln0gFuQVVfeXFMUGVhVTctc3dsVEQ5Q0paWVN4eS1LUGJQVGJZUWE4aUhqOHBTbkN0WGU3OUF5UWRqZ1lteVNfMktpazRmdUhuMnZZSEV3ekFnSGExcGJkX2dGU1RMYnRMcUV1VVhGcGxMSC0yYngzaWc?oc=5",
-        "source": {
-          "name": "머니투데이",
-          "url": "https://www.mt.co.kr"
-        },
-        "publishedAt": "2026-06-12T21:00:00.000Z",
-        "guid": "CBMibkFVX3lxTFBlYVU3LXN3bFREOUNKWllTeHktS1BiUFRiWVFhOGlIajhwU25DdFhlNzlBeVFkamdZbXlTXzJLaWs0ZnVIbjJ2WUhFd3pBZ0hhMXBiZF9nRlNUTGJ0THFFdVVYRnBsTEgtMmJ4M2ln0gFuQVVfeXFMUGVhVTctc3dsVEQ5Q0paWVN4eS1LUGJQVGJZUWE4aUhqOHBTbkN0WGU3…",
         "score": 39
       },
       {
@@ -1798,6 +1799,22 @@
         "score": 39
       },
       {
+        "id": "world-J-ykkeqyrOq1rS",
+        "category": "world",
+        "categoryName": "국제",
+        "categoryIcon": "🌍",
+        "title": "'중견국' 착각 [PADO] - 머니투데이",
+        "description": "'중견국' 착각 [PADO] - 머니투데이 &nbsp;&nbsp; 머니투데이",
+        "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBlYVU3LXN3bFREOUNKWllTeHktS1BiUFRiWVFhOGlIajhwU25DdFhlNzlBeVFkamdZbXlTXzJLaWs0ZnVIbjJ2WUhFd3pBZ0hhMXBiZF9nRlNUTGJ0THFFdVVYRnBsTEgtMmJ4M2ln0gFuQVVfeXFMUGVhVTctc3dsVEQ5Q0paWVN4eS1LUGJQVGJZUWE4aUhqOHBTbkN0WGU3OUF5UWRqZ1lteVNfMktpazRmdUhuMnZZSEV3ekFnSGExcGJkX2dGU1RMYnRMcUV1VVhGcGxMSC0yYngzaWc?oc=5",
+        "source": {
+          "name": "머니투데이",
+          "url": "https://www.mt.co.kr"
+        },
+        "publishedAt": "2026-06-12T21:00:00.000Z",
+        "guid": "CBMibkFVX3lxTFBlYVU3LXN3bFREOUNKWllTeHktS1BiUFRiWVFhOGlIajhwU25DdFhlNzlBeVFkamdZbXlTXzJLaWs0ZnVIbjJ2WUhFd3pBZ0hhMXBiZF9nRlNUTGJ0THFFdVVYRnBsTEgtMmJ4M2ln0gFuQVVfeXFMUGVhVTctc3dsVEQ5Q0paWVN4eS1LUGJQVGJZUWE4aUhqOHBTbkN0WGU3…",
+        "score": 38
+      },
+      {
         "id": "world-W-uUnOuhnOydtO",
         "category": "world",
         "categoryName": "국제",
@@ -1811,7 +1828,7 @@
         },
         "publishedAt": "2026-06-12T20:00:00.000Z",
         "guid": "CBMidEFVX3lxTFBnWW16cDRfQlJjU0g1ZHQ1cTFoMUVjRVRYYUpXMkNnVUxWVmk0NGl5eDV3SHV0MTgzVXc4YlpucmJIMVpfWHFadjRCeXc3ckV2RERhcFIyaG5NQWJycE90ZXJzTmhIVUNOYUJMdUVSbHRhcTdu",
-        "score": 38
+        "score": 37
       },
       {
         "id": "world-7ZW07JaR7IiY7I",
@@ -1859,7 +1876,7 @@
         },
         "publishedAt": "2026-06-12T18:02:00.000Z",
         "guid": "CBMiggJBVV95cUxOSjBuWnJPRmVSLTBnbS14SjJ3Q1VhZXctenFsaHM2bGFsLVUwT3NjcHYyRDBFaUE0Y00tb1VGdG5fYWlTSTFnY2hoTUNiajE2b2JaSzloTG02X1JjN0hQUzJQR25KczRCT0tqVGx5VEdXNktoU25ya2lXTEM4VEtwS3BudU01ZEUtMndYQ3ZfakMzeWhkTzFLblo5ZEVlM254…",
-        "score": 36
+        "score": 35
       },
       {
         "id": "world-7J207Iqk65287J",
@@ -1923,7 +1940,7 @@
         },
         "publishedAt": "2026-06-12T15:01:00.000Z",
         "guid": "CBMilgFBVV95cUxQTUdzeEdhb2l0NVBYMFRwaW1femoydG9VQmhCVms5Q09OSWFMWll3ZUxla3kxVzFhOG5Fa296NVExZkNYMGpQVGxTbDg2VGN5aTlsTUllYk5JY1pHdEZYTk1pM2JKbUxPbEcxUGdtUXc5NGhxUU1QZUcxU0ZfYXZPNHNjeFJ4R2RueGZqV0ZDazN5TnRlWlHSAWxBVV95cUxO…",
-        "score": 33
+        "score": 32
       },
       {
         "id": "world-7Zi47KO8LCDspJ",
@@ -2040,6 +2057,22 @@
         "score": 54
       },
       {
+        "id": "tech-64Sk7J2067KEIE",
+        "category": "tech",
+        "categoryName": "AI·과학기술",
+        "categoryIcon": "🤖",
+        "title": "네이버 D2SF, AI 보안 투자...에임인텔리전스와 동맹",
+        "description": "네이버 D2SF, AI 보안 투자...에임인텔리전스와 동맹 &nbsp;&nbsp; MSN",
+        "url": "https://news.google.com/rss/articles/CBMiuAJBVV95cUxQM2hjR3JrQm9PV2VmM1hGYlpwdTJISUR6XzVOYVhZakdYY2NvMVdOdlBOWFplNlpBLWZuUVZVR0hCVWI5Mm44a004US1rZ1ZqTmg5X3B2eG9xSl9tZVdtMU9sd2NHT3FVS2ZCYUtjTElBdXlHcTVXM2ZTY3V4UHRBbXU0Q2FDcnBzbVJOeWZmb2x0TXRKTm8xNGVJZ3kzNmUyWmtZM05Sb19rUWVHNF9oVEdpYzRUNkxDU2pocHctcUVoUk9TZTN2YjZweWJ5SG1BRW9kZUIwQ0tCV19ZUFMzSTJaNXJFVXluamc3V3U3SlZNVzdGM3ZUQ1F6bUVFWnRxbnZ1SGR6QXNlckJPSTVzRkV5Z0g5dDlwVDJhWWRHa25sZlhTWHZfRUY5MmZiSmFZREI1T2xHVmM?oc=5",
+        "source": {
+          "name": "MSN",
+          "url": "https://www.msn.com"
+        },
+        "publishedAt": "2026-06-13T04:06:11.000Z",
+        "guid": "CBMiuAJBVV95cUxQM2hjR3JrQm9PV2VmM1hGYlpwdTJISUR6XzVOYVhZakdYY2NvMVdOdlBOWFplNlpBLWZuUVZVR0hCVWI5Mm44a004US1rZ1ZqTmg5X3B2eG9xSl9tZVdtMU9sd2NHT3FVS2ZCYUtjTElBdXlHcTVXM2ZTY3V4UHRBbXU0Q2FDcnBzbVJOeWZmb2x0TXRKTm8xNGVJZ3kzNmUy…",
+        "score": 54
+      },
+      {
         "id": "tech-7J207J6s7JqpIO",
         "category": "tech",
         "categoryName": "AI·과학기술",
@@ -2133,7 +2166,7 @@
         },
         "publishedAt": "2026-06-12T21:00:02.000Z",
         "guid": "CBMiVEFVX3lxTE55bmJWUmxVVVhLUmxBU21HTER5YmFtZVZ5blpBb2NOYkdwbEFUWW8tNmgxd2FBNnhQNm5vQks1LVRyQmdQZFpreGJ6RmlSR210UDhWMtIBVEFVX3lxTE55bmJWUmxVVVhLUmxBU21HTER5YmFtZVZ5blpBb2NOYkdwbEFUWW8tNmgxd2FBNnhQNm5vQks1LVRyQmdQZFpreGJ6…",
-        "score": 47
+        "score": 46
       },
       {
         "id": "tech-IuyEseqztSDtmZ",
@@ -2149,7 +2182,7 @@
         },
         "publishedAt": "2026-06-13T03:59:00.000Z",
         "guid": "CBMib0FVX3lxTFBINzZEeUhJYUdlUlVzODhPd05iaHE4TG1qTlRoOGZBU3BfMFA0UVFFbEMxaFhsdzN4aFVvNmY1RWxNSmNaUHpTSk9ocVdnMm51eXVqcGJQeWlXOS14SWNxWGVsUGQyODUzakJaNy1NWQ",
-        "score": 46
+        "score": 45
       },
       {
         "id": "tech-66ek7LacIDnsob",
@@ -2229,7 +2262,7 @@
         },
         "publishedAt": "2026-06-13T00:00:02.000Z",
         "guid": "CBMiYEFVX3lxTFBTdzVUM2VQSHRIRk1jbnlwUEwzU04temtYNW9jM0Z3WXBNRS1lUFpjd05Wb2ZUblpHczJCODVlRms3MjZlQWxUbTBkZGY5eVRUS0VydkNLMGlPV1dwNHlDONIBYEFVX3lxTFBTdzVUM2VQSHRIRk1jbnlwUEwzU04temtYNW9jM0Z3WXBNRS1lUFpjd05Wb2ZUblpHczJCODVl…",
-        "score": 42
+        "score": 41
       },
       {
         "id": "tech-U1RFTSDqtZDsnK",
@@ -2277,7 +2310,7 @@
         },
         "publishedAt": "2026-06-12T14:00:00.000Z",
         "guid": "CBMiYEFVX3lxTE5ZRFZWbmd1emRkblBlYzRuQnJuaXVRVVNrNk4zTWxSOW84SG5JaUhROEhoYnlvSGZVeTlLa3k2MTA1bHg2b3Z3VGNXUUpReU45MWxMc2MzWEdfZFlOX1hOZg",
-        "score": 40
+        "score": 39
       },
       {
         "id": "tech-W-yduO2EsOu3sF",
@@ -2293,7 +2326,7 @@
         },
         "publishedAt": "2026-06-12T21:00:00.000Z",
         "guid": "CBMiggFBVV95cUxOTS1DSzk1dzhkY3BCaDRxRFdETjgxeV84a1ZVX3d4UWI1SkM2aGJQaWFyZmRxSi1aNmQwOXM2NS1WTE5sV1dpMWgxa1ZqOTlDUkpVT1RaeTM3eVRpc09ieDYwaXR1c3hTRUhYSHdCZzhqckxZamZQc1VtcFZNMTlwVnVR0gGWAUFVX3lxTE1rWjFHNy1IMEs5SGxsQVNncEFC…",
-        "score": 39
+        "score": 38
       },
       {
         "id": "tech-W-q4sOyekOyImO",
@@ -2359,7 +2392,7 @@
         },
         "publishedAt": "2026-06-13T03:01:00.000Z",
         "guid": "CBMiW0FVX3lxTFBSaUhDdmRCNm1pTm4yR3RmX2U5QlpnWEdrUW95Tll4ZWQ2am5VQjBxa053Ym9Sc2dlZnVqeGwwUnFOV2JpWVRMenQ2VU1BTlRxN3hPN21jUzJ4SFU",
-        "score": 45
+        "score": 44
       },
       {
         "id": "climate-W-u2hOyEnV0g7J",
@@ -2505,7 +2538,7 @@
         },
         "publishedAt": "2026-06-13T02:00:07.000Z",
         "guid": "CBMiU0FVX3lxTE1TSnFfbkdENUhGbGNLNnYxcUZpVlBTUER4MFprTDhieURQYlZFOGNhMlVWRzZrQnV4Tk1ZcXZRWXNjMmJPX19naTdtWHpCTzlmWmgw",
-        "score": 44
+        "score": 43
       },
       {
         "id": "culture-W09UVOqwgOydtO",
@@ -2521,7 +2554,7 @@
         },
         "publishedAt": "2026-06-13T00:00:00.000Z",
         "guid": "CBMiakFVX3lxTE5VaC11enBCVExUOFdyeS1uMk5VWHkyc3BTX3phcllhaW13R0ZlOTVsVEZjcjByRkVfb01aUnZlU1l2c2FmZ1VoZEZOMjQ5bkdJTXFBbFQwY3AzNWVpem12eG5TN0FZLXR6d1E",
-        "score": 42
+        "score": 41
       },
       {
         "id": "culture-W-yjvOunkOyXkC",
@@ -2590,6 +2623,22 @@
         "score": 51
       },
       {
+        "id": "sports-67mI66GxOiAxLD",
+        "category": "sports",
+        "categoryName": "스포츠",
+        "categoryIcon": "⚽",
+        "title": "빈롱: 1,500명 이상이 \"모든 시민이 함께하는 체육 활동\" 프로그램에 참여했습니다.",
+        "description": "빈롱: 1,500명 이상이 \"모든 시민이 함께하는 체육 활동\" 프로그램에 참여했습니다. &nbsp;&nbsp; Vietnam.vn",
+        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOTEQ5TzQ4UXdFc0pZc3Q3Q1dZWmNhUmNYaGt1S2M0RHVVZGw4dUNtLWFvTlJraGRjVUoyb2lodWthc0dIVzhmb3g3dHdkUllpQ0V0RGhQTVdWOXU1NHpBamZHbWFkSHBpVndsU1ZBZk53T2tBVTJ4QzBFcGJ6dThwbkNpQ1hXMVJscnA0a3FhRWRvZVoybnVNVTBoeFRTV1FxSVNlTFFwTUF3Y1pyRHc?oc=5",
+        "source": {
+          "name": "Vietnam.vn",
+          "url": "https://www.vietnam.vn"
+        },
+        "publishedAt": "2026-06-13T08:15:25.000Z",
+        "guid": "CBMirgFBVV95cUxOTEQ5TzQ4UXdFc0pZc3Q3Q1dZWmNhUmNYaGt1S2M0RHVVZGw4dUNtLWFvTlJraGRjVUoyb2lodWthc0dIVzhmb3g3dHdkUllpQ0V0RGhQTVdWOXU1NHpBamZHbWFkSHBpVndsU1ZBZk53T2tBVTJ4QzBFcGJ6dThwbkNpQ1hXMVJscnA0a3FhRWRvZVoybnVNVTBoeFRTV1Fx…",
+        "score": 50
+      },
+      {
         "id": "sports-7LWc6rOgIDguNS",
         "category": "sports",
         "categoryName": "스포츠",
@@ -2606,22 +2655,6 @@
         "score": 49
       },
       {
-        "id": "sports-W-yblOuTnOy7tV",
-        "category": "sports",
-        "categoryName": "스포츠",
-        "categoryIcon": "⚽",
-        "title": "[월드컵] '한국 vs 체코전' 시청률, KBS2 8.5%로 1위…JTBC는 5.7%",
-        "description": "[월드컵] '한국 vs 체코전' 시청률, KBS2 8.5%로 1위…JTBC는 5.7% &nbsp;&nbsp; 스포츠타임스",
-        "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE42WFFSVkhTX3hkNnpRWFdXSkRTUEk5WGZQLXVNQlN0TzdPNXB2bXRKckNqYkl6d0VRS1dEWl9hN1p0Z0ZpV3NlREpidEt6U0dYOUZYSUgzaV9ZTHVUUW83RXYxbnlTczFTMXJ1UURURFcyN0dZYmc?oc=5",
-        "source": {
-          "name": "스포츠타임스",
-          "url": "https://www.thesportstimes.co.kr"
-        },
-        "publishedAt": "2026-06-13T05:57:16.000Z",
-        "guid": "CBMidkFVX3lxTE42WFFSVkhTX3hkNnpRWFdXSkRTUEk5WGZQLXVNQlN0TzdPNXB2bXRKckNqYkl6d0VRS1dEWl9hN1p0Z0ZpV3NlREpidEt6U0dYOUZYSUgzaV9ZTHVUUW83RXYxbnlTczFTMXJ1UURURFcyN0dZYmc",
-        "score": 48
-      },
-      {
         "id": "sports-W-yCrOynhF3rto",
         "category": "sports",
         "categoryName": "스포츠",
@@ -2636,6 +2669,22 @@
         "publishedAt": "2026-06-12T22:34:00.000Z",
         "guid": "CBMiaEFVX3lxTFBfbDM1N3JSd20tMjhZSmh0M29vWm9LSzJkR1VPTUVNX1MzZTQySU9FMHYyRDBkNWZMRGZidHduS05DMzVSM1VpX3hnMy1uekVpcVNFY0NFX3Z3aG04MkVJUGtlN0NxazVD",
         "score": 48
+      },
+      {
+        "id": "sports-W-yblOuTnOy7tV",
+        "category": "sports",
+        "categoryName": "스포츠",
+        "categoryIcon": "⚽",
+        "title": "[월드컵] '한국 vs 체코전' 시청률, KBS2 8.5%로 1위…JTBC는 5.7%",
+        "description": "[월드컵] '한국 vs 체코전' 시청률, KBS2 8.5%로 1위…JTBC는 5.7% &nbsp;&nbsp; 스포츠타임스",
+        "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE42WFFSVkhTX3hkNnpRWFdXSkRTUEk5WGZQLXVNQlN0TzdPNXB2bXRKckNqYkl6d0VRS1dEWl9hN1p0Z0ZpV3NlREpidEt6U0dYOUZYSUgzaV9ZTHVUUW83RXYxbnlTczFTMXJ1UURURFcyN0dZYmc?oc=5",
+        "source": {
+          "name": "스포츠타임스",
+          "url": "https://www.thesportstimes.co.kr"
+        },
+        "publishedAt": "2026-06-13T05:57:16.000Z",
+        "guid": "CBMidkFVX3lxTE42WFFSVkhTX3hkNnpRWFdXSkRTUEk5WGZQLXVNQlN0TzdPNXB2bXRKckNqYkl6d0VRS1dEWl9hN1p0Z0ZpV3NlREpidEt6U0dYOUZYSUgzaV9ZTHVUUW83RXYxbnlTczFTMXJ1UURURFcyN0dZYmc",
+        "score": 47
       },
       {
         "id": "sports-66q47ZG464qUIO",
@@ -2731,7 +2780,7 @@
         },
         "publishedAt": "2026-06-13T02:00:00.000Z",
         "guid": "CBMiWkFVX3lxTFB5cUVxUW43aVRaaVBHQ2hWSjNHR2FfLXFZUVRWTkRCZ1ItaDZKNGwyVFhjeWNBbkFvOENEYkl1UFZhSGJMUWRyblJUQmJ0SmN0VnM5ZGdCeDE4QQ",
-        "score": 44
+        "score": 43
       },
       {
         "id": "sports-J-qwleyGjO2cmC",
@@ -2795,7 +2844,7 @@
         },
         "publishedAt": "2026-06-12T21:00:00.000Z",
         "guid": "CBMiWEFVX3lxTE9ielk1YUc4Q3ZoTkNERkYxb0h1c2FrRFNrVGdpVHgtUXVUdlR5cTlxTXhIbXhhXzMzMzFLemFkSEpMLUxMYTRrRUs3eG9sLU42UkY0MUttOVrSAVhBVV95cUxPYnpZNWFHOEN2aE5DREZGMW9IdXNha0RTa1RnaVR4LVF1VHZUeXE5cU14SG14YV8zMzMxS3phZEhKTC1MTGE0…",
-        "score": 39
+        "score": 38
       },
       {
         "id": "sports-7Jes7J6QIOuwsO",
@@ -2843,7 +2892,7 @@
         },
         "publishedAt": "2026-06-12T17:00:00.000Z",
         "guid": "CBMieEFVX3lxTE5kSUNvS3MxYnNYUVJDV0RUd3BlRVprYXRUeEc5Z01uQ2VJbmhWdUJLbVB4RE5GLW4xTjdodDlvbW9RaVFXUkRaUGZia2lIekdlMTlNaURMVzVKZWYyeTJwQm1wOXpMOF9BallpNXR5UFV4NXNmZkZMNQ",
-        "score": 35
+        "score": 34
       },
       {
         "id": "sports-64yA7ZWc66-86r",
@@ -2859,7 +2908,7 @@
         },
         "publishedAt": "2026-06-12T17:00:00.000Z",
         "guid": "CBMieEFVX3lxTE1nUE1laEJ1U1pzNnBGb3dWd1NHbnVDWTQ3dUZ6eGUzLTZzVWhpRWc3N1FNMHFTbVc3TkxmZGd4SkFJWGlqTUx2QWFaS3hJaURiZHdIVUJhVmNqT3Q3VVJNbHk2ZktTZGdEMGlVMGszV2F1TEFWT3YzWQ",
-        "score": 35
+        "score": 34
       },
       {
         "id": "sports-64iIwrfrkZDrh4",
@@ -2878,38 +2927,6 @@
         "score": 33
       },
       {
-        "id": "sports-64yA7ISg7KO87K",
-        "category": "sports",
-        "categoryName": "스포츠",
-        "categoryIcon": "⚽",
-        "title": "대선주조, 월드컵 응원 에디션 출시…스포츠 마케팅 강화",
-        "description": "대선주조, 월드컵 응원 에디션 출시…스포츠 마케팅 강화 &nbsp;&nbsp; 웹이코노미",
-        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5IVFVmOFBWNS15VGMzMWhRbGJ3YWFyck92QXZBMGdMWE5Ibk5TdXZTSWlDY2NYdEstT2c2bVM5NnNsWUFXMVEtRWxJd3pRWDBMWDdaUXR5ZmVvNDl1NGRSelpDTm41elNEeUtDbkJZM1JiZw?oc=5",
-        "source": {
-          "name": "웹이코노미",
-          "url": "https://www.webeconomy.co.kr"
-        },
-        "publishedAt": "2026-06-12T15:42:35.000Z",
-        "guid": "CBMickFVX3lxTE5IVFVmOFBWNS15VGMzMWhRbGJ3YWFyck92QXZBMGdMWE5Ibk5TdXZTSWlDY2NYdEstT2c2bVM5NnNsWUFXMVEtRWxJd3pRWDBMWDdaUXR5ZmVvNDl1NGRSelpDTm41elNEeUtDbkJZM1JiZw",
-        "score": 33
-      },
-      {
-        "id": "sports-W-2PrO2GoF0n7J",
-        "category": "sports",
-        "categoryName": "스포츠",
-        "categoryIcon": "⚽",
-        "title": "[포토]'야구는 끝나봐야 아는겨!' 서건창",
-        "description": "[포토]'야구는 끝나봐야 아는겨!' 서건창 &nbsp;&nbsp; 네이트",
-        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBJTU5sS1pNTl9sTm9HSUJ4aWZfZ1Yya2J4cElPUEFXMGhRWlJSUldoWFFzSVlYQWM3clJKdTF4SndYMVJ6blh1UlJpVEV1YlEycmJHWndraWY3RUowSWRtNA?oc=5",
-        "source": {
-          "name": "네이트",
-          "url": "https://news.nate.com"
-        },
-        "publishedAt": "2026-06-12T13:07:00.000Z",
-        "guid": "CBMiYEFVX3lxTFBJTU5sS1pNTl9sTm9HSUJ4aWZfZ1Yya2J4cElPUEFXMGhRWlJSUldoWFFzSVlYQWM3clJKdTF4SndYMVJ6blh1UlJpVEV1YlEycmJHWndraWY3RUowSWRtNA",
-        "score": 31
-      },
-      {
         "id": "sports-SlRCQyDigJzssY",
         "category": "sports",
         "categoryName": "스포츠",
@@ -2924,6 +2941,22 @@
         "publishedAt": "2026-06-12T12:38:00.000Z",
         "guid": "CBMiWkFVX3lxTE1CbUlmOFBJOEhrLUl4SW45b1dIcG1fYlJHUDFKMnZ1aTAxa1FOOEhYRG9VRVpNdnl1S3FDRGhjczhMQ09MY3VlVUdjREFsSXkyd2tkWWtObk9SQdIBX0FVX3lxTE5aZ1FMdnFRMjNKMlpCUGw1X2dHNzZYQlhqWno5VUlLc3VBRVRLS2dLamt6eERfY0owRFpyWktRZndQWDZi…",
         "score": 30
+      },
+      {
+        "id": "sports-W-2PrO2GoF0g7K",
+        "category": "sports",
+        "categoryName": "스포츠",
+        "categoryIcon": "⚽",
+        "title": "[포토] 정한밀 '축구 월드컵 첫 승을 응원하면 슛~'",
+        "description": "[포토] 정한밀 '축구 월드컵 첫 승을 응원하면 슛~' &nbsp;&nbsp; ppss.kr",
+        "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE0xUHZuQXVJVC1Wa1drSjdGWGZBckNDRHo5QldsUVVTUHdiVjBhWmtEdmxPcGdnV1F3SWw2VUZ0bGdrZG9nQXViYmpWOVUtUm1WcVJtNHF6N3ctSE9BRTdoWTFobFU?oc=5",
+        "source": {
+          "name": "ppss.kr",
+          "url": "https://www.ppss.kr"
+        },
+        "publishedAt": "2026-06-12T11:52:01.000Z",
+        "guid": "CBMiZEFVX3lxTE0xUHZuQXVJVC1Wa1drSjdGWGZBckNDRHo5QldsUVVTUHdiVjBhWmtEdmxPcGdnV1F3SWw2VUZ0bGdrZG9nQXViYmpWOVUtUm1WcVJtNHF6N3ctSE9BRTdoWTFobFU",
+        "score": 29
       },
       {
         "id": "sports-Y3BiYyBOZXdzID",
@@ -2989,7 +3022,7 @@
         },
         "publishedAt": "2026-06-13T00:00:00.000Z",
         "guid": "CBMidEFVX3lxTE44UFlESE1XS0lqSlhXUG1VLS1rY0pleEtpNkhLYXZ2RUR1OXdaVXpSY1l4T1kxdGZqbnQycXJfbXJkV29tNEZGMVBCcktyQVFyTWVPSUx3bi1yMzBIalNZZlh6TnpiLWlKNko2Umxrcmtnb19i",
-        "score": 42
+        "score": 41
       },
       {
         "id": "analysis-IuyVhOyngSDsp4",
@@ -3184,7 +3217,23 @@
       },
       "publishedAt": "2026-06-13T09:01:00.000Z",
       "guid": "CBMiU0FVX3lxTE9JSXQ3NXFIcWpwOV8waFJ2U0Vna004cy1fU2FkekhhUEtEQ0h4R1hqNmkxSTJWR09aVlc3TG5aUWZXandGWnU0UHV2UHJzRzVCT1dJ",
-      "score": 59
+      "score": 58
+    },
+    {
+      "id": "politics-6YeOIO2VnOyEse",
+      "category": "politics",
+      "categoryName": "정치·정책",
+      "categoryIcon": "🏛️",
+      "title": "野 한성숙 '다주택' 논란 공세…\"자격미달·인사 실패\"",
+      "description": "野 한성숙 '다주택' 논란 공세…\"자격미달·인사 실패\" &nbsp;&nbsp; 한국일보",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBtN1FvRUNXUktmdEpuTEZzR0xKOWQ4QkNCcmttVTkyd2xBRkpheW9CM1NveVkxTlpLbk0tVzlVS0lmS3NWT1NyUDVsZHdEZ2FpbmM5Qmg4MzdrQmNPcGNEcWhyUHFjTzNtR1I3ZzN5VHpIOHfSAXNBVV95cUxQbTdRb0VDV1JLZnRKbkxGc0dMSjlkOEJDQnJrbVU5MndsQUZKYXlvQjNTb3lZMU5aS25NLVc5VUtJZktzVk9TclA1bGR3RGdhaW5jOUJoODM3a0JjT3BjRHFoclBxY08zbUdSN2czeVR6SDh3?oc=5",
+      "source": {
+        "name": "한국일보",
+        "url": "https://www.hankookilbo.com"
+      },
+      "publishedAt": "2026-06-13T08:56:00.000Z",
+      "guid": "CBMic0FVX3lxTFBtN1FvRUNXUktmdEpuTEZzR0xKOWQ4QkNCcmttVTkyd2xBRkpheW9CM1NveVkxTlpLbk0tVzlVS0lmS3NWT1NyUDVsZHdEZ2FpbmM5Qmg4MzdrQmNPcGNEcWhyUHFjTzNtR1I3ZzN5VHpIOHfSAXNBVV95cUxQbTdRb0VDV1JLZnRKbkxGc0dMSjlkOEJDQnJrbVU5MndsQUZK…",
+      "score": 58
     },
     {
       "id": "world-7IS46rOE7KCB7J",
@@ -3216,22 +3265,6 @@
       },
       "publishedAt": "2026-06-13T08:48:55.000Z",
       "guid": "CBMiQ0FVX3lxTFBWb3VxY2gwajlnWXBhSk11T3NOcXJ4Y0JSOE1acFRJSjR5d0tTLTdsZy1PQjRWVlJkRnNLMTZSQmVoUkE",
-      "score": 58
-    },
-    {
-      "id": "top-W-uLqOuPhV0g66",
-      "category": "top",
-      "categoryName": "종합 핫뉴스",
-      "categoryIcon": "🔥",
-      "title": "[단독] 미래에셋, 미국서 스페이스X 공모주 자체 투자… 목표액 7000억 중 절반 청약돼 - 조선비즈",
-      "description": "[단독] 미래에셋, 미국서 스페이스X 공모주 자체 투자… 목표액 7000억 중 절반 청약돼 - 조선비즈 &nbsp;&nbsp; Chosunbiz",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTTNyV3hqbW1ZY3pNTUNDaU1xeHMtT1VzTEpMTXE0Z0FZTUhseFdZVm0tM1pjak9ZcS1ieEFyRnc2dGFoM0JRY3hGeGhWTm5CTExkWnFRSWRpR0VmMjRiekRGNVEtRnd0WGh6TXlpaTdrUTVKNHR2Vl9JMXFESjNhUmprUmw1blZF0gGcAUFVX3lxTE10ZjJXV2x6OGZDYnFyM3N0R21xRVk2YVB6ZEl2VjVQMFV2MWZ4eHlzZVZteFRhQmRVTE91MUxPbF91YXJEdmFPRXBWN09xbTNaZzZJSWR5SUQyeXQyalBRdXB6TExhQ3JPa0tUVG53cDBaUWV6NFZnTmpIOEFpUEQxZXljRXZSWkk2M0FTdG44UDJyTHpqTS1PTEdldA?oc=5",
-      "source": {
-        "name": "Chosunbiz",
-        "url": "https://biz.chosun.com"
-      },
-      "publishedAt": "2026-06-13T08:45:00.000Z",
-      "guid": "CBMiiAFBVV95cUxNTTNyV3hqbW1ZY3pNTUNDaU1xeHMtT1VzTEpMTXE0Z0FZTUhseFdZVm0tM1pjak9ZcS1ieEFyRnc2dGFoM0JRY3hGeGhWTm5CTExkWnFRSWRpR0VmMjRiekRGNVEtRnd0WGh6TXlpaTdrUTVKNHR2Vl9JMXFESjNhUmprUmw1blZF0gGcAUFVX3lxTE10ZjJXV2x6OGZDYnFy…",
       "score": 58
     },
     {
@@ -3331,6 +3364,22 @@
       "score": 57
     },
     {
+      "id": "top-W-yGjeuztF0g7J",
+      "category": "top",
+      "categoryName": "종합 핫뉴스",
+      "categoryIcon": "🔥",
+      "title": "[속보] 장동혁 “부정선거 음모론으로 입틀막 못해…재선거·특검 해야”",
+      "description": "[속보] 장동혁 “부정선거 음모론으로 입틀막 못해…재선거·특검 해야” &nbsp;&nbsp; 문화일보",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE04N0d3SE1BTVp4V2Q3MXVDQ0Mta0FTNEUzWTJTOFFId3I4Sl9GTGlxOU96dUswRzJNUkVLZTg1THdXSllQNjZMNDFjRWFOVW40?oc=5",
+      "source": {
+        "name": "문화일보",
+        "url": "https://www.munhwa.com"
+      },
+      "publishedAt": "2026-06-13T07:05:01.000Z",
+      "guid": "CBMiUEFVX3lxTE04N0d3SE1BTVp4V2Q3MXVDQ0Mta0FTNEUzWTJTOFFId3I4Sl9GTGlxOU96dUswRzJNUkVLZTg1THdXSllQNjZMNDFjRWFOVW40",
+      "score": 57
+    },
+    {
       "id": "economy-S0LquIjsnLUg7I",
       "category": "economy",
       "categoryName": "경제·금융",
@@ -3427,6 +3476,22 @@
       "score": 54
     },
     {
+      "id": "tech-64Sk7J2067KEIE",
+      "category": "tech",
+      "categoryName": "AI·과학기술",
+      "categoryIcon": "🤖",
+      "title": "네이버 D2SF, AI 보안 투자...에임인텔리전스와 동맹",
+      "description": "네이버 D2SF, AI 보안 투자...에임인텔리전스와 동맹 &nbsp;&nbsp; MSN",
+      "url": "https://news.google.com/rss/articles/CBMiuAJBVV95cUxQM2hjR3JrQm9PV2VmM1hGYlpwdTJISUR6XzVOYVhZakdYY2NvMVdOdlBOWFplNlpBLWZuUVZVR0hCVWI5Mm44a004US1rZ1ZqTmg5X3B2eG9xSl9tZVdtMU9sd2NHT3FVS2ZCYUtjTElBdXlHcTVXM2ZTY3V4UHRBbXU0Q2FDcnBzbVJOeWZmb2x0TXRKTm8xNGVJZ3kzNmUyWmtZM05Sb19rUWVHNF9oVEdpYzRUNkxDU2pocHctcUVoUk9TZTN2YjZweWJ5SG1BRW9kZUIwQ0tCV19ZUFMzSTJaNXJFVXluamc3V3U3SlZNVzdGM3ZUQ1F6bUVFWnRxbnZ1SGR6QXNlckJPSTVzRkV5Z0g5dDlwVDJhWWRHa25sZlhTWHZfRUY5MmZiSmFZREI1T2xHVmM?oc=5",
+      "source": {
+        "name": "MSN",
+        "url": "https://www.msn.com"
+      },
+      "publishedAt": "2026-06-13T04:06:11.000Z",
+      "guid": "CBMiuAJBVV95cUxQM2hjR3JrQm9PV2VmM1hGYlpwdTJISUR6XzVOYVhZakdYY2NvMVdOdlBOWFplNlpBLWZuUVZVR0hCVWI5Mm44a004US1rZ1ZqTmg5X3B2eG9xSl9tZVdtMU9sd2NHT3FVS2ZCYUtjTElBdXlHcTVXM2ZTY3V4UHRBbXU0Q2FDcnBzbVJOeWZmb2x0TXRKTm8xNGVJZ3kzNmUy…",
+      "score": 54
+    },
+    {
       "id": "tech-7J207J6s7JqpIO",
       "category": "tech",
       "categoryName": "AI·과학기술",
@@ -3443,35 +3508,19 @@
       "score": 54
     },
     {
-      "id": "top-67aBLCDtlZzCt0",
-      "category": "top",
-      "categoryName": "종합 핫뉴스",
-      "categoryIcon": "🔥",
-      "title": "북, 한·EU 공동성명에 \"체제존중 위장 내던진 대결선언‥한국은 불변의 적국\"",
-      "description": "북, 한·EU 공동성명에 \"체제존중 위장 내던진 대결선언‥한국은 불변의 적국\" &nbsp;&nbsp; MBC 뉴스",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOT1ZMbXJaZk5ENjNIR3M1OHRVd0VEcHFObDYyLURCQ0tfaVdOOFdqWmV5ci1RRUVkNUVrN202TElQdlRLMVViNWdsNEt0LS01VXBUQ3pBc3ZYbEZwS3ExYjVFeW1UVEdkNmpRUmVzVVFTd3JINTFFYUZwd3NuNkU3cHprQTQtUmF4alFGZDNIZXlPenlfb21qRk81YU95eW5WTUx5MjR2eE5wTUFIOE5oekUyb1l6d3FiSU96NdIBdEFVX3lxTFBEcmk0elNrWEVCb1FGSWZXYXpDSXhsbkpwMGJwRHpOQlo0NGFXbVZJODNRREZPeDg0S25hb0RaV3VSSG1ObkVvdXZiRU9VNTJLVUo2UF81b2ZwNDRRbGxxYmU0ZWJGSDJEUGk5cWVYeW1HZHgw?oc=5",
+      "id": "world-66-4wrfsnbTrno",
+      "category": "world",
+      "categoryName": "국제",
+      "categoryIcon": "🌍",
+      "title": "미·이란 종전 임박…정부, '호르무즈' 상황 촉각",
+      "description": "미·이란 종전 임박…정부, '호르무즈' 상황 촉각 &nbsp;&nbsp; 네이트",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9yTzVyNGk1M3JabE1hcnN2ZDRXUWI1Y0VzbW9pTGsxRzUxWW9VcFhubnBBTlpYZERMOGd6U3ZJSWowUjFEd3NrcGwxV01zMkNQdF8w?oc=5",
       "source": {
-        "name": "MBC 뉴스",
-        "url": "https://imnews.imbc.com"
+        "name": "네이트",
+        "url": "https://news.nate.com"
       },
-      "publishedAt": "2026-06-13T10:08:16.000Z",
-      "guid": "CBMivAFBVV95cUxOT1ZMbXJaZk5ENjNIR3M1OHRVd0VEcHFObDYyLURCQ0tfaVdOOFdqWmV5ci1RRUVkNUVrN202TElQdlRLMVViNWdsNEt0LS01VXBUQ3pBc3ZYbEZwS3ExYjVFeW1UVEdkNmpRUmVzVVFTd3JINTFFYUZwd3NuNkU3cHprQTQtUmF4alFGZDNIZXlPenlfb21qRk81YU95eW5W…",
-      "score": 52
-    },
-    {
-      "id": "politics-6rmA7JiB7Zi4LC",
-      "category": "politics",
-      "categoryName": "정치·정책",
-      "categoryIcon": "🏛️",
-      "title": "김영호,\"교육을 반대합니다\"출판기념회 개최",
-      "description": "김영호,\"교육을 반대합니다\"출판기념회 개최 &nbsp;&nbsp; 글로벌뉴스통신GNA",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9hTy1kdFhNTkdJUTZxSXV3d2I3SnMtU213bk1FSHpXYWFlYzZLS3J1cXVNTnBHMlFuWVctZHN0QVdQSnFlQVk2b0M4QzVNajVxU0piVm9oYkZWQUlLcWVDbHpILWlQTThmelRqRTh4MTB1OVZS?oc=5",
-      "source": {
-        "name": "글로벌뉴스통신GNA",
-        "url": "https://www.globalnewsagency.kr"
-      },
-      "publishedAt": "2026-06-13T10:00:12.000Z",
-      "guid": "CBMidEFVX3lxTE9hTy1kdFhNTkdJUTZxSXV3d2I3SnMtU213bk1FSHpXYWFlYzZLS3J1cXVNTnBHMlFuWVctZHN0QVdQSnFlQVk2b0M4QzVNajVxU0piVm9oYkZWQUlLcWVDbHpILWlQTThmelRqRTh4MTB1OVZS",
+      "publishedAt": "2026-06-13T10:25:00.000Z",
+      "guid": "CBMiU0FVX3lxTE9yTzVyNGk1M3JabE1hcnN2ZDRXUWI1Y0VzbW9pTGsxRzUxWW9VcFhubnBBTlpYZERMOGd6U3ZJSWowUjFEd3NrcGwxV01zMkNQdF8w",
       "score": 52
     },
     {
@@ -3523,6 +3572,22 @@
       "score": 52
     },
     {
+      "id": "politics-6rmA7JiB7Zi4LC",
+      "category": "politics",
+      "categoryName": "정치·정책",
+      "categoryIcon": "🏛️",
+      "title": "김영호,\"교육을 반대합니다\"출판기념회 개최",
+      "description": "김영호,\"교육을 반대합니다\"출판기념회 개최 &nbsp;&nbsp; 글로벌뉴스통신GNA",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9hTy1kdFhNTkdJUTZxSXV3d2I3SnMtU213bk1FSHpXYWFlYzZLS3J1cXVNTnBHMlFuWVctZHN0QVdQSnFlQVk2b0M4QzVNajVxU0piVm9oYkZWQUlLcWVDbHpILWlQTThmelRqRTh4MTB1OVZS?oc=5",
+      "source": {
+        "name": "글로벌뉴스통신GNA",
+        "url": "https://www.globalnewsagency.kr"
+      },
+      "publishedAt": "2026-06-13T10:00:12.000Z",
+      "guid": "CBMidEFVX3lxTE9hTy1kdFhNTkdJUTZxSXV3d2I3SnMtU213bk1FSHpXYWFlYzZLS3J1cXVNTnBHMlFuWVctZHN0QVdQSnFlQVk2b0M4QzVNajVxU0piVm9oYkZWQUlLcWVDbHpILWlQTThmelRqRTh4MTB1OVZS",
+      "score": 51
+    },
+    {
       "id": "sports-7Lm066as64KYLe",
       "category": "sports",
       "categoryName": "스포츠",
@@ -3555,19 +3620,19 @@
       "score": 51
     },
     {
-      "id": "top-7ZWc64iI7JeQIO",
-      "category": "top",
-      "categoryName": "종합 핫뉴스",
-      "categoryIcon": "🔥",
-      "title": "한눈에 보는 오늘의 뉴스",
-      "description": "한눈에 보는 오늘의 뉴스 &nbsp;&nbsp; 데일리바이트(DAILY BYTE)",
-      "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE5LSlZSN0Z1SjFXeTQ1X1duLVlieDFvTWpSTmtPVURZN1RseG5aN1RIQWdpX1NvMTlsZ2Q3dmNlZldJTThpOGlvRTFKVGY?oc=5",
+      "id": "society-IuuvvOykkeydmC",
+      "category": "society",
+      "categoryName": "사회·교육",
+      "categoryIcon": "🏫",
+      "title": "\"민중의 건강 호민관, 우리가 잇겠습니다\"",
+      "description": "\"민중의 건강 호민관, 우리가 잇겠습니다\" &nbsp;&nbsp; 네이트",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5LMlpSZnYzaXNjYlg1SWdDajdkcEVpbzJOcnZvMnFJVHZrVEtOSGl2Ym03Vm5SemNZLWlCakllV0ZrTHRPYjB5Z2ROcU1GR3pxbzN3?oc=5",
       "source": {
-        "name": "데일리바이트(DAILY BYTE)",
-        "url": "https://www.mydailybyte.com"
+        "name": "네이트",
+        "url": "https://news.nate.com"
       },
-      "publishedAt": "2026-06-13T09:40:13.000Z",
-      "guid": "CBMiTEFVX3lxTE5LSlZSN0Z1SjFXeTQ1X1duLVlieDFvTWpSTmtPVURZN1RseG5aN1RIQWdpX1NvMTlsZ2Q3dmNlZldJTThpOGlvRTFKVGY",
+      "publishedAt": "2026-06-13T09:36:00.000Z",
+      "guid": "CBMiU0FVX3lxTE5LMlpSZnYzaXNjYlg1SWdDajdkcEVpbzJOcnZvMnFJVHZrVEtOSGl2Ym03Vm5SemNZLWlCakllV0ZrTHRPYjB5Z2ROcU1GR3pxbzN3",
       "score": 51
     },
     {
@@ -3603,6 +3668,22 @@
       "score": 51
     },
     {
+      "id": "top-7Iqk7ZWE67KE6r",
+      "category": "top",
+      "categoryName": "종합 핫뉴스",
+      "categoryIcon": "🔥",
+      "title": "스필버그 기세 눌렀다…전지현·구교환 ‘군체’, 결국 500만 관객 돌파",
+      "description": "스필버그 기세 눌렀다…전지현·구교환 ‘군체’, 결국 500만 관객 돌파 &nbsp;&nbsp; 데일리안",
+      "url": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPZVZfaFFTc0R4OHpVRXNLYlJXWElod3lLWnlnMVpNS285c3FjcDFrVC1obUJ6RU90Z256OGctRkQ1RXBYUHNlTU03Q2RGWWh3U1czaURKb1p1MXBmY1dYRFVKTzNzWFdON1pEeXV0NDVfNm5wRDZjUXNvdFZDa0hEaXlLU2EtOGFjSENocjQzS195WEczb2dPREJqTy1tOHFvT2xWejFJbVlvRjBvWl8zV2c1OFBRRHc4Ty15YXJiZnlycUtFaDI0N24wbTJ3T0lWdFJxdnE3MlZKODAtZzc4a1hhcHBsOXRDaXZ5U1ZvYW5zbWZNcDdoT0JJdS14YmlRejZNbU1OYVdYTlZNZDJiQ0k1SDZxMFVBbGllNnQ3ZU1xVHZxNHpfQ3lSRWpqSVFC0gGwAkFVX3lxTE9lVl9oUVNzRHg4elVFc0tiUldYSWh3eUtaeWcxWk1LbzlzcWNwMWtULWhtQnpFT3Rnbno4Zy1GRDVFcFhQc2VNTTdDZEZZaHdTVzNpREpvWnUxcGZjV1hEVUpPM3NYV043WkR5dXQ0NV82bnBENmNRc290VkNrSERpeUtTYS04YWNIQ2hyNDNLX3lYRzNvZ09EQmpPLW04cW9PbFZ6MUltWW9GMG9aXzNXZzU4UFFEdzhPLXlhcmJmeXJxS0VoMjQ3bjBtMndPSVZ0UnF2cTcyVko4MC1nNzhrWGFwcGw5dENpdnlTVm9hbnNtZk1wN2hPQkl1LXhiaVF6Nk1tTU5hV1hOVk1kMmJDSTVINnEwVUFsaWU2dDdlTXFUdnE0el9DeVJFampJUUI?oc=5",
+      "source": {
+        "name": "데일리안",
+        "url": "https://m.dailian.co.kr"
+      },
+      "publishedAt": "2026-06-13T02:01:00.000Z",
+      "guid": "CBMisAJBVV95cUxPZVZfaFFTc0R4OHpVRXNLYlJXWElod3lLWnlnMVpNS285c3FjcDFrVC1obUJ6RU90Z256OGctRkQ1RXBYUHNlTU03Q2RGWWh3U1czaURKb1p1MXBmY1dYRFVKTzNzWFdON1pEeXV0NDVfNm5wRDZjUXNvdFZDa0hEaXlLU2EtOGFjSENocjQzS195WEczb2dPREJqTy1tOHFv…",
+      "score": 51
+    },
+    {
       "id": "climate-7Iah7JiB6ri4IC",
       "category": "climate",
       "categoryName": "기후·환경·재난",
@@ -3619,6 +3700,22 @@
       "score": 51
     },
     {
+      "id": "top-Iu2VnOq1rSwg7J",
+      "category": "top",
+      "categoryName": "종합 핫뉴스",
+      "categoryIcon": "🔥",
+      "title": "\"한국, 이달 말 CPTPP 가입 발표 조율‥수산물 규제 별도 논의\"",
+      "description": "\"한국, 이달 말 CPTPP 가입 발표 조율‥수산물 규제 별도 논의\" &nbsp;&nbsp; MBC 뉴스",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1JV3BZdmhvREM2dWU0azVEUkhBOXd0WWo3M3RjYlBfeDZHQmU2SGx4VnVaT2g1czFBYnIyS1ZWS242dk9PblBoMV9NamYxeU1fcWRGSzNtTHRBVHZ4T3EzRE03cjdzczE0bXloWTdldVY2UUVL0gF0QVVfeXFMTUlXcFl2aG9EQzZ1ZTRrNURSSEE5d3RZajczdGNiUF94NkdCZTZIbHhWdVpPaDVzMUFicjJLVlZLbjZ2T09uUGgxX01qZjF5TV9xZEZLM21MdEFUdnhPcTNETTdyN3NzMTRteWhZN2V1VjZRRUs?oc=5",
+      "source": {
+        "name": "MBC 뉴스",
+        "url": "https://imnews.imbc.com"
+      },
+      "publishedAt": "2026-06-13T01:22:52.000Z",
+      "guid": "CBMidEFVX3lxTE1JV3BZdmhvREM2dWU0azVEUkhBOXd0WWo3M3RjYlBfeDZHQmU2SGx4VnVaT2g1czFBYnIyS1ZWS242dk9PblBoMV9NamYxeU1fcWRGSzNtTHRBVHZ4T3EzRE03cjdzczE0bXloWTdldVY2UUVL0gF0QVVfeXFMTUlXcFl2aG9EQzZ1ZTRrNURSSEE5d3RZajczdGNiUF94NkdC…",
+      "score": 51
+    },
+    {
       "id": "politics-J-2IrO2RnOyngC",
       "category": "politics",
       "categoryName": "정치·정책",
@@ -3632,6 +3729,22 @@
       },
       "publishedAt": "2026-06-13T08:44:56.000Z",
       "guid": "CBMibkFVX3lxTE5Hb0RiWDVib0JIZl8zbHo0bExFZGZZN0hpM0lMMEF0bENSTzJUOGhXdGVxbXIwU25xZ2VDNFBoZlVTNmNrNnNqbTRnVmVVa29vYnBGUzhscDYxY2hublZ4ellCamRjaUM5T1k3Wkdn",
+      "score": 50
+    },
+    {
+      "id": "sports-67mI66GxOiAxLD",
+      "category": "sports",
+      "categoryName": "스포츠",
+      "categoryIcon": "⚽",
+      "title": "빈롱: 1,500명 이상이 \"모든 시민이 함께하는 체육 활동\" 프로그램에 참여했습니다.",
+      "description": "빈롱: 1,500명 이상이 \"모든 시민이 함께하는 체육 활동\" 프로그램에 참여했습니다. &nbsp;&nbsp; Vietnam.vn",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOTEQ5TzQ4UXdFc0pZc3Q3Q1dZWmNhUmNYaGt1S2M0RHVVZGw4dUNtLWFvTlJraGRjVUoyb2lodWthc0dIVzhmb3g3dHdkUllpQ0V0RGhQTVdWOXU1NHpBamZHbWFkSHBpVndsU1ZBZk53T2tBVTJ4QzBFcGJ6dThwbkNpQ1hXMVJscnA0a3FhRWRvZVoybnVNVTBoeFRTV1FxSVNlTFFwTUF3Y1pyRHc?oc=5",
+      "source": {
+        "name": "Vietnam.vn",
+        "url": "https://www.vietnam.vn"
+      },
+      "publishedAt": "2026-06-13T08:15:25.000Z",
+      "guid": "CBMirgFBVV95cUxOTEQ5TzQ4UXdFc0pZc3Q3Q1dZWmNhUmNYaGt1S2M0RHVVZGw4dUNtLWFvTlJraGRjVUoyb2lodWthc0dIVzhmb3g3dHdkUllpQ0V0RGhQTVdWOXU1NHpBamZHbWFkSHBpVndsU1ZBZk53T2tBVTJ4QzBFcGJ6dThwbkNpQ1hXMVJscnA0a3FhRWRvZVoybnVNVTBoeFRTV1Fx…",
       "score": 50
     },
     {
@@ -3664,7 +3777,23 @@
       },
       "publishedAt": "2026-06-13T08:01:00.000Z",
       "guid": "CBMieEFVX3lxTE5PZTVQUmJ2WWNTc0I1SE9lZDdfcUd2VXJyMjhHb3dtMGw0eGRndzJJZGtKUWVKNXNhMkk5RFYzeFNTaTk4d2RhM1VCZkFYcXIxcGp5SlFqV0d4a1AwVzlDelpRSU9Cc2V1b0U1dzlPRm5wUEo2VmlDTQ",
-      "score": 50
+      "score": 49
+    },
+    {
+      "id": "economy-7ZmN6rWt7ZGcIO",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "홍국표 시의원 \"대출규제·토허제가 전월세난 키워\"... 서울시 \"공급 확대 속도 낸다\"",
+      "description": "홍국표 시의원 \"대출규제·토허제가 전월세난 키워\"... 서울시 \"공급 확대 속도 낸다\" &nbsp;&nbsp; 데일리환경",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9rSlBYaXhlWVU0NERacTVRTFlnZ3JHcnpPVWhVdnJJVG9OVWFHLWw2Zl9tbzRUM0tyMC04WVpDdGNhZnNXRnJydWRWZ3V2Vnk1T2tfazl5OWNPSGpPMnc?oc=5",
+      "source": {
+        "name": "데일리환경",
+        "url": "https://www.dailyt.co.kr"
+      },
+      "publishedAt": "2026-06-13T08:00:12.000Z",
+      "guid": "CBMiXkFVX3lxTE9rSlBYaXhlWVU0NERacTVRTFlnZ3JHcnpPVWhVdnJJVG9OVWFHLWw2Zl9tbzRUM0tyMC04WVpDdGNhZnNXRnJydWRWZ3V2Vnk1T2tfazl5OWNPSGpPMnc",
+      "score": 49
     },
     {
       "id": "top-J-u2geykkeuvuC",
@@ -3680,23 +3809,7 @@
       },
       "publishedAt": "2026-06-13T08:00:00.000Z",
       "guid": "CBMiekFVX3lxTFB2UWhTeFk2bWpheDlLNmZtNXBsS0JYWnpzU1NESG5UNFh6Z0NpXzlnbmR2RXpBcEdicjhZNkdseTJnWnBBMFBneUIyUjRxUHJ5Zmp6YVE1MTh2RmRxQndWTW1ucXBIVHBNczdhYlZqOTQzZXB4bWtidFlB",
-      "score": 50
-    },
-    {
-      "id": "society-7L-g7YyhLCDqsJ",
-      "category": "society",
-      "categoryName": "사회·교육",
-      "categoryIcon": "🏫",
-      "title": "쿠팡, 개인정보 유출 사태 과징금 6247억... 역대 최대",
-      "description": "쿠팡, 개인정보 유출 사태 과징금 6247억... 역대 최대 &nbsp;&nbsp; 금강일보",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9SLTB0NGljY1ZhUEMyYWZVZ1Vnb2Zvd3FySE85YkRFai1Md2xVdmt3UW9Tc3hpTlgtejNzZDhVaEMwX09GZTlqR2Z2VW9Pblp1UlFYc05jSjZ3bW8tTy1nR005dGhuSENiS0E?oc=5",
-      "source": {
-        "name": "금강일보",
-        "url": "https://www.ggilbo.com"
-      },
-      "publishedAt": "2026-06-13T00:00:00.000Z",
-      "guid": "CBMiakFVX3lxTE9SLTB0NGljY1ZhUEMyYWZVZ1Vnb2Zvd3FySE85YkRFai1Md2xVdmt3UW9Tc3hpTlgtejNzZDhVaEMwX09GZTlqR2Z2VW9Pblp1UlFYc05jSjZ3bW8tTy1nR005dGhuSENiS0E",
-      "score": 50
+      "score": 49
     },
     {
       "id": "sports-7LWc6rOgIDguNS",
@@ -3712,6 +3825,22 @@
       },
       "publishedAt": "2026-06-13T07:55:00.000Z",
       "guid": "CBMiVkFVX3lxTFA0dGZUb0s2ZzgxTlVqSHhuS0xYaVdfYkpLcTNsZ0lfVGtubk5VT24tYS12TUpwRHRCdzl6RlhpVU56VEU5YTc5RUxVQ285bGp6el9YWDFR",
+      "score": 49
+    },
+    {
+      "id": "economy-7IOB7J6lIOyVnu",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "상장 앞둔 스페이스X 실적 공개 Luka Dončić (aQ6i2bG8Lf)",
+      "description": "상장 앞둔 스페이스X 실적 공개 Luka Dončić (aQ6i2bG8Lf) &nbsp;&nbsp; Mshale",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFA5YTY3QlQzLXpEanBKLXhnUE00bzYxZmRHUFN3SU04MTZydWxiTHhFOEJKNVpsWjItdlBnRklFZzRhVG16c0I1ZF9uN0FXTUZDalRFTW1sSmZaUlE?oc=5",
+      "source": {
+        "name": "Mshale",
+        "url": "https://mshale.com"
+      },
+      "publishedAt": "2026-06-13T07:44:55.000Z",
+      "guid": "CBMiW0FVX3lxTFA5YTY3QlQzLXpEanBKLXhnUE00bzYxZmRHUFN3SU04MTZydWxiTHhFOEJKNVpsWjItdlBnRklFZzRhVG16c0I1ZF9uN0FXTUZDalRFTW1sSmZaUlE",
       "score": 49
     },
     {
@@ -3747,22 +3876,6 @@
       "score": 49
     },
     {
-      "id": "politics-7KCV7JuQ7JikIO",
-      "category": "politics",
-      "categoryName": "정치·정책",
-      "categoryIcon": "🏛️",
-      "title": "정원오 측, 정청래 '언팔'·송영길 '팔로우' 루머에 \"사실 아냐\"",
-      "description": "정원오 측, 정청래 '언팔'·송영길 '팔로우' 루머에 \"사실 아냐\" &nbsp;&nbsp; 한국일보",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5od1FNLWxVRG96ZmdmQXNJeDRsejczV2gyUXJ4M3pOWi1jbEtEdHFxRnlIV3diYXEzS3djeWNITlFRc2xiaGoydWdHTFl0RHNmR1V5NVU0LVdtdldfWVNYbHpYS05kWGpXU1k1NWxB0gFzQVVfeXFMTmFaVy1GMkp0cUk2VzF6Rnp2aTRVNnN6Z1BVdE9MRW5saEJJUmVxUEVXc2dGVS0zQ2lkazh2OWFNb2VJdUpZR0x6YmMxcWhIbUk4cTQ3OS1QT1IxX0l2Mlo5UGx2NUtEcHVDZmw0OWVqYkZXUQ?oc=5",
-      "source": {
-        "name": "한국일보",
-        "url": "https://www.hankookilbo.com"
-      },
-      "publishedAt": "2026-06-13T07:08:00.000Z",
-      "guid": "CBMibkFVX3lxTE5od1FNLWxVRG96ZmdmQXNJeDRsejczV2gyUXJ4M3pOWi1jbEtEdHFxRnlIV3diYXEzS3djeWNITlFRc2xiaGoydWdHTFl0RHNmR1V5NVU0LVdtdldfWVNYbHpYS05kWGpXU1k1NWxB0gFzQVVfeXFMTmFaVy1GMkp0cUk2VzF6Rnp2aTRVNnN6Z1BVdE9MRW5saEJJUmVxUEVX…",
-      "score": 49
-    },
-    {
       "id": "politics-7ZWc64-Z7ZuIIO",
       "category": "politics",
       "categoryName": "정치·정책",
@@ -3776,6 +3889,22 @@
       },
       "publishedAt": "2026-06-13T07:02:48.000Z",
       "guid": "CBMiakFVX3lxTFBhZ0ZNbXlCME5qV2VDZ3Z4clkwU194MXI2T2hCTEpLOHpRdjh0UzlHam9Cb2JRTWxqcWE0YzViS1c0eUw4WU0ydVhySlJVQXpfQUZGTE9qc1FxdWowMlM1ZXE0V3VvWEUyUlE",
+      "score": 49
+    },
+    {
+      "id": "society-7L-g7YyhLCDqsJ",
+      "category": "society",
+      "categoryName": "사회·교육",
+      "categoryIcon": "🏫",
+      "title": "쿠팡, 개인정보 유출 사태 과징금 6247억... 역대 최대",
+      "description": "쿠팡, 개인정보 유출 사태 과징금 6247억... 역대 최대 &nbsp;&nbsp; 금강일보",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9SLTB0NGljY1ZhUEMyYWZVZ1Vnb2Zvd3FySE85YkRFai1Md2xVdmt3UW9Tc3hpTlgtejNzZDhVaEMwX09GZTlqR2Z2VW9Pblp1UlFYc05jSjZ3bW8tTy1nR005dGhuSENiS0E?oc=5",
+      "source": {
+        "name": "금강일보",
+        "url": "https://www.ggilbo.com"
+      },
+      "publishedAt": "2026-06-13T00:00:00.000Z",
+      "guid": "CBMiakFVX3lxTE9SLTB0NGljY1ZhUEMyYWZVZ1Vnb2Zvd3FySE85YkRFai1Md2xVdmt3UW9Tc3hpTlgtejNzZDhVaEMwX09GZTlqR2Z2VW9Pblp1UlFYc05jSjZ3bW8tTy1nR005dGhuSENiS0E",
       "score": 49
     },
     {
@@ -3811,38 +3940,6 @@
       "score": 49
     },
     {
-      "id": "economy-U3BhY2VY7J2YIO",
-      "category": "economy",
-      "categoryName": "경제·금융",
-      "categoryIcon": "💹",
-      "title": "SpaceX의 실적 급등이 미국 증시의 추가 상승세를 이끌고 있다.",
-      "description": "SpaceX의 실적 급등이 미국 증시의 추가 상승세를 이끌고 있다. &nbsp;&nbsp; Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPUERTcUk1UVpLU2MtQ3BuSGxTS1ZVWWdKS0xXajhwQzY3RXNCRExFM3IwenlOV2k3RDlCVzBMWk54NmJfX3VRRC1ueUFyc25tSHhfSXg5aEVqX3J1bEMxbmt4aXhURXlCWVJDR0FPeTZBQTBvVzZCN2VKa1lBU2loYkR4dw?oc=5",
-      "source": {
-        "name": "Vietnam.vn",
-        "url": "https://www.vietnam.vn"
-      },
-      "publishedAt": "2026-06-12T22:59:57.000Z",
-      "guid": "CBMigwFBVV95cUxPUERTcUk1UVpLU2MtQ3BuSGxTS1ZVWWdKS0xXajhwQzY3RXNCRExFM3IwenlOV2k3RDlCVzBMWk54NmJfX3VRRC1ueUFyc25tSHhfSXg5aEVqX3J1bEMxbmt4aXhURXlCWVJDR0FPeTZBQTBvVzZCN2VKa1lBU2loYkR4dw",
-      "score": 49
-    },
-    {
-      "id": "top-W0FJIDEw64WEIO",
-      "category": "top",
-      "categoryName": "종합 핫뉴스",
-      "categoryIcon": "🔥",
-      "title": "[AI 10년 전 오늘] 동해도 중국 어선 비상…싹쓸이 조업에 오징어 어획량 ‘1/3 토막’",
-      "description": "[AI 10년 전 오늘] 동해도 중국 어선 비상…싹쓸이 조업에 오징어 어획량 ‘1/3 토막’ &nbsp;&nbsp; 시선뉴스",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5JX3JMSkdGLWpYVEYxTWRGU2xKb00zUHdMS19mWnRIcHZibXR2MFBiZ0t5azhLZkNYZm9DRzNJV3pNU2g5Mk5CZkZrdWJkeTZrb0ZhdmVySmVrRWprdDdpbkIxUk9vdFRQdElwYUtR0gFyQVVfeXFMTjd5TFE3cVBuUjBtekx0cVg0RjZORHJDVW1nZGtWNWtNX0REMTRiRm9aVHY1TDRaMC0yTGRyV2daaVEzelF4NnYxVFpCWTE0Z3FEQ0J6bzhEcXRyRGs0ZGNZU0VnbVNLQzdWakM3UENrcE1B?oc=5",
-      "source": {
-        "name": "시선뉴스",
-        "url": "http://www.sisunnews.co.kr"
-      },
-      "publishedAt": "2026-06-12T22:58:00.000Z",
-      "guid": "CBMibkFVX3lxTE5JX3JMSkdGLWpYVEYxTWRGU2xKb00zUHdMS19mWnRIcHZibXR2MFBiZ0t5azhLZkNYZm9DRzNJV3pNU2g5Mk5CZkZrdWJkeTZrb0ZhdmVySmVrRWprdDdpbkIxUk9vdFRQdElwYUtR0gFyQVVfeXFMTjd5TFE3cVBuUjBtekx0cVg0RjZORHJDVW1nZGtWNWtNX0REMTRiRm9a…",
-      "score": 49
-    },
-    {
       "id": "politics-66-87KO864u5IO",
       "category": "politics",
       "categoryName": "정치·정책",
@@ -3875,22 +3972,6 @@
       "score": 48
     },
     {
-      "id": "world-66-4wrfsnbTrno",
-      "category": "world",
-      "categoryName": "국제",
-      "categoryIcon": "🌍",
-      "title": "미·이란 종전 임박…정부, '호르무즈' 상황 촉각",
-      "description": "미·이란 종전 임박…정부, '호르무즈' 상황 촉각 &nbsp;&nbsp; 네이트",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9HM21mUlVBR3N0YnVWdDRuY3NBUEx6N1pFNWFsQm5OTEFwUWd3R0h2VjVxZUtoN0VoY2ljblY3REdzZDRSUjFGc0EyczZ0OW4tNm1F?oc=5",
-      "source": {
-        "name": "네이트",
-        "url": "https://news.nate.com"
-      },
-      "publishedAt": "2026-06-13T06:18:00.000Z",
-      "guid": "CBMiU0FVX3lxTE9HM21mUlVBR3N0YnVWdDRuY3NBUEx6N1pFNWFsQm5OTEFwUWd3R0h2VjVxZUtoN0VoY2ljblY3REdzZDRSUjFGc0EyczZ0OW4tNm1F",
-      "score": 48
-    },
-    {
       "id": "economy-7ZmY7JyoIDE2MD",
       "category": "economy",
       "categoryName": "경제·금융",
@@ -3907,51 +3988,19 @@
       "score": 48
     },
     {
-      "id": "economy-7ZiE64yA7LCo6K",
+      "id": "economy-U3BhY2VY7J2YIO",
       "category": "economy",
       "categoryName": "경제·금융",
       "categoryIcon": "💹",
-      "title": "현대차證, 재무 안전성 관건은 부동산금융 '회수력'",
-      "description": "현대차證, 재무 안전성 관건은 부동산금융 '회수력' &nbsp;&nbsp; 블로터",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE05MWhwOWVfU1FLOWhJd3pBcU84VHRTU2N1WGhqSnFRRFM3amtxSDMtNmVKa1pMQVVQUzFSTzRGLVFERGpTSk14dG92am01S0JIeHhJaGJUcHFKNmZJRjQtc2p3azhiMUhy0gFsQVVfeXFMTUY2LTZ5MmFZbTdNZzhFaUIxQzB6NkF5YnBPMTIyWXJDdHlNY3UxSFpIenE5OXoyYzdmR2FVMkQydXVHaWNvcWp1andJdFd0Qy00WFFqVjVId1BULUJCalJsRnlxZE5yM3ZaMDV4?oc=5",
-      "source": {
-        "name": "블로터",
-        "url": "https://www.bloter.net"
-      },
-      "publishedAt": "2026-06-13T06:00:00.000Z",
-      "guid": "CBMiaEFVX3lxTE05MWhwOWVfU1FLOWhJd3pBcU84VHRTU2N1WGhqSnFRRFM3amtxSDMtNmVKa1pMQVVQUzFSTzRGLVFERGpTSk14dG92am01S0JIeHhJaGJUcHFKNmZJRjQtc2p3azhiMUhy0gFsQVVfeXFMTUY2LTZ5MmFZbTdNZzhFaUIxQzB6NkF5YnBPMTIyWXJDdHlNY3UxSFpIenE5OXoy…",
-      "score": 48
-    },
-    {
-      "id": "sports-W-yblOuTnOy7tV",
-      "category": "sports",
-      "categoryName": "스포츠",
-      "categoryIcon": "⚽",
-      "title": "[월드컵] '한국 vs 체코전' 시청률, KBS2 8.5%로 1위…JTBC는 5.7%",
-      "description": "[월드컵] '한국 vs 체코전' 시청률, KBS2 8.5%로 1위…JTBC는 5.7% &nbsp;&nbsp; 스포츠타임스",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE42WFFSVkhTX3hkNnpRWFdXSkRTUEk5WGZQLXVNQlN0TzdPNXB2bXRKckNqYkl6d0VRS1dEWl9hN1p0Z0ZpV3NlREpidEt6U0dYOUZYSUgzaV9ZTHVUUW83RXYxbnlTczFTMXJ1UURURFcyN0dZYmc?oc=5",
-      "source": {
-        "name": "스포츠타임스",
-        "url": "https://www.thesportstimes.co.kr"
-      },
-      "publishedAt": "2026-06-13T05:57:16.000Z",
-      "guid": "CBMidkFVX3lxTE42WFFSVkhTX3hkNnpRWFdXSkRTUEk5WGZQLXVNQlN0TzdPNXB2bXRKckNqYkl6d0VRS1dEWl9hN1p0Z0ZpV3NlREpidEt6U0dYOUZYSUgzaV9ZTHVUUW83RXYxbnlTczFTMXJ1UURURFcyN0dZYmc",
-      "score": 48
-    },
-    {
-      "id": "economy-7KO86rCA6rCAIO",
-      "category": "economy",
-      "categoryName": "경제·금융",
-      "categoryIcon": "💹",
-      "title": "주가가 최고점에서 130포인트 폭락하고 유동성이 최저 수준으로 떨어졌습니다. 무슨 일이 벌어지고 있는 걸까요?",
-      "description": "주가가 최고점에서 130포인트 폭락하고 유동성이 최저 수준으로 떨어졌습니다. 무슨 일이 벌어지고 있는 걸까요? &nbsp;&nbsp; Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNTXlKSmVCMDZ2bksxN196eTJEcEYwcDlWd2VIWGRRU2ZKQjdfcVVFT01mTmVHeVhUZXB6N0hESThHN0RrR0c3eFVxSjhHQ0o4Um40NEVfSnZ0bmRMRHpIQmMzY3p6bTZXQ3hhZDBrSzk2TjhobFZweW5ZTUE5RjhwUVU3ZG8zeWVNbFRBWUpOcGpwV0ZMUVlZQWRWYVJKOGs4?oc=5",
+      "title": "SpaceX의 실적 급등이 미국 증시의 추가 상승세를 이끌고 있다.",
+      "description": "SpaceX의 실적 급등이 미국 증시의 추가 상승세를 이끌고 있다. &nbsp;&nbsp; Vietnam.vn",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPUERTcUk1UVpLU2MtQ3BuSGxTS1ZVWWdKS0xXajhwQzY3RXNCRExFM3IwenlOV2k3RDlCVzBMWk54NmJfX3VRRC1ueUFyc25tSHhfSXg5aEVqX3J1bEMxbmt4aXhURXlCWVJDR0FPeTZBQTBvVzZCN2VKa1lBU2loYkR4dw?oc=5",
       "source": {
         "name": "Vietnam.vn",
         "url": "https://www.vietnam.vn"
       },
-      "publishedAt": "2026-06-12T22:46:15.000Z",
-      "guid": "CBMioAFBVV95cUxNTXlKSmVCMDZ2bksxN196eTJEcEYwcDlWd2VIWGRRU2ZKQjdfcVVFT01mTmVHeVhUZXB6N0hESThHN0RrR0c3eFVxSjhHQ0o4Um40NEVfSnZ0bmRMRHpIQmMzY3p6bTZXQ3hhZDBrSzk2TjhobFZweW5ZTUE5RjhwUVU3ZG8zeWVNbFRBWUpOcGpwV0ZMUVlZQWRWYVJKOGs4",
+      "publishedAt": "2026-06-12T22:59:57.000Z",
+      "guid": "CBMigwFBVV95cUxPUERTcUk1UVpLU2MtQ3BuSGxTS1ZVWWdKS0xXajhwQzY3RXNCRExFM3IwenlOV2k3RDlCVzBMWk54NmJfX3VRRC1ueUFyc25tSHhfSXg5aEVqX3J1bEMxbmt4aXhURXlCWVJDR0FPeTZBQTBvVzZCN2VKa1lBU2loYkR4dw",
       "score": 48
     },
     {
@@ -3987,20 +4036,36 @@
       "score": 48
     },
     {
-      "id": "top-W-yynOyngOydvO",
-      "category": "top",
-      "categoryName": "종합 핫뉴스",
-      "categoryIcon": "🔥",
-      "title": "[천지일보 이슈종합] 한국 이탈리아 정상회담·글로벌 인류공영 AI 포럼·노태악 전 선관위원장 출국금지·정청래 대표 책임론·평양 무인기 투입 尹 징역 30년·월드컵 체코전·미국 이란 전쟁 합의",
-      "description": "[천지일보 이슈종합] 한국 이탈리아 정상회담·글로벌 인류공영 AI 포럼·노태악 전 선관위원장 출국금지·정청래 대표 책임론·평양 무인기 투입 尹 징역 30년·월드컵 체코전·미국 이란 전쟁 합의 &nbsp;&nbsp; 천지일보",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBraUZnZ0lnOTVNOGUzYnVpbUt5RE81akNTMGYzSXlWZnFGT3c4dXZvSndYTDdpNVUwblozcDlOY251N2czTGsyX2xGbjRnQ3VadE4yOXo4TFItSXRtNXZUMmQwcGN5dUdTNGc?oc=5",
+      "id": "economy-7ZiE64yA7LCo6K",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "현대차證, 재무 안전성 관건은 부동산금융 '회수력'",
+      "description": "현대차證, 재무 안전성 관건은 부동산금융 '회수력' &nbsp;&nbsp; 블로터",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE05MWhwOWVfU1FLOWhJd3pBcU84VHRTU2N1WGhqSnFRRFM3amtxSDMtNmVKa1pMQVVQUzFSTzRGLVFERGpTSk14dG92am01S0JIeHhJaGJUcHFKNmZJRjQtc2p3azhiMUhy0gFsQVVfeXFMTUY2LTZ5MmFZbTdNZzhFaUIxQzB6NkF5YnBPMTIyWXJDdHlNY3UxSFpIenE5OXoyYzdmR2FVMkQydXVHaWNvcWp1andJdFd0Qy00WFFqVjVId1BULUJCalJsRnlxZE5yM3ZaMDV4?oc=5",
       "source": {
-        "name": "천지일보",
-        "url": "https://www.newscj.com"
+        "name": "블로터",
+        "url": "https://www.bloter.net"
       },
-      "publishedAt": "2026-06-12T22:00:00.000Z",
-      "guid": "CBMiakFVX3lxTFBraUZnZ0lnOTVNOGUzYnVpbUt5RE81akNTMGYzSXlWZnFGT3c4dXZvSndYTDdpNVUwblozcDlOY251N2czTGsyX2xGbjRnQ3VadE4yOXo4TFItSXRtNXZUMmQwcGN5dUdTNGc",
-      "score": 48
+      "publishedAt": "2026-06-13T06:00:00.000Z",
+      "guid": "CBMiaEFVX3lxTE05MWhwOWVfU1FLOWhJd3pBcU84VHRTU2N1WGhqSnFRRFM3amtxSDMtNmVKa1pMQVVQUzFSTzRGLVFERGpTSk14dG92am01S0JIeHhJaGJUcHFKNmZJRjQtc2p3azhiMUhy0gFsQVVfeXFMTUY2LTZ5MmFZbTdNZzhFaUIxQzB6NkF5YnBPMTIyWXJDdHlNY3UxSFpIenE5OXoy…",
+      "score": 47
+    },
+    {
+      "id": "sports-W-yblOuTnOy7tV",
+      "category": "sports",
+      "categoryName": "스포츠",
+      "categoryIcon": "⚽",
+      "title": "[월드컵] '한국 vs 체코전' 시청률, KBS2 8.5%로 1위…JTBC는 5.7%",
+      "description": "[월드컵] '한국 vs 체코전' 시청률, KBS2 8.5%로 1위…JTBC는 5.7% &nbsp;&nbsp; 스포츠타임스",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE42WFFSVkhTX3hkNnpRWFdXSkRTUEk5WGZQLXVNQlN0TzdPNXB2bXRKckNqYkl6d0VRS1dEWl9hN1p0Z0ZpV3NlREpidEt6U0dYOUZYSUgzaV9ZTHVUUW83RXYxbnlTczFTMXJ1UURURFcyN0dZYmc?oc=5",
+      "source": {
+        "name": "스포츠타임스",
+        "url": "https://www.thesportstimes.co.kr"
+      },
+      "publishedAt": "2026-06-13T05:57:16.000Z",
+      "guid": "CBMidkFVX3lxTE42WFFSVkhTX3hkNnpRWFdXSkRTUEk5WGZQLXVNQlN0TzdPNXB2bXRKckNqYkl6d0VRS1dEWl9hN1p0Z0ZpV3NlREpidEt6U0dYOUZYSUgzaV9ZTHVUUW83RXYxbnlTczFTMXJ1UURURFcyN0dZYmc",
+      "score": 47
     },
     {
       "id": "politics-7J207J6s66qFIO",
@@ -4051,26 +4116,26 @@
       "score": 47
     },
     {
-      "id": "top-QlRTIOy9mOyEnO",
+      "id": "top-W-yynOyngOydvO",
       "category": "top",
       "categoryName": "종합 핫뉴스",
       "categoryIcon": "🔥",
-      "title": "BTS 콘서트 지연 / 김수현 복귀 시동 / ‘하시5’ 출연자 불륜 의혹 등 [주간 대중문화 이슈]",
-      "description": "BTS 콘서트 지연 / 김수현 복귀 시동 / ‘하시5’ 출연자 불륜 의혹 등 [주간 대중문화 이슈] &nbsp;&nbsp; 데일리안",
-      "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxOYTI1R2s4SERtdENhOWZWc2ZwZGxDNndCMjIxaWp3bk9XZVptc0w5MllQaDQ0N2NLS2lTcnljdmowZksxNEpEYWFMU05zZUV5YktkNG1tTFJnZnRnUVZKUmlJS1c3aGM3N1VVdG5LQ1JBaGFMRTExQ3NORHpmd0gwd2xkN09lX3NGekhjM05OdDVwVE4xaEhYeU5fT3B4cTdWLV8yQ2VvdzZZWGlFV0REamtMRDNWTnkxc195bzVxb1pheVAyLVIyaEhOeTJraS1iOW5hSXBMWXpFc0M0RGVjNDJoZDlzbE1KWnZpWGtadzNlTVFRWGJxdzlpb9IB-wFBVV95cUxOYTI1R2s4SERtdENhOWZWc2ZwZGxDNndCMjIxaWp3bk9XZVptc0w5MllQaDQ0N2NLS2lTcnljdmowZksxNEpEYWFMU05zZUV5YktkNG1tTFJnZnRnUVZKUmlJS1c3aGM3N1VVdG5LQ1JBaGFMRTExQ3NORHpmd0gwd2xkN09lX3NGekhjM05OdDVwVE4xaEhYeU5fT3B4cTdWLV8yQ2VvdzZZWGlFV0REamtMRDNWTnkxc195bzVxb1pheVAyLVIyaEhOeTJraS1iOW5hSXBMWXpFc0M0RGVjNDJoZDlzbE1KWnZpWGtadzNlTVFRWGJxdzlpbw?oc=5",
+      "title": "[천지일보 이슈종합] 한국 이탈리아 정상회담·글로벌 인류공영 AI 포럼·노태악 전 선관위원장 출국금지·정청래 대표 책임론·평양 무인기 투입 尹 징역 30년·월드컵 체코전·미국 이란 전쟁 합의",
+      "description": "[천지일보 이슈종합] 한국 이탈리아 정상회담·글로벌 인류공영 AI 포럼·노태악 전 선관위원장 출국금지·정청래 대표 책임론·평양 무인기 투입 尹 징역 30년·월드컵 체코전·미국 이란 전쟁 합의 &nbsp;&nbsp; 천지일보",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBraUZnZ0lnOTVNOGUzYnVpbUt5RE81akNTMGYzSXlWZnFGT3c4dXZvSndYTDdpNVUwblozcDlOY251N2czTGsyX2xGbjRnQ3VadE4yOXo4TFItSXRtNXZUMmQwcGN5dUdTNGc?oc=5",
       "source": {
-        "name": "데일리안",
-        "url": "https://m.dailian.co.kr"
+        "name": "천지일보",
+        "url": "https://www.newscj.com"
       },
-      "publishedAt": "2026-06-13T05:00:00.000Z",
-      "guid": "CBMi-wFBVV95cUxOYTI1R2s4SERtdENhOWZWc2ZwZGxDNndCMjIxaWp3bk9XZVptc0w5MllQaDQ0N2NLS2lTcnljdmowZksxNEpEYWFMU05zZUV5YktkNG1tTFJnZnRnUVZKUmlJS1c3aGM3N1VVdG5LQ1JBaGFMRTExQ3NORHpmd0gwd2xkN09lX3NGekhjM05OdDVwVE4xaEhYeU5fT3B4cTdW…",
+      "publishedAt": "2026-06-12T22:00:00.000Z",
+      "guid": "CBMiakFVX3lxTFBraUZnZ0lnOTVNOGUzYnVpbUt5RE81akNTMGYzSXlWZnFGT3c4dXZvSndYTDdpNVUwblozcDlOY251N2czTGsyX2xGbjRnQ3VadE4yOXo4TFItSXRtNXZUMmQwcGN5dUdTNGc",
       "score": 47
     },
     {
-      "id": "top-7Jm47Iug7J20IO",
-      "category": "top",
-      "categoryName": "종합 핫뉴스",
-      "categoryIcon": "🔥",
+      "id": "politics-7Jm47Iug7J20IO",
+      "category": "politics",
+      "categoryName": "정치·정책",
+      "categoryIcon": "🏛️",
       "title": "외신이 평가한 '이재명정부 1년'…\"실용주의 외교·AI 공급망 핵심국\"",
       "description": "외신이 평가한 '이재명정부 1년'…\"실용주의 외교·AI 공급망 핵심국\" &nbsp;&nbsp; 대한민국 정책브리핑",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE02RU11Q0FQc3A4RE5qS1BLVkJCM0lDakstaVdETnQxaERTalVtbk1FVnJqN21wam1pYXVhVENsdEV5NG5SRVZRVzdSS25lVVd0RlhYSk1YQzQ5QWZ4UlB4Yzh1QmNnZmpBd0Q5cA?oc=5",
@@ -4131,38 +4196,6 @@
       "score": 47
     },
     {
-      "id": "world-QVNNTOydgCDslr",
-      "category": "world",
-      "categoryName": "국제",
-      "categoryIcon": "🌍",
-      "title": "ASML은 어떻게 세계 반도체 업계를 정복했나 [PADO]",
-      "description": "ASML은 어떻게 세계 반도체 업계를 정복했나 [PADO] &nbsp;&nbsp; 네이트",
-      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9IcnU4UWxVWjRxWTNrdDlLdm9vSFZZaU9MTG5pQmRFckpRRmRpMnUwZTNyRGxRYmthSG1LY1NBQ0VUTFB1b3poVU9BaURvYXhYWEpWUVRhZ0o2OGRVSlZNM2JwcjlYUU1iS1ZUdERYWXVuOV9QR2Jldw?oc=5",
-      "source": {
-        "name": "네이트",
-        "url": "https://m.news.nate.com"
-      },
-      "publishedAt": "2026-06-12T21:01:00.000Z",
-      "guid": "CBMieEFVX3lxTE9IcnU4UWxVWjRxWTNrdDlLdm9vSFZZaU9MTG5pQmRFckpRRmRpMnUwZTNyRGxRYmthSG1LY1NBQ0VUTFB1b3poVU9BaURvYXhYWEpWUVRhZ0o2OGRVSlZNM2JwcjlYUU1iS1ZUdERYWXVuOV9QR2Jldw",
-      "score": 47
-    },
-    {
-      "id": "tech-7YWM7Iqs6528wr",
-      "category": "tech",
-      "categoryName": "AI·과학기술",
-      "categoryIcon": "🤖",
-      "title": "테슬라·포르쉐도 베팅…AI 전력난이 밀어올린 태양광·수소株",
-      "description": "테슬라·포르쉐도 베팅…AI 전력난이 밀어올린 태양광·수소株 &nbsp;&nbsp; 한국경제",
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE55bmJWUmxVVVhLUmxBU21HTER5YmFtZVZ5blpBb2NOYkdwbEFUWW8tNmgxd2FBNnhQNm5vQks1LVRyQmdQZFpreGJ6RmlSR210UDhWMtIBVEFVX3lxTE55bmJWUmxVVVhLUmxBU21HTER5YmFtZVZ5blpBb2NOYkdwbEFUWW8tNmgxd2FBNnhQNm5vQks1LVRyQmdQZFpreGJ6RmlSR210UDhWMg?oc=5",
-      "source": {
-        "name": "한국경제",
-        "url": "https://www.hankyung.com"
-      },
-      "publishedAt": "2026-06-12T21:00:02.000Z",
-      "guid": "CBMiVEFVX3lxTE55bmJWUmxVVVhLUmxBU21HTER5YmFtZVZ5blpBb2NOYkdwbEFUWW8tNmgxd2FBNnhQNm5vQks1LVRyQmdQZFpreGJ6RmlSR210UDhWMtIBVEFVX3lxTE55bmJWUmxVVVhLUmxBU21HTER5YmFtZVZ5blpBb2NOYkdwbEFUWW8tNmgxd2FBNnhQNm5vQks1LVRyQmdQZFpreGJ6…",
-      "score": 47
-    },
-    {
       "id": "sports-66q47ZG464qUIO",
       "category": "sports",
       "categoryName": "스포츠",
@@ -4217,13 +4250,13 @@
       "categoryIcon": "💹",
       "title": "[6월 둘째 주 세계경제동향 브리핑]코스피 숨 고르기…美 증시는 일제히 반등",
       "description": "[6월 둘째 주 세계경제동향 브리핑]코스피 숨 고르기…美 증시는 일제히 반등 &nbsp;&nbsp; v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5QNjJLR1hua1ItRnF6SF9UNVpfOTlTSWtWUVlvSE5lS2NVdkdFNUZfMHBEaWRYaFRJQWhqYW1LanM3QlMwYzluYnB4LUhlZW8?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE54Rkk5TUJpcGlIWXRjU3BTOGk4bjVDWXRMMFBNbENaQlE5TTVIRjFvNnRsaVZKSUJ1QW81Uklsdk1PRm9wVDZnZXlqeDctSHUxQWY0Rw?oc=5",
       "source": {
         "name": "v.daum.net",
         "url": "https://v.daum.net"
       },
       "publishedAt": "2026-06-13T04:34:32.000Z",
-      "guid": "CBMiT0FVX3lxTE5QNjJLR1hua1ItRnF6SF9UNVpfOTlTSWtWUVlvSE5lS2NVdkdFNUZfMHBEaWRYaFRJQWhqYW1LanM3QlMwYzluYnB4LUhlZW8",
+      "guid": "CBMiVEFVX3lxTE54Rkk5TUJpcGlIWXRjU3BTOGk4bjVDWXRMMFBNbENaQlE5TTVIRjFvNnRsaVZKSUJ1QW81Uklsdk1PRm9wVDZnZXlqeDctSHUxQWY0Rw",
       "score": 46
     },
     {
@@ -4291,35 +4324,35 @@
       "score": 46
     },
     {
-      "id": "economy-4oCc7Iqk7Y6Y7J",
-      "category": "economy",
-      "categoryName": "경제·금융",
-      "categoryIcon": "💹",
-      "title": "“스페이스X 주식 1주도 못 줘”···골드만삭스의 ‘코리아패싱’ 대체 왜?",
-      "description": "“스페이스X 주식 1주도 못 줘”···골드만삭스의 ‘코리아패싱’ 대체 왜? &nbsp;&nbsp; 매일경제",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNY2dhN2M4RTk2NkFDX0NYc0xkOXFSZkNRVjd1V21oOW1wTERpbHhOLUpwLTQwcXppUGR5MTVzWTU1MEYwQ0lqU25wQ1dLVEdtYnUzVHdqbVlERFc5Z1FRYl8yM1B1NklzRzUybl9LYk5vb0RlbVBlR1gxQzBUSFdBTGhuTFU2ei1E?oc=5",
+      "id": "world-QVNNTOydgCDslr",
+      "category": "world",
+      "categoryName": "국제",
+      "categoryIcon": "🌍",
+      "title": "ASML은 어떻게 세계 반도체 업계를 정복했나 [PADO]",
+      "description": "ASML은 어떻게 세계 반도체 업계를 정복했나 [PADO] &nbsp;&nbsp; 네이트",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9IcnU4UWxVWjRxWTNrdDlLdm9vSFZZaU9MTG5pQmRFckpRRmRpMnUwZTNyRGxRYmthSG1LY1NBQ0VUTFB1b3poVU9BaURvYXhYWEpWUVRhZ0o2OGRVSlZNM2JwcjlYUU1iS1ZUdERYWXVuOV9QR2Jldw?oc=5",
       "source": {
-        "name": "매일경제",
-        "url": "https://www.mk.co.kr"
+        "name": "네이트",
+        "url": "https://m.news.nate.com"
       },
-      "publishedAt": "2026-06-13T03:59:45.000Z",
-      "guid": "CBMiiAFBVV95cUxNY2dhN2M4RTk2NkFDX0NYc0xkOXFSZkNRVjd1V21oOW1wTERpbHhOLUpwLTQwcXppUGR5MTVzWTU1MEYwQ0lqU25wQ1dLVEdtYnUzVHdqbVlERFc5Z1FRYl8yM1B1NklzRzUybl9LYk5vb0RlbVBlR1gxQzBUSFdBTGhuTFU2ei1E",
+      "publishedAt": "2026-06-12T21:01:00.000Z",
+      "guid": "CBMieEFVX3lxTE9IcnU4UWxVWjRxWTNrdDlLdm9vSFZZaU9MTG5pQmRFckpRRmRpMnUwZTNyRGxRYmthSG1LY1NBQ0VUTFB1b3poVU9BaURvYXhYWEpWUVRhZ0o2OGRVSlZNM2JwcjlYUU1iS1ZUdERYWXVuOV9QR2Jldw",
       "score": 46
     },
     {
-      "id": "tech-IuyEseqztSDtmZ",
+      "id": "tech-7YWM7Iqs6528wr",
       "category": "tech",
       "categoryName": "AI·과학기술",
       "categoryIcon": "🤖",
-      "title": "\"성공 확률 10%도 안 됐다\"…일론 머스크가 다시 꺼낸 스페이스X 창업 이야기",
-      "description": "\"성공 확률 10%도 안 됐다\"…일론 머스크가 다시 꺼낸 스페이스X 창업 이야기 &nbsp;&nbsp; 이코노미사이언스",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBINzZEeUhJYUdlUlVzODhPd05iaHE4TG1qTlRoOGZBU3BfMFA0UVFFbEMxaFhsdzN4aFVvNmY1RWxNSmNaUHpTSk9ocVdnMm51eXVqcGJQeWlXOS14SWNxWGVsUGQyODUzakJaNy1NWQ?oc=5",
+      "title": "테슬라·포르쉐도 베팅…AI 전력난이 밀어올린 태양광·수소株",
+      "description": "테슬라·포르쉐도 베팅…AI 전력난이 밀어올린 태양광·수소株 &nbsp;&nbsp; 한국경제",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE55bmJWUmxVVVhLUmxBU21HTER5YmFtZVZ5blpBb2NOYkdwbEFUWW8tNmgxd2FBNnhQNm5vQks1LVRyQmdQZFpreGJ6RmlSR210UDhWMtIBVEFVX3lxTE55bmJWUmxVVVhLUmxBU21HTER5YmFtZVZ5blpBb2NOYkdwbEFUWW8tNmgxd2FBNnhQNm5vQks1LVRyQmdQZFpreGJ6RmlSR210UDhWMg?oc=5",
       "source": {
-        "name": "이코노미사이언스",
-        "url": "https://www.e-science.co.kr"
+        "name": "한국경제",
+        "url": "https://www.hankyung.com"
       },
-      "publishedAt": "2026-06-13T03:59:00.000Z",
-      "guid": "CBMib0FVX3lxTFBINzZEeUhJYUdlUlVzODhPd05iaHE4TG1qTlRoOGZBU3BfMFA0UVFFbEMxaFhsdzN4aFVvNmY1RWxNSmNaUHpTSk9ocVdnMm51eXVqcGJQeWlXOS14SWNxWGVsUGQyODUzakJaNy1NWQ",
+      "publishedAt": "2026-06-12T21:00:02.000Z",
+      "guid": "CBMiVEFVX3lxTE55bmJWUmxVVVhLUmxBU21HTER5YmFtZVZ5blpBb2NOYkdwbEFUWW8tNmgxd2FBNnhQNm5vQks1LVRyQmdQZFpreGJ6RmlSR210UDhWMtIBVEFVX3lxTE55bmJWUmxVVVhLUmxBU21HTER5YmFtZVZ5blpBb2NOYkdwbEFUWW8tNmgxd2FBNnhQNm5vQks1LVRyQmdQZFpreGJ6…",
       "score": 46
     },
     {
@@ -4355,6 +4388,22 @@
       "score": 46
     },
     {
+      "id": "tech-IuyEseqztSDtmZ",
+      "category": "tech",
+      "categoryName": "AI·과학기술",
+      "categoryIcon": "🤖",
+      "title": "\"성공 확률 10%도 안 됐다\"…일론 머스크가 다시 꺼낸 스페이스X 창업 이야기",
+      "description": "\"성공 확률 10%도 안 됐다\"…일론 머스크가 다시 꺼낸 스페이스X 창업 이야기 &nbsp;&nbsp; 이코노미사이언스",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBINzZEeUhJYUdlUlVzODhPd05iaHE4TG1qTlRoOGZBU3BfMFA0UVFFbEMxaFhsdzN4aFVvNmY1RWxNSmNaUHpTSk9ocVdnMm51eXVqcGJQeWlXOS14SWNxWGVsUGQyODUzakJaNy1NWQ?oc=5",
+      "source": {
+        "name": "이코노미사이언스",
+        "url": "https://www.e-science.co.kr"
+      },
+      "publishedAt": "2026-06-13T03:59:00.000Z",
+      "guid": "CBMib0FVX3lxTFBINzZEeUhJYUdlUlVzODhPd05iaHE4TG1qTlRoOGZBU3BfMFA0UVFFbEMxaFhsdzN4aFVvNmY1RWxNSmNaUHpTSk9ocVdnMm51eXVqcGJQeWlXOS14SWNxWGVsUGQyODUzakJaNy1NWQ",
+      "score": 45
+    },
+    {
       "id": "sports-66-46rWtLCDtjI",
       "category": "sports",
       "categoryName": "스포츠",
@@ -4368,6 +4417,22 @@
       },
       "publishedAt": "2026-06-13T03:44:00.000Z",
       "guid": "CBMieEFVX3lxTE0tS0h1MGdNVS1va0ZzNWI2Tk1TekZoczFBbFpNRE9WUmowMm44dUE3TjUwSHNOU0t4dXJrc2p0TGxTTVVrZmJkRzB6TmlpVml2VU9wWDVXMzNGNFdGRnl3ZVJCR0RHY19ZOV9jcnRJejJxdUJLdFVsYg",
+      "score": 45
+    },
+    {
+      "id": "economy-7ZSE66as642kIO",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "프리덤 홀딩스(FRHC)가 연간 수익성 개선으로 주당순이익(EPS)이 두 배로 늘었음에도 주가가 6.9% 하락한 이유",
+      "description": "프리덤 홀딩스(FRHC)가 연간 수익성 개선으로 주당순이익(EPS)이 두 배로 늘었음에도 주가가 6.9% 하락한 이유 &nbsp;&nbsp; simplywall.st",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOWU5oUF92cXpja0hrWVpEU2pTR2FvSjVWZzFhUDV5Q0J2TDNnTmtIMEREbGhhTHdTNkNPMmJlQzcyaktFUEJaRllsM0k1MzdubDBTN0xNSG5TMVpnZHYzX1JOcC1uN1lXNWhEQWpydmdqRWxUWW5udFBWLU01ZmxZdDNTT2t1YmpqMWtiU2JQVndDbFFmWWNLM2l6ZGtrOWlHeEtTRWtQbTNYYzkzMmZZZdIBsAFBVV95cUxOWU5oUF92cXpja0hrWVpEU2pTR2FvSjVWZzFhUDV5Q0J2TDNnTmtIMEREbGhhTHdTNkNPMmJlQzcyaktFUEJaRllsM0k1MzdubDBTN0xNSG5TMVpnZHYzX1JOcC1uN1lXNWhEQWpydmdqRWxUWW5udFBWLU01ZmxZdDNTT2t1YmpqMWtiU2JQVndDbFFmWWNLM2l6ZGtrOWlHeEtTRWtQbTNYYzkzMmZZZQ?oc=5",
+      "source": {
+        "name": "simplywall.st",
+        "url": "https://simplywall.st"
+      },
+      "publishedAt": "2026-06-13T03:41:06.000Z",
+      "guid": "CBMisAFBVV95cUxOWU5oUF92cXpja0hrWVpEU2pTR2FvSjVWZzFhUDV5Q0J2TDNnTmtIMEREbGhhTHdTNkNPMmJlQzcyaktFUEJaRllsM0k1MzdubDBTN0xNSG5TMVpnZHYzX1JOcC1uN1lXNWhEQWpydmdqRWxUWW5udFBWLU01ZmxZdDNTT2t1YmpqMWtiU2JQVndDbFFmWWNLM2l6ZGtrOWlH…",
       "score": 45
     },
     {
@@ -4496,7 +4561,7 @@
       },
       "publishedAt": "2026-06-13T03:01:00.000Z",
       "guid": "CBMiW0FVX3lxTFBSaUhDdmRCNm1pTm4yR3RmX2U5QlpnWEdrUW95Tll4ZWQ2am5VQjBxa053Ym9Sc2dlZnVqeGwwUnFOV2JpWVRMenQ2VU1BTlRxN3hPN21jUzJ4SFU",
-      "score": 45
+      "score": 44
     },
     {
       "id": "politics-W-ydmOyCrOuLuS",
@@ -4512,7 +4577,7 @@
       },
       "publishedAt": "2026-06-13T03:00:01.000Z",
       "guid": "CBMiZ0FVX3lxTE9iVkphOV9JWnlqa0lmQnBNUzlKcTYxTm5wZ3EzbExETFBzd2ZSdjVmQV9zMWFMeWdfdi1rbklRWThsRXB5UmoyNExkSUpNRWQ1WDFPTGlRQ2hjLUNFcUJJUks4TmFpTGc",
-      "score": 45
+      "score": 44
     },
     {
       "id": "politics-6Z-T6riw7JeFIC",
@@ -4528,7 +4593,7 @@
       },
       "publishedAt": "2026-06-13T03:00:00.000Z",
       "guid": "CBMiYEFVX3lxTFBLRkMxN3ZFeFNHTXJMd3FWTkloNWptVzc4UUVPaWJQVEpETEs5UkNmallYd0Z0Und6R1diRFdPWDJTd2FDN3k4T29weXJJY0N2QnA0NWVaeXZHOEhuUzJRMw",
-      "score": 45
+      "score": 44
     },
     {
       "id": "world-64uk7Lm07J207L",
@@ -4544,7 +4609,7 @@
       },
       "publishedAt": "2026-06-13T02:58:05.000Z",
       "guid": "CBMiT0FVX3lxTE9nWlVoWGhQRTdyd0EtVDd1RzhOd0M5dDJmRTR0UXZhN09DbGRONTRNdGxuUlBnaTYwb1dDQ1RGdmpRMjJHRkd6elVCd3VvcnM",
-      "score": 45
+      "score": 44
     },
     {
       "id": "politics-6rWt66-87J2Y7Z",
@@ -4688,7 +4753,7 @@
       },
       "publishedAt": "2026-06-13T02:01:00.000Z",
       "guid": "CBMiU0FVX3lxTE5BTzBDdm15M2poNEt3UG5tTnNRN3ZKRW5pLV9nemk1bXJZUEllZTQtblVVQnp1dTFPR3RzVlhmU0Fzbnk5REZ1NS13Yk5xdVVXQUk0",
-      "score": 44
+      "score": 43
     },
     {
       "id": "culture-W-qyjOyehOychO",
@@ -4704,7 +4769,7 @@
       },
       "publishedAt": "2026-06-13T02:00:07.000Z",
       "guid": "CBMiU0FVX3lxTE1TSnFfbkdENUhGbGNLNnYxcUZpVlBTUER4MFprTDhieURQYlZFOGNhMlVWRzZrQnV4Tk1ZcXZRWXNjMmJPX19naTdtWHpCTzlmWmgw",
-      "score": 44
+      "score": 43
     },
     {
       "id": "sports-6riw7ISx7JqpIC",
@@ -4720,7 +4785,7 @@
       },
       "publishedAt": "2026-06-13T02:00:00.000Z",
       "guid": "CBMiWkFVX3lxTFB5cUVxUW43aVRaaVBHQ2hWSjNHR2FfLXFZUVRWTkRCZ1ItaDZKNGwyVFhjeWNBbkFvOENEYkl1UFZhSGJMUWRyblJUQmJ0SmN0VnM5ZGdCeDE4QQ",
-      "score": 44
+      "score": 43
     },
     {
       "id": "economy-6rWt7KCcIOyekO",
@@ -4835,6 +4900,38 @@
       "score": 43
     },
     {
+      "id": "top-7KKF7ZWp7Yq56r",
+      "category": "top",
+      "categoryName": "종합 핫뉴스",
+      "categoryIcon": "🔥",
+      "title": "종합특검, 오늘 尹 2차 조사… ‘반란 우두머리’ 피의자 신분",
+      "description": "종합특검, 오늘 尹 2차 조사… ‘반란 우두머리’ 피의자 신분 &nbsp;&nbsp; 서울경제",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE4xbmVOU1h1WmtndlJGakwxNTA3dEtUUTZaMThrTlJSSDlkbVpYczRGclc0aHN3WnFkT0p5czdEd29zZ3hQSkl2U3R6QXZxUUQ3c3h5cjVTaXZYM1d2N2tnQVJOczY3QdIBU0FVX3lxTE1yTEVzZC1JRm5PMmVpRVRvRUZTZ0VlZl9yVDU5Y1gwaXhTVm5JMUJKeXhIcUpHaklZcFFrZXNfbG9GdlExZFlCY3VTTDFjU2dmOGhj?oc=5",
+      "source": {
+        "name": "서울경제",
+        "url": "https://www.sedaily.com"
+      },
+      "publishedAt": "2026-06-13T01:10:58.000Z",
+      "guid": "CBMiZkFVX3lxTE4xbmVOU1h1WmtndlJGakwxNTA3dEtUUTZaMThrTlJSSDlkbVpYczRGclc0aHN3WnFkT0p5czdEd29zZ3hQSkl2U3R6QXZxUUQ3c3h5cjVTaXZYM1d2N2tnQVJOczY3QdIBU0FVX3lxTE1yTEVzZC1JRm5PMmVpRVRvRUZTZ0VlZl9yVDU5Y1gwaXhTVm5JMUJKeXhIcUpHaklZ…",
+      "score": 43
+    },
+    {
+      "id": "top-7YyM7JqwIOuPme",
+      "category": "top",
+      "categoryName": "종합 핫뉴스",
+      "categoryIcon": "🔥",
+      "title": "파우 동연, 오늘(13일) 부친상 \"슬픔 속 장례\" [공식입장]",
+      "description": "파우 동연, 오늘(13일) 부친상 \"슬픔 속 장례\" [공식입장] &nbsp;&nbsp; 네이트",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1RdzN0bkhDYW56eW4wcmdHeHljYnpjaGNOWGRZZ2l2b0xsTzQzQ2NzVHpWUjY3bDkwNjRWUUZ6QnJGOG1GeWFSTWRfcFQyN2VtY0VjZjlWN0JNaEJreXROajN3akEzODBSUEFLTmFGeFlOV003MlVBVA?oc=5",
+      "source": {
+        "name": "네이트",
+        "url": "https://m.news.nate.com"
+      },
+      "publishedAt": "2026-06-13T01:03:00.000Z",
+      "guid": "CBMieEFVX3lxTE1RdzN0bkhDYW56eW4wcmdHeHljYnpjaGNOWGRZZ2l2b0xsTzQzQ2NzVHpWUjY3bDkwNjRWUUZ6QnJGOG1GeWFSTWRfcFQyN2VtY0VjZjlWN0JNaEJreXROajN3akEzODBSUEFLTmFGeFlOV003MlVBVA",
+      "score": 43
+    },
+    {
       "id": "economy-7Jm46rWt7J24IO",
       "category": "economy",
       "categoryName": "경제·금융",
@@ -4915,6 +5012,22 @@
       "score": 42
     },
     {
+      "id": "economy-W-yLrOy4tV0g7J",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "[심층] 온탕·냉탕 오가는 롤러코스터 장세…‘역대급 널뛰기’ 국장 왜 이러나",
+      "description": "[심층] 온탕·냉탕 오가는 롤러코스터 장세…‘역대급 널뛰기’ 국장 왜 이러나 &nbsp;&nbsp; 알파경제",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5JRmdYbzhKeEJHSWEtdGNoOGtzbFZSdWtfNWlLaUJ6dHNMMXhmU2J3bjZrLUlXcTBhTWt5YU1kMnJKdmpaRU5MUHRCSzRlQVdZcEFKcHdxMnIyS29uZkHSAW5BVV95cUxQUUJOQ1ZRbGRoTHdOMFhQaVJ5cDVUUTVpdjAwZ1RZNHBTMzBvOVVKUThqODFvcTRaZWtSUTkyVnh4cmhHVkpxLXlRVi13cXJRaWF2dWpPX2M0NmxNdGk0R0hic0hpVzZwVy1fcjBWdw?oc=5",
+      "source": {
+        "name": "알파경제",
+        "url": "https://alphabiz.co.kr"
+      },
+      "publishedAt": "2026-06-13T00:26:20.000Z",
+      "guid": "CBMiXkFVX3lxTE5JRmdYbzhKeEJHSWEtdGNoOGtzbFZSdWtfNWlLaUJ6dHNMMXhmU2J3bjZrLUlXcTBhTWt5YU1kMnJKdmpaRU5MUHRCSzRlQVdZcEFKcHdxMnIyS29uZkHSAW5BVV95cUxQUUJOQ1ZRbGRoTHdOMFhQaVJ5cDVUUTVpdjAwZ1RZNHBTMzBvOVVKUThqODFvcTRaZWtSUTkyVnh4…",
+      "score": 42
+    },
+    {
       "id": "tech-7J207J6s7JqpIO",
       "category": "tech",
       "categoryName": "AI·과학기술",
@@ -4960,7 +5073,7 @@
       },
       "publishedAt": "2026-06-13T00:00:02.000Z",
       "guid": "CBMiYEFVX3lxTFBTdzVUM2VQSHRIRk1jbnlwUEwzU04temtYNW9jM0Z3WXBNRS1lUFpjd05Wb2ZUblpHczJCODVlRms3MjZlQWxUbTBkZGY5eVRUS0VydkNLMGlPV1dwNHlDONIBYEFVX3lxTFBTdzVUM2VQSHRIRk1jbnlwUEwzU04temtYNW9jM0Z3WXBNRS1lUFpjd05Wb2ZUblpHczJCODVl…",
-      "score": 42
+      "score": 41
     },
     {
       "id": "politics-4oCY7JiB7JeF7J",
@@ -4976,7 +5089,7 @@
       },
       "publishedAt": "2026-06-13T00:00:00.000Z",
       "guid": "CBMickFVX3lxTE1QbWJwcWZ0bkhfNWR1SmlJRFFpWnpEczdINUdtWnBZdkFvS3ZROThHUFpDeWQ5VTBMU1VyUnoyM2lPdlotbE8tM2QwUmN3RXEzd3FNZTJaSVNjU2Y2Z0NiYWlaMXlhaUJhd1AzbGU5X2JMZ9IBdkFVX3lxTE9KWUNPV1d6RURKSDNwZzVSMEJycHdoSmMxaGVWWThTN2ZXQU4z…",
-      "score": 42
+      "score": 41
     },
     {
       "id": "culture-W09UVOqwgOydtO",
@@ -4992,7 +5105,7 @@
       },
       "publishedAt": "2026-06-13T00:00:00.000Z",
       "guid": "CBMiakFVX3lxTE5VaC11enBCVExUOFdyeS1uMk5VWHkyc3BTX3phcllhaW13R0ZlOTVsVEZjcjByRkVfb01aUnZlU1l2c2FmZ1VoZEZOMjQ5bkdJTXFBbFQwY3AzNWVpem12eG5TN0FZLXR6d1E",
-      "score": 42
+      "score": 41
     },
     {
       "id": "analysis-W-uFvOyEpOychO",
@@ -5008,7 +5121,7 @@
       },
       "publishedAt": "2026-06-13T00:00:00.000Z",
       "guid": "CBMidEFVX3lxTE44UFlESE1XS0lqSlhXUG1VLS1rY0pleEtpNkhLYXZ2RUR1OXdaVXpSY1l4T1kxdGZqbnQycXJfbXJkV29tNEZGMVBCcktyQVFyTWVPSUx3bi1yMzBIalNZZlh6TnpiLWlKNko2Umxrcmtnb19i",
-      "score": 42
+      "score": 41
     },
     {
       "id": "politics-W-ywveqwhDE07K",
@@ -5072,7 +5185,7 @@
       },
       "publishedAt": "2026-06-12T23:00:00.000Z",
       "guid": "CBMiT0FVX3lxTE9PZVRiU1dCdGp2LTFhdEdvV3dBRXgzd1JWNXk1UHJUTGV5OWx0YzB6VjZnbGRlSTZRSUdIejg5eElNeENWRWtZZU5KOGdhclE",
-      "score": 41
+      "score": 40
     },
     {
       "id": "world-7ZWcLeyYgSwg7J",
@@ -5088,22 +5201,6 @@
       },
       "publishedAt": "2026-06-12T22:51:57.000Z",
       "guid": "CBMibkFVX3lxTE5VNVlvZjRuOXFEaHVDVzA2bXVjcjVVM29nbHBCOEFQaTNJYV9JaE9ZZ1BtVkotbXVqOTNzOGJPZlJfc2FnZVV5Y3RWQmdRenZxbXVhdUcyN0x6Z0l2bmNuRjJ0cFg1M1l1LWRabVVB",
-      "score": 40
-    },
-    {
-      "id": "economy-W-yjvOqwhCDsvZ",
-      "category": "economy",
-      "categoryName": "경제·금융",
-      "categoryIcon": "💹",
-      "title": "[주간 코스닥 외국인] 알테오젠·리가켐바이오 집중 매수...브이엠 주성엔지니어링 원익IPS 팔았다",
-      "description": "[주간 코스닥 외국인] 알테오젠·리가켐바이오 집중 매수...브이엠 주성엔지니어링 원익IPS 팔았다 &nbsp;&nbsp; 핀포인트뉴스",
-      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFB4ZEN6NDM5UzR4R2lOUGp0YWY0azFLRkV0VlBHMk1PRVJySllrSVJlbUpLYlc3eUN6a0t3bkZoUHFBdFBWdDIzTkhOOGozWXJyQUJ3cldvdmJGSUxmZTBYellUaFlkMEtOWWVQYzFXYjk0ZHBmMDFJ0gF3QVVfeXFMUHhkQ3o0MzlTNHhHaU5QanRhZjRrMUtGRXRWUEcyTU9FUnJKWWtJUmVtSktiVzd5Q3prS3duRmhQcUF0UFZ0MjNOSE44ajNZcnJBQndyV292YkZJTGZlMFh6WVRoWWQwS05ZZVBjMVdiOTRkcGYwMUk?oc=5",
-      "source": {
-        "name": "핀포인트뉴스",
-        "url": "https://www.pinpointnews.co.kr"
-      },
-      "publishedAt": "2026-06-12T22:47:28.000Z",
-      "guid": "CBMid0FVX3lxTFB4ZEN6NDM5UzR4R2lOUGp0YWY0azFLRkV0VlBHMk1PRVJySllrSVJlbUpLYlc3eUN6a0t3bkZoUHFBdFBWdDIzTkhOOGozWXJyQUJ3cldvdmJGSUxmZTBYellUaFlkMEtOWWVQYzFXYjk0ZHBmMDFJ0gF3QVVfeXFMUHhkQ3o0MzlTNHhHaU5QanRhZjRrMUtGRXRWUEcyTU9F…",
       "score": 40
     },
     {
@@ -5155,22 +5252,6 @@
       "score": 40
     },
     {
-      "id": "economy-7Jqw66as6riw7I",
-      "category": "economy",
-      "categoryName": "경제·금융",
-      "categoryIcon": "💹",
-      "title": "우리기술 투자분석",
-      "description": "우리기술 투자분석 &nbsp;&nbsp; 주달",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5Dc1hHZWZ4WHhUV3MxWk9YSk9sN1BPdlpJWFZvYkhMelNObzFnVmVqb2sySDRFeHd2Ulo2MEp5MHJiUG1ydThENGtlWmszTGtRdHhPSWhMSm9SWWF1SlJUdE9zNnFJUTQ0d05HU1B5Wl9xdTQ?oc=5",
-      "source": {
-        "name": "주달",
-        "url": "https://www.judal.co.kr"
-      },
-      "publishedAt": "2026-06-12T22:29:41.000Z",
-      "guid": "CBMic0FVX3lxTE5Dc1hHZWZ4WHhUV3MxWk9YSk9sN1BPdlpJWFZvYkhMelNObzFnVmVqb2sySDRFeHd2Ulo2MEp5MHJiUG1ydThENGtlWmszTGtRdHhPSWhMSm9SWWF1SlJUdE9zNnFJUTQ0d05HU1B5Wl9xdTQ",
-      "score": 40
-    },
-    {
       "id": "top-5pWF7KCV7J247J",
       "category": "top",
       "categoryName": "종합 핫뉴스",
@@ -5187,19 +5268,19 @@
       "score": 40
     },
     {
-      "id": "world-7ZW07Jm4IOyGjO",
-      "category": "world",
-      "categoryName": "국제",
-      "categoryIcon": "🌍",
-      "title": "해외 소비자는 이미 K-브랜드를 찾는다…남은 건 ‘판매 채널’",
-      "description": "해외 소비자는 이미 K-브랜드를 찾는다…남은 건 ‘판매 채널’ &nbsp;&nbsp; 디지털데일리",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE4zSEZIUjdxS3lqUnM5RXZVWWx5VnNJRnA3LWlzdjd6bEJjc2xZUWZwd3AwUTNUZ1hZSTZlQk1zVzUxUGFPR1o2aHlZemlLMWl3X05ob2VSbjZvT2loeGVUaHpBQ28?oc=5",
+      "id": "top-5pWF7KCV7J247J",
+      "category": "top",
+      "categoryName": "종합 핫뉴스",
+      "categoryIcon": "🔥",
+      "title": "故정인아, 오늘(13일) 11주기…스카이다이빙 연습 중 실종 후 숨진 채 발견[Oh!쎈 이슈]",
+      "description": "故정인아, 오늘(13일) 11주기…스카이다이빙 연습 중 실종 후 숨진 채 발견[Oh!쎈 이슈] &nbsp;&nbsp; osen.co.kr",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBkaG5RYjdCUDhvN3dmWjROelhVZHZvNGxZUzdvb3ViYXNlUUVhYjdwb081bVNTaW1VVEV5b25ZLXJwbm93WVU5a3RvdWFtUWY4WUFZ?oc=5",
       "source": {
-        "name": "디지털데일리",
-        "url": "https://www.ddaily.co.kr"
+        "name": "osen.co.kr",
+        "url": "http://www.osen.co.kr"
       },
-      "publishedAt": "2026-06-12T22:00:00.000Z",
-      "guid": "CBMiZEFVX3lxTE4zSEZIUjdxS3lqUnM5RXZVWWx5VnNJRnA3LWlzdjd6bEJjc2xZUWZwd3AwUTNUZ1hZSTZlQk1zVzUxUGFPR1o2aHlZemlLMWl3X05ob2VSbjZvT2loeGVUaHpBQ28",
+      "publishedAt": "2026-06-12T22:26:00.000Z",
+      "guid": "CBMiU0FVX3lxTFBkaG5RYjdCUDhvN3dmWjROelhVZHZvNGxZUzdvb3ViYXNlUUVhYjdwb081bVNTaW1VVEV5b25ZLXJwbm93WVU5a3RvdWFtUWY4WUFZ",
       "score": 40
     },
     {
@@ -5219,20 +5300,36 @@
       "score": 40
     },
     {
-      "id": "tech-7ZWcwrfsnbTtg4",
-      "category": "tech",
-      "categoryName": "AI·과학기술",
-      "categoryIcon": "🤖",
-      "title": "한·이탈리아, AI·양자·로봇 협력 강화…공동연구 확대",
-      "description": "한·이탈리아, AI·양자·로봇 협력 강화…공동연구 확대 &nbsp;&nbsp; 매일경제 마켓",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5ZRFZWbmd1emRkblBlYzRuQnJuaXVRVVNrNk4zTWxSOW84SG5JaUhROEhoYnlvSGZVeTlLa3k2MTA1bHg2b3Z3VGNXUUpReU45MWxMc2MzWEdfZFlOX1hOZg?oc=5",
+      "id": "politics-7J6l64-Z7ZiBIO",
+      "category": "politics",
+      "categoryName": "정치·정책",
+      "categoryIcon": "🏛️",
+      "title": "장동혁 거취에 충돌하는 당권파와 소장파",
+      "description": "장동혁 거취에 충돌하는 당권파와 소장파 &nbsp;&nbsp; 조선일보",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1EdkJ6MUE4Q0xKNURobmt5UGxMaDJSc0pyY2RGNWU1Tjh3aE40NnBBQm1ORlFSU3NnM091T1ZNM2tjVmw3Y3k3QkpGNXZVajF2MGRSQk83WFVVN3EzeFpBdVJpcmo2YWtiNkHSAW5BVV95cUxQaDZfd0h6R3ZLclpJbVFuVVVwcTdLcHhJcW5YUF9XYXN3Yk9MYnhDRUhFbEFUV2JaTTBDcVBUelhEY2ZJb1NXZkhGUUUwLXZtc1h3T2pkLUJsZEZWVnpBdmttYklDanNNSzZWQjhOZw?oc=5",
       "source": {
-        "name": "매일경제 마켓",
-        "url": "https://stock.mk.co.kr"
+        "name": "조선일보",
+        "url": "http://weekly.chosun.com"
       },
-      "publishedAt": "2026-06-12T14:00:00.000Z",
-      "guid": "CBMiYEFVX3lxTE5ZRFZWbmd1emRkblBlYzRuQnJuaXVRVVNrNk4zTWxSOW84SG5JaUhROEhoYnlvSGZVeTlLa3k2MTA1bHg2b3Z3VGNXUUpReU45MWxMc2MzWEdfZFlOX1hOZg",
-      "score": 40
+      "publishedAt": "2026-06-12T22:00:00.000Z",
+      "guid": "CBMiakFVX3lxTE1EdkJ6MUE4Q0xKNURobmt5UGxMaDJSc0pyY2RGNWU1Tjh3aE40NnBBQm1ORlFSU3NnM091T1ZNM2tjVmw3Y3k3QkpGNXZVajF2MGRSQk83WFVVN3EzeFpBdVJpcmo2YWtiNkHSAW5BVV95cUxQaDZfd0h6R3ZLclpJbVFuVVVwcTdLcHhJcW5YUF9XYXN3Yk9MYnhDRUhFbEFU…",
+      "score": 39
+    },
+    {
+      "id": "world-7ZW07Jm4IOyGjO",
+      "category": "world",
+      "categoryName": "국제",
+      "categoryIcon": "🌍",
+      "title": "해외 소비자는 이미 K-브랜드를 찾는다…남은 건 ‘판매 채널’",
+      "description": "해외 소비자는 이미 K-브랜드를 찾는다…남은 건 ‘판매 채널’ &nbsp;&nbsp; 디지털데일리",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE4zSEZIUjdxS3lqUnM5RXZVWWx5VnNJRnA3LWlzdjd6bEJjc2xZUWZwd3AwUTNUZ1hZSTZlQk1zVzUxUGFPR1o2aHlZemlLMWl3X05ob2VSbjZvT2loeGVUaHpBQ28?oc=5",
+      "source": {
+        "name": "디지털데일리",
+        "url": "https://www.ddaily.co.kr"
+      },
+      "publishedAt": "2026-06-12T22:00:00.000Z",
+      "guid": "CBMiZEFVX3lxTE4zSEZIUjdxS3lqUnM5RXZVWWx5VnNJRnA3LWlzdjd6bEJjc2xZUWZwd3AwUTNUZ1hZSTZlQk1zVzUxUGFPR1o2aHlZemlLMWl3X05ob2VSbjZvT2loeGVUaHpBQ28",
+      "score": 39
     },
     {
       "id": "analysis-IuyVhOyngSDsp4",
@@ -5251,19 +5348,19 @@
       "score": 39
     },
     {
-      "id": "economy-7JWE66mU66as7L",
+      "id": "economy-64-E67CVIOyngO",
       "category": "economy",
       "categoryName": "경제·금융",
       "categoryIcon": "💹",
-      "title": "아메리칸 익스프레스 (AXP) 주가, 실적 쇼크 후 CFO 낙관론 속 밸류에이션은 적정할까",
-      "description": "아메리칸 익스프레스 (AXP) 주가, 실적 쇼크 후 CFO 낙관론 속 밸류에이션은 적정할까 &nbsp;&nbsp; simplywall.st",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPcE9qZnQwUzd1VDU2NzZtd0lxdzVGcFJlREtZOUJmVE9UVHN0cG0zckRDcmpDeGhVWnNKQlhvZlRXOHAyODVsVEpyb2lCT1l1bHdnV1JTUUVjU3JfcjZ3ajhEQW9hMVNOZElQNmxfOFM1dHNwbDNpY2pkOEd4TFRrLWZXWFFPMm9XUFloRHl6ejh2VGN0S2lmSUQxMncwRG9Rc2xqMlRQRG9wZS1MR0HSAa4BQVVfeXFMT3BPamZ0MFM3dVQ1Njc2bXdJcXc1RnBSZURLWTlCZlRPVFRzdHBtM3JEQ3JqQ3hoVVpzSkJYb2ZUVzhwMjg1bFRKcm9pQk9ZdWx3Z1dSU1FFY1NyX3I2d2o4REFvYTFTTmRJUDZsXzhTNXRzcGwzaWNqZDhHeExUay1mV1hRTzJvV1BZaER5eno4dlRjdEtpZklEMTJ3MERvUXNsajJUUERvcGUtTEdB?oc=5",
+      "title": "도박 지능 투자 재테크로 보는 권위 있는 해석: 기초, 심화 및 마스터",
+      "description": "도박 지능 투자 재테크로 보는 권위 있는 해석: 기초, 심화 및 마스터 &nbsp;&nbsp; kmrk.ru",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBxSnNYT0xKVk04QmxLT3Bzel9oUDlDdGM4aVhDMWdreHFmWkJhN2VyLU95RmhaWGxoc1h6Sm1HdDdVWDNxcm1VLTN2OXVkS0w0RW9rSGEzTTdBQmNnUkdB?oc=5",
       "source": {
-        "name": "simplywall.st",
-        "url": "https://simplywall.st"
+        "name": "kmrk.ru",
+        "url": "https://www.kmrk.ru"
       },
-      "publishedAt": "2026-06-12T21:35:38.000Z",
-      "guid": "CBMirgFBVV95cUxPcE9qZnQwUzd1VDU2NzZtd0lxdzVGcFJlREtZOUJmVE9UVHN0cG0zckRDcmpDeGhVWnNKQlhvZlRXOHAyODVsVEpyb2lCT1l1bHdnV1JTUUVjU3JfcjZ3ajhEQW9hMVNOZElQNmxfOFM1dHNwbDNpY2pkOEd4TFRrLWZXWFFPMm9XUFloRHl6ejh2VGN0S2lmSUQxMncwRG9R…",
+      "publishedAt": "2026-06-12T21:03:46.000Z",
+      "guid": "CBMiX0FVX3lxTFBxSnNYT0xKVk04QmxLT3Bzel9oUDlDdGM4aVhDMWdreHFmWkJhN2VyLU95RmhaWGxoc1h6Sm1HdDdVWDNxcm1VLTN2OXVkS0w0RW9rSGEzTTdBQmNnUkdB",
       "score": 39
     },
     {
@@ -5347,67 +5444,19 @@
       "score": 39
     },
     {
-      "id": "society-W-uMgOyLoOyVjO",
-      "category": "society",
-      "categoryName": "사회·교육",
-      "categoryIcon": "🏫",
-      "title": "[대신알아봄]‘또 어느 집 자제 대학 갈 차례냐’···지역의사제, ‘누구를·어떻게 남길지’가 없다",
-      "description": "[대신알아봄]‘또 어느 집 자제 대학 갈 차례냐’···지역의사제, ‘누구를·어떻게 남길지’가 없다 &nbsp;&nbsp; 경향신문",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5oZW9YMzVNTk9yVzcxYm1TcElPUnNpXzB5RzV0dVVtSWIyX0Y2cEhEeHRUOFZ6Tl9iTldhaFJwdURPUU5uenRhS09Eb1ZBNHdPQy1GU0xKb2R5aVozZ1dR0gFfQVVfeXFMTmhlb1gzNU1OT3JXNzFibVNwSU9Sc2lfMHlHNXR1VW1JYjJfRjZwSER4dFQ4VnpOX2JOV2FoUnB1RE9RTm56dGFLT0RvVkE0d09DLUZTTEpvZHlpWjNnV1E?oc=5",
-      "source": {
-        "name": "경향신문",
-        "url": "https://www.khan.co.kr"
-      },
-      "publishedAt": "2026-06-12T21:00:00.000Z",
-      "guid": "CBMiX0FVX3lxTE5oZW9YMzVNTk9yVzcxYm1TcElPUnNpXzB5RzV0dVVtSWIyX0Y2cEhEeHRUOFZ6Tl9iTldhaFJwdURPUU5uenRhS09Eb1ZBNHdPQy1GU0xKb2R5aVozZ1dR0gFfQVVfeXFMTmhlb1gzNU1OT3JXNzFibVNwSU9Sc2lfMHlHNXR1VW1JYjJfRjZwSER4dFQ4VnpOX2JOV2FoUnB1…",
-      "score": 39
-    },
-    {
-      "id": "world-J-ykkeqyrOq1rS",
-      "category": "world",
-      "categoryName": "국제",
-      "categoryIcon": "🌍",
-      "title": "'중견국' 착각 [PADO] - 머니투데이",
-      "description": "'중견국' 착각 [PADO] - 머니투데이 &nbsp;&nbsp; 머니투데이",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBlYVU3LXN3bFREOUNKWllTeHktS1BiUFRiWVFhOGlIajhwU25DdFhlNzlBeVFkamdZbXlTXzJLaWs0ZnVIbjJ2WUhFd3pBZ0hhMXBiZF9nRlNUTGJ0THFFdVVYRnBsTEgtMmJ4M2ln0gFuQVVfeXFMUGVhVTctc3dsVEQ5Q0paWVN4eS1LUGJQVGJZUWE4aUhqOHBTbkN0WGU3OUF5UWRqZ1lteVNfMktpazRmdUhuMnZZSEV3ekFnSGExcGJkX2dGU1RMYnRMcUV1VVhGcGxMSC0yYngzaWc?oc=5",
-      "source": {
-        "name": "머니투데이",
-        "url": "https://www.mt.co.kr"
-      },
-      "publishedAt": "2026-06-12T21:00:00.000Z",
-      "guid": "CBMibkFVX3lxTFBlYVU3LXN3bFREOUNKWllTeHktS1BiUFRiWVFhOGlIajhwU25DdFhlNzlBeVFkamdZbXlTXzJLaWs0ZnVIbjJ2WUhFd3pBZ0hhMXBiZF9nRlNUTGJ0THFFdVVYRnBsTEgtMmJ4M2ln0gFuQVVfeXFMUGVhVTctc3dsVEQ5Q0paWVN4eS1LUGJQVGJZUWE4aUhqOHBTbkN0WGU3…",
-      "score": 39
-    },
-    {
-      "id": "tech-W-yduO2EsOu3sF",
+      "id": "tech-7ZWcwrfsnbTtg4",
       "category": "tech",
       "categoryName": "AI·과학기술",
       "categoryIcon": "🤖",
-      "title": "[인터뷰] 일론 머스크가 꿈꾸는 소행성 채굴… 이사 네스나스 NASA 제트추진연구소 수석 로봇공학 책임자 “5년 내 현실화” - 조선비즈",
-      "description": "[인터뷰] 일론 머스크가 꿈꾸는 소행성 채굴… 이사 네스나스 NASA 제트추진연구소 수석 로봇공학 책임자 “5년 내 현실화” - 조선비즈 &nbsp;&nbsp; Chosunbiz",
-      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOTS1DSzk1dzhkY3BCaDRxRFdETjgxeV84a1ZVX3d4UWI1SkM2aGJQaWFyZmRxSi1aNmQwOXM2NS1WTE5sV1dpMWgxa1ZqOTlDUkpVT1RaeTM3eVRpc09ieDYwaXR1c3hTRUhYSHdCZzhqckxZamZQc1VtcFZNMTlwVnVR0gGWAUFVX3lxTE1rWjFHNy1IMEs5SGxsQVNncEFCb0N0ZVVoaDM0aDcwNjFIRTlEbWxHMG9zTThIYUFvNi15eTJjSnl1T2pGOWF1ZlUxcTZPczU4ckNQclJ4M25HRDJsMmo1am9BN3ExUmFGTHRaQkh5cjl5SjBOVHBTTEdxSjBHcExGSFROR3c3OWJ0dHg3aGFzNGsyWERaQQ?oc=5",
+      "title": "한·이탈리아, AI·양자·로봇 협력 강화…공동연구 확대",
+      "description": "한·이탈리아, AI·양자·로봇 협력 강화…공동연구 확대 &nbsp;&nbsp; 매일경제 마켓",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5ZRFZWbmd1emRkblBlYzRuQnJuaXVRVVNrNk4zTWxSOW84SG5JaUhROEhoYnlvSGZVeTlLa3k2MTA1bHg2b3Z3VGNXUUpReU45MWxMc2MzWEdfZFlOX1hOZg?oc=5",
       "source": {
-        "name": "Chosunbiz",
-        "url": "https://biz.chosun.com"
+        "name": "매일경제 마켓",
+        "url": "https://stock.mk.co.kr"
       },
-      "publishedAt": "2026-06-12T21:00:00.000Z",
-      "guid": "CBMiggFBVV95cUxOTS1DSzk1dzhkY3BCaDRxRFdETjgxeV84a1ZVX3d4UWI1SkM2aGJQaWFyZmRxSi1aNmQwOXM2NS1WTE5sV1dpMWgxa1ZqOTlDUkpVT1RaeTM3eVRpc09ieDYwaXR1c3hTRUhYSHdCZzhqckxZamZQc1VtcFZNMTlwVnVR0gGWAUFVX3lxTE1rWjFHNy1IMEs5SGxsQVNncEFC…",
-      "score": 39
-    },
-    {
-      "id": "sports-W-ykkeq1rSDtmZ",
-      "category": "sports",
-      "categoryName": "스포츠",
-      "categoryIcon": "⚽",
-      "title": "[중국 화양영화] 중국인의 월드컵 축구몽 대리만족…영화 소림축구",
-      "description": "[중국 화양영화] 중국인의 월드컵 축구몽 대리만족…영화 소림축구 &nbsp;&nbsp; 아주경제",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9ielk1YUc4Q3ZoTkNERkYxb0h1c2FrRFNrVGdpVHgtUXVUdlR5cTlxTXhIbXhhXzMzMzFLemFkSEpMLUxMYTRrRUs3eG9sLU42UkY0MUttOVrSAVhBVV95cUxPYnpZNWFHOEN2aE5DREZGMW9IdXNha0RTa1RnaVR4LVF1VHZUeXE5cU14SG14YV8zMzMxS3phZEhKTC1MTGE0a0VLN3hvbC1ONlJGNDFLbTla?oc=5",
-      "source": {
-        "name": "아주경제",
-        "url": "https://www.ajunews.com"
-      },
-      "publishedAt": "2026-06-12T21:00:00.000Z",
-      "guid": "CBMiWEFVX3lxTE9ielk1YUc4Q3ZoTkNERkYxb0h1c2FrRFNrVGdpVHgtUXVUdlR5cTlxTXhIbXhhXzMzMzFLemFkSEpMLUxMYTRrRUs3eG9sLU42UkY0MUttOVrSAVhBVV95cUxPYnpZNWFHOEN2aE5DREZGMW9IdXNha0RTa1RnaVR4LVF1VHZUeXE5cU14SG14YV8zMzMxS3phZEhKTC1MTGE0…",
+      "publishedAt": "2026-06-12T14:00:00.000Z",
+      "guid": "CBMiYEFVX3lxTE5ZRFZWbmd1emRkblBlYzRuQnJuaXVRVVNrNk4zTWxSOW84SG5JaUhROEhoYnlvSGZVeTlLa3k2MTA1bHg2b3Z3VGNXUUpReU45MWxMc2MzWEdfZFlOX1hOZg",
       "score": 39
     },
     {
@@ -5427,6 +5476,70 @@
       "score": 39
     },
     {
+      "id": "society-W-uMgOyLoOyVjO",
+      "category": "society",
+      "categoryName": "사회·교육",
+      "categoryIcon": "🏫",
+      "title": "[대신알아봄]‘또 어느 집 자제 대학 갈 차례냐’···지역의사제, ‘누구를·어떻게 남길지’가 없다",
+      "description": "[대신알아봄]‘또 어느 집 자제 대학 갈 차례냐’···지역의사제, ‘누구를·어떻게 남길지’가 없다 &nbsp;&nbsp; 경향신문",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5oZW9YMzVNTk9yVzcxYm1TcElPUnNpXzB5RzV0dVVtSWIyX0Y2cEhEeHRUOFZ6Tl9iTldhaFJwdURPUU5uenRhS09Eb1ZBNHdPQy1GU0xKb2R5aVozZ1dR0gFfQVVfeXFMTmhlb1gzNU1OT3JXNzFibVNwSU9Sc2lfMHlHNXR1VW1JYjJfRjZwSER4dFQ4VnpOX2JOV2FoUnB1RE9RTm56dGFLT0RvVkE0d09DLUZTTEpvZHlpWjNnV1E?oc=5",
+      "source": {
+        "name": "경향신문",
+        "url": "https://www.khan.co.kr"
+      },
+      "publishedAt": "2026-06-12T21:00:00.000Z",
+      "guid": "CBMiX0FVX3lxTE5oZW9YMzVNTk9yVzcxYm1TcElPUnNpXzB5RzV0dVVtSWIyX0Y2cEhEeHRUOFZ6Tl9iTldhaFJwdURPUU5uenRhS09Eb1ZBNHdPQy1GU0xKb2R5aVozZ1dR0gFfQVVfeXFMTmhlb1gzNU1OT3JXNzFibVNwSU9Sc2lfMHlHNXR1VW1JYjJfRjZwSER4dFQ4VnpOX2JOV2FoUnB1…",
+      "score": 38
+    },
+    {
+      "id": "world-J-ykkeqyrOq1rS",
+      "category": "world",
+      "categoryName": "국제",
+      "categoryIcon": "🌍",
+      "title": "'중견국' 착각 [PADO] - 머니투데이",
+      "description": "'중견국' 착각 [PADO] - 머니투데이 &nbsp;&nbsp; 머니투데이",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBlYVU3LXN3bFREOUNKWllTeHktS1BiUFRiWVFhOGlIajhwU25DdFhlNzlBeVFkamdZbXlTXzJLaWs0ZnVIbjJ2WUhFd3pBZ0hhMXBiZF9nRlNUTGJ0THFFdVVYRnBsTEgtMmJ4M2ln0gFuQVVfeXFMUGVhVTctc3dsVEQ5Q0paWVN4eS1LUGJQVGJZUWE4aUhqOHBTbkN0WGU3OUF5UWRqZ1lteVNfMktpazRmdUhuMnZZSEV3ekFnSGExcGJkX2dGU1RMYnRMcUV1VVhGcGxMSC0yYngzaWc?oc=5",
+      "source": {
+        "name": "머니투데이",
+        "url": "https://www.mt.co.kr"
+      },
+      "publishedAt": "2026-06-12T21:00:00.000Z",
+      "guid": "CBMibkFVX3lxTFBlYVU3LXN3bFREOUNKWllTeHktS1BiUFRiWVFhOGlIajhwU25DdFhlNzlBeVFkamdZbXlTXzJLaWs0ZnVIbjJ2WUhFd3pBZ0hhMXBiZF9nRlNUTGJ0THFFdVVYRnBsTEgtMmJ4M2ln0gFuQVVfeXFMUGVhVTctc3dsVEQ5Q0paWVN4eS1LUGJQVGJZUWE4aUhqOHBTbkN0WGU3…",
+      "score": 38
+    },
+    {
+      "id": "tech-W-yduO2EsOu3sF",
+      "category": "tech",
+      "categoryName": "AI·과학기술",
+      "categoryIcon": "🤖",
+      "title": "[인터뷰] 일론 머스크가 꿈꾸는 소행성 채굴… 이사 네스나스 NASA 제트추진연구소 수석 로봇공학 책임자 “5년 내 현실화” - 조선비즈",
+      "description": "[인터뷰] 일론 머스크가 꿈꾸는 소행성 채굴… 이사 네스나스 NASA 제트추진연구소 수석 로봇공학 책임자 “5년 내 현실화” - 조선비즈 &nbsp;&nbsp; Chosunbiz",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOTS1DSzk1dzhkY3BCaDRxRFdETjgxeV84a1ZVX3d4UWI1SkM2aGJQaWFyZmRxSi1aNmQwOXM2NS1WTE5sV1dpMWgxa1ZqOTlDUkpVT1RaeTM3eVRpc09ieDYwaXR1c3hTRUhYSHdCZzhqckxZamZQc1VtcFZNMTlwVnVR0gGWAUFVX3lxTE1rWjFHNy1IMEs5SGxsQVNncEFCb0N0ZVVoaDM0aDcwNjFIRTlEbWxHMG9zTThIYUFvNi15eTJjSnl1T2pGOWF1ZlUxcTZPczU4ckNQclJ4M25HRDJsMmo1am9BN3ExUmFGTHRaQkh5cjl5SjBOVHBTTEdxSjBHcExGSFROR3c3OWJ0dHg3aGFzNGsyWERaQQ?oc=5",
+      "source": {
+        "name": "Chosunbiz",
+        "url": "https://biz.chosun.com"
+      },
+      "publishedAt": "2026-06-12T21:00:00.000Z",
+      "guid": "CBMiggFBVV95cUxOTS1DSzk1dzhkY3BCaDRxRFdETjgxeV84a1ZVX3d4UWI1SkM2aGJQaWFyZmRxSi1aNmQwOXM2NS1WTE5sV1dpMWgxa1ZqOTlDUkpVT1RaeTM3eVRpc09ieDYwaXR1c3hTRUhYSHdCZzhqckxZamZQc1VtcFZNMTlwVnVR0gGWAUFVX3lxTE1rWjFHNy1IMEs5SGxsQVNncEFC…",
+      "score": 38
+    },
+    {
+      "id": "sports-W-ykkeq1rSDtmZ",
+      "category": "sports",
+      "categoryName": "스포츠",
+      "categoryIcon": "⚽",
+      "title": "[중국 화양영화] 중국인의 월드컵 축구몽 대리만족…영화 소림축구",
+      "description": "[중국 화양영화] 중국인의 월드컵 축구몽 대리만족…영화 소림축구 &nbsp;&nbsp; 아주경제",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9ielk1YUc4Q3ZoTkNERkYxb0h1c2FrRFNrVGdpVHgtUXVUdlR5cTlxTXhIbXhhXzMzMzFLemFkSEpMLUxMYTRrRUs3eG9sLU42UkY0MUttOVrSAVhBVV95cUxPYnpZNWFHOEN2aE5DREZGMW9IdXNha0RTa1RnaVR4LVF1VHZUeXE5cU14SG14YV8zMzMxS3phZEhKTC1MTGE0a0VLN3hvbC1ONlJGNDFLbTla?oc=5",
+      "source": {
+        "name": "아주경제",
+        "url": "https://www.ajunews.com"
+      },
+      "publishedAt": "2026-06-12T21:00:00.000Z",
+      "guid": "CBMiWEFVX3lxTE9ielk1YUc4Q3ZoTkNERkYxb0h1c2FrRFNrVGdpVHgtUXVUdlR5cTlxTXhIbXhhXzMzMzFLemFkSEpMLUxMYTRrRUs3eG9sLU42UkY0MUttOVrSAVhBVV95cUxPYnpZNWFHOEN2aE5DREZGMW9IdXNha0RTa1RnaVR4LVF1VHZUeXE5cU14SG14YV8zMzMxS3phZEhKTC1MTGE0…",
+      "score": 38
+    },
+    {
       "id": "economy-TUfsi6DsmqnsoJ",
       "category": "economy",
       "categoryName": "경제·금융",
@@ -5440,22 +5553,6 @@
       },
       "publishedAt": "2026-06-12T20:31:07.000Z",
       "guid": "CBMidEFVX3lxTE1yYW1mdUJ2MlBDN2VQanpRR19XWEd2bEJFNzkyUjNNdGpKd19BU3FUOVUtbjRRcnZyNHNLWl9jeXJyQ2NrWHZxRUxjcTE0elRGWGgwQ25uXzRnZVlycVp2YWNPbzh0aHE4bEFINGFvZFJJR0V60gF0QVVfeXFMTXJhbWZ1QnYyUEM3ZVBqelFHX1dYR3ZsQkU3OTJSM010akp3…",
-      "score": 38
-    },
-    {
-      "id": "world-W-uUnOuhnOydtO",
-      "category": "world",
-      "categoryName": "국제",
-      "categoryIcon": "🌍",
-      "title": "[딜로이트 글로벌 경제 리뷰] 본격화되는 '지경학' 시대, 새로운 위험과 기회",
-      "description": "[딜로이트 글로벌 경제 리뷰] 본격화되는 '지경학' 시대, 새로운 위험과 기회 &nbsp;&nbsp; 파이낸셜포스트",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBnWW16cDRfQlJjU0g1ZHQ1cTFoMUVjRVRYYUpXMkNnVUxWVmk0NGl5eDV3SHV0MTgzVXc4YlpucmJIMVpfWHFadjRCeXc3ckV2RERhcFIyaG5NQWJycE90ZXJzTmhIVUNOYUJMdUVSbHRhcTdu?oc=5",
-      "source": {
-        "name": "파이낸셜포스트",
-        "url": "https://www.financialpost.co.kr"
-      },
-      "publishedAt": "2026-06-12T20:00:00.000Z",
-      "guid": "CBMidEFVX3lxTFBnWW16cDRfQlJjU0g1ZHQ1cTFoMUVjRVRYYUpXMkNnVUxWVmk0NGl5eDV3SHV0MTgzVXc4YlpucmJIMVpfWHFadjRCeXc3ckV2RERhcFIyaG5NQWJycE90ZXJzTmhIVUNOYUJMdUVSbHRhcTdu",
       "score": 38
     },
     {
@@ -5475,6 +5572,38 @@
       "score": 38
     },
     {
+      "id": "politics-7Jes64u5IOuLue",
+      "category": "politics",
+      "categoryName": "정치·정책",
+      "categoryIcon": "🏛️",
+      "title": "여당 당권싸움에 민생 뒷전…패인 분석 대신 이전투구",
+      "description": "여당 당권싸움에 민생 뒷전…패인 분석 대신 이전투구 &nbsp;&nbsp; 노컷뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE4wSjBSVWlPdllWb0xGQ1VaMUZYQ3JFM21GVWIzc1lGWjR6WWNRUUZTT2JIdFV5a0MxVGMyMWtjQ2JFRXozN2R3dVRZcWRuMl90QkE?oc=5",
+      "source": {
+        "name": "노컷뉴스",
+        "url": "https://www.nocutnews.co.kr"
+      },
+      "publishedAt": "2026-06-12T20:00:00.000Z",
+      "guid": "CBMiUkFVX3lxTE4wSjBSVWlPdllWb0xGQ1VaMUZYQ3JFM21GVWIzc1lGWjR6WWNRUUZTT2JIdFV5a0MxVGMyMWtjQ2JFRXozN2R3dVRZcWRuMl90QkE",
+      "score": 37
+    },
+    {
+      "id": "world-W-uUnOuhnOydtO",
+      "category": "world",
+      "categoryName": "국제",
+      "categoryIcon": "🌍",
+      "title": "[딜로이트 글로벌 경제 리뷰] 본격화되는 '지경학' 시대, 새로운 위험과 기회",
+      "description": "[딜로이트 글로벌 경제 리뷰] 본격화되는 '지경학' 시대, 새로운 위험과 기회 &nbsp;&nbsp; 파이낸셜포스트",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBnWW16cDRfQlJjU0g1ZHQ1cTFoMUVjRVRYYUpXMkNnVUxWVmk0NGl5eDV3SHV0MTgzVXc4YlpucmJIMVpfWHFadjRCeXc3ckV2RERhcFIyaG5NQWJycE90ZXJzTmhIVUNOYUJMdUVSbHRhcTdu?oc=5",
+      "source": {
+        "name": "파이낸셜포스트",
+        "url": "https://www.financialpost.co.kr"
+      },
+      "publishedAt": "2026-06-12T20:00:00.000Z",
+      "guid": "CBMidEFVX3lxTFBnWW16cDRfQlJjU0g1ZHQ1cTFoMUVjRVRYYUpXMkNnVUxWVmk0NGl5eDV3SHV0MTgzVXc4YlpucmJIMVpfWHFadjRCeXc3ckV2RERhcFIyaG5NQWJycE90ZXJzTmhIVUNOYUJMdUVSbHRhcTdu",
+      "score": 37
+    },
+    {
       "id": "sports-7Jes7J6QIOuwsO",
       "category": "sports",
       "categoryName": "스포츠",
@@ -5488,22 +5617,6 @@
       },
       "publishedAt": "2026-06-12T19:38:00.000Z",
       "guid": "CBMiYEFVX3lxTE9YQjB2emRjSnYxMUZTYmlrRjlrcmhQdFF6b3BlRUpYemJIUEw3QjN3ZGtFRlR1RXpZdkRXcTkzS01NYlVadEROWFFwSGVqb2NBeVdaUDR5eWk3d09DZUlUSA",
-      "score": 37
-    },
-    {
-      "id": "politics-MjAzMCAn67O07I",
-      "category": "politics",
-      "categoryName": "정치·정책",
-      "categoryIcon": "🏛️",
-      "title": "2030 '보수 쏠림' 뚜렷하지만… 국힘이 맘놓고 못 웃는 이유",
-      "description": "2030 '보수 쏠림' 뚜렷하지만… 국힘이 맘놓고 못 웃는 이유 &nbsp;&nbsp; 한국일보",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1IYUJVWENCdkVNcTNLMFJFamE2MjBsY25LbkdGVWhsYmpQY1NQSFVpWDFWVDZmTVp5NHVoNGwzc0pNdm5iU3lwb2JwRWV0SlkxLXBQMmZDRG41OEtURjZINHgyUi1WUGcyOU9rMFJ30gFzQVVfeXFMTktxRnNqcEVaOVZZb1Y1akFmQ250TWFDTWNkSTRraVpqb3RyTFFKU0hxcWczZjJOYkp3aTZJXzZhY3JIZ3JXeTBNaTB4cDdaaHBBVG5DTS04N0dNR0hCdGtqZVJjbklBUmdRbnlyOUFzNHBFcw?oc=5",
-      "source": {
-        "name": "한국일보",
-        "url": "https://www.hankookilbo.com"
-      },
-      "publishedAt": "2026-06-12T19:30:00.000Z",
-      "guid": "CBMibkFVX3lxTE1IYUJVWENCdkVNcTNLMFJFamE2MjBsY25LbkdGVWhsYmpQY1NQSFVpWDFWVDZmTVp5NHVoNGwzc0pNdm5iU3lwb2JwRWV0SlkxLXBQMmZDRG41OEtURjZINHgyUi1WUGcyOU9rMFJ30gFzQVVfeXFMTktxRnNqcEVaOVZZb1Y1akFmQ250TWFDTWNkSTRraVpqb3RyTFFKU0hx…",
       "score": 37
     },
     {
@@ -5539,22 +5652,6 @@
       "score": 37
     },
     {
-      "id": "economy-W-ymneyLnCBVUC",
-      "category": "economy",
-      "categoryName": "경제·금융",
-      "categoryIcon": "💹",
-      "title": "[증시 UP&DOWN] 숨고르기 진입한 코스피, 변동성에 강한 주도주 투자 유리",
-      "description": "[증시 UP&DOWN] 숨고르기 진입한 코스피, 변동성에 강한 주도주 투자 유리 &nbsp;&nbsp; 포인트데일리",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE05TXYyLVFDVGIwbTdxdTNpbXh4RUtCNk80WU9xTFVtUUtoNXY0VVliaFo1b0pUVExtaTEwazRwZ0tZRDdwUEZrbEhpakRhQVI2Q1RuRVlqVXB4R05OV09Ka2VnZUlqdFdUQUZYN2pTOW7SAXRBVV95cUxNNHl0dGVVQ2REVWJfRmVQZG1Qa3ZGVk1pU3dXTkhwR25WdEgxR3ltSVg2d2dVSVFhZHFNTGxHUEhYeUJWYWhmczJpT01MSDJEVVdpYnoyVXRDMUhTU2VmZHBlenF6Mm5vTVBkcmZ2bEJNdXlyOQ?oc=5",
-      "source": {
-        "name": "포인트데일리",
-        "url": "https://www.pointdaily.co.kr"
-      },
-      "publishedAt": "2026-06-12T19:00:00.000Z",
-      "guid": "CBMicEFVX3lxTE05TXYyLVFDVGIwbTdxdTNpbXh4RUtCNk80WU9xTFVtUUtoNXY0VVliaFo1b0pUVExtaTEwazRwZ0tZRDdwUEZrbEhpakRhQVI2Q1RuRVlqVXB4R05OV09Ka2VnZUlqdFdUQUZYN2pTOW7SAXRBVV95cUxNNHl0dGVVQ2REVWJfRmVQZG1Qa3ZGVk1pU3dXTkhwR25WdEgxR3lt…",
-      "score": 37
-    },
-    {
       "id": "world-7ZW07JaR7IiY7I",
       "category": "world",
       "categoryName": "국제",
@@ -5587,6 +5684,22 @@
       "score": 37
     },
     {
+      "id": "economy-W-ymneyLnCBVUC",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "[증시 UP&DOWN] 숨고르기 진입한 코스피, 변동성에 강한 주도주 투자 유리",
+      "description": "[증시 UP&DOWN] 숨고르기 진입한 코스피, 변동성에 강한 주도주 투자 유리 &nbsp;&nbsp; 포인트데일리",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE05TXYyLVFDVGIwbTdxdTNpbXh4RUtCNk80WU9xTFVtUUtoNXY0VVliaFo1b0pUVExtaTEwazRwZ0tZRDdwUEZrbEhpakRhQVI2Q1RuRVlqVXB4R05OV09Ka2VnZUlqdFdUQUZYN2pTOW7SAXRBVV95cUxNNHl0dGVVQ2REVWJfRmVQZG1Qa3ZGVk1pU3dXTkhwR25WdEgxR3ltSVg2d2dVSVFhZHFNTGxHUEhYeUJWYWhmczJpT01MSDJEVVdpYnoyVXRDMUhTU2VmZHBlenF6Mm5vTVBkcmZ2bEJNdXlyOQ?oc=5",
+      "source": {
+        "name": "포인트데일리",
+        "url": "https://www.pointdaily.co.kr"
+      },
+      "publishedAt": "2026-06-12T19:00:00.000Z",
+      "guid": "CBMicEFVX3lxTE05TXYyLVFDVGIwbTdxdTNpbXh4RUtCNk80WU9xTFVtUUtoNXY0VVliaFo1b0pUVExtaTEwazRwZ0tZRDdwUEZrbEhpakRhQVI2Q1RuRVlqVXB4R05OV09Ka2VnZUlqdFdUQUZYN2pTOW7SAXRBVV95cUxNNHl0dGVVQ2REVWJfRmVQZG1Qa3ZGVk1pU3dXTkhwR25WdEgxR3lt…",
+      "score": 36
+    },
+    {
       "id": "world-66-47KSRIO2LiO",
       "category": "world",
       "categoryName": "국제",
@@ -5600,22 +5713,6 @@
       },
       "publishedAt": "2026-06-12T18:27:01.000Z",
       "guid": "CBMiTEFVX3lxTE9aSExuUGF0Q3Y5OU1faEFUbXZFanhNUVh4SDBIaDE2TWFaSmg0SzdUN3JSME9ZWFNTODdkZFY5NU5tMHNQbjBsZUlSbTY",
-      "score": 36
-    },
-    {
-      "id": "world-IkZUQSDrhJjslr",
-      "category": "world",
-      "categoryName": "국제",
-      "categoryIcon": "🌍",
-      "title": "\"FTA 넘어 디지털 동맹으로\"…유럽언론, 한-EU 디지털 무역협정 주목",
-      "description": "\"FTA 넘어 디지털 동맹으로\"…유럽언론, 한-EU 디지털 무역협정 주목 &nbsp;&nbsp; 데일리안",
-      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxOSjBuWnJPRmVSLTBnbS14SjJ3Q1VhZXctenFsaHM2bGFsLVUwT3NjcHYyRDBFaUE0Y00tb1VGdG5fYWlTSTFnY2hoTUNiajE2b2JaSzloTG02X1JjN0hQUzJQR25KczRCT0tqVGx5VEdXNktoU25ya2lXTEM4VEtwS3BudU01ZEUtMndYQ3ZfakMzeWhkTzFLblo5ZEVlM254bW9tejJSWV9LVnhtdGlzQk9yWnpIVnBDM0xZOGc1Y2RrWWMxR19NQXBLTk9UazBiYmN1X1NHdXcxUlJaQkNRZjNjNkljdDVGUjJnMUZja09RS3NzaEFrc3QyejRPOU5mT0HSAYQCQVVfeXFMTkNVaHp2SEFfclNkcVBpZmcweWhkNzgwUFBfdmtrcXgyZFRiUXo5cENaSHlrU0dibFZGSHkzU3c2UkhXWEtxSVBSbWZ5U09DVFFaLWJ0azk3azNPSkRJRUFVWmROOVE0OHZfajlGVFdqMUNpTkMyVFBEemxFbW1KWWI0VWNhWi1DS2RUM2lPUGpXNkI3SWY1b3QzQkNOQ01PbTJQbUo4YTEwSUtZSFJEQ01qTWxtRzlRZUtMOFRQVkxPcFkzYU00cklJRGZZdHNTUDdidjhodTlLVDZyRFNwVTBxQlluOVF3VnJaUHJCVTZJZ2owdHp4X1BTT0VITGlVMGI0bmg?oc=5",
-      "source": {
-        "name": "데일리안",
-        "url": "https://www.dailian.co.kr"
-      },
-      "publishedAt": "2026-06-12T18:02:00.000Z",
-      "guid": "CBMiggJBVV95cUxOSjBuWnJPRmVSLTBnbS14SjJ3Q1VhZXctenFsaHM2bGFsLVUwT3NjcHYyRDBFaUE0Y00tb1VGdG5fYWlTSTFnY2hoTUNiajE2b2JaSzloTG02X1JjN0hQUzJQR25KczRCT0tqVGx5VEdXNktoU25ya2lXTEM4VEtwS3BudU01ZEUtMndYQ3ZfakMzeWhkTzFLblo5ZEVlM254…",
       "score": 36
     },
     {
@@ -5633,6 +5730,22 @@
       "publishedAt": "2026-06-12T10:35:00.000Z",
       "guid": "CBMiZEFVX3lxTE5tZUhkUEFIajcxWGpORWxsYzdQaXViLTNoVDdvdm9iRzM5X1pKdjNxSTI5RjU1RmNDOWJVTEcybmVHUmVDWHJNV1dVbVJGUHhwRE1MN0wwRmc0WGp5NGtWVlptaGU",
       "score": 36
+    },
+    {
+      "id": "world-IkZUQSDrhJjslr",
+      "category": "world",
+      "categoryName": "국제",
+      "categoryIcon": "🌍",
+      "title": "\"FTA 넘어 디지털 동맹으로\"…유럽언론, 한-EU 디지털 무역협정 주목",
+      "description": "\"FTA 넘어 디지털 동맹으로\"…유럽언론, 한-EU 디지털 무역협정 주목 &nbsp;&nbsp; 데일리안",
+      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxOSjBuWnJPRmVSLTBnbS14SjJ3Q1VhZXctenFsaHM2bGFsLVUwT3NjcHYyRDBFaUE0Y00tb1VGdG5fYWlTSTFnY2hoTUNiajE2b2JaSzloTG02X1JjN0hQUzJQR25KczRCT0tqVGx5VEdXNktoU25ya2lXTEM4VEtwS3BudU01ZEUtMndYQ3ZfakMzeWhkTzFLblo5ZEVlM254bW9tejJSWV9LVnhtdGlzQk9yWnpIVnBDM0xZOGc1Y2RrWWMxR19NQXBLTk9UazBiYmN1X1NHdXcxUlJaQkNRZjNjNkljdDVGUjJnMUZja09RS3NzaEFrc3QyejRPOU5mT0HSAYQCQVVfeXFMTkNVaHp2SEFfclNkcVBpZmcweWhkNzgwUFBfdmtrcXgyZFRiUXo5cENaSHlrU0dibFZGSHkzU3c2UkhXWEtxSVBSbWZ5U09DVFFaLWJ0azk3azNPSkRJRUFVWmROOVE0OHZfajlGVFdqMUNpTkMyVFBEemxFbW1KWWI0VWNhWi1DS2RUM2lPUGpXNkI3SWY1b3QzQkNOQ01PbTJQbUo4YTEwSUtZSFJEQ01qTWxtRzlRZUtMOFRQVkxPcFkzYU00cklJRGZZdHNTUDdidjhodTlLVDZyRFNwVTBxQlluOVF3VnJaUHJCVTZJZ2owdHp4X1BTT0VITGlVMGI0bmg?oc=5",
+      "source": {
+        "name": "데일리안",
+        "url": "https://www.dailian.co.kr"
+      },
+      "publishedAt": "2026-06-12T18:02:00.000Z",
+      "guid": "CBMiggJBVV95cUxOSjBuWnJPRmVSLTBnbS14SjJ3Q1VhZXctenFsaHM2bGFsLVUwT3NjcHYyRDBFaUE0Y00tb1VGdG5fYWlTSTFnY2hoTUNiajE2b2JaSzloTG02X1JjN0hQUzJQR25KczRCT0tqVGx5VEdXNktoU25ya2lXTEM4VEtwS3BudU01ZEUtMndYQ3ZfakMzeWhkTzFLblo5ZEVlM254…",
+      "score": 35
     },
     {
       "id": "analysis-7ISc7Jq4IOyjvO",
@@ -5664,7 +5777,7 @@
       },
       "publishedAt": "2026-06-12T17:00:00.000Z",
       "guid": "CBMieEFVX3lxTE5kSUNvS3MxYnNYUVJDV0RUd3BlRVprYXRUeEc5Z01uQ2VJbmhWdUJLbVB4RE5GLW4xTjdodDlvbW9RaVFXUkRaUGZia2lIekdlMTlNaURMVzVKZWYyeTJwQm1wOXpMOF9BallpNXR5UFV4NXNmZkZMNQ",
-      "score": 35
+      "score": 34
     },
     {
       "id": "sports-64yA7ZWc66-86r",
@@ -5680,7 +5793,7 @@
       },
       "publishedAt": "2026-06-12T17:00:00.000Z",
       "guid": "CBMieEFVX3lxTE1nUE1laEJ1U1pzNnBGb3dWd1NHbnVDWTQ3dUZ6eGUzLTZzVWhpRWc3N1FNMHFTbVc3TkxmZGd4SkFJWGlqTUx2QWFaS3hJaURiZHdIVUJhVmNqT3Q3VVJNbHk2ZktTZGdEMGlVMGszV2F1TEFWT3YzWQ",
-      "score": 35
+      "score": 34
     },
     {
       "id": "world-7J207Iqk65287J",
@@ -5712,22 +5825,6 @@
       },
       "publishedAt": "2026-06-12T15:52:00.000Z",
       "guid": "CBMiiwFBVV95cUxORWpNWTRheFNlYWptVnFiLThrSEd1RENJQjlfRTRsMGNlbzVBamtteFhGc2NuYURCeVFwYlNxUkFmRmhUbmRxd1VrTHdieFlvbEU3VU5Ndy14RE0zdHhURmdveDFENW8wWTNZWWJTbHdNaExKUlZOV2s3Ylo5MEhNUTNFR3QxSkFEbXNZ",
-      "score": 33
-    },
-    {
-      "id": "sports-64yA7ISg7KO87K",
-      "category": "sports",
-      "categoryName": "스포츠",
-      "categoryIcon": "⚽",
-      "title": "대선주조, 월드컵 응원 에디션 출시…스포츠 마케팅 강화",
-      "description": "대선주조, 월드컵 응원 에디션 출시…스포츠 마케팅 강화 &nbsp;&nbsp; 웹이코노미",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5IVFVmOFBWNS15VGMzMWhRbGJ3YWFyck92QXZBMGdMWE5Ibk5TdXZTSWlDY2NYdEstT2c2bVM5NnNsWUFXMVEtRWxJd3pRWDBMWDdaUXR5ZmVvNDl1NGRSelpDTm41elNEeUtDbkJZM1JiZw?oc=5",
-      "source": {
-        "name": "웹이코노미",
-        "url": "https://www.webeconomy.co.kr"
-      },
-      "publishedAt": "2026-06-12T15:42:35.000Z",
-      "guid": "CBMickFVX3lxTE5IVFVmOFBWNS15VGMzMWhRbGJ3YWFyck92QXZBMGdMWE5Ibk5TdXZTSWlDY2NYdEstT2c2bVM5NnNsWUFXMVEtRWxJd3pRWDBMWDdaUXR5ZmVvNDl1NGRSelpDTm41elNEeUtDbkJZM1JiZw",
       "score": 33
     },
     {
@@ -5776,23 +5873,7 @@
       },
       "publishedAt": "2026-06-12T15:01:00.000Z",
       "guid": "CBMilgFBVV95cUxQTUdzeEdhb2l0NVBYMFRwaW1femoydG9VQmhCVms5Q09OSWFMWll3ZUxla3kxVzFhOG5Fa296NVExZkNYMGpQVGxTbDg2VGN5aTlsTUllYk5JY1pHdEZYTk1pM2JKbUxPbEcxUGdtUXc5NGhxUU1QZUcxU0ZfYXZPNHNjeFJ4R2RueGZqV0ZDazN5TnRlWlHSAWxBVV95cUxO…",
-      "score": 33
-    },
-    {
-      "id": "politics-W-yjvOqwhOaUv-",
-      "category": "politics",
-      "categoryName": "정치·정책",
-      "categoryIcon": "🏛️",
-      "title": "[주간政談] '정치 신인' 상임위 배정 주목…'법조인 출신' 한동훈은 어디로? - 정치 | 기사",
-      "description": "[주간政談] '정치 신인' 상임위 배정 주목…'법조인 출신' 한동훈은 어디로? - 정치 | 기사 &nbsp;&nbsp; 더팩트",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5CODVhMFkzR2dtVUlMSmVxcVY0SWNGWjYtV2QyYzVjNkI3VFhUc1RYeEJZdjl2VDlJRGRKRmdWTWRYc1FtbUItWlA4RGVJSTFtSUg2SG5jRnE?oc=5",
-      "source": {
-        "name": "더팩트",
-        "url": "https://news.tf.co.kr"
-      },
-      "publishedAt": "2026-06-12T15:00:03.000Z",
-      "guid": "CBMiWEFVX3lxTE5CODVhMFkzR2dtVUlMSmVxcVY0SWNGWjYtV2QyYzVjNkI3VFhUc1RYeEJZdjl2VDlJRGRKRmdWTWRYc1FtbUItWlA4RGVJSTFtSUg2SG5jRnE",
-      "score": 33
+      "score": 32
     },
     {
       "id": "culture-W0FL7ZiE7J6lXS",
@@ -5808,22 +5889,6 @@
       },
       "publishedAt": "2026-06-12T14:52:00.000Z",
       "guid": "CBMibkFVX3lxTE1BX2tPNnI1cUU2VmJ5Nm5ZT0V1aDRVVDMwSXRlODhvTEVfMDVDel9ZRVg3bDlzZy1JX1VFY1ctaWtzU0FmdkxWYTNxaDRxZmtHYUU3cEMzY05vc0lGaTRsNG1RLVM0Z3V5NTY0dkV3",
-      "score": 32
-    },
-    {
-      "id": "politics-7J207J6s66qFIO",
-      "category": "politics",
-      "categoryName": "정치·정책",
-      "categoryIcon": "🏛️",
-      "title": "이재명 대통령, 로렌초 폰타나 이탈리아 하원의장 면담",
-      "description": "이재명 대통령, 로렌초 폰타나 이탈리아 하원의장 면담 &nbsp;&nbsp; 외교문화뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5ldXZKOWRHbVdhU2JoSXRDaEFUa2g4SE1OR2M3TEtsalVlelhrcHdaV2xESkFTcTlmNzVxQjRpWDNXRGdhRUFVY0Y3ZF8yX2piekVkX1ItTTdNNjd2NVN1ZnQ5cDA?oc=5",
-      "source": {
-        "name": "외교문화뉴스",
-        "url": "https://www.dcnews.kr"
-      },
-      "publishedAt": "2026-06-12T14:23:23.000Z",
-      "guid": "CBMiZEFVX3lxTE5ldXZKOWRHbVdhU2JoSXRDaEFUa2g4SE1OR2M3TEtsalVlelhrcHdaV2xESkFTcTlmNzVxQjRpWDNXRGdhRUFVY0Y3ZF8yX2piekVkX1ItTTdNNjd2NVN1ZnQ5cDA",
       "score": 32
     },
     {
@@ -5843,22 +5908,6 @@
       "score": 31
     },
     {
-      "id": "sports-W-2PrO2GoF0n7J",
-      "category": "sports",
-      "categoryName": "스포츠",
-      "categoryIcon": "⚽",
-      "title": "[포토]'야구는 끝나봐야 아는겨!' 서건창",
-      "description": "[포토]'야구는 끝나봐야 아는겨!' 서건창 &nbsp;&nbsp; 네이트",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBJTU5sS1pNTl9sTm9HSUJ4aWZfZ1Yya2J4cElPUEFXMGhRWlJSUldoWFFzSVlYQWM3clJKdTF4SndYMVJ6blh1UlJpVEV1YlEycmJHWndraWY3RUowSWRtNA?oc=5",
-      "source": {
-        "name": "네이트",
-        "url": "https://news.nate.com"
-      },
-      "publishedAt": "2026-06-12T13:07:00.000Z",
-      "guid": "CBMiYEFVX3lxTFBJTU5sS1pNTl9sTm9HSUJ4aWZfZ1Yya2J4cElPUEFXMGhRWlJSUldoWFFzSVlYQWM3clJKdTF4SndYMVJ6blh1UlJpVEV1YlEycmJHWndraWY3RUowSWRtNA",
-      "score": 31
-    },
-    {
       "id": "society-7LaY7LKc7IScIO",
       "category": "society",
       "categoryName": "사회·교육",
@@ -5872,7 +5921,7 @@
       },
       "publishedAt": "2026-06-12T13:02:00.000Z",
       "guid": "CBMiU0FVX3lxTFBPMlFFS0VObGZfeW5xM3NWRmcxaUc0ZHV2dHdrM2lkNlVlSFc4Zzlmb0ExaGhiZ3NiOUh6aHFIdG0taTNnSlhibUxoOWpfenBtVzgw",
-      "score": 31
+      "score": 30
     },
     {
       "id": "sports-SlRCQyDigJzssY",
@@ -5889,6 +5938,22 @@
       "publishedAt": "2026-06-12T12:38:00.000Z",
       "guid": "CBMiWkFVX3lxTE1CbUlmOFBJOEhrLUl4SW45b1dIcG1fYlJHUDFKMnZ1aTAxa1FOOEhYRG9VRVpNdnl1S3FDRGhjczhMQ09MY3VlVUdjREFsSXkyd2tkWWtObk9SQdIBX0FVX3lxTE5aZ1FMdnFRMjNKMlpCUGw1X2dHNzZYQlhqWno5VUlLc3VBRVRLS2dLamt6eERfY0owRFpyWktRZndQWDZi…",
       "score": 30
+    },
+    {
+      "id": "sports-W-2PrO2GoF0g7K",
+      "category": "sports",
+      "categoryName": "스포츠",
+      "categoryIcon": "⚽",
+      "title": "[포토] 정한밀 '축구 월드컵 첫 승을 응원하면 슛~'",
+      "description": "[포토] 정한밀 '축구 월드컵 첫 승을 응원하면 슛~' &nbsp;&nbsp; ppss.kr",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE0xUHZuQXVJVC1Wa1drSjdGWGZBckNDRHo5QldsUVVTUHdiVjBhWmtEdmxPcGdnV1F3SWw2VUZ0bGdrZG9nQXViYmpWOVUtUm1WcVJtNHF6N3ctSE9BRTdoWTFobFU?oc=5",
+      "source": {
+        "name": "ppss.kr",
+        "url": "https://www.ppss.kr"
+      },
+      "publishedAt": "2026-06-12T11:52:01.000Z",
+      "guid": "CBMiZEFVX3lxTE0xUHZuQXVJVC1Wa1drSjdGWGZBckNDRHo5QldsUVVTUHdiVjBhWmtEdmxPcGdnV1F3SWw2VUZ0bGdrZG9nQXViYmpWOVUtUm1WcVJtNHF6N3ctSE9BRTdoWTFobFU",
+      "score": 29
     },
     {
       "id": "world-7Zi47KO8LCDspJ",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-13T10:27:01.037Z",
+  "generatedAt": "2026-06-13T10:32:52.042Z",
   "source": "Google News RSS search feeds; public financial metadata only",
   "page": "financial",
   "privacy": {
@@ -24,7 +24,7 @@
       "id": "macro",
       "name": "금리·환율·거시",
       "icon": "🏦",
-      "count": 34
+      "count": 33
     },
     {
       "id": "company",
@@ -48,13 +48,13 @@
       "id": "crypto",
       "name": "가상자산",
       "icon": "₿",
-      "count": 33
+      "count": 32
     },
     {
       "id": "global",
       "name": "글로벌 경제",
       "icon": "🌐",
-      "count": 12
+      "count": 11
     },
     {
       "id": "policy",
@@ -69,7 +69,7 @@
       "count": 9
     }
   ],
-  "total": 228,
+  "total": 225,
   "byCategory": {
     "market": [
       {
@@ -134,7 +134,7 @@
         },
         "publishedAt": "2026-06-12T23:00:44.000Z",
         "guid": "CBMicEFVX3lxTE9Zam1ZOHpTRW5Jck1NTXpWMmNSbEZDa1F1dUdaUlEtZTJHeDR2c2dBT0FjcV9OdE1pMWlJQ1NoSDk0dUZVY21xcmZhZjNrdUM0TGl3d3dpZVRwRnpHa1dmczZiWEM3THNzaHpmOVVZOF8",
-        "score": 70
+        "score": 69
       },
       {
         "id": "market-U3BhY2VY7J2YIO",
@@ -150,7 +150,7 @@
         },
         "publishedAt": "2026-06-12T22:59:57.000Z",
         "guid": "CBMigwFBVV95cUxPUERTcUk1UVpLU2MtQ3BuSGxTS1ZVWWdKS0xXajhwQzY3RXNCRExFM3IwenlOV2k3RDlCVzBMWk54NmJfX3VRRC1ueUFyc25tSHhfSXg5aEVqX3J1bEMxbmt4aXhURXlCWVJDR0FPeTZBQTBvVzZCN2VKa1lBU2loYkR4dw",
-        "score": 70
+        "score": 69
       },
       {
         "id": "market-64m07JqV7Kad7I",
@@ -201,22 +201,6 @@
         "score": 63
       },
       {
-        "id": "market-J-yyreqwnOq1rO",
-        "category": "market",
-        "categoryName": "증시·시장",
-        "categoryIcon": "📈",
-        "title": "'청개구리 매매'…하락에 사고 상승에 파는 개미[코스피 덮친 변동성①]",
-        "description": "'청개구리 매매'…하락에 사고 상승에 파는 개미[코스피 덮친 변동성①] &nbsp;&nbsp; 뉴시스",
-        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5FNGdOeG1GTHJoMk5CcGpWVUJsY1JxbVB5MjJkWXJyMDJBeGpkaXhJRVVWOHF1UTdzTTE5d0lYOWdKcHRETHpEODhOX1FTUjlYSTVycTFGQ1JFQlI5NnJubtIBeEFVX3lxTE1ud0ZHVHBGVUo3c0daTDlkbGE1RTZ2MXJ1VUNJbWp0SjNFU25HWnVjN0tRQ0VXOGRVYmlMU1pkS3J1UkpTUGo0ZE5QcHJEdWlTLXExR1VVTGdRYTYzR285ci1wRWxwMEF2N0dOTUVuUWkwQ2tONVh0Yg?oc=5",
-        "source": {
-          "name": "뉴시스",
-          "url": "https://www.newsis.com"
-        },
-        "publishedAt": "2026-06-12T23:00:00.000Z",
-        "guid": "CBMiYEFVX3lxTE5FNGdOeG1GTHJoMk5CcGpWVUJsY1JxbVB5MjJkWXJyMDJBeGpkaXhJRVVWOHF1UTdzTTE5d0lYOWdKcHRETHpEODhOX1FTUjlYSTVycTFGQ1JFQlI5NnJubtIBeEFVX3lxTE1ud0ZHVHBGVUo3c0daTDlkbGE1RTZ2MXJ1VUNJbWp0SjNFU25HWnVjN0tRQ0VXOGRVYmlMU1pk…",
-        "score": 62
-      },
-      {
         "id": "market-W-uniOqwkOyLnO",
         "category": "market",
         "categoryName": "증시·시장",
@@ -231,6 +215,22 @@
         "publishedAt": "2026-06-12T07:35:41.000Z",
         "guid": "CBMiakFVX3lxTFA2aHNYd2RaMmZaVGFOWEwzY1kzQ09aRE0xZk9fdnBsN2lYclBHdEQ0dEdrUTFmZ2ZjZEZzZDByZkJLUFNfRTlBRll6ZHJwaHM5bFdYV2hzb00yRC1POTg5ekxZWXdYSHdCVmc",
         "score": 62
+      },
+      {
+        "id": "market-J-yyreqwnOq1rO",
+        "category": "market",
+        "categoryName": "증시·시장",
+        "categoryIcon": "📈",
+        "title": "'청개구리 매매'…하락에 사고 상승에 파는 개미[코스피 덮친 변동성①]",
+        "description": "'청개구리 매매'…하락에 사고 상승에 파는 개미[코스피 덮친 변동성①] &nbsp;&nbsp; 뉴시스",
+        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5FNGdOeG1GTHJoMk5CcGpWVUJsY1JxbVB5MjJkWXJyMDJBeGpkaXhJRVVWOHF1UTdzTTE5d0lYOWdKcHRETHpEODhOX1FTUjlYSTVycTFGQ1JFQlI5NnJubtIBeEFVX3lxTE1ud0ZHVHBGVUo3c0daTDlkbGE1RTZ2MXJ1VUNJbWp0SjNFU25HWnVjN0tRQ0VXOGRVYmlMU1pkS3J1UkpTUGo0ZE5QcHJEdWlTLXExR1VVTGdRYTYzR285ci1wRWxwMEF2N0dOTUVuUWkwQ2tONVh0Yg?oc=5",
+        "source": {
+          "name": "뉴시스",
+          "url": "https://www.newsis.com"
+        },
+        "publishedAt": "2026-06-12T23:00:00.000Z",
+        "guid": "CBMiYEFVX3lxTE5FNGdOeG1GTHJoMk5CcGpWVUJsY1JxbVB5MjJkWXJyMDJBeGpkaXhJRVVWOHF1UTdzTTE5d0lYOWdKcHRETHpEODhOX1FTUjlYSTVycTFGQ1JFQlI5NnJubtIBeEFVX3lxTE1ud0ZHVHBGVUo3c0daTDlkbGE1RTZ2MXJ1VUNJbWp0SjNFU25HWnVjN0tRQ0VXOGRVYmlMU1pk…",
+        "score": 61
       },
       {
         "id": "market-W-yYpOuKmOydmC",
@@ -262,7 +262,7 @@
         },
         "publishedAt": "2026-06-12T21:58:55.000Z",
         "guid": "CBMibEFVX3lxTE9PZ2FUNmNkZ2s2V0g5QVgtWDh1N09wLVdlTFpuNXNjWjA3WDRHVi1rUUVKYVpNVkVhMW0yZnJGY1JzblNtdzF5ZkdoLVBuZEJ5bHlSUVBtUGFWZThjU3Y5VGRycGRKZC1XMl9xag",
-        "score": 61
+        "score": 60
       },
       {
         "id": "market-7Iqk7Y6Y7J207I",
@@ -329,36 +329,20 @@
         "score": 54
       },
       {
-        "id": "market-J-uPjOyVhOyYqC",
+        "id": "market-bnRyeSDtjIzsm4",
         "category": "market",
         "categoryName": "증시·시장",
         "categoryIcon": "📈",
-        "title": "'돌아온 외국인' 코스피 4.6% 상승... 코스닥도 올라",
-        "description": "'돌아온 외국인' 코스피 4.6% 상승... 코스닥도 올라 &nbsp;&nbsp; 조세일보",
-        "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1MLV8yNk4xaXJZdDlPc1dWUDFGVUFISjlqYk9Jc20yYkszQ3E1QzNpZzE4Ukk1eDVndXhvanlIYVlSUWh0YVpkMkxrZ2RkeUJkT1NqQThFWW5PTnRvaGdZ?oc=5",
+        "title": "ntry 파워볼 중계 을 활용한 효율적인 방법: 시간과 비용 절약 - 실전 사례 분석",
+        "description": "ntry 파워볼 중계 을 활용한 효율적인 방법: 시간과 비용 절약 - 실전 사례 분석 &nbsp;&nbsp; kmrk.ru",
+        "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5PbEJWTEkxTUp4ODRJamtiVkxVXzFUX1ZYWlBtNURsYXIzbzBETEYwV0RRSEtsTTRTMEFhM2c1NVRfVng0MFh3dXZ1TkVCdUszTmxRODZ4b2tOaGl2akFF?oc=5",
         "source": {
-          "name": "조세일보",
-          "url": "https://m.joseilbo.com"
+          "name": "kmrk.ru",
+          "url": "https://www.kmrk.ru"
         },
-        "publishedAt": "2026-06-12T07:00:00.000Z",
-        "guid": "CBMiX0FVX3lxTE1MLV8yNk4xaXJZdDlPc1dWUDFGVUFISjlqYk9Jc20yYkszQ3E1QzNpZzE4Ukk1eDVndXhvanlIYVlSUWh0YVpkMkxrZ2RkeUJkT1NqQThFWW5PTnRvaGdZ",
-        "score": 54
-      },
-      {
-        "id": "market-W-uniOqwkCDsi5",
-        "category": "market",
-        "categoryName": "증시·시장",
-        "categoryIcon": "📈",
-        "title": "[마감 시황] 외국인, 23거래일 만에 \"사자\"…코스피 4.63% 급등",
-        "description": "[마감 시황] 외국인, 23거래일 만에 \"사자\"…코스피 4.63% 급등 &nbsp;&nbsp; 필드뉴스",
-        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1OQ3Q0TWdkZnNoOGlkRUJqZmVfcDBMam1LRlZkYlhHLXdQcHJZaE1sZUFhQTFNSHdSVTVyRDdZa0wtaXlEVGNaM0luNjlSZldvckZMb2R1aHVJT1lOangwU2dFX1FBWDBi?oc=5",
-        "source": {
-          "name": "필드뉴스",
-          "url": "http://www.fieldnews.kr"
-        },
-        "publishedAt": "2026-06-12T06:58:44.000Z",
-        "guid": "CBMiaEFVX3lxTE1OQ3Q0TWdkZnNoOGlkRUJqZmVfcDBMam1LRlZkYlhHLXdQcHJZaE1sZUFhQTFNSHdSVTVyRDdZa0wtaXlEVGNaM0luNjlSZldvckZMb2R1aHVJT1lOangwU2dFX1FBWDBi",
-        "score": 54
+        "publishedAt": "2026-06-12T22:34:00.000Z",
+        "guid": "CBMiX0FVX3lxTE5PbEJWTEkxTUp4ODRJamtiVkxVXzFUX1ZYWlBtNURsYXIzbzBETEYwV0RRSEtsTTRTMEFhM2c1NVRfVng0MFh3dXZ1TkVCdUszTmxRODZ4b2tOaGl2akFF",
+        "score": 53
       },
       {
         "id": "market-W-uJtOyaleymne",
@@ -366,14 +350,14 @@
         "categoryName": "증시·시장",
         "categoryIcon": "📈",
         "title": "[뉴욕증시]종전 MOU 체결 임박…S&P500·나스닥 소폭 하락세",
-        "description": "[뉴욕증시]종전 MOU 체결 임박…S&P500·나스닥 소폭 하락세 &nbsp;&nbsp; 아시아경제",
-        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1rU0lRZnJKR0pqOE9fRjd0OXk2dDhqc1FjWi1fdk9fcVgwdkQweVFxSU1JTnQydmZDTEJUWElsUG85bF9HXzBsVkRKcE00V0pMZUx3UXZvR2ZmNktyZFVFNQ?oc=5",
+        "description": "[뉴욕증시]종전 MOU 체결 임박…S&P500·나스닥 소폭 하락세 &nbsp;&nbsp; 네이트",
+        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5VVkdHSGJ2cGpwN293NnRLZVJiWmhqcmttZUxnT0lyS1lmQ1V0bHcwZmtXaEhmNHlNbUFRamlZWTEyT0ptLXg1ckd0WWNDZmt1LTRZ?oc=5",
         "source": {
-          "name": "아시아경제",
-          "url": "https://www.asiae.co.kr"
+          "name": "네이트",
+          "url": "https://news.nate.com"
         },
-        "publishedAt": "2026-06-12T14:54:16.000Z",
-        "guid": "CBMiYEFVX3lxTE1rU0lRZnJKR0pqOE9fRjd0OXk2dDhqc1FjWi1fdk9fcVgwdkQweVFxSU1JTnQydmZDTEJUWElsUG85bF9HXzBsVkRKcE00V0pMZUx3UXZvR2ZmNktyZFVFNQ",
+        "publishedAt": "2026-06-12T14:55:00.000Z",
+        "guid": "CBMiU0FVX3lxTE5VVkdHSGJ2cGpwN293NnRLZVJiWmhqcmttZUxnT0lyS1lmQ1V0bHcwZmtXaEhmNHlNbUFRamlZWTEyT0ptLXg1ckd0WWNDZmt1LTRZ",
         "score": 53
       },
       {
@@ -390,6 +374,54 @@
         },
         "publishedAt": "2026-06-12T14:25:58.000Z",
         "guid": "CBMiXkFVX3lxTFA5UWtUajJZb3FUMFVlT0x3RUFSQl9XUF9wUkZVVGZ6Q1hYblhiQXhmSVVacVhOd1NxTTJPSFVWWERkMFFCS2RLWE1LTWlYNlc1UmM5MllFcENCMEtZWXc",
+        "score": 53
+      },
+      {
+        "id": "market-J-uPjOyVhOyYqC",
+        "category": "market",
+        "categoryName": "증시·시장",
+        "categoryIcon": "📈",
+        "title": "'돌아온 외국인' 코스피 4.6% 상승... 코스닥도 올라",
+        "description": "'돌아온 외국인' 코스피 4.6% 상승... 코스닥도 올라 &nbsp;&nbsp; 조세일보",
+        "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1MLV8yNk4xaXJZdDlPc1dWUDFGVUFISjlqYk9Jc20yYkszQ3E1QzNpZzE4Ukk1eDVndXhvanlIYVlSUWh0YVpkMkxrZ2RkeUJkT1NqQThFWW5PTnRvaGdZ?oc=5",
+        "source": {
+          "name": "조세일보",
+          "url": "https://m.joseilbo.com"
+        },
+        "publishedAt": "2026-06-12T07:00:00.000Z",
+        "guid": "CBMiX0FVX3lxTE1MLV8yNk4xaXJZdDlPc1dWUDFGVUFISjlqYk9Jc20yYkszQ3E1QzNpZzE4Ukk1eDVndXhvanlIYVlSUWh0YVpkMkxrZ2RkeUJkT1NqQThFWW5PTnRvaGdZ",
+        "score": 53
+      },
+      {
+        "id": "market-6riI66aswrftmZ",
+        "category": "market",
+        "categoryName": "증시·시장",
+        "categoryIcon": "📈",
+        "title": "금리·환율에 갇힌 유동성…130조 순매도한 외인이 노리는 ‘진짜 타이밍’[포스트워 투자전략]",
+        "description": "금리·환율에 갇힌 유동성…130조 순매도한 외인이 노리는 ‘진짜 타이밍’[포스트워 투자전략] &nbsp;&nbsp; 한경매거진&북",
+        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBDMC0wOFAxd2ZmMXpnX3p3UkxvblQ0NVkxS2NaU1hYRHlSdERpcDhFaTZfdDdXUldEVy1GLWVmNzNIbmJUU01MN1l2U3J6WkJZM3ZBVHpwa1JLYjlWdTNBbVpTTEdYdHRJZmx6eQ?oc=5",
+        "source": {
+          "name": "한경매거진&북",
+          "url": "https://magazine.hankyung.com"
+        },
+        "publishedAt": "2026-06-12T07:00:00.000Z",
+        "guid": "CBMibEFVX3lxTFBDMC0wOFAxd2ZmMXpnX3p3UkxvblQ0NVkxS2NaU1hYRHlSdERpcDhFaTZfdDdXUldEVy1GLWVmNzNIbmJUU01MN1l2U3J6WkJZM3ZBVHpwa1JLYjlWdTNBbVpTTEdYdHRJZmx6eQ",
+        "score": 53
+      },
+      {
+        "id": "market-W-uniOqwkCDsi5",
+        "category": "market",
+        "categoryName": "증시·시장",
+        "categoryIcon": "📈",
+        "title": "[마감 시황] 외국인, 23거래일 만에 \"사자\"…코스피 4.63% 급등",
+        "description": "[마감 시황] 외국인, 23거래일 만에 \"사자\"…코스피 4.63% 급등 &nbsp;&nbsp; 필드뉴스",
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1OQ3Q0TWdkZnNoOGlkRUJqZmVfcDBMam1LRlZkYlhHLXdQcHJZaE1sZUFhQTFNSHdSVTVyRDdZa0wtaXlEVGNaM0luNjlSZldvckZMb2R1aHVJT1lOangwU2dFX1FBWDBi?oc=5",
+        "source": {
+          "name": "필드뉴스",
+          "url": "http://www.fieldnews.kr"
+        },
+        "publishedAt": "2026-06-12T06:58:44.000Z",
+        "guid": "CBMiaEFVX3lxTE1OQ3Q0TWdkZnNoOGlkRUJqZmVfcDBMam1LRlZkYlhHLXdQcHJZaE1sZUFhQTFNSHdSVTVyRDdZa0wtaXlEVGNaM0luNjlSZldvckZMb2R1aHVJT1lOangwU2dFX1FBWDBi",
         "score": 53
       },
       {
@@ -425,6 +457,38 @@
         "score": 53
       },
       {
+        "id": "market-UyZhbXA7UDUwMC",
+        "category": "market",
+        "categoryName": "증시·시장",
+        "categoryIcon": "📈",
+        "title": "S&P500 +0.50%, VIX -9.05% — 공포는 빠졌지만 주도주는 갈린 밤",
+        "description": "S&P500 +0.50%, VIX -9.05% — 공포는 빠졌지만 주도주는 갈린 밤 &nbsp;&nbsp; 네이버 프리미엄콘텐츠",
+        "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPb2ptOVIwd1FBX25Ddm9wVWhNdFNpTm9Nc0ZydGZWYWg5c1JRTHZxM2lNYkZNeXNDZjZNS05FRzBjY2lYcWg2SDA2ckFSbGpuWndmZ1VJaTNpSDVzdEFuZEJKSElvQjdsTUVwQ0VjaDRwVTFSZjY4ZWFLWVBIS0FKbUJTUTNxOGM?oc=5",
+        "source": {
+          "name": "네이버 프리미엄콘텐츠",
+          "url": "https://contents.premium.naver.com"
+        },
+        "publishedAt": "2026-06-12T21:37:00.000Z",
+        "guid": "CBMihwFBVV95cUxPb2ptOVIwd1FBX25Ddm9wVWhNdFNpTm9Nc0ZydGZWYWg5c1JRTHZxM2lNYkZNeXNDZjZNS05FRzBjY2lYcWg2SDA2ckFSbGpuWndmZ1VJaTNpSDVzdEFuZEJKSElvQjdsTUVwQ0VjaDRwVTFSZjY4ZWFLWVBIS0FKbUJTUTNxOGM",
+        "score": 52
+      },
+      {
+        "id": "market-7Kad6raM7IKsLC",
+        "category": "market",
+        "categoryName": "증시·시장",
+        "categoryIcon": "📈",
+        "title": "증권사, 석 달 만에 4.3조 벌었다…사상 최대 분기 순이익",
+        "description": "증권사, 석 달 만에 4.3조 벌었다…사상 최대 분기 순이익 &nbsp;&nbsp; 연합뉴스",
+        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBwUThwU0JzSGdsSFpGUFAtT0ZDdE5ud002ZHdfZlpYUVZ3Y3hGaWJQd2ttOWhkOHFtZThid0NDdWw2bjBibDJBY1ZfWUJFRXVZY2ZHQ2liQUJSQjJNV1g0ctIBYEFVX3lxTFBwUThwU0JzSGdsSFpGUFAtT0ZDdE5ud002ZHdfZlpYUVZ3Y3hGaWJQd2ttOWhkOHFtZThid0NDdWw2bjBibDJBY1ZfWUJFRXVZY2ZHQ2liQUJSQjJNV1g0cg?oc=5",
+        "source": {
+          "name": "연합뉴스",
+          "url": "https://www.yna.co.kr"
+        },
+        "publishedAt": "2026-06-11T21:00:02.000Z",
+        "guid": "CBMiYEFVX3lxTFBwUThwU0JzSGdsSFpGUFAtT0ZDdE5ud002ZHdfZlpYUVZ3Y3hGaWJQd2ttOWhkOHFtZThid0NDdWw2bjBibDJBY1ZfWUJFRXVZY2ZHQ2liQUJSQjJNV1g0ctIBYEFVX3lxTFBwUThwU0JzSGdsSFpGUFAtT0ZDdE5ud002ZHdfZlpYUVZ3Y3hGaWJQd2ttOWhkOHFtZThid0ND…",
+        "score": 51
+      },
+      {
         "id": "market-64W47ZiVIOy5tO",
         "category": "market",
         "categoryName": "증시·시장",
@@ -438,7 +502,7 @@
         },
         "publishedAt": "2026-06-12T20:02:38.000Z",
         "guid": "CBMiX0FVX3lxTE42NUdtX01xTDg4MkpLTnE0SlhzSW8xbGVWaHVpdlE4d0E0c0RWODZiaGVsUEx5YVlIR01zNzVlYTlIX0haa1dnVC01QlZaUkxiVU9OOG1xTExYV2hZWWlr",
-        "score": 51
+        "score": 50
       },
       {
         "id": "market-7KSR64-ZIOq4tO",
@@ -457,22 +521,6 @@
         "score": 50
       },
       {
-        "id": "market-6riJ65297J6l7J",
-        "category": "market",
-        "categoryName": "증시·시장",
-        "categoryIcon": "📈",
-        "title": "급락장에 몰린 빚투…마통 43조 육박·반대매매 비중 연중 최고",
-        "description": "급락장에 몰린 빚투…마통 43조 육박·반대매매 비중 연중 최고 &nbsp;&nbsp; 인더스트리뉴스",
-        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBrcGdwb0RWMTRVNmJvZ09FR2VZTFdrVEtfejdTOVpNMUs3NldvYjVxdjlOcWZRX3FPdHIwMlAtQXpoNG9KVGRMb1RjdUp3OXFnR0NoS3U3azYtMDRnSGhsbm5ubF80N2ZKdHBiWlFyN0hDUQ?oc=5",
-        "source": {
-          "name": "인더스트리뉴스",
-          "url": "https://www.industrynews.co.kr"
-        },
-        "publishedAt": "2026-06-12T09:27:36.000Z",
-        "guid": "CBMickFVX3lxTFBrcGdwb0RWMTRVNmJvZ09FR2VZTFdrVEtfejdTOVpNMUs3NldvYjVxdjlOcWZRX3FPdHIwMlAtQXpoNG9KVGRMb1RjdUp3OXFnR0NoS3U3azYtMDRnSGhsbm5ubF80N2ZKdHBiWlFyN0hDUQ",
-        "score": 48
-      },
-      {
         "id": "market-W-ydtOyjvOydmC",
         "category": "market",
         "categoryName": "증시·시장",
@@ -486,6 +534,22 @@
         },
         "publishedAt": "2026-06-12T08:39:09.000Z",
         "guid": "CBMic0FVX3lxTE5PTk5IQlBVUlhSNnI1clFvREt5UVRCODYzYVpiYTN4NFl2alRFRzRGVXlHejFFV2g3eWN4LTAyTXQ5dDBDQjQ4OWZ5VXNBZFhYNjBmZ2JzT3kwQ1A4blo1NU1JLVBqbUVCcTFia3VOX3c3a2s",
+        "score": 47
+      },
+      {
+        "id": "market-7L2U7Iqk7ZS8LC",
+        "category": "market",
+        "categoryName": "증시·시장",
+        "categoryIcon": "📈",
+        "title": "코스피, 매수 사이드카 발동…외국인·기관 순매수에 7% 급등",
+        "description": "코스피, 매수 사이드카 발동…외국인·기관 순매수에 7% 급등 &nbsp;&nbsp; 아시아경제",
+        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE4ybllJN1dNUjh0aTRqMkVIYXM3amxPNDRjWi1CV2lzUzNaWTVGV3JCRHBEQ1ViNXM2NUs3c2huTS1sbkVPaUg2VVRsY0pWZGV6RjBBVTNLR2R3bFNqMWZCZA?oc=5",
+        "source": {
+          "name": "아시아경제",
+          "url": "https://www.asiae.co.kr"
+        },
+        "publishedAt": "2026-06-12T00:45:45.000Z",
+        "guid": "CBMiYEFVX3lxTE4ybllJN1dNUjh0aTRqMkVIYXM3amxPNDRjWi1CV2lzUzNaWTVGV3JCRHBEQ1ViNXM2NUs3c2huTS1sbkVPaUg2VVRsY0pWZGV6RjBBVTNLR2R3bFNqMWZCZA",
         "score": 47
       },
       {
@@ -518,22 +582,6 @@
         },
         "publishedAt": "2026-06-12T07:37:19.000Z",
         "guid": "CBMicEFVX3lxTFA3MFN0S0d0cWI1ZXBZeUdrWlY1UTduNGNTYTl3Y25rLThyUmJyeXpwdEZPZzFpdndZT3VZWDRSYmFYVEtzZm81OVhwVjFnRGJpVkdxejQ0dVVjRHVVR29nblVNbjVCSkpsZk4zU0JQaTk",
-        "score": 46
-      },
-      {
-        "id": "market-W-yYpOuKmOymne",
-        "category": "market",
-        "categoryName": "증시·시장",
-        "categoryIcon": "📈",
-        "title": "[오늘증시]코스피, 25거래일 만에 외국인 컴백…기관과 4.5조 폭풍 매수",
-        "description": "[오늘증시]코스피, 25거래일 만에 외국인 컴백…기관과 4.5조 폭풍 매수 &nbsp;&nbsp; MSN",
-        "url": "https://news.google.com/rss/articles/CBMiswNBVV95cUxNQnRTV2EzSEtWUkowVWVuLWRaNjh0YVpqYTM5LXhGUW9FWXlPZDlWd3Brd1pjNy1tS2RCcjZocHA4SVVHVFdib2VUbnhHUFpEdDZaa2tPUG9hUUZPLTRIZC1GT3JNU0FvN2owYm5aT2JIdWpWM2VOeXRfVkczeWxTM25tVFRxYzU4YjhaUGFBTng1UVRTcF9MZldnOXJ5dFF2QUt1c0tzVmt3VWFxTVUzb012SFpCWkNkaXBLS1d4cGY3OFNsSEtiazVGUHFrOENSMVRJUXdDcE1qV09IV0RDTl9vSVRTbVNXOEk1Q04tbFlFbTc4NzM3aDZWWDNrUzcwOWhDaV9RSXZYWnBzUk5tTzFoRUZnMksyX1ZUMXdSYzNXWlZndm90bzk5UDdBMEdYQWJvX0pfUm5JXzdaaFlMY0FaUEFNVU5WRzdWSTc2WU9NNy1lY2pzN1IxbGg3QlpiRk4wREE1bnhMSnota3EwM1d4SHFMQXM1UktWWks3alk4S3V4c3VMaWRqQnNmZzV1anRvY3V2ZUZRcXpScDlTdld1WTdVdDVXU0xjb3o5U0dDb0E?oc=5",
-        "source": {
-          "name": "MSN",
-          "url": "https://www.msn.com"
-        },
-        "publishedAt": "2026-06-12T07:31:45.000Z",
-        "guid": "CBMiswNBVV95cUxNQnRTV2EzSEtWUkowVWVuLWRaNjh0YVpqYTM5LXhGUW9FWXlPZDlWd3Brd1pjNy1tS2RCcjZocHA4SVVHVFdib2VUbnhHUFpEdDZaa2tPUG9hUUZPLTRIZC1GT3JNU0FvN2owYm5aT2JIdWpWM2VOeXRfVkczeWxTM25tVFRxYzU4YjhaUGFBTng1UVRTcF9MZldnOXJ5dFF2…",
         "score": 46
       },
       {
@@ -601,22 +649,6 @@
         "score": 46
       },
       {
-        "id": "market-7Yq465-87ZSEIO",
-        "category": "market",
-        "categoryName": "증시·시장",
-        "categoryIcon": "📈",
-        "title": "트럼프 이란 공습 취소 한 마디에 나스닥 +2.5%급등, 이게 찐반등의 시작일까",
-        "description": "트럼프 이란 공습 취소 한 마디에 나스닥 +2.5%급등, 이게 찐반등의 시작일까 &nbsp;&nbsp; 네이버 프리미엄콘텐츠",
-        "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPNjE3cHZyeDVmMlNzREM5UDBnd2laT295SXA0SWhnQ2pZcnFkN3hRb1RLTllOS25OQWh2dWVZcU5xOG1pTG1QdDd6TlNvOVNpcmw2bW9qQlRPa0Q4WUZtTGdOVWJWNDBuejVqanJwWVNEemRoT3h5enZ0UmFZYWZkU2lR?oc=5",
-        "source": {
-          "name": "네이버 프리미엄콘텐츠",
-          "url": "https://contents.premium.naver.com"
-        },
-        "publishedAt": "2026-06-11T23:09:00.000Z",
-        "guid": "CBMiggFBVV95cUxPNjE3cHZyeDVmMlNzREM5UDBnd2laT295SXA0SWhnQ2pZcnFkN3hRb1RLTllOS25OQWh2dWVZcU5xOG1pTG1QdDd6TlNvOVNpcmw2bW9qQlRPa0Q4WUZtTGdOVWJWNDBuejVqanJwWVNEemRoT3h5enZ0UmFZYWZkU2lR",
-        "score": 46
-      },
-      {
         "id": "market-4oCY6riJ6529Le",
         "category": "market",
         "categoryName": "증시·시장",
@@ -681,6 +713,22 @@
         "score": 44
       },
       {
+        "id": "market-7Yq465-87ZSEIO",
+        "category": "market",
+        "categoryName": "증시·시장",
+        "categoryIcon": "📈",
+        "title": "트럼프 “이란 공습 취소”에 뉴욕증시 급등…나스닥 2.5%↑",
+        "description": "트럼프 “이란 공습 취소”에 뉴욕증시 급등…나스닥 2.5%↑ &nbsp;&nbsp; 산경투데이",
+        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9PRDRoZ2JhdWNteENha1lCTGtSbGdoVGF2UXVsRkwyQ3oxOXR2ZndiV2xhcDlpajEzZzRLNWJtR1p2by1wazBKd1JjUXVQT3IwNGVTZURVRVNrYU9yTjN4T3gybDFLeElGUTExck9nZ2rSAXRBVV95cUxQQjFpVlp1eUhhQzMyd3BCVlo5ejJkQ3FhTHdCOFRBemxEMEZHbExnUU1wSm5jdnYyS2hUOUpnS3BGSW43dmlYa1g1ZUJ6THdGa2Fyc0hZYkptN3BsSFFpZVB4cEpZOVNrX0xVWkdTMlFCSkw5OA?oc=5",
+        "source": {
+          "name": "산경투데이",
+          "url": "https://www.sankyungtoday.com"
+        },
+        "publishedAt": "2026-06-11T21:24:31.000Z",
+        "guid": "CBMicEFVX3lxTE9PRDRoZ2JhdWNteENha1lCTGtSbGdoVGF2UXVsRkwyQ3oxOXR2ZndiV2xhcDlpajEzZzRLNWJtR1p2by1wazBKd1JjUXVQT3IwNGVTZURVRVNrYU9yTjN4T3gybDFLeElGUTExck9nZ2rSAXRBVV95cUxQQjFpVlp1eUhhQzMyd3BCVlo5ejJkQ3FhTHdCOFRBemxEMEZHbExn…",
+        "score": 44
+      },
+      {
         "id": "market-W-e-juymneyLnC",
         "category": "market",
         "categoryName": "증시·시장",
@@ -726,22 +774,6 @@
         },
         "publishedAt": "2026-06-12T10:41:39.000Z",
         "guid": "CBMiRkFVX3lxTE5QVWI0djZOUGVZZXQxZ2Jjd25QbmRWRHNscGQwamZjcFJLTkxmbnNQYWNlcW5XLTV3RGlXYk1FMVU4WmFsZnc",
-        "score": 41
-      },
-      {
-        "id": "market-7JqU7JW9IDEyLT",
-        "category": "market",
-        "categoryName": "증시·시장",
-        "categoryIcon": "📈",
-        "title": "요약 12-6: 미국 증시 급등, 세계 금값, 연속 하락세 후 반등.",
-        "description": "요약 12-6: 미국 증시 급등, 세계 금값, 연속 하락세 후 반등. &nbsp;&nbsp; Vietnam.vn",
-        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNQjFKVEFramdRMnd4VDBmc0lfaFRsdUo2N29WcHVKSHdjYi1OalFwMkNVMWtxWmw0S0FTMUFOcDZOWjZHS2pjY0RIZGVlRzBtYnhVNDVxMDZCaVVyM0ZabnN5Z3lmR0tmcmFLaDVIMmtSVUlhX1Q1R09SSFR6WGx0c0xXOFNGUmJHbEtCdDZzSjc1QV90QmRnZDlMUG1RWmpZTlFZdzAxZFVzZw?oc=5",
-        "source": {
-          "name": "Vietnam.vn",
-          "url": "https://www.vietnam.vn"
-        },
-        "publishedAt": "2026-06-12T01:58:28.000Z",
-        "guid": "CBMiqgFBVV95cUxNQjFKVEFramdRMnd4VDBmc0lfaFRsdUo2N29WcHVKSHdjYi1OalFwMkNVMWtxWmw0S0FTMUFOcDZOWjZHS2pjY0RIZGVlRzBtYnhVNDVxMDZCaVVyM0ZabnN5Z3lmR0tmcmFLaDVIMmtSVUlhX1Q1R09SSFR6WGx0c0xXOFNGUmJHbEtCdDZzSjc1QV90QmRnZDlMUG1RWmpZ…",
         "score": 41
       },
       {
@@ -841,20 +873,20 @@
         "score": 39
       },
       {
-        "id": "market-4oCc7Iqk7Y6Y7J",
+        "id": "market-IuyCvOyghOuLie",
         "category": "market",
         "categoryName": "증시·시장",
         "categoryIcon": "📈",
-        "title": "“스페이스X 가즈아? 적정주가 63달러”…공모가 절반 후려친 까닭은",
-        "description": "“스페이스X 가즈아? 적정주가 63달러”…공모가 절반 후려친 까닭은 &nbsp;&nbsp; 매일경제 마켓",
-        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBqeDVvZGRjTWxiSHNWY2RWeVVURmw4dFNyc2ZJV3ZNMTVYOXBzWWc4cDYyU1hFaFYzb0x0bF9TQkRqR1VOWmZxV1FWQk9ZQURtMEh6VDUzaFk5TEhXYVlkNw?oc=5",
+        "title": "\"삼전닉스 살 때\" 외국인 '2조 순매수'…스페이스X 상장 후 '수급 뇌관'",
+        "description": "\"삼전닉스 살 때\" 외국인 '2조 순매수'…스페이스X 상장 후 '수급 뇌관' &nbsp;&nbsp; 뉴스1",
+        "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE4tUGR0U05QMDUtTTBickJuUzVoS3IyU1lBSWpKRlRpRXZ6by1vQnRmU2FoOWQ2N0FWdTJ6aV96bllvV0R3eDdnNzU2VzRIRFd1cDJlQmI4N2V5U0tNUE9CTmx3dUo?oc=5",
         "source": {
-          "name": "매일경제 마켓",
-          "url": "https://stock.mk.co.kr"
+          "name": "뉴스1",
+          "url": "https://www.news1.kr"
         },
-        "publishedAt": "2026-06-12T00:27:22.000Z",
-        "guid": "CBMiYEFVX3lxTFBqeDVvZGRjTWxiSHNWY2RWeVVURmw4dFNyc2ZJV3ZNMTVYOXBzWWc4cDYyU1hFaFYzb0x0bF9TQkRqR1VOWmZxV1FWQk9ZQURtMEh6VDUzaFk5TEhXYVlkNw",
-        "score": 39
+        "publishedAt": "2026-06-12T07:53:23.000Z",
+        "guid": "CBMiZEFVX3lxTE4tUGR0U05QMDUtTTBickJuUzVoS3IyU1lBSWpKRlRpRXZ6by1vQnRmU2FoOWQ2N0FWdTJ6aV96bllvV0R3eDdnNzU2VzRIRFd1cDJlQmI4N2V5U0tNUE9CTmx3dUo",
+        "score": 38
       },
       {
         "id": "market-7L2U7Iqk7ZS8LC",
@@ -889,22 +921,6 @@
         "score": 38
       },
       {
-        "id": "market-W-uNsOydvOumrC",
-        "category": "market",
-        "categoryName": "증시·시장",
-        "categoryIcon": "📈",
-        "title": "[데일리 자산운용 브리프] 한국투자신탁운용, ACE ETF 대학생 서포터즈 2기 모집 外",
-        "description": "[데일리 자산운용 브리프] 한국투자신탁운용, ACE ETF 대학생 서포터즈 2기 모집 外 &nbsp;&nbsp; 네이트",
-        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE8zLVh3ZHhKbnZKeU5xQkQwZWpfRGtzQ21xdk1lYmFjSkRvX25IeXZXV1FOV3dqSV9LTzlhVng1dGhZcC1wVWJvOFNRelVNSFdUQTg4?oc=5",
-        "source": {
-          "name": "네이트",
-          "url": "https://news.nate.com"
-        },
-        "publishedAt": "2026-06-12T06:27:00.000Z",
-        "guid": "CBMiU0FVX3lxTE8zLVh3ZHhKbnZKeU5xQkQwZWpfRGtzQ21xdk1lYmFjSkRvX25IeXZXV1FOV3dqSV9LTzlhVng1dGhZcC1wVWJvOFNRelVNSFdUQTg4",
-        "score": 37
-      },
-      {
         "id": "market-S0NHSSwg6rWt64",
         "category": "market",
         "categoryName": "증시·시장",
@@ -918,22 +934,6 @@
         },
         "publishedAt": "2026-06-12T06:17:00.000Z",
         "guid": "CBMinAFBVV95cUxPemVwVDIwdzFwcXNwaEtmMEF3R0xvbi1NVzlfQmlYUHZ4emk3S1Q3MHZQbVR0TFVkdEwyb0VQZmNfZ2NPMzlfM3o2RmdrQ3lrYXZiYUFQTXllekU3TkFxUzBUbHB1ZGEzS2ZIYXdyXzJPaExRbHZvX3pBZ0lZNUhjSzlHZTEwZlpYUWF6QkdYT1d2M0x5dWFvbUVXY1PSAZwB…",
-        "score": 37
-      },
-      {
-        "id": "market-7IK87ISx7Jq07J",
-        "category": "market",
-        "categoryName": "증시·시장",
-        "categoryIcon": "📈",
-        "title": "삼성운용, 액티브ETF로 스페이스X 공모주 참여…3파전 ‘후끈’",
-        "description": "삼성운용, 액티브ETF로 스페이스X 공모주 참여…3파전 ‘후끈’ &nbsp;&nbsp; 주간한국",
-        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9wWlF5N3NMN1h1Y0Z0ZDMxQmtPMTM3ZlZRVV9RLVBXWlpmRWZ6VlVXQklMV21DVzNhU3lzbzI2YjZsMVpfdE03LWlQUzR2VTFFX2xyYmFmU0xaTWphSnZkR29kRVltZjdQSTVOU1RldUsyNGJf0gF0QVVfeXFMT3BaUXk3c0w3WHVjRnRkMzFCa08xMzdmVlFVX1EtUFdaWmZFZnpWVVdCSUxXbUNXM2FTeXNvMjZiNmwxWl90TTctaVBTNHZVMUVfbHJiYWZTTFpNamFKdmRHb2RFWW1mN1BJNU5TVGV1SzI0Yl8?oc=5",
-        "source": {
-          "name": "주간한국",
-          "url": "https://weekly.hankooki.com"
-        },
-        "publishedAt": "2026-06-12T06:02:31.000Z",
-        "guid": "CBMidEFVX3lxTE9wWlF5N3NMN1h1Y0Z0ZDMxQmtPMTM3ZlZRVV9RLVBXWlpmRWZ6VlVXQklMV21DVzNhU3lzbzI2YjZsMVpfdE03LWlQUzR2VTFFX2xyYmFmU0xaTWphSnZkR29kRVltZjdQSTVOU1RldUsyNGJf0gF0QVVfeXFMT3BaUXk3c0w3WHVjRnRkMzFCa08xMzdmVlFVX1EtUFdaWmZF…",
         "score": 37
       },
       {
@@ -1067,22 +1067,6 @@
         "score": 63
       },
       {
-        "id": "macro-7ZWc7J2AIOy0ne",
-        "category": "macro",
-        "categoryName": "금리·환율·거시",
-        "categoryIcon": "🏦",
-        "title": "한은 총재 \"물가안정 우선\"…7월 금리인상 기정사실화",
-        "description": "한은 총재 \"물가안정 우선\"…7월 금리인상 기정사실화 &nbsp;&nbsp; 위키리크스한국",
-        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFAyZTFTMS1vbW03SjhTYjFYWUYxMVp3OVFYUjVwMHQtN1c4dHNoSEcxV05GdTRva0RzSjBGYld1V0cybFpkSm92anVfMHRLN1Zfbk9oRUZJaERJcHJLaFdDdFV2UHIzZ2RTSUEyZVZkMG4?oc=5",
-        "source": {
-          "name": "위키리크스한국",
-          "url": "https://www.wikileaks-kr.org"
-        },
-        "publishedAt": "2026-06-12T06:27:17.000Z",
-        "guid": "CBMicEFVX3lxTFAyZTFTMS1vbW03SjhTYjFYWUYxMVp3OVFYUjVwMHQtN1c4dHNoSEcxV05GdTRva0RzSjBGYld1V0cybFpkSm92anVfMHRLN1Zfbk9oRUZJaERJcHJLaFdDdFV2UHIzZ2RTSUEyZVZkMG4",
-        "score": 61
-      },
-      {
         "id": "macro-W-yxhOq2jC3rp4",
         "category": "macro",
         "categoryName": "금리·환율·거시",
@@ -1176,7 +1160,7 @@
         },
         "publishedAt": "2026-06-11T22:00:00.000Z",
         "guid": "CBMiSkFVX3lxTE9qbU1NbDZyODJOck9qeXozV0JvUVQtY21lNU4tYjBTTmlHQ0N1N08xbDZLLXRDbDJSd0pyVHI2NEVsN1ZCRml2SVV3",
-        "score": 53
+        "score": 52
       },
       {
         "id": "macro-7KKF7KCEIOq4sO",
@@ -1304,22 +1288,6 @@
         },
         "publishedAt": "2026-06-11T17:57:12.000Z",
         "guid": "CBMiXkFVX3lxTFB2TGN2MEU2N1VqRUdKdUM3dFFZRDRzRHAzcnE1RlZ3Vk9ManRUMGlzSW81MVV6QTVINndHOS1pTFVlcXhhM0hqZ3I4ejg2YkZqdXhjLWlaRXFFd1FQM2c",
-        "score": 41
-      },
-      {
-        "id": "macro-66qF66qpR0RQIO",
-        "category": "macro",
-        "categoryName": "금리·환율·거시",
-        "categoryIcon": "🏦",
-        "title": "명목GDP 거듭 강조한 신현송…내수 회복·환율 안정 자신",
-        "description": "명목GDP 거듭 강조한 신현송…내수 회복·환율 안정 자신 &nbsp;&nbsp; 서울경제",
-        "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE95Uk9OX2FqOVBJa1Q2ZHdwMHk0OW96VWo4M2F0MGplYTVOYndDQ1FweVBvZnpNNGVaR0Nvd21wTXlVVVRnaDBHQ0stTWdWTFZYUkHSAVNBVV95cUxPYWNjSnh1a29HcjZQVUR1R2FUVDdETkxXOXFVVXNNenU2cy1jVlVpNEk3M1p3Z1l1RGdrdWp6bE1wbFFIbVNUdFRDaGJzMVNPOGViaw?oc=5",
-        "source": {
-          "name": "서울경제",
-          "url": "https://www.sedaily.com"
-        },
-        "publishedAt": "2026-06-12T01:00:00.000Z",
-        "guid": "CBMiUkFVX3lxTE95Uk9OX2FqOVBJa1Q2ZHdwMHk0OW96VWo4M2F0MGplYTVOYndDQ1FweVBvZnpNNGVaR0Nvd21wTXlVVVRnaDBHQ0stTWdWTFZYUkHSAVNBVV95cUxPYWNjSnh1a29HcjZQVUR1R2FUVDdETkxXOXFVVXNNenU2cy1jVlVpNEk3M1p3Z1l1RGdrdWp6bE1wbFFIbVNUdFRDaGJz…",
         "score": 40
       },
       {
@@ -1339,6 +1307,22 @@
         "score": 39
       },
       {
+        "id": "macro-66qF66qpR0RQIO",
+        "category": "macro",
+        "categoryName": "금리·환율·거시",
+        "categoryIcon": "🏦",
+        "title": "명목GDP 거듭 강조한 신현송…내수 회복·환율 안정 자신",
+        "description": "명목GDP 거듭 강조한 신현송…내수 회복·환율 안정 자신 &nbsp;&nbsp; 서울경제",
+        "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE95Uk9OX2FqOVBJa1Q2ZHdwMHk0OW96VWo4M2F0MGplYTVOYndDQ1FweVBvZnpNNGVaR0Nvd21wTXlVVVRnaDBHQ0stTWdWTFZYUkHSAVNBVV95cUxPYWNjSnh1a29HcjZQVUR1R2FUVDdETkxXOXFVVXNNenU2cy1jVlVpNEk3M1p3Z1l1RGdrdWp6bE1wbFFIbVNUdFRDaGJzMVNPOGViaw?oc=5",
+        "source": {
+          "name": "서울경제",
+          "url": "https://www.sedaily.com"
+        },
+        "publishedAt": "2026-06-12T01:00:00.000Z",
+        "guid": "CBMiUkFVX3lxTE95Uk9OX2FqOVBJa1Q2ZHdwMHk0OW96VWo4M2F0MGplYTVOYndDQ1FweVBvZnpNNGVaR0Nvd21wTXlVVVRnaDBHQ0stTWdWTFZYUkHSAVNBVV95cUxPYWNjSnh1a29HcjZQVUR1R2FUVDdETkxXOXFVVXNNenU2cy1jVlVpNEk3M1p3Z1l1RGdrdWp6bE1wbFFIbVNUdFRDaGJz…",
+        "score": 39
+      },
+      {
         "id": "macro-7IS46rOE7J2A7Z",
         "category": "macro",
         "categoryName": "금리·환율·거시",
@@ -1352,7 +1336,7 @@
         },
         "publishedAt": "2026-06-11T15:02:00.000Z",
         "guid": "CBMiWEFVX3lxTE5wMllzd2gyZWt2cTQ5cnMxalctMWEwYmJJc1A4eTBVa2hZTHVpT0wxN3hxZEQyQk1oakd4NDZSdXBXbmFRVDBBYWp5TDVZTUg2S25sZlhlcjQ",
-        "score": 38
+        "score": 37
       },
       {
         "id": "macro-RUNCLCAz64WE66",
@@ -1441,13 +1425,13 @@
         "categoryIcon": "🏦",
         "title": "WB, 올해 세계 경제성장률 2.5% 전망…코로나 이후 최저",
         "description": "WB, 올해 세계 경제성장률 2.5% 전망…코로나 이후 최저 &nbsp;&nbsp; v.daum.net",
-        "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5mYjRnTVFzZkx2T3pCX0ZVZmdnYUJ2U21KTXBpeVEtMHM5T1N2V0hwUWlobnM4REdOQXF5NkEzUFVyb1BUUjZjeFFfbTNMN1Rfam45VQ?oc=5",
+        "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBxSTBrdFdjclpueWxLemRPSWtDaVA0ZFp0X0VyUHE1Xy1zSTZfTHFfNjRXY3oydER3VXVfcVJZWDdrNVBlUC1TUHo3WQ?oc=5",
         "source": {
           "name": "v.daum.net",
           "url": "https://v.daum.net"
         },
         "publishedAt": "2026-06-11T17:38:31.000Z",
-        "guid": "CBMiVEFVX3lxTE5mYjRnTVFzZkx2T3pCX0ZVZmdnYUJ2U21KTXBpeVEtMHM5T1N2V0hwUWlobnM4REdOQXF5NkEzUFVyb1BUUjZjeFFfbTNMN1Rfam45VQ",
+        "guid": "CBMiS0FVX3lxTFBxSTBrdFdjclpueWxLemRPSWtDaVA0ZFp0X0VyUHE1Xy1zSTZfTHFfNjRXY3oydER3VXVfcVJZWDdrNVBlUC1TUHo3WQ",
         "score": 32
       },
       {
@@ -1489,13 +1473,13 @@
         "categoryIcon": "🏦",
         "title": "WB, 올해 세계 성장률 2.5% 전망…중동발 충격에 0.1%p↓",
         "description": "WB, 올해 세계 성장률 2.5% 전망…중동발 충격에 0.1%p↓ &nbsp;&nbsp; 데일리안",
-        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5PcGo5emZ1VzBIVWRYNHJCTm1hNVktV0JOblB2d1lPSmFlZWN2WXpCWWUzOGl1YUFnTFB4ME9rczlIQm10ZnJJWXROWlEzeGhtS3NrVERR0gHwAUFVX3lxTE5OcGhURU94bWI3LU4xTkZRelNITllmYTFleXhVSGQ3SzBnMXI4VXc1c2pRRWYxbHhzeVVYbVhZNnVwQjhXQ095c1NyMDB2cWtCbUdvYTVXUnl2MzBxUXJ3ZWZxb1F0OUtKcHJNTi1VeFNCdzNnTDhYdzVhMWhEQnpuOVpvTmIyQzAwUlJZUVZQSkZBQmgyeWR3Z0tYSVZSZms2UW15MVJUS2NRaVR5V1hUQXN5UlpuRDUxSDNaTEJuc2VhdGE3OE5CZTJVWDZodXpXeTZXeU5RblhjbWZnUTZLTHg1U1J2cmtnWFBxbkFKNQ?oc=5",
+        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBudVU5TTIzNVZCT1NzdEZ3bmpvb2VmTEpKVGRBQ09RQjBGejQ0QkJkdmJDU1QxUGNzdzFrYVBGTk9KY0lvb2RmaC1CeXFGcUQ2Nlc5UEFuU2FEZkpGT3g3RtIB8AFBVV95cUxOTnBoVEVPeG1iNy1OMU5GUXpTSE5ZZmExZXl4VUhkN0swZzFyOFV3NXNqUUVmMWx4c3lVWG1YWTZ1cEI4V0NPeXNTcjAwdnFrQm1Hb2E1V1J5djMwcVFyd2VmcW9RdDlLSnByTU4tVXhTQnczZ0w4WHc1YTFoREJ6bjlab05iMkMwMFJSWVFWUEpGQUJoMnlkd2dLWElWUmZrNlFteTFSVEtjUWlUeVdYVEFzeVJabkQ1MUgzWkxCbnNlYXRhNzhOQmUyVVg2aHV6V3k2V3lOUW5YY21mZ1E2S0x4NVNSdnJrZ1hQcW5BSjU?oc=5",
         "source": {
           "name": "데일리안",
           "url": "https://www.dailian.co.kr"
         },
         "publishedAt": "2026-06-11T13:32:00.000Z",
-        "guid": "CBMiVkFVX3lxTE5PcGo5emZ1VzBIVWRYNHJCTm1hNVktV0JOblB2d1lPSmFlZWN2WXpCWWUzOGl1YUFnTFB4ME9rczlIQm10ZnJJWXROWlEzeGhtS3NrVERR0gHwAUFVX3lxTE5OcGhURU94bWI3LU4xTkZRelNITllmYTFleXhVSGQ3SzBnMXI4VXc1c2pRRWYxbHhzeVVYbVhZNnVwQjhXQ095…",
+        "guid": "CBMiYEFVX3lxTFBudVU5TTIzNVZCT1NzdEZ3bmpvb2VmTEpKVGRBQ09RQjBGejQ0QkJkdmJDU1QxUGNzdzFrYVBGTk9KY0lvb2RmaC1CeXFGcUQ2Nlc5UEFuU2FEZkpGT3g3RtIB8AFBVV95cUxOTnBoVEVPeG1iNy1OMU5GUXpTSE5ZZmExZXl4VUhkN0swZzFyOFV3NXNqUUVmMWx4c3lVWG1Y…",
         "score": 28
       }
     ],
@@ -1515,6 +1499,22 @@
         "publishedAt": "2026-06-13T08:32:00.000Z",
         "guid": "CBMia0FVX3lxTE5YenRsUHdNeVRiTV9LMndxcXNLVGR2cjJ4YWg0NzZQekNRMjVxNktUWGFDV1BYOXFYYTNiZGJCMEJJR3kxQVdDVmRZajJ0YkVpeldIRW9rZGxSczVvTnQtRWlhQWlkRkE5Vy1j0gFuQVVfeXFMUGhYa2V5U3M3TnlFelJ0UnYzbW9rRDVqOUlxM1gtYUgxR29hc1p1VjNJRmZO…",
         "score": 87
+      },
+      {
+        "id": "company-W-uniOqwkF0g7L",
+        "category": "company",
+        "categoryName": "기업·실적·산업",
+        "categoryIcon": "🏭",
+        "title": "[마감] 코스피, 이란 종전 기대감에 4.63% 급등…8천피 탈환",
+        "description": "[마감] 코스피, 이란 종전 기대감에 4.63% 급등…8천피 탈환 &nbsp;&nbsp; MSN",
+        "url": "https://news.google.com/rss/articles/CBMi0wJBVV95cUxNazVuMWZ3OTI0R19rQkt1MVJRdE9jWU0xSU5ONFgxcTM1UUVFSDI1ajNfSnVybURTZ0RLNUlQZHd3d3RDVEdjRUU2a2djT2hjM0dHWTdxRXU3X2FBNTNROVRGS2tDd0t0N1FrWXp3Sk9NQl9LeGJVSlVvSHN4QXBVOUsyc1FJc3I5MW51ZzZGLXEyb0xUbFRqV1JvX3lMZnkzeWhJb3BtMU8xTmtCTF9XNWlteVhzY2pNZ3R3alBNTldBMlNZRDRVd2lwOUVOUy15UFFCRXhwYXNRNnV0T0lncVA5bXVnOHgwUWhTc1JzWjY1T01UenZ0bkhra3lQbmVaVjFBRmc4dlRkLUpzT3JpZ2RxVkN4Q0V4WnhoQzhic3dmX2pyZVlIOEd1N3l1cWJaNGU0dGhSalViOTdRYmhwbzBsR3Naa2hRTW44R2E1enZFUGs?oc=5",
+        "source": {
+          "name": "MSN",
+          "url": "https://www.msn.com"
+        },
+        "publishedAt": "2026-06-13T04:44:20.000Z",
+        "guid": "CBMi0wJBVV95cUxNazVuMWZ3OTI0R19rQkt1MVJRdE9jWU0xSU5ONFgxcTM1UUVFSDI1ajNfSnVybURTZ0RLNUlQZHd3d3RDVEdjRUU2a2djT2hjM0dHWTdxRXU3X2FBNTNROVRGS2tDd0t0N1FrWXp3Sk9NQl9LeGJVSlVvSHN4QXBVOUsyc1FJc3I5MW51ZzZGLXEyb0xUbFRqV1JvX3lMZnkz…",
+        "score": 75
       },
       {
         "id": "company-W01E7Y-s7Luk7I",
@@ -1565,6 +1565,22 @@
         "score": 70
       },
       {
+        "id": "company-IuS4rSwg7J2464",
+        "category": "company",
+        "categoryName": "기업·실적·산업",
+        "categoryIcon": "🏭",
+        "title": "\"中, 인니에 니켈 현지 공급망 구축…수출통제에 오히려 수혜\" - 한국무역협회-KITA.NET",
+        "description": "\"中, 인니에 니켈 현지 공급망 구축…수출통제에 오히려 수혜\" &nbsp;&nbsp; 한국무역협회-KITA.NET",
+        "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPZkFhcGprUkZxZmhnRnVGSVduUkpRb2NUWUh2QmVXSTFmellTV2U4OGdzelZVZ2lwZzVGcWxySEFyMDYzR19GR1lqb0JZMXJ0RTZhU3JQUFh6bVI4Rk5kUmRUN1pvcUFieVlWcjNGcjFBZTFqZG4zUzg1N3o3MjVydktiXzU0TjduUnpxdA?oc=5",
+        "source": {
+          "name": "한국무역협회-KITA.NET",
+          "url": "https://www.kita.net"
+        },
+        "publishedAt": "2026-06-13T08:49:07.000Z",
+        "guid": "CBMijAFBVV95cUxPZkFhcGprUkZxZmhnRnVGSVduUkpRb2NUWUh2QmVXSTFmellTV2U4OGdzelZVZ2lwZzVGcWxySEFyMDYzR19GR1lqb0JZMXJ0RTZhU3JQUFh6bVI4Rk5kUmRUN1pvcUFieVlWcjNGcjFBZTFqZG4zUzg1N3o3MjVydktiXzU0TjduUnpxdA",
+        "score": 63
+      },
+      {
         "id": "company-7Iqk7Y6Y7J207I",
         "category": "company",
         "categoryName": "기업·실적·산업",
@@ -1578,7 +1594,7 @@
         },
         "publishedAt": "2026-06-13T00:57:51.000Z",
         "guid": "CBMiakFVX3lxTFA4MnRBVV9QTTJOd3BWTnFvVEJ6cU5uOTNDNXdWMzJfdmh4UDIzYV9famxZc0lzYjFwUzBjejNvYTRrU0x0RkV6bVE3TmRMa0MwbHA2NDNhcGN6ZmFFSy1ibXRiZElOWVUyNkE",
-        "score": 64
+        "score": 63
       },
       {
         "id": "company-W0lQT-yxl10gNu",
@@ -1594,7 +1610,7 @@
         },
         "publishedAt": "2026-06-13T00:00:02.000Z",
         "guid": "CBMiYEFVX3lxTFBTdzVUM2VQSHRIRk1jbnlwUEwzU04temtYNW9jM0Z3WXBNRS1lUFpjd05Wb2ZUblpHczJCODVlRms3MjZlQWxUbTBkZGY5eVRUS0VydkNLMGlPV1dwNHlDONIBYEFVX3lxTFBTdzVUM2VQSHRIRk1jbnlwUEwzU04temtYNW9jM0Z3WXBNRS1lUFpjd05Wb2ZUblpHczJCODVl…",
-        "score": 63
+        "score": 62
       },
       {
         "id": "company-W-uNsOyKpO2BrO",
@@ -1610,7 +1626,7 @@
         },
         "publishedAt": "2026-06-13T00:00:00.000Z",
         "guid": "CBMiakFVX3lxTE1RWnpxSUphVmR2dms5aFBaYnM4Z1dyRVEwNHJ0ZVItczRFVlpSLVFOQ1FQVzZZNjB4OUdsa194MkRuUnhpYXkzbHpyVy1MWXlreU1HRTE2Nm5pbnFWS2RReWVwcFZOOEpvcVE",
-        "score": 63
+        "score": 62
       },
       {
         "id": "company-SEJNIOyghOyfge",
@@ -1619,29 +1635,13 @@
         "categoryIcon": "🏭",
         "title": "HBM 전쟁의 숨은 승자… 후공정 장비주 제너셈 급부상",
         "description": "HBM 전쟁의 숨은 승자… 후공정 장비주 제너셈 급부상 &nbsp;&nbsp; 핀포인트뉴스",
-        "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5wWHgwcG9DMUtwdkxyLTRIakxLT2Y2eUlmZ1J1WjhsRERFUlpyeHc2MnJoS1F4UzEtcGc5bGFZVFNOVjF6QkRwZUROQTRIdmdPdklGZThqbWc1dWJjeU5ucnFtcEFUNHVCcVk3eWNUaHVONlXSAXdBVV95cUxPc21YRFF2WFJ4czczeS0zV1BDTHVmZmxkU1FHczF6SnU0ekIzMEhfNmNXald1eXE1QnFNSWJ2ek9NSHg2bWVzNG1kbC1wdXFDbHZYSG9Hd3VtdXNRYUxOZnEwQmR1dF9jaUtvNTZ2MW9La1AzTTA0NA?oc=5",
+        "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9zbVhEUXZYUnhzNzN5LTNXUENMdWZmbGRTUUdzMXpKdTR6QjMwSF82Y1dqV3V5cTVCcU1JYnZ6T01IeDZtZXM0bWRsLXB1cUNsdlhIb0d3dW11c1FhTE5mcTBCZHV0X2NpS281NnYxb0trUDNNMDQ00gF3QVVfeXFMT3NtWERRdlhSeHM3M3ktM1dQQ0x1ZmZsZFNRR3Mxekp1NHpCMzBIXzZjV2pXdXlxNUJxTUlidnpPTUh4Nm1lczRtZGwtcHVxQ2x2WEhvR3d1bXVzUWFMTmZxMEJkdXRfY2lLbzU2djFvS2tQM00wNDQ?oc=5",
         "source": {
           "name": "핀포인트뉴스",
           "url": "https://www.pinpointnews.co.kr"
         },
-        "publishedAt": "2026-06-12T23:45:05.000Z",
-        "guid": "CBMic0FVX3lxTE5wWHgwcG9DMUtwdkxyLTRIakxLT2Y2eUlmZ1J1WjhsRERFUlpyeHc2MnJoS1F4UzEtcGc5bGFZVFNOVjF6QkRwZUROQTRIdmdPdklGZThqbWc1dWJjeU5ucnFtcEFUNHVCcVk3eWNUaHVONlXSAXdBVV95cUxPc21YRFF2WFJ4czczeS0zV1BDTHVmZmxkU1FHczF6SnU0ekIz…",
-        "score": 62
-      },
-      {
-        "id": "company-QUkg7Je07ZKNIO",
-        "category": "company",
-        "categoryName": "기업·실적·산업",
-        "categoryIcon": "🏭",
-        "title": "AI 열풍 올라탄 반도체…10일 만에 수출 111억달러 '사상 최대'",
-        "description": "AI 열풍 올라탄 반도체…10일 만에 수출 111억달러 '사상 최대' &nbsp;&nbsp; 뉴스피릿",
-        "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBtbFdUb3dNbE5tUFNkVWhMWjdhOUQ3aWtzYTV0cC1TZ3o5d1dkdTcybElDV2xHWDZZNE9KVXJyMS1hOUc4Y1lMWkI4enZodlM3WEdwTC00OWRxdXBjQXVrVVZkTGRCYncyVjNz?oc=5",
-        "source": {
-          "name": "뉴스피릿",
-          "url": "https://www.newsspirit.kr"
-        },
-        "publishedAt": "2026-06-11T15:00:00.000Z",
-        "guid": "CBMia0FVX3lxTFBtbFdUb3dNbE5tUFNkVWhMWjdhOUQ3aWtzYTV0cC1TZ3o5d1dkdTcybElDV2xHWDZZNE9KVXJyMS1hOUc4Y1lMWkI4enZodlM3WEdwTC00OWRxdXBjQXVrVVZkTGRCYncyVjNz",
+        "publishedAt": "2026-06-12T23:46:49.000Z",
+        "guid": "CBMid0FVX3lxTE9zbVhEUXZYUnhzNzN5LTNXUENMdWZmbGRTUUdzMXpKdTR6QjMwSF82Y1dqV3V5cTVCcU1JYnZ6T01IeDZtZXM0bWRsLXB1cUNsdlhIb0d3dW11c1FhTE5mcTBCZHV0X2NpS281NnYxb0trUDNNMDQ00gF3QVVfeXFMT3NtWERRdlhSeHM3M3ktM1dQQ0x1ZmZsZFNRR3Mxekp1…",
         "score": 62
       },
       {
@@ -1658,6 +1658,22 @@
         },
         "publishedAt": "2026-06-13T06:32:05.000Z",
         "guid": "CBMibkFVX3lxTE1Pbk5tWV9mSFd5UEpsSXZUZEstSjllRElqdDI5bGI3R0tzUGZRNTNXcFRhSzNPRzZadGxNYTFxOTd6VVo0SS1aV2xneWlnZG4tZExyXzQzbzVJcERNT043UDlDZk8tTnkwNUdQc3hR0gFuQVVfeXFMTU9uTm1ZX2ZIV3lQSmxJdlRkSy1KOWVESWp0MjlsYjdHS3NQZlE1M1dw…",
+        "score": 61
+      },
+      {
+        "id": "company-QUkg7Je07ZKNIO",
+        "category": "company",
+        "categoryName": "기업·실적·산업",
+        "categoryIcon": "🏭",
+        "title": "AI 열풍 올라탄 반도체…10일 만에 수출 111억달러 '사상 최대'",
+        "description": "AI 열풍 올라탄 반도체…10일 만에 수출 111억달러 '사상 최대' &nbsp;&nbsp; 뉴스피릿",
+        "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBtbFdUb3dNbE5tUFNkVWhMWjdhOUQ3aWtzYTV0cC1TZ3o5d1dkdTcybElDV2xHWDZZNE9KVXJyMS1hOUc4Y1lMWkI4enZodlM3WEdwTC00OWRxdXBjQXVrVVZkTGRCYncyVjNz?oc=5",
+        "source": {
+          "name": "뉴스피릿",
+          "url": "https://www.newsspirit.kr"
+        },
+        "publishedAt": "2026-06-11T15:00:00.000Z",
+        "guid": "CBMia0FVX3lxTFBtbFdUb3dNbE5tUFNkVWhMWjdhOUQ3aWtzYTV0cC1TZ3o5d1dkdTcybElDV2xHWDZZNE9KVXJyMS1hOUc4Y1lMWkI4enZodlM3WEdwTC00OWRxdXBjQXVrVVZkTGRCYncyVjNz",
         "score": 61
       },
       {
@@ -1690,7 +1706,7 @@
         },
         "publishedAt": "2026-06-12T21:00:02.000Z",
         "guid": "CBMiWkFVX3lxTE1sU1hIT3N5X2RnZE4xbzBENk5USzBBbXctUHNQMW00QmVLTk9zbkd1bTExZW1lN3prajVRXzYxOEhvaGtxOEpHdjhzMjhHamJ0d0hWZzR4R0hwZ9IBVEFVX3lxTE55bmJWUmxVVVhLUmxBU21HTER5YmFtZVZ5blpBb2NOYkdwbEFUWW8tNmgxd2FBNnhQNm5vQks1LVRyQmdQ…",
-        "score": 60
+        "score": 59
       },
       {
         "id": "company-W-mjn-yghOmjn-",
@@ -1709,20 +1725,20 @@
         "score": 59
       },
       {
-        "id": "company-7L2U7Iqk7ZS8LC",
+        "id": "company-QUnCt-uwmOuPhO",
         "category": "company",
         "categoryName": "기업·실적·산업",
         "categoryIcon": "🏭",
-        "title": "코스피, 이란 전쟁 종식 기대감에 8200선 재탈환...반도체주 일제히 급등",
-        "description": "코스피, 이란 전쟁 종식 기대감에 8200선 재탈환...반도체주 일제히 급등 &nbsp;&nbsp; 녹색경제신문",
-        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9hOE1RblR3TDJSOF90WXRhQlVWVnhQNk9jcG9wSEpCeVNpeHlXbm5tVk1jTEszUmp0aWxKZzZ3ZDVXODN5Skt0UDlrQmZOMzRqbFNUODZUaG1qRklyaEdNd1RUSXBkVzQ?oc=5",
+        "title": "AI·반도체 투자 해법 제시...iM증권, 우수고객 대상 하반기 전략 세미나",
+        "description": "AI·반도체 투자 해법 제시...iM증권, 우수고객 대상 하반기 전략 세미나 &nbsp;&nbsp; 핀포인트뉴스",
+        "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5BZmdCOUk0em56WktLbVM2VUliVWlsSjI5ZjNTR2RGMTVVejdxU3pwYWNPWWhhV1luODVfVVBObDlXdTlUZi1XcUtJZjN4M05jeTZIY1NZazJFNFlQOGVxOXZVZXN3aHJkcVN6MXpKdnVYRlJCaWRB0gF3QVVfeXFMTkFmZ0I5STR6bnpaS0ttUzZVSWJVaWxKMjlmM1NHZEYxNVV6N3FTenBhY09ZaGFXWW44NV9VUE5sOVd1OVRmLVdxS0lmM3gzTmN5NkhjU1lrMkU0WVA4ZXE5dlVlc3docmRxU3oxekp2dVhGUkJpZEE?oc=5",
         "source": {
-          "name": "녹색경제신문",
-          "url": "http://www.greened.kr"
+          "name": "핀포인트뉴스",
+          "url": "https://www.pinpointnews.co.kr"
         },
-        "publishedAt": "2026-06-12T00:52:16.000Z",
-        "guid": "CBMiZ0FVX3lxTE9hOE1RblR3TDJSOF90WXRhQlVWVnhQNk9jcG9wSEpCeVNpeHlXbm5tVk1jTEszUmp0aWxKZzZ3ZDVXODN5Skt0UDlrQmZOMzRqbFNUODZUaG1qRklyaEdNd1RUSXBkVzQ",
-        "score": 55
+        "publishedAt": "2026-06-12T01:23:46.000Z",
+        "guid": "CBMid0FVX3lxTE5BZmdCOUk0em56WktLbVM2VUliVWlsSjI5ZjNTR2RGMTVVejdxU3pwYWNPWWhhV1luODVfVVBObDlXdTlUZi1XcUtJZjN4M05jeTZIY1NZazJFNFlQOGVxOXZVZXN3aHJkcVN6MXpKdnVYRlJCaWRB0gF3QVVfeXFMTkFmZ0I5STR6bnpaS0ttUzZVSWJVaWxKMjlmM1NHZEYx…",
+        "score": 56
       },
       {
         "id": "company-7IK87ISx7KCE7J",
@@ -1738,22 +1754,6 @@
         },
         "publishedAt": "2026-06-12T00:18:00.000Z",
         "guid": "CBMibkFVX3lxTE1XSFMtcnV1OEg4bGppR0hIdzUwV3MtTVhoZnZrWmR3MjNCTER2bDRkUGo2TWVUUmp3QUtRdVJucXZIR19uYk1sdTUyYkxGNVE0U0ZsZEZFWldPSV85alE0bW94V3Fucml2TVh1aUZ3",
-        "score": 55
-      },
-      {
-        "id": "company-7IK87ISx7KCE7J",
-        "category": "company",
-        "categoryName": "기업·실적·산업",
-        "categoryIcon": "🏭",
-        "title": "삼성전자·SK하이닉스 급등에 반도체주 질주…AI 훈풍 타고 매수 열기",
-        "description": "삼성전자·SK하이닉스 급등에 반도체주 질주…AI 훈풍 타고 매수 열기 &nbsp;&nbsp; 핀포인트뉴스",
-        "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5JemRrQWNGZG05WlB0blAweHAtZko1MDdyYTF5d21LMk4zV1VmQ2tWN2JMLXhjaGtqeU9kTllLN1JvS1pzUXVlVmllVE90THRGZlp1SVJ1WGhjOFQxcnNOUzBGUk9ndTZabnVlMk5kc3ZBcDDSAXdBVV95cUxQM1hScTlpRGRYZjdfSS1XMWZMMjN5a1FWN2Z2T2FydllUZ094U19sa1VYRWFVdl9zVjBXdGdHZGFhdEZNckNoTmV0YXR2LXZYNzN0dUgyNXRfbS1Ua3c1M1owbW9qTUNLdjdRRzlxYWNUVDh6SS04Zw?oc=5",
-        "source": {
-          "name": "핀포인트뉴스",
-          "url": "https://www.pinpointnews.co.kr"
-        },
-        "publishedAt": "2026-06-12T00:06:33.000Z",
-        "guid": "CBMic0FVX3lxTE5JemRrQWNGZG05WlB0blAweHAtZko1MDdyYTF5d21LMk4zV1VmQ2tWN2JMLXhjaGtqeU9kTllLN1JvS1pzUXVlVmllVE90THRGZlp1SVJ1WGhjOFQxcnNOUzBGUk9ndTZabnVlMk5kc3ZBcDDSAXdBVV95cUxQM1hScTlpRGRYZjdfSS1XMWZMMjN5a1FWN2Z2T2FydllUZ094…",
         "score": 55
       },
       {
@@ -1981,19 +1981,19 @@
         "score": 44
       },
       {
-        "id": "company-7Juo7Iqk7L2UIF",
+        "id": "company-6rWt66a96rO17K",
         "category": "company",
         "categoryName": "기업·실적·산업",
         "categoryIcon": "🏭",
-        "title": "웨스코 TSP®, 미국 UL 인증 획득…170억 달러 ‘삼성 테일러’ 등 북미 투자 정조준",
-        "description": "웨스코 TSP®, 미국 UL 인증 획득…170억 달러 ‘삼성 테일러’ 등 북미 투자 정조준 &nbsp;&nbsp; 데일리경제",
-        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5mUktPbG5nd0lnbmxCQzFvbGY2RnJfdEpRZ0c1S2hfa3Zsc01LZG9TS2tlbGVob2ZwdGgtc0tlUjhGS1lFeGlXa2V2ZEk4WnhPanNjc20xNHlPRkU2QjN1aGtCd2VnMDZLR3hOZg?oc=5",
+        "title": "국립공주대, 기계자동차공학부 이동경 교수 산업통상자원부『첨단제조 AX(M.AX) 인재양성사업』선정",
+        "description": "국립공주대, 기계자동차공학부 이동경 교수 산업통상자원부『첨단제조 AX(M.AX) 인재양성사업』선정 &nbsp;&nbsp; 모빅경제",
+        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Kd2R3R0dzaGVzWVFTaXFkQUxvdkwzc0tlMUxtRjhtSmpLYjRDMHQtdEVLdVFvMlJuT0d2STh0TGNsbC10VVNmOWhkWl9ELWRtMTI0OFNGV0kxVlFneGpsWHlpUWlBTjI0d1Z0TExKak8?oc=5",
         "source": {
-          "name": "데일리경제",
-          "url": "https://www.kdpress.co.kr"
+          "name": "모빅경제",
+          "url": "https://www.mobickeconomy.com"
         },
-        "publishedAt": "2026-06-12T03:31:02.000Z",
-        "guid": "CBMibEFVX3lxTE5mUktPbG5nd0lnbmxCQzFvbGY2RnJfdEpRZ0c1S2hfa3Zsc01LZG9TS2tlbGVob2ZwdGgtc0tlUjhGS1lFeGlXa2V2ZEk4WnhPanNjc20xNHlPRkU2QjN1aGtCd2VnMDZLR3hOZg",
+        "publishedAt": "2026-06-12T11:34:10.000Z",
+        "guid": "CBMicEFVX3lxTE1Kd2R3R0dzaGVzWVFTaXFkQUxvdkwzc0tlMUxtRjhtSmpLYjRDMHQtdEVLdVFvMlJuT0d2STh0TGNsbC10VVNmOWhkWl9ELWRtMTI0OFNGV0kxVlFneGpsWHlpUWlBTjI0d1Z0TExKak8",
         "score": 42
       },
       {
@@ -2074,22 +2074,6 @@
         },
         "publishedAt": "2026-06-12T00:44:21.000Z",
         "guid": "CBMiakFVX3lxTFBJZEV4TDhKNlJGSUd4dWo4TmNyX2FueXpPZFhDTVhNSjVUdndORHFoeG1KUzNhaU1aSDNwZ0hadV82a0tUeXR4dTdXUzVqX2RZVzIwQnlfU2NVVUxSRUJtU2dYRVVmcTYzSUE",
-        "score": 39
-      },
-      {
-        "id": "company-67O07Iqk67CY64",
-        "category": "company",
-        "categoryName": "기업·실적·산업",
-        "categoryIcon": "🏭",
-        "title": "보스반도체, 유럽 영업 총괄로 NXP 출신 영입",
-        "description": "보스반도체, 유럽 영업 총괄로 NXP 출신 영입 &nbsp;&nbsp; 디일렉",
-        "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9URmlESDFWeTM4VU00UDVpZkNPc2tzNVc4c0xucnJ4NkFfbm1hM3F4aDZkQ1dLUkc3NVJFdmVERW5FbVdqTkVzWDFkOHMxMXd6Qkg1NHotWHZsVWpWdnZjcEZfaHBGQQ?oc=5",
-        "source": {
-          "name": "디일렉",
-          "url": "https://www.thelec.kr"
-        },
-        "publishedAt": "2026-06-12T00:34:49.000Z",
-        "guid": "CBMiZkFVX3lxTE9URmlESDFWeTM4VU00UDVpZkNPc2tzNVc4c0xucnJ4NkFfbm1hM3F4aDZkQ1dLUkc3NVJFdmVERW5FbVdqTkVzWDFkOHMxMXd6Qkg1NHotWHZsVWpWdnZjcEZfaHBGQQ",
         "score": 39
       },
       {
@@ -2268,7 +2252,7 @@
         },
         "publishedAt": "2026-06-13T00:00:00.000Z",
         "guid": "CBMiYEFVX3lxTFBib1V1RUZTQWRhOXNhSWt0czRqbEVjbmpEb3JKVnk2d0o4N0xIbzN3OTh4dEhMQW53Zlh6LTAyZDBCcHBrUy05SGN6VlZxRFBDUGhQdjFZdEc1R1QtOHF4MNIBeEFVX3lxTE1UeDhySzgxNjdMT1JTLW5HYUFlTE9tOG5QbzhDQ3lhSzhpVnhMdFVuU1pNdjRIVlpFTXdmRG5L…",
-        "score": 71
+        "score": 70
       },
       {
         "id": "finance-7J2067KI7KO8IO",
@@ -2284,7 +2268,7 @@
         },
         "publishedAt": "2026-06-13T08:00:00.000Z",
         "guid": "CBMiXEFVX3lxTE9RSG1tWkhWNW1LLU5PaDlGSzNZeEc4UVlDSlhHNG5mRnFZWWZGMWN6QS1GNjhFS2l0MDhXYTdfOFBTX2hSUUJKeEdMREVmT0xQbzRTeG1tTndfN21x",
-        "score": 63
+        "score": 62
       },
       {
         "id": "finance-64u56rWtIOqyve",
@@ -2309,13 +2293,13 @@
         "categoryIcon": "💳",
         "title": "6·3 지선 이후 불붙은 기업은행 대구 이전…현실화될까",
         "description": "6·3 지선 이후 불붙은 기업은행 대구 이전…현실화될까 &nbsp;&nbsp; 포인트데일리",
-        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1acVctR1kzaHFWQmJ4b01NamhzZENxSXhhRHEyVmhiQk5pZ2RtdEU4bExQQmx2ZS1BdFAzcGRmZFZ6c0pTZTc1eXp3M0FEMWg5QjVNbkJ5bF9idVpiN0NQQUszbE5EcWhxNlp2N2tUaFDSAXRBVV95cUxPdDlnRTlKRDhDTlFGc0hjUm9SMzRYT05aYm0xd19kNGZIbDhhRjZmVXg4RUxBZWFlRHl3ekdLTTZUQ05nUXA5bXhWQkZScHZCOFU3ZGsxSkhiNGY3U0ZoVFEyZDVSMFUxREo1b0hsdW5ySWtBQg?oc=5",
+        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE90OWdFOUpEOENOUUZzSGNSb1IzNFhPTlpibTF3X2Q0ZkhsOGFGNmZVeDhFTEFlYWVEeXd6R0tNNlRDTmdRcDlteFZCRlJwdkI4VTdkazFKSGI0ZjdTRmhUUTJkNVIwVTFESjVvSGx1bnJJa0FC0gF0QVVfeXFMT3Q5Z0U5SkQ4Q05RRnNIY1JvUjM0WE9OWmJtMXdfZDRmSGw4YUY2ZlV4OEVMQWVhZUR5d3pHS002VENOZ1FwOW14VkJGUnB2QjhVN2RrMUpIYjRmN1NGaFRRMmQ1UjBVMURKNW9IbHVucklrQUI?oc=5",
         "source": {
           "name": "포인트데일리",
           "url": "https://www.pointdaily.co.kr"
         },
-        "publishedAt": "2026-06-12T19:00:00.000Z",
-        "guid": "CBMicEFVX3lxTE1acVctR1kzaHFWQmJ4b01NamhzZENxSXhhRHEyVmhiQk5pZ2RtdEU4bExQQmx2ZS1BdFAzcGRmZFZ6c0pTZTc1eXp3M0FEMWg5QjVNbkJ5bF9idVpiN0NQQUszbE5EcWhxNlp2N2tUaFDSAXRBVV95cUxPdDlnRTlKRDhDTlFGc0hjUm9SMzRYT05aYm0xd19kNGZIbDhhRjZm…",
+        "publishedAt": "2026-06-12T19:19:36.000Z",
+        "guid": "CBMidEFVX3lxTE90OWdFOUpEOENOUUZzSGNSb1IzNFhPTlpibTF3X2Q0ZkhsOGFGNmZVeDhFTEFlYWVEeXd6R0tNNlRDTmdRcDlteFZCRlJwdkI4VTdkazFKSGI0ZjdTRmhUUTJkNVIwVTFESjVvSGx1bnJJa0FC0gF0QVVfeXFMT3Q5Z0U5SkQ4Q05RRnNIY1JvUjM0WE9OWmJtMXdfZDRmSGw4…",
         "score": 58
       },
       {
@@ -2351,6 +2335,22 @@
         "score": 55
       },
       {
+        "id": "finance-S0Lqta3rr7zsnY",
+        "category": "finance",
+        "categoryName": "은행·증권·보험",
+        "categoryIcon": "💳",
+        "title": "KB국민은행, 신용대출 한도 축소…가계부채 선제 대응",
+        "description": "KB국민은행, 신용대출 한도 축소…가계부채 선제 대응 &nbsp;&nbsp; 이코노뉴스",
+        "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5SQVJyWElHWG83RVhOS2wyVWdCQUxhMUk0dnBFYkhXSzJOcDVGbEI3VHFYYWtZOWpheGpPTTZVQzlmUEMtaDVQLTNMR3VoYVpFc1Q0ODN4RkwwM2FsN1dDTEVEaklZT2xxbzQ2ZV9ZOA?oc=5",
+        "source": {
+          "name": "이코노뉴스",
+          "url": "https://www.econonews.co.kr"
+        },
+        "publishedAt": "2026-06-12T07:51:19.000Z",
+        "guid": "CBMib0FVX3lxTE5SQVJyWElHWG83RVhOS2wyVWdCQUxhMUk0dnBFYkhXSzJOcDVGbEI3VHFYYWtZOWpheGpPTTZVQzlmUEMtaDVQLTNMR3VoYVpFc1Q0ODN4RkwwM2FsN1dDTEVEaklZT2xxbzQ2ZV9ZOA",
+        "score": 54
+      },
+      {
         "id": "finance-7J2A7ZaJ64yA7L",
         "category": "finance",
         "categoryName": "은행·증권·보험",
@@ -2380,7 +2380,7 @@
         },
         "publishedAt": "2026-06-12T05:00:50.000Z",
         "guid": "CBMia0FVX3lxTFBpMXJST2JnZXhDWTFXWlNHNDJaTHViUVlWT2hmRVlWSU9sbE4zUHlPeV9vMkhoMTlDZnlwclMwakw0RG85SmlNa2haOUdhbWhRY2c0b3dMc3NRZU9LME5iTkhfZDlmR2dlWUtZ0gFvQVVfeXFMT3YzWGxOR1F4RVpyVThfQTU1SlVXNGpua0tLTUFYQ3RpZDlocWtsZjQ2TGI3…",
-        "score": 52
+        "score": 51
       },
       {
         "id": "finance-Iu2VnOuLrOyDiC",
@@ -2399,22 +2399,6 @@
         "score": 50
       },
       {
-        "id": "finance-W0Eg7KO86rCEIO",
-        "category": "finance",
-        "categoryName": "은행·증권·보험",
-        "categoryIcon": "💳",
-        "title": "[A 주간 서머리] 경제·산업계 \"빚투 열풍에 가계대출 9조 증가...개보위, 쿠팡에 6200억원 과징금\"",
-        "description": "[A 주간 서머리] 경제·산업계 \"빚투 열풍에 가계대출 9조 증가...개보위, 쿠팡에 6200억원 과징금\" &nbsp;&nbsp; 아시아에이",
-        "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1HLXZqSG9DYTZlT1dQbVBFb2lMemlwcmkxRTZYZWt3azNIZmUtWUMzQzB5Nk1HampJY3otZXY4M2pYY2pBLU55U3JPMTFZS1pTSUkwLVRZT1M2TlVWbTVoQ0ZvLVdnazcwTVHSAW5BVV95cUxPSmhIeHlzRlJZZ2dnZ0NNNEtORW50OXVPSXlKUlRRV2l0WDdGS2JBY21QLWs2NFZMV3lPTFNPdVpIcmN5ZUlXY2g0R1IwUm15TUtqWXBiY2NEVVRwR3M5OWgxTUdleWZ6UnNqckZnQQ?oc=5",
-        "source": {
-          "name": "아시아에이",
-          "url": "https://www.asiaa.co.kr"
-        },
-        "publishedAt": "2026-06-12T08:00:00.000Z",
-        "guid": "CBMiakFVX3lxTE1HLXZqSG9DYTZlT1dQbVBFb2lMemlwcmkxRTZYZWt3azNIZmUtWUMzQzB5Nk1HampJY3otZXY4M2pYY2pBLU55U3JPMTFZS1pTSUkwLVRZT1M2TlVWbTVoQ0ZvLVdnazcwTVHSAW5BVV95cUxPSmhIeHlzRlJZZ2dnZ0NNNEtORW50OXVPSXlKUlRRV2l0WDdGS2JBY21QLWs2…",
-        "score": 47
-      },
-      {
         "id": "finance-67mE7J2A7ZaJIO",
         "category": "finance",
         "categoryName": "은행·증권·보험",
@@ -2431,6 +2415,22 @@
         "score": 47
       },
       {
+        "id": "finance-W0Eg7KO86rCEIO",
+        "category": "finance",
+        "categoryName": "은행·증권·보험",
+        "categoryIcon": "💳",
+        "title": "[A 주간 서머리] 경제·산업계 \"빚투 열풍에 가계대출 9조 증가...개보위, 쿠팡에 6200억원 과징금\"",
+        "description": "[A 주간 서머리] 경제·산업계 \"빚투 열풍에 가계대출 9조 증가...개보위, 쿠팡에 6200억원 과징금\" &nbsp;&nbsp; 아시아에이",
+        "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1HLXZqSG9DYTZlT1dQbVBFb2lMemlwcmkxRTZYZWt3azNIZmUtWUMzQzB5Nk1HampJY3otZXY4M2pYY2pBLU55U3JPMTFZS1pTSUkwLVRZT1M2TlVWbTVoQ0ZvLVdnazcwTVHSAW5BVV95cUxPSmhIeHlzRlJZZ2dnZ0NNNEtORW50OXVPSXlKUlRRV2l0WDdGS2JBY21QLWs2NFZMV3lPTFNPdVpIcmN5ZUlXY2g0R1IwUm15TUtqWXBiY2NEVVRwR3M5OWgxTUdleWZ6UnNqckZnQQ?oc=5",
+        "source": {
+          "name": "아시아에이",
+          "url": "https://www.asiaa.co.kr"
+        },
+        "publishedAt": "2026-06-12T08:00:00.000Z",
+        "guid": "CBMiakFVX3lxTE1HLXZqSG9DYTZlT1dQbVBFb2lMemlwcmkxRTZYZWt3azNIZmUtWUMzQzB5Nk1HampJY3otZXY4M2pYY2pBLU55U3JPMTFZS1pTSUkwLVRZT1M2TlVWbTVoQ0ZvLVdnazcwTVHSAW5BVV95cUxPSmhIeHlzRlJZZ2dnZ0NNNEtORW50OXVPSXlKUlRRV2l0WDdGS2JBY21QLWs2…",
+        "score": 46
+      },
+      {
         "id": "finance-4oCc7ZWc7Yiswr",
         "category": "finance",
         "categoryName": "은행·증권·보험",
@@ -2444,7 +2444,7 @@
         },
         "publishedAt": "2026-06-12T06:59:29.000Z",
         "guid": "CBMiYEFVX3lxTE8zcHQ3N041RzEzZWFVLWtrSXg0cXJDalNGcEtKSTJlSzBYdU5WSzJiZk9qRTQ0YkUtZDVORmQ4T3BuSm5JeEdIVDNENzVNYndLR3I3eTZPcXl1SFdUb2ZGVg",
-        "score": 46
+        "score": 45
       },
       {
         "id": "finance-S0LquIjsnLUg7L",
@@ -2460,7 +2460,7 @@
         },
         "publishedAt": "2026-06-12T11:01:14.000Z",
         "guid": "CBMiRkFVX3lxTE5oWDY5b2oyM0dQX0VTM29lTmF5Z3hIc2hWN0lrUzdYU0xFLXhfdVI2Skx6ZlJTVEJKY3ZzbWhOLUVGQXZ3SHc",
-        "score": 42
+        "score": 41
       },
       {
         "id": "finance-W-uLqOuPhV0g67",
@@ -2509,22 +2509,6 @@
         "publishedAt": "2026-06-11T13:45:00.000Z",
         "guid": "CBMibkFVX3lxTE80eEx1SGE0RTV0bUl1bHlLd09VMWVaVXpTRExuV2ctSm1welVpMUZZaGxjVnZ1RXhBNVowWG5ZTDM2TFlCTnp4SURNYzVwZmhqLWdJbWRUcGtnX3VmSHBzUF9fYUFZUE0wVlVlWTJn",
         "score": 36
-      },
-      {
-        "id": "finance-6riI6rCQ7JuQLC",
-        "category": "finance",
-        "categoryName": "은행·증권·보험",
-        "categoryIcon": "💳",
-        "title": "금감원, 우리금융 이어 KB금융도 사회공헌 현장조사",
-        "description": "금감원, 우리금융 이어 KB금융도 사회공헌 현장조사 &nbsp;&nbsp; 연합인포맥스",
-        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBYYUIybWF3MDFJOTFqQU8wSFFUa2ZWbDNySHFiRGdlTGZMVGl5MW5Ra3pvRGc0cmZmaHVybUdVWHdNeUZua0xuZl84Y2QtSFJhQy1ETUxpZ19wN0lqLTRqblh1Um43NV9BMVd0M2htTlLSAXRBVV95cUxNUU1EbVVEYWtzWmZ2ZTlsWlVtNTJGdGZlWFBMWWc5dWVNeHJ5YVJueklYWUFwcTI0NTdNcXdtYlY5M0p5Y1NJLUhaSF9rZnpFai1XNFVRdUoyOWVtNWlvMjRWenR6UGZIWElJeEV2aVNsUVNtVg?oc=5",
-        "source": {
-          "name": "연합인포맥스",
-          "url": "https://news.einfomax.co.kr"
-        },
-        "publishedAt": "2026-06-12T04:08:00.000Z",
-        "guid": "CBMicEFVX3lxTFBYYUIybWF3MDFJOTFqQU8wSFFUa2ZWbDNySHFiRGdlTGZMVGl5MW5Ra3pvRGc0cmZmaHVybUdVWHdNeUZua0xuZl84Y2QtSFJhQy1ETUxpZ19wN0lqLTRqblh1Um43NV9BMVd0M2htTlLSAXRBVV95cUxNUU1EbVVEYWtzWmZ2ZTlsWlVtNTJGdGZlWFBMWWc5dWVNeHJ5YVJu…",
-        "score": 35
       },
       {
         "id": "finance-7Jm46rWt7J247J",
@@ -2686,7 +2670,7 @@
         },
         "publishedAt": "2026-06-12T03:01:41.000Z",
         "guid": "CBMib0FVX3lxTE5TdEFyZHZLSGh4d0ZJcnMwVzhBU3IyR01ETWZ0T2hOejdkSVZ2X0M1ZXdDR0RrdGhGaGY2Z2NNaXFhdkJ6M3JoRGVYQTdqNU9CbVlBWEd1WUhOZTdBTl9Kd1VIVkNWX1BDRGVwTGZXd9IBc0FVX3lxTE5OUjZrbWdQS2VVYWUzQV93MDVxX0cteU0yb3RrLTNpNm50QmdKT3pM…",
-        "score": 42
+        "score": 41
       },
       {
         "id": "realestate-IuykkeuPmeyghO",
@@ -2835,22 +2819,6 @@
         "score": 78
       },
       {
-        "id": "crypto-64-I64KY66y0IO",
-        "category": "crypto",
-        "categoryName": "가상자산",
-        "categoryIcon": "₿",
-        "title": "돈나무 언니가 현실적으로 밝힌 비트코인 가치는 10억원 \"왜?\"",
-        "description": "돈나무 언니가 현실적으로 밝힌 비트코인 가치는 10억원 \"왜?\" &nbsp;&nbsp; 월요신문",
-        "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBGRG51VzM0Y25EWVRqdlVwaUhVeEdyLTYxZVNGd2VBSGtoSTBVTkVlYWM1aEVTMU02dGtGY2pSSjUzV3MxaU1Ua2l0MnAzSWM3bkNMbXhxRzhRNkxPNTB6TzJSdWw4UGVudFE?oc=5",
-        "source": {
-          "name": "월요신문",
-          "url": "https://www.wolyo.co.kr"
-        },
-        "publishedAt": "2026-06-13T06:46:35.000Z",
-        "guid": "CBMiakFVX3lxTFBGRG51VzM0Y25EWVRqdlVwaUhVeEdyLTYxZVNGd2VBSGtoSTBVTkVlYWM1aEVTMU02dGtGY2pSSjUzV3MxaU1Ua2l0MnAzSWM3bkNMbXhxRzhRNkxPNTB6TzJSdWw4UGVudFE",
-        "score": 77
-      },
-      {
         "id": "crypto-67mE7Yq47L2U7J",
         "category": "crypto",
         "categoryName": "가상자산",
@@ -2880,7 +2848,7 @@
         },
         "publishedAt": "2026-06-13T00:00:00.000Z",
         "guid": "CBMiVEFVX3lxTE5Hc3NSNjlZeF8tQWRQZUZlOFFCTE9YbVVJcmREWFo2VVdtMTVYUk55TWVBSmM3Rk5pMWF4ZmM2bHA0T2hFUmFBcmM2WkVUdTZzWDZpbA",
-        "score": 63
+        "score": 62
       },
       {
         "id": "crypto-6rGw656Y7IaMIO",
@@ -2912,7 +2880,7 @@
         },
         "publishedAt": "2026-06-12T21:00:00.000Z",
         "guid": "CBMicEFVX3lxTE1ZR196dGV2dUVkNkM3SkNqeFhQN0t4UlFUT1pkdFlseEFfclN6SzJXa2pqOGw4Ny1CMmxLc19VQ3c4RjNtYWpWRVpKSzRWekxJWUN4Z1BFY3lmeGVMY245WFFuVmNwRlhkRGtiQWxiLWLSAXRBVV95cUxOanZDcFhKam1TMExDSzF1UmpyUWV5MmZ4Yk45RUQyLU1XWi1Ua3Bi…",
-        "score": 60
+        "score": 59
       },
       {
         "id": "crypto-7Iqk7YWM7J2067",
@@ -3075,6 +3043,22 @@
         "score": 47
       },
       {
+        "id": "crypto-7Jik7IKs7Lm0IO",
+        "category": "crypto",
+        "categoryName": "가상자산",
+        "categoryIcon": "₿",
+        "title": "오사카 증권거래소, 2028년 비트코인선물 출시…'일본판 CME' 만든다",
+        "description": "오사카 증권거래소, 2028년 비트코인선물 출시…'일본판 CME' 만든다 &nbsp;&nbsp; 네이트",
+        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9IekxLTnR5OGdKRVpnb0hFR3I3SEtzbFZvd0diMml6U1RUbWtRSjZVVWc1V1BhQTNfSFFXaExhZW1UX1QwZEx6c3JWQmNlZ3ptUlVr?oc=5",
+        "source": {
+          "name": "네이트",
+          "url": "https://news.nate.com"
+        },
+        "publishedAt": "2026-06-11T23:01:00.000Z",
+        "guid": "CBMiU0FVX3lxTE9IekxLTnR5OGdKRVpnb0hFR3I3SEtzbFZvd0diMml6U1RUbWtRSjZVVWc1V1BhQTNfSFFXaExhZW1UX1QwZEx6c3JWQmNlZ3ptUlVr",
+        "score": 45
+      },
+      {
         "id": "crypto-IkFJwrfrlJTsp4",
         "category": "crypto",
         "categoryName": "가상자산",
@@ -3088,7 +3072,7 @@
         },
         "publishedAt": "2026-06-11T23:00:04.000Z",
         "guid": "CBMiZ0FVX3lxTE5IUnZfdmxRLTJfOV95dGFWTmowREpQSk5Fam5FWW9MV3ctb0VVOE1LRk52MHN6UEwySG1GdUVtanh1RmxheE40SDB0eWFBY0VaVXZYeXRwaU5Ba2l4QXVldTVwMmFSWjg",
-        "score": 46
+        "score": 45
       },
       {
         "id": "crypto-7J20656AIOyihe",
@@ -3184,7 +3168,7 @@
         },
         "publishedAt": "2026-06-12T05:59:07.000Z",
         "guid": "CBMiU0FVX3lxTE80Y1lOeXFhczlpaXRlN3lFQ3dyS0JIX2YwTXF3S2lGRWE4U24wYUl3Zkg4N053bFNpcFByQUxCSVFrVF9PenMzNVYxQXB0LXp2ZUJF",
-        "score": 37
+        "score": 36
       },
       {
         "id": "crypto-7YOA7J206rGw66",
@@ -3248,22 +3232,6 @@
         },
         "publishedAt": "2026-06-11T10:49:08.000Z",
         "guid": "CBMif0FVX3lxTFBYeFM3T2pJY0tTclJCODF0WUxUOUFGS3ZTSFF0SmJEV0I3aURHa1hSTVhrWlJ2Z3Jibmxpa0pTTXVMWkNtT055a21zcEZncWpUTjYwWDl2UmlyTDRsck5vZTRfQTJXSnFETjlmenh2WDJGWVd6MkdTWkFVb2pCX0k",
-        "score": 33
-      },
-      {
-        "id": "crypto-67mE7Yq47L2U7J",
-        "category": "crypto",
-        "categoryName": "가상자산",
-        "categoryIcon": "₿",
-        "title": "비트코인·이더리움 ETF 동반 유출…AI·스페이스X로 떠난 투자자들",
-        "description": "비트코인·이더리움 ETF 동반 유출…AI·스페이스X로 떠난 투자자들 &nbsp;&nbsp; 데일리머니",
-        "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1PVS1RdnlYSVdlYmtxOWpmQUVZdWdHcDBGc2FWWEVFQ0VuSjBpSWc1M09Yb3FQZFlfY2U0RnhaYjAyU2dJYVZTaHIyc3o4aVhNeEtDbXNPeHFDYWtFNTdBSnZQMFhPaGVZQTlORFZwOEJmVkJ5eFHSAXZBVV95cUxNT1UtUXZ5WElXZWJrcTlqZkFFWXVnR3AwRnNhVlhFRUNFbkowaUlnNTNPWG9xUGRZX2NlNEZ4WmIwMlNnSWFWU2hyMnN6OGlYTXhLQ21zT3hxQ2FrRTU3QUp2UDBYT2hlWUE5TkRWcDhCZlZCeXhR?oc=5",
-        "source": {
-          "name": "데일리머니",
-          "url": "http://www.thedailymoney.com"
-        },
-        "publishedAt": "2026-06-11T10:28:51.000Z",
-        "guid": "CBMidkFVX3lxTE1PVS1RdnlYSVdlYmtxOWpmQUVZdWdHcDBGc2FWWEVFQ0VuSjBpSWc1M09Yb3FQZFlfY2U0RnhaYjAyU2dJYVZTaHIyc3o4aVhNeEtDbXNPeHFDYWtFNTdBSnZQMFhPaGVZQTlORFZwOEJmVkJ5eFHSAXZBVV95cUxNT1UtUXZ5WElXZWJrcTlqZkFFWXVnR3AwRnNhVlhFRUNF…",
         "score": 33
       },
       {
@@ -3362,7 +3330,7 @@
         },
         "publishedAt": "2026-06-13T05:02:00.000Z",
         "guid": "CBMipgJBVV95cUxOZUNYU1pFNGk2VW5XWHFCaTdEU1pVeldjaHpLeHVtUnJtYng3M3ViQlRsdXR2TjRlcW85QjZuWTdzNTJsQnRCdUEwRHdYT04wXzlueEpqT0xsdW11VTZaS0JKWDM4WjlGRi1jQXV1MElzc1cydFRtVTluRHE1cnBsZ3N0TmszZXg5T3dEbVRhT19GSHEyOGE5ZVVXMjZaWXJs…",
-        "score": 76
+        "score": 75
       },
       {
         "id": "global-7KSR64-Z67CcIO",
@@ -3379,6 +3347,22 @@
         "publishedAt": "2026-06-13T01:40:15.000Z",
         "guid": "CBMiVEFVX3lxTFB1RHFUa2ZsLW02MktpbTB3NDRkX2FUdkpRSmJMbTZuTzJTVUFVT0Q3WWNUaU5IVHBNSXZMRVhESjRtMThMTDF5U2tpUGhCbkpxdDB6TdIBWEFVX3lxTE40aHRMTlFHNHpEWmtYQTJtLWVBaUlIQlJEMm5xMW5aQ3pibnVGQ20zaG9oVzYzdldVNDh6NUFySm5ydnpVRVU0RFBK…",
         "score": 56
+      },
+      {
+        "id": "global-7IS46rOEIOqyve",
+        "category": "global",
+        "categoryName": "글로벌 경제",
+        "categoryIcon": "🌐",
+        "title": "세계 경제·중동 위기 속 G7 정상들 프랑스행",
+        "description": "세계 경제·중동 위기 속 G7 정상들 프랑스행 &nbsp;&nbsp; VOA 한국어 홈페이지",
+        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPMktEd1ZlamlvazJBY0ZYbUo2dGhnQXNmZUdqLUxsMmpDZklqWWExWXY3RFdfUTVkMlJ0VFhEbVRjYUxlRGNUdlBqVG9YQU5iamZwQV9DY1FGemNKbWkxcGhJNmFzX3BVTmZ0a1RrQ3Zodl9pWnhwTjR4dmhUOWVFSkowNmhkX1VXX004QWVjdUJhZkxyMDU5STAtVWJPTEVaanotU21qSlV5cVhhaHlNbUNFcUs0MmlMWkl30gG7AUFVX3lxTE8yS0R3VmVqaW9rMkFjRlhtSjZ0aGdBc2ZlR2otTGwyakNmSWpZYTFZdjdEV19RNWQyUnRUWERtVGNhTGVEY1R2UGpUb1hBTmJqZnBBX0NjUUZ6Y0ptaTFwaEk2YXNfcFVOZnRrVGtDdmh2X2laeHBONHh2aFQ5ZUVKSjA2aGRfVVdfTThBZWN1QmFmTHIwNTlJMC1VYk9MRVpqei1TbWpKVXlxWGFoeU1tQ0VxSzQyaUxaSXc?oc=5",
+        "source": {
+          "name": "VOA 한국어 홈페이지",
+          "url": "https://www.voakorea.com"
+        },
+        "publishedAt": "2026-06-12T16:40:10.000Z",
+        "guid": "CBMiuwFBVV95cUxPMktEd1ZlamlvazJBY0ZYbUo2dGhnQXNmZUdqLUxsMmpDZklqWWExWXY3RFdfUTVkMlJ0VFhEbVRjYUxlRGNUdlBqVG9YQU5iamZwQV9DY1FGemNKbWkxcGhJNmFzX3BVTmZ0a1RrQ3Zodl9pWnhwTjR4dmhUOWVFSkowNmhkX1VXX004QWVjdUJhZkxyMDU5STAtVWJPTEVa…",
+        "score": 55
       },
       {
         "id": "global-66-47KSRIO2LiO",
@@ -3410,7 +3394,7 @@
         },
         "publishedAt": "2026-06-12T18:02:00.000Z",
         "guid": "CBMiU0FVX3lxTE9sUTh5V0xWOHZZZ05kMXN1OGVsVk54a3d4a1BvV19tLUJ1QUxscnVUNXJzZDN3cWJKbENfVzlGREZYNGV5NnhXTG5UQUc5aUxaTG1v0gGEAkFVX3lxTE5DVWh6dkhBX3JTZHFQaWZnMHloZDc4MFBQX3Zra3F4MmRUYlF6OXBDWkh5a1NHYmxWRkh5M1N3NlJIV1hLcUlQUm1m…",
-        "score": 49
+        "score": 48
       },
       {
         "id": "global-7IK87ISx7KCE7J",
@@ -3461,22 +3445,6 @@
         "score": 44
       },
       {
-        "id": "global-Rzcg7JWe65GQ6r",
-        "category": "global",
-        "categoryName": "글로벌 경제",
-        "categoryIcon": "🌐",
-        "title": "G7 앞두고 중국 부른 마크롱…'무역 불균형' 입장차 여전",
-        "description": "G7 앞두고 중국 부른 마크롱…'무역 불균형' 입장차 여전 &nbsp;&nbsp; 연합뉴스",
-        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE0ydWZRMTNNWjd1TkFpd3E3eEk4Snh5eExrT1pNVDZZaVJMVGhkMDBwMVpSbVVMR1BSVF9qMHB1WGpadEp1UmhaekFJRUtkYThBbjM3MlRqZ25Udnc0bldsNdIBYEFVX3lxTE0ydWZRMTNNWjd1TkFpd3E3eEk4Snh5eExrT1pNVDZZaVJMVGhkMDBwMVpSbVVMR1BSVF9qMHB1WGpadEp1UmhaekFJRUtkYThBbjM3MlRqZ25Udnc0bldsNQ?oc=5",
-        "source": {
-          "name": "연합뉴스",
-          "url": "https://www.yna.co.kr"
-        },
-        "publishedAt": "2026-06-12T09:13:52.000Z",
-        "guid": "CBMiYEFVX3lxTE0ydWZRMTNNWjd1TkFpd3E3eEk4Snh5eExrT1pNVDZZaVJMVGhkMDBwMVpSbVVMR1BSVF9qMHB1WGpadEp1UmhaekFJRUtkYThBbjM3MlRqZ25Udnc0bldsNdIBYEFVX3lxTE0ydWZRMTNNWjd1TkFpd3E3eEk4Snh5eExrT1pNVDZZaVJMVGhkMDBwMVpSbVVMR1BSVF9qMHB1…",
-        "score": 40
-      },
-      {
         "id": "global-7Zi47KO8LCDspJ",
         "category": "global",
         "categoryName": "글로벌 경제",
@@ -3523,22 +3491,6 @@
         "publishedAt": "2026-06-12T01:56:48.000Z",
         "guid": "CBMiT0FVX3lxTE5YUjJCcmU0QUYwTDlVeWdTbmMybldZS2JZQUtFVEw5RVI2M0hMa25aSXliaEphdGRKU2xVMzZHbXEwM0pYNkFUbEd1cWphU1U",
         "score": 32
-      },
-      {
-        "id": "global-7J2867O4LCDthY",
-        "category": "global",
-        "categoryName": "글로벌 경제",
-        "categoryIcon": "🌐",
-        "title": "일본, 텅스텐 공급망 자립화 추진...중국 의존도 낮춘다 By 알파경제 alphabiz",
-        "description": "일본, 텅스텐 공급망 자립화 추진...중국 의존도 낮춘다 By 알파경제 alphabiz &nbsp;&nbsp; Investing.com 한국어",
-        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBhbEhsUUc1a1QwU2JOaXBPZkNLQlF0MlJMME5EU3YxLWZLUjUtT2hWN3otQjBGdjctbG1rMkVaOUpUM3FURVlkODFrbE9XeDVrSE5HX3k4WlFCYzJsRkg1VnJiNGxpOVVoUmhzZVNLVDE?oc=5",
-        "source": {
-          "name": "Investing.com 한국어",
-          "url": "https://kr.investing.com"
-        },
-        "publishedAt": "2026-06-12T01:22:00.000Z",
-        "guid": "CBMicEFVX3lxTFBhbEhsUUc1a1QwU2JOaXBPZkNLQlF0MlJMME5EU3YxLWZLUjUtT2hWN3otQjBGdjctbG1rMkVaOUpUM3FURVlkODFrbE9XeDVrSE5HX3k4WlFCYzJsRkg1VnJiNGxpOVVoUmhzZVNLVDE",
-        "score": 32
       }
     ],
     "policy": [
@@ -3556,7 +3508,7 @@
         },
         "publishedAt": "2026-06-13T02:00:00.000Z",
         "guid": "CBMiVkFVX3lxTE9CZHZsN1YwVldxS1BzMDF1OTJFcEw0U1NuX2dkTU4yR2lEV1c2eExkYkhRNk9nR0tYS3dFME81c0JlNkFqdzVfdE9xMHJpWnNzNGVILTRn",
-        "score": 73
+        "score": 72
       },
       {
         "id": "policy-7KO87IiY7ZSEIO",
@@ -3625,22 +3577,6 @@
         "score": 51
       },
       {
-        "id": "consumer-7KeA64Kc64usIO",
-        "category": "consumer",
-        "categoryName": "소비·유통·생활경제",
-        "categoryIcon": "🛒",
-        "title": "지난달 美 도매물가, 전년보다 6.5% 치솟아... 3년6개월만에 최대폭 상승",
-        "description": "지난달 美 도매물가, 전년보다 6.5% 치솟아... 3년6개월만에 최대폭 상승 &nbsp;&nbsp; 글로벌경제신문",
-        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE81cGMxWnZBU0N6OGlSQjU4dmktN3l1TDZpZFRRdnlQS2Ixb2ZLbU52dDhhYnNiVFVCNGNBX0lIZnJId1FRd3FqODFta25XMkRkZ2xhTE9GSVdMYnlMY283UF9ZNzZuTFBtY3dPT9IBcEFVX3lxTFBnRzZiVVhpbW5XQ1huelJVTENlYkZTQUFhaEpqSzJ6N2FGeU9CbnZrRVBVaU1MdXJYNFdYSTYza0VHSjl5bm1sNEdqUDM1enUtTlBWOGlSMEhZa2s4YnpEanFFRG1MRmlWdTFqMUhnRFk?oc=5",
-        "source": {
-          "name": "글로벌경제신문",
-          "url": "https://www.getnews.co.kr"
-        },
-        "publishedAt": "2026-06-11T22:33:19.000Z",
-        "guid": "CBMibEFVX3lxTE81cGMxWnZBU0N6OGlSQjU4dmktN3l1TDZpZFRRdnlQS2Ixb2ZLbU52dDhhYnNiVFVCNGNBX0lIZnJId1FRd3FqODFta25XMkRkZ2xhTE9GSVdMYnlMY283UF9ZNzZuTFBtY3dPT9IBcEFVX3lxTFBnRzZiVVhpbW5XQ1huelJVTENlYkZTQUFhaEpqSzJ6N2FGeU9CbnZrRVBV…",
-        "score": 45
-      },
-      {
         "id": "consumer-W-uNsOydtO2EsC",
         "category": "consumer",
         "categoryName": "소비·유통·생활경제",
@@ -3655,6 +3591,22 @@
         "publishedAt": "2026-06-12T09:15:47.000Z",
         "guid": "CBMia0FVX3lxTE1mbjBOak8xTmV3dTh6Ry1qS3hqVUdXUWNRMll4MEFOeHp5RFgxUnlBUGdkRlIxbnhlOVFKY1FQYjVfNk5wcnN4NFdFVUtyYWVNWWRFTURoOE4wVFdwRkg0RE9icmY2SkRhTjhN0gFvQVVfeXFMUHRXLXV4Y1JYcGJqRnVtQnBTRTFHbTRpbFJWek45TExuUnRQNlRZYWYtMWNj…",
         "score": 40
+      },
+      {
+        "id": "consumer-66-4IDXsm5Qg64",
+        "category": "consumer",
+        "categoryName": "소비·유통·생활경제",
+        "categoryIcon": "🛒",
+        "title": "미 5월 도매물가 전년比 6.5%↑…3년6개월만에 최대폭 상승(종합)",
+        "description": "미 5월 도매물가 전년比 6.5%↑…3년6개월만에 최대폭 상승(종합) &nbsp;&nbsp; 연합뉴스",
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9CUVdsUlFfTm9MTmFteVVxdHY4ZFFXeE9ZdkNaQTBwcVRlR1RqSEEwYzJwSkRGdDFGWm5pOHc3Ul9PeGt1RGhYTnRLQldvYTEtQWNPV2tVNEh0NVHSAWBBVV95cUxPNnZnTEM0b2VBS2RWLUN3RHJCZXVZNE84MUVZS3JaRjhPZUNvalVTMEFXWUp1OTFyNUkzQkFvU3ktYXVJSUNLemlpQXBuOEtjQmdfUUE1d0Qyc1hELXFmbHo?oc=5",
+        "source": {
+          "name": "연합뉴스",
+          "url": "https://www.yna.co.kr"
+        },
+        "publishedAt": "2026-06-11T13:25:28.000Z",
+        "guid": "CBMiW0FVX3lxTE9CUVdsUlFfTm9MTmFteVVxdHY4ZFFXeE9ZdkNaQTBwcVRlR1RqSEEwYzJwSkRGdDFGWm5pOHc3Ul9PeGt1RGhYTnRLQldvYTEtQWNPV2tVNEh0NVHSAWBBVV95cUxPNnZnTEM0b2VBS2RWLUN3RHJCZXVZNE84MUVZS3JaRjhPZUNvalVTMEFXWUp1OTFyNUkzQkFvU3ktYXVJ…",
+        "score": 36
       },
       {
         "id": "consumer-66-4IDXsm5Qg64",
@@ -3804,22 +3756,6 @@
       "score": 78
     },
     {
-      "id": "crypto-64-I64KY66y0IO",
-      "category": "crypto",
-      "categoryName": "가상자산",
-      "categoryIcon": "₿",
-      "title": "돈나무 언니가 현실적으로 밝힌 비트코인 가치는 10억원 \"왜?\"",
-      "description": "돈나무 언니가 현실적으로 밝힌 비트코인 가치는 10억원 \"왜?\" &nbsp;&nbsp; 월요신문",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBGRG51VzM0Y25EWVRqdlVwaUhVeEdyLTYxZVNGd2VBSGtoSTBVTkVlYWM1aEVTMU02dGtGY2pSSjUzV3MxaU1Ua2l0MnAzSWM3bkNMbXhxRzhRNkxPNTB6TzJSdWw4UGVudFE?oc=5",
-      "source": {
-        "name": "월요신문",
-        "url": "https://www.wolyo.co.kr"
-      },
-      "publishedAt": "2026-06-13T06:46:35.000Z",
-      "guid": "CBMiakFVX3lxTFBGRG51VzM0Y25EWVRqdlVwaUhVeEdyLTYxZVNGd2VBSGtoSTBVTkVlYWM1aEVTMU02dGtGY2pSSjUzV3MxaU1Ua2l0MnAzSWM3bkNMbXhxRzhRNkxPNTB6TzJSdWw4UGVudFE",
-      "score": 77
-    },
-    {
       "id": "global-7Jyg6rCAwrftmZ",
       "category": "global",
       "categoryName": "글로벌 경제",
@@ -3833,7 +3769,23 @@
       },
       "publishedAt": "2026-06-13T05:02:00.000Z",
       "guid": "CBMipgJBVV95cUxOZUNYU1pFNGk2VW5XWHFCaTdEU1pVeldjaHpLeHVtUnJtYng3M3ViQlRsdXR2TjRlcW85QjZuWTdzNTJsQnRCdUEwRHdYT04wXzlueEpqT0xsdW11VTZaS0JKWDM4WjlGRi1jQXV1MElzc1cydFRtVTluRHE1cnBsZ3N0TmszZXg5T3dEbVRhT19GSHEyOGE5ZVVXMjZaWXJs…",
-      "score": 76
+      "score": 75
+    },
+    {
+      "id": "company-W-uniOqwkF0g7L",
+      "category": "company",
+      "categoryName": "기업·실적·산업",
+      "categoryIcon": "🏭",
+      "title": "[마감] 코스피, 이란 종전 기대감에 4.63% 급등…8천피 탈환",
+      "description": "[마감] 코스피, 이란 종전 기대감에 4.63% 급등…8천피 탈환 &nbsp;&nbsp; MSN",
+      "url": "https://news.google.com/rss/articles/CBMi0wJBVV95cUxNazVuMWZ3OTI0R19rQkt1MVJRdE9jWU0xSU5ONFgxcTM1UUVFSDI1ajNfSnVybURTZ0RLNUlQZHd3d3RDVEdjRUU2a2djT2hjM0dHWTdxRXU3X2FBNTNROVRGS2tDd0t0N1FrWXp3Sk9NQl9LeGJVSlVvSHN4QXBVOUsyc1FJc3I5MW51ZzZGLXEyb0xUbFRqV1JvX3lMZnkzeWhJb3BtMU8xTmtCTF9XNWlteVhzY2pNZ3R3alBNTldBMlNZRDRVd2lwOUVOUy15UFFCRXhwYXNRNnV0T0lncVA5bXVnOHgwUWhTc1JzWjY1T01UenZ0bkhra3lQbmVaVjFBRmc4dlRkLUpzT3JpZ2RxVkN4Q0V4WnhoQzhic3dmX2pyZVlIOEd1N3l1cWJaNGU0dGhSalViOTdRYmhwbzBsR3Naa2hRTW44R2E1enZFUGs?oc=5",
+      "source": {
+        "name": "MSN",
+        "url": "https://www.msn.com"
+      },
+      "publishedAt": "2026-06-13T04:44:20.000Z",
+      "guid": "CBMi0wJBVV95cUxNazVuMWZ3OTI0R19rQkt1MVJRdE9jWU0xSU5ONFgxcTM1UUVFSDI1ajNfSnVybURTZ0RLNUlQZHd3d3RDVEdjRUU2a2djT2hjM0dHWTdxRXU3X2FBNTNROVRGS2tDd0t0N1FrWXp3Sk9NQl9LeGJVSlVvSHN4QXBVOUsyc1FJc3I5MW51ZzZGLXEyb0xUbFRqV1JvX3lMZnkz…",
+      "score": 75
     },
     {
       "id": "company-W01E7Y-s7Luk7I",
@@ -3881,7 +3833,7 @@
       },
       "publishedAt": "2026-06-13T02:00:00.000Z",
       "guid": "CBMiVkFVX3lxTE9CZHZsN1YwVldxS1BzMDF1OTJFcEw0U1NuX2dkTU4yR2lEV1c2eExkYkhRNk9nR0tYS3dFME81c0JlNkFqdzVfdE9xMHJpWnNzNGVILTRn",
-      "score": 73
+      "score": 72
     },
     {
       "id": "crypto-67mE7Yq47L2U7J",
@@ -3948,22 +3900,6 @@
       "score": 71
     },
     {
-      "id": "finance-7Iuc7KSR7J2A7Z",
-      "category": "finance",
-      "categoryName": "은행·증권·보험",
-      "categoryIcon": "💳",
-      "title": "시중은행 가계대출, 이달 들어 벌써 2.8조↑…'빚투'에 신용대출 1.6조 급증",
-      "description": "시중은행 가계대출, 이달 들어 벌써 2.8조↑…'빚투'에 신용대출 1.6조 급증 &nbsp;&nbsp; 뉴시스",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBib1V1RUZTQWRhOXNhSWt0czRqbEVjbmpEb3JKVnk2d0o4N0xIbzN3OTh4dEhMQW53Zlh6LTAyZDBCcHBrUy05SGN6VlZxRFBDUGhQdjFZdEc1R1QtOHF4MNIBeEFVX3lxTE1UeDhySzgxNjdMT1JTLW5HYUFlTE9tOG5QbzhDQ3lhSzhpVnhMdFVuU1pNdjRIVlpFTXdmRG5LTWE0SzluVWl0N25KWkJob2c0NFBnUFY1T1BPR0EtWWF3dnB1eWNFaEtYT1U5RkpXT2FpSDEwWVY5Xw?oc=5",
-      "source": {
-        "name": "뉴시스",
-        "url": "https://www.newsis.com"
-      },
-      "publishedAt": "2026-06-13T00:00:00.000Z",
-      "guid": "CBMiYEFVX3lxTFBib1V1RUZTQWRhOXNhSWt0czRqbEVjbmpEb3JKVnk2d0o4N0xIbzN3OTh4dEhMQW53Zlh6LTAyZDBCcHBrUy05SGN6VlZxRFBDUGhQdjFZdEc1R1QtOHF4MNIBeEFVX3lxTE1UeDhySzgxNjdMT1JTLW5HYUFlTE9tOG5QbzhDQ3lhSzhpVnhMdFVuU1pNdjRIVlpFTXdmRG5L…",
-      "score": 71
-    },
-    {
       "id": "company-W0FJIOqzqOuTnO",
       "category": "company",
       "categoryName": "기업·실적·산업",
@@ -3996,6 +3932,22 @@
       "score": 70
     },
     {
+      "id": "finance-7Iuc7KSR7J2A7Z",
+      "category": "finance",
+      "categoryName": "은행·증권·보험",
+      "categoryIcon": "💳",
+      "title": "시중은행 가계대출, 이달 들어 벌써 2.8조↑…'빚투'에 신용대출 1.6조 급증",
+      "description": "시중은행 가계대출, 이달 들어 벌써 2.8조↑…'빚투'에 신용대출 1.6조 급증 &nbsp;&nbsp; 뉴시스",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBib1V1RUZTQWRhOXNhSWt0czRqbEVjbmpEb3JKVnk2d0o4N0xIbzN3OTh4dEhMQW53Zlh6LTAyZDBCcHBrUy05SGN6VlZxRFBDUGhQdjFZdEc1R1QtOHF4MNIBeEFVX3lxTE1UeDhySzgxNjdMT1JTLW5HYUFlTE9tOG5QbzhDQ3lhSzhpVnhMdFVuU1pNdjRIVlpFTXdmRG5LTWE0SzluVWl0N25KWkJob2c0NFBnUFY1T1BPR0EtWWF3dnB1eWNFaEtYT1U5RkpXT2FpSDEwWVY5Xw?oc=5",
+      "source": {
+        "name": "뉴시스",
+        "url": "https://www.newsis.com"
+      },
+      "publishedAt": "2026-06-13T00:00:00.000Z",
+      "guid": "CBMiYEFVX3lxTFBib1V1RUZTQWRhOXNhSWt0czRqbEVjbmpEb3JKVnk2d0o4N0xIbzN3OTh4dEhMQW53Zlh6LTAyZDBCcHBrUy05SGN6VlZxRFBDUGhQdjFZdEc1R1QtOHF4MNIBeEFVX3lxTE1UeDhySzgxNjdMT1JTLW5HYUFlTE9tOG5QbzhDQ3lhSzhpVnhMdFVuU1pNdjRIVlpFTXdmRG5L…",
+      "score": 70
+    },
+    {
       "id": "market-W-uvuOq1rSDrib",
       "category": "market",
       "categoryName": "증시·시장",
@@ -4009,7 +3961,7 @@
       },
       "publishedAt": "2026-06-12T23:00:44.000Z",
       "guid": "CBMicEFVX3lxTE9Zam1ZOHpTRW5Jck1NTXpWMmNSbEZDa1F1dUdaUlEtZTJHeDR2c2dBT0FjcV9OdE1pMWlJQ1NoSDk0dUZVY21xcmZhZjNrdUM0TGl3d3dpZVRwRnpHa1dmczZiWEM3THNzaHpmOVVZOF8",
-      "score": 70
+      "score": 69
     },
     {
       "id": "market-U3BhY2VY7J2YIO",
@@ -4025,7 +3977,7 @@
       },
       "publishedAt": "2026-06-12T22:59:57.000Z",
       "guid": "CBMigwFBVV95cUxPUERTcUk1UVpLU2MtQ3BuSGxTS1ZVWWdKS0xXajhwQzY3RXNCRExFM3IwenlOV2k3RDlCVzBMWk54NmJfX3VRRC1ueUFyc25tSHhfSXg5aEVqX3J1bEMxbmt4aXhURXlCWVJDR0FPeTZBQTBvVzZCN2VKa1lBU2loYkR4dw",
-      "score": 70
+      "score": 69
     },
     {
       "id": "macro-Wzbsm5Qg65GY7K",
@@ -4060,22 +4012,6 @@
       "score": 64
     },
     {
-      "id": "company-7Iqk7Y6Y7J207I",
-      "category": "company",
-      "categoryName": "기업·실적·산업",
-      "categoryIcon": "🏭",
-      "title": "스페이스X IPO 흥행...SEC 문서상 미래에셋 4750억원 규모",
-      "description": "스페이스X IPO 흥행...SEC 문서상 미래에셋 4750억원 규모 &nbsp;&nbsp; 월요신문",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFA4MnRBVV9QTTJOd3BWTnFvVEJ6cU5uOTNDNXdWMzJfdmh4UDIzYV9famxZc0lzYjFwUzBjejNvYTRrU0x0RkV6bVE3TmRMa0MwbHA2NDNhcGN6ZmFFSy1ibXRiZElOWVUyNkE?oc=5",
-      "source": {
-        "name": "월요신문",
-        "url": "https://www.wolyo.co.kr"
-      },
-      "publishedAt": "2026-06-13T00:57:51.000Z",
-      "guid": "CBMiakFVX3lxTFA4MnRBVV9QTTJOd3BWTnFvVEJ6cU5uOTNDNXdWMzJfdmh4UDIzYV9famxZc0lzYjFwUzBjejNvYTRrU0x0RkV6bVE3TmRMa0MwbHA2NDNhcGN6ZmFFSy1ibXRiZElOWVUyNkE",
-      "score": 64
-    },
-    {
       "id": "macro-67mE7Yq47L2U7J",
       "category": "macro",
       "categoryName": "금리·환율·거시",
@@ -4092,19 +4028,35 @@
       "score": 64
     },
     {
-      "id": "finance-7J2067KI7KO8IO",
-      "category": "finance",
-      "categoryName": "은행·증권·보험",
-      "categoryIcon": "💳",
-      "title": "이번주 국내 주요 금융일정(6.15~6.19)",
-      "description": "이번주 국내 주요 금융일정(6.15~6.19) &nbsp;&nbsp; 뉴스핌",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9RSG1tWkhWNW1LLU5PaDlGSzNZeEc4UVlDSlhHNG5mRnFZWWZGMWN6QS1GNjhFS2l0MDhXYTdfOFBTX2hSUUJKeEdMREVmT0xQbzRTeG1tTndfN21x?oc=5",
+      "id": "company-IuS4rSwg7J2464",
+      "category": "company",
+      "categoryName": "기업·실적·산업",
+      "categoryIcon": "🏭",
+      "title": "\"中, 인니에 니켈 현지 공급망 구축…수출통제에 오히려 수혜\" - 한국무역협회-KITA.NET",
+      "description": "\"中, 인니에 니켈 현지 공급망 구축…수출통제에 오히려 수혜\" &nbsp;&nbsp; 한국무역협회-KITA.NET",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPZkFhcGprUkZxZmhnRnVGSVduUkpRb2NUWUh2QmVXSTFmellTV2U4OGdzelZVZ2lwZzVGcWxySEFyMDYzR19GR1lqb0JZMXJ0RTZhU3JQUFh6bVI4Rk5kUmRUN1pvcUFieVlWcjNGcjFBZTFqZG4zUzg1N3o3MjVydktiXzU0TjduUnpxdA?oc=5",
       "source": {
-        "name": "뉴스핌",
-        "url": "https://www.newspim.com"
+        "name": "한국무역협회-KITA.NET",
+        "url": "https://www.kita.net"
       },
-      "publishedAt": "2026-06-13T08:00:00.000Z",
-      "guid": "CBMiXEFVX3lxTE9RSG1tWkhWNW1LLU5PaDlGSzNZeEc4UVlDSlhHNG5mRnFZWWZGMWN6QS1GNjhFS2l0MDhXYTdfOFBTX2hSUUJKeEdMREVmT0xQbzRTeG1tTndfN21x",
+      "publishedAt": "2026-06-13T08:49:07.000Z",
+      "guid": "CBMijAFBVV95cUxPZkFhcGprUkZxZmhnRnVGSVduUkpRb2NUWUh2QmVXSTFmellTV2U4OGdzelZVZ2lwZzVGcWxySEFyMDYzR19GR1lqb0JZMXJ0RTZhU3JQUFh6bVI4Rk5kUmRUN1pvcUFieVlWcjNGcjFBZTFqZG4zUzg1N3o3MjVydktiXzU0TjduUnpxdA",
+      "score": 63
+    },
+    {
+      "id": "company-7Iqk7Y6Y7J207I",
+      "category": "company",
+      "categoryName": "기업·실적·산업",
+      "categoryIcon": "🏭",
+      "title": "스페이스X IPO 흥행...SEC 문서상 미래에셋 4750억원 규모",
+      "description": "스페이스X IPO 흥행...SEC 문서상 미래에셋 4750억원 규모 &nbsp;&nbsp; 월요신문",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFA4MnRBVV9QTTJOd3BWTnFvVEJ6cU5uOTNDNXdWMzJfdmh4UDIzYV9famxZc0lzYjFwUzBjejNvYTRrU0x0RkV6bVE3TmRMa0MwbHA2NDNhcGN6ZmFFSy1ibXRiZElOWVUyNkE?oc=5",
+      "source": {
+        "name": "월요신문",
+        "url": "https://www.wolyo.co.kr"
+      },
+      "publishedAt": "2026-06-13T00:57:51.000Z",
+      "guid": "CBMiakFVX3lxTFA4MnRBVV9QTTJOd3BWTnFvVEJ6cU5uOTNDNXdWMzJfdmh4UDIzYV9famxZc0lzYjFwUzBjejNvYTRrU0x0RkV6bVE3TmRMa0MwbHA2NDNhcGN6ZmFFSy1ibXRiZElOWVUyNkE",
       "score": 63
     },
     {
@@ -4156,54 +4108,6 @@
       "score": 63
     },
     {
-      "id": "company-W0lQT-yxl10gNu",
-      "category": "company",
-      "categoryName": "기업·실적·산업",
-      "categoryIcon": "🏭",
-      "title": "[IPO챗] 6월 셋째주 공모주 청약 2곳·수요예측 2곳",
-      "description": "[IPO챗] 6월 셋째주 공모주 청약 2곳·수요예측 2곳 &nbsp;&nbsp; 연합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBTdzVUM2VQSHRIRk1jbnlwUEwzU04temtYNW9jM0Z3WXBNRS1lUFpjd05Wb2ZUblpHczJCODVlRms3MjZlQWxUbTBkZGY5eVRUS0VydkNLMGlPV1dwNHlDONIBYEFVX3lxTFBTdzVUM2VQSHRIRk1jbnlwUEwzU04temtYNW9jM0Z3WXBNRS1lUFpjd05Wb2ZUblpHczJCODVlRms3MjZlQWxUbTBkZGY5eVRUS0VydkNLMGlPV1dwNHlDOA?oc=5",
-      "source": {
-        "name": "연합뉴스",
-        "url": "https://www.yna.co.kr"
-      },
-      "publishedAt": "2026-06-13T00:00:02.000Z",
-      "guid": "CBMiYEFVX3lxTFBTdzVUM2VQSHRIRk1jbnlwUEwzU04temtYNW9jM0Z3WXBNRS1lUFpjd05Wb2ZUblpHczJCODVlRms3MjZlQWxUbTBkZGY5eVRUS0VydkNLMGlPV1dwNHlDONIBYEFVX3lxTFBTdzVUM2VQSHRIRk1jbnlwUEwzU04temtYNW9jM0Z3WXBNRS1lUFpjd05Wb2ZUblpHczJCODVl…",
-      "score": 63
-    },
-    {
-      "id": "company-W-uNsOyKpO2BrO",
-      "category": "company",
-      "categoryName": "기업·실적·산업",
-      "categoryIcon": "🏭",
-      "title": "[데스크칼럼] AI 3대 강국의 조건, GPU가 아닌 생태계",
-      "description": "[데스크칼럼] AI 3대 강국의 조건, GPU가 아닌 생태계 &nbsp;&nbsp; 서울파이낸스",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1RWnpxSUphVmR2dms5aFBaYnM4Z1dyRVEwNHJ0ZVItczRFVlpSLVFOQ1FQVzZZNjB4OUdsa194MkRuUnhpYXkzbHpyVy1MWXlreU1HRTE2Nm5pbnFWS2RReWVwcFZOOEpvcVE?oc=5",
-      "source": {
-        "name": "서울파이낸스",
-        "url": "https://www.seoulfn.com"
-      },
-      "publishedAt": "2026-06-13T00:00:00.000Z",
-      "guid": "CBMiakFVX3lxTE1RWnpxSUphVmR2dms5aFBaYnM4Z1dyRVEwNHJ0ZVItczRFVlpSLVFOQ1FQVzZZNjB4OUdsa194MkRuUnhpYXkzbHpyVy1MWXlreU1HRTE2Nm5pbnFWS2RReWVwcFZOOEpvcVE",
-      "score": 63
-    },
-    {
-      "id": "crypto-IuuUlOyngO2EuC",
-      "category": "crypto",
-      "categoryName": "가상자산",
-      "categoryIcon": "₿",
-      "title": "\"디지털 금이라더니\"…약세장은 언제 끝날까 [e가상자산]",
-      "description": "\"디지털 금이라더니\"…약세장은 언제 끝날까 [e가상자산] &nbsp;&nbsp; 이투데이",
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5Hc3NSNjlZeF8tQWRQZUZlOFFCTE9YbVVJcmREWFo2VVdtMTVYUk55TWVBSmM3Rk5pMWF4ZmM2bHA0T2hFUmFBcmM2WkVUdTZzWDZpbA?oc=5",
-      "source": {
-        "name": "이투데이",
-        "url": "https://www.etoday.co.kr"
-      },
-      "publishedAt": "2026-06-13T00:00:00.000Z",
-      "guid": "CBMiVEFVX3lxTE5Hc3NSNjlZeF8tQWRQZUZlOFFCTE9YbVVJcmREWFo2VVdtMTVYUk55TWVBSmM3Rk5pMWF4ZmM2bHA0T2hFUmFBcmM2WkVUdTZzWDZpbA",
-      "score": 63
-    },
-    {
       "id": "market-7KSR64-ZIOyihe",
       "category": "market",
       "categoryName": "증시·시장",
@@ -4236,35 +4140,83 @@
       "score": 63
     },
     {
+      "id": "finance-7J2067KI7KO8IO",
+      "category": "finance",
+      "categoryName": "은행·증권·보험",
+      "categoryIcon": "💳",
+      "title": "이번주 국내 주요 금융일정(6.15~6.19)",
+      "description": "이번주 국내 주요 금융일정(6.15~6.19) &nbsp;&nbsp; 뉴스핌",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9RSG1tWkhWNW1LLU5PaDlGSzNZeEc4UVlDSlhHNG5mRnFZWWZGMWN6QS1GNjhFS2l0MDhXYTdfOFBTX2hSUUJKeEdMREVmT0xQbzRTeG1tTndfN21x?oc=5",
+      "source": {
+        "name": "뉴스핌",
+        "url": "https://www.newspim.com"
+      },
+      "publishedAt": "2026-06-13T08:00:00.000Z",
+      "guid": "CBMiXEFVX3lxTE9RSG1tWkhWNW1LLU5PaDlGSzNZeEc4UVlDSlhHNG5mRnFZWWZGMWN6QS1GNjhFS2l0MDhXYTdfOFBTX2hSUUJKeEdMREVmT0xQbzRTeG1tTndfN21x",
+      "score": 62
+    },
+    {
+      "id": "company-W0lQT-yxl10gNu",
+      "category": "company",
+      "categoryName": "기업·실적·산업",
+      "categoryIcon": "🏭",
+      "title": "[IPO챗] 6월 셋째주 공모주 청약 2곳·수요예측 2곳",
+      "description": "[IPO챗] 6월 셋째주 공모주 청약 2곳·수요예측 2곳 &nbsp;&nbsp; 연합뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBTdzVUM2VQSHRIRk1jbnlwUEwzU04temtYNW9jM0Z3WXBNRS1lUFpjd05Wb2ZUblpHczJCODVlRms3MjZlQWxUbTBkZGY5eVRUS0VydkNLMGlPV1dwNHlDONIBYEFVX3lxTFBTdzVUM2VQSHRIRk1jbnlwUEwzU04temtYNW9jM0Z3WXBNRS1lUFpjd05Wb2ZUblpHczJCODVlRms3MjZlQWxUbTBkZGY5eVRUS0VydkNLMGlPV1dwNHlDOA?oc=5",
+      "source": {
+        "name": "연합뉴스",
+        "url": "https://www.yna.co.kr"
+      },
+      "publishedAt": "2026-06-13T00:00:02.000Z",
+      "guid": "CBMiYEFVX3lxTFBTdzVUM2VQSHRIRk1jbnlwUEwzU04temtYNW9jM0Z3WXBNRS1lUFpjd05Wb2ZUblpHczJCODVlRms3MjZlQWxUbTBkZGY5eVRUS0VydkNLMGlPV1dwNHlDONIBYEFVX3lxTFBTdzVUM2VQSHRIRk1jbnlwUEwzU04temtYNW9jM0Z3WXBNRS1lUFpjd05Wb2ZUblpHczJCODVl…",
+      "score": 62
+    },
+    {
+      "id": "company-W-uNsOyKpO2BrO",
+      "category": "company",
+      "categoryName": "기업·실적·산업",
+      "categoryIcon": "🏭",
+      "title": "[데스크칼럼] AI 3대 강국의 조건, GPU가 아닌 생태계",
+      "description": "[데스크칼럼] AI 3대 강국의 조건, GPU가 아닌 생태계 &nbsp;&nbsp; 서울파이낸스",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1RWnpxSUphVmR2dms5aFBaYnM4Z1dyRVEwNHJ0ZVItczRFVlpSLVFOQ1FQVzZZNjB4OUdsa194MkRuUnhpYXkzbHpyVy1MWXlreU1HRTE2Nm5pbnFWS2RReWVwcFZOOEpvcVE?oc=5",
+      "source": {
+        "name": "서울파이낸스",
+        "url": "https://www.seoulfn.com"
+      },
+      "publishedAt": "2026-06-13T00:00:00.000Z",
+      "guid": "CBMiakFVX3lxTE1RWnpxSUphVmR2dms5aFBaYnM4Z1dyRVEwNHJ0ZVItczRFVlpSLVFOQ1FQVzZZNjB4OUdsa194MkRuUnhpYXkzbHpyVy1MWXlreU1HRTE2Nm5pbnFWS2RReWVwcFZOOEpvcVE",
+      "score": 62
+    },
+    {
+      "id": "crypto-IuuUlOyngO2EuC",
+      "category": "crypto",
+      "categoryName": "가상자산",
+      "categoryIcon": "₿",
+      "title": "\"디지털 금이라더니\"…약세장은 언제 끝날까 [e가상자산]",
+      "description": "\"디지털 금이라더니\"…약세장은 언제 끝날까 [e가상자산] &nbsp;&nbsp; 이투데이",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5Hc3NSNjlZeF8tQWRQZUZlOFFCTE9YbVVJcmREWFo2VVdtMTVYUk55TWVBSmM3Rk5pMWF4ZmM2bHA0T2hFUmFBcmM2WkVUdTZzWDZpbA?oc=5",
+      "source": {
+        "name": "이투데이",
+        "url": "https://www.etoday.co.kr"
+      },
+      "publishedAt": "2026-06-13T00:00:00.000Z",
+      "guid": "CBMiVEFVX3lxTE5Hc3NSNjlZeF8tQWRQZUZlOFFCTE9YbVVJcmREWFo2VVdtMTVYUk55TWVBSmM3Rk5pMWF4ZmM2bHA0T2hFUmFBcmM2WkVUdTZzWDZpbA",
+      "score": 62
+    },
+    {
       "id": "company-SEJNIOyghOyfge",
       "category": "company",
       "categoryName": "기업·실적·산업",
       "categoryIcon": "🏭",
       "title": "HBM 전쟁의 숨은 승자… 후공정 장비주 제너셈 급부상",
       "description": "HBM 전쟁의 숨은 승자… 후공정 장비주 제너셈 급부상 &nbsp;&nbsp; 핀포인트뉴스",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5wWHgwcG9DMUtwdkxyLTRIakxLT2Y2eUlmZ1J1WjhsRERFUlpyeHc2MnJoS1F4UzEtcGc5bGFZVFNOVjF6QkRwZUROQTRIdmdPdklGZThqbWc1dWJjeU5ucnFtcEFUNHVCcVk3eWNUaHVONlXSAXdBVV95cUxPc21YRFF2WFJ4czczeS0zV1BDTHVmZmxkU1FHczF6SnU0ekIzMEhfNmNXald1eXE1QnFNSWJ2ek9NSHg2bWVzNG1kbC1wdXFDbHZYSG9Hd3VtdXNRYUxOZnEwQmR1dF9jaUtvNTZ2MW9La1AzTTA0NA?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9zbVhEUXZYUnhzNzN5LTNXUENMdWZmbGRTUUdzMXpKdTR6QjMwSF82Y1dqV3V5cTVCcU1JYnZ6T01IeDZtZXM0bWRsLXB1cUNsdlhIb0d3dW11c1FhTE5mcTBCZHV0X2NpS281NnYxb0trUDNNMDQ00gF3QVVfeXFMT3NtWERRdlhSeHM3M3ktM1dQQ0x1ZmZsZFNRR3Mxekp1NHpCMzBIXzZjV2pXdXlxNUJxTUlidnpPTUh4Nm1lczRtZGwtcHVxQ2x2WEhvR3d1bXVzUWFMTmZxMEJkdXRfY2lLbzU2djFvS2tQM00wNDQ?oc=5",
       "source": {
         "name": "핀포인트뉴스",
         "url": "https://www.pinpointnews.co.kr"
       },
-      "publishedAt": "2026-06-12T23:45:05.000Z",
-      "guid": "CBMic0FVX3lxTE5wWHgwcG9DMUtwdkxyLTRIakxLT2Y2eUlmZ1J1WjhsRERFUlpyeHc2MnJoS1F4UzEtcGc5bGFZVFNOVjF6QkRwZUROQTRIdmdPdklGZThqbWc1dWJjeU5ucnFtcEFUNHVCcVk3eWNUaHVONlXSAXdBVV95cUxPc21YRFF2WFJ4czczeS0zV1BDTHVmZmxkU1FHczF6SnU0ekIz…",
-      "score": 62
-    },
-    {
-      "id": "market-J-yyreqwnOq1rO",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "'청개구리 매매'…하락에 사고 상승에 파는 개미[코스피 덮친 변동성①]",
-      "description": "'청개구리 매매'…하락에 사고 상승에 파는 개미[코스피 덮친 변동성①] &nbsp;&nbsp; 뉴시스",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5FNGdOeG1GTHJoMk5CcGpWVUJsY1JxbVB5MjJkWXJyMDJBeGpkaXhJRVVWOHF1UTdzTTE5d0lYOWdKcHRETHpEODhOX1FTUjlYSTVycTFGQ1JFQlI5NnJubtIBeEFVX3lxTE1ud0ZHVHBGVUo3c0daTDlkbGE1RTZ2MXJ1VUNJbWp0SjNFU25HWnVjN0tRQ0VXOGRVYmlMU1pkS3J1UkpTUGo0ZE5QcHJEdWlTLXExR1VVTGdRYTYzR285ci1wRWxwMEF2N0dOTUVuUWkwQ2tONVh0Yg?oc=5",
-      "source": {
-        "name": "뉴시스",
-        "url": "https://www.newsis.com"
-      },
-      "publishedAt": "2026-06-12T23:00:00.000Z",
-      "guid": "CBMiYEFVX3lxTE5FNGdOeG1GTHJoMk5CcGpWVUJsY1JxbVB5MjJkWXJyMDJBeGpkaXhJRVVWOHF1UTdzTTE5d0lYOWdKcHRETHpEODhOX1FTUjlYSTVycTFGQ1JFQlI5NnJubtIBeEFVX3lxTE1ud0ZHVHBGVUo3c0daTDlkbGE1RTZ2MXJ1VUNJbWp0SjNFU25HWnVjN0tRQ0VXOGRVYmlMU1pk…",
+      "publishedAt": "2026-06-12T23:46:49.000Z",
+      "guid": "CBMid0FVX3lxTE9zbVhEUXZYUnhzNzN5LTNXUENMdWZmbGRTUUdzMXpKdTR6QjMwSF82Y1dqV3V5cTVCcU1JYnZ6T01IeDZtZXM0bWRsLXB1cUNsdlhIb0d3dW11c1FhTE5mcTBCZHV0X2NpS281NnYxb0trUDNNMDQ00gF3QVVfeXFMT3NtWERRdlhSeHM3M3ktM1dQQ0x1ZmZsZFNRR3Mxekp1…",
       "score": 62
     },
     {
@@ -4284,22 +4236,6 @@
       "score": 62
     },
     {
-      "id": "company-QUkg7Je07ZKNIO",
-      "category": "company",
-      "categoryName": "기업·실적·산업",
-      "categoryIcon": "🏭",
-      "title": "AI 열풍 올라탄 반도체…10일 만에 수출 111억달러 '사상 최대'",
-      "description": "AI 열풍 올라탄 반도체…10일 만에 수출 111억달러 '사상 최대' &nbsp;&nbsp; 뉴스피릿",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBtbFdUb3dNbE5tUFNkVWhMWjdhOUQ3aWtzYTV0cC1TZ3o5d1dkdTcybElDV2xHWDZZNE9KVXJyMS1hOUc4Y1lMWkI4enZodlM3WEdwTC00OWRxdXBjQXVrVVZkTGRCYncyVjNz?oc=5",
-      "source": {
-        "name": "뉴스피릿",
-        "url": "https://www.newsspirit.kr"
-      },
-      "publishedAt": "2026-06-11T15:00:00.000Z",
-      "guid": "CBMia0FVX3lxTFBtbFdUb3dNbE5tUFNkVWhMWjdhOUQ3aWtzYTV0cC1TZ3o5d1dkdTcybElDV2xHWDZZNE9KVXJyMS1hOUc4Y1lMWkI4enZodlM3WEdwTC00OWRxdXBjQXVrVVZkTGRCYncyVjNz",
-      "score": 62
-    },
-    {
       "id": "company-7Iqk7Y6Y7J207I",
       "category": "company",
       "categoryName": "기업·실적·산업",
@@ -4313,6 +4249,22 @@
       },
       "publishedAt": "2026-06-13T06:32:05.000Z",
       "guid": "CBMibkFVX3lxTE1Pbk5tWV9mSFd5UEpsSXZUZEstSjllRElqdDI5bGI3R0tzUGZRNTNXcFRhSzNPRzZadGxNYTFxOTd6VVo0SS1aV2xneWlnZG4tZExyXzQzbzVJcERNT043UDlDZk8tTnkwNUdQc3hR0gFuQVVfeXFMTU9uTm1ZX2ZIV3lQSmxJdlRkSy1KOWVESWp0MjlsYjdHS3NQZlE1M1dw…",
+      "score": 61
+    },
+    {
+      "id": "market-J-yyreqwnOq1rO",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "'청개구리 매매'…하락에 사고 상승에 파는 개미[코스피 덮친 변동성①]",
+      "description": "'청개구리 매매'…하락에 사고 상승에 파는 개미[코스피 덮친 변동성①] &nbsp;&nbsp; 뉴시스",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5FNGdOeG1GTHJoMk5CcGpWVUJsY1JxbVB5MjJkWXJyMDJBeGpkaXhJRVVWOHF1UTdzTTE5d0lYOWdKcHRETHpEODhOX1FTUjlYSTVycTFGQ1JFQlI5NnJubtIBeEFVX3lxTE1ud0ZHVHBGVUo3c0daTDlkbGE1RTZ2MXJ1VUNJbWp0SjNFU25HWnVjN0tRQ0VXOGRVYmlMU1pkS3J1UkpTUGo0ZE5QcHJEdWlTLXExR1VVTGdRYTYzR285ci1wRWxwMEF2N0dOTUVuUWkwQ2tONVh0Yg?oc=5",
+      "source": {
+        "name": "뉴시스",
+        "url": "https://www.newsis.com"
+      },
+      "publishedAt": "2026-06-12T23:00:00.000Z",
+      "guid": "CBMiYEFVX3lxTE5FNGdOeG1GTHJoMk5CcGpWVUJsY1JxbVB5MjJkWXJyMDJBeGpkaXhJRVVWOHF1UTdzTTE5d0lYOWdKcHRETHpEODhOX1FTUjlYSTVycTFGQ1JFQlI5NnJubtIBeEFVX3lxTE1ud0ZHVHBGVUo3c0daTDlkbGE1RTZ2MXJ1VUNJbWp0SjNFU25HWnVjN0tRQ0VXOGRVYmlMU1pk…",
       "score": 61
     },
     {
@@ -4332,22 +4284,6 @@
       "score": 61
     },
     {
-      "id": "market-J-yKpO2OmOydtO",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "'스페이스X 상장' 뉴욕증시 상승…나스닥 0.3%↑",
-      "description": "'스페이스X 상장' 뉴욕증시 상승…나스닥 0.3%↑ &nbsp;&nbsp; 중소기업신문",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9PZ2FUNmNkZ2s2V0g5QVgtWDh1N09wLVdlTFpuNXNjWjA3WDRHVi1rUUVKYVpNVkVhMW0yZnJGY1JzblNtdzF5ZkdoLVBuZEJ5bHlSUVBtUGFWZThjU3Y5VGRycGRKZC1XMl9xag?oc=5",
-      "source": {
-        "name": "중소기업신문",
-        "url": "http://www.smedaily.co.kr"
-      },
-      "publishedAt": "2026-06-12T21:58:55.000Z",
-      "guid": "CBMibEFVX3lxTE9PZ2FUNmNkZ2s2V0g5QVgtWDh1N09wLVdlTFpuNXNjWjA3WDRHVi1rUUVKYVpNVkVhMW0yZnJGY1JzblNtdzF5ZkdoLVBuZEJ5bHlSUVBtUGFWZThjU3Y5VGRycGRKZC1XMl9xag",
-      "score": 61
-    },
-    {
       "id": "crypto-6rGw656Y7IaMIO",
       "category": "crypto",
       "categoryName": "가상자산",
@@ -4364,19 +4300,19 @@
       "score": 61
     },
     {
-      "id": "macro-7ZWc7J2AIOy0ne",
-      "category": "macro",
-      "categoryName": "금리·환율·거시",
-      "categoryIcon": "🏦",
-      "title": "한은 총재 \"물가안정 우선\"…7월 금리인상 기정사실화",
-      "description": "한은 총재 \"물가안정 우선\"…7월 금리인상 기정사실화 &nbsp;&nbsp; 위키리크스한국",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFAyZTFTMS1vbW03SjhTYjFYWUYxMVp3OVFYUjVwMHQtN1c4dHNoSEcxV05GdTRva0RzSjBGYld1V0cybFpkSm92anVfMHRLN1Zfbk9oRUZJaERJcHJLaFdDdFV2UHIzZ2RTSUEyZVZkMG4?oc=5",
+      "id": "company-QUkg7Je07ZKNIO",
+      "category": "company",
+      "categoryName": "기업·실적·산업",
+      "categoryIcon": "🏭",
+      "title": "AI 열풍 올라탄 반도체…10일 만에 수출 111억달러 '사상 최대'",
+      "description": "AI 열풍 올라탄 반도체…10일 만에 수출 111억달러 '사상 최대' &nbsp;&nbsp; 뉴스피릿",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBtbFdUb3dNbE5tUFNkVWhMWjdhOUQ3aWtzYTV0cC1TZ3o5d1dkdTcybElDV2xHWDZZNE9KVXJyMS1hOUc4Y1lMWkI4enZodlM3WEdwTC00OWRxdXBjQXVrVVZkTGRCYncyVjNz?oc=5",
       "source": {
-        "name": "위키리크스한국",
-        "url": "https://www.wikileaks-kr.org"
+        "name": "뉴스피릿",
+        "url": "https://www.newsspirit.kr"
       },
-      "publishedAt": "2026-06-12T06:27:17.000Z",
-      "guid": "CBMicEFVX3lxTFAyZTFTMS1vbW03SjhTYjFYWUYxMVp3OVFYUjVwMHQtN1c4dHNoSEcxV05GdTRva0RzSjBGYld1V0cybFpkSm92anVfMHRLN1Zfbk9oRUZJaERJcHJLaFdDdFV2UHIzZ2RTSUEyZVZkMG4",
+      "publishedAt": "2026-06-11T15:00:00.000Z",
+      "guid": "CBMia0FVX3lxTFBtbFdUb3dNbE5tUFNkVWhMWjdhOUQ3aWtzYTV0cC1TZ3o5d1dkdTcybElDV2xHWDZZNE9KVXJyMS1hOUc4Y1lMWkI4enZodlM3WEdwTC00OWRxdXBjQXVrVVZkTGRCYncyVjNz",
       "score": 61
     },
     {
@@ -4396,6 +4332,22 @@
       "score": 60
     },
     {
+      "id": "market-J-yKpO2OmOydtO",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "'스페이스X 상장' 뉴욕증시 상승…나스닥 0.3%↑",
+      "description": "'스페이스X 상장' 뉴욕증시 상승…나스닥 0.3%↑ &nbsp;&nbsp; 중소기업신문",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9PZ2FUNmNkZ2s2V0g5QVgtWDh1N09wLVdlTFpuNXNjWjA3WDRHVi1rUUVKYVpNVkVhMW0yZnJGY1JzblNtdzF5ZkdoLVBuZEJ5bHlSUVBtUGFWZThjU3Y5VGRycGRKZC1XMl9xag?oc=5",
+      "source": {
+        "name": "중소기업신문",
+        "url": "http://www.smedaily.co.kr"
+      },
+      "publishedAt": "2026-06-12T21:58:55.000Z",
+      "guid": "CBMibEFVX3lxTE9PZ2FUNmNkZ2s2V0g5QVgtWDh1N09wLVdlTFpuNXNjWjA3WDRHVi1rUUVKYVpNVkVhMW0yZnJGY1JzblNtdzF5ZkdoLVBuZEJ5bHlSUVBtUGFWZThjU3Y5VGRycGRKZC1XMl9xag",
+      "score": 60
+    },
+    {
       "id": "company-Iu2FjOyKrOudvO",
       "category": "company",
       "categoryName": "기업·실적·산업",
@@ -4409,7 +4361,7 @@
       },
       "publishedAt": "2026-06-12T21:00:02.000Z",
       "guid": "CBMiWkFVX3lxTE1sU1hIT3N5X2RnZE4xbzBENk5USzBBbXctUHNQMW00QmVLTk9zbkd1bTExZW1lN3prajVRXzYxOEhvaGtxOEpHdjhzMjhHamJ0d0hWZzR4R0hwZ9IBVEFVX3lxTE55bmJWUmxVVVhLUmxBU21HTER5YmFtZVZ5blpBb2NOYkdwbEFUWW8tNmgxd2FBNnhQNm5vQks1LVRyQmdQ…",
-      "score": 60
+      "score": 59
     },
     {
       "id": "crypto-67mE7Yq47L2U7J",
@@ -4425,7 +4377,7 @@
       },
       "publishedAt": "2026-06-12T21:00:00.000Z",
       "guid": "CBMicEFVX3lxTE1ZR196dGV2dUVkNkM3SkNqeFhQN0t4UlFUT1pkdFlseEFfclN6SzJXa2pqOGw4Ny1CMmxLc19VQ3c4RjNtYWpWRVpKSzRWekxJWUN4Z1BFY3lmeGVMY245WFFuVmNwRlhkRGtiQWxiLWLSAXRBVV95cUxOanZDcFhKam1TMExDSzF1UmpyUWV5MmZ4Yk45RUQyLU1XWi1Ua3Bi…",
-      "score": 60
+      "score": 59
     },
     {
       "id": "crypto-7Iqk7YWM7J2067",
@@ -4498,13 +4450,13 @@
       "categoryIcon": "💳",
       "title": "6·3 지선 이후 불붙은 기업은행 대구 이전…현실화될까",
       "description": "6·3 지선 이후 불붙은 기업은행 대구 이전…현실화될까 &nbsp;&nbsp; 포인트데일리",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1acVctR1kzaHFWQmJ4b01NamhzZENxSXhhRHEyVmhiQk5pZ2RtdEU4bExQQmx2ZS1BdFAzcGRmZFZ6c0pTZTc1eXp3M0FEMWg5QjVNbkJ5bF9idVpiN0NQQUszbE5EcWhxNlp2N2tUaFDSAXRBVV95cUxPdDlnRTlKRDhDTlFGc0hjUm9SMzRYT05aYm0xd19kNGZIbDhhRjZmVXg4RUxBZWFlRHl3ekdLTTZUQ05nUXA5bXhWQkZScHZCOFU3ZGsxSkhiNGY3U0ZoVFEyZDVSMFUxREo1b0hsdW5ySWtBQg?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE90OWdFOUpEOENOUUZzSGNSb1IzNFhPTlpibTF3X2Q0ZkhsOGFGNmZVeDhFTEFlYWVEeXd6R0tNNlRDTmdRcDlteFZCRlJwdkI4VTdkazFKSGI0ZjdTRmhUUTJkNVIwVTFESjVvSGx1bnJJa0FC0gF0QVVfeXFMT3Q5Z0U5SkQ4Q05RRnNIY1JvUjM0WE9OWmJtMXdfZDRmSGw4YUY2ZlV4OEVMQWVhZUR5d3pHS002VENOZ1FwOW14VkJGUnB2QjhVN2RrMUpIYjRmN1NGaFRRMmQ1UjBVMURKNW9IbHVucklrQUI?oc=5",
       "source": {
         "name": "포인트데일리",
         "url": "https://www.pointdaily.co.kr"
       },
-      "publishedAt": "2026-06-12T19:00:00.000Z",
-      "guid": "CBMicEFVX3lxTE1acVctR1kzaHFWQmJ4b01NamhzZENxSXhhRHEyVmhiQk5pZ2RtdEU4bExQQmx2ZS1BdFAzcGRmZFZ6c0pTZTc1eXp3M0FEMWg5QjVNbkJ5bF9idVpiN0NQQUszbE5EcWhxNlp2N2tUaFDSAXRBVV95cUxPdDlnRTlKRDhDTlFGc0hjUm9SMzRYT05aYm0xd19kNGZIbDhhRjZm…",
+      "publishedAt": "2026-06-12T19:19:36.000Z",
+      "guid": "CBMidEFVX3lxTE90OWdFOUpEOENOUUZzSGNSb1IzNFhPTlpibTF3X2Q0ZkhsOGFGNmZVeDhFTEFlYWVEeXd6R0tNNlRDTmdRcDlteFZCRlJwdkI4VTdkazFKSGI0ZjdTRmhUUTJkNVIwVTFESjVvSGx1bnJJa0FC0gF0QVVfeXFMT3Q5Z0U5SkQ4Q05RRnNIY1JvUjM0WE9OWmJtMXdfZDRmSGw4…",
       "score": 58
     },
     {
@@ -4604,6 +4556,38 @@
       "score": 56
     },
     {
+      "id": "company-QUnCt-uwmOuPhO",
+      "category": "company",
+      "categoryName": "기업·실적·산업",
+      "categoryIcon": "🏭",
+      "title": "AI·반도체 투자 해법 제시...iM증권, 우수고객 대상 하반기 전략 세미나",
+      "description": "AI·반도체 투자 해법 제시...iM증권, 우수고객 대상 하반기 전략 세미나 &nbsp;&nbsp; 핀포인트뉴스",
+      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5BZmdCOUk0em56WktLbVM2VUliVWlsSjI5ZjNTR2RGMTVVejdxU3pwYWNPWWhhV1luODVfVVBObDlXdTlUZi1XcUtJZjN4M05jeTZIY1NZazJFNFlQOGVxOXZVZXN3aHJkcVN6MXpKdnVYRlJCaWRB0gF3QVVfeXFMTkFmZ0I5STR6bnpaS0ttUzZVSWJVaWxKMjlmM1NHZEYxNVV6N3FTenBhY09ZaGFXWW44NV9VUE5sOVd1OVRmLVdxS0lmM3gzTmN5NkhjU1lrMkU0WVA4ZXE5dlVlc3docmRxU3oxekp2dVhGUkJpZEE?oc=5",
+      "source": {
+        "name": "핀포인트뉴스",
+        "url": "https://www.pinpointnews.co.kr"
+      },
+      "publishedAt": "2026-06-12T01:23:46.000Z",
+      "guid": "CBMid0FVX3lxTE5BZmdCOUk0em56WktLbVM2VUliVWlsSjI5ZjNTR2RGMTVVejdxU3pwYWNPWWhhV1luODVfVVBObDlXdTlUZi1XcUtJZjN4M05jeTZIY1NZazJFNFlQOGVxOXZVZXN3aHJkcVN6MXpKdnVYRlJCaWRB0gF3QVVfeXFMTkFmZ0I5STR6bnpaS0ttUzZVSWJVaWxKMjlmM1NHZEYx…",
+      "score": 56
+    },
+    {
+      "id": "global-7IS46rOEIOqyve",
+      "category": "global",
+      "categoryName": "글로벌 경제",
+      "categoryIcon": "🌐",
+      "title": "세계 경제·중동 위기 속 G7 정상들 프랑스행",
+      "description": "세계 경제·중동 위기 속 G7 정상들 프랑스행 &nbsp;&nbsp; VOA 한국어 홈페이지",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPMktEd1ZlamlvazJBY0ZYbUo2dGhnQXNmZUdqLUxsMmpDZklqWWExWXY3RFdfUTVkMlJ0VFhEbVRjYUxlRGNUdlBqVG9YQU5iamZwQV9DY1FGemNKbWkxcGhJNmFzX3BVTmZ0a1RrQ3Zodl9pWnhwTjR4dmhUOWVFSkowNmhkX1VXX004QWVjdUJhZkxyMDU5STAtVWJPTEVaanotU21qSlV5cVhhaHlNbUNFcUs0MmlMWkl30gG7AUFVX3lxTE8yS0R3VmVqaW9rMkFjRlhtSjZ0aGdBc2ZlR2otTGwyakNmSWpZYTFZdjdEV19RNWQyUnRUWERtVGNhTGVEY1R2UGpUb1hBTmJqZnBBX0NjUUZ6Y0ptaTFwaEk2YXNfcFVOZnRrVGtDdmh2X2laeHBONHh2aFQ5ZUVKSjA2aGRfVVdfTThBZWN1QmFmTHIwNTlJMC1VYk9MRVpqei1TbWpKVXlxWGFoeU1tQ0VxSzQyaUxaSXc?oc=5",
+      "source": {
+        "name": "VOA 한국어 홈페이지",
+        "url": "https://www.voakorea.com"
+      },
+      "publishedAt": "2026-06-12T16:40:10.000Z",
+      "guid": "CBMiuwFBVV95cUxPMktEd1ZlamlvazJBY0ZYbUo2dGhnQXNmZUdqLUxsMmpDZklqWWExWXY3RFdfUTVkMlJ0VFhEbVRjYUxlRGNUdlBqVG9YQU5iamZwQV9DY1FGemNKbWkxcGhJNmFzX3BVTmZ0a1RrQ3Zodl9pWnhwTjR4dmhUOWVFSkowNmhkX1VXX004QWVjdUJhZkxyMDU5STAtVWJPTEVa…",
+      "score": 55
+    },
+    {
       "id": "finance-W-q4iOyctSBQaW",
       "category": "finance",
       "categoryName": "은행·증권·보험",
@@ -4652,22 +4636,6 @@
       "score": 55
     },
     {
-      "id": "company-7L2U7Iqk7ZS8LC",
-      "category": "company",
-      "categoryName": "기업·실적·산업",
-      "categoryIcon": "🏭",
-      "title": "코스피, 이란 전쟁 종식 기대감에 8200선 재탈환...반도체주 일제히 급등",
-      "description": "코스피, 이란 전쟁 종식 기대감에 8200선 재탈환...반도체주 일제히 급등 &nbsp;&nbsp; 녹색경제신문",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9hOE1RblR3TDJSOF90WXRhQlVWVnhQNk9jcG9wSEpCeVNpeHlXbm5tVk1jTEszUmp0aWxKZzZ3ZDVXODN5Skt0UDlrQmZOMzRqbFNUODZUaG1qRklyaEdNd1RUSXBkVzQ?oc=5",
-      "source": {
-        "name": "녹색경제신문",
-        "url": "http://www.greened.kr"
-      },
-      "publishedAt": "2026-06-12T00:52:16.000Z",
-      "guid": "CBMiZ0FVX3lxTE9hOE1RblR3TDJSOF90WXRhQlVWVnhQNk9jcG9wSEpCeVNpeHlXbm5tVk1jTEszUmp0aWxKZzZ3ZDVXODN5Skt0UDlrQmZOMzRqbFNUODZUaG1qRklyaEdNd1RUSXBkVzQ",
-      "score": 55
-    },
-    {
       "id": "company-7IK87ISx7KCE7J",
       "category": "company",
       "categoryName": "기업·실적·산업",
@@ -4681,22 +4649,6 @@
       },
       "publishedAt": "2026-06-12T00:18:00.000Z",
       "guid": "CBMibkFVX3lxTE1XSFMtcnV1OEg4bGppR0hIdzUwV3MtTVhoZnZrWmR3MjNCTER2bDRkUGo2TWVUUmp3QUtRdVJucXZIR19uYk1sdTUyYkxGNVE0U0ZsZEZFWldPSV85alE0bW94V3Fucml2TVh1aUZ3",
-      "score": 55
-    },
-    {
-      "id": "company-7IK87ISx7KCE7J",
-      "category": "company",
-      "categoryName": "기업·실적·산업",
-      "categoryIcon": "🏭",
-      "title": "삼성전자·SK하이닉스 급등에 반도체주 질주…AI 훈풍 타고 매수 열기",
-      "description": "삼성전자·SK하이닉스 급등에 반도체주 질주…AI 훈풍 타고 매수 열기 &nbsp;&nbsp; 핀포인트뉴스",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5JemRrQWNGZG05WlB0blAweHAtZko1MDdyYTF5d21LMk4zV1VmQ2tWN2JMLXhjaGtqeU9kTllLN1JvS1pzUXVlVmllVE90THRGZlp1SVJ1WGhjOFQxcnNOUzBGUk9ndTZabnVlMk5kc3ZBcDDSAXdBVV95cUxQM1hScTlpRGRYZjdfSS1XMWZMMjN5a1FWN2Z2T2FydllUZ094U19sa1VYRWFVdl9zVjBXdGdHZGFhdEZNckNoTmV0YXR2LXZYNzN0dUgyNXRfbS1Ua3c1M1owbW9qTUNLdjdRRzlxYWNUVDh6SS04Zw?oc=5",
-      "source": {
-        "name": "핀포인트뉴스",
-        "url": "https://www.pinpointnews.co.kr"
-      },
-      "publishedAt": "2026-06-12T00:06:33.000Z",
-      "guid": "CBMic0FVX3lxTE5JemRrQWNGZG05WlB0blAweHAtZko1MDdyYTF5d21LMk4zV1VmQ2tWN2JMLXhjaGtqeU9kTllLN1JvS1pzUXVlVmllVE90THRGZlp1SVJ1WGhjOFQxcnNOUzBGUk9ndTZabnVlMk5kc3ZBcDDSAXdBVV95cUxQM1hScTlpRGRYZjdfSS1XMWZMMjN5a1FWN2Z2T2FydllUZ094…",
       "score": 55
     },
     {
@@ -4748,6 +4700,22 @@
       "score": 54
     },
     {
+      "id": "finance-S0Lqta3rr7zsnY",
+      "category": "finance",
+      "categoryName": "은행·증권·보험",
+      "categoryIcon": "💳",
+      "title": "KB국민은행, 신용대출 한도 축소…가계부채 선제 대응",
+      "description": "KB국민은행, 신용대출 한도 축소…가계부채 선제 대응 &nbsp;&nbsp; 이코노뉴스",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5SQVJyWElHWG83RVhOS2wyVWdCQUxhMUk0dnBFYkhXSzJOcDVGbEI3VHFYYWtZOWpheGpPTTZVQzlmUEMtaDVQLTNMR3VoYVpFc1Q0ODN4RkwwM2FsN1dDTEVEaklZT2xxbzQ2ZV9ZOA?oc=5",
+      "source": {
+        "name": "이코노뉴스",
+        "url": "https://www.econonews.co.kr"
+      },
+      "publishedAt": "2026-06-12T07:51:19.000Z",
+      "guid": "CBMib0FVX3lxTE5SQVJyWElHWG83RVhOS2wyVWdCQUxhMUk0dnBFYkhXSzJOcDVGbEI3VHFYYWtZOWpheGpPTTZVQzlmUEMtaDVQLTNMR3VoYVpFc1Q0ODN4RkwwM2FsN1dDTEVEaklZT2xxbzQ2ZV9ZOA",
+      "score": 54
+    },
+    {
       "id": "macro-W-yxhOq2jC3rp4",
       "category": "macro",
       "categoryName": "금리·환율·거시",
@@ -4796,38 +4764,6 @@
       "score": 54
     },
     {
-      "id": "market-J-uPjOyVhOyYqC",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "'돌아온 외국인' 코스피 4.6% 상승... 코스닥도 올라",
-      "description": "'돌아온 외국인' 코스피 4.6% 상승... 코스닥도 올라 &nbsp;&nbsp; 조세일보",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1MLV8yNk4xaXJZdDlPc1dWUDFGVUFISjlqYk9Jc20yYkszQ3E1QzNpZzE4Ukk1eDVndXhvanlIYVlSUWh0YVpkMkxrZ2RkeUJkT1NqQThFWW5PTnRvaGdZ?oc=5",
-      "source": {
-        "name": "조세일보",
-        "url": "https://m.joseilbo.com"
-      },
-      "publishedAt": "2026-06-12T07:00:00.000Z",
-      "guid": "CBMiX0FVX3lxTE1MLV8yNk4xaXJZdDlPc1dWUDFGVUFISjlqYk9Jc20yYkszQ3E1QzNpZzE4Ukk1eDVndXhvanlIYVlSUWh0YVpkMkxrZ2RkeUJkT1NqQThFWW5PTnRvaGdZ",
-      "score": 54
-    },
-    {
-      "id": "market-W-uniOqwkCDsi5",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "[마감 시황] 외국인, 23거래일 만에 \"사자\"…코스피 4.63% 급등",
-      "description": "[마감 시황] 외국인, 23거래일 만에 \"사자\"…코스피 4.63% 급등 &nbsp;&nbsp; 필드뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1OQ3Q0TWdkZnNoOGlkRUJqZmVfcDBMam1LRlZkYlhHLXdQcHJZaE1sZUFhQTFNSHdSVTVyRDdZa0wtaXlEVGNaM0luNjlSZldvckZMb2R1aHVJT1lOangwU2dFX1FBWDBi?oc=5",
-      "source": {
-        "name": "필드뉴스",
-        "url": "http://www.fieldnews.kr"
-      },
-      "publishedAt": "2026-06-12T06:58:44.000Z",
-      "guid": "CBMiaEFVX3lxTE1OQ3Q0TWdkZnNoOGlkRUJqZmVfcDBMam1LRlZkYlhHLXdQcHJZaE1sZUFhQTFNSHdSVTVyRDdZa0wtaXlEVGNaM0luNjlSZldvckZMb2R1aHVJT1lOangwU2dFX1FBWDBi",
-      "score": 54
-    },
-    {
       "id": "macro-67mE7Yq47L2U7J",
       "category": "macro",
       "categoryName": "금리·환율·거시",
@@ -4860,19 +4796,35 @@
       "score": 54
     },
     {
+      "id": "market-bnRyeSDtjIzsm4",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "ntry 파워볼 중계 을 활용한 효율적인 방법: 시간과 비용 절약 - 실전 사례 분석",
+      "description": "ntry 파워볼 중계 을 활용한 효율적인 방법: 시간과 비용 절약 - 실전 사례 분석 &nbsp;&nbsp; kmrk.ru",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5PbEJWTEkxTUp4ODRJamtiVkxVXzFUX1ZYWlBtNURsYXIzbzBETEYwV0RRSEtsTTRTMEFhM2c1NVRfVng0MFh3dXZ1TkVCdUszTmxRODZ4b2tOaGl2akFF?oc=5",
+      "source": {
+        "name": "kmrk.ru",
+        "url": "https://www.kmrk.ru"
+      },
+      "publishedAt": "2026-06-12T22:34:00.000Z",
+      "guid": "CBMiX0FVX3lxTE5PbEJWTEkxTUp4ODRJamtiVkxVXzFUX1ZYWlBtNURsYXIzbzBETEYwV0RRSEtsTTRTMEFhM2c1NVRfVng0MFh3dXZ1TkVCdUszTmxRODZ4b2tOaGl2akFF",
+      "score": 53
+    },
+    {
       "id": "market-W-uJtOyaleymne",
       "category": "market",
       "categoryName": "증시·시장",
       "categoryIcon": "📈",
       "title": "[뉴욕증시]종전 MOU 체결 임박…S&P500·나스닥 소폭 하락세",
-      "description": "[뉴욕증시]종전 MOU 체결 임박…S&P500·나스닥 소폭 하락세 &nbsp;&nbsp; 아시아경제",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1rU0lRZnJKR0pqOE9fRjd0OXk2dDhqc1FjWi1fdk9fcVgwdkQweVFxSU1JTnQydmZDTEJUWElsUG85bF9HXzBsVkRKcE00V0pMZUx3UXZvR2ZmNktyZFVFNQ?oc=5",
+      "description": "[뉴욕증시]종전 MOU 체결 임박…S&P500·나스닥 소폭 하락세 &nbsp;&nbsp; 네이트",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5VVkdHSGJ2cGpwN293NnRLZVJiWmhqcmttZUxnT0lyS1lmQ1V0bHcwZmtXaEhmNHlNbUFRamlZWTEyT0ptLXg1ckd0WWNDZmt1LTRZ?oc=5",
       "source": {
-        "name": "아시아경제",
-        "url": "https://www.asiae.co.kr"
+        "name": "네이트",
+        "url": "https://news.nate.com"
       },
-      "publishedAt": "2026-06-12T14:54:16.000Z",
-      "guid": "CBMiYEFVX3lxTE1rU0lRZnJKR0pqOE9fRjd0OXk2dDhqc1FjWi1fdk9fcVgwdkQweVFxSU1JTnQydmZDTEJUWElsUG85bF9HXzBsVkRKcE00V0pMZUx3UXZvR2ZmNktyZFVFNQ",
+      "publishedAt": "2026-06-12T14:55:00.000Z",
+      "guid": "CBMiU0FVX3lxTE5VVkdHSGJ2cGpwN293NnRLZVJiWmhqcmttZUxnT0lyS1lmQ1V0bHcwZmtXaEhmNHlNbUFRamlZWTEyT0ptLXg1ckd0WWNDZmt1LTRZ",
       "score": 53
     },
     {
@@ -4889,6 +4841,54 @@
       },
       "publishedAt": "2026-06-12T14:25:58.000Z",
       "guid": "CBMiXkFVX3lxTFA5UWtUajJZb3FUMFVlT0x3RUFSQl9XUF9wUkZVVGZ6Q1hYblhiQXhmSVVacVhOd1NxTTJPSFVWWERkMFFCS2RLWE1LTWlYNlc1UmM5MllFcENCMEtZWXc",
+      "score": 53
+    },
+    {
+      "id": "market-J-uPjOyVhOyYqC",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "'돌아온 외국인' 코스피 4.6% 상승... 코스닥도 올라",
+      "description": "'돌아온 외국인' 코스피 4.6% 상승... 코스닥도 올라 &nbsp;&nbsp; 조세일보",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1MLV8yNk4xaXJZdDlPc1dWUDFGVUFISjlqYk9Jc20yYkszQ3E1QzNpZzE4Ukk1eDVndXhvanlIYVlSUWh0YVpkMkxrZ2RkeUJkT1NqQThFWW5PTnRvaGdZ?oc=5",
+      "source": {
+        "name": "조세일보",
+        "url": "https://m.joseilbo.com"
+      },
+      "publishedAt": "2026-06-12T07:00:00.000Z",
+      "guid": "CBMiX0FVX3lxTE1MLV8yNk4xaXJZdDlPc1dWUDFGVUFISjlqYk9Jc20yYkszQ3E1QzNpZzE4Ukk1eDVndXhvanlIYVlSUWh0YVpkMkxrZ2RkeUJkT1NqQThFWW5PTnRvaGdZ",
+      "score": 53
+    },
+    {
+      "id": "market-6riI66aswrftmZ",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "금리·환율에 갇힌 유동성…130조 순매도한 외인이 노리는 ‘진짜 타이밍’[포스트워 투자전략]",
+      "description": "금리·환율에 갇힌 유동성…130조 순매도한 외인이 노리는 ‘진짜 타이밍’[포스트워 투자전략] &nbsp;&nbsp; 한경매거진&북",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBDMC0wOFAxd2ZmMXpnX3p3UkxvblQ0NVkxS2NaU1hYRHlSdERpcDhFaTZfdDdXUldEVy1GLWVmNzNIbmJUU01MN1l2U3J6WkJZM3ZBVHpwa1JLYjlWdTNBbVpTTEdYdHRJZmx6eQ?oc=5",
+      "source": {
+        "name": "한경매거진&북",
+        "url": "https://magazine.hankyung.com"
+      },
+      "publishedAt": "2026-06-12T07:00:00.000Z",
+      "guid": "CBMibEFVX3lxTFBDMC0wOFAxd2ZmMXpnX3p3UkxvblQ0NVkxS2NaU1hYRHlSdERpcDhFaTZfdDdXUldEVy1GLWVmNzNIbmJUU01MN1l2U3J6WkJZM3ZBVHpwa1JLYjlWdTNBbVpTTEdYdHRJZmx6eQ",
+      "score": 53
+    },
+    {
+      "id": "market-W-uniOqwkCDsi5",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "[마감 시황] 외국인, 23거래일 만에 \"사자\"…코스피 4.63% 급등",
+      "description": "[마감 시황] 외국인, 23거래일 만에 \"사자\"…코스피 4.63% 급등 &nbsp;&nbsp; 필드뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1OQ3Q0TWdkZnNoOGlkRUJqZmVfcDBMam1LRlZkYlhHLXdQcHJZaE1sZUFhQTFNSHdSVTVyRDdZa0wtaXlEVGNaM0luNjlSZldvckZMb2R1aHVJT1lOangwU2dFX1FBWDBi?oc=5",
+      "source": {
+        "name": "필드뉴스",
+        "url": "http://www.fieldnews.kr"
+      },
+      "publishedAt": "2026-06-12T06:58:44.000Z",
+      "guid": "CBMiaEFVX3lxTE1OQ3Q0TWdkZnNoOGlkRUJqZmVfcDBMam1LRlZkYlhHLXdQcHJZaE1sZUFhQTFNSHdSVTVyRDdZa0wtaXlEVGNaM0luNjlSZldvckZMb2R1aHVJT1lOangwU2dFX1FBWDBi",
       "score": 53
     },
     {
@@ -4972,6 +4972,22 @@
       "score": 53
     },
     {
+      "id": "market-UyZhbXA7UDUwMC",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "S&P500 +0.50%, VIX -9.05% — 공포는 빠졌지만 주도주는 갈린 밤",
+      "description": "S&P500 +0.50%, VIX -9.05% — 공포는 빠졌지만 주도주는 갈린 밤 &nbsp;&nbsp; 네이버 프리미엄콘텐츠",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPb2ptOVIwd1FBX25Ddm9wVWhNdFNpTm9Nc0ZydGZWYWg5c1JRTHZxM2lNYkZNeXNDZjZNS05FRzBjY2lYcWg2SDA2ckFSbGpuWndmZ1VJaTNpSDVzdEFuZEJKSElvQjdsTUVwQ0VjaDRwVTFSZjY4ZWFLWVBIS0FKbUJTUTNxOGM?oc=5",
+      "source": {
+        "name": "네이버 프리미엄콘텐츠",
+        "url": "https://contents.premium.naver.com"
+      },
+      "publishedAt": "2026-06-12T21:37:00.000Z",
+      "guid": "CBMihwFBVV95cUxPb2ptOVIwd1FBX25Ddm9wVWhNdFNpTm9Nc0ZydGZWYWg5c1JRTHZxM2lNYkZNeXNDZjZNS05FRzBjY2lYcWg2SDA2ckFSbGpuWndmZ1VJaTNpSDVzdEFuZEJKSElvQjdsTUVwQ0VjaDRwVTFSZjY4ZWFLWVBIS0FKbUJTUTNxOGM",
+      "score": 52
+    },
+    {
       "id": "macro-67mE7Yq47L2U7J",
       "category": "macro",
       "categoryName": "금리·환율·거시",
@@ -4985,22 +5001,6 @@
       },
       "publishedAt": "2026-06-11T22:00:00.000Z",
       "guid": "CBMiSkFVX3lxTE9qbU1NbDZyODJOck9qeXozV0JvUVQtY21lNU4tYjBTTmlHQ0N1N08xbDZLLXRDbDJSd0pyVHI2NEVsN1ZCRml2SVV3",
-      "score": 53
-    },
-    {
-      "id": "finance-6rCA6rOE67aA7L",
-      "category": "finance",
-      "categoryName": "은행·증권·보험",
-      "categoryIcon": "💳",
-      "title": "가계부채 2000조 턱밑…‘빚투’ 급증에 대출문 닫는 시중은행",
-      "description": "가계부채 2000조 턱밑…‘빚투’ 급증에 대출문 닫는 시중은행 &nbsp;&nbsp; ntoday.co.kr",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBpMXJST2JnZXhDWTFXWlNHNDJaTHViUVlWT2hmRVlWSU9sbE4zUHlPeV9vMkhoMTlDZnlwclMwakw0RG85SmlNa2haOUdhbWhRY2c0b3dMc3NRZU9LME5iTkhfZDlmR2dlWUtZ0gFvQVVfeXFMT3YzWGxOR1F4RVpyVThfQTU1SlVXNGpua0tLTUFYQ3RpZDlocWtsZjQ2TGI3MGtZQVktaXNzSzFlM2tLR1lEaWNZRkI1Y1YyVmVpY29zQlYzaW1kR1RiNTBoZHNKMkstWTZHQ3JldnEw?oc=5",
-      "source": {
-        "name": "ntoday.co.kr",
-        "url": "https://www.ntoday.co.kr"
-      },
-      "publishedAt": "2026-06-12T05:00:50.000Z",
-      "guid": "CBMia0FVX3lxTFBpMXJST2JnZXhDWTFXWlNHNDJaTHViUVlWT2hmRVlWSU9sbE4zUHlPeV9vMkhoMTlDZnlwclMwakw0RG85SmlNa2haOUdhbWhRY2c0b3dMc3NRZU9LME5iTkhfZDlmR2dlWUtZ0gFvQVVfeXFMT3YzWGxOR1F4RVpyVThfQTU1SlVXNGpua0tLTUFYQ3RpZDlocWtsZjQ2TGI3…",
       "score": 52
     },
     {
@@ -5036,22 +5036,6 @@
       "score": 51
     },
     {
-      "id": "market-64W47ZiVIOy5tO",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "노형 카지노 에서 최고의 선택은?: 전문가들의 추천 (2026년 최신판)",
-      "description": "노형 카지노 에서 최고의 선택은?: 전문가들의 추천 (2026년 최신판) &nbsp;&nbsp; kmrk.ru",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE42NUdtX01xTDg4MkpLTnE0SlhzSW8xbGVWaHVpdlE4d0E0c0RWODZiaGVsUEx5YVlIR01zNzVlYTlIX0haa1dnVC01QlZaUkxiVU9OOG1xTExYV2hZWWlr?oc=5",
-      "source": {
-        "name": "kmrk.ru",
-        "url": "https://www.kmrk.ru"
-      },
-      "publishedAt": "2026-06-12T20:02:38.000Z",
-      "guid": "CBMiX0FVX3lxTE42NUdtX01xTDg4MkpLTnE0SlhzSW8xbGVWaHVpdlE4d0E0c0RWODZiaGVsUEx5YVlIR01zNzVlYTlIX0haa1dnVC01QlZaUkxiVU9OOG1xTExYV2hZWWlr",
-      "score": 51
-    },
-    {
       "id": "company-7L2U7Iqk7ZS8LC",
       "category": "company",
       "categoryName": "기업·실적·산업",
@@ -5065,6 +5049,22 @@
       },
       "publishedAt": "2026-06-12T12:30:00.000Z",
       "guid": "CBMib0FVX3lxTFA0VVJKdXFraUc3Z1lWSFk2eFQtOVFuaDdHanhJeGxrMS13VGhTSThyMk9uQ0ZEenBnbVV5VEl1SnJhaFo1M3RrdzJncWtZcTNHaFNETHpSeVNYaUg2UGYxZzM4WlplNlZzQTJUb1Jxbw",
+      "score": 51
+    },
+    {
+      "id": "finance-6rCA6rOE67aA7L",
+      "category": "finance",
+      "categoryName": "은행·증권·보험",
+      "categoryIcon": "💳",
+      "title": "가계부채 2000조 턱밑…‘빚투’ 급증에 대출문 닫는 시중은행",
+      "description": "가계부채 2000조 턱밑…‘빚투’ 급증에 대출문 닫는 시중은행 &nbsp;&nbsp; ntoday.co.kr",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBpMXJST2JnZXhDWTFXWlNHNDJaTHViUVlWT2hmRVlWSU9sbE4zUHlPeV9vMkhoMTlDZnlwclMwakw0RG85SmlNa2haOUdhbWhRY2c0b3dMc3NRZU9LME5iTkhfZDlmR2dlWUtZ0gFvQVVfeXFMT3YzWGxOR1F4RVpyVThfQTU1SlVXNGpua0tLTUFYQ3RpZDlocWtsZjQ2TGI3MGtZQVktaXNzSzFlM2tLR1lEaWNZRkI1Y1YyVmVpY29zQlYzaW1kR1RiNTBoZHNKMkstWTZHQ3JldnEw?oc=5",
+      "source": {
+        "name": "ntoday.co.kr",
+        "url": "https://www.ntoday.co.kr"
+      },
+      "publishedAt": "2026-06-12T05:00:50.000Z",
+      "guid": "CBMia0FVX3lxTFBpMXJST2JnZXhDWTFXWlNHNDJaTHViUVlWT2hmRVlWSU9sbE4zUHlPeV9vMkhoMTlDZnlwclMwakw0RG85SmlNa2haOUdhbWhRY2c0b3dMc3NRZU9LME5iTkhfZDlmR2dlWUtZ0gFvQVVfeXFMT3YzWGxOR1F4RVpyVThfQTU1SlVXNGpua0tLTUFYQ3RpZDlocWtsZjQ2TGI3…",
       "score": 51
     },
     {
@@ -5114,6 +5114,38 @@
       "publishedAt": "2026-06-12T04:08:00.000Z",
       "guid": "CBMiU0FVX3lxTE5EQ0V5NW5hMEpfRGloal9pOHB4WXliU1hEMXU2Nl9vNU1uQ2F6ak5fMGRpTV9NTDlaU1laSnA4VlFkV2Y1d19jbG5VQ0N6MXR3MWJF",
       "score": 51
+    },
+    {
+      "id": "market-7Kad6raM7IKsLC",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "증권사, 석 달 만에 4.3조 벌었다…사상 최대 분기 순이익",
+      "description": "증권사, 석 달 만에 4.3조 벌었다…사상 최대 분기 순이익 &nbsp;&nbsp; 연합뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBwUThwU0JzSGdsSFpGUFAtT0ZDdE5ud002ZHdfZlpYUVZ3Y3hGaWJQd2ttOWhkOHFtZThid0NDdWw2bjBibDJBY1ZfWUJFRXVZY2ZHQ2liQUJSQjJNV1g0ctIBYEFVX3lxTFBwUThwU0JzSGdsSFpGUFAtT0ZDdE5ud002ZHdfZlpYUVZ3Y3hGaWJQd2ttOWhkOHFtZThid0NDdWw2bjBibDJBY1ZfWUJFRXVZY2ZHQ2liQUJSQjJNV1g0cg?oc=5",
+      "source": {
+        "name": "연합뉴스",
+        "url": "https://www.yna.co.kr"
+      },
+      "publishedAt": "2026-06-11T21:00:02.000Z",
+      "guid": "CBMiYEFVX3lxTFBwUThwU0JzSGdsSFpGUFAtT0ZDdE5ud002ZHdfZlpYUVZ3Y3hGaWJQd2ttOWhkOHFtZThid0NDdWw2bjBibDJBY1ZfWUJFRXVZY2ZHQ2liQUJSQjJNV1g0ctIBYEFVX3lxTFBwUThwU0JzSGdsSFpGUFAtT0ZDdE5ud002ZHdfZlpYUVZ3Y3hGaWJQd2ttOWhkOHFtZThid0ND…",
+      "score": 51
+    },
+    {
+      "id": "market-64W47ZiVIOy5tO",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "노형 카지노 에서 최고의 선택은?: 전문가들의 추천 (2026년 최신판)",
+      "description": "노형 카지노 에서 최고의 선택은?: 전문가들의 추천 (2026년 최신판) &nbsp;&nbsp; kmrk.ru",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE42NUdtX01xTDg4MkpLTnE0SlhzSW8xbGVWaHVpdlE4d0E0c0RWODZiaGVsUEx5YVlIR01zNzVlYTlIX0haa1dnVC01QlZaUkxiVU9OOG1xTExYV2hZWWlr?oc=5",
+      "source": {
+        "name": "kmrk.ru",
+        "url": "https://www.kmrk.ru"
+      },
+      "publishedAt": "2026-06-12T20:02:38.000Z",
+      "guid": "CBMiX0FVX3lxTE42NUdtX01xTDg4MkpLTnE0SlhzSW8xbGVWaHVpdlE4d0E0c0RWODZiaGVsUEx5YVlIR01zNzVlYTlIX0haa1dnVC01QlZaUkxiVU9OOG1xTExYV2hZWWlr",
+      "score": 50
     },
     {
       "id": "company-W-uniOqwkF0g7L",
@@ -5196,22 +5228,6 @@
       "score": 49
     },
     {
-      "id": "global-IkZUQSDrhJjslr",
-      "category": "global",
-      "categoryName": "글로벌 경제",
-      "categoryIcon": "🌐",
-      "title": "\"FTA 넘어 디지털 동맹으로\"…유럽언론, 한-EU 디지털 무역협정 주목",
-      "description": "\"FTA 넘어 디지털 동맹으로\"…유럽언론, 한-EU 디지털 무역협정 주목 &nbsp;&nbsp; 데일리안",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9sUTh5V0xWOHZZZ05kMXN1OGVsVk54a3d4a1BvV19tLUJ1QUxscnVUNXJzZDN3cWJKbENfVzlGREZYNGV5NnhXTG5UQUc5aUxaTG1v0gGEAkFVX3lxTE5DVWh6dkhBX3JTZHFQaWZnMHloZDc4MFBQX3Zra3F4MmRUYlF6OXBDWkh5a1NHYmxWRkh5M1N3NlJIV1hLcUlQUm1meVNPQ1RRWi1idGs5N2szT0pESUVBVVpkTjlRNDh2X2o5RlRXajFDaU5DMlRQRHpsRW1tSlliNFVjYVotQ0tkVDNpT1BqVzZCN0lmNW90M0JDTkNNT20yUG1KOGExMElLWUhSRENNak1sbUc5UWVLTDhUUFZMT3BZM2FNNHJJSURmWXRzU1A3YnY4aHU5S1Q2ckRTcFUwcUJZbjlRd1ZyWlByQlU2SWdqMHR6eF9QU09FSExpVTBiNG5o?oc=5",
-      "source": {
-        "name": "데일리안",
-        "url": "https://m.dailian.co.kr"
-      },
-      "publishedAt": "2026-06-12T18:02:00.000Z",
-      "guid": "CBMiU0FVX3lxTE9sUTh5V0xWOHZZZ05kMXN1OGVsVk54a3d4a1BvV19tLUJ1QUxscnVUNXJzZDN3cWJKbENfVzlGREZYNGV5NnhXTG5UQUc5aUxaTG1v0gGEAkFVX3lxTE5DVWh6dkhBX3JTZHFQaWZnMHloZDc4MFBQX3Zra3F4MmRUYlF6OXBDWkh5a1NHYmxWRkh5M1N3NlJIV1hLcUlQUm1m…",
-      "score": 49
-    },
-    {
       "id": "macro-7KKF7KCEIOq4sO",
       "category": "macro",
       "categoryName": "금리·환율·거시",
@@ -5244,19 +5260,19 @@
       "score": 49
     },
     {
-      "id": "market-6riJ65297J6l7J",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "급락장에 몰린 빚투…마통 43조 육박·반대매매 비중 연중 최고",
-      "description": "급락장에 몰린 빚투…마통 43조 육박·반대매매 비중 연중 최고 &nbsp;&nbsp; 인더스트리뉴스",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBrcGdwb0RWMTRVNmJvZ09FR2VZTFdrVEtfejdTOVpNMUs3NldvYjVxdjlOcWZRX3FPdHIwMlAtQXpoNG9KVGRMb1RjdUp3OXFnR0NoS3U3azYtMDRnSGhsbm5ubF80N2ZKdHBiWlFyN0hDUQ?oc=5",
+      "id": "global-IkZUQSDrhJjslr",
+      "category": "global",
+      "categoryName": "글로벌 경제",
+      "categoryIcon": "🌐",
+      "title": "\"FTA 넘어 디지털 동맹으로\"…유럽언론, 한-EU 디지털 무역협정 주목",
+      "description": "\"FTA 넘어 디지털 동맹으로\"…유럽언론, 한-EU 디지털 무역협정 주목 &nbsp;&nbsp; 데일리안",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9sUTh5V0xWOHZZZ05kMXN1OGVsVk54a3d4a1BvV19tLUJ1QUxscnVUNXJzZDN3cWJKbENfVzlGREZYNGV5NnhXTG5UQUc5aUxaTG1v0gGEAkFVX3lxTE5DVWh6dkhBX3JTZHFQaWZnMHloZDc4MFBQX3Zra3F4MmRUYlF6OXBDWkh5a1NHYmxWRkh5M1N3NlJIV1hLcUlQUm1meVNPQ1RRWi1idGs5N2szT0pESUVBVVpkTjlRNDh2X2o5RlRXajFDaU5DMlRQRHpsRW1tSlliNFVjYVotQ0tkVDNpT1BqVzZCN0lmNW90M0JDTkNNT20yUG1KOGExMElLWUhSRENNak1sbUc5UWVLTDhUUFZMT3BZM2FNNHJJSURmWXRzU1A3YnY4aHU5S1Q2ckRTcFUwcUJZbjlRd1ZyWlByQlU2SWdqMHR6eF9QU09FSExpVTBiNG5o?oc=5",
       "source": {
-        "name": "인더스트리뉴스",
-        "url": "https://www.industrynews.co.kr"
+        "name": "데일리안",
+        "url": "https://m.dailian.co.kr"
       },
-      "publishedAt": "2026-06-12T09:27:36.000Z",
-      "guid": "CBMickFVX3lxTFBrcGdwb0RWMTRVNmJvZ09FR2VZTFdrVEtfejdTOVpNMUs3NldvYjVxdjlOcWZRX3FPdHIwMlAtQXpoNG9KVGRMb1RjdUp3OXFnR0NoS3U3azYtMDRnSGhsbm5ubF80N2ZKdHBiWlFyN0hDUQ",
+      "publishedAt": "2026-06-12T18:02:00.000Z",
+      "guid": "CBMiU0FVX3lxTE9sUTh5V0xWOHZZZ05kMXN1OGVsVk54a3d4a1BvV19tLUJ1QUxscnVUNXJzZDN3cWJKbENfVzlGREZYNGV5NnhXTG5UQUc5aUxaTG1v0gGEAkFVX3lxTE5DVWh6dkhBX3JTZHFQaWZnMHloZDc4MFBQX3Zra3F4MmRUYlF6OXBDWkh5a1NHYmxWRkh5M1N3NlJIV1hLcUlQUm1m…",
       "score": 48
     },
     {
@@ -5404,19 +5420,19 @@
       "score": 47
     },
     {
-      "id": "finance-W0Eg7KO86rCEIO",
-      "category": "finance",
-      "categoryName": "은행·증권·보험",
-      "categoryIcon": "💳",
-      "title": "[A 주간 서머리] 경제·산업계 \"빚투 열풍에 가계대출 9조 증가...개보위, 쿠팡에 6200억원 과징금\"",
-      "description": "[A 주간 서머리] 경제·산업계 \"빚투 열풍에 가계대출 9조 증가...개보위, 쿠팡에 6200억원 과징금\" &nbsp;&nbsp; 아시아에이",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1HLXZqSG9DYTZlT1dQbVBFb2lMemlwcmkxRTZYZWt3azNIZmUtWUMzQzB5Nk1HampJY3otZXY4M2pYY2pBLU55U3JPMTFZS1pTSUkwLVRZT1M2TlVWbTVoQ0ZvLVdnazcwTVHSAW5BVV95cUxPSmhIeHlzRlJZZ2dnZ0NNNEtORW50OXVPSXlKUlRRV2l0WDdGS2JBY21QLWs2NFZMV3lPTFNPdVpIcmN5ZUlXY2g0R1IwUm15TUtqWXBiY2NEVVRwR3M5OWgxTUdleWZ6UnNqckZnQQ?oc=5",
+      "id": "market-7L2U7Iqk7ZS8LC",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "코스피, 매수 사이드카 발동…외국인·기관 순매수에 7% 급등",
+      "description": "코스피, 매수 사이드카 발동…외국인·기관 순매수에 7% 급등 &nbsp;&nbsp; 아시아경제",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE4ybllJN1dNUjh0aTRqMkVIYXM3amxPNDRjWi1CV2lzUzNaWTVGV3JCRHBEQ1ViNXM2NUs3c2huTS1sbkVPaUg2VVRsY0pWZGV6RjBBVTNLR2R3bFNqMWZCZA?oc=5",
       "source": {
-        "name": "아시아에이",
-        "url": "https://www.asiaa.co.kr"
+        "name": "아시아경제",
+        "url": "https://www.asiae.co.kr"
       },
-      "publishedAt": "2026-06-12T08:00:00.000Z",
-      "guid": "CBMiakFVX3lxTE1HLXZqSG9DYTZlT1dQbVBFb2lMemlwcmkxRTZYZWt3azNIZmUtWUMzQzB5Nk1HampJY3otZXY4M2pYY2pBLU55U3JPMTFZS1pTSUkwLVRZT1M2TlVWbTVoQ0ZvLVdnazcwTVHSAW5BVV95cUxPSmhIeHlzRlJZZ2dnZ0NNNEtORW50OXVPSXlKUlRRV2l0WDdGS2JBY21QLWs2…",
+      "publishedAt": "2026-06-12T00:45:45.000Z",
+      "guid": "CBMiYEFVX3lxTE4ybllJN1dNUjh0aTRqMkVIYXM3amxPNDRjWi1CV2lzUzNaWTVGV3JCRHBEQ1ViNXM2NUs3c2huTS1sbkVPaUg2VVRsY0pWZGV6RjBBVTNLR2R3bFNqMWZCZA",
       "score": 47
     },
     {
@@ -5516,6 +5532,22 @@
       "score": 47
     },
     {
+      "id": "finance-W0Eg7KO86rCEIO",
+      "category": "finance",
+      "categoryName": "은행·증권·보험",
+      "categoryIcon": "💳",
+      "title": "[A 주간 서머리] 경제·산업계 \"빚투 열풍에 가계대출 9조 증가...개보위, 쿠팡에 6200억원 과징금\"",
+      "description": "[A 주간 서머리] 경제·산업계 \"빚투 열풍에 가계대출 9조 증가...개보위, 쿠팡에 6200억원 과징금\" &nbsp;&nbsp; 아시아에이",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1HLXZqSG9DYTZlT1dQbVBFb2lMemlwcmkxRTZYZWt3azNIZmUtWUMzQzB5Nk1HampJY3otZXY4M2pYY2pBLU55U3JPMTFZS1pTSUkwLVRZT1M2TlVWbTVoQ0ZvLVdnazcwTVHSAW5BVV95cUxPSmhIeHlzRlJZZ2dnZ0NNNEtORW50OXVPSXlKUlRRV2l0WDdGS2JBY21QLWs2NFZMV3lPTFNPdVpIcmN5ZUlXY2g0R1IwUm15TUtqWXBiY2NEVVRwR3M5OWgxTUdleWZ6UnNqckZnQQ?oc=5",
+      "source": {
+        "name": "아시아에이",
+        "url": "https://www.asiaa.co.kr"
+      },
+      "publishedAt": "2026-06-12T08:00:00.000Z",
+      "guid": "CBMiakFVX3lxTE1HLXZqSG9DYTZlT1dQbVBFb2lMemlwcmkxRTZYZWt3azNIZmUtWUMzQzB5Nk1HampJY3otZXY4M2pYY2pBLU55U3JPMTFZS1pTSUkwLVRZT1M2TlVWbTVoQ0ZvLVdnazcwTVHSAW5BVV95cUxPSmhIeHlzRlJZZ2dnZ0NNNEtORW50OXVPSXlKUlRRV2l0WDdGS2JBY21QLWs2…",
+      "score": 46
+    },
+    {
       "id": "company-7Jm46rWt7J24wr",
       "category": "company",
       "categoryName": "기업·실적·산업",
@@ -5580,22 +5612,6 @@
       "score": 46
     },
     {
-      "id": "market-W-yYpOuKmOymne",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "[오늘증시]코스피, 25거래일 만에 외국인 컴백…기관과 4.5조 폭풍 매수",
-      "description": "[오늘증시]코스피, 25거래일 만에 외국인 컴백…기관과 4.5조 폭풍 매수 &nbsp;&nbsp; MSN",
-      "url": "https://news.google.com/rss/articles/CBMiswNBVV95cUxNQnRTV2EzSEtWUkowVWVuLWRaNjh0YVpqYTM5LXhGUW9FWXlPZDlWd3Brd1pjNy1tS2RCcjZocHA4SVVHVFdib2VUbnhHUFpEdDZaa2tPUG9hUUZPLTRIZC1GT3JNU0FvN2owYm5aT2JIdWpWM2VOeXRfVkczeWxTM25tVFRxYzU4YjhaUGFBTng1UVRTcF9MZldnOXJ5dFF2QUt1c0tzVmt3VWFxTVUzb012SFpCWkNkaXBLS1d4cGY3OFNsSEtiazVGUHFrOENSMVRJUXdDcE1qV09IV0RDTl9vSVRTbVNXOEk1Q04tbFlFbTc4NzM3aDZWWDNrUzcwOWhDaV9RSXZYWnBzUk5tTzFoRUZnMksyX1ZUMXdSYzNXWlZndm90bzk5UDdBMEdYQWJvX0pfUm5JXzdaaFlMY0FaUEFNVU5WRzdWSTc2WU9NNy1lY2pzN1IxbGg3QlpiRk4wREE1bnhMSnota3EwM1d4SHFMQXM1UktWWks3alk4S3V4c3VMaWRqQnNmZzV1anRvY3V2ZUZRcXpScDlTdld1WTdVdDVXU0xjb3o5U0dDb0E?oc=5",
-      "source": {
-        "name": "MSN",
-        "url": "https://www.msn.com"
-      },
-      "publishedAt": "2026-06-12T07:31:45.000Z",
-      "guid": "CBMiswNBVV95cUxNQnRTV2EzSEtWUkowVWVuLWRaNjh0YVpqYTM5LXhGUW9FWXlPZDlWd3Brd1pjNy1tS2RCcjZocHA4SVVHVFdib2VUbnhHUFpEdDZaa2tPUG9hUUZPLTRIZC1GT3JNU0FvN2owYm5aT2JIdWpWM2VOeXRfVkczeWxTM25tVFRxYzU4YjhaUGFBTng1UVRTcF9MZldnOXJ5dFF2…",
-      "score": 46
-    },
-    {
       "id": "market-7L2U7Iqk7ZS8LC",
       "category": "market",
       "categoryName": "증시·시장",
@@ -5625,22 +5641,6 @@
       },
       "publishedAt": "2026-06-12T07:06:00.000Z",
       "guid": "CBMiXEFVX3lxTFByU2lUeVo2X0dWRkZ2cEVPN1VDVFBiOThJSmpsSVBMTGROUWdJcFd1NmhWelcybHFUdkV1bXJPSUNjVldnWGs0VTh1ZVZoTkF1M2FkU3JlYmJBQnFm",
-      "score": 46
-    },
-    {
-      "id": "finance-4oCc7ZWc7Yiswr",
-      "category": "finance",
-      "categoryName": "은행·증권·보험",
-      "categoryIcon": "💳",
-      "title": "“한투·OK 웃고 SBI 밀렸다”…저축은행 순위 바꾼 ‘투자수익’",
-      "description": "“한투·OK 웃고 SBI 밀렸다”…저축은행 순위 바꾼 ‘투자수익’ &nbsp;&nbsp; 마이데일리",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE8zcHQ3N041RzEzZWFVLWtrSXg0cXJDalNGcEtKSTJlSzBYdU5WSzJiZk9qRTQ0YkUtZDVORmQ4T3BuSm5JeEdIVDNENzVNYndLR3I3eTZPcXl1SFdUb2ZGVg?oc=5",
-      "source": {
-        "name": "마이데일리",
-        "url": "https://mydaily.co.kr"
-      },
-      "publishedAt": "2026-06-12T06:59:29.000Z",
-      "guid": "CBMiYEFVX3lxTE8zcHQ3N041RzEzZWFVLWtrSXg0cXJDalNGcEtKSTJlSzBYdU5WSzJiZk9qRTQ0YkUtZDVORmQ4T3BuSm5JeEdIVDNENzVNYndLR3I3eTZPcXl1SFdUb2ZGVg",
       "score": 46
     },
     {
@@ -5692,38 +5692,6 @@
       "score": 46
     },
     {
-      "id": "market-7Yq465-87ZSEIO",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "트럼프 이란 공습 취소 한 마디에 나스닥 +2.5%급등, 이게 찐반등의 시작일까",
-      "description": "트럼프 이란 공습 취소 한 마디에 나스닥 +2.5%급등, 이게 찐반등의 시작일까 &nbsp;&nbsp; 네이버 프리미엄콘텐츠",
-      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPNjE3cHZyeDVmMlNzREM5UDBnd2laT295SXA0SWhnQ2pZcnFkN3hRb1RLTllOS25OQWh2dWVZcU5xOG1pTG1QdDd6TlNvOVNpcmw2bW9qQlRPa0Q4WUZtTGdOVWJWNDBuejVqanJwWVNEemRoT3h5enZ0UmFZYWZkU2lR?oc=5",
-      "source": {
-        "name": "네이버 프리미엄콘텐츠",
-        "url": "https://contents.premium.naver.com"
-      },
-      "publishedAt": "2026-06-11T23:09:00.000Z",
-      "guid": "CBMiggFBVV95cUxPNjE3cHZyeDVmMlNzREM5UDBnd2laT295SXA0SWhnQ2pZcnFkN3hRb1RLTllOS25OQWh2dWVZcU5xOG1pTG1QdDd6TlNvOVNpcmw2bW9qQlRPa0Q4WUZtTGdOVWJWNDBuejVqanJwWVNEemRoT3h5enZ0UmFZYWZkU2lR",
-      "score": 46
-    },
-    {
-      "id": "crypto-IkFJwrfrlJTsp4",
-      "category": "crypto",
-      "categoryName": "가상자산",
-      "categoryIcon": "₿",
-      "title": "\"AI·디지털자산 등 종합투자 플랫폼 전환\"...한화투자증권, MTS 경쟁력 강화 ‘속도’",
-      "description": "\"AI·디지털자산 등 종합투자 플랫폼 전환\"...한화투자증권, MTS 경쟁력 강화 ‘속도’ &nbsp;&nbsp; 청년일보",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5IUnZfdmxRLTJfOV95dGFWTmowREpQSk5Fam5FWW9MV3ctb0VVOE1LRk52MHN6UEwySG1GdUVtanh1RmxheE40SDB0eWFBY0VaVXZYeXRwaU5Ba2l4QXVldTVwMmFSWjg?oc=5",
-      "source": {
-        "name": "청년일보",
-        "url": "https://www.youthdaily.co.kr"
-      },
-      "publishedAt": "2026-06-11T23:00:04.000Z",
-      "guid": "CBMiZ0FVX3lxTE5IUnZfdmxRLTJfOV95dGFWTmowREpQSk5Fam5FWW9MV3ctb0VVOE1LRk52MHN6UEwySG1GdUVtanh1RmxheE40SDB0eWFBY0VaVXZYeXRwaU5Ba2l4QXVldTVwMmFSWjg",
-      "score": 46
-    },
-    {
       "id": "market-4oCY6riJ6529Le",
       "category": "market",
       "categoryName": "증시·시장",
@@ -5738,6 +5706,22 @@
       "publishedAt": "2026-06-11T15:26:59.000Z",
       "guid": "CBMiY0FVX3lxTFBwd00taFlNdE1sTUZlYkdfM1lNMTAxc294Yml5LXp2LW5TSUc5Y09YQmxweVA3dHJISV82bXJOQVc2cGRzckEzOVROVUVrYUlJYlctSjhOenktTFdUeXNUVVZpYw",
       "score": 46
+    },
+    {
+      "id": "finance-4oCc7ZWc7Yiswr",
+      "category": "finance",
+      "categoryName": "은행·증권·보험",
+      "categoryIcon": "💳",
+      "title": "“한투·OK 웃고 SBI 밀렸다”…저축은행 순위 바꾼 ‘투자수익’",
+      "description": "“한투·OK 웃고 SBI 밀렸다”…저축은행 순위 바꾼 ‘투자수익’ &nbsp;&nbsp; 마이데일리",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE8zcHQ3N041RzEzZWFVLWtrSXg0cXJDalNGcEtKSTJlSzBYdU5WSzJiZk9qRTQ0YkUtZDVORmQ4T3BuSm5JeEdIVDNENzVNYndLR3I3eTZPcXl1SFdUb2ZGVg?oc=5",
+      "source": {
+        "name": "마이데일리",
+        "url": "https://mydaily.co.kr"
+      },
+      "publishedAt": "2026-06-12T06:59:29.000Z",
+      "guid": "CBMiYEFVX3lxTE8zcHQ3N041RzEzZWFVLWtrSXg0cXJDalNGcEtKSTJlSzBYdU5WSzJiZk9qRTQ0YkUtZDVORmQ4T3BuSm5JeEdIVDNENzVNYndLR3I3eTZPcXl1SFdUb2ZGVg",
+      "score": 45
     },
     {
       "id": "market-W-yYpOuKmOymne",
@@ -5804,19 +5788,35 @@
       "score": 45
     },
     {
-      "id": "consumer-7KeA64Kc64usIO",
-      "category": "consumer",
-      "categoryName": "소비·유통·생활경제",
-      "categoryIcon": "🛒",
-      "title": "지난달 美 도매물가, 전년보다 6.5% 치솟아... 3년6개월만에 최대폭 상승",
-      "description": "지난달 美 도매물가, 전년보다 6.5% 치솟아... 3년6개월만에 최대폭 상승 &nbsp;&nbsp; 글로벌경제신문",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE81cGMxWnZBU0N6OGlSQjU4dmktN3l1TDZpZFRRdnlQS2Ixb2ZLbU52dDhhYnNiVFVCNGNBX0lIZnJId1FRd3FqODFta25XMkRkZ2xhTE9GSVdMYnlMY283UF9ZNzZuTFBtY3dPT9IBcEFVX3lxTFBnRzZiVVhpbW5XQ1huelJVTENlYkZTQUFhaEpqSzJ6N2FGeU9CbnZrRVBVaU1MdXJYNFdYSTYza0VHSjl5bm1sNEdqUDM1enUtTlBWOGlSMEhZa2s4YnpEanFFRG1MRmlWdTFqMUhnRFk?oc=5",
+      "id": "crypto-7Jik7IKs7Lm0IO",
+      "category": "crypto",
+      "categoryName": "가상자산",
+      "categoryIcon": "₿",
+      "title": "오사카 증권거래소, 2028년 비트코인선물 출시…'일본판 CME' 만든다",
+      "description": "오사카 증권거래소, 2028년 비트코인선물 출시…'일본판 CME' 만든다 &nbsp;&nbsp; 네이트",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9IekxLTnR5OGdKRVpnb0hFR3I3SEtzbFZvd0diMml6U1RUbWtRSjZVVWc1V1BhQTNfSFFXaExhZW1UX1QwZEx6c3JWQmNlZ3ptUlVr?oc=5",
       "source": {
-        "name": "글로벌경제신문",
-        "url": "https://www.getnews.co.kr"
+        "name": "네이트",
+        "url": "https://news.nate.com"
       },
-      "publishedAt": "2026-06-11T22:33:19.000Z",
-      "guid": "CBMibEFVX3lxTE81cGMxWnZBU0N6OGlSQjU4dmktN3l1TDZpZFRRdnlQS2Ixb2ZLbU52dDhhYnNiVFVCNGNBX0lIZnJId1FRd3FqODFta25XMkRkZ2xhTE9GSVdMYnlMY283UF9ZNzZuTFBtY3dPT9IBcEFVX3lxTFBnRzZiVVhpbW5XQ1huelJVTENlYkZTQUFhaEpqSzJ6N2FGeU9CbnZrRVBV…",
+      "publishedAt": "2026-06-11T23:01:00.000Z",
+      "guid": "CBMiU0FVX3lxTE9IekxLTnR5OGdKRVpnb0hFR3I3SEtzbFZvd0diMml6U1RUbWtRSjZVVWc1V1BhQTNfSFFXaExhZW1UX1QwZEx6c3JWQmNlZ3ptUlVr",
+      "score": 45
+    },
+    {
+      "id": "crypto-IkFJwrfrlJTsp4",
+      "category": "crypto",
+      "categoryName": "가상자산",
+      "categoryIcon": "₿",
+      "title": "\"AI·디지털자산 등 종합투자 플랫폼 전환\"...한화투자증권, MTS 경쟁력 강화 ‘속도’",
+      "description": "\"AI·디지털자산 등 종합투자 플랫폼 전환\"...한화투자증권, MTS 경쟁력 강화 ‘속도’ &nbsp;&nbsp; 청년일보",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5IUnZfdmxRLTJfOV95dGFWTmowREpQSk5Fam5FWW9MV3ctb0VVOE1LRk52MHN6UEwySG1GdUVtanh1RmxheE40SDB0eWFBY0VaVXZYeXRwaU5Ba2l4QXVldTVwMmFSWjg?oc=5",
+      "source": {
+        "name": "청년일보",
+        "url": "https://www.youthdaily.co.kr"
+      },
+      "publishedAt": "2026-06-11T23:00:04.000Z",
+      "guid": "CBMiZ0FVX3lxTE5IUnZfdmxRLTJfOV95dGFWTmowREpQSk5Fam5FWW9MV3ctb0VVOE1LRk52MHN6UEwySG1GdUVtanh1RmxheE40SDB0eWFBY0VaVXZYeXRwaU5Ba2l4QXVldTVwMmFSWjg",
       "score": 45
     },
     {
@@ -5900,6 +5900,22 @@
       "score": 44
     },
     {
+      "id": "market-7Yq465-87ZSEIO",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "트럼프 “이란 공습 취소”에 뉴욕증시 급등…나스닥 2.5%↑",
+      "description": "트럼프 “이란 공습 취소”에 뉴욕증시 급등…나스닥 2.5%↑ &nbsp;&nbsp; 산경투데이",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9PRDRoZ2JhdWNteENha1lCTGtSbGdoVGF2UXVsRkwyQ3oxOXR2ZndiV2xhcDlpajEzZzRLNWJtR1p2by1wazBKd1JjUXVQT3IwNGVTZURVRVNrYU9yTjN4T3gybDFLeElGUTExck9nZ2rSAXRBVV95cUxQQjFpVlp1eUhhQzMyd3BCVlo5ejJkQ3FhTHdCOFRBemxEMEZHbExnUU1wSm5jdnYyS2hUOUpnS3BGSW43dmlYa1g1ZUJ6THdGa2Fyc0hZYkptN3BsSFFpZVB4cEpZOVNrX0xVWkdTMlFCSkw5OA?oc=5",
+      "source": {
+        "name": "산경투데이",
+        "url": "https://www.sankyungtoday.com"
+      },
+      "publishedAt": "2026-06-11T21:24:31.000Z",
+      "guid": "CBMicEFVX3lxTE9PRDRoZ2JhdWNteENha1lCTGtSbGdoVGF2UXVsRkwyQ3oxOXR2ZndiV2xhcDlpajEzZzRLNWJtR1p2by1wazBKd1JjUXVQT3IwNGVTZURVRVNrYU9yTjN4T3gybDFLeElGUTExck9nZ2rSAXRBVV95cUxQQjFpVlp1eUhhQzMyd3BCVlo5ejJkQ3FhTHdCOFRBemxEMEZHbExn…",
+      "score": 44
+    },
+    {
       "id": "market-W-e-juymneyLnC",
       "category": "market",
       "categoryName": "증시·시장",
@@ -5964,6 +5980,22 @@
       "score": 43
     },
     {
+      "id": "company-6rWt66a96rO17K",
+      "category": "company",
+      "categoryName": "기업·실적·산업",
+      "categoryIcon": "🏭",
+      "title": "국립공주대, 기계자동차공학부 이동경 교수 산업통상자원부『첨단제조 AX(M.AX) 인재양성사업』선정",
+      "description": "국립공주대, 기계자동차공학부 이동경 교수 산업통상자원부『첨단제조 AX(M.AX) 인재양성사업』선정 &nbsp;&nbsp; 모빅경제",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Kd2R3R0dzaGVzWVFTaXFkQUxvdkwzc0tlMUxtRjhtSmpLYjRDMHQtdEVLdVFvMlJuT0d2STh0TGNsbC10VVNmOWhkWl9ELWRtMTI0OFNGV0kxVlFneGpsWHlpUWlBTjI0d1Z0TExKak8?oc=5",
+      "source": {
+        "name": "모빅경제",
+        "url": "https://www.mobickeconomy.com"
+      },
+      "publishedAt": "2026-06-12T11:34:10.000Z",
+      "guid": "CBMicEFVX3lxTE1Kd2R3R0dzaGVzWVFTaXFkQUxvdkwzc0tlMUxtRjhtSmpLYjRDMHQtdEVLdVFvMlJuT0d2STh0TGNsbC10VVNmOWhkWl9ELWRtMTI0OFNGV0kxVlFneGpsWHlpUWlBTjI0d1Z0TExKak8",
+      "score": 42
+    },
+    {
       "id": "policy-7KO87IiY7ZSEIO",
       "category": "policy",
       "categoryName": "정책·세금·재정",
@@ -5993,39 +6025,7 @@
       },
       "publishedAt": "2026-06-12T11:01:14.000Z",
       "guid": "CBMiRkFVX3lxTE5oWDY5b2oyM0dQX0VTM29lTmF5Z3hIc2hWN0lrUzdYU0xFLXhfdVI2Skx6ZlJTVEJKY3ZzbWhOLUVGQXZ3SHc",
-      "score": 42
-    },
-    {
-      "id": "company-7Juo7Iqk7L2UIF",
-      "category": "company",
-      "categoryName": "기업·실적·산업",
-      "categoryIcon": "🏭",
-      "title": "웨스코 TSP®, 미국 UL 인증 획득…170억 달러 ‘삼성 테일러’ 등 북미 투자 정조준",
-      "description": "웨스코 TSP®, 미국 UL 인증 획득…170억 달러 ‘삼성 테일러’ 등 북미 투자 정조준 &nbsp;&nbsp; 데일리경제",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5mUktPbG5nd0lnbmxCQzFvbGY2RnJfdEpRZ0c1S2hfa3Zsc01LZG9TS2tlbGVob2ZwdGgtc0tlUjhGS1lFeGlXa2V2ZEk4WnhPanNjc20xNHlPRkU2QjN1aGtCd2VnMDZLR3hOZg?oc=5",
-      "source": {
-        "name": "데일리경제",
-        "url": "https://www.kdpress.co.kr"
-      },
-      "publishedAt": "2026-06-12T03:31:02.000Z",
-      "guid": "CBMibEFVX3lxTE5mUktPbG5nd0lnbmxCQzFvbGY2RnJfdEpRZ0c1S2hfa3Zsc01LZG9TS2tlbGVob2ZwdGgtc0tlUjhGS1lFeGlXa2V2ZEk4WnhPanNjc20xNHlPRkU2QjN1aGtCd2VnMDZLR3hOZg",
-      "score": 42
-    },
-    {
-      "id": "realestate-SFVHLCBQRiDsp4",
-      "category": "realestate",
-      "categoryName": "부동산·PF",
-      "categoryIcon": "🏙️",
-      "title": "HUG, PF 지원 확대·보증료 인하 총력… 수도권 주택 공급 활성화 나선다",
-      "description": "HUG, PF 지원 확대·보증료 인하 총력… 수도권 주택 공급 활성화 나선다 &nbsp;&nbsp; 화이트페이퍼",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5TdEFyZHZLSGh4d0ZJcnMwVzhBU3IyR01ETWZ0T2hOejdkSVZ2X0M1ZXdDR0RrdGhGaGY2Z2NNaXFhdkJ6M3JoRGVYQTdqNU9CbVlBWEd1WUhOZTdBTl9Kd1VIVkNWX1BDRGVwTGZXd9IBc0FVX3lxTE5OUjZrbWdQS2VVYWUzQV93MDVxX0cteU0yb3RrLTNpNm50QmdKT3pMMExBdWVTRGR4RDZRNTZnNHFrZEhXeldxRzd3LUFHdnl2cHI4SXNUaUlheGo3LTRXcjRXVUlxcV9mNVFOU0RRcDRHWnM?oc=5",
-      "source": {
-        "name": "화이트페이퍼",
-        "url": "http://www.whitepaper.co.kr"
-      },
-      "publishedAt": "2026-06-12T03:01:41.000Z",
-      "guid": "CBMib0FVX3lxTE5TdEFyZHZLSGh4d0ZJcnMwVzhBU3IyR01ETWZ0T2hOejdkSVZ2X0M1ZXdDR0RrdGhGaGY2Z2NNaXFhdkJ6M3JoRGVYQTdqNU9CbVlBWEd1WUhOZTdBTl9Kd1VIVkNWX1BDRGVwTGZXd9IBc0FVX3lxTE5OUjZrbWdQS2VVYWUzQV93MDVxX0cteU0yb3RrLTNpNm50QmdKT3pM…",
-      "score": 42
+      "score": 41
     },
     {
       "id": "market-4oCY7J287KO87J",
@@ -6060,6 +6060,22 @@
       "score": 41
     },
     {
+      "id": "realestate-SFVHLCBQRiDsp4",
+      "category": "realestate",
+      "categoryName": "부동산·PF",
+      "categoryIcon": "🏙️",
+      "title": "HUG, PF 지원 확대·보증료 인하 총력… 수도권 주택 공급 활성화 나선다",
+      "description": "HUG, PF 지원 확대·보증료 인하 총력… 수도권 주택 공급 활성화 나선다 &nbsp;&nbsp; 화이트페이퍼",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5TdEFyZHZLSGh4d0ZJcnMwVzhBU3IyR01ETWZ0T2hOejdkSVZ2X0M1ZXdDR0RrdGhGaGY2Z2NNaXFhdkJ6M3JoRGVYQTdqNU9CbVlBWEd1WUhOZTdBTl9Kd1VIVkNWX1BDRGVwTGZXd9IBc0FVX3lxTE5OUjZrbWdQS2VVYWUzQV93MDVxX0cteU0yb3RrLTNpNm50QmdKT3pMMExBdWVTRGR4RDZRNTZnNHFrZEhXeldxRzd3LUFHdnl2cHI4SXNUaUlheGo3LTRXcjRXVUlxcV9mNVFOU0RRcDRHWnM?oc=5",
+      "source": {
+        "name": "화이트페이퍼",
+        "url": "http://www.whitepaper.co.kr"
+      },
+      "publishedAt": "2026-06-12T03:01:41.000Z",
+      "guid": "CBMib0FVX3lxTE5TdEFyZHZLSGh4d0ZJcnMwVzhBU3IyR01ETWZ0T2hOejdkSVZ2X0M1ZXdDR0RrdGhGaGY2Z2NNaXFhdkJ6M3JoRGVYQTdqNU9CbVlBWEd1WUhOZTdBTl9Kd1VIVkNWX1BDRGVwTGZXd9IBc0FVX3lxTE5OUjZrbWdQS2VVYWUzQV93MDVxX0cteU0yb3RrLTNpNm50QmdKT3pM…",
+      "score": 41
+    },
+    {
       "id": "company-IuyCvOyghOuLie",
       "category": "company",
       "categoryName": "기업·실적·산업",
@@ -6073,38 +6089,6 @@
       },
       "publishedAt": "2026-06-12T02:51:24.000Z",
       "guid": "CBMieEFVX3lxTE10emt3RXZVbXZ3azNSS1ZGVHlfMm5YN1pmV0FxXzkyVVRKR0xPUDVNY1RRdlFsbHU4Wnd0dnRwbEptazBiWkk3S0RDcFNUbE5UMldlVW5rUGdOMUc1UFVQRjdLbkhKRWpmTXVBaEg5T01oclhKRV9uZ9IBeEFVX3lxTE10emt3RXZVbXZ3azNSS1ZGVHlfMm5YN1pmV0FxXzky…",
-      "score": 41
-    },
-    {
-      "id": "market-7JqU7JW9IDEyLT",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "요약 12-6: 미국 증시 급등, 세계 금값, 연속 하락세 후 반등.",
-      "description": "요약 12-6: 미국 증시 급등, 세계 금값, 연속 하락세 후 반등. &nbsp;&nbsp; Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNQjFKVEFramdRMnd4VDBmc0lfaFRsdUo2N29WcHVKSHdjYi1OalFwMkNVMWtxWmw0S0FTMUFOcDZOWjZHS2pjY0RIZGVlRzBtYnhVNDVxMDZCaVVyM0ZabnN5Z3lmR0tmcmFLaDVIMmtSVUlhX1Q1R09SSFR6WGx0c0xXOFNGUmJHbEtCdDZzSjc1QV90QmRnZDlMUG1RWmpZTlFZdzAxZFVzZw?oc=5",
-      "source": {
-        "name": "Vietnam.vn",
-        "url": "https://www.vietnam.vn"
-      },
-      "publishedAt": "2026-06-12T01:58:28.000Z",
-      "guid": "CBMiqgFBVV95cUxNQjFKVEFramdRMnd4VDBmc0lfaFRsdUo2N29WcHVKSHdjYi1OalFwMkNVMWtxWmw0S0FTMUFOcDZOWjZHS2pjY0RIZGVlRzBtYnhVNDVxMDZCaVVyM0ZabnN5Z3lmR0tmcmFLaDVIMmtSVUlhX1Q1R09SSFR6WGx0c0xXOFNGUmJHbEtCdDZzSjc1QV90QmRnZDlMUG1RWmpZ…",
-      "score": 41
-    },
-    {
-      "id": "macro-RUNCLCDquLDspI",
-      "category": "macro",
-      "categoryName": "금리·환율·거시",
-      "categoryIcon": "🏦",
-      "title": "ECB, 기준금리 0.25%p 올려 2.25%로…이란 전쟁에 3년만의 인상(종합)",
-      "description": "ECB, 기준금리 0.25%p 올려 2.25%로…이란 전쟁에 3년만의 인상(종합) &nbsp;&nbsp; 뉴스1",
-      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFB2TGN2MEU2N1VqRUdKdUM3dFFZRDRzRHAzcnE1RlZ3Vk9ManRUMGlzSW81MVV6QTVINndHOS1pTFVlcXhhM0hqZ3I4ejg2YkZqdXhjLWlaRXFFd1FQM2c?oc=5",
-      "source": {
-        "name": "뉴스1",
-        "url": "https://www.news1.kr"
-      },
-      "publishedAt": "2026-06-11T17:57:12.000Z",
-      "guid": "CBMiXkFVX3lxTFB2TGN2MEU2N1VqRUdKdUM3dFFZRDRzRHAzcnE1RlZ3Vk9ManRUMGlzSW81MVV6QTVINndHOS1pTFVlcXhhM0hqZ3I4ejg2YkZqdXhjLWlaRXFFd1FQM2c",
       "score": 41
     },
     {
@@ -6153,22 +6137,6 @@
       },
       "publishedAt": "2026-06-12T09:14:31.000Z",
       "guid": "CBMiY0FVX3lxTE1TNm91b3V6WWhPUDlFbnBISWpRTVNWVDdUM1FqQVd6amZVQldaTUtvbU5FX1ZXT25ZMXl0WmI4eG9aUlBSRWhaNHNmWktYcjd1NzM5TGpxdTliUF9qTkV1YUtJTQ",
-      "score": 40
-    },
-    {
-      "id": "global-Rzcg7JWe65GQ6r",
-      "category": "global",
-      "categoryName": "글로벌 경제",
-      "categoryIcon": "🌐",
-      "title": "G7 앞두고 중국 부른 마크롱…'무역 불균형' 입장차 여전",
-      "description": "G7 앞두고 중국 부른 마크롱…'무역 불균형' 입장차 여전 &nbsp;&nbsp; 연합뉴스",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE0ydWZRMTNNWjd1TkFpd3E3eEk4Snh5eExrT1pNVDZZaVJMVGhkMDBwMVpSbVVMR1BSVF9qMHB1WGpadEp1UmhaekFJRUtkYThBbjM3MlRqZ25Udnc0bldsNdIBYEFVX3lxTE0ydWZRMTNNWjd1TkFpd3E3eEk4Snh5eExrT1pNVDZZaVJMVGhkMDBwMVpSbVVMR1BSVF9qMHB1WGpadEp1UmhaekFJRUtkYThBbjM3MlRqZ25Udnc0bldsNQ?oc=5",
-      "source": {
-        "name": "연합뉴스",
-        "url": "https://www.yna.co.kr"
-      },
-      "publishedAt": "2026-06-12T09:13:52.000Z",
-      "guid": "CBMiYEFVX3lxTE0ydWZRMTNNWjd1TkFpd3E3eEk4Snh5eExrT1pNVDZZaVJMVGhkMDBwMVpSbVVMR1BSVF9qMHB1WGpadEp1UmhaekFJRUtkYThBbjM3MlRqZ25Udnc0bldsNdIBYEFVX3lxTE0ydWZRMTNNWjd1TkFpd3E3eEk4Snh5eExrT1pNVDZZaVJMVGhkMDBwMVpSbVVMR1BSVF9qMHB1…",
       "score": 40
     },
     {
@@ -6252,19 +6220,19 @@
       "score": 40
     },
     {
-      "id": "macro-66qF66qpR0RQIO",
+      "id": "macro-RUNCLCDquLDspI",
       "category": "macro",
       "categoryName": "금리·환율·거시",
       "categoryIcon": "🏦",
-      "title": "명목GDP 거듭 강조한 신현송…내수 회복·환율 안정 자신",
-      "description": "명목GDP 거듭 강조한 신현송…내수 회복·환율 안정 자신 &nbsp;&nbsp; 서울경제",
-      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE95Uk9OX2FqOVBJa1Q2ZHdwMHk0OW96VWo4M2F0MGplYTVOYndDQ1FweVBvZnpNNGVaR0Nvd21wTXlVVVRnaDBHQ0stTWdWTFZYUkHSAVNBVV95cUxPYWNjSnh1a29HcjZQVUR1R2FUVDdETkxXOXFVVXNNenU2cy1jVlVpNEk3M1p3Z1l1RGdrdWp6bE1wbFFIbVNUdFRDaGJzMVNPOGViaw?oc=5",
+      "title": "ECB, 기준금리 0.25%p 올려 2.25%로…이란 전쟁에 3년만의 인상(종합)",
+      "description": "ECB, 기준금리 0.25%p 올려 2.25%로…이란 전쟁에 3년만의 인상(종합) &nbsp;&nbsp; 뉴스1",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFB2TGN2MEU2N1VqRUdKdUM3dFFZRDRzRHAzcnE1RlZ3Vk9ManRUMGlzSW81MVV6QTVINndHOS1pTFVlcXhhM0hqZ3I4ejg2YkZqdXhjLWlaRXFFd1FQM2c?oc=5",
       "source": {
-        "name": "서울경제",
-        "url": "https://www.sedaily.com"
+        "name": "뉴스1",
+        "url": "https://www.news1.kr"
       },
-      "publishedAt": "2026-06-12T01:00:00.000Z",
-      "guid": "CBMiUkFVX3lxTE95Uk9OX2FqOVBJa1Q2ZHdwMHk0OW96VWo4M2F0MGplYTVOYndDQ1FweVBvZnpNNGVaR0Nvd21wTXlVVVRnaDBHQ0stTWdWTFZYUkHSAVNBVV95cUxPYWNjSnh1a29HcjZQVUR1R2FUVDdETkxXOXFVVXNNenU2cy1jVlVpNEk3M1p3Z1l1RGdrdWp6bE1wbFFIbVNUdFRDaGJz…",
+      "publishedAt": "2026-06-11T17:57:12.000Z",
+      "guid": "CBMiXkFVX3lxTFB2TGN2MEU2N1VqRUdKdUM3dFFZRDRzRHAzcnE1RlZ3Vk9ManRUMGlzSW81MVV6QTVINndHOS1pTFVlcXhhM0hqZ3I4ejg2YkZqdXhjLWlaRXFFd1FQM2c",
       "score": 40
     },
     {
@@ -6332,6 +6300,22 @@
       "score": 39
     },
     {
+      "id": "macro-66qF66qpR0RQIO",
+      "category": "macro",
+      "categoryName": "금리·환율·거시",
+      "categoryIcon": "🏦",
+      "title": "명목GDP 거듭 강조한 신현송…내수 회복·환율 안정 자신",
+      "description": "명목GDP 거듭 강조한 신현송…내수 회복·환율 안정 자신 &nbsp;&nbsp; 서울경제",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE95Uk9OX2FqOVBJa1Q2ZHdwMHk0OW96VWo4M2F0MGplYTVOYndDQ1FweVBvZnpNNGVaR0Nvd21wTXlVVVRnaDBHQ0stTWdWTFZYUkHSAVNBVV95cUxPYWNjSnh1a29HcjZQVUR1R2FUVDdETkxXOXFVVXNNenU2cy1jVlVpNEk3M1p3Z1l1RGdrdWp6bE1wbFFIbVNUdFRDaGJzMVNPOGViaw?oc=5",
+      "source": {
+        "name": "서울경제",
+        "url": "https://www.sedaily.com"
+      },
+      "publishedAt": "2026-06-12T01:00:00.000Z",
+      "guid": "CBMiUkFVX3lxTE95Uk9OX2FqOVBJa1Q2ZHdwMHk0OW96VWo4M2F0MGplYTVOYndDQ1FweVBvZnpNNGVaR0Nvd21wTXlVVVRnaDBHQ0stTWdWTFZYUkHSAVNBVV95cUxPYWNjSnh1a29HcjZQVUR1R2FUVDdETkxXOXFVVXNNenU2cy1jVlVpNEk3M1p3Z1l1RGdrdWp6bE1wbFFIbVNUdFRDaGJz…",
+      "score": 39
+    },
+    {
       "id": "company-6riA66Gc67KMIO",
       "category": "company",
       "categoryName": "기업·실적·산업",
@@ -6396,22 +6380,6 @@
       "score": 39
     },
     {
-      "id": "company-67O07Iqk67CY64",
-      "category": "company",
-      "categoryName": "기업·실적·산업",
-      "categoryIcon": "🏭",
-      "title": "보스반도체, 유럽 영업 총괄로 NXP 출신 영입",
-      "description": "보스반도체, 유럽 영업 총괄로 NXP 출신 영입 &nbsp;&nbsp; 디일렉",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9URmlESDFWeTM4VU00UDVpZkNPc2tzNVc4c0xucnJ4NkFfbm1hM3F4aDZkQ1dLUkc3NVJFdmVERW5FbVdqTkVzWDFkOHMxMXd6Qkg1NHotWHZsVWpWdnZjcEZfaHBGQQ?oc=5",
-      "source": {
-        "name": "디일렉",
-        "url": "https://www.thelec.kr"
-      },
-      "publishedAt": "2026-06-12T00:34:49.000Z",
-      "guid": "CBMiZkFVX3lxTE9URmlESDFWeTM4VU00UDVpZkNPc2tzNVc4c0xucnJ4NkFfbm1hM3F4aDZkQ1dLUkc3NVJFdmVERW5FbVdqTkVzWDFkOHMxMXd6Qkg1NHotWHZsVWpWdnZjcEZfaHBGQQ",
-      "score": 39
-    },
-    {
       "id": "crypto-67mE7Yq47L2U7J",
       "category": "crypto",
       "categoryName": "가상자산",
@@ -6444,20 +6412,20 @@
       "score": 39
     },
     {
-      "id": "market-4oCc7Iqk7Y6Y7J",
+      "id": "market-IuyCvOyghOuLie",
       "category": "market",
       "categoryName": "증시·시장",
       "categoryIcon": "📈",
-      "title": "“스페이스X 가즈아? 적정주가 63달러”…공모가 절반 후려친 까닭은",
-      "description": "“스페이스X 가즈아? 적정주가 63달러”…공모가 절반 후려친 까닭은 &nbsp;&nbsp; 매일경제 마켓",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBqeDVvZGRjTWxiSHNWY2RWeVVURmw4dFNyc2ZJV3ZNMTVYOXBzWWc4cDYyU1hFaFYzb0x0bF9TQkRqR1VOWmZxV1FWQk9ZQURtMEh6VDUzaFk5TEhXYVlkNw?oc=5",
+      "title": "\"삼전닉스 살 때\" 외국인 '2조 순매수'…스페이스X 상장 후 '수급 뇌관'",
+      "description": "\"삼전닉스 살 때\" 외국인 '2조 순매수'…스페이스X 상장 후 '수급 뇌관' &nbsp;&nbsp; 뉴스1",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE4tUGR0U05QMDUtTTBickJuUzVoS3IyU1lBSWpKRlRpRXZ6by1vQnRmU2FoOWQ2N0FWdTJ6aV96bllvV0R3eDdnNzU2VzRIRFd1cDJlQmI4N2V5U0tNUE9CTmx3dUo?oc=5",
       "source": {
-        "name": "매일경제 마켓",
-        "url": "https://stock.mk.co.kr"
+        "name": "뉴스1",
+        "url": "https://www.news1.kr"
       },
-      "publishedAt": "2026-06-12T00:27:22.000Z",
-      "guid": "CBMiYEFVX3lxTFBqeDVvZGRjTWxiSHNWY2RWeVVURmw4dFNyc2ZJV3ZNMTVYOXBzWWc4cDYyU1hFaFYzb0x0bF9TQkRqR1VOWmZxV1FWQk9ZQURtMEh6VDUzaFk5TEhXYVlkNw",
-      "score": 39
+      "publishedAt": "2026-06-12T07:53:23.000Z",
+      "guid": "CBMiZEFVX3lxTE4tUGR0U05QMDUtTTBickJuUzVoS3IyU1lBSWpKRlRpRXZ6by1vQnRmU2FoOWQ2N0FWdTJ6aV96bllvV0R3eDdnNzU2VzRIRFd1cDJlQmI4N2V5U0tNUE9CTmx3dUo",
+      "score": 38
     },
     {
       "id": "company-W-yLnOqwgOy0ne",
@@ -6588,22 +6556,6 @@
       "score": 38
     },
     {
-      "id": "macro-7IS46rOE7J2A7Z",
-      "category": "macro",
-      "categoryName": "금리·환율·거시",
-      "categoryIcon": "🏦",
-      "title": "세계은행 \"50년 만의 최대 공급 충격\"⋯중동전쟁에 성장률 2.5%로 하향",
-      "description": "세계은행 \"50년 만의 최대 공급 충격\"⋯중동전쟁에 성장률 2.5%로 하향 &nbsp;&nbsp; 블록미디어",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5wMllzd2gyZWt2cTQ5cnMxalctMWEwYmJJc1A4eTBVa2hZTHVpT0wxN3hxZEQyQk1oakd4NDZSdXBXbmFRVDBBYWp5TDVZTUg2S25sZlhlcjQ?oc=5",
-      "source": {
-        "name": "블록미디어",
-        "url": "https://www.blockmedia.co.kr"
-      },
-      "publishedAt": "2026-06-11T15:02:00.000Z",
-      "guid": "CBMiWEFVX3lxTE5wMllzd2gyZWt2cTQ5cnMxalctMWEwYmJJc1A4eTBVa2hZTHVpT0wxN3hxZEQyQk1oakd4NDZSdXBXbmFRVDBBYWp5TDVZTUg2S25sZlhlcjQ",
-      "score": 38
-    },
-    {
       "id": "realestate-7ISc7Jq4IOyghO",
       "category": "realestate",
       "categoryName": "부동산·PF",
@@ -6620,22 +6572,6 @@
       "score": 37
     },
     {
-      "id": "market-W-uNsOydvOumrC",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "[데일리 자산운용 브리프] 한국투자신탁운용, ACE ETF 대학생 서포터즈 2기 모집 外",
-      "description": "[데일리 자산운용 브리프] 한국투자신탁운용, ACE ETF 대학생 서포터즈 2기 모집 外 &nbsp;&nbsp; 네이트",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE8zLVh3ZHhKbnZKeU5xQkQwZWpfRGtzQ21xdk1lYmFjSkRvX25IeXZXV1FOV3dqSV9LTzlhVng1dGhZcC1wVWJvOFNRelVNSFdUQTg4?oc=5",
-      "source": {
-        "name": "네이트",
-        "url": "https://news.nate.com"
-      },
-      "publishedAt": "2026-06-12T06:27:00.000Z",
-      "guid": "CBMiU0FVX3lxTE8zLVh3ZHhKbnZKeU5xQkQwZWpfRGtzQ21xdk1lYmFjSkRvX25IeXZXV1FOV3dqSV9LTzlhVng1dGhZcC1wVWJvOFNRelVNSFdUQTg4",
-      "score": 37
-    },
-    {
       "id": "market-S0NHSSwg6rWt64",
       "category": "market",
       "categoryName": "증시·시장",
@@ -6649,38 +6585,6 @@
       },
       "publishedAt": "2026-06-12T06:17:00.000Z",
       "guid": "CBMinAFBVV95cUxPemVwVDIwdzFwcXNwaEtmMEF3R0xvbi1NVzlfQmlYUHZ4emk3S1Q3MHZQbVR0TFVkdEwyb0VQZmNfZ2NPMzlfM3o2RmdrQ3lrYXZiYUFQTXllekU3TkFxUzBUbHB1ZGEzS2ZIYXdyXzJPaExRbHZvX3pBZ0lZNUhjSzlHZTEwZlpYUWF6QkdYT1d2M0x5dWFvbUVXY1PSAZwB…",
-      "score": 37
-    },
-    {
-      "id": "market-7IK87ISx7Jq07J",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "삼성운용, 액티브ETF로 스페이스X 공모주 참여…3파전 ‘후끈’",
-      "description": "삼성운용, 액티브ETF로 스페이스X 공모주 참여…3파전 ‘후끈’ &nbsp;&nbsp; 주간한국",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9wWlF5N3NMN1h1Y0Z0ZDMxQmtPMTM3ZlZRVV9RLVBXWlpmRWZ6VlVXQklMV21DVzNhU3lzbzI2YjZsMVpfdE03LWlQUzR2VTFFX2xyYmFmU0xaTWphSnZkR29kRVltZjdQSTVOU1RldUsyNGJf0gF0QVVfeXFMT3BaUXk3c0w3WHVjRnRkMzFCa08xMzdmVlFVX1EtUFdaWmZFZnpWVVdCSUxXbUNXM2FTeXNvMjZiNmwxWl90TTctaVBTNHZVMUVfbHJiYWZTTFpNamFKdmRHb2RFWW1mN1BJNU5TVGV1SzI0Yl8?oc=5",
-      "source": {
-        "name": "주간한국",
-        "url": "https://weekly.hankooki.com"
-      },
-      "publishedAt": "2026-06-12T06:02:31.000Z",
-      "guid": "CBMidEFVX3lxTE9wWlF5N3NMN1h1Y0Z0ZDMxQmtPMTM3ZlZRVV9RLVBXWlpmRWZ6VlVXQklMV21DVzNhU3lzbzI2YjZsMVpfdE03LWlQUzR2VTFFX2xyYmFmU0xaTWphSnZkR29kRVltZjdQSTVOU1RldUsyNGJf0gF0QVVfeXFMT3BaUXk3c0w3WHVjRnRkMzFCa08xMzdmVlFVX1EtUFdaWmZF…",
-      "score": 37
-    },
-    {
-      "id": "crypto-576OIO2BtOuemO",
-      "category": "crypto",
-      "categoryName": "가상자산",
-      "categoryIcon": "₿",
-      "title": "美 클래리티법 놓고 정면충돌…리플 CEO, JP모건 사업구조 정조준",
-      "description": "美 클래리티법 놓고 정면충돌…리플 CEO, JP모건 사업구조 정조준 &nbsp;&nbsp; 네이트",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE80Y1lOeXFhczlpaXRlN3lFQ3dyS0JIX2YwTXF3S2lGRWE4U24wYUl3Zkg4N053bFNpcFByQUxCSVFrVF9PenMzNVYxQXB0LXp2ZUJF?oc=5",
-      "source": {
-        "name": "네이트",
-        "url": "https://news.nate.com"
-      },
-      "publishedAt": "2026-06-12T05:59:07.000Z",
-      "guid": "CBMiU0FVX3lxTE80Y1lOeXFhczlpaXRlN3lFQ3dyS0JIX2YwTXF3S2lGRWE4U24wYUl3Zkg4N053bFNpcFByQUxCSVFrVF9PenMzNVYxQXB0LXp2ZUJF",
       "score": 37
     },
     {
@@ -6716,6 +6620,22 @@
       "score": 37
     },
     {
+      "id": "macro-7IS46rOE7J2A7Z",
+      "category": "macro",
+      "categoryName": "금리·환율·거시",
+      "categoryIcon": "🏦",
+      "title": "세계은행 \"50년 만의 최대 공급 충격\"⋯중동전쟁에 성장률 2.5%로 하향",
+      "description": "세계은행 \"50년 만의 최대 공급 충격\"⋯중동전쟁에 성장률 2.5%로 하향 &nbsp;&nbsp; 블록미디어",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5wMllzd2gyZWt2cTQ5cnMxalctMWEwYmJJc1A4eTBVa2hZTHVpT0wxN3hxZEQyQk1oakd4NDZSdXBXbmFRVDBBYWp5TDVZTUg2S25sZlhlcjQ?oc=5",
+      "source": {
+        "name": "블록미디어",
+        "url": "https://www.blockmedia.co.kr"
+      },
+      "publishedAt": "2026-06-11T15:02:00.000Z",
+      "guid": "CBMiWEFVX3lxTE5wMllzd2gyZWt2cTQ5cnMxalctMWEwYmJJc1A4eTBVa2hZTHVpT0wxN3hxZEQyQk1oakd4NDZSdXBXbmFRVDBBYWp5TDVZTUg2S25sZlhlcjQ",
+      "score": 37
+    },
+    {
       "id": "macro-RUNCLCAz64WE66",
       "category": "macro",
       "categoryName": "금리·환율·거시",
@@ -6730,6 +6650,22 @@
       "publishedAt": "2026-06-11T14:20:48.000Z",
       "guid": "CBMiYEFVX3lxTE82b3RfVVIyT2R0TkJWVnptbko0NG1tLWR3OFZOQkIyQ25NOUlEWGlsdWNTMy1OdDIyNnJVbzRXbUtBVjBDczczeWc2MHVhc1ZRQUR3eWgyRFdTSFdhNUlKNdIBYEFVX3lxTE82b3RfVVIyT2R0TkJWVnptbko0NG1tLWR3OFZOQkIyQ25NOUlEWGlsdWNTMy1OdDIyNnJVbzRX…",
       "score": 37
+    },
+    {
+      "id": "crypto-576OIO2BtOuemO",
+      "category": "crypto",
+      "categoryName": "가상자산",
+      "categoryIcon": "₿",
+      "title": "美 클래리티법 놓고 정면충돌…리플 CEO, JP모건 사업구조 정조준",
+      "description": "美 클래리티법 놓고 정면충돌…리플 CEO, JP모건 사업구조 정조준 &nbsp;&nbsp; 네이트",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE80Y1lOeXFhczlpaXRlN3lFQ3dyS0JIX2YwTXF3S2lGRWE4U24wYUl3Zkg4N053bFNpcFByQUxCSVFrVF9PenMzNVYxQXB0LXp2ZUJF?oc=5",
+      "source": {
+        "name": "네이트",
+        "url": "https://news.nate.com"
+      },
+      "publishedAt": "2026-06-12T05:59:07.000Z",
+      "guid": "CBMiU0FVX3lxTE80Y1lOeXFhczlpaXRlN3lFQ3dyS0JIX2YwTXF3S2lGRWE4U24wYUl3Zkg4N053bFNpcFByQUxCSVFrVF9PenMzNVYxQXB0LXp2ZUJF",
+      "score": 36
     },
     {
       "id": "crypto-7YOA7J206rGw66",
@@ -6761,6 +6697,22 @@
       },
       "publishedAt": "2026-06-11T13:45:00.000Z",
       "guid": "CBMibkFVX3lxTE80eEx1SGE0RTV0bUl1bHlLd09VMWVaVXpTRExuV2ctSm1welVpMUZZaGxjVnZ1RXhBNVowWG5ZTDM2TFlCTnp4SURNYzVwZmhqLWdJbWRUcGtnX3VmSHBzUF9fYUFZUE0wVlVlWTJn",
+      "score": 36
+    },
+    {
+      "id": "consumer-66-4IDXsm5Qg64",
+      "category": "consumer",
+      "categoryName": "소비·유통·생활경제",
+      "categoryIcon": "🛒",
+      "title": "미 5월 도매물가 전년比 6.5%↑…3년6개월만에 최대폭 상승(종합)",
+      "description": "미 5월 도매물가 전년比 6.5%↑…3년6개월만에 최대폭 상승(종합) &nbsp;&nbsp; 연합뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9CUVdsUlFfTm9MTmFteVVxdHY4ZFFXeE9ZdkNaQTBwcVRlR1RqSEEwYzJwSkRGdDFGWm5pOHc3Ul9PeGt1RGhYTnRLQldvYTEtQWNPV2tVNEh0NVHSAWBBVV95cUxPNnZnTEM0b2VBS2RWLUN3RHJCZXVZNE84MUVZS3JaRjhPZUNvalVTMEFXWUp1OTFyNUkzQkFvU3ktYXVJSUNLemlpQXBuOEtjQmdfUUE1d0Qyc1hELXFmbHo?oc=5",
+      "source": {
+        "name": "연합뉴스",
+        "url": "https://www.yna.co.kr"
+      },
+      "publishedAt": "2026-06-11T13:25:28.000Z",
+      "guid": "CBMiW0FVX3lxTE9CUVdsUlFfTm9MTmFteVVxdHY4ZFFXeE9ZdkNaQTBwcVRlR1RqSEEwYzJwSkRGdDFGWm5pOHc3Ul9PeGt1RGhYTnRLQldvYTEtQWNPV2tVNEh0NVHSAWBBVV95cUxPNnZnTEM0b2VBS2RWLUN3RHJCZXVZNE84MUVZS3JaRjhPZUNvalVTMEFXWUp1OTFyNUkzQkFvU3ktYXVJ…",
       "score": 36
     },
     {
@@ -6860,22 +6812,6 @@
       "score": 35
     },
     {
-      "id": "finance-6riI6rCQ7JuQLC",
-      "category": "finance",
-      "categoryName": "은행·증권·보험",
-      "categoryIcon": "💳",
-      "title": "금감원, 우리금융 이어 KB금융도 사회공헌 현장조사",
-      "description": "금감원, 우리금융 이어 KB금융도 사회공헌 현장조사 &nbsp;&nbsp; 연합인포맥스",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBYYUIybWF3MDFJOTFqQU8wSFFUa2ZWbDNySHFiRGdlTGZMVGl5MW5Ra3pvRGc0cmZmaHVybUdVWHdNeUZua0xuZl84Y2QtSFJhQy1ETUxpZ19wN0lqLTRqblh1Um43NV9BMVd0M2htTlLSAXRBVV95cUxNUU1EbVVEYWtzWmZ2ZTlsWlVtNTJGdGZlWFBMWWc5dWVNeHJ5YVJueklYWUFwcTI0NTdNcXdtYlY5M0p5Y1NJLUhaSF9rZnpFai1XNFVRdUoyOWVtNWlvMjRWenR6UGZIWElJeEV2aVNsUVNtVg?oc=5",
-      "source": {
-        "name": "연합인포맥스",
-        "url": "https://news.einfomax.co.kr"
-      },
-      "publishedAt": "2026-06-12T04:08:00.000Z",
-      "guid": "CBMicEFVX3lxTFBYYUIybWF3MDFJOTFqQU8wSFFUa2ZWbDNySHFiRGdlTGZMVGl5MW5Ra3pvRGc0cmZmaHVybUdVWHdNeUZua0xuZl84Y2QtSFJhQy1ETUxpZ19wN0lqLTRqblh1Um43NV9BMVd0M2htTlLSAXRBVV95cUxNUU1EbVVEYWtzWmZ2ZTlsWlVtNTJGdGZlWFBMWWc5dWVNeHJ5YVJu…",
-      "score": 35
-    },
-    {
       "id": "crypto-67iU656Z66GdIO",
       "category": "crypto",
       "categoryName": "가상자산",
@@ -6972,22 +6908,6 @@
       "score": 33
     },
     {
-      "id": "crypto-67mE7Yq47L2U7J",
-      "category": "crypto",
-      "categoryName": "가상자산",
-      "categoryIcon": "₿",
-      "title": "비트코인·이더리움 ETF 동반 유출…AI·스페이스X로 떠난 투자자들",
-      "description": "비트코인·이더리움 ETF 동반 유출…AI·스페이스X로 떠난 투자자들 &nbsp;&nbsp; 데일리머니",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1PVS1RdnlYSVdlYmtxOWpmQUVZdWdHcDBGc2FWWEVFQ0VuSjBpSWc1M09Yb3FQZFlfY2U0RnhaYjAyU2dJYVZTaHIyc3o4aVhNeEtDbXNPeHFDYWtFNTdBSnZQMFhPaGVZQTlORFZwOEJmVkJ5eFHSAXZBVV95cUxNT1UtUXZ5WElXZWJrcTlqZkFFWXVnR3AwRnNhVlhFRUNFbkowaUlnNTNPWG9xUGRZX2NlNEZ4WmIwMlNnSWFWU2hyMnN6OGlYTXhLQ21zT3hxQ2FrRTU3QUp2UDBYT2hlWUE5TkRWcDhCZlZCeXhR?oc=5",
-      "source": {
-        "name": "데일리머니",
-        "url": "http://www.thedailymoney.com"
-      },
-      "publishedAt": "2026-06-11T10:28:51.000Z",
-      "guid": "CBMidkFVX3lxTE1PVS1RdnlYSVdlYmtxOWpmQUVZdWdHcDBGc2FWWEVFQ0VuSjBpSWc1M09Yb3FQZFlfY2U0RnhaYjAyU2dJYVZTaHIyc3o4aVhNeEtDbXNPeHFDYWtFNTdBSnZQMFhPaGVZQTlORFZwOEJmVkJ5eFHSAXZBVV95cUxNT1UtUXZ5WElXZWJrcTlqZkFFWXVnR3AwRnNhVlhFRUNF…",
-      "score": 33
-    },
-    {
       "id": "global-7KSR6rWt67CWIO",
       "category": "global",
       "categoryName": "글로벌 경제",
@@ -7036,22 +6956,6 @@
       "score": 32
     },
     {
-      "id": "global-7J2867O4LCDthY",
-      "category": "global",
-      "categoryName": "글로벌 경제",
-      "categoryIcon": "🌐",
-      "title": "일본, 텅스텐 공급망 자립화 추진...중국 의존도 낮춘다 By 알파경제 alphabiz",
-      "description": "일본, 텅스텐 공급망 자립화 추진...중국 의존도 낮춘다 By 알파경제 alphabiz &nbsp;&nbsp; Investing.com 한국어",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBhbEhsUUc1a1QwU2JOaXBPZkNLQlF0MlJMME5EU3YxLWZLUjUtT2hWN3otQjBGdjctbG1rMkVaOUpUM3FURVlkODFrbE9XeDVrSE5HX3k4WlFCYzJsRkg1VnJiNGxpOVVoUmhzZVNLVDE?oc=5",
-      "source": {
-        "name": "Investing.com 한국어",
-        "url": "https://kr.investing.com"
-      },
-      "publishedAt": "2026-06-12T01:22:00.000Z",
-      "guid": "CBMicEFVX3lxTFBhbEhsUUc1a1QwU2JOaXBPZkNLQlF0MlJMME5EU3YxLWZLUjUtT2hWN3otQjBGdjctbG1rMkVaOUpUM3FURVlkODFrbE9XeDVrSE5HX3k4WlFCYzJsRkg1VnJiNGxpOVVoUmhzZVNLVDE",
-      "score": 32
-    },
-    {
       "id": "company-67iU656Z66GdLC",
       "category": "company",
       "categoryName": "기업·실적·산업",
@@ -7074,13 +6978,13 @@
       "categoryIcon": "🏦",
       "title": "WB, 올해 세계 경제성장률 2.5% 전망…코로나 이후 최저",
       "description": "WB, 올해 세계 경제성장률 2.5% 전망…코로나 이후 최저 &nbsp;&nbsp; v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5mYjRnTVFzZkx2T3pCX0ZVZmdnYUJ2U21KTXBpeVEtMHM5T1N2V0hwUWlobnM4REdOQXF5NkEzUFVyb1BUUjZjeFFfbTNMN1Rfam45VQ?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBxSTBrdFdjclpueWxLemRPSWtDaVA0ZFp0X0VyUHE1Xy1zSTZfTHFfNjRXY3oydER3VXVfcVJZWDdrNVBlUC1TUHo3WQ?oc=5",
       "source": {
         "name": "v.daum.net",
         "url": "https://v.daum.net"
       },
       "publishedAt": "2026-06-11T17:38:31.000Z",
-      "guid": "CBMiVEFVX3lxTE5mYjRnTVFzZkx2T3pCX0ZVZmdnYUJ2U21KTXBpeVEtMHM5T1N2V0hwUWlobnM4REdOQXF5NkEzUFVyb1BUUjZjeFFfbTNMN1Rfam45VQ",
+      "guid": "CBMiS0FVX3lxTFBxSTBrdFdjclpueWxLemRPSWtDaVA0ZFp0X0VyUHE1Xy1zSTZfTHFfNjRXY3oydER3VXVfcVJZWDdrNVBlUC1TUHo3WQ",
       "score": 32
     },
     {
@@ -7234,13 +7138,13 @@
       "categoryIcon": "🏦",
       "title": "WB, 올해 세계 성장률 2.5% 전망…중동발 충격에 0.1%p↓",
       "description": "WB, 올해 세계 성장률 2.5% 전망…중동발 충격에 0.1%p↓ &nbsp;&nbsp; 데일리안",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5PcGo5emZ1VzBIVWRYNHJCTm1hNVktV0JOblB2d1lPSmFlZWN2WXpCWWUzOGl1YUFnTFB4ME9rczlIQm10ZnJJWXROWlEzeGhtS3NrVERR0gHwAUFVX3lxTE5OcGhURU94bWI3LU4xTkZRelNITllmYTFleXhVSGQ3SzBnMXI4VXc1c2pRRWYxbHhzeVVYbVhZNnVwQjhXQ095c1NyMDB2cWtCbUdvYTVXUnl2MzBxUXJ3ZWZxb1F0OUtKcHJNTi1VeFNCdzNnTDhYdzVhMWhEQnpuOVpvTmIyQzAwUlJZUVZQSkZBQmgyeWR3Z0tYSVZSZms2UW15MVJUS2NRaVR5V1hUQXN5UlpuRDUxSDNaTEJuc2VhdGE3OE5CZTJVWDZodXpXeTZXeU5RblhjbWZnUTZLTHg1U1J2cmtnWFBxbkFKNQ?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBudVU5TTIzNVZCT1NzdEZ3bmpvb2VmTEpKVGRBQ09RQjBGejQ0QkJkdmJDU1QxUGNzdzFrYVBGTk9KY0lvb2RmaC1CeXFGcUQ2Nlc5UEFuU2FEZkpGT3g3RtIB8AFBVV95cUxOTnBoVEVPeG1iNy1OMU5GUXpTSE5ZZmExZXl4VUhkN0swZzFyOFV3NXNqUUVmMWx4c3lVWG1YWTZ1cEI4V0NPeXNTcjAwdnFrQm1Hb2E1V1J5djMwcVFyd2VmcW9RdDlLSnByTU4tVXhTQnczZ0w4WHc1YTFoREJ6bjlab05iMkMwMFJSWVFWUEpGQUJoMnlkd2dLWElWUmZrNlFteTFSVEtjUWlUeVdYVEFzeVJabkQ1MUgzWkxCbnNlYXRhNzhOQmUyVVg2aHV6V3k2V3lOUW5YY21mZ1E2S0x4NVNSdnJrZ1hQcW5BSjU?oc=5",
       "source": {
         "name": "데일리안",
         "url": "https://www.dailian.co.kr"
       },
       "publishedAt": "2026-06-11T13:32:00.000Z",
-      "guid": "CBMiVkFVX3lxTE5PcGo5emZ1VzBIVWRYNHJCTm1hNVktV0JOblB2d1lPSmFlZWN2WXpCWWUzOGl1YUFnTFB4ME9rczlIQm10ZnJJWXROWlEzeGhtS3NrVERR0gHwAUFVX3lxTE5OcGhURU94bWI3LU4xTkZRelNITllmYTFleXhVSGQ3SzBnMXI4VXc1c2pRRWYxbHhzeVVYbVhZNnVwQjhXQ095…",
+      "guid": "CBMiYEFVX3lxTFBudVU5TTIzNVZCT1NzdEZ3bmpvb2VmTEpKVGRBQ09RQjBGejQ0QkJkdmJDU1QxUGNzdzFrYVBGTk9KY0lvb2RmaC1CeXFGcUQ2Nlc5UEFuU2FEZkpGT3g3RtIB8AFBVV95cUxOTnBoVEVPeG1iNy1OMU5GUXpTSE5ZZmExZXl4VUhkN0swZzFyOFV3NXNqUUVmMWx4c3lVWG1Y…",
       "score": 28
     },
     {
