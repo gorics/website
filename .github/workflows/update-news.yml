@@ -1,0 +1,52 @@
+name: Update Hot News
+
+on:
+  schedule:
+    # GitHub cron is UTC. 17 minutes avoids the top-of-hour load spike.
+    - cron: "17 * * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/update_news.py"
+      - ".github/workflows/update-news.yml"
+      - "index.html"
+      - "privacy.html"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hourly-news-update
+  cancel-in-progress: true
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build public RSS news JSON
+        run: python scripts/update_news.py
+
+      - name: Commit updated news data
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- data/news.json; then
+            echo "No news changes."
+            exit 0
+          fi
+
+          git add data/news.json
+          git commit -m "chore: hourly news update [skip ci]"
+          git push
