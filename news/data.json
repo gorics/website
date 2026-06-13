@@ -1,7 +1,7 @@
 {
   "site": "GORICS.CLOUD NEWS",
-  "generatedAt": "2026-06-13T11:10:00.000Z",
-  "generated_at": "2026-06-13T11:10:00.000Z",
+  "generatedAt": "2026-06-13T11:15:00.000Z",
+  "generated_at": "2026-06-13T11:15:00.000Z",
   "source": "Google News RSS search feeds; compatibility schema restored",
   "page": "news-hub-compat-live-fix",
   "total": 8,
@@ -17,110 +17,40 @@
   "categories": [
     { "id": "top", "name": "종합 핫뉴스", "icon": "🔥", "count": 8 },
     { "id": "economy", "name": "경제·금융", "icon": "💹", "count": 2 },
-    { "id": "politics", "name": "정치·정책", "icon": "🏛️", "count": 3 },
+    { "id": "politics", "name": "정치·정책", "icon": "🏛️", "count": 2 },
     { "id": "tech", "name": "AI·과학기술", "icon": "🤖", "count": 1 },
     { "id": "sports", "name": "스포츠", "icon": "⚽", "count": 1 },
     { "id": "study", "name": "스터디", "icon": "📚", "count": 1 }
   ],
   "theme_order": ["종합 핫뉴스", "경제·금융", "정치·정책", "AI·과학기술", "스포츠", "스터디"],
   "items": [
-    {
-      "id": "live-fix-001",
-      "title": "[속보] 이재명 대통령, ‘기자 선행매매’에 경고…“주가조작 이제 그만해야”",
-      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFAwYkJiOVF0TUpra2UxYmxOTjM3djAwZmNETXVnOVlQOFB6ODI0YzliMm03bVcxNXcxRU5JRVdjTUU3MXVQX0Q1SUJ2RF8wMzhYVDFVRThmcGRudUdjU0U2cUh0ZTM?oc=5",
-      "source": "강원일보",
-      "theme": "정치·정책",
-      "published_at": "2026-06-13T09:15:04.000Z",
-      "summary": "이재명 대통령이 기자 선행매매와 주가조작 관련 사안에 경고 메시지를 냈습니다.",
-      "tags": ["정치·정책", "속보", "경제"],
-      "score": 100
-    },
-    {
-      "id": "live-fix-002",
-      "title": "[속보] 윤석열, 종합특검 조사 출석 약 9시간 만에 종료",
-      "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1ONUJ6OFJSWWtzaXVwSzB5YVdmSlp6elZiUGZFZVM0TmJmTnV1bWVOTmtRdkJTMHREZl91SEE2YlJnTzhTTzgwYTF4Q0pUc2R1cU1DR3I1d0lLTU1XN1pyLVlDWUNxS1ZpVWlr0gFwQVVfeXFMTkdJNF9hamYtTVZ6RjF5QmNNT1RQU21oRTRhb1lBS2toekkxOVFTbDRHaU51czVwWm04bXUxYy1OQ3c5X2JDNUV6T2hIWV9ndmRJSHhVcExYZ05YRjlIbFh1NlBTbnhxWlpvNlEwb2hpWA?oc=5",
-      "source": "머니투데이",
-      "theme": "정치·정책",
-      "published_at": "2026-06-13T10:11:20.000Z",
-      "summary": "윤석열 전 대통령 관련 종합특검 조사 출석 일정이 약 9시간 만에 종료됐다는 보도입니다.",
-      "tags": ["정치·정책", "속보"],
-      "score": 96
-    },
-    {
-      "id": "live-fix-003",
-      "title": "[단독] 미래에셋, 스페이스X IPO 투자 위해 자기자본 펀드 결성",
-      "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQN2NSMW00endpb3BORU9sa1pqZ2c0eWJaUXZWZ2xuZG41S08yWkNLNWowZ0w5WGNCemY1ejBWVEhwMFhfNlJVNDYydmlLZXdObXpKRTRONUNvZC1BOG1FUk0yRGpyWDlWY1c2ZUN0Qkw1MEJWSHE1LU5oQlFXWXJDaHZrZHJkNHfSAZsBQVVfeXFMTVNLeTJsaU1ZN3JiTTQ5ZW02RE5adzRsMWl5MGdrNmRyV01FY3haZmdwMDM5Y3pLWGJPV0FZM3IxbnBKbVN4MjMzODVQNlQ4SXlUaE4teFNfZldGR3kwYVpJRlBLY0xpdjQ0a0NnNGVoeDh3NVdfY3pQM3VoWk9XM1FxNDRLV2RhdExleFNrNU5BOXJ2LVJrRTVwczQ?oc=5",
-      "source": "Chosunbiz",
-      "theme": "경제·금융",
-      "published_at": "2026-06-13T08:40:00.000Z",
-      "summary": "미래에셋이 스페이스X IPO 투자 확대를 위해 자기자본 기반 펀드를 결성한다는 보도입니다.",
-      "tags": ["경제·금융", "단독", "IPO"],
-      "score": 94
-    },
-    {
-      "id": "live-fix-004",
-      "title": "금융 뉴스 전용 페이지 바로가기",
-      "link": "https://gorics.github.io/website/news/financial/",
-      "source": "GORICS FINANCIAL NEWS",
-      "theme": "경제·금융",
-      "published_at": "2026-06-13T11:10:00.000Z",
-      "summary": "증시, 금리, 환율, 기업, 부동산, 가상자산 뉴스는 금융 뉴스 전용 페이지에서 확인할 수 있습니다.",
-      "tags": ["경제·금융", "증시", "환율"],
-      "score": 90
-    },
-    {
-      "id": "live-fix-005",
-      "title": "AI·과학기술 뉴스 모아보기",
-      "link": "https://news.google.com/search?q=AI%20%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%20%EB%B0%98%EB%8F%84%EC%B2%B4&hl=ko&gl=KR&ceid=KR%3Ako",
-      "source": "Google News",
-      "theme": "AI·과학기술",
-      "published_at": "2026-06-13T11:10:00.000Z",
-      "summary": "AI, 반도체, 빅테크, 사이버보안 관련 최신 공개 뉴스 검색 링크입니다.",
-      "tags": ["AI·과학기술", "AI", "반도체"],
-      "score": 86
-    },
-    {
-      "id": "live-fix-006",
-      "title": "오늘의 스포츠 뉴스 모아보기",
-      "link": "https://news.google.com/search?q=%EC%8A%A4%ED%8F%AC%EC%B8%A0%20%EC%B6%95%EA%B5%AC%20%EC%95%BC%EA%B5%AC%20%EB%86%8D%EA%B5%AC&hl=ko&gl=KR&ceid=KR%3Ako",
-      "source": "Google News",
-      "theme": "스포츠",
-      "published_at": "2026-06-13T11:10:00.000Z",
-      "summary": "축구, 야구, 농구, 배구 등 주요 스포츠 뉴스를 모아볼 수 있습니다.",
-      "tags": ["스포츠"],
-      "score": 82
-    },
-    {
-      "id": "live-fix-007",
-      "title": "스터디 허브 바로가기",
-      "link": "https://gorics.github.io/website/study/",
-      "source": "GORICS STUDY",
-      "theme": "스터디",
-      "published_at": "2026-06-13T11:10:00.000Z",
-      "summary": "스케줄 매니저와 사회문화 학습 자료는 스터디 허브에서 확인할 수 있습니다.",
-      "tags": ["스터디", "수능"],
-      "score": 78
-    },
-    {
-      "id": "live-fix-008",
-      "title": "뉴스 허브 구조 복구 완료",
-      "link": "https://gorics.github.io/website/news/",
-      "source": "GORICS",
-      "theme": "종합 핫뉴스",
-      "published_at": "2026-06-13T11:10:00.000Z",
-      "summary": "구버전 뉴스 페이지와 새 뉴스 허브가 모두 읽을 수 있도록 호환 데이터 구조를 복구했습니다.",
-      "tags": ["종합 핫뉴스", "공지"],
-      "score": 76
-    }
+    { "id": "live-fix-001", "title": "[속보] 이재명 대통령, ‘기자 선행매매’에 경고…“주가조작 이제 그만해야”", "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFAwYkJiOVF0TUpra2UxYmxOTjM3djAwZmNETXVnOVlQOFB6ODI0YzliMm03bVcxNXcxRU5JRVdjTUU3MXVQX0Q1SUJ2RF8wMzhYVDFVRThmcGRudUdjU0U2cUh0ZTM?oc=5", "source": "강원일보", "theme": "정치·정책", "published_at": "2026-06-13T09:15:04.000Z", "summary": "이재명 대통령이 기자 선행매매와 주가조작 관련 사안에 경고 메시지를 냈습니다.", "tags": ["정치·정책", "속보", "경제"], "score": 100 },
+    { "id": "live-fix-002", "title": "[속보] 윤석열, 종합특검 조사 출석 약 9시간 만에 종료", "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1ONUJ6OFJSWWtzaXVwSzB5YVdmSlp6elZiUGZFZVM0TmJmTnV1bWVOTmtRdkJTMHREZl91SEE2YlJnTzhTTzgwYTF4Q0pUc2R1cU1DR3I1d0lLTU1XN1pyLVlDWUNxS1ZpVWlr0gFwQVVfeXFMTkdJNF9hamYtTVZ6RjF5QmNNT1RQU21oRTRhb1lBS2toekkxOVFTbDRHaU51czVwWm04bXUxYy1OQ3c5X2JDNUV6T2hIWV9ndmRJSHhVcExYZ05YRjlIbFh1NlBTbnhxWlpvNlEwb2hpWA?oc=5", "source": "머니투데이", "theme": "정치·정책", "published_at": "2026-06-13T10:11:20.000Z", "summary": "윤석열 전 대통령 관련 종합특검 조사 출석 일정이 약 9시간 만에 종료됐다는 보도입니다.", "tags": ["정치·정책", "속보"], "score": 96 },
+    { "id": "live-fix-003", "title": "[단독] 미래에셋, 스페이스X IPO 투자 위해 자기자본 펀드 결성", "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQN2NSMW00endpb3BORU9sa1pqZ2c0eWJaUXZWZ2xuZG41S08yWkNLNWowZ0w5WGNCemY1ejBWVEhwMFhfNlJVNDYydmlLZXdObXpKRTRONUNvZC1BOG1FUk0yRGpyWDlWY1c2ZUN0Qkw1MEJWSHE1LU5oQlFXWXJDaHZrZHJkNHfSAZsBQVVfeXFMTVNLeTJsaU1ZN3JiTTQ5ZW02RE5adzRsMWl5MGdrNmRyV01FY3haZmdwMDM5Y3pLWGJPV0FZM3IxbnBKbVN4MjMzODVQNlQ4SXlUaE4teFNfZldGR3kwYVpJRlBLY0xpdjQ0a0NnNGVoeDh3NVdfY3pQM3VoWk9XM1FxNDRLV2RhdExleFNrNU5BOXJ2LVJrRTVwczQ?oc=5", "source": "Chosunbiz", "theme": "경제·금융", "published_at": "2026-06-13T08:40:00.000Z", "summary": "미래에셋이 스페이스X IPO 투자 확대를 위해 자기자본 기반 펀드를 결성한다는 보도입니다.", "tags": ["경제·금융", "단독", "IPO"], "score": 94 },
+    { "id": "live-fix-004", "title": "금융 뉴스 전용 페이지 바로가기", "link": "https://gorics.github.io/website/news/financial/", "source": "GORICS FINANCIAL NEWS", "theme": "경제·금융", "published_at": "2026-06-13T11:15:00.000Z", "summary": "증시, 금리, 환율, 기업, 부동산, 가상자산 뉴스는 금융 뉴스 전용 페이지에서 확인할 수 있습니다.", "tags": ["경제·금융", "증시", "환율"], "score": 90 },
+    { "id": "live-fix-005", "title": "AI·과학기술 뉴스 모아보기", "link": "https://news.google.com/search?q=AI%20%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%20%EB%B0%98%EB%8F%84%EC%B2%B4&hl=ko&gl=KR&ceid=KR%3Ako", "source": "Google News", "theme": "AI·과학기술", "published_at": "2026-06-13T11:15:00.000Z", "summary": "AI, 반도체, 빅테크, 사이버보안 관련 최신 공개 뉴스 검색 링크입니다.", "tags": ["AI·과학기술", "AI", "반도체"], "score": 86 },
+    { "id": "live-fix-006", "title": "오늘의 스포츠 뉴스 모아보기", "link": "https://news.google.com/search?q=%EC%8A%A4%ED%8F%AC%EC%B8%A0%20%EC%B6%95%EA%B5%AC%20%EC%95%BC%EA%B5%AC%20%EB%86%8D%EA%B5%AC&hl=ko&gl=KR&ceid=KR%3Ako", "source": "Google News", "theme": "스포츠", "published_at": "2026-06-13T11:15:00.000Z", "summary": "축구, 야구, 농구, 배구 등 주요 스포츠 뉴스를 모아볼 수 있습니다.", "tags": ["스포츠"], "score": 82 },
+    { "id": "live-fix-007", "title": "스터디 허브 바로가기", "link": "https://gorics.github.io/website/study/", "source": "GORICS STUDY", "theme": "스터디", "published_at": "2026-06-13T11:15:00.000Z", "summary": "스케줄 매니저와 사회문화 학습 자료는 스터디 허브에서 확인할 수 있습니다.", "tags": ["스터디", "수능"], "score": 78 },
+    { "id": "live-fix-008", "title": "뉴스 허브 구조 복구 완료", "link": "https://gorics.github.io/website/news/", "source": "GORICS", "theme": "종합 핫뉴스", "published_at": "2026-06-13T11:15:00.000Z", "summary": "구버전 뉴스 페이지와 새 뉴스 허브가 모두 읽을 수 있도록 호환 데이터 구조를 복구했습니다.", "tags": ["종합 핫뉴스", "공지"], "score": 76 }
   ],
   "themes": {
-    "종합 핫뉴스": ["live-fix-001", "live-fix-002", "live-fix-003", "live-fix-008"],
-    "정치·정책": ["live-fix-001", "live-fix-002"],
-    "경제·금융": ["live-fix-003", "live-fix-004"],
-    "AI·과학기술": ["live-fix-005"],
-    "스포츠": ["live-fix-006"],
-    "스터디": ["live-fix-007"]
+    "종합 핫뉴스": [
+      { "id": "live-fix-001", "title": "[속보] 이재명 대통령, ‘기자 선행매매’에 경고…“주가조작 이제 그만해야”", "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFAwYkJiOVF0TUpra2UxYmxOTjM3djAwZmNETXVnOVlQOFB6ODI0YzliMm03bVcxNXcxRU5JRVdjTUU3MXVQX0Q1SUJ2RF8wMzhYVDFVRThmcGRudUdjU0U2cUh0ZTM?oc=5", "source": "강원일보", "theme": "정치·정책", "published_at": "2026-06-13T09:15:04.000Z", "summary": "이재명 대통령이 기자 선행매매와 주가조작 관련 사안에 경고 메시지를 냈습니다.", "tags": ["정치·정책", "속보", "경제"], "score": 100 },
+      { "id": "live-fix-002", "title": "[속보] 윤석열, 종합특검 조사 출석 약 9시간 만에 종료", "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1ONUJ6OFJSWWtzaXVwSzB5YVdmSlp6elZiUGZFZVM0TmJmTnV1bWVOTmtRdkJTMHREZl91SEE2YlJnTzhTTzgwYTF4Q0pUc2R1cU1DR3I1d0lLTU1XN1pyLVlDWUNxS1ZpVWlr0gFwQVVfeXFMTkdJNF9hamYtTVZ6RjF5QmNNT1RQU21oRTRhb1lBS2toekkxOVFTbDRHaU51czVwWm04bXUxYy1OQ3c5X2JDNUV6T2hIWV9ndmRJSHhVcExYZ05YRjlIbFh1NlBTbnhxWlpvNlEwb2hpWA?oc=5", "source": "머니투데이", "theme": "정치·정책", "published_at": "2026-06-13T10:11:20.000Z", "summary": "윤석열 전 대통령 관련 종합특검 조사 출석 일정이 약 9시간 만에 종료됐다는 보도입니다.", "tags": ["정치·정책", "속보"], "score": 96 },
+      { "id": "live-fix-003", "title": "[단독] 미래에셋, 스페이스X IPO 투자 위해 자기자본 펀드 결성", "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQN2NSMW00endpb3BORU9sa1pqZ2c0eWJaUXZWZ2xuZG41S08yWkNLNWowZ0w5WGNCemY1ejBWVEhwMFhfNlJVNDYydmlLZXdObXpKRTRONUNvZC1BOG1FUk0yRGpyWDlWY1c2ZUN0Qkw1MEJWSHE1LU5oQlFXWXJDaHZrZHJkNHfSAZsBQVVfeXFMTVNLeTJsaU1ZN3JiTTQ5ZW02RE5adzRsMWl5MGdrNmRyV01FY3haZmdwMDM5Y3pLWGJPV0FZM3IxbnBKbVN4MjMzODVQNlQ4SXlUaE4teFNfZldGR3kwYVpJRlBLY0xpdjQ0a0NnNGVoeDh3NVdfY3pQM3VoWk9XM1FxNDRLV2RhdExleFNrNU5BOXJ2LVJrRTVwczQ?oc=5", "source": "Chosunbiz", "theme": "경제·금융", "published_at": "2026-06-13T08:40:00.000Z", "summary": "미래에셋이 스페이스X IPO 투자 확대를 위해 자기자본 기반 펀드를 결성한다는 보도입니다.", "tags": ["경제·금융", "단독", "IPO"], "score": 94 },
+      { "id": "live-fix-008", "title": "뉴스 허브 구조 복구 완료", "link": "https://gorics.github.io/website/news/", "source": "GORICS", "theme": "종합 핫뉴스", "published_at": "2026-06-13T11:15:00.000Z", "summary": "구버전 뉴스 페이지와 새 뉴스 허브가 모두 읽을 수 있도록 호환 데이터 구조를 복구했습니다.", "tags": ["종합 핫뉴스", "공지"], "score": 76 }
+    ],
+    "경제·금융": [],
+    "정치·정책": [],
+    "AI·과학기술": [],
+    "스포츠": [],
+    "스터디": []
   },
+  "allItems": [
+    { "id": "live-fix-001", "category": "politics", "categoryName": "정치·정책", "categoryIcon": "🏛️", "title": "[속보] 이재명 대통령, ‘기자 선행매매’에 경고…“주가조작 이제 그만해야”", "description": "이재명 대통령이 기자 선행매매와 주가조작 관련 사안에 경고 메시지를 냈습니다.", "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFAwYkJiOVF0TUpra2UxYmxOTjM3djAwZmNETXVnOVlQOFB6ODI0YzliMm03bVcxNXcxRU5JRVdjTUU3MXVQX0Q1SUJ2RF8wMzhYVDFVRThmcGRudUdjU0U2cUh0ZTM?oc=5", "source": { "name": "강원일보", "url": "https://www.kwnews.co.kr" }, "publishedAt": "2026-06-13T09:15:04.000Z", "guid": "live-fix-001", "score": 100 },
+    { "id": "live-fix-002", "category": "politics", "categoryName": "정치·정책", "categoryIcon": "🏛️", "title": "[속보] 윤석열, 종합특검 조사 출석 약 9시간 만에 종료", "description": "윤석열 전 대통령 관련 종합특검 조사 출석 일정이 약 9시간 만에 종료됐다는 보도입니다.", "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1ONUJ6OFJSWWtzaXVwSzB5YVdmSlp6elZiUGZFZVM0TmJmTnV1bWVOTmtRdkJTMHREZl91SEE2YlJnTzhTTzgwYTF4Q0pUc2R1cU1DR3I1d0lLTU1XN1pyLVlDWUNxS1ZpVWlr0gFwQVVfeXFMTkdJNF9hamYtTVZ6RjF5QmNNT1RQU21oRTRhb1lBS2toekkxOVFTbDRHaU51czVwWm04bXUxYy1OQ3c5X2JDNUV6T2hIWV9ndmRJSHhVcExYZ05YRjlIbFh1NlBTbnhxWlpvNlEwb2hpWA?oc=5", "source": { "name": "머니투데이", "url": "https://www.mt.co.kr" }, "publishedAt": "2026-06-13T10:11:20.000Z", "guid": "live-fix-002", "score": 96 },
+    { "id": "live-fix-003", "category": "economy", "categoryName": "경제·금융", "categoryIcon": "💹", "title": "[단독] 미래에셋, 스페이스X IPO 투자 위해 자기자본 펀드 결성", "description": "미래에셋이 스페이스X IPO 투자 확대를 위해 자기자본 기반 펀드를 결성한다는 보도입니다.", "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQN2NSMW00endpb3BORU9sa1pqZ2c0eWJaUXZWZ2xuZG41S08yWkNLNWowZ0w5WGNCemY1ejBWVEhwMFhfNlJVNDYydmlLZXdObXpKRTRONUNvZC1BOG1FUk0yRGpyWDlWY1c2ZUN0Qkw1MEJWSHE1LU5oQlFXWXJDaHZrZHJkNHfSAZsBQVVfeXFMTVNLeTJsaU1ZN3JiTTQ5ZW02RE5adzRsMWl5MGdrNmRyV01FY3haZmdwMDM5Y3pLWGJPV0FZM3IxbnBKbVN4MjMzODVQNlQ4SXlUaE4teFNfZldGR3kwYVpJRlBLY0xpdjQ0a0NnNGVoeDh3NVdfY3pQM3VoWk9XM1FxNDRLV2RhdExleFNrNU5BOXJ2LVJrRTVwczQ?oc=5", "source": { "name": "Chosunbiz", "url": "https://biz.chosun.com" }, "publishedAt": "2026-06-13T08:40:00.000Z", "guid": "live-fix-003", "score": 94 }
+  ],
   "byCategory": {
     "top": [],
     "politics": [],
@@ -128,6 +58,5 @@
     "tech": [],
     "sports": [],
     "study": []
-  },
-  "allItems": []
+  }
 }
