@@ -1,4 +1,4 @@
-# Manual trigger: 2026-06-13T19:58:00+09:00
+# Manual trigger: 2026-06-13T20:18:00+09:00
 name: Hourly Hot News Update
 
 on:
@@ -10,6 +10,7 @@ on:
       - 'scripts/update-hot-news.mjs'
       - 'scripts/update-financial-news.mjs'
       - '.github/workflows/hourly-hot-news.yml'
+      - 'news/data.json'
       - 'news/news/data.json'
 
 permissions:
@@ -39,10 +40,36 @@ jobs:
       - name: Generate privacy-redacted hot news
         run: node scripts/update-hot-news.mjs
 
-      - name: Mirror legacy news data path
+      - name: Add legacy-compatible news schema
+        shell: bash
         run: |
-          mkdir -p news/news
-          cp news/data.json news/news/data.json
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'news/data.json';
+          const payload = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const toLegacy = (x) => ({
+            id: x.id,
+            title: x.title,
+            link: x.url,
+            source: x.source?.name || '원문',
+            theme: x.categoryName || x.category || '종합 핫뉴스',
+            published_at: x.publishedAt,
+            summary: x.description || '',
+            tags: [x.categoryName || x.category || '뉴스'],
+            score: x.score || 0
+          });
+          const items = (payload.allItems || []).map(toLegacy);
+          payload.generated_at = payload.generatedAt;
+          payload.items = items;
+          payload.theme_order = (payload.categories || []).map((c) => c.name);
+          payload.themes = {};
+          for (const c of payload.categories || []) {
+            payload.themes[c.name] = (payload.byCategory?.[c.id] || []).map(toLegacy);
+          }
+          fs.writeFileSync(path, JSON.stringify(payload, null, 2) + '\n');
+          fs.mkdirSync('news/news', { recursive: true });
+          fs.copyFileSync(path, 'news/news/data.json');
+          NODE
 
       - name: Generate privacy-redacted financial news
         run: node scripts/update-financial-news.mjs
