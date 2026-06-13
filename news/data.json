@@ -1,11 +1,202 @@
 {
-  "generatedAt": null,
-  "status": "installed_waiting_for_first_workflow_run",
+  "generatedAt": "2026-06-13T05:07:38Z",
+  "source": "public news links; summaries rewritten in Korean",
   "privacy": {
     "policy": "No account, email, phone, resident ID, card number, IP address, or precise street-address patterns are intentionally published.",
     "redaction": ["email", "phone", "resident-registration-like number", "card-like number", "IP address", "street-address-like pattern"]
   },
-  "categories": [],
-  "total": 0,
-  "allItems": []
+  "categories": [
+    {"id": "politics", "name": "정치·사회", "icon": "🏛️", "count": 2},
+    {"id": "world", "name": "국제·안보", "icon": "🌍", "count": 3},
+    {"id": "economy", "name": "경제·금융", "icon": "💹", "count": 3},
+    {"id": "tech", "name": "AI·테크", "icon": "🤖", "count": 2},
+    {"id": "sports", "name": "스포츠", "icon": "⚽", "count": 2},
+    {"id": "climate", "name": "기후·환경", "icon": "🌱", "count": 1},
+    {"id": "culture", "name": "문화·라이프", "icon": "🎬", "count": 1},
+    {"id": "energy", "name": "에너지", "icon": "🛢️", "count": 1}
+  ],
+  "total": 15,
+  "allItems": [
+    {
+      "id": "news-yoon-drone-20260612",
+      "category": "politics",
+      "categoryName": "정치·사회",
+      "categoryIcon": "🏛️",
+      "title": "윤석열 전 대통령, ‘평양 무인기’ 사건 30년형 선고",
+      "description": "서울중앙지법이 2024년 평양 무인기 침투 의혹과 관련해 윤석열 전 대통령에게 징역 30년을 선고했다. 법원은 권한남용과 이적 혐의를 인정했고, 윤 전 대통령 측은 혐의를 부인하며 항소할 수 있다.",
+      "url": "https://www.reuters.com/world/asia-pacific/south-korea-court-sentences-ex-president-yoon-30-year-jail-term-drone-case-2026-06-12/",
+      "source": {"name": "Reuters", "url": "https://www.reuters.com"},
+      "publishedAt": "2026-06-12T02:11:15Z",
+      "score": 99
+    },
+    {
+      "id": "news-iran-hormuz-20260613",
+      "category": "world",
+      "categoryName": "국제·안보",
+      "categoryIcon": "🌍",
+      "title": "미국·이란 합의 임박 보도 속 호르무즈 군사 긴장 지속",
+      "description": "미국과 이란이 전쟁 종식 합의에 접근했다는 보도와 동시에, 호르무즈 해협 인근에서 드론 격추 등 군사 긴장이 이어졌다. 해협 재개방, 동결자산, 향후 핵 협상 조건이 핵심 변수다.",
+      "url": "https://www.reuters.com/world/asia-pacific/iran-peace-deal-looms-while-new-military-action-flares-near-strait-hormuz-2026-06-13/",
+      "source": {"name": "Reuters", "url": "https://www.reuters.com"},
+      "publishedAt": "2026-06-13T00:00:00Z",
+      "score": 98
+    },
+    {
+      "id": "news-korea-czech-20260612",
+      "category": "sports",
+      "categoryName": "스포츠",
+      "categoryIcon": "⚽",
+      "title": "한국, 월드컵 첫 경기서 체코에 2-1 역전승",
+      "description": "한국 축구대표팀이 2026 월드컵 조별리그 첫 경기에서 체코를 상대로 2-1 역전승을 거뒀다. 황인범이 동점골과 결승골 도움을 기록했고, 오현규가 후반 결승골을 넣었다.",
+      "url": "https://www.reuters.com/sports/soccer/south-korea-snatch-2-1-win-over-czech-republic-world-cup-opener-2026-06-12/",
+      "source": {"name": "Reuters", "url": "https://www.reuters.com"},
+      "publishedAt": "2026-06-12T04:02:45Z",
+      "score": 97
+    },
+    {
+      "id": "news-sk-hynix-nasdaq-20260612",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "SK하이닉스, 미국 상장 후보로 나스닥 선택 전망",
+      "description": "SK하이닉스가 AI 메모리 수요와 글로벌 투자자 관심을 바탕으로 미국 상장 시장으로 나스닥을 택할 가능성이 커졌다는 보도가 나왔다. HBM과 엔비디아 공급망 내 위상이 핵심 배경이다.",
+      "url": "https://www.reuters.com/business/retail-consumer/south-koreas-sk-hynix-opt-nasdaq-planned-us-listing-sources-say-2026-06-12/",
+      "source": {"name": "Reuters", "url": "https://www.reuters.com"},
+      "publishedAt": "2026-06-12T00:00:00Z",
+      "score": 96
+    },
+    {
+      "id": "news-nvidia-korea-20260607",
+      "category": "tech",
+      "categoryName": "AI·테크",
+      "categoryIcon": "🤖",
+      "title": "엔비디아, SK그룹 등 한국 기업과 AI 인프라 협력 확대",
+      "description": "엔비디아가 SK하이닉스·SK텔레콤 등 한국 기업과 AI 팩토리, 메모리, 로봇, 데이터센터 분야 협력을 확대했다. 한국 반도체·통신·모빌리티 기업의 AI 인프라 경쟁력이 재조명되고 있다.",
+      "url": "https://www.reuters.com/business/media-telecom/sk-hynix-announces-multi-year-tech-deal-with-nvidia-ai-factories-2026-06-07/",
+      "source": {"name": "Reuters", "url": "https://www.reuters.com"},
+      "publishedAt": "2026-06-07T00:00:00Z",
+      "score": 94
+    },
+    {
+      "id": "news-north-korea-missile-20260612",
+      "category": "world",
+      "categoryName": "국제·안보",
+      "categoryIcon": "🌍",
+      "title": "북한, 미국의 한국 공대공 미사일 판매 승인 비난",
+      "description": "북한 외무성이 미국의 약 3억 달러 규모 한국 미사일 판매 승인을 한반도 긴장 고조 행위라고 비난했다. 북측은 미·한 군사협력 강화에 맞서 방위력 강화를 계속하겠다고 밝혔다.",
+      "url": "https://www.reuters.com/business/aerospace-defense/north-korea-condemns-us-missile-sale-approval-south-korea-kcna-says-2026-06-12/",
+      "source": {"name": "Reuters", "url": "https://www.reuters.com"},
+      "publishedAt": "2026-06-12T21:29:58Z",
+      "score": 93
+    },
+    {
+      "id": "news-election-ballot-20260606",
+      "category": "politics",
+      "categoryName": "정치·사회",
+      "categoryIcon": "🏛️",
+      "title": "투표용지 부족 논란, 재선거 요구 시위로 이어져",
+      "description": "지방선거 일부 투표소에서 투표용지가 부족했던 사태 이후 시민들이 선거 재실시와 선관위 책임 규명을 요구했다. 선관위원장 사퇴 뒤에도 선거 관리 신뢰 문제가 정치 쟁점으로 남았다.",
+      "url": "https://www.reuters.com/world/asia-pacific/south-korean-protesters-keep-calling-re-run-election-after-ballot-shortage-2026-06-06/",
+      "source": {"name": "Reuters", "url": "https://www.reuters.com"},
+      "publishedAt": "2026-06-06T11:00:16Z",
+      "score": 92
+    },
+    {
+      "id": "news-kospi-ai-20260613",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "AI주 변동성 뒤 한국 증시 반등…반도체주가 흐름 주도",
+      "description": "AI 관련주 변동성으로 급락했던 한국 증시가 반도체 대형주 중심의 매수세에 힘입어 반등했다. 시장은 여전히 AI 메모리 사이클과 금리·지정학 변수에 민감하게 반응하고 있다.",
+      "url": "https://www.businessinsider.com/kospi-stock-index-price-south-korea-markets-samsung-sk-hynix-2026-6",
+      "source": {"name": "Business Insider", "url": "https://www.businessinsider.com"},
+      "publishedAt": "2026-06-13T00:00:00Z",
+      "score": 91
+    },
+    {
+      "id": "news-france-heat-20260613",
+      "category": "climate",
+      "categoryName": "기후·환경",
+      "categoryIcon": "🌱",
+      "title": "프랑스, 40도 안팎 조기 폭염 가능성에 경계 강화",
+      "description": "프랑스가 남부와 서부를 중심으로 35도를 넘는 고온과 일부 지역 40도 안팎의 폭염 가능성에 대비하고 있다. 고온 장기화, 열대야, 산불 위험이 동시에 거론된다.",
+      "url": "https://www.lemonde.fr/en/environment/article/2026/06/13/france-prepares-for-another-very-intense-and-widespread-heat-event-possibly-over-40-c_6754428_114.html",
+      "source": {"name": "Le Monde", "url": "https://www.lemonde.fr"},
+      "publishedAt": "2026-06-13T00:00:00Z",
+      "score": 90
+    },
+    {
+      "id": "news-naver-ai-factory-20260607",
+      "category": "tech",
+      "categoryName": "AI·테크",
+      "categoryIcon": "🤖",
+      "title": "네이버, 엔비디아 기술 기반 기가와트급 AI 팩토리 추진",
+      "description": "네이버가 엔비디아 기술을 활용해 대규모 AI 팩토리 구축에 나선다. 생성형 AI와 물리 AI 수요가 커지면서 국내 클라우드·데이터센터 투자 경쟁도 한층 빨라지는 분위기다.",
+      "url": "https://www.reuters.com/world/asia-pacific/south-koreas-naver-build-gigawatt-scale-ai-factories-using-nvidia-technology-2026-06-07/",
+      "source": {"name": "Reuters", "url": "https://www.reuters.com"},
+      "publishedAt": "2026-06-07T00:00:00Z",
+      "score": 89
+    },
+    {
+      "id": "news-korea-italy-20260612",
+      "category": "world",
+      "categoryName": "국제·안보",
+      "categoryIcon": "🌍",
+      "title": "이탈리아·한국 정상, 기술·개발 협력 확대 합의",
+      "description": "이탈리아 총리와 한국 대통령이 로마 회담에서 양국 관계를 강화하기로 하고 기술·개발 협력 관련 양해각서를 체결했다. 유럽과 한국의 산업·외교 협력 확대 흐름과 맞물린다.",
+      "url": "https://www.reuters.com/world/asia-pacific/italys-meloni-south-koreas-lee-agree-deepen-ties-rome-talks-2026-06-12/",
+      "source": {"name": "Reuters", "url": "https://www.reuters.com"},
+      "publishedAt": "2026-06-12T14:11:54Z",
+      "score": 88
+    },
+    {
+      "id": "news-concrete-chip-20260612",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "콘크리트 운송 파업, 삼성·SK하이닉스 반도체 공장 공사 변수로",
+      "description": "수도권 레미콘 운송 노동자 파업이 삼성전자와 SK하이닉스 반도체 공장 증설 일정에 변수로 떠올랐다. 단기 영향은 제한적일 수 있지만 파업 장기화 시 공급망·건설 일정 부담이 커질 수 있다.",
+      "url": "https://www.reuters.com/business/world-at-work/south-korea-concrete-delivery-halt-threatens-samsung-sk-hynix-chip-plant-work-2026-06-12/",
+      "source": {"name": "Reuters", "url": "https://www.reuters.com"},
+      "publishedAt": "2026-06-12T00:00:00Z",
+      "score": 86
+    },
+    {
+      "id": "news-oil-hormuz-20260612",
+      "category": "energy",
+      "categoryName": "에너지",
+      "categoryIcon": "🛢️",
+      "title": "미군, 페르시아만 원유 반출 지원…호르무즈 리스크가 에너지 시장 압박",
+      "description": "미 에너지 당국은 호르무즈 긴장 속에서 미군이 페르시아만 원유 수송을 지원하고 있다고 밝혔다. 해협 정상화 여부는 유가, 물류, 인플레이션 압력에 직접적인 변수가 될 수 있다.",
+      "url": "https://www.reuters.com/business/energy/us-military-helps-move-7-million-barrels-oil-per-day-out-persian-gulf-wright-2026-06-12/",
+      "source": {"name": "Reuters", "url": "https://www.reuters.com"},
+      "publishedAt": "2026-06-12T00:00:00Z",
+      "score": 85
+    },
+    {
+      "id": "news-brunch-worldcup-20260612",
+      "category": "sports",
+      "categoryName": "스포츠",
+      "categoryIcon": "⚽",
+      "title": "한국식 거리응원, 오전 경기 영향으로 ‘브런치 월드컵’으로 변화",
+      "description": "북중미 월드컵 시차로 한국 경기 시간이 오전대에 배치되면서 거리응원 풍경도 달라졌다. 야식과 술 중심의 밤 응원 대신 커피, 김밥, 가족 단위 관람이 늘었다.",
+      "url": "https://www.theguardian.com/world/2026/jun/13/south-korea-fans-brunch-world-cup-watch-vs-czechia-game",
+      "source": {"name": "The Guardian", "url": "https://www.theguardian.com"},
+      "publishedAt": "2026-06-12T21:00:55Z",
+      "score": 84
+    },
+    {
+      "id": "news-pompidou-seoul-20260605",
+      "category": "culture",
+      "categoryName": "문화·라이프",
+      "categoryIcon": "🎬",
+      "title": "퐁피두 한화 서울 개관, 한불 문화교류 거점 기대와 논란 공존",
+      "description": "여의도 63빌딩 부속 공간을 리모델링한 퐁피두 한화 서울이 개관했다. 프랑스 현대미술 컬렉션과 한국 작가 기획을 연결하는 플랫폼으로 기대를 모으지만 운영 주체 관련 비판도 있다.",
+      "url": "https://www.lemonde.fr/en/culture/article/2026/06/05/seoul-s-centre-pompidou-hanwha-aims-to-build-a-cultural-bridge-between-france-and-south-korea_6754154_30.html",
+      "source": {"name": "Le Monde", "url": "https://www.lemonde.fr"},
+      "publishedAt": "2026-06-05T00:00:00Z",
+      "score": 82
+    }
+  ],
+  "errors": []
 }
