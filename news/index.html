@@ -1,30 +1,61 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="index,follow" />
-  <meta name="description" content="개인정보를 자동 제거한 테마별 핫뉴스 링크 허브. 매시간 GitHub Actions로 갱신됩니다." />
-  <title>GORICS HOT NEWS</title>
-  <style>
-    :root { color-scheme: dark; --bg:#071018; --panel:#0e1a25; --line:#22364a; --text:#e6edf3; --muted:#9fb0c0; --accent:#58a6ff; --ok:#3fb950; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; background:radial-gradient(circle at top left,#13243a,var(--bg) 45%); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif; padding:24px; }
-    main { width:min(760px,100%); background:rgba(14,26,37,.9); border:1px solid var(--line); border-radius:28px; padding:36px; box-shadow:0 18px 60px rgba(0,0,0,.32); }
-    .kicker { color:var(--ok); font-weight:800; letter-spacing:.08em; font-size:.82rem; }
-    h1 { font-size:clamp(2.2rem,8vw,4.8rem); line-height:.95; margin:14px 0 18px; }
-    p { color:var(--muted); line-height:1.75; }
-    code { color:#c8e1ff; background:#132435; border:1px solid var(--line); border-radius:8px; padding:2px 6px; }
-    a { color:var(--accent); }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow">
+<meta name="description" content="개인정보를 자동 제거한 테마별 핫뉴스 링크 허브. 주요 공개 뉴스 링크를 빠르게 확인하세요.">
+<title>GORICS HOT NEWS</title>
+<style>
+:root{color-scheme:dark;--bg:#071018;--panel:#0e1a25;--panel2:#132435;--line:#22364a;--text:#e6edf3;--muted:#9fb0c0;--accent:#58a6ff;--hot:#ff7b72;--ok:#3fb950}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top left,#13243a,var(--bg) 45%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif}.wrap{width:min(1180px,calc(100% - 32px));margin:0 auto}a{color:inherit;text-decoration:none}header{padding:42px 0 20px}.hero{display:grid;grid-template-columns:1.45fr .8fr;gap:18px}.box{background:rgba(14,26,37,.9);border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:0 18px 60px rgba(0,0,0,.28)}.kicker{color:var(--ok);font-weight:900;letter-spacing:.08em;font-size:.82rem}h1{font-size:clamp(2.3rem,6vw,5rem);line-height:.95;margin:12px 0 18px}.desc{color:var(--muted);line-height:1.7}.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.pill,.tag,.score{border:1px solid var(--line);border-radius:999px;background:var(--panel2)}.pill{padding:8px 12px;color:var(--muted);font-size:.9rem}.pill b{color:var(--text)}.rank{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}.rank li{display:grid;grid-template-columns:28px 1fr;gap:8px;color:var(--muted);font-size:.92rem;line-height:1.42}.rank b{color:var(--hot)}.rank a:hover,.card h2 a:hover{color:var(--accent)}.notice{color:var(--muted);font-size:.9rem;margin:18px 0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:6px 0 46px}.card{background:rgba(14,26,37,.94);border:1px solid var(--line);border-radius:20px;padding:18px;min-height:250px;display:flex;flex-direction:column;transition:.18s}.card:hover{transform:translateY(-3px);border-color:rgba(88,166,255,.8)}.top{display:flex;justify-content:space-between;gap:10px}.tag{color:#c8e1ff;background:rgba(88,166,255,.12);padding:6px 9px;font-size:.78rem}.score{color:#ffd8d5;background:rgba(255,123,114,.12);padding:6px 9px;font-size:.74rem;font-weight:900}.card h2{font-size:1.1rem;line-height:1.45;margin:15px 0 10px}.card p{color:var(--muted);line-height:1.62;margin:0 0 18px;font-size:.94rem}.card footer{margin-top:auto;display:flex;justify-content:space-between;gap:12px;color:#7d8b99;font-size:.82rem;border-top:1px solid var(--line);padding-top:12px}.section-title{margin:22px 0 12px;font-size:1.35rem}@media(max-width:980px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:640px){.wrap{width:min(100% - 20px,1180px)}.box{padding:23px}.grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-  <main>
-    <div class="kicker">AUTO UPDATED EVERY HOUR · PRIVACY REDACTED</div>
-    <h1>GORICS<br />HOT NEWS</h1>
-    <p>뉴스 자동 업데이트 시스템이 설치되었습니다. GitHub Actions가 <code>7 * * * *</code> 스케줄로 매시간 공개 RSS 뉴스를 수집해 이 페이지를 테마별 핫뉴스 허브로 자동 교체합니다.</p>
-    <p>이메일, 전화번호, 주민등록번호, 카드번호, IP, 세부 주소 패턴은 생성 단계에서 자동 비공개 처리됩니다. 첫 실행은 워크플로 추가 직후 또는 다음 정각대에 반영됩니다. ⚡</p>
-    <p><a href="../">메인으로 이동</a></p>
-  </main>
+<header class="wrap">
+<section class="hero">
+<div class="box">
+<div class="kicker">UPDATED NOW · PRIVACY REDACTED</div>
+<h1>GORICS<br>HOT NEWS</h1>
+<p class="desc">국내외 공개 뉴스 링크를 테마별로 모아 보여주는 핫뉴스 허브입니다. 민감정보 패턴은 게시 전 제거하며, 전체 기사는 각 언론사 원문에서 확인하세요.</p>
+<div class="pills"><span class="pill">마지막 갱신 <b>2026. 06. 13. 13:59 KST</b></span><span class="pill">총 기사 <b>15</b></span><span class="pill">테마 <b>8</b></span><span class="pill">수집 오류 <b>0</b></span></div>
+</div>
+<aside class="box">
+<h3>🔥 지금 뜨는 TOP 10</h3>
+<ol class="rank">
+<li><b>1</b><a href="https://www.reuters.com/world/asia-pacific/south-korea-court-sentences-ex-president-yoon-30-year-jail-term-drone-case-2026-06-12/" target="_blank" rel="noopener noreferrer">윤석열 전 대통령, 평양 무인기 사건 30년형</a></li>
+<li><b>2</b><a href="https://www.reuters.com/world/asia-pacific/iran-peace-deal-looms-while-new-military-action-flares-near-strait-hormuz-2026-06-13/" target="_blank" rel="noopener noreferrer">미국·이란 합의 임박 속 호르무즈 긴장</a></li>
+<li><b>3</b><a href="https://www.reuters.com/world/asia-pacific/how-south-koreas-ballot-shortage-spurred-turnout-thousands-defend-democracy-2026-06-12/" target="_blank" rel="noopener noreferrer">투표용지 부족 논란, 민주주의 시위로 확대</a></li>
+<li><b>4</b><a href="https://www.reuters.com/business/retail-consumer/south-koreas-sk-hynix-opt-nasdaq-planned-us-listing-sources-say-2026-06-12/" target="_blank" rel="noopener noreferrer">SK하이닉스, 나스닥 상장 추진 전망</a></li>
+<li><b>5</b><a href="https://www.reuters.com/sports/soccer/south-korea-snatch-2-1-win-over-czech-republic-world-cup-opener-2026-06-12/" target="_blank" rel="noopener noreferrer">한국, 체코에 2-1 월드컵 역전승</a></li>
+<li><b>6</b><a href="https://www.reuters.com/world/asia-pacific/south-korea-seek-priority-supply-nvidia-vera-rubin-gpus-science-minister-says-2026-06-08/" target="_blank" rel="noopener noreferrer">차세대 엔비디아 GPU 우선 공급 요청</a></li>
+<li><b>7</b><a href="https://www.businessinsider.com/kospi-stock-index-price-south-korea-markets-samsung-sk-hynix-2026-6" target="_blank" rel="noopener noreferrer">AI주 변동성 뒤 한국 증시 반등</a></li>
+<li><b>8</b><a href="https://www.reuters.com/world/asia-pacific/south-koreas-naver-build-gigawatt-scale-ai-factories-using-nvidia-technology-2026-06-07/" target="_blank" rel="noopener noreferrer">네이버, 기가와트급 AI 팩토리 추진</a></li>
+<li><b>9</b><a href="https://www.lemonde.fr/en/environment/article/2026/06/13/france-prepares-for-another-very-intense-and-widespread-heat-event-possibly-over-40-c_6754428_114.html" target="_blank" rel="noopener noreferrer">프랑스, 40도 조기 폭염 경보</a></li>
+<li><b>10</b><a href="https://www.theguardian.com/world/2026/jun/13/south-korea-fans-brunch-world-cup-watch-vs-czechia-game" target="_blank" rel="noopener noreferrer">한국 응원문화, ‘브런치 월드컵’으로 변화</a></li>
+</ol>
+</aside>
+</section>
+</header>
+<main class="wrap">
+<p class="notice">⚠️ 공개 뉴스 링크 기반 큐레이션입니다. 기사 내용·수정·삭제는 각 원문 언론사 기준을 따릅니다.</p>
+<h2 class="section-title">오늘의 업데이트</h2>
+<section class="grid">
+<article class="card"><div class="top"><span class="tag">🏛️ 정치·정책</span><span class="score">HOT 98</span></div><h2><a href="https://www.reuters.com/world/asia-pacific/south-korea-court-sentences-ex-president-yoon-30-year-jail-term-drone-case-2026-06-12/" target="_blank" rel="noopener noreferrer">한국 법원, 윤석열 전 대통령 ‘평양 무인기 침투’ 사건 30년형 선고</a></h2><p>서울중앙지법이 2024년 평양 상공 군용 무인기 침투 의혹과 관련해 윤석열 전 대통령에게 징역 30년을 선고했다. 법원은 권한남용과 이적 혐의를 인정했고, 윤 전 대통령 측은 혐의를 부인하며 항소 가능성이 남아 있다.</p><footer><span>Reuters</span><time>2026. 06. 12.</time></footer></article>
+<article class="card"><div class="top"><span class="tag">🏛️ 정치·정책</span><span class="score">HOT 94</span></div><h2><a href="https://www.reuters.com/world/asia-pacific/how-south-koreas-ballot-shortage-spurred-turnout-thousands-defend-democracy-2026-06-12/" target="_blank" rel="noopener noreferrer">지방선거 투표용지 부족 논란, 재선거 요구 시위로 확대</a></h2><p>6월 지방선거에서 일부 투표소의 투표용지 부족 사태가 발생한 뒤 시민들이 선거 재실시와 선관위 책임 규명을 요구하고 있다. 선관위원장 사퇴 이후에도 선거 관리 신뢰 회복이 핵심 쟁점으로 남았다.</p><footer><span>Reuters</span><time>2026. 06. 12.</time></footer></article>
+<article class="card"><div class="top"><span class="tag">🌍 국제·안보</span><span class="score">HOT 96</span></div><h2><a href="https://www.reuters.com/world/asia-pacific/iran-peace-deal-looms-while-new-military-action-flares-near-strait-hormuz-2026-06-13/" target="_blank" rel="noopener noreferrer">미국·이란 평화 합의 임박 보도 속 호르무즈 해협 군사 긴장 재점화</a></h2><p>미국과 이란이 전쟁 종식 합의문에 접근했다는 보도와 동시에, 호르무즈 해협 인근에서 미국이 이란 공격용 드론을 격추했다. 합의 초안에는 해협 재개방, 동결자산 해제, 향후 핵 협상 틀이 포함된 것으로 전해졌다.</p><footer><span>Reuters</span><time>2026. 06. 13.</time></footer></article>
+<article class="card"><div class="top"><span class="tag">🌍 국제·안보</span><span class="score">HOT 88</span></div><h2><a href="https://www.reuters.com/business/aerospace-defense/north-korea-condemns-us-missile-sale-approval-south-korea-kcna-says-2026-06-12/" target="_blank" rel="noopener noreferrer">북한, 미국의 한국 공대공 미사일 판매 승인 강하게 비난</a></h2><p>북한 외무성이 미국의 약 3억 달러 규모 한국 미사일 판매 승인을 한반도 긴장 고조 행위라고 비난했다. 북한은 미·한 군사협력 강화에 대응해 자체 방위력 강화를 지속하겠다고 주장했다.</p><footer><span>Reuters</span><time>2026. 06. 12.</time></footer></article>
+<article class="card"><div class="top"><span class="tag">💹 경제·금융</span><span class="score">HOT 93</span></div><h2><a href="https://www.reuters.com/business/retail-consumer/south-koreas-sk-hynix-opt-nasdaq-planned-us-listing-sources-say-2026-06-12/" target="_blank" rel="noopener noreferrer">SK하이닉스, 미국 상장 후보로 나스닥 선택 전망</a></h2><p>SK하이닉스가 미국 상장 시장으로 나스닥을 택할 가능성이 커졌다는 보도가 나왔다. AI 메모리와 HBM 수요 확대 속에서 글로벌 투자자 기반 확대와 기술주 프리미엄 확보가 배경으로 거론된다.</p><footer><span>Reuters</span><time>2026. 06. 12.</time></footer></article>
+<article class="card"><div class="top"><span class="tag">💹 경제·금융</span><span class="score">HOT 87</span></div><h2><a href="https://www.businessinsider.com/kospi-stock-index-price-south-korea-markets-samsung-sk-hynix-2026-6" target="_blank" rel="noopener noreferrer">AI주 변동성에 흔들린 한국 증시, 급락 후 반등 마감</a></h2><p>한국 증시가 반도체·AI 관련주 변동성 속에 급락과 반등을 오갔다. KOSPI는 주 초반 급락 이후 삼성전자와 SK하이닉스 등 대형 반도체주 중심으로 매수세가 돌아오며 일부 낙폭을 만회했다.</p><footer><span>Business Insider</span><time>2026. 06. 13.</time></footer></article>
+<article class="card"><div class="top"><span class="tag">🤖 AI·과학기술</span><span class="score">HOT 91</span></div><h2><a href="https://www.reuters.com/world/asia-pacific/south-korea-seek-priority-supply-nvidia-vera-rubin-gpus-science-minister-says-2026-06-08/" target="_blank" rel="noopener noreferrer">정부, 엔비디아 차세대 Vera Rubin GPU 우선 공급 요청 방침</a></h2><p>과학기술정보통신부가 엔비디아의 차세대 Vera Rubin GPU 공급 지연 가능성에 대비해 우선 공급을 요청하겠다고 밝혔다. 대규모 GPU 확보 사업과 AI 인프라 경쟁이 맞물리며 공급망 확보가 핵심 과제로 떠올랐다.</p><footer><span>Reuters</span><time>2026. 06. 08.</time></footer></article>
+<article class="card"><div class="top"><span class="tag">🤖 AI·과학기술</span><span class="score">HOT 89</span></div><h2><a href="https://www.reuters.com/world/asia-pacific/south-koreas-naver-build-gigawatt-scale-ai-factories-using-nvidia-technology-2026-06-07/" target="_blank" rel="noopener noreferrer">네이버, 엔비디아 기술 기반 기가와트급 AI 팩토리 구축 추진</a></h2><p>네이버가 엔비디아 기술을 활용해 대규모 AI 팩토리 구축에 나선다. 물리 AI와 AI 서비스 수요 급증에 대응하는 인프라 투자로, 국내 AI 생태계의 데이터센터 경쟁이 한층 커질 전망이다.</p><footer><span>Reuters</span><time>2026. 06. 07.</time></footer></article>
+<article class="card"><div class="top"><span class="tag">🤖 AI·과학기술</span><span class="score">HOT 84</span></div><h2><a href="https://www.reuters.com/world/china/nvidia-begins-vera-cpu-sales-pitch-chinese-clients-sources-say-2026-06-12/" target="_blank" rel="noopener noreferrer">엔비디아, 중국 고객 대상 Vera CPU 영업 시작</a></h2><p>엔비디아가 중국 고객에게 AI 작업용 독립형 CPU ‘Vera’를 제안하기 시작했다. 고성능 GPU 수출 제한과 중국 내 자립화 압박 속에서 CPU·AI 서버 시장 공략이 새로운 변수로 부상했다.</p><footer><span>Reuters</span><time>2026. 06. 12.</time></footer></article>
+<article class="card"><div class="top"><span class="tag">⚽ 스포츠</span><span class="score">HOT 92</span></div><h2><a href="https://www.reuters.com/sports/soccer/south-korea-snatch-2-1-win-over-czech-republic-world-cup-opener-2026-06-12/" target="_blank" rel="noopener noreferrer">한국, 월드컵 조별리그 첫 경기서 체코에 2-1 역전승</a></h2><p>한국 축구대표팀이 2026 월드컵 조별리그 첫 경기에서 체코에 2-1 역전승을 거뒀다. 황인범이 동점골을 넣고 오현규가 결승골을 기록하며 조 선두권 경쟁에 유리한 출발을 만들었다.</p><footer><span>Reuters</span><time>2026. 06. 12.</time></footer></article>
+<article class="card"><div class="top"><span class="tag">⚽ 스포츠</span><span class="score">HOT 78</span></div><h2><a href="https://www.reuters.com/sports/soccer/empty-seats-world-cup-match-renews-concerns-over-ticket-prices-2026-06-12/" target="_blank" rel="noopener noreferrer">한국-체코전 빈 좌석 논란, 월드컵 티켓 가격 우려 재점화</a></h2><p>과달라하라에서 열린 한국-체코전에서 일부 좌석이 비어 보이면서 FIFA의 티켓 가격 정책 논란이 다시 커졌다. 고가 좌석과 접근성 문제가 첫 48개국 월드컵의 상업화 논쟁으로 이어지고 있다.</p><footer><span>Reuters</span><time>2026. 06. 12.</time></footer></article>
+<article class="card"><div class="top"><span class="tag">🎬 문화·라이프</span><span class="score">HOT 80</span></div><h2><a href="https://www.theguardian.com/world/2026/jun/13/south-korea-fans-brunch-world-cup-watch-vs-czechia-game" target="_blank" rel="noopener noreferrer">시차가 만든 ‘브런치 월드컵’…서울 거리응원 문화도 변화</a></h2><p>북중미 월드컵 개최로 한국 경기 시간이 오전대에 배치되면서 거리응원 풍경도 달라졌다. 맥주와 야식 중심의 응원 대신 김밥·커피·가족 단위 관람이 늘며 새로운 월드컵 응원 문화가 나타났다.</p><footer><span>The Guardian</span><time>2026. 06. 13.</time></footer></article>
+<article class="card"><div class="top"><span class="tag">🎬 문화·라이프</span><span class="score">HOT 75</span></div><h2><a href="https://www.lemonde.fr/en/culture/article/2026/06/05/seoul-s-centre-pompidou-hanwha-aims-to-build-a-cultural-bridge-between-france-and-south-korea_6754154_30.html" target="_blank" rel="noopener noreferrer">서울 퐁피두 한화 개관, 한불 문화교류 거점 기대와 논란 공존</a></h2><p>여의도 63빌딩 부속 공간을 리모델링한 퐁피두 한화 서울이 개관했다. 프랑스 퐁피두센터의 글로벌 확장과 한국 미술의 국제 연결을 표방하지만, 운영 주체와 관람료를 둘러싼 비판도 제기된다.</p><footer><span>Le Monde</span><time>2026. 06. 05.</time></footer></article>
+<article class="card"><div class="top"><span class="tag">🌱 기후·재난</span><span class="score">HOT 81</span></div><h2><a href="https://www.lemonde.fr/en/environment/article/2026/06/13/france-prepares-for-another-very-intense-and-widespread-heat-event-possibly-over-40-c_6754428_114.html" target="_blank" rel="noopener noreferrer">프랑스, 40도 넘는 조기 폭염 가능성에 경보</a></h2><p>프랑스가 6월 중순부터 남부와 서부를 중심으로 40도를 넘나드는 폭염 가능성에 대비하고 있다. 고온이 북상하며 파리 등 대도시의 열대야와 산불 위험도 함께 커질 수 있다는 전망이 나온다.</p><footer><span>Le Monde</span><time>2026. 06. 13.</time></footer></article>
+<article class="card"><div class="top"><span class="tag">🧭 심층·해설</span><span class="score">HOT 77</span></div><h2><a href="https://www.reuters.com/business/energy/once-an-arab-oil-embargo-victim-us-becomes-worlds-top-oil-exporter-2026-06-11/" target="_blank" rel="noopener noreferrer">미국, 세계 최대 석유 수출국 부상…중동 리스크 속 에너지 권력 이동</a></h2><p>미국이 셰일 생산 확대와 지정학적 변수 속에서 세계 최대 석유 수출국 지위를 굳히고 있다. 이 변화는 중동 공급 차질과 러시아 제재 이후 에너지 안보, 무역, 외교 전략 전반에 영향을 줄 수 있다.</p><footer><span>Reuters</span><time>2026. 06. 11.</time></footer></article>
+</section>
+</main>
 </body>
 </html>
