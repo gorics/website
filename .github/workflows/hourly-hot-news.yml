@@ -44,6 +44,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No news changes to commit."
           else
-            git commit -m "chore(news): hourly hot news update [skip ci]"
+            git commit -m "chore(news): hourly hot news update"
             git push
           fi
