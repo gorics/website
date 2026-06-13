@@ -1,23 +1,17 @@
-name: Update Hot News
+name: Update Legacy News JSON
 
 on:
-  schedule:
-    - cron: "17 * * * *"
   workflow_dispatch:
   push:
     paths:
       - "scripts/update_news.py"
       - ".github/workflows/update-news.yml"
-      - "index.html"
-      - "privacy.html"
-      - "news/index.html"
-      - "new/index.html"
 
 permissions:
   contents: write
 
 concurrency:
-  group: hourly-news-update
+  group: legacy-news-json-update
   cancel-in-progress: true
 
 jobs:
@@ -37,17 +31,17 @@ jobs:
       - name: Build public RSS news JSON
         run: python scripts/update_news.py
 
-      - name: Commit updated news data
+      - name: Commit updated legacy news data
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           if [[ -z "$(git status --porcelain -- data/news.json)" ]]; then
-            echo "No news changes."
+            echo "No legacy news changes."
             exit 0
           fi
 
           git add data/news.json
-          git commit -m "chore: hourly news update [skip ci]"
+          git commit -m "chore(news): update legacy news json"
           git push
