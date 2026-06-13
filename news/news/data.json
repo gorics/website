@@ -1,0 +1,94 @@
+{
+  "generatedAt": "2026-06-13T10:32:43.384Z",
+  "source": "compatibility mirror for old /news/ page path",
+  "page": "news-hub-compat",
+  "total": 3,
+  "errors": [],
+  "categories": [
+    { "id": "top", "name": "종합 핫뉴스", "icon": "🔥", "count": 3 }
+  ],
+  "byCategory": {
+    "top": [
+      {
+        "id": "compat-top-1",
+        "category": "top",
+        "categoryName": "종합 핫뉴스",
+        "categoryIcon": "🔥",
+        "title": "뉴스 데이터 경로 복구 완료",
+        "description": "구버전 뉴스 페이지가 잘못 요청하던 news/data.json 호환 경로를 복구했습니다. 최신 뉴스 허브 배포 전까지 빈 화면을 막습니다.",
+        "url": "https://gorics.github.io/website/news/",
+        "source": { "name": "GORICS", "url": "https://gorics.github.io/website/" },
+        "publishedAt": "2026-06-13T10:32:43.384Z",
+        "guid": "compat-top-1",
+        "score": 100
+      },
+      {
+        "id": "compat-top-2",
+        "category": "top",
+        "categoryName": "종합 핫뉴스",
+        "categoryIcon": "🔥",
+        "title": "금융 뉴스 바로가기",
+        "description": "증시, 금리, 환율, 기업, 부동산, 가상자산 뉴스는 금융 뉴스 전용 페이지에서 확인할 수 있습니다.",
+        "url": "https://gorics.github.io/website/news/financial/",
+        "source": { "name": "GORICS FINANCIAL NEWS", "url": "https://gorics.github.io/website/news/financial/" },
+        "publishedAt": "2026-06-13T10:32:43.384Z",
+        "guid": "compat-top-2",
+        "score": 90
+      },
+      {
+        "id": "compat-top-3",
+        "category": "top",
+        "categoryName": "종합 핫뉴스",
+        "categoryIcon": "🔥",
+        "title": "스터디 허브 바로가기",
+        "description": "학습 스케줄과 사회문화 자료는 스터디 허브에서 확인할 수 있습니다.",
+        "url": "https://gorics.github.io/website/study/",
+        "source": { "name": "GORICS STUDY", "url": "https://gorics.github.io/website/study/" },
+        "publishedAt": "2026-06-13T10:32:43.384Z",
+        "guid": "compat-top-3",
+        "score": 80
+      }
+    ]
+  },
+  "allItems": [
+    {
+      "id": "compat-top-1",
+      "category": "top",
+      "categoryName": "종합 핫뉴스",
+      "categoryIcon": "🔥",
+      "title": "뉴스 데이터 경로 복구 완료",
+      "description": "구버전 뉴스 페이지가 잘못 요청하던 news/data.json 호환 경로를 복구했습니다. 최신 뉴스 허브 배포 전까지 빈 화면을 막습니다.",
+      "url": "https://gorics.github.io/website/news/",
+      "source": { "name": "GORICS", "url": "https://gorics.github.io/website/" },
+      "publishedAt": "2026-06-13T10:32:43.384Z",
+      "guid": "compat-top-1",
+      "score": 100
+    },
+    {
+      "id": "compat-top-2",
+      "category": "top",
+      "categoryName": "종합 핫뉴스",
+      "categoryIcon": "🔥",
+      "title": "금융 뉴스 바로가기",
+      "description": "증시, 금리, 환율, 기업, 부동산, 가상자산 뉴스는 금융 뉴스 전용 페이지에서 확인할 수 있습니다.",
+      "url": "https://gorics.github.io/website/news/financial/",
+      "source": { "name": "GORICS FINANCIAL NEWS", "url": "https://gorics.github.io/website/news/financial/" },
+      "publishedAt": "2026-06-13T10:32:43.384Z",
+      "guid": "compat-top-2",
+      "score": 90
+    },
+    {
+      "id": "compat-top-3",
+      "category": "top",
+      "categoryName": "종합 핫뉴스",
+      "categoryIcon": "🔥",
+      "title": "스터디 허브 바로가기",
+      "description": "학습 스케줄과 사회문화 자료는 스터디 허브에서 확인할 수 있습니다.",
+      "url": "https://gorics.github.io/website/study/",
+      "source": { "name": "GORICS STUDY", "url": "https://gorics.github.io/website/study/" },
+      "publishedAt": "2026-06-13T10:32:43.384Z",
+      "guid": "compat-top-3",
+      "score": 80
+    }
+  ]
+}
