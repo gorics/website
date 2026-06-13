@@ -1,116 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; form-action 'none';" />
-  <title>개인정보 처리 안내 | GORICS.CLOUD NEWS</title>
-  <style>
-    :root {
-      --bg: #070a12;
-      --panel: #101827;
-      --line: rgba(148, 163, 184, 0.2);
-      --text: #e5edf8;
-      --muted: #93a4b8;
-      --accent: #67e8f9;
-      --ok: #34d399;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      color: var(--text);
-      background: radial-gradient(circle at top left, rgba(103, 232, 249, 0.16), transparent 34rem), var(--bg);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-      line-height: 1.75;
-    }
-    main {
-      width: min(880px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 42px 0 64px;
-    }
-    a { color: var(--accent); text-decoration: none; }
-    .panel {
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      padding: clamp(22px, 4vw, 38px);
-      background: linear-gradient(180deg, rgba(16, 24, 39, 0.95), rgba(10, 16, 28, 0.95));
-      box-shadow: 0 22px 80px rgba(0,0,0,.35);
-    }
-    h1 {
-      margin: 0 0 12px;
-      letter-spacing: -0.06em;
-      font-size: clamp(2rem, 5vw, 4rem);
-      line-height: 1.02;
-    }
-    h2 { margin-top: 32px; letter-spacing: -0.04em; }
-    p, li { color: var(--muted); }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid rgba(52, 211, 153, .28);
-      border-radius: 999px;
-      padding: 8px 12px;
-      color: var(--ok);
-      background: rgba(52, 211, 153, .08);
-      font-weight: 800;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 18px;
-    }
-    .card {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 16px;
-      background: rgba(255,255,255,.035);
-    }
-    .card strong { display:block; color: var(--text); margin-bottom: 4px; }
-    footer { margin-top: 24px; color: var(--muted); }
-    @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow">
+<meta name="description" content="GORICS.CLOUD 개인정보 처리 안내">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; form-action 'none';">
+<link rel="stylesheet" href="news/portal.css?v=20260613">
+<title>개인정보 처리 안내 | GORICS.CLOUD</title>
 </head>
 <body>
-  <main>
-    <div class="panel">
-      <a href="index.html">← 뉴스 홈</a>
-      <h1>개인정보 처리 안내</h1>
-      <span class="badge">개인정보 수집 기능 없음</span>
-
-      <p>
-        GORICS.CLOUD NEWS는 공개 RSS 뉴스 데이터를 정적 파일로 보여주는 사이트입니다.
-        로그인, 회원가입, 댓글, 문의 폼, 광고 추적, 방문자 분석 스크립트를 사용하지 않습니다.
-      </p>
-
-      <div class="grid" aria-label="개인정보 보호 요약">
-        <div class="card"><strong>쿠키</strong><span>사용하지 않음</span></div>
-        <div class="card"><strong>분석 도구</strong><span>Google Analytics 등 사용하지 않음</span></div>
-        <div class="card"><strong>로그인/회원가입</strong><span>제공하지 않음</span></div>
-        <div class="card"><strong>데이터 출처</strong><span>공개 RSS 피드</span></div>
-      </div>
-
-      <h2>자동 갱신 방식</h2>
-      <p>
-        GitHub Actions가 매시간 공개 RSS 피드를 읽어 <code>data/news.json</code> 파일을 갱신합니다.
-        이 과정은 방문자의 이름, 이메일, 전화번호, 위치, 기기 식별자 등을 수집하지 않습니다.
-      </p>
-
-      <h2>RSS 텍스트 보호 처리</h2>
-      <p>
-        RSS 제목·요약에 이메일, 전화번호, 주민등록번호 형태, 카드번호 형태, 상세 주소 형태가 발견되면
-        게시 전 자동으로 <code>[비공개]</code> 처리합니다.
-      </p>
-
-      <h2>외부 링크</h2>
-      <p>
-        뉴스 카드를 누르면 원문 언론사 또는 뉴스 제공 페이지로 이동합니다.
-        외부 사이트의 개인정보 처리 방식은 해당 사이트 정책을 확인해야 합니다.
-      </p>
-
-      <footer>© GORICS.CLOUD NEWS</footer>
-    </div>
-  </main>
+<header class="top"><nav class="wrap nav"><a class="brand" href="./"><span class="mark">G</span><span>GORICS PRIVACY</span></a><div class="links"><a href="./">홈</a><a href="news/">뉴스</a><a href="study/">스터디</a><a href="game/">게임</a><a class="on" href="privacy.html">Privacy</a></div></nav></header>
+<section class="hero"><div class="wrap"><div class="kicker">PRIVACY NOTICE</div><div class="head"><h1>개인정보 처리<br>안내</h1><p class="desc">GORICS.CLOUD는 정적 페이지 중심 사이트입니다. 로그인, 회원가입, 댓글, 문의 폼, 광고 추적, 방문자 분석 스크립트를 사용하지 않습니다.</p></div><div class="quick"><span>개인정보 수집 기능 없음</span><span><a class="btn" href="news/">뉴스</a> <a class="btn" href="news/feed.xml">RSS</a></span></div></div></section>
+<main class="wrap layout"><section class="grid"><article class="card"><div><div class="meta"><span class="chip">🍪 쿠키</span></div><h2>사용하지 않음</h2><p>쿠키 기반 분석이나 광고 추적을 넣지 않습니다.</p></div></article><article class="card"><div><div class="meta"><span class="chip">📊 분석</span></div><h2>Analytics 없음</h2><p>Google Analytics 같은 방문자 분석 스크립트를 사용하지 않습니다.</p></div></article><article class="card"><div><div class="meta"><span class="chip">🔐 계정</span></div><h2>로그인 없음</h2><p>회원가입, 로그인, 댓글, 문의 폼을 제공하지 않습니다.</p></div></article><article class="card"><div><div class="meta"><span class="chip">📰 데이터</span></div><h2>공개 RSS</h2><p>뉴스 데이터는 공개 RSS와 공개 메타데이터를 정적 파일로 표시합니다.</p></div></article><article class="card"><div><div class="meta"><span class="chip">🛡️ 보호</span></div><h2>민감정보 필터</h2><p>RSS 텍스트에 이메일, 전화번호, 주민번호 형태, 카드번호 형태, 상세 주소 형태가 발견되면 게시 전 비공개 처리합니다.</p></div></article><article class="card"><div><div class="meta"><span class="chip">↗️ 외부 링크</span></div><h2>원문 이동</h2><p>뉴스 카드를 누르면 원문 제공 페이지로 이동합니다. 외부 사이트 정책은 해당 사이트 기준입니다.</p></div></article></section><aside><section class="side"><h3>GORICS.CLOUD</h3><p>자동 갱신은 GitHub Actions가 공개 RSS 피드를 읽어 정적 데이터 파일을 만드는 방식입니다.</p><a href="./"><span>메인</span><b>→</b></a><a href="news/"><span>뉴스</span><b>→</b></a></section></aside></main>
 </body>
 </html>
