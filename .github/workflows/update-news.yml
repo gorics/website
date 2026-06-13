@@ -2,7 +2,6 @@ name: Update Hot News
 
 on:
   schedule:
-    # GitHub cron is UTC. 17 minutes avoids the top-of-hour load spike.
     - cron: "17 * * * *"
   workflow_dispatch:
   push:
@@ -11,6 +10,8 @@ on:
       - ".github/workflows/update-news.yml"
       - "index.html"
       - "privacy.html"
+      - "news/index.html"
+      - "new/index.html"
 
 permissions:
   contents: write
