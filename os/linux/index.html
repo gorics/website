@@ -1,123 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium OS Selection</title>
-    <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --glass-bg: rgba(255, 255, 255, 0.15);
-            --glass-border: rgba(255, 255, 255, 0.3);
-            --btn-linux1: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
-            --btn-linux2: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
-            --btn-linux3: linear-gradient(to right, #fa709a 0%, #fee140 100%);
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Pretendard', sans-serif;
-            background: #0f172a;
-            background: radial-gradient(circle at top left, #1e293b, #0f172a),
-                        radial-gradient(circle at bottom right, #334155, #0f172a);
-            overflow: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: var(--primary-gradient);
-            filter: blur(80px);
-            border-radius: 50%;
-            top: 10%;
-            left: 15%;
-            z-index: -1;
-            opacity: 0.5;
-        }
-
-        .container {
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            background-color: var(--glass-bg);
-            border-radius: 24px;
-            border: 1px solid var(--glass-border);
-            padding: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        h1 {
-            color: #ffffff;
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .button-group {
-            display: flex;
-            gap: 20px;
-        }
-
-        .os-link {
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: 700;
-            padding: 16px 40px;
-            border-radius: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: inline-block;
-            text-align: center;
-            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-1 { background: var(--btn-linux1); }
-        .btn-2 { background: var(--btn-linux2); color: #1e293b; }
-        .btn-3 { background: var(--btn-linux3); color: #1e293b; }
-
-        .os-link:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
-            filter: brightness(1.1);
-        }
-
-        .os-link:active {
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .button-group {
-                flex-direction: column;
-                width: 100%;
-            }
-            .os-link {
-                width: 200px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="../../news/portal.css?v=20260613">
+<title>GORICS Linux Lab</title>
 </head>
 <body>
-
-    <div class="container">
-        <h1>Select Linux Version</h1>
-        <div class="button-group">
-            <a href="./1/" class="os-link btn-1">Linux 1.0</a>
-            <a href="./2/" class="os-link btn-2">Linux 2.0</a>
-            <a href="./3/" class="os-link btn-3">Linux 3.0</a>
-        </div>
-    </div>
-
-  <script src="../runtime-real-os-launcher.js"></script>
+<header class="top"><nav class="wrap nav"><a class="brand" href="../../"><span class="mark">G</span><span>GORICS LINUX</span></a><div class="links"><a href="../../">홈</a><a href="../">OS</a><a class="on" href="./">Linux</a><a href="../../game/">게임</a></div></nav></header>
+<section class="hero"><div class="wrap"><div class="kicker">LINUX LAB</div><div class="head"><h1>Linux 버전을<br>바로 선택</h1><p class="desc">기존 Linux 실험 페이지는 유지하고, 선택 화면만 포털형 카드로 정리했습니다.</p></div><div class="quick"><span>Linux 선택 허브 적용 완료</span><span><a class="btn" href="../">OS 허브</a> <a class="btn" href="../real-multiboot/">Multiboot</a></span></div></div></section>
+<main class="wrap layout"><section class="grid"><a class="card" href="1/"><div><div class="meta"><span class="chip">🐧 Linux</span></div><h2>Linux 1.0</h2><p>첫 번째 Linux 실험 페이지입니다.</p></div></a><a class="card" href="2/"><div><div class="meta"><span class="chip">🐧 Linux</span></div><h2>Linux 2.0</h2><p>두 번째 Linux 실험 페이지입니다.</p></div></a><a class="card" href="3/"><div><div class="meta"><span class="chip">🐧 Linux</span></div><h2>Linux 3.0</h2><p>세 번째 Linux 실험 페이지입니다.</p></div></a><a class="card" href="4/"><div><div class="meta"><span class="chip">🐧 Linux</span></div><h2>Linux 4.0</h2><p>네 번째 Linux 실험 페이지입니다.</p></div></a><a class="card" href="5/"><div><div class="meta"><span class="chip">🐧 Linux</span></div><h2>Linux 5.0</h2><p>다섯 번째 Linux 실험 페이지입니다.</p></div></a><a class="card" href="6/"><div><div class="meta"><span class="chip">🐧 Linux</span></div><h2>Linux 6.0</h2><p>여섯 번째 Linux 실험 페이지입니다.</p></div></a><a class="card" href="7/"><div><div class="meta"><span class="chip">🐧 Linux</span></div><h2>Linux 7.0</h2><p>일곱 번째 Linux 실험 페이지입니다.</p></div></a><a class="card" href="8/"><div><div class="meta"><span class="chip">🐧 Linux</span></div><h2>Linux 8.0</h2><p>여덟 번째 Linux 실험 페이지입니다.</p></div></a><a class="card" href="9/"><div><div class="meta"><span class="chip">🐧 Linux</span></div><h2>Linux 9.0</h2><p>아홉 번째 Linux 실험 페이지입니다.</p></div></a></section><aside><section class="side"><h3>Linux Lab</h3><p>각 버전 실행 페이지는 기능 보존을 위해 그대로 둡니다.</p><a href="../"><span>OS 허브</span><b>→</b></a><a href="../../"><span>메인</span><b>→</b></a></section></aside></main>
 </body>
 </html>
