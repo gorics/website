@@ -1,15 +1,79 @@
 {
-  "generatedAt": "2026-06-13T20:50:00+09:00",
+  "generatedAt": "2026-06-13T21:05:00+09:00",
   "source": "Manual latest financial public news overlay; direct source links included",
   "page": "financial-latest-overlay",
   "categories": [
-    {"id":"market","name":"증시·시장","icon":"📈","count":3},
-    {"id":"macro","name":"금리·환율·거시","icon":"🏦","count":2},
-    {"id":"company","name":"기업·실적·산업","icon":"🏭","count":2},
-    {"id":"global","name":"글로벌 경제","icon":"🌐","count":1}
+    {
+      "id": "market",
+      "name": "증시·시장",
+      "icon": "📈",
+      "count": 3
+    },
+    {
+      "id": "macro",
+      "name": "금리·환율·거시",
+      "icon": "🏦",
+      "count": 4
+    },
+    {
+      "id": "company",
+      "name": "기업·실적·산업",
+      "icon": "🏭",
+      "count": 2
+    },
+    {
+      "id": "global",
+      "name": "글로벌 경제",
+      "icon": "🌐",
+      "count": 1
+    }
   ],
-  "total": 8,
+  "total": 10,
   "allItems": [
+    {
+      "id": "fin-latest-20260613-pakistan-iran-deal-reuters",
+      "category": "macro",
+      "categoryName": "금리·환율·거시",
+      "categoryIcon": "🏦",
+      "title": "미·이란 초기 합의 24시간 내 서명 가능성, 에너지 리스크 완화 기대",
+      "description": "파키스탄 총리가 미·이란 평화합의 전자서명 가능성을 언급했다. 호르무즈 해협과 원유 수송 리스크 완화 기대가 유가·환율·인플레이션 전망에 영향을 줄 수 있다.",
+      "url": "https://www.reuters.com/world/asia-pacific/pakistan-pm-says-us-iran-peace-deal-signing-expected-within-24-hours-2026-06-13/",
+      "source": {
+        "name": "Reuters",
+        "url": "https://www.reuters.com"
+      },
+      "publishedAt": "2026-06-13T11:19:31Z",
+      "score": 99,
+      "tags": [
+        "미국",
+        "이란",
+        "원유",
+        "호르무즈",
+        "환율"
+      ]
+    },
+    {
+      "id": "fin-latest-20260613-us-iran-drones-reuters",
+      "category": "macro",
+      "categoryName": "금리·환율·거시",
+      "categoryIcon": "🏦",
+      "title": "호르무즈 향하던 이란 드론 격추, 해운·원유 리스크 재부각",
+      "description": "미군이 상업 선박 위협으로 판단된 이란 공격 드론을 격추했다. 평화합의 기대와 별개로 군사 리스크가 남아 원유·해운·보험료 변동성이 커질 수 있다.",
+      "url": "https://www.reuters.com/world/middle-east/us-forces-shoot-down-iranian-attack-drones-source-says-2026-06-13/",
+      "source": {
+        "name": "Reuters",
+        "url": "https://www.reuters.com"
+      },
+      "publishedAt": "2026-06-13T00:40:31Z",
+      "score": 96,
+      "tags": [
+        "호르무즈",
+        "원유",
+        "해운",
+        "보험",
+        "중동리스크"
+      ]
+    },
     {
       "id": "fin-latest-20260613-spacex-retail-reuters",
       "category": "market",
@@ -18,10 +82,18 @@
       "title": "SpaceX IPO, 개인투자자 매수세가 초반 거래 주도",
       "description": "SpaceX가 개인투자자 배정 물량을 크게 열면서 상장 첫날 매수세가 강하게 붙었다. 초대형 IPO 이후 단기 수급과 기술주 유동성 쏠림이 핵심 변수다.",
       "url": "https://www.reuters.com/business/media-telecom/retail-investors-build-big-dreams-small-slices-spacex-2026-06-13/",
-      "source": {"name":"Reuters","url":"https://www.reuters.com"},
+      "source": {
+        "name": "Reuters",
+        "url": "https://www.reuters.com"
+      },
       "publishedAt": "2026-06-13T00:00:00Z",
       "score": 98,
-      "tags": ["SpaceX", "IPO", "나스닥", "개인투자자"]
+      "tags": [
+        "SpaceX",
+        "IPO",
+        "나스닥",
+        "개인투자자"
+      ]
     },
     {
       "id": "fin-latest-20260612-oil-marketwatch",
@@ -31,10 +103,18 @@
       "title": "국제유가, 미·이란 평화합의 기대에 3개월 저점",
       "description": "호르무즈 해협 재개 가능성과 지정학 리스크 완화 기대가 반영되며 Brent·WTI가 급락했다. 물가와 중앙은행 경로에도 영향을 줄 수 있다.",
       "url": "https://www.marketwatch.com/story/oil-prices-extend-declines-on-possible-u-s-iran-peace-deal-to-reopen-strait-of-hormuz-6d2822bd",
-      "source": {"name":"MarketWatch","url":"https://www.marketwatch.com"},
+      "source": {
+        "name": "MarketWatch",
+        "url": "https://www.marketwatch.com"
+      },
       "publishedAt": "2026-06-12T00:00:00Z",
       "score": 97,
-      "tags": ["유가", "Brent", "WTI", "호르무즈"]
+      "tags": [
+        "유가",
+        "Brent",
+        "WTI",
+        "호르무즈"
+      ]
     },
     {
       "id": "fin-latest-20260613-spacex-record-bi",
@@ -44,10 +124,18 @@
       "title": "SpaceX, 역대 최대 IPO 기록 경신 보도",
       "description": "SpaceX의 초대형 공모가 기존 글로벌 IPO 기록을 넘어섰다는 보도가 나왔다. 대형 기술주 상장 재개와 성장주 밸류에이션 논쟁이 동시에 커지고 있다.",
       "url": "https://www.businessinsider.com/spacex-ipo-10-largest-public-offerings-ranked-by-proceeds-2026-6",
-      "source": {"name":"Business Insider","url":"https://www.businessinsider.com"},
+      "source": {
+        "name": "Business Insider",
+        "url": "https://www.businessinsider.com"
+      },
       "publishedAt": "2026-06-13T00:00:00Z",
       "score": 94,
-      "tags": ["SpaceX", "IPO", "공모", "성장주"]
+      "tags": [
+        "SpaceX",
+        "IPO",
+        "공모",
+        "성장주"
+      ]
     },
     {
       "id": "fin-latest-20260613-iran-peace-reuters",
@@ -57,10 +145,18 @@
       "title": "미·이란 합의 임박 보도, 원유·해운 리스크 재가격화",
       "description": "호르무즈 해협 재개와 제재 완화 가능성이 거론되며 에너지·해운·인플레이션 전망이 빠르게 재조정되고 있다. 단, 군사 긴장은 아직 남아 있다.",
       "url": "https://www.reuters.com/world/asia-pacific/iran-peace-deal-looms-while-new-military-action-flares-near-strait-hormuz-2026-06-13/",
-      "source": {"name":"Reuters","url":"https://www.reuters.com"},
+      "source": {
+        "name": "Reuters",
+        "url": "https://www.reuters.com"
+      },
       "publishedAt": "2026-06-13T00:00:00Z",
       "score": 92,
-      "tags": ["이란", "미국", "원유", "해운"]
+      "tags": [
+        "이란",
+        "미국",
+        "원유",
+        "해운"
+      ]
     },
     {
       "id": "fin-latest-20260613-sensex-toi",
@@ -70,10 +166,18 @@
       "title": "중동 긴장 완화 기대에 인도 Sensex 급등",
       "description": "유가 하락과 글로벌 위험선호 회복으로 인도 Sensex가 급등했다. 원유 수입 의존도가 높은 아시아 증시에 지정학 완화 기대가 긍정적으로 작용했다.",
       "url": "https://timesofindia.indiatimes.com/business/india-business/sensex-jumps-1-7k-points-as-us-iran-inch-closer-to-deal/articleshow/131695897.cms",
-      "source": {"name":"Times of India","url":"https://timesofindia.indiatimes.com"},
+      "source": {
+        "name": "Times of India",
+        "url": "https://timesofindia.indiatimes.com"
+      },
       "publishedAt": "2026-06-13T00:00:00Z",
       "score": 86,
-      "tags": ["Sensex", "인도", "아시아증시", "유가"]
+      "tags": [
+        "Sensex",
+        "인도",
+        "아시아증시",
+        "유가"
+      ]
     },
     {
       "id": "fin-latest-20260612-xbox-reuters",
@@ -83,10 +187,18 @@
       "title": "Microsoft, Xbox 분사 가능성 검토 보도",
       "description": "Microsoft가 Xbox 사업의 분사·자회사화·합작 등 구조적 선택지를 검토했다는 보도가 나왔다. 게임 사업 수익성과 콘솔 수요 둔화가 핵심 배경이다.",
       "url": "https://www.reuters.com/business/microsoft-has-considered-spinning-out-xbox-information-reports-2026-06-12/",
-      "source": {"name":"Reuters","url":"https://www.reuters.com"},
+      "source": {
+        "name": "Reuters",
+        "url": "https://www.reuters.com"
+      },
       "publishedAt": "2026-06-12T00:00:00Z",
       "score": 84,
-      "tags": ["Microsoft", "Xbox", "분사", "게임산업"]
+      "tags": [
+        "Microsoft",
+        "Xbox",
+        "분사",
+        "게임산업"
+      ]
     },
     {
       "id": "fin-latest-20260610-nintendo-reuters",
@@ -96,10 +208,18 @@
       "title": "Nintendo 주가, 게임 라인업 실망에 하락",
       "description": "Nintendo Direct 이후 대형 신작 부재에 대한 실망감으로 주가가 약세를 보였다. Switch 2 판매 모멘텀과 연말 라인업 공백 우려가 부각됐다.",
       "url": "https://www.reuters.com/technology/nintendo-shares-slump-games-pipeline-disappoints-market-2026-06-10/",
-      "source": {"name":"Reuters","url":"https://www.reuters.com"},
+      "source": {
+        "name": "Reuters",
+        "url": "https://www.reuters.com"
+      },
       "publishedAt": "2026-06-10T00:00:00Z",
       "score": 78,
-      "tags": ["Nintendo", "게임", "주가", "Switch 2"]
+      "tags": [
+        "Nintendo",
+        "게임",
+        "주가",
+        "Switch 2"
+      ]
     },
     {
       "id": "fin-latest-20260612-oil-guardian",
@@ -109,10 +229,18 @@
       "title": "트럼프의 미·이란 합의 언급 뒤 원유시장 급락",
       "description": "미·이란 합의 가능성 발언 이후 브렌트 가격이 급락했다가 일부 반등했다. 시장은 호르무즈 해협 정상화 여부와 실제 합의 가능성을 동시에 반영 중이다.",
       "url": "https://www.theguardian.com/business/2026/jun/12/global-oil-prices-trump-us-iran-deal-brent-crude-strait-of-hormuz",
-      "source": {"name":"The Guardian","url":"https://www.theguardian.com"},
+      "source": {
+        "name": "The Guardian",
+        "url": "https://www.theguardian.com"
+      },
       "publishedAt": "2026-06-12T00:00:00Z",
       "score": 80,
-      "tags": ["원유", "브렌트", "트럼프", "이란"]
+      "tags": [
+        "원유",
+        "브렌트",
+        "트럼프",
+        "이란"
+      ]
     }
   ],
   "byCategory": {}
