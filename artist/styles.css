@@ -7,9 +7,17 @@
   box-sizing: border-box;
 }
 
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
-  min-height: 100vh;
+  min-height: 100svh;
   overflow: hidden;
   background: radial-gradient(circle at 20% 20%, #060414, #02010b 60%, #000);
   color: rgba(255, 255, 255, 0.85);
@@ -19,7 +27,7 @@ body {
   position: fixed;
   inset: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100svh;
   display: block;
 }
 
@@ -30,11 +38,14 @@ body {
   align-items: flex-start;
   justify-content: center;
   pointer-events: none;
-  padding: clamp(1.5rem, 2vw, 3rem);
+  padding: max(clamp(1.5rem, 2vw, 3rem), env(safe-area-inset-top)) max(clamp(1rem, 2vw, 3rem), env(safe-area-inset-right)) max(clamp(1rem, 2vw, 3rem), env(safe-area-inset-bottom)) max(clamp(1rem, 2vw, 3rem), env(safe-area-inset-left));
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .panel {
-  max-width: min(460px, 100%);
+  width: min(460px, 100%);
+  max-width: 100%;
   background: rgba(6, 4, 20, 0.55);
   backdrop-filter: blur(18px) saturate(140%);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -48,22 +59,26 @@ body {
   margin: 0 0 0.4rem;
   font-size: clamp(2rem, 4vw, 3rem);
   letter-spacing: 0.04em;
+  overflow-wrap: anywhere;
 }
 
 .panel p {
   line-height: 1.6;
   margin: 0 0 1.2rem;
+  overflow-wrap: anywhere;
 }
 
 .controls {
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   gap: 0.6rem;
   margin-top: 0.4rem;
 }
 
 input[type="number"] {
   width: 100%;
+  min-width: 0;
+  min-height: 44px;
   padding: 0.8rem 1rem;
   font-size: 1rem;
   color: inherit;
@@ -80,6 +95,7 @@ input[type="number"]:focus {
 }
 
 button {
+  min-height: 44px;
   padding: 0.8rem 1.4rem;
   font-size: 1rem;
   font-weight: 600;
@@ -89,6 +105,7 @@ button {
   background: linear-gradient(130deg, rgba(110, 90, 255, 0.9), rgba(255, 80, 160, 0.85));
   color: white;
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  touch-action: manipulation;
 }
 
 button:hover,
@@ -112,6 +129,7 @@ button:active {
 .swatches {
   display: flex;
   gap: 0.6rem;
+  flex-wrap: wrap;
 }
 
 .swatch {
@@ -130,12 +148,13 @@ button:active {
 @media (max-width: 600px) {
   .overlay {
     align-items: flex-end;
+    padding: 1rem 1rem max(0px, env(safe-area-inset-bottom));
   }
 
   .panel {
     width: 100%;
     border-radius: 20px 20px 0 0;
-    padding: 1.6rem 1.4rem 2.4rem;
+    padding: 1.6rem 1.4rem max(2.4rem, calc(1.6rem + env(safe-area-inset-bottom)));
   }
 
   .controls {
@@ -144,5 +163,54 @@ button:active {
 
   button {
     width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .panel {
+    padding-inline: 1rem;
+  }
+
+  .panel h1 {
+    font-size: 1.8rem;
+  }
+
+  .panel p,
+  input[type="number"],
+  button,
+  .hint {
+    font-size: 0.92rem;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 540px) {
+  .overlay {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0.75rem;
+  }
+
+  .panel {
+    width: min(420px, 100%);
+    max-height: calc(100svh - 1.5rem);
+    overflow: auto;
+    border-radius: 18px;
+    padding: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  button:hover,
+  button:focus-visible,
+  button:active {
+    transform: none;
   }
 }
