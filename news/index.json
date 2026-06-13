@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-06-13T21:08:21+09:00",
+  "source": "Compatibility pointer for GitHub Pages news index; canonical live overlay is latest.json and base is data.json",
+  "page": "news-index-compatibility",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":6},
+    {"id":"tech","name":"AI·과학기술","icon":"🤖","count":3},
+    {"id":"world","name":"국제","icon":"🌍","count":6},
+    {"id":"sports","name":"스포츠","icon":"⚽","count":2},
+    {"id":"culture","name":"문화·엔터","icon":"🎬","count":2}
+  ],
+  "total": 19,
+  "allItems": [],
+  "note": "Use news/latest.json plus news/data.json for full merged rendering."
+}
