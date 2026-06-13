@@ -42,7 +42,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          if git diff --quiet -- data/news.json; then
+          if [[ -z "$(git status --porcelain -- data/news.json)" ]]; then
             echo "No news changes."
             exit 0
           fi
