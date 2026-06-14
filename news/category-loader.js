@@ -1,7 +1,7 @@
 const MAP={tech:['AI·과학기술','tech'],global:['국제','world'],politics:['정치','politics'],play:['스포츠','sports'],culture:['문화·엔터','culture']};
 const KEY=Object.keys(MAP).find(k=>location.pathname.includes('/'+k+'/'))||'global',TITLE=MAP[KEY][0],CAT=MAP[KEY][1];
 document.title='GORICS '+TITLE+' NEWS';document.querySelector('#title').textContent=TITLE;
-const SOURCES=window.NEWS_SOURCES||['../latest-20260614-1850.json','../latest-20260614-1408.json','../latest-20260613-2135.json','../latest.json','../data.json'];
+const SOURCES=window.NEWS_SOURCES||['../latest-20260614-1908.json','../latest-20260614-1850.json','../latest-20260614-1408.json','../latest-20260613-2135.json','../latest.json','../data.json'];
 const $=s=>document.querySelector(s),grid=$('#grid'),q=$('#q'),sort=$('#sort'),state=$('#state');
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const src=x=>typeof x.source==='object'?(x.source.name||'원문'):(x.source||'원문');
