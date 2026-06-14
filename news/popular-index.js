@@ -1,5 +1,5 @@
 (()=>{
-const SOURCES=['./latest-20260614-1850.json','./latest-20260614-1408.json','./latest-20260613-2135.json','./latest.json','./data.json'];
+const SOURCES=['./latest-20260614-1908.json','./latest-20260614-1850.json','./latest-20260614-1408.json','./latest-20260613-2135.json','./latest.json','./data.json'];
 const $=s=>document.querySelector(s),grid=$('#grid'),tabs=$('#tabs'),q=$('#q'),sort=$('#sort'),state=$('#state'),rank=$('#rank');
 let items=[],current='all';
 const src=x=>typeof x.source==='object'?(x.source.name||'원문'):(x.source||'원문');
