@@ -969,8 +969,8 @@ function openPaint() {
     const ctx=canvas.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);
     const ps={tool:'brush',color:'#000',size:4,drawing:false,lx:0,ly:0};
     window['ps_'+pid]=ps;
-    canvas.addEventListener('mousedown',e=>{ps.drawing=true;const r=canvas.getBoundingClientRect();ps.lx=e.clientX-r.left;ps.ly=e.clientY-r.top;});
-    canvas.addEventListener('mousemove',e=>{if(!ps.drawing)return;const r=canvas.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;ctx.beginPath();ctx.moveTo(ps.lx,ps.ly);ctx.lineTo(x,y);ctx.strokeStyle=ps.tool==='eraser'?'#fff':ps.color;ctx.lineWidth=ps.tool==='eraser'?ps.size*3:ps.size;ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke();ps.lx=x;ps.ly=y;});
+    canvas.addEventListener('mousedown',e=>{ps.drawing=true;ps.rect=canvas.getBoundingClientRect();ps.lx=e.clientX-ps.rect.left;ps.ly=e.clientY-ps.rect.top;});
+    canvas.addEventListener('mousemove',e=>{if(!ps.drawing)return;const r=ps.rect,x=e.clientX-r.left,y=e.clientY-r.top;ctx.beginPath();ctx.moveTo(ps.lx,ps.ly);ctx.lineTo(x,y);ctx.strokeStyle=ps.tool==='eraser'?'#fff':ps.color;ctx.lineWidth=ps.tool==='eraser'?ps.size*3:ps.size;ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke();ps.lx=x;ps.ly=y;});
     canvas.addEventListener('mouseup',()=>{ps.drawing=false;});
     canvas.addEventListener('mouseleave',()=>{ps.drawing=false;});
   },100);
