@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="index,follow">
-<meta name="description" content="GORICS 동적 뉴스 허브. latest.json overlay와 data.json을 병합해 표시합니다.">
+<meta name="description" content="GORICS 동적 뉴스 허브. latest run overlay와 latest.json, data.json을 병합해 표시합니다.">
 <link rel="alternate" type="application/rss+xml" title="GORICS HOT NEWS RSS" href="feed.xml">
 <title>GORICS NEWS</title>
 <style>
@@ -14,12 +14,12 @@ body{margin:0;background:#070a12;color:#e5edf8;font-family:-apple-system,BlinkMa
 <body>
 <main class="wrap">
 <nav class="nav"><a href="../">GORICS.CLOUD</a><a class="on" href="./">뉴스</a><a href="financial/">금융</a><a href="tech/">기술</a><a href="global/">국제</a><a href="politics/">정치</a><a href="play/">스포츠</a><a href="culture/">문화</a><a href="feed.xml">RSS</a></nav>
-<section class="hero"><h1>GORICS NEWS</h1><p class="muted">latest.json overlay를 먼저 읽고 data.json을 뒤에 병합합니다. allItems, items, posts, news와 byCategory fallback을 모두 지원합니다.</p><p id="state">연결 중</p></section>
+<section class="hero"><h1>GORICS NEWS</h1><p class="muted">run overlay와 latest.json overlay를 먼저 읽고 data.json을 뒤에 병합합니다. allItems, items, posts, news와 byCategory fallback을 모두 지원합니다.</p><p id="state">연결 중</p></section>
 <section class="bar"><input id="q" placeholder="검색"><select id="sort"><option value="hot">HOT순</option><option value="latest">최신순</option></select><button id="reload">다시 읽기</button><div id="tabs" class="tabs"></div></section>
 <section id="grid" class="grid"></section>
 </main>
 <script>
-const SOURCES=['./latest.json','./data.json'];
+const SOURCES=['./latest-20260619-0609.json','./latest.json','./data.json'];
 const $=s=>document.querySelector(s),grid=$('#grid'),tabs=$('#tabs'),q=$('#q'),sort=$('#sort'),state=$('#state');
 let ITEMS=[],CUR='all';
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
