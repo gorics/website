@@ -260,7 +260,7 @@
     // ── ISO 존재 여부 확인 ──
     async function checkISO() {
       try {
-        const res = await fetch('./linux.iso', { method: 'HEAD', cache: 'no-store' });
+        const res = await fetch('https://gorics.github.io/website/os/linux/1/linux.iso', { method: 'HEAD', cache: 'no-store' });
         return res.ok;
       } catch (_) {
         return false;
@@ -400,7 +400,7 @@
           screen_container: document.getElementById('screen_container'),
           bios:     { url: cdn.bios },
           vga_bios: { url: cdn.vga },
-          cdrom:    { url: './linux.iso' },
+          cdrom:    { url: 'https://gorics.github.io/website/os/linux/1/linux.iso' },
           autostart: true,
           disable_mouse: true,
         });
