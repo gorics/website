@@ -228,8 +228,8 @@
     }
   };
 
+  const canvases = Array.from(doc.querySelectorAll('canvas'));
   const adjustCanvases = () => {
-    const canvases = doc.querySelectorAll('canvas');
     canvases.forEach(canvas => {
       if (window.innerWidth <= 768) {
         canvas.style.width = '100%';
