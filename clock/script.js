@@ -295,54 +295,46 @@ function regenerateStars(density) {
   starField.style.backgroundImage = stars.join(',');
 }
 
-accentColorInput.addEventListener('input', event => {
-  updateCSSVariable('--accent', event.target.value);
+function handleThemeUpdate() {
   if (!ignoreThemeUpdate) {
     themePresetSelect.value = 'custom';
   }
+}
+
+accentColorInput.addEventListener('input', event => {
+  updateCSSVariable('--accent', event.target.value);
+  handleThemeUpdate();
 });
 
 glowColorInput.addEventListener('input', event => {
   const color = event.target.value;
   updateCSSVariable('--glow', hexToRgba(color, 0.6));
-  if (!ignoreThemeUpdate) {
-    themePresetSelect.value = 'custom';
-  }
+  handleThemeUpdate();
 });
 
 bgTopInput.addEventListener('input', event => {
   updateCSSVariable('--bg-top', event.target.value);
-  if (!ignoreThemeUpdate) {
-    themePresetSelect.value = 'custom';
-  }
+  handleThemeUpdate();
 });
 
 bgBottomInput.addEventListener('input', event => {
   updateCSSVariable('--bg-bottom', event.target.value);
-  if (!ignoreThemeUpdate) {
-    themePresetSelect.value = 'custom';
-  }
+  handleThemeUpdate();
 });
 
 starDensityInput.addEventListener('input', event => {
   regenerateStars(event.target.value);
-  if (!ignoreThemeUpdate) {
-    themePresetSelect.value = 'custom';
-  }
+  handleThemeUpdate();
 });
 
 glowStrengthInput.addEventListener('input', event => {
   updateCSSVariable('--glow-strength', `${event.target.value}px`);
-  if (!ignoreThemeUpdate) {
-    themePresetSelect.value = 'custom';
-  }
+  handleThemeUpdate();
 });
 
 fontWeightSelect.addEventListener('change', event => {
   updateCSSVariable('--font-weight', event.target.value);
-  if (!ignoreThemeUpdate) {
-    themePresetSelect.value = 'custom';
-  }
+  handleThemeUpdate();
 });
 
 themePresetSelect.addEventListener('change', event => {
