@@ -1,0 +1,83 @@
+{
+  "generatedAt": "2026-06-19T10:08:30+09:00",
+  "source": "Latest public news run overlay",
+  "page": "main-latest-run-overlay",
+  "categories": [
+    {"id": "economy", "name": "경제·금융", "icon": "💹", "count": 3},
+    {"id": "global", "name": "국제", "icon": "🌐", "count": 1},
+    {"id": "tech", "name": "기술", "icon": "🤖", "count": 1}
+  ],
+  "total": 5,
+  "allItems": [
+    {
+      "id": "latest-20260619-1008-hormuz-oil-recovery",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "은행권, 호르무즈 원유 흐름 정상화에 수개월 전망",
+      "publishedAt": "2026-06-18",
+      "source": {"name": "Reuters"},
+      "url": "https://www.reuters.com/business/energy/oil-flows-through-hormuz-will-take-time-recover-banks-say-2026-06-18/",
+      "description": "미·이란 임시 합의 이후에도 물류·기뢰 제거·생산 복구 지연으로 호르무즈 원유 흐름 정상화에는 시간이 걸릴 수 있다는 분석이 나왔다.",
+      "score": 103,
+      "tags": ["원유", "호르무즈", "중동", "공급망"]
+    },
+    {
+      "id": "latest-20260619-1008-dollar-fed-yen",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "달러 1년 최고치, 연준 인상 베팅에 엔화 경계감 확대",
+      "publishedAt": "2026-06-18",
+      "source": {"name": "Reuters"},
+      "url": "https://www.reuters.com/world/africa/dollar-clings-two-month-peak-fed-rate-hike-bets-mount-yen-slides-2026-06-18/",
+      "description": "연준의 매파적 신호와 강한 고용 지표로 달러가 급등하고 엔화 약세에 대한 일본 당국의 경계 발언이 나왔다.",
+      "score": 101,
+      "tags": ["달러", "엔화", "Fed", "환율"]
+    },
+    {
+      "id": "latest-20260619-1008-central-banks-inflation",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "중동 휴전에도 주요 중앙은행 긴축 경계 유지",
+      "publishedAt": "2026-06-18",
+      "source": {"name": "Reuters"},
+      "url": "https://www.reuters.com/world/asia-pacific/iran-peace-not-stopping-central-banks-raising-borrowing-costs-2026-06-18/",
+      "description": "에너지 충격의 잔여 인플레이션 압력 때문에 연준·ECB·BOJ·BOE가 금리 인상 가능성을 계속 열어두는 분위기다.",
+      "score": 99,
+      "tags": ["중앙은행", "인플레이션", "금리", "중동"]
+    },
+    {
+      "id": "latest-20260619-1008-iran-iaea-inspection",
+      "category": "global",
+      "categoryName": "국제",
+      "categoryIcon": "🌐",
+      "title": "이란, 핵시설 IAEA 사찰 초청 합의",
+      "publishedAt": "2026-06-19",
+      "source": {"name": "AP"},
+      "url": "https://apnews.com/article/e71ed869e09b20d26442418390feb9f3",
+      "description": "미국 측은 이란이 핵시설 사찰과 농축우라늄 확인을 위해 국제원자력기구를 초청하기로 했다고 밝혔다.",
+      "score": 98,
+      "tags": ["이란", "IAEA", "핵협상", "중동"]
+    },
+    {
+      "id": "latest-20260619-1008-ai-regulation-kosa",
+      "category": "tech",
+      "categoryName": "기술",
+      "categoryIcon": "🤖",
+      "title": "빅테크, AI 연방 규제와 아동 온라인 안전법 묶기 시도",
+      "publishedAt": "2026-06-15",
+      "source": {"name": "The Verge"},
+      "url": "https://www.theverge.com/policy/949970/ai-regulation-child-safety-kosa-congress",
+      "description": "미국 빅테크 로비가 주별 AI 규제를 우회하는 연방 선점 규정과 KOSA를 결합하려 하지만 정치적 반발이 커지고 있다.",
+      "score": 92,
+      "tags": ["AI규제", "빅테크", "KOSA", "미국정책"]
+    }
+  ],
+  "byCategory": {
+    "economy": [],
+    "global": [],
+    "tech": []
+  }
+}
