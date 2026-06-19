@@ -1,0 +1,70 @@
+{
+  "generatedAt": "2026-06-19T09:08:25+09:00",
+  "source": "Latest public news run overlay",
+  "page": "main-run-overlay",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {
+      "id": "latest-20260619-accenture-iran-ai-slump",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "액센추어, 이란 전쟁 여파·AI 불확실성에 주가 급락",
+      "publishedAt": "2026-06-18",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/legal/transactional/accenture-take-majority-stake-acquire-cybersecurity-firms-418-billion-deal-2026-06-18/",
+      "description": "중동 사업 타격과 컨설팅 수요 둔화로 액센추어가 매출 전망을 낮추자 주가가 17% 넘게 급락했다.",
+      "score": 101,
+      "tags": ["Accenture", "AI", "컨설팅", "중동"]
+    },
+    {
+      "id": "latest-20260619-russia-petrol-price-probe",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "러시아 당국, 모스크바 휘발유 19% 인상 조사",
+      "publishedAt": "2026-06-18",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/business/energy/russian-regulator-demands-explanation-after-one-moscow-petrol-retailer-hikes-2026-06-18/",
+      "description": "러시아 반독점 당국이 드론 공격 이후 한 주유업체의 95옥탄 휘발유 가격 급등 경위를 요구했다.",
+      "score": 99,
+      "tags": ["러시아", "휘발유", "에너지", "물가"]
+    },
+    {
+      "id": "latest-20260619-apple-brazil-alt-app-stores",
+      "category": "tech",
+      "categoryName": "기술",
+      "categoryIcon": "🤖",
+      "title": "애플, 브라질서 대체 앱스토어·외부결제 허용",
+      "publishedAt": "2026-06-18",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/world/americas/apple-allows-alternative-app-stores-payments-brazil-after-deal-with-regulator-2026-06-18/",
+      "description": "브라질 경쟁당국과의 합의로 애플이 iOS 앱 배포와 결제 방식 개방에 나서며 플랫폼 규제 압력이 커졌다.",
+      "score": 96,
+      "tags": ["애플", "브라질", "앱스토어", "반독점"]
+    },
+    {
+      "id": "latest-20260619-counter-drone-market",
+      "category": "global",
+      "categoryName": "국제",
+      "categoryIcon": "🌍",
+      "title": "공항·유전 보호용 안티드론 기술 시장 급성장",
+      "publishedAt": "2026-06-18",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/business/aerospace-defense/drone-strikes-beyond-battlefield-pump-up-market-technology-repel-them-2026-06-18/",
+      "description": "전장 밖 드론 침입과 공격이 늘면서 레이더·전파교란·자동 방어 시스템 수요가 민간 인프라로 확산되고 있다.",
+      "score": 95,
+      "tags": ["드론", "안보", "공항", "방산"]
+    }
+  ],
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "global": []
+  }
+}
