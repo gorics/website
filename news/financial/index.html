@@ -6,12 +6,7 @@
 <meta name="robots" content="index,follow">
 <title>GORICS FINANCIAL NEWS</title>
 <style>
-body{margin:0;background:#070a12;color:#e5edf8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif}
-a{color:inherit}.wrap{max-width:1180px;margin:auto;padding:18px}.nav{display:flex;gap:10px;flex-wrap:wrap}
-.nav a,.tab,button,input,select{border:1px solid #334155;background:#111827;color:#e5edf8;border-radius:999px;padding:9px 12px;text-decoration:none}
-.on,.tab.on{background:#2563eb}.hero,.card,.bar{border:1px solid #334155;background:#0f172a;border-radius:20px;padding:18px;margin:14px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}.card{margin:0}.muted{color:#94a3b8}
-.meta{display:flex;justify-content:space-between;gap:8px;color:#93c5fd;font-size:.85rem}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+body{margin:0;background:#070a12;color:#e5edf8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif}a{color:inherit}.wrap{max-width:1180px;margin:auto;padding:18px}.nav{display:flex;gap:10px;flex-wrap:wrap}.nav a,.tab,button,input,select{border:1px solid #334155;background:#111827;color:#e5edf8;border-radius:999px;padding:9px 12px;text-decoration:none}.on,.tab.on{background:#2563eb}.hero,.card,.bar{border:1px solid #334155;background:#0f172a;border-radius:20px;padding:18px;margin:14px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}.card{margin:0}.muted{color:#94a3b8}.meta{display:flex;justify-content:space-between;gap:8px;color:#93c5fd;font-size:.85rem}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 </style>
 </head>
 <body>
@@ -22,9 +17,8 @@ a{color:inherit}.wrap{max-width:1180px;margin:auto;padding:18px}.nav{display:fle
 <section id="grid" class="grid"></section>
 </main>
 <script>
-const SOURCES=["latest-20260619-0808.json", "latest-20260619-0708.json", "latest-20260619-0609.json", "latest-20260614-1908.json", "latest-20260614-1850.json", "latest-20260614-1408.json", "latest-20260613-2135.json", "latest.json", "data.json"];
-const $=s=>document.querySelector(s),grid=$('#grid'),tabs=$('#tabs'),q=$('#q'),sort=$('#sort'),state=$('#state');
-let ITEMS=[],CUR='all';
+const SOURCES=["latest-20260619-0908.json","latest-20260619-0808.json","latest-20260619-0708.json","latest-20260619-0609.json","latest-20260614-1908.json","latest-20260614-1850.json","latest-20260614-1408.json","latest-20260613-2135.json","latest.json","data.json"];
+const $=s=>document.querySelector(s),grid=$('#grid'),tabs=$('#tabs'),q=$('#q'),sort=$('#sort'),state=$('#state');let ITEMS=[],CUR='all';
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const src=x=>typeof x.source==='object'?(x.source.name||'원문'):(x.source||'원문');
 const dt=x=>x.publishedAt||x.date||x.published_at||'';
