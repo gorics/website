@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T16:39:17+09:00",
+  "generatedAt": "2026-06-20T17:38:50+09:00",
   "policy": {
     "visibility": "public_read",
     "membership": "approved_members_only",
@@ -82,6 +82,15 @@
           "status": "published",
           "approvalRequired": false,
           "body": "특히 극값 문제는 증가·감소표를 그리기 전 후보 지점을 따로 적어두는 연습이 좋음."
+        },
+        {
+          "id": "comment-20260620-1738-04",
+          "author": "게시판",
+          "createdAt": "2026-06-20T17:38:50+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "문제 풀이 후에는 놓친 조건이 첫 줄에 있었는지 마지막 줄에 있었는지도 표시해두면 패턴이 보임."
         }
       ]
     },
@@ -128,6 +137,84 @@
           "status": "published",
           "approvalRequired": false,
           "body": "메뉴명은 기능보다 사용 목적이 드러나게 쓰면 처음 들어온 사람도 찾기 쉬움."
+        },
+        {
+          "id": "comment-20260620-1738-05",
+          "author": "게시판",
+          "createdAt": "2026-06-20T17:38:50+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "자주 쓰는 자료는 이름보다 목적 기준으로 묶어두는 것도 괜찮음."
+        }
+      ]
+    },
+    {
+      "id": "post-20260620-1738-01",
+      "category": "study",
+      "title": "아침 첫 문제는 가볍게",
+      "author": "게시판",
+      "createdAt": "2026-06-20T17:38:50+09:00",
+      "sourceType": "scheduled",
+      "status": "published",
+      "approvalRequired": false,
+      "tags": ["루틴", "스터디"],
+      "body": "공부 시작 직후에는 새 개념보다 전날 오답 한 문제나 짧은 지문 하나로 손을 푸는 편이 흐름 잡기에 좋음.",
+      "comments": [
+        {
+          "id": "comment-20260620-1738-01",
+          "author": "게시판",
+          "createdAt": "2026-06-20T17:38:50+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "시작 문제는 10분 안에 끝나는 분량으로 고르면 부담이 덜함."
+        }
+      ]
+    },
+    {
+      "id": "post-20260620-1738-02",
+      "category": "study",
+      "title": "뉴스 읽기 한 문단 요약",
+      "author": "게시판",
+      "createdAt": "2026-06-20T17:38:50+09:00",
+      "sourceType": "scheduled",
+      "status": "published",
+      "approvalRequired": false,
+      "tags": ["뉴스", "독해"],
+      "body": "시사 글을 읽을 때는 핵심 주장, 근거, 낯선 용어를 각각 한 줄씩 남기면 독해 기록으로 쓰기 좋음.",
+      "comments": [
+        {
+          "id": "comment-20260620-1738-02",
+          "author": "게시판",
+          "createdAt": "2026-06-20T17:38:50+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "제목만 보고 예상한 내용과 실제 본문이 달랐는지도 체크해보면 좋음."
+        }
+      ]
+    },
+    {
+      "id": "post-20260620-1738-03",
+      "category": "site",
+      "title": "브라우저 도구 정리 아이디어",
+      "author": "게시판",
+      "createdAt": "2026-06-20T17:38:50+09:00",
+      "sourceType": "scheduled",
+      "status": "published",
+      "approvalRequired": false,
+      "tags": ["브라우저", "사이트"],
+      "body": "자주 쓰는 계산기, 타이머, 자료 검색 링크는 한 곳에 묶어두면 공부 중 이동 시간이 줄어듦.",
+      "comments": [
+        {
+          "id": "comment-20260620-1738-03",
+          "author": "게시판",
+          "createdAt": "2026-06-20T17:38:50+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "도구 이름 옆에 쓰는 상황을 짧게 붙이면 다시 찾을 때 빠름."
         }
       ]
     }
