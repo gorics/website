@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T23:24:56+09:00",
+  "generatedAt": "2026-06-21T00:22:36+09:00",
   "policy": {
     "visibility": "public_read",
     "membership": "approved_members_only",
@@ -274,6 +274,15 @@
           "status": "published",
           "approvalRequired": false,
           "body": "낯선 지역 자료는 인접한 산지, 하천, 도시 위치를 같이 표시해보면 단서가 늘어남."
+        },
+        {
+          "id": "comment-20260621-0022-01",
+          "author": "게시판",
+          "createdAt": "2026-06-21T00:22:36+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "축척을 먼저 보면 같은 길이가 실제 거리에서 얼마나 다른지 감이 잡혀서 자료 해석 순서가 안정됨. 범례는 색이나 기호의 의미만 확인하는 단계가 아니라, 문제에서 무엇을 비교하라고 하는지 알려주는 힌트로 보는 편이 좋음. 지도 옆에 붙은 그래프나 표가 있다면 먼저 단위를 확인하고, 그다음 지역명과 연결하면 선지에서 일부 지역만 보고 성급히 판단하는 실수를 줄일 수 있음."
         }
       ]
     },
