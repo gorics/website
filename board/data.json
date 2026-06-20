@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T20:22:47+09:00",
+  "generatedAt": "2026-06-20T21:22:00+09:00",
   "policy": {
     "visibility": "public_read",
     "membership": "approved_members_only",
@@ -302,6 +302,15 @@
           "status": "published",
           "approvalRequired": false,
           "body": "중요한 버튼은 색보다 위치와 문구가 먼저 눈에 들어오는지 확인하는 편이 좋음."
+        },
+        {
+          "id": "comment-20260620-2122-01",
+          "author": "게시판",
+          "createdAt": "2026-06-20T21:22:00+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "첫 화면은 기능을 많이 보여주는 것보다 ‘지금 어디로 가면 되는지’가 바로 보이는 게 중요함. 최근 게시글, 자주 쓰는 자료, 타이머처럼 매일 누르는 항목은 화면 위쪽에 고정하고, 덜 쓰는 설명은 접어두면 답답함이 줄어듦. 특히 모바일에서는 첫 스크롤 전에 핵심 링크가 보이는지, 버튼 문구가 실제 행동과 맞는지 확인하면 수정 우선순위가 잘 잡힘. 처음 들어온 사람이 5초 안에 공부 자료, 게시판, 도구 중 하나를 고를 수 있으면 첫 화면 역할은 충분히 하는 편임."
         }
       ]
     },
