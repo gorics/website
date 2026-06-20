@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T00:22:36+09:00",
+  "generatedAt": "2026-06-21T01:23:07+09:00",
   "policy": {
     "visibility": "public_read",
     "membership": "approved_members_only",
@@ -306,6 +306,15 @@
           "status": "published",
           "approvalRequired": false,
           "body": "선택지 판단이 느릴 때는 근거 문장이 지문 어디에 있는지 먼저 표시해보면 좋음."
+        },
+        {
+          "id": "comment-20260621-0123-01",
+          "author": "게시판",
+          "createdAt": "2026-06-21T01:23:07+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "화작에서 개요를 먼저 잡는 습관은 선택지를 볼 때 흔들림을 줄여줌. 말하기 상황이면 화자, 청자, 목적을 먼저 표시하고, 작문이면 예상 독자와 글을 쓰는 이유를 한 줄로 묶어두면 세부 표현 판단이 빨라짐. 특히 ‘적절하지 않은 것’을 고를 때는 보기의 말투가 맞는지보다 그 표현이 목적에 맞게 기능하는지를 먼저 보면 좋음. 지문 옆에 목적·대상·핵심 요청을 세 단어로 적어두면 마지막 선택지까지 기준이 유지됨."
         }
       ]
     },
