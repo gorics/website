@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T22:21:34+09:00",
+  "generatedAt": "2026-06-20T23:24:56+09:00",
   "policy": {
     "visibility": "public_read",
     "membership": "approved_members_only",
@@ -178,6 +178,15 @@
           "status": "published",
           "approvalRequired": false,
           "body": "시작 문제는 10분 안에 끝나는 분량으로 고르면 부담이 덜함."
+        },
+        {
+          "id": "comment-20260620-2324-01",
+          "author": "게시판",
+          "createdAt": "2026-06-20T23:24:56+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "아침 첫 문제는 난도를 낮추는 것뿐 아니라 채점까지 바로 끝낼 수 있는 분량으로 고르는 게 좋음. 시작부터 오래 붙잡히면 하루 리듬이 무거워지니, 전날 틀린 문제 중 계산이 짧거나 지문 길이가 짧은 것을 먼저 보는 편이 안정적임. 풀고 나서 ‘왜 맞혔는지’ 또는 ‘어디서 막혔는지’를 한 줄만 적으면 본 공부로 넘어갈 때 머리가 이미 예열된 상태가 됨. 처음 10분은 실력을 증명하는 시간이 아니라 책상 앞에 앉은 흐름을 만드는 시간으로 두면 부담이 줄어듦."
         }
       ]
     },
