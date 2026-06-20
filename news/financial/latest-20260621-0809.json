@@ -1,0 +1,70 @@
+{
+  "generatedAt": "2026-06-21T08:09:11+09:00",
+  "source": "Latest financial public news overlay for GitHub Pages financial news site; run-specific file loaded before latest.json/data.json",
+  "page": "financial-latest-overlay-20260621-0809",
+  "categories": [
+    {"id":"geopolitical-risk","name":"지정학·에너지","icon":"🛢️","count":2},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🖥️","count":1},
+    {"id":"global-markets","name":"글로벌 시장","icon":"🌐","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {
+      "id": "fin-20260621-0809-hormuz-no-toll-trump",
+      "category": "geopolitical-risk",
+      "categoryName": "지정학·에너지",
+      "categoryIcon": "🛢️",
+      "title": "트럼프, 호르무즈 통항료 부과 부인…협상 실패 시 미국 부과 여지",
+      "description": "미국은 임시 휴전 기간 호르무즈 통항료가 없다고 밝혔지만, 협상 실패 시 미국이 통항료를 부과할 수 있다는 발언이 원유·해상보험 리스크를 키웠다.",
+      "url": "https://www.reuters.com/world/middle-east/trump-says-no-toll-strait-hormuz-unless-us-imposes-one-2026-06-20/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-20",
+      "score": 196,
+      "tags": ["호르무즈", "원유", "해상보험", "트럼프", "이란"]
+    },
+    {
+      "id": "fin-20260621-0809-us-iran-mou-energy",
+      "category": "geopolitical-risk",
+      "categoryName": "지정학·에너지",
+      "categoryIcon": "🛢️",
+      "title": "미·이란 MOU 즉시 발효 주장…호르무즈 정상화 기대와 조건 리스크 병존",
+      "description": "미·이란 합의가 즉시 발효됐다는 중재국 발표에도 60일 최종 합의, 핵 문제, 통항 조건이 남아 원유·LNG 시장은 경계감을 유지하고 있다.",
+      "url": "https://apnews.com/article/a7ab28d9b34edfaa2061a67616f610bc",
+      "source": {"name":"AP"},
+      "publishedAt": "2026-06-18",
+      "score": 184,
+      "tags": ["미국", "이란", "MOU", "호르무즈", "LNG"]
+    },
+    {
+      "id": "fin-20260621-0809-ferc-ai-grid-order",
+      "category": "ai-infrastructure",
+      "categoryName": "AI 인프라",
+      "categoryIcon": "🖥️",
+      "title": "FERC, AI 데이터센터 전력망 접속 가속…전력 인프라 투자 테마 강화",
+      "description": "AI 데이터센터 전력 수요가 급증하자 미국 규제당국이 전력망 접속 절차 가속을 지시했고, 전력설비·송전·냉각 인프라 투자 수요가 부각됐다.",
+      "url": "https://apnews.com/article/506e3d206871111f15c3c62fc5368be5",
+      "source": {"name":"AP"},
+      "publishedAt": "2026-06-18",
+      "score": 178,
+      "tags": ["AI인프라", "전력망", "데이터센터", "FERC", "송전"]
+    },
+    {
+      "id": "fin-20260621-0809-hormuz-market-finance",
+      "category": "global-markets",
+      "categoryName": "글로벌 시장",
+      "categoryIcon": "🌐",
+      "title": "호르무즈 통항 논란, 유가·위험선호·아시아 에너지 비용 동시 변수",
+      "description": "호르무즈 통항료와 해협 운영권 논란은 원유 가격뿐 아니라 아시아 에너지 수입비, 해상보험, 글로벌 위험선호를 함께 흔드는 시장 변수로 남았다.",
+      "url": "https://www.reuters.com/world/middle-east/trump-says-no-toll-strait-hormuz-unless-us-imposes-one-2026-06-20/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-20",
+      "score": 190,
+      "tags": ["유가", "아시아", "에너지비용", "위험선호", "해상운송"]
+    }
+  ],
+  "byCategory": {
+    "geopolitical-risk": [],
+    "ai-infrastructure": [],
+    "global-markets": []
+  }
+}
