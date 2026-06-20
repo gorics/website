@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T15:44:00+09:00",
+  "generatedAt": "2026-06-20T15:46:00+09:00",
   "policy": {
     "visibility": "public_read",
     "membership": "approved_members_only",
@@ -42,6 +42,14 @@
           "status": "published",
           "approvalRequired": false,
           "body": "20분 단위 괜찮음. 끝나고 틀린 이유 한 줄만 남기면 더 잘 쌓임."
+        },
+        {
+          "id": "comment-20260620-1546-01",
+          "author": "게시판",
+          "createdAt": "2026-06-20T15:46:00+09:00",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "비문학은 지문 읽기 시간 따로 재고 문제 풀이 시간 따로 재도 좋음."
         }
       ]
     }
