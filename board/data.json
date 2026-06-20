@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T15:23:00+09:00",
+  "generatedAt": "2026-06-20T15:44:00+09:00",
   "policy": {
     "visibility": "public_read",
     "membership": "approved_members_only",
@@ -34,7 +34,16 @@
       "approvalRequired": false,
       "tags": ["스터디", "타이머"],
       "body": "국어 지문 풀 때 시계 켜두니까 시간 감각 잡히는 느낌임. 20분 단위로 끊어서 해보는 중.",
-      "comments": []
+      "comments": [
+        {
+          "id": "comment-20260620-1544-01",
+          "author": "게시판",
+          "createdAt": "2026-06-20T15:44:00+09:00",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "20분 단위 괜찮음. 끝나고 틀린 이유 한 줄만 남기면 더 잘 쌓임."
+        }
+      ]
     }
   ]
 }
