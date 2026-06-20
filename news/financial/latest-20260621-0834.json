@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-21T08:34:24+09:00",
+  "source": "Latest financial public news overlay for GitHub Pages financial news site; run-specific file loaded before latest.json/data.json",
+  "page": "financial-latest-overlay-20260621-0834",
+  "categories": [
+    {"id":"geopolitical-risk","name":"지정학·에너지","icon":"🛢️","count":1},
+    {"id":"energy-markets","name":"에너지 시장","icon":"⛽","count":1},
+    {"id":"equities-ai","name":"증시·AI","icon":"📈","count":1},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🖥️","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"fin-20260621-0834-hormuz-oil-shipments","category":"geopolitical-risk","categoryName":"지정학·에너지","categoryIcon":"🛢️","title":"호르무즈 원유 선적 증가, 이란 통항 조건은 에너지 시장 리스크로 잔존","description":"호르무즈 해협 선적 회복은 공급 우려를 낮췄지만 이란의 통항 조건 논의가 원유 가격과 해상보험료 변동성을 키우고 있다.","url":"https://www.reuters.com/business/energy/oil-shipments-rise-hormuz-although-questions-grow-over-irans-transit-terms-2026-06-19/","source":{"name":"Reuters"},"publishedAt":"2026-06-19","score":197,"tags":["호르무즈","원유","이란","해상보험","에너지"]},
+    {"id":"fin-20260621-0834-australia-petrol-oil","category":"energy-markets","categoryName":"에너지 시장","categoryIcon":"⛽","title":"호주 휘발유 가격 하락, 글로벌 원유 공급망 완충력 확인","description":"호주 휘발유 가격이 이란 전쟁 전보다 낮아지며 대체 공급, 수요 둔화, 정책 대응이 원유 충격을 일부 흡수했다는 분석이 나온다.","url":"https://www.theguardian.com/australia-news/2026/jun/21/oil-price-petrol-prices-australia-fuel-crisis-us-iran-war-lower","source":{"name":"The Guardian"},"publishedAt":"2026-06-21","score":176,"tags":["호주","휘발유","유가","공급망","에너지"]},
+    {"id":"fin-20260621-0834-nvidia-ai-chip-market","category":"equities-ai","categoryName":"증시·AI","categoryIcon":"📈","title":"AI 반도체주 강세 지속, 엔비디아·마이크론이 시장 방향성 좌우","description":"AI 투자 기대 속에 엔비디아 등 칩 종목이 기술적 매수 구간에 접근했고, 마이크론 실적이 메모리 수요와 AI 랠리의 시험대로 부상했다.","url":"https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-nvidia-5-chips-buy-points-spacex-stock/","source":{"name":"Investor's Business Daily"},"publishedAt":"2026-06-21","score":151,"tags":["AI","엔비디아","마이크론","반도체","나스닥"]},
+    {"id":"fin-20260621-0834-ai-cost-inflation","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🖥️","title":"AI 데이터센터 수요, 메모리 가격과 소비재 인플레이션 압력으로 확산","description":"AI 인프라 경쟁이 메모리·저장장치 공급을 압박하면서 전자기기 가격 상승과 기업 비용 부담으로 이어질 가능성이 커졌다.","url":"https://www.businessinsider.com/ai-making-everything-more-expensive-inflation-apple-iphone-data-centers-2026-6","source":{"name":"Business Insider"},"publishedAt":"2026-06-21","score":149,"tags":["AI인프라","메모리","인플레이션","전자기기","데이터센터"]}
+  ],
+  "byCategory": {"geopolitical-risk":[],"energy-markets":[],"equities-ai":[],"ai-infrastructure":[]}
+}
