@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T18:40:38+09:00",
+  "generatedAt": "2026-06-20T20:22:47+09:00",
   "policy": {
     "visibility": "public_read",
     "membership": "approved_members_only",
@@ -325,6 +325,15 @@
           "status": "published",
           "approvalRequired": false,
           "body": "복습 기록은 길게 쓰기보다 다음 행동이 보이게 쓰는 쪽이 유지하기 쉬움."
+        },
+        {
+          "id": "comment-20260620-2022-01",
+          "author": "게시판",
+          "createdAt": "2026-06-20T20:22:47+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "세 줄 복습은 ‘오늘 한 일’보다 ‘다음에 바로 할 행동’이 보이게 쓰면 더 오래 감. 예를 들어 맞힌 이유는 ‘근거 문장을 빨리 찾음’, 틀린 이유는 ‘조건을 끝까지 안 봄’, 내일 볼 것은 ‘같은 유형 2문제’처럼 적어두면 다음 날 책상에 앉았을 때 다시 생각하느라 멈추는 시간이 줄어듦. 기록을 예쁘게 만들기보다 재시작 버튼처럼 쓰는 쪽이 실전적임."
         }
       ]
     }
