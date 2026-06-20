@@ -1,0 +1,100 @@
+{
+  "generatedAt": "2026-06-20T22:08:58+09:00",
+  "source": "Latest public news overlay for automation run; existing news preserved in prior overlays and data.json",
+  "page": "main-latest-overlay-20260620-2208",
+  "categories": [
+    {"id": "global", "name": "국제", "icon": "🌍", "count": 1},
+    {"id": "economy", "name": "경제·금융", "icon": "💹", "count": 1},
+    {"id": "tech", "name": "기술", "icon": "🤖", "count": 1},
+    {"id": "play", "name": "스포츠·엔터", "icon": "⚽", "count": 2},
+    {"id": "culture", "name": "문화", "icon": "🎭", "count": 1}
+  ],
+  "total": 6,
+  "allItems": [
+    {
+      "id": "latest-20260620-2208-reuters-lebanon-strikes-16",
+      "category": "global",
+      "categoryName": "국제",
+      "categoryIcon": "🌍",
+      "title": "레바논 휴전 직후 이스라엘 공습으로 최소 16명 사망",
+      "description": "휴전 발효 직후 남부 레바논 공습과 헤즈볼라 발사체 공방이 이어지며 미·이란 협상과 중동 안정 구상이 다시 흔들렸다.",
+      "url": "https://www.reuters.com/world/middle-east/least-five-killed-israeli-strikes-south-lebanon-despite-ceasefire-2026-06-20/",
+      "source": {"name": "Reuters"},
+      "publishedAt": "2026-06-20",
+      "score": 188,
+      "tags": ["레바논", "이스라엘", "헤즈볼라", "휴전", "미이란협상"]
+    },
+    {
+      "id": "latest-20260620-2208-lebanon-market-risk",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "레바논 교전 재확산, 유가·호르무즈 리스크 프리미엄 재부각",
+      "description": "휴전 파열 우려가 커지며 원유 수송 정상화와 중동 리스크 프리미엄 완화 기대가 약해질 수 있는 시장 변수로 떠올랐다.",
+      "url": "https://apnews.com/article/6e23fb5f37e23427dbfc2bc80c59bda8",
+      "source": {"name": "AP"},
+      "publishedAt": "2026-06-20",
+      "score": 176,
+      "tags": ["중동리스크", "유가", "호르무즈", "레바논", "시장"]
+    },
+    {
+      "id": "latest-20260620-2208-meta-crusoe-ai-compute",
+      "category": "tech",
+      "categoryName": "기술",
+      "categoryIcon": "🤖",
+      "title": "메타, 크루소와 AI 컴퓨팅 추가 계약 보도",
+      "description": "메타가 AI 모델 경쟁력 강화를 위해 데이터센터 개발사 크루소와 추가 컴퓨팅 계약을 맺었다는 보도가 나오며 AI 인프라 수요가 재확인됐다.",
+      "url": "https://www.reuters.com/business/meta-signs-new-ai-computing-deals-with-data-center-firm-crusoe-bloomberg-news-2026-06-18/",
+      "source": {"name": "Reuters"},
+      "publishedAt": "2026-06-18",
+      "score": 152,
+      "tags": ["메타", "AI", "데이터센터", "크루소", "컴퓨팅"]
+    },
+    {
+      "id": "latest-20260620-2208-world-cup-first-impressions",
+      "category": "play",
+      "categoryName": "스포츠·엔터",
+      "categoryIcon": "⚽",
+      "title": "월드컵 초반 평가, 대형 경기장·고가 물가·언더독 활약이 혼재",
+      "description": "미국 개최 월드컵 초반은 대형 스타디움과 팬 열기, 높은 비용과 이동 변수, 약체팀 선전이 함께 부각되는 양상이다.",
+      "url": "https://www.theguardian.com/football/2026/jun/20/spaceship-stadiums-and-ronaldo-mania-guardian-writers-first-impressions-of-the-world-cup",
+      "source": {"name": "The Guardian"},
+      "publishedAt": "2026-06-20",
+      "score": 142,
+      "tags": ["월드컵", "축구", "미국", "팬문화", "스포츠"]
+    },
+    {
+      "id": "latest-20260620-2208-australia-netherlands-t20",
+      "category": "play",
+      "categoryName": "스포츠·엔터",
+      "categoryIcon": "⚽",
+      "title": "호주, 여자 T20 월드컵서 네덜란드에 98점 차 승리",
+      "description": "호주는 베스 무니와 애슐리 가드너 활약으로 대승을 거뒀고, 네덜란드는 바베트 더 레데의 반세기로 의미 있는 저항을 보였다.",
+      "url": "https://www.theguardian.com/sport/live/2026/jun/20/australia-v-netherlands-womens-t20-cricket-world-cup-2026-live",
+      "source": {"name": "The Guardian"},
+      "publishedAt": "2026-06-20",
+      "score": 136,
+      "tags": ["크리켓", "T20월드컵", "호주", "네덜란드", "여자스포츠"]
+    },
+    {
+      "id": "latest-20260620-2208-jon-snow-alzheimers-tv",
+      "category": "culture",
+      "categoryName": "문화",
+      "categoryIcon": "🎭",
+      "title": "존 스노 알츠하이머 다큐, 주말 TV 주요 문화 콘텐츠로 주목",
+      "description": "채널4 다큐멘터리가 알츠하이머를 겪는 언론인 존 스노의 마지막 취재 여정을 다루며 이번 주말 영국 TV 주요작으로 소개됐다.",
+      "url": "https://www.theguardian.com/tv-and-radio/2026/jun/20/tv-tonight-jon-snow-defies-alzheimers-in-the-most-moving-way-imaginable",
+      "source": {"name": "The Guardian"},
+      "publishedAt": "2026-06-20",
+      "score": 130,
+      "tags": ["다큐멘터리", "존스노", "알츠하이머", "TV", "문화"]
+    }
+  ],
+  "byCategory": {
+    "global": [],
+    "economy": [],
+    "tech": [],
+    "play": [],
+    "culture": []
+  }
+}
