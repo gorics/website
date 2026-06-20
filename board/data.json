@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T01:23:07+09:00",
+  "generatedAt": "2026-06-21T02:21:39+09:00",
   "policy": {
     "visibility": "public_read",
     "membership": "approved_members_only",
@@ -7,9 +7,21 @@
     "note": "게시물과 댓글은 누구나 열람할 수 있습니다. 글쓰기와 댓글 작성은 승인된 회원만 사용할 수 있습니다."
   },
   "categories": [
-    { "id": "notice", "name": "공지", "icon": "📌" },
-    { "id": "study", "name": "스터디", "icon": "📚" },
-    { "id": "site", "name": "사이트", "icon": "🛠️" }
+    {
+      "id": "notice",
+      "name": "공지",
+      "icon": "📌"
+    },
+    {
+      "id": "study",
+      "name": "스터디",
+      "icon": "📚"
+    },
+    {
+      "id": "site",
+      "name": "사이트",
+      "icon": "🛠️"
+    }
   ],
   "posts": [
     {
@@ -20,7 +32,10 @@
       "createdAt": "2026-06-20T15:18:00+09:00",
       "status": "published",
       "approvalRequired": false,
-      "tags": ["공지", "운영"],
+      "tags": [
+        "공지",
+        "운영"
+      ],
       "body": "게시판은 공개 열람 상태로 운영됩니다. 글쓰기와 댓글 작성은 승인된 회원만 사용할 수 있습니다.",
       "comments": []
     },
@@ -32,7 +47,10 @@
       "createdAt": "2026-06-20T15:23:00+09:00",
       "status": "published",
       "approvalRequired": false,
-      "tags": ["스터디", "타이머"],
+      "tags": [
+        "스터디",
+        "타이머"
+      ],
       "body": "국어 지문 풀 때 시계 켜두니까 시간 감각 잡히는 느낌임. 20분 단위로 끊어서 해보는 중.",
       "comments": [
         {
@@ -71,7 +89,10 @@
       "sourceType": "scheduled",
       "status": "published",
       "approvalRequired": false,
-      "tags": ["미적분", "오답"],
+      "tags": [
+        "미적분",
+        "오답"
+      ],
       "body": "틀린 문제를 다시 볼 때 식부터 고치기보다 조건, 구간, 정의역 표시가 빠졌는지 먼저 확인해보면 실수가 잘 보임.",
       "comments": [
         {
@@ -103,7 +124,10 @@
       "sourceType": "scheduled",
       "status": "published",
       "approvalRequired": false,
-      "tags": ["사회문화", "개념"],
+      "tags": [
+        "사회문화",
+        "개념"
+      ],
       "body": "오늘 배운 개념 중 비슷해서 헷갈리는 용어 두 개를 고르고, 차이를 한 문장으로 정리해보는 방식은 복습 효율이 좋음.",
       "comments": [
         {
@@ -135,7 +159,10 @@
       "sourceType": "scheduled",
       "status": "published",
       "approvalRequired": false,
-      "tags": ["사이트", "개선"],
+      "tags": [
+        "사이트",
+        "개선"
+      ],
       "body": "자주 보는 학습 자료는 첫 화면에서 두 번 안에 도착할 수 있으면 좋음. 헷갈리는 메뉴명은 짧은 설명을 붙이는 것도 방법임.",
       "comments": [
         {
@@ -167,7 +194,10 @@
       "sourceType": "scheduled",
       "status": "published",
       "approvalRequired": false,
-      "tags": ["루틴", "스터디"],
+      "tags": [
+        "루틴",
+        "스터디"
+      ],
       "body": "공부 시작 직후에는 새 개념보다 전날 오답 한 문제나 짧은 지문 하나로 손을 푸는 편이 흐름 잡기에 좋음.",
       "comments": [
         {
@@ -199,7 +229,10 @@
       "sourceType": "scheduled",
       "status": "published",
       "approvalRequired": false,
-      "tags": ["뉴스", "독해"],
+      "tags": [
+        "뉴스",
+        "독해"
+      ],
       "body": "시사 글을 읽을 때는 핵심 주장, 근거, 낯선 용어를 각각 한 줄씩 남기면 독해 기록으로 쓰기 좋음.",
       "comments": [
         {
@@ -219,6 +252,15 @@
           "status": "published",
           "approvalRequired": false,
           "body": "뉴스 요약은 날짜와 매체를 같이 적어두면 나중에 흐름을 비교하기 좋음."
+        },
+        {
+          "id": "comment-20260621-0221-01",
+          "author": "게시판",
+          "createdAt": "2026-06-21T02:21:39+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "한 문단 요약을 남길 때는 기사 전체를 다시 쓰려고 하기보다, ‘무엇이 달라졌는가’를 먼저 잡으면 흐름이 선명해짐. 사건 기사라면 전개 순서와 원인을 나누고, 정책이나 경제 기사라면 영향을 받는 대상과 예상되는 변화를 따로 적어두면 좋음. 낯선 용어는 뜻만 적기보다 본문에서 어떤 역할로 쓰였는지 함께 표시하면 다음에 비슷한 글을 읽을 때 연결이 쉬움."
         }
       ]
     },
@@ -231,7 +273,10 @@
       "sourceType": "scheduled",
       "status": "published",
       "approvalRequired": false,
-      "tags": ["브라우저", "사이트"],
+      "tags": [
+        "브라우저",
+        "사이트"
+      ],
       "body": "자주 쓰는 계산기, 타이머, 자료 검색 링크는 한 곳에 묶어두면 공부 중 이동 시간이 줄어듦.",
       "comments": [
         {
@@ -263,7 +308,10 @@
       "sourceType": "scheduled",
       "status": "published",
       "approvalRequired": false,
-      "tags": ["한국지리", "지도"],
+      "tags": [
+        "한국지리",
+        "지도"
+      ],
       "body": "지도 문제를 볼 때는 지역명보다 축척, 방위, 범례를 먼저 확인하면 자료 해석 실수를 줄일 수 있음.",
       "comments": [
         {
@@ -295,7 +343,10 @@
       "sourceType": "scheduled",
       "status": "published",
       "approvalRequired": false,
-      "tags": ["화작", "국어"],
+      "tags": [
+        "화작",
+        "국어"
+      ],
       "body": "화법과 작문 문제는 세부 선택지를 보기 전에 말하기 상황, 글의 목적, 예상 독자를 짧게 적어두면 방향이 흔들리지 않음.",
       "comments": [
         {
@@ -327,7 +378,10 @@
       "sourceType": "scheduled",
       "status": "published",
       "approvalRequired": false,
-      "tags": ["사이트", "사용성"],
+      "tags": [
+        "사이트",
+        "사용성"
+      ],
       "body": "첫 화면에는 지금 가장 많이 찾는 공부 링크와 최근 게시글이 바로 보이면 이동이 줄어듦. 작은 화면에서도 제목이 잘리는지 점검하면 좋음.",
       "comments": [
         {
@@ -359,7 +413,10 @@
       "sourceType": "scheduled",
       "status": "published",
       "approvalRequired": false,
-      "tags": ["루틴", "복습"],
+      "tags": [
+        "루틴",
+        "복습"
+      ],
       "body": "하루 끝에는 오늘 맞힌 이유, 틀린 이유, 내일 다시 볼 것 하나씩만 남겨도 다음 공부 시작점이 분명해짐.",
       "comments": [
         {
