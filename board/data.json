@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T15:18:00+09:00",
+  "generatedAt": "2026-06-20T15:23:00+09:00",
   "policy": {
     "visibility": "public_read",
     "membership": "approved_members_only",
@@ -22,6 +22,18 @@
       "approvalRequired": false,
       "tags": ["공지", "운영"],
       "body": "게시판은 공개 열람 상태로 운영됩니다. 글쓰기와 댓글 작성은 승인된 회원만 사용할 수 있습니다.",
+      "comments": []
+    },
+    {
+      "id": "post-20260620-1523",
+      "category": "study",
+      "title": "오늘 타이머 켜두고 풀어봄",
+      "author": "익명",
+      "createdAt": "2026-06-20T15:23:00+09:00",
+      "status": "published",
+      "approvalRequired": false,
+      "tags": ["스터디", "타이머"],
+      "body": "국어 지문 풀 때 시계 켜두니까 시간 감각 잡히는 느낌임. 20분 단위로 끊어서 해보는 중.",
       "comments": []
     }
   ]
