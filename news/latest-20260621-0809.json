@@ -3,14 +3,14 @@
   "source": "Latest public news overlay for GitHub Pages news site; run-specific file loaded before latest.json/data.json",
   "page": "main-latest-overlay-20260621-0809",
   "categories": [
-    {"id":"economy","name":"경제·금융","icon":"💹","count":3},
+    {"id":"economy","name":"경제·금융","icon":"💹","count":1},
     {"id":"global","name":"국제","icon":"🌍","count":2},
     {"id":"politics","name":"정치","icon":"🏛️","count":1},
     {"id":"tech","name":"기술","icon":"🤖","count":2},
     {"id":"play","name":"스포츠·엔터","icon":"⚽","count":2},
     {"id":"culture","name":"문화","icon":"🎭","count":1}
   ],
-  "total": 11,
+  "total": 9,
   "allItems": [
     {
       "id": "latest-20260621-0809-hormuz-no-toll-trump",
@@ -128,32 +128,6 @@
       "publishedAt": "2026-06-10",
       "score": 132,
       "tags": ["글래스고", "미술제", "현대미술", "커뮤니티", "문화"]
-    },
-    {
-      "id": "latest-20260621-0809-hormuz-market-finance-surface",
-      "category": "economy",
-      "categoryName": "경제·금융",
-      "categoryIcon": "💹",
-      "title": "호르무즈 통항 조건, 원유·해상보험 시장의 핵심 리스크로 재부상",
-      "description": "통항료 부과 논란과 협상 조건이 엇갈리며 호르무즈 해협은 원유 가격, LNG 운송, 해상보험료를 동시에 흔드는 시장 변수로 다시 부각됐다.",
-      "url": "https://www.reuters.com/world/middle-east/trump-says-no-toll-strait-hormuz-unless-us-imposes-one-2026-06-20/",
-      "source": {"name":"Reuters"},
-      "publishedAt": "2026-06-20",
-      "score": 190,
-      "tags": ["원유", "LNG", "해상보험", "호르무즈", "지정학"]
-    },
-    {
-      "id": "latest-20260621-0809-ai-power-market-surface",
-      "category": "economy",
-      "categoryName": "경제·금융",
-      "categoryIcon": "💹",
-      "title": "AI 데이터센터 전력망 접속 가속, 전력·건설·냉각 인프라 투자 테마 강화",
-      "description": "FERC의 전력망 접속 가속 지시는 AI 데이터센터 전력 수요가 전력설비, 송전망, 냉각 인프라 투자 테마로 확산되고 있음을 보여준다.",
-      "url": "https://apnews.com/article/506e3d206871111f15c3c62fc5368be5",
-      "source": {"name":"AP"},
-      "publishedAt": "2026-06-18",
-      "score": 174,
-      "tags": ["AI인프라", "전력망", "데이터센터", "인프라주", "FERC"]
     }
   ],
   "byCategory": {
