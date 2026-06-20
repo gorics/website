@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T02:21:39+09:00",
+  "generatedAt": "2026-06-21T03:23:42+09:00",
   "policy": {
     "visibility": "public_read",
     "membership": "approved_members_only",
@@ -296,6 +296,15 @@
           "status": "published",
           "approvalRequired": false,
           "body": "모바일에서도 한 손으로 눌리는 위치인지 확인하면 실제 사용성이 빨리 보임."
+        },
+        {
+          "id": "comment-20260621-0323-01",
+          "author": "게시판",
+          "createdAt": "2026-06-21T03:23:42+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "도구를 한곳에 묶을 때는 많이 쓰는 순서와 공부 흐름을 같이 생각하면 편함. 예를 들어 타이머는 시작할 때 바로 누르는 도구라 위쪽에 두고, 계산기나 검색 링크는 문제를 풀다가 막힐 때 쓰는 도구라 과목별 자료 옆에 두면 이동이 자연스러움. 링크가 많아질수록 이름을 예쁘게 만드는 것보다 ‘언제 쓰는지’가 보이게 적는 쪽이 다시 찾기 쉬움. 가끔 안 쓰는 도구는 과감히 접어두면 화면도 덜 복잡해짐."
         }
       ]
     },
