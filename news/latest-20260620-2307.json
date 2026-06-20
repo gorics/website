@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-06-20T23:07:08+09:00",
+  "source": "Latest public news overlay for automation run; prior overlay files are preserved and loaded before base data",
+  "page": "main-latest-overlay",
+  "categories": [
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"economy","name":"경제·금융","icon":"💹","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":2},
+    {"id":"culture","name":"문화","icon":"🎭","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"latest-20260620-2307-gaza-apartment-strike","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"가자시티 아파트 공습으로 어린이 사망, 휴전 이후 민간인 피해 논란 재점화","description":"AP와 로이터는 6월 20일 가자시티 주거지 공습으로 어린이 등 사망자가 발생했다고 보도했다. 휴전 이후에도 민간인 피해가 이어지며 중동 긴장 완화 기대가 약해졌다.","url":"https://apnews.com/article/f45ace109972b8c36364e7a75cc9bb7f","source":{"name":"AP"},"publishedAt":"2026-06-20","score":188,"tags":["가자","이스라엘","민간인피해","중동","휴전"]},
+    {"id":"latest-20260620-2307-cfpb-appeals-court","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"미 항소법원, 트럼프 행정부의 CFPB 대규모 감원 계획 제동","description":"미 연방항소법원이 소비자금융보호국 인력 3분의 2 감축을 즉시 시행하려던 행정부 계획을 막았다. 금융규제 축소와 소비자보호를 둘러싼 법적 공방이 계속된다.","url":"https://www.reuters.com/legal/litigation/us-appeals-court-blocks-trump-admin-enacting-new-plans-slash-consumer-watchdog-2026-06-19/","source":{"name":"Reuters"},"publishedAt":"2026-06-19","score":181,"tags":["미국정치","CFPB","금융규제","법원","트럼프"]},
+    {"id":"latest-20260620-2307-wall-st-chip-iran","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"월가, 반도체 강세와 이란 리스크 완화 기대에 상승","description":"미 증시는 반도체주 강세와 미·이란 긴장 완화 기대가 겹치며 상승했다. AI 칩 랠리와 유가 안정 기대가 시장 심리를 지지했다.","url":"https://www.reuters.com/business/wall-st-futures-bounce-back-us-iran-deal-optimism-balances-hawkish-fed-intel-up-2026-06-18/","source":{"name":"Reuters"},"publishedAt":"2026-06-18","score":179,"tags":["월가","반도체","AI","이란","유가"]},
+    {"id":"latest-20260620-2307-douglass-50m-record","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"케이트 더글러스, 여자 자유형 50m 세계기록 경신","description":"미국 수영 선수 케이트 더글러스가 인디애나폴리스 대회에서 여자 자유형 50m를 23초59로 마치며 기존 세계기록을 넘어섰다.","url":"https://www.reuters.com/sports/american-douglass-breaks-50m-freestyle-world-record-2026-06-20/","source":{"name":"Reuters"},"publishedAt":"2026-06-20","score":171,"tags":["수영","세계기록","케이트더글러스","미국","스포츠"]},
+    {"id":"latest-20260620-2307-world-cup-us-soft-power","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"월드컵 방문 팬들, 미국 현지 환대에 긍정 반응 확산","description":"로이터는 2026 월드컵 기간 미국 도시들의 현지 환대가 해외 팬들의 인식을 바꾸는 소프트파워 효과를 내고 있다고 전했다.","url":"https://www.reuters.com/sports/soccer/how-warm-world-cup-welcome-is-endearing-us-fans-2026-06-20/","source":{"name":"Reuters"},"publishedAt":"2026-06-20","score":158,"tags":["월드컵","미국","축구","팬문화","소프트파워"]},
+    {"id":"latest-20260620-2307-obama-center-opens","category":"culture","categoryName":"문화","categoryIcon":"🎭","title":"오바마 대통령센터, 시카고에서 일반 공개 시작","description":"버락·미셸 오바마가 시카고 오바마 대통령센터 첫 방문객을 맞았다. 준틴스에 맞춘 개관으로 박물관·도서관·지역 커뮤니티 공간이 주목받았다.","url":"https://apnews.com/article/7f655b125d3cc28dcee91e1645842782","source":{"name":"AP"},"publishedAt":"2026-06-19","score":151,"tags":["오바마","시카고","대통령센터","문화","준틴스"]},
+    {"id":"latest-20260620-2307-ohio-child-social-media","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"미 법원, 오하이오 아동 소셜미디어 제한 법안 일부 인정","description":"미국에서 미성년자 소셜미디어 이용 제한을 둘러싼 법적 판단이 이어지고 있다. 플랫폼 규제와 아동 온라인 안전 논의가 기술정책 쟁점으로 부상했다.","url":"https://www.reuters.com/world/us/us-court-rules-ohio-can-restrict-childrens-use-social-media-2026-06-19/","source":{"name":"Reuters"},"publishedAt":"2026-06-19","score":148,"tags":["소셜미디어","아동보호","플랫폼규제","오하이오","기술정책"]}
+  ],
+  "byCategory": {
+    "global": [],
+    "politics": [],
+    "economy": [],
+    "play": [],
+    "culture": [],
+    "tech": []
+  }
+}
