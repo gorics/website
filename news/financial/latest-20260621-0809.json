@@ -4,10 +4,9 @@
   "page": "financial-latest-overlay-20260621-0809",
   "categories": [
     {"id":"geopolitical-risk","name":"지정학·에너지","icon":"🛢️","count":2},
-    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🖥️","count":1},
-    {"id":"global-markets","name":"글로벌 시장","icon":"🌐","count":1}
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🖥️","count":1}
   ],
-  "total": 4,
+  "total": 3,
   "allItems": [
     {
       "id": "fin-20260621-0809-hormuz-no-toll-trump",
@@ -47,24 +46,10 @@
       "publishedAt": "2026-06-18",
       "score": 178,
       "tags": ["AI인프라", "전력망", "데이터센터", "FERC", "송전"]
-    },
-    {
-      "id": "fin-20260621-0809-hormuz-market-finance",
-      "category": "global-markets",
-      "categoryName": "글로벌 시장",
-      "categoryIcon": "🌐",
-      "title": "호르무즈 통항 논란, 유가·위험선호·아시아 에너지 비용 동시 변수",
-      "description": "호르무즈 통항료와 해협 운영권 논란은 원유 가격뿐 아니라 아시아 에너지 수입비, 해상보험, 글로벌 위험선호를 함께 흔드는 시장 변수로 남았다.",
-      "url": "https://www.reuters.com/world/middle-east/trump-says-no-toll-strait-hormuz-unless-us-imposes-one-2026-06-20/",
-      "source": {"name":"Reuters"},
-      "publishedAt": "2026-06-20",
-      "score": 190,
-      "tags": ["유가", "아시아", "에너지비용", "위험선호", "해상운송"]
     }
   ],
   "byCategory": {
     "geopolitical-risk": [],
-    "ai-infrastructure": [],
-    "global-markets": []
+    "ai-infrastructure": []
   }
 }
