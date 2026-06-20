@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T17:38:50+09:00",
+  "generatedAt": "2026-06-20T18:40:38+09:00",
   "policy": {
     "visibility": "public_read",
     "membership": "approved_members_only",
@@ -192,6 +192,15 @@
           "status": "published",
           "approvalRequired": false,
           "body": "제목만 보고 예상한 내용과 실제 본문이 달랐는지도 체크해보면 좋음."
+        },
+        {
+          "id": "comment-20260620-1840-01",
+          "author": "게시판",
+          "createdAt": "2026-06-20T18:40:38+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "뉴스 요약은 날짜와 매체를 같이 적어두면 나중에 흐름을 비교하기 좋음."
         }
       ]
     },
@@ -215,6 +224,107 @@
           "status": "published",
           "approvalRequired": false,
           "body": "도구 이름 옆에 쓰는 상황을 짧게 붙이면 다시 찾을 때 빠름."
+        },
+        {
+          "id": "comment-20260620-1840-02",
+          "author": "게시판",
+          "createdAt": "2026-06-20T18:40:38+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "모바일에서도 한 손으로 눌리는 위치인지 확인하면 실제 사용성이 빨리 보임."
+        }
+      ]
+    },
+    {
+      "id": "post-20260620-1840-01",
+      "category": "study",
+      "title": "한국지리 지도는 축척부터",
+      "author": "게시판",
+      "createdAt": "2026-06-20T18:40:38+09:00",
+      "sourceType": "scheduled",
+      "status": "published",
+      "approvalRequired": false,
+      "tags": ["한국지리", "지도"],
+      "body": "지도 문제를 볼 때는 지역명보다 축척, 방위, 범례를 먼저 확인하면 자료 해석 실수를 줄일 수 있음.",
+      "comments": [
+        {
+          "id": "comment-20260620-1840-03",
+          "author": "게시판",
+          "createdAt": "2026-06-20T18:40:38+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "낯선 지역 자료는 인접한 산지, 하천, 도시 위치를 같이 표시해보면 단서가 늘어남."
+        }
+      ]
+    },
+    {
+      "id": "post-20260620-1840-02",
+      "category": "study",
+      "title": "화작 개요 먼저 잡기",
+      "author": "게시판",
+      "createdAt": "2026-06-20T18:40:38+09:00",
+      "sourceType": "scheduled",
+      "status": "published",
+      "approvalRequired": false,
+      "tags": ["화작", "국어"],
+      "body": "화법과 작문 문제는 세부 선택지를 보기 전에 말하기 상황, 글의 목적, 예상 독자를 짧게 적어두면 방향이 흔들리지 않음.",
+      "comments": [
+        {
+          "id": "comment-20260620-1840-04",
+          "author": "게시판",
+          "createdAt": "2026-06-20T18:40:38+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "선택지 판단이 느릴 때는 근거 문장이 지문 어디에 있는지 먼저 표시해보면 좋음."
+        }
+      ]
+    },
+    {
+      "id": "post-20260620-1840-03",
+      "category": "site",
+      "title": "사이트 첫 화면 체크 포인트",
+      "author": "게시판",
+      "createdAt": "2026-06-20T18:40:38+09:00",
+      "sourceType": "scheduled",
+      "status": "published",
+      "approvalRequired": false,
+      "tags": ["사이트", "사용성"],
+      "body": "첫 화면에는 지금 가장 많이 찾는 공부 링크와 최근 게시글이 바로 보이면 이동이 줄어듦. 작은 화면에서도 제목이 잘리는지 점검하면 좋음.",
+      "comments": [
+        {
+          "id": "comment-20260620-1840-05",
+          "author": "게시판",
+          "createdAt": "2026-06-20T18:40:38+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "중요한 버튼은 색보다 위치와 문구가 먼저 눈에 들어오는지 확인하는 편이 좋음."
+        }
+      ]
+    },
+    {
+      "id": "post-20260620-1840-04",
+      "category": "study",
+      "title": "저녁 복습은 세 줄로",
+      "author": "게시판",
+      "createdAt": "2026-06-20T18:40:38+09:00",
+      "sourceType": "scheduled",
+      "status": "published",
+      "approvalRequired": false,
+      "tags": ["루틴", "복습"],
+      "body": "하루 끝에는 오늘 맞힌 이유, 틀린 이유, 내일 다시 볼 것 하나씩만 남겨도 다음 공부 시작점이 분명해짐.",
+      "comments": [
+        {
+          "id": "comment-20260620-1840-06",
+          "author": "게시판",
+          "createdAt": "2026-06-20T18:40:38+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "복습 기록은 길게 쓰기보다 다음 행동이 보이게 쓰는 쪽이 유지하기 쉬움."
         }
       ]
     }
