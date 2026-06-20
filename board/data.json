@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T15:10:00+09:00",
+  "generatedAt": "2026-06-20T15:18:00+09:00",
   "policy": {
     "visibility": "public_read",
     "membership": "approved_members_only",
@@ -11,5 +11,18 @@
     { "id": "study", "name": "스터디", "icon": "📚" },
     { "id": "site", "name": "사이트", "icon": "🛠️" }
   ],
-  "posts": []
+  "posts": [
+    {
+      "id": "post-20260620-1518",
+      "category": "notice",
+      "title": "게시판 운영 안내",
+      "author": "게시판 알림",
+      "createdAt": "2026-06-20T15:18:00+09:00",
+      "status": "published",
+      "approvalRequired": false,
+      "tags": ["공지", "운영"],
+      "body": "게시판은 공개 열람 상태로 운영됩니다. 글쓰기와 댓글 작성은 승인된 회원만 사용할 수 있습니다.",
+      "comments": []
+    }
+  ]
 }
