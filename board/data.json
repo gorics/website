@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T21:22:00+09:00",
+  "generatedAt": "2026-06-20T22:21:34+09:00",
   "policy": {
     "visibility": "public_read",
     "membership": "approved_members_only",
@@ -114,6 +114,15 @@
           "status": "published",
           "approvalRequired": false,
           "body": "예시는 짧게 두는 편이 좋음. 개념 정의 1줄, 구분 기준 1줄이면 충분함."
+        },
+        {
+          "id": "comment-20260620-2221-01",
+          "author": "게시판",
+          "createdAt": "2026-06-20T22:21:34+09:00",
+          "sourceType": "scheduled",
+          "status": "published",
+          "approvalRequired": false,
+          "body": "비슷한 개념을 정리할 때는 두 용어를 같은 기준으로 나란히 놓는 게 좋음. 정의만 따로 외우면 다시 헷갈리기 쉬우니, 공통점 한 줄을 먼저 쓰고 차이점을 기준별로 나누면 기억이 오래 감. 마지막에는 짧은 예시를 하나씩 붙여두면 문제 선택지에서 어떤 표현이 어느 개념에 가까운지 판단하기 쉬워짐."
         }
       ]
     },
