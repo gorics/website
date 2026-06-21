@@ -1,0 +1,68 @@
+{
+  "generatedAt": "2026-06-21T22:08:49+09:00",
+  "source": "Latest financial public news overlay; timestamped run overlay",
+  "page": "financial-latest-overlay",
+  "categories": [
+    {"id":"geopolitical-risk","name":"지정학·에너지","icon":"🛢️","count":2},
+    {"id":"equities-ai","name":"증시·AI","icon":"📈","count":2}
+  ],
+  "total": 4,
+  "allItems": [
+    {
+      "id": "fin-20260621-2208-vance-iran-switzerland-talks",
+      "category": "geopolitical-risk",
+      "categoryName": "지정학·에너지",
+      "categoryIcon": "🛢️",
+      "title": "미·이란 스위스 협상 개시, 호르무즈·제재·핵 세부조건이 시장 변수",
+      "publishedAt": "2026-06-21",
+      "source": {"name":"AP"},
+      "url": "https://apnews.com/article/2edf9268aae550883252080014013963",
+      "description": "밴스 부통령과 이란 협상단이 스위스에서 60일 최종 합의 협상에 들어갔다. 호르무즈 통항, 제재 완화, 우라늄 처리 조건이 에너지·해운 리스크를 좌우한다.",
+      "score": 220,
+      "tags": ["이란","호르무즈","제재","원유","지정학"]
+    },
+    {
+      "id": "fin-20260621-2208-iran-deal-global-economy-shadow",
+      "category": "geopolitical-risk",
+      "categoryName": "지정학·에너지",
+      "categoryIcon": "🛢️",
+      "title": "미·이란 합의 후에도 세계경제 리스크 잔존",
+      "publishedAt": "2026-06-21",
+      "source": {"name":"The Guardian"},
+      "url": "https://www.theguardian.com/business/2026/jun/21/trump-iran-deal-long-shadow-global-economy",
+      "description": "원유 가격은 진정됐지만 걸프 수출 차질, 에너지 비용, 인플레이션 압력이 세계경제와 위험자산에 계속 부담으로 남는다는 분석이 제기됐다.",
+      "score": 208,
+      "tags": ["세계경제","유가","인플레이션","호르무즈","중동"]
+    },
+    {
+      "id": "fin-20260621-2208-dow-futures-hormuz-ai-chips",
+      "category": "equities-ai",
+      "categoryName": "증시·AI",
+      "categoryIcon": "📈",
+      "title": "호르무즈 불확실성에도 AI·반도체주가 지수 선물 핵심 모멘텀",
+      "publishedAt": "2026-06-21",
+      "source": {"name":"Investor's Business Daily"},
+      "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-us-iran-talks-hormuz-nvidia-spacex-micron/",
+      "description": "미·이란 협상과 호르무즈 통항 여부가 매크로 리스크로 남은 가운데 엔비디아, 마이크론, 스페이스X 관련 성장주가 시장 방향성을 주도하고 있다.",
+      "score": 204,
+      "tags": ["AI","반도체","엔비디아","마이크론","다우선물"]
+    },
+    {
+      "id": "fin-20260621-2208-meta-crusoe-ai-compute",
+      "category": "equities-ai",
+      "categoryName": "증시·AI",
+      "categoryIcon": "📈",
+      "title": "메타 AI 컴퓨팅 계약, 데이터센터·전력 인프라 투자 경쟁 부각",
+      "publishedAt": "2026-06-18",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/business/meta-signs-new-ai-computing-deals-with-data-center-firm-crusoe-bloomberg-news-2026-06-18/",
+      "description": "메타가 Crusoe와 AI 컴퓨팅 추가 계약을 맺었다는 보도는 빅테크의 데이터센터, 전력, AI 인프라 지출 확대 흐름을 다시 확인시켰다.",
+      "score": 166,
+      "tags": ["메타","데이터센터","AI인프라","Crusoe","빅테크"]
+    }
+  ],
+  "byCategory": {
+    "geopolitical-risk": [],
+    "equities-ai": []
+  }
+}
