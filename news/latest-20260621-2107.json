@@ -1,0 +1,141 @@
+{
+  "generatedAt": "2026-06-21T21:07:11+09:00",
+  "source": "Latest public news overlay; current run items appended for GitHub Pages news site",
+  "page": "main-latest-overlay",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"global","name":"국제","icon":"🌍","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎭","count":1}
+  ],
+  "total": 9,
+  "allItems": [
+    {
+      "id":"latest-20260621-2107-france-heatwave-alert",
+      "category":"global",
+      "categoryName":"국제",
+      "categoryIcon":"🌍",
+      "title":"프랑스, 폭염 적색경보 확대…야외 스포츠·행사 제한",
+      "description":"프랑스가 40도 안팎 폭염에 대응해 적색경보 지역의 야외 스포츠와 일부 행사를 제한했다. 유럽 폭염이 보건·관광·전력 수급 리스크로 번지고 있다.",
+      "url":"https://apnews.com/article/337471b5950543447c92010ca1081a8d",
+      "source":{"name":"AP"},
+      "publishedAt":"2026-06-21",
+      "score":188,
+      "tags":["프랑스","폭염","유럽","보건","전력"]
+    },
+    {
+      "id":"latest-20260621-2107-france-music-festival-alcohol-ban",
+      "category":"culture",
+      "categoryName":"문화",
+      "categoryIcon":"🎭",
+      "title":"프랑스 음악축제, 폭염 적색경보 지역서 음주 금지",
+      "description":"프랑스가 전국 음악축제 기간 폭염 적색경보 지역의 공공 음주를 금지했다. 축제·관광 문화가 기후위기 대응 규제와 직접 맞물리는 사례로 주목된다.",
+      "url":"https://www.reuters.com/world/france-bans-alcohol-consumption-music-festivals-under-red-heatwave-alert-2026-06-20/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-21",
+      "score":160,
+      "tags":["프랑스","음악축제","폭염","문화","공공안전"]
+    },
+    {
+      "id":"latest-20260621-2107-us-iran-ceasefire-text",
+      "category":"politics",
+      "categoryName":"정치",
+      "categoryIcon":"🏛️",
+      "title":"미·이란 임시 휴전 합의문 공개…트럼프는 재공격 가능성 경고",
+      "description":"미국과 이란이 임시 휴전 합의문을 공개했지만 트럼프 대통령은 위반 시 공격 재개 가능성을 언급했다. 호르무즈·제재·핵 검증이 후속 협상의 핵심 쟁점이다.",
+      "url":"https://www.reuters.com/world/middle-east/g7-leaders-demand-ceasefire-lebanon-welcome-iran-deal-2026-06-17/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-18",
+      "score":184,
+      "tags":["미국","이란","휴전","호르무즈","외교"]
+    },
+    {
+      "id":"latest-20260621-2107-g7-critical-minerals-ai",
+      "category":"economy",
+      "categoryName":"경제·금융",
+      "categoryIcon":"💹",
+      "title":"G7, 이란 합의 환영 뒤 중국 핵심광물 의존 축소 논의",
+      "description":"G7 정상들이 이란 합의를 환영한 뒤 중국의 핵심광물 공급망 장악에 대응하는 협력 방안을 논의했다. AI·배터리·방산 공급망 전략이 시장 의제로 부상했다.",
+      "url":"https://www.reuters.com/world/g7-summit-live-leaders-welcome-trumps-iran-deal-turn-focus-chinas-mineral-2026-06-17/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-18",
+      "score":176,
+      "tags":["G7","핵심광물","중국","공급망","AI"]
+    },
+    {
+      "id":"latest-20260621-2107-meta-crusoe-ai-compute",
+      "category":"tech",
+      "categoryName":"기술",
+      "categoryIcon":"🤖",
+      "title":"메타, 크루소와 AI 컴퓨팅 추가 계약…데이터센터 경쟁 가속",
+      "description":"메타가 AI 확장을 위해 데이터센터 업체 크루소와 추가 컴퓨팅 계약을 맺은 것으로 보도됐다. 대형 기술기업의 AI 인프라 확보 경쟁이 계속 커지고 있다.",
+      "url":"https://www.reuters.com/business/meta-signs-new-ai-computing-deals-with-data-center-firm-crusoe-bloomberg-news-2026-06-18/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-19",
+      "score":174,
+      "tags":["메타","AI","데이터센터","크루소","컴퓨팅"]
+    },
+    {
+      "id":"latest-20260621-2107-ai-boom-rally-fear",
+      "category":"tech",
+      "categoryName":"기술",
+      "categoryIcon":"🤖",
+      "title":"AI 붐, 증시 랠리와 버블 우려 동시 확대",
+      "description":"AI 투자 열풍이 글로벌 증시를 끌어올리는 동시에 과잉투자와 전력망 부담, 고용 충격 우려를 키우고 있다. 데이터센터 투자가 핵심 변수로 부각됐다.",
+      "url":"https://www.reuters.com/data/ai-boom-sparks-rally-frenzy-fear-2026-06-10/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-10",
+      "score":170,
+      "tags":["AI","증시","데이터센터","전력망","버블"]
+    },
+    {
+      "id":"latest-20260621-2107-zelenskiy-eu-fast-track",
+      "category":"global",
+      "categoryName":"국제",
+      "categoryIcon":"🌍",
+      "title":"젤렌스키, 우크라이나 EU 신속 가입 촉구…겨울 대비 지원 요청",
+      "description":"젤렌스키 대통령은 EU 정상회의에서 우크라이나의 신속 가입이 유럽 안보 보장이라고 강조했다. 방공 미사일과 연료 지원도 요청하며 장기전 대비를 압박했다.",
+      "url":"https://www.reuters.com/world/zelenskiy-best-way-guarantee-europes-future-would-be-fast-track-eu-membership-2026-06-18/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-18",
+      "score":166,
+      "tags":["우크라이나","EU","젤렌스키","방공","안보"]
+    },
+    {
+      "id":"latest-20260621-2107-iran-worldcup-belgium-prep",
+      "category":"play",
+      "categoryName":"스포츠·엔터",
+      "categoryIcon":"⚽",
+      "title":"이란 감독, 월드컵 이동 제한에 불만…벨기에전 준비시간 부족 지적",
+      "description":"이란 대표팀 감독은 미국 입국 제한과 국경 이동 때문에 벨기에전 준비 시간이 크게 줄었다고 비판했다. 정치 제약이 월드컵 경기력 변수로 이어지고 있다.",
+      "url":"https://www.reuters.com/sports/soccer/iran-coach-questions-inconsistency-preparation-belgium-match-cut-short-2026-06-21/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-21",
+      "score":156,
+      "tags":["월드컵","이란","벨기에","비자","축구"]
+    },
+    {
+      "id":"latest-20260621-2107-warsh-fed-trump-reaction",
+      "category":"economy",
+      "categoryName":"경제·금융",
+      "categoryIcon":"💹",
+      "title":"워시 연준 첫 금리 동결 뒤 트럼프 반응 완화…하반기 인상 가능성은 잔존",
+      "description":"워시 의장 첫 FOMC에서 금리가 동결됐고 트럼프 대통령은 비교적 절제된 반응을 보였다. 다만 일부 위원들의 추가 인상 전망이 채권·주식시장 변수로 남았다.",
+      "url":"https://www.reuters.com/world/us/warsh-fed-holds-rates-steady-trump-says-its-all-right-whatever-2026-06-17/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-17",
+      "score":164,
+      "tags":["연준","금리","워시","트럼프","채권"]
+    }
+  ],
+  "byCategory": {
+    "economy": [],
+    "global": [],
+    "politics": [],
+    "tech": [],
+    "play": [],
+    "culture": []
+  }
+}
