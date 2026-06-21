@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-06-21T19:08:12+09:00",
+  "source": "Latest finance and market-moving overlay for GitHub Pages financial news",
+  "page": "financial-latest-overlay",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🧠","count":2}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"financial-20260621-1908-us-iran-swiss-talks-hormuz","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"미·이란, 스위스에서 핵·휴전 세부 협상 착수…호르무즈 변수 재부상","description":"미국과 이란 협상단이 스위스에서 임시 합의의 세부 조건을 논의하기 시작했다. 이란의 호르무즈 폐쇄 주장과 레바논 전투가 겹치며 원유·해운·위험자산 변동성이 커졌다.","url":"https://apnews.com/article/iran-vance-trump-nuclear-negotiations-2edf9268aae550883252080014013963","source":{"name":"AP"},"publishedAt":"2026-06-21","score":214,"tags":["이란","미국","호르무즈","원유","스위스협상"]},
+    {"id":"financial-20260621-1908-dow-futures-hormuz-ai-chips","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"다우 선물 약세…호르무즈 긴장 속 AI 반도체·스페이스X는 주목","description":"이란의 호르무즈 폐쇄 주장과 미·이란 협상 재개 전망이 동시에 나오며 지수 선물이 흔들렸다. 시장은 엔비디아·마이크론 등 AI 반도체주와 스페이스X 관련 흐름을 함께 주시하고 있다.","url":"https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-nvidia-5-chips-buy-points-spacex-stock/","source":{"name":"Investor's Business Daily"},"publishedAt":"2026-06-21","score":198,"tags":["다우선물","AI반도체","엔비디아","스페이스X","호르무즈"]},
+    {"id":"financial-20260621-1908-meta-crusoe-ai-compute","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🧠","title":"메타, 크루소와 AI 컴퓨팅 계약 확대…데이터센터 수요 경쟁 가속","description":"메타가 데이터센터 개발사 크루소와 추가 AI 컴퓨팅 계약을 맺은 것으로 알려졌다. 대형 모델 경쟁이 전력·GPU·데이터센터 투자 수요를 계속 끌어올리고 있다.","url":"https://www.reuters.com/business/meta-signs-new-ai-computing-deals-with-data-center-firm-crusoe-bloomberg-news-2026-06-18/","source":{"name":"Reuters"},"publishedAt":"2026-06-19","score":174,"tags":["메타","크루소","AI컴퓨팅","데이터센터","인프라"]},
+    {"id":"financial-20260621-1908-france-tech-sovereignty-funding","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🧠","title":"프랑스, 기술 주권 펀딩에 130억 유로 동원…AI·클라우드 투자 확대","description":"프랑스가 유럽 기술 주권 강화를 위해 대규모 자금을 동원한다. AI·클라우드·반도체 인프라 투자가 정책 산업으로 확대되며 관련 시장의 장기 수요 기대가 커졌다.","url":"https://www.reuters.com/technology/","source":{"name":"Reuters"},"publishedAt":"2026-06-19","score":158,"tags":["프랑스","기술주권","AI","클라우드","반도체"]}
+  ],
+  "byCategory": {
+    "economy": [],
+    "ai-infrastructure": []
+  }
+}
