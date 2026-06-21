@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-06-21T19:08:12+09:00",
+  "source": "Latest public news overlay for GitHub Pages news site",
+  "page": "main-latest-overlay",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎭","count":1}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"latest-20260621-1908-us-iran-swiss-talks-hormuz","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"미·이란, 스위스에서 핵·휴전 세부 협상 착수…호르무즈 변수 재부상","description":"미국과 이란 협상단이 스위스에서 임시 합의의 세부 조건을 논의하기 시작했다. 이란의 호르무즈 폐쇄 주장과 레바논 전투가 겹치며 원유·해운·위험자산 변동성이 커졌다.","url":"https://apnews.com/article/iran-vance-trump-nuclear-negotiations-2edf9268aae550883252080014013963","source":{"name":"AP"},"publishedAt":"2026-06-21","score":214,"tags":["이란","미국","호르무즈","원유","스위스협상"]},
+    {"id":"latest-20260621-1908-dow-futures-hormuz-ai-chips","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"다우 선물 약세…호르무즈 긴장 속 AI 반도체·스페이스X는 주목","description":"이란의 호르무즈 폐쇄 주장과 미·이란 협상 재개 전망이 동시에 나오며 지수 선물이 흔들렸다. 시장은 엔비디아·마이크론 등 AI 반도체주와 스페이스X 관련 흐름을 함께 주시하고 있다.","url":"https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-nvidia-5-chips-buy-points-spacex-stock/","source":{"name":"Investor's Business Daily"},"publishedAt":"2026-06-21","score":198,"tags":["다우선물","AI반도체","엔비디아","스페이스X","호르무즈"]},
+    {"id":"latest-20260621-1908-libya-migrant-boat-capsize","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"리비아 앞바다 이주민 선박 전복…51명 사망·실종","description":"리비아 동부 해안 인근에서 유럽행 이주민 선박이 전복돼 51명이 숨지거나 실종된 것으로 전해졌다. 중앙지중해 항로의 구조 공백과 밀입국 네트워크 문제가 다시 부각됐다.","url":"https://apnews.com/article/031dc7c8ed997565646a12593b1ec5ed","source":{"name":"AP"},"publishedAt":"2026-06-20","score":184,"tags":["리비아","이주민","지중해","난민","해난사고"]},
+    {"id":"latest-20260621-1908-armenia-opposition-arrests","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"아르메니아 야권, 총선 결과 불복 속 체포 잇따라…친러 세력 긴장 고조","description":"아르메니아 총선 뒤 야권이 결과 무효를 요구하는 가운데 당국이 야권 인사들을 체포했다. 러시아와 서방 사이의 외교 노선 갈등이 국내 정치 불안으로 번지고 있다.","url":"https://apnews.com/article/1b6f7e89d8063dc57218619012f409cc","source":{"name":"AP"},"publishedAt":"2026-06-20","score":170,"tags":["아르메니아","총선","야권","러시아","정치갈등"]},
+    {"id":"latest-20260621-1908-norway-ai-elementary-ban","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"노르웨이, 초등학교 생성형 AI 사실상 금지…기초학습 보호에 초점","description":"노르웨이가 새 학기부터 6~13세 학생의 생성형 AI 사용을 거의 전면 제한한다. 스마트폰·태블릿 의존을 줄이고 읽기와 기초학습을 회복하려는 교육 정책 흐름이 강화됐다.","url":"https://www.reuters.com/technology/norway-imposes-near-ban-ai-elementary-school-2026-06-19/","source":{"name":"Reuters"},"publishedAt":"2026-06-20","score":166,"tags":["노르웨이","생성형AI","교육","초등학교","규제"]},
+    {"id":"latest-20260621-1908-john-jumper-anthropic","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"알파폴드 주역 존 점퍼, 구글 딥마인드 떠나 앤스로픽 합류","description":"알파폴드 개발로 노벨상을 받은 존 점퍼가 딥마인드를 떠나 앤스로픽으로 이동한다. 빅테크와 AI 스타트업 사이의 최상위 연구인력 경쟁이 한층 치열해졌다.","url":"https://www.reuters.com/technology/us-scientist-john-jumper-leave-google-deepmind-anthropic-2026-06-19/","source":{"name":"Reuters"},"publishedAt":"2026-06-20","score":162,"tags":["알파폴드","존점퍼","딥마인드","앤스로픽","AI인재"]},
+    {"id":"latest-20260621-1908-us-worldcup-round32","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"미국, 호주 2-0 제압하고 월드컵 32강 진출","description":"미국이 호주를 상대로 2-0 승리를 거두며 월드컵 32강 진출을 확정했다. 개최국 흥행과 북미 축구 열기가 조별리그 초반부터 커지고 있다.","url":"https://www.reuters.com/sports/","source":{"name":"Reuters"},"publishedAt":"2026-06-20","score":150,"tags":["월드컵","미국","호주","32강","축구"]},
+    {"id":"latest-20260621-1908-bielsa-hydration-breaks-culture","category":"culture","categoryName":"문화","categoryIcon":"🎭","title":"비엘사 “월드컵 수분 휴식, 축구의 흐름을 해친다”…대회 문화 논쟁 확산","description":"마르셀로 비엘사 감독이 고온 대응을 위한 월드컵 수분 휴식이 경기 리듬과 축구 문화를 훼손한다고 비판했다. 폭염·방송·선수 보호를 둘러싼 대회 운영 논쟁이 커지고 있다.","url":"https://www.reuters.com/sports/soccer/hydration-breaks-world-cup-add-nothing-take-away-lot-says-bielsa-2026-06-21/","source":{"name":"Reuters"},"publishedAt":"2026-06-21","score":142,"tags":["월드컵","비엘사","수분휴식","축구문화","폭염"]}
+  ],
+  "byCategory": {
+    "economy": [],
+    "global": [],
+    "politics": [],
+    "tech": [],
+    "play": [],
+    "culture": []
+  }
+}
