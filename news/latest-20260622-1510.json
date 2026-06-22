@@ -1,0 +1,94 @@
+{
+  "generatedAt": "2026-06-22T15:10:06+09:00",
+  "source": "Latest public news overlay for GitHub Pages news site; timestamp overlay merged ahead of latest.json and data.json",
+  "page": "main-timestamp-overlay",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎭","count":1}
+  ],
+  "total": 6,
+  "allItems": [
+    {
+      "id": "latest-20260622-1510-reuters-asia-stocks-oil",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "아시아 증시 상승, 유가는 하락…미·이란 협상 진전에 위험선호 회복",
+      "description": "미·이란 회담 진전 소식에 아시아 증시가 반등하고 원유 가격은 내려갔다. 중동 리스크 완화와 연준 긴축 우려가 동시에 시장을 움직이고 있다.",
+      "url": "https://www.reuters.com/business/energy/global-markets-wrapup-1-pix-2026-06-22/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-22",
+      "score": 292,
+      "tags": ["아시아증시","유가","미이란협상","연준","위험자산"]
+    },
+    {
+      "id": "latest-20260622-1510-reuters-rupee-oil-fed",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "인도 루피, 유가 하락에도 매파적 연준 우려에 상승 제한",
+      "description": "유가 하락은 원유 수입국 통화에 우호적이지만, 연준 금리 인상 가능성과 수입업체 달러 수요가 루피 반등을 제한했다.",
+      "url": "https://www.reuters.com/world/india/rupee-set-boost-after-iran-flags-progress-peace-talks-2026-06-22/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-22",
+      "score": 242,
+      "tags": ["루피","환율","유가","연준","인도시장"]
+    },
+    {
+      "id": "latest-20260622-1510-ap-iran-lebanon-talks",
+      "category": "politics",
+      "categoryName": "정치",
+      "categoryIcon": "🏛️",
+      "title": "이란, 레바논 전쟁 종식 협상서 ‘중대 진전’ 주장",
+      "description": "스위스 고위급 협상에서 이란은 레바논 전쟁 종료와 핵·제재 의제를 둘러싼 진전이 있었다고 밝혔다. 향후 기술 협상이 핵심 분수령이다.",
+      "url": "https://apnews.com/article/39f9632b4df3a61a07a2c271da1d5637",
+      "source": {"name":"AP"},
+      "publishedAt": "2026-06-22",
+      "score": 276,
+      "tags": ["이란","레바논","헤즈볼라","스위스협상","중동정치"]
+    },
+    {
+      "id": "latest-20260622-1510-reuters-intel-18a-production",
+      "category": "tech",
+      "categoryName": "기술",
+      "categoryIcon": "🤖",
+      "title": "인텔 18A-P 공정 초기 생산 진입…파운드리 반전 카드 시험대",
+      "description": "인텔의 차세대 18A-P 공정이 초기 생산 단계에 들어갔다. 외부 고객 확보와 AI 반도체 공급망 재편 가능성이 기술주 투자 포인트로 부상했다.",
+      "url": "https://www.reuters.com/technology/intels-new-manufacturing-tech-enters-initial-production-2026-06-16/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-16",
+      "score": 232,
+      "tags": ["인텔","18A","파운드리","반도체","AI칩"]
+    },
+    {
+      "id": "latest-20260622-1510-reuters-egypt-worldcup-salah",
+      "category": "play",
+      "categoryName": "스포츠·엔터",
+      "categoryIcon": "⚽",
+      "title": "살라, 이집트 월드컵 첫 승리 견인…뉴질랜드에 3-1 역전승",
+      "description": "모하메드 살라가 득점과 도움으로 이집트의 월드컵 사상 첫 승리를 이끌었다. 이집트는 조 선두로 올라서며 32강 진출 가능성을 키웠다.",
+      "url": "https://www.reuters.com/sports/soccer/salah-inspires-egypt-beat-new-zealand-3-1-historic-world-cup-win-2026-06-22/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-22",
+      "score": 238,
+      "tags": ["월드컵","이집트","살라","뉴질랜드","축구"]
+    },
+    {
+      "id": "latest-20260622-1510-ap-worldcup-jerseys-culture",
+      "category": "culture",
+      "categoryName": "문화",
+      "categoryIcon": "🎭",
+      "title": "월드컵 유니폼, 국가 서사와 팬덤을 담은 문화 콘텐츠로 확장",
+      "description": "각국 월드컵 유니폼이 역사·상징·팬 정체성을 담은 디자인 경쟁으로 주목받고 있다. 스포츠 의류가 문화 소비재로 확장되는 흐름이다.",
+      "url": "https://apnews.com/article/world-cup-kits-jerseys-stories-20867a8fd9a705a892e9a2dc303376c4",
+      "source": {"name":"AP"},
+      "publishedAt": "2026-06-19",
+      "score": 184,
+      "tags": ["월드컵","유니폼","디자인","팬덤","문화"]
+    }
+  ],
+  "byCategory": {"economy":[],"politics":[],"tech":[],"play":[],"culture":[]}
+}
