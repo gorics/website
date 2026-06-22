@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-22T18:07:00+09:00",
+  "source": "automation run; timestamp overlay; base data.json/latest.json preserved",
+  "page": "news-main",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎭","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"latest-20260622-1807-reuters-global-markets-iran-oil","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"아시아 증시 혼조·유가 하락, 미·이란 협상 진전 기대","description":"미·이란 대화 진전 기대가 위험자산 심리를 지지했지만 지역별 증시는 엇갈렸다. 유가는 중동 긴장 완화 관측에 하락하며 시장 변동성 핵심 변수로 남았다.","url":"https://www.reuters.com/business/energy/global-markets-wrapup-1-pix-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":302,"priority":302,"tags":["아시아증시","유가","미이란협상","위험자산","중동리스크"]},
+    {"id":"latest-20260622-1807-reuters-india-jio-ipo","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"인도 증시 상승, 릴라이언스·지오 IPO 기대가 투자심리 견인","description":"미·이란 긴장 완화와 외국인 자금 유입 기대 속에 인도 주요 지수가 올랐다. 릴라이언스는 Jio Platforms IPO 기대와 AI·신에너지 전략으로 주목받았다.","url":"https://www.reuters.com/world/india/indian-shares-set-rise-us-iran-talks-progress-oil-eases-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":276,"priority":276,"tags":["인도증시","릴라이언스","Jio","IPO","외국인자금"]},
+    {"id":"latest-20260622-1807-reuters-uk-starmer-resignation","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"영국 스타머 총리 사임 발표 전망, 노동당 리더십 전환 국면","description":"키어 스타머 영국 총리가 사임 발표를 준비하는 것으로 전해지며 노동당과 영국 정부의 리더십 재편이 핵심 정치 변수로 떠올랐다.","url":"https://www.reuters.com/world/uk-politics-live-starmer-expected-announce-he-will-resign-prime-minister-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":288,"priority":288,"tags":["영국정치","스타머","노동당","총리사임","정권운영"]},
+    {"id":"latest-20260622-1807-guardian-ukraine-russia-drones","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"우크라이나 드론 공세 뒤 러시아 본토 압박 확대","description":"젤렌스키 대통령은 러시아 본토로 전쟁 압박을 되돌리겠다고 밝혔다. 모스크바 인근 드론 요격과 우크라이나 내 러시아 공격이 맞물리며 확전 위험이 커졌다.","url":"https://www.theguardian.com/world/live/2026/jun/22/zelenskyy-ukraine-russia-drones-europe-heatwave-trump-meloni-latest-news-updates","source":{"name":"The Guardian"},"publishedAt":"2026-06-22","score":248,"priority":248,"tags":["우크라이나","러시아","드론","모스크바","유럽안보"]},
+    {"id":"latest-20260622-1807-reuters-intel-seokhee-lee-foundry","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"인텔, 이석희 전 SK하이닉스 CEO 영입…파운드리 패키징 강화","description":"인텔이 첨단 패키징과 후공정 강화를 위해 이석희 전 SK하이닉스 CEO를 영입했다. AI 반도체 경쟁 속 파운드리 턴어라운드와 미국 제조 전략이 부각된다.","url":"https://www.reuters.com/business/intel-taps-industry-veteran-seok-hee-lee-lead-foundry-packaging-push-2026-06-18/","source":{"name":"Reuters"},"publishedAt":"2026-06-18","score":238,"priority":238,"tags":["인텔","이석희","파운드리","첨단패키징","AI반도체"]},
+    {"id":"latest-20260622-1807-reuters-egypt-worldcup-zico","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"이집트 월드컵 첫 승, 살라·지코 활약으로 뉴질랜드 제압","description":"이집트가 뉴질랜드를 꺾고 월드컵에서 역사적 승리를 거뒀다. 모하메드 살라와 지코의 활약이 조별리그 흐름을 바꿨다.","url":"https://www.reuters.com/sports/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":214,"priority":214,"tags":["월드컵","이집트","살라","뉴질랜드","축구"]},
+    {"id":"latest-20260622-1807-ap-what-to-stream-june22","category":"culture","categoryName":"문화","categoryIcon":"🎭","title":"이번 주 스트리밍, 폴 사이먼·아바타·스타폭스 신작 공개","description":"AP는 6월 22~28일 주간 스트리밍 추천작으로 폴 사이먼 콘서트, 실사 아바타 시즌2, 신작 영화와 스타폭스 복귀를 꼽았다.","url":"https://apnews.com/article/747e2bc5c5f6435952fed15fe574ebcd","source":{"name":"AP"},"publishedAt":"2026-06-18","score":182,"priority":182,"tags":["스트리밍","폴사이먼","아바타","스타폭스","엔터테인먼트"]}
+  ],
+  "byCategory": {"economy": [], "politics": [], "global": [], "tech": [], "play": [], "culture": []}
+}
