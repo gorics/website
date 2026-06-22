@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-06-22T18:32:00+09:00",
+  "source": "automation run; financial timestamp overlay; base financial/data.json preserved",
+  "page": "news-financial",
+  "categories": [
+    {"id":"energy","name":"에너지","icon":"🛢️","count":2},
+    {"id":"markets","name":"시장","icon":"📈","count":1},
+    {"id":"fx-rates","name":"외환·금리","icon":"💱","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"financial-20260622-1832-reuters-oil-us-iran-talks","category":"energy","categoryName":"에너지","categoryIcon":"🛢️","title":"유가 하락, 미·이란 협상 진전이 공급 불안 완화","description":"미·이란 협상 진전과 수출 재개 기대가 중동발 공급 쇼크 우려를 낮추며 브렌트와 WTI가 하락했다. 에너지 가격은 인플레이션·금리 전망의 핵심 변수로 남았다.","url":"https://www.reuters.com/business/energy/brent-oil-rises-more-than-1bbl-after-bumpy-start-us-iran-peace-talks-2026-06-21/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":315,"priority":315,"tags":["유가","브렌트","WTI","미이란협상","인플레이션"]},
+    {"id":"financial-20260622-1832-reuters-european-shares-iran-talks","category":"markets","categoryName":"시장","categoryIcon":"📈","title":"유럽 증시 보합권, 이란 협상·ECB 긴축 경계가 맞물려","description":"유럽 증시는 미·이란 협상 진전과 유가 하락에도 영국 정치 불확실성, ECB 금리 경계, 업종별 실적 부담이 겹치며 제한적 흐름을 보였다.","url":"https://www.reuters.com/markets/europe/european-shares-muted-investors-weigh-us-iran-talks-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":286,"priority":286,"tags":["유럽증시","STOXX600","ECB","미이란협상","유가"]},
+    {"id":"financial-20260622-1832-reuters-rupee-oil-fed","category":"fx-rates","categoryName":"외환·금리","categoryIcon":"💱","title":"인도 루피 제한적 약세, 유가 하락에도 매파 연준 부담","description":"유가 하락은 인도 루피에 우호적이었지만 수입업체 달러 수요와 연준 추가 긴축 우려가 상승폭을 제한했다. 아시아 통화 전반의 금리 민감도가 커졌다.","url":"https://www.reuters.com/world/india/rupee-set-boost-after-iran-flags-progress-peace-talks-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":258,"priority":258,"tags":["루피","달러","연준","유가","아시아통화"]},
+    {"id":"financial-20260622-1832-reuters-strategic-oil-reserves","category":"energy","categoryName":"에너지","categoryIcon":"🛢️","title":"이란 전쟁 이후 각국 전략비축유 확대 경쟁 부상","description":"호르무즈 리스크와 공급 차질 경험 뒤 각국이 전략비축유 확충에 나서고 있다. 에너지 안보가 무역·재정·외교 정책의 장기 변수로 재부상했다.","url":"https://www.reuters.com/commentary/reuters-open-interest/iran-war-triggers-global-race-build-oil-reserves-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":242,"priority":242,"tags":["전략비축유","에너지안보","호르무즈","중동","공급망"]}
+  ],
+  "byCategory": {"energy": [], "markets": [], "fx-rates": []}
+}
