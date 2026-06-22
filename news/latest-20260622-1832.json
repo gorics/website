@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-06-22T18:32:00+09:00",
+  "source": "automation run; timestamp overlay; base data.json/latest.json preserved",
+  "page": "news-main",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":3},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"latest-20260622-1832-reuters-oil-us-iran-talks","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"유가 하락, 미·이란 협상 진전이 공급 불안 완화","description":"미·이란 협상 진전과 수출 재개 기대가 중동발 공급 쇼크 우려를 낮추며 브렌트와 WTI가 하락했다. 에너지 가격은 인플레이션·금리 전망의 핵심 변수로 남았다.","url":"https://www.reuters.com/business/energy/brent-oil-rises-more-than-1bbl-after-bumpy-start-us-iran-peace-talks-2026-06-21/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":315,"priority":315,"tags":["유가","브렌트","WTI","미이란협상","인플레이션"]},
+    {"id":"latest-20260622-1832-reuters-european-shares-iran-talks","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"유럽 증시 보합권, 이란 협상·ECB 긴축 경계가 맞물려","description":"유럽 증시는 미·이란 협상 진전과 유가 하락에도 영국 정치 불확실성, ECB 금리 경계, 업종별 실적 부담이 겹치며 제한적 흐름을 보였다.","url":"https://www.reuters.com/markets/europe/european-shares-muted-investors-weigh-us-iran-talks-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":286,"priority":286,"tags":["유럽증시","STOXX600","ECB","미이란협상","유가"]},
+    {"id":"latest-20260622-1832-reuters-rupee-oil-fed","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"인도 루피 제한적 약세, 유가 하락에도 매파 연준 부담","description":"유가 하락은 인도 루피에 우호적이었지만 수입업체 달러 수요와 연준 추가 긴축 우려가 상승폭을 제한했다. 아시아 통화 전반의 금리 민감도가 커졌다.","url":"https://www.reuters.com/world/india/rupee-set-boost-after-iran-flags-progress-peace-talks-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":258,"priority":258,"tags":["루피","달러","연준","유가","아시아통화"]},
+    {"id":"latest-20260622-1832-ap-iran-worldcup-politics","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"이란 월드컵 경기장 밖 정치 논란, 비자·시위 이슈 확산","description":"이란과 벨기에의 무승부 뒤에는 비자 제한, 시위, 보안 논란이 겹쳤다. 국제 스포츠 행사가 외교·국내 정치 갈등의 무대가 되는 흐름이 커졌다.","url":"https://apnews.com/article/c4305ecb7dd0f952fa3ae1abce4a146d","source":{"name":"AP"},"publishedAt":"2026-06-22","score":246,"priority":246,"tags":["이란","월드컵","비자","시위","정치논란"]},
+    {"id":"latest-20260622-1832-reuters-strategic-oil-reserves","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"이란 전쟁 이후 각국 전략비축유 확대 경쟁 부상","description":"호르무즈 리스크와 공급 차질 경험 뒤 각국이 전략비축유 확충에 나서고 있다. 에너지 안보가 무역·재정·외교 정책의 장기 변수로 재부상했다.","url":"https://www.reuters.com/commentary/reuters-open-interest/iran-war-triggers-global-race-build-oil-reserves-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":242,"priority":242,"tags":["전략비축유","에너지안보","호르무즈","중동","공급망"]},
+    {"id":"latest-20260622-1832-axios-nvidia-data-center-water","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"엔비디아, AI 데이터센터 물 사용 절감 냉각 해법 공개","description":"엔비디아는 고온 순환식 액체 냉각으로 AI 데이터센터의 물 사용 부담을 낮출 수 있다고 밝혔다. 전력·물 사용 논란 속 AI 인프라 지속가능성이 쟁점이다.","url":"https://www.axios.com/2026/06/22/nvidia-data-center-water-solution","source":{"name":"Axios"},"publishedAt":"2026-06-22","score":226,"priority":226,"tags":["엔비디아","AI데이터센터","냉각","물사용","지속가능성"]},
+    {"id":"latest-20260622-1832-reuters-cape-verde-uruguay","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"카보베르데, 우루과이와 2-2 무승부…월드컵 돌풍 지속","description":"월드컵 첫 출전국 카보베르데가 우루과이와 난타전 끝에 비기며 조별리그 경쟁력을 입증했다. 첫 월드컵 득점과 승점으로 32강 가능성을 이어갔다.","url":"https://www.reuters.com/sports/soccer/brave-cape-verde-hold-uruguay-2-2-draw-world-cup-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":218,"priority":218,"tags":["월드컵","카보베르데","우루과이","축구","조별리그"]}
+  ],
+  "byCategory": {"economy": [], "politics": [], "global": [], "tech": [], "play": []}
+}
