@@ -1,0 +1,83 @@
+{
+  "generatedAt": "2026-06-23T12:06:44+09:00",
+  "source": "Latest financial public news overlay for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-overlay",
+  "categories": [
+    {"id":"global-markets","name":"글로벌 시장","icon":"🌐","count":2},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
+    {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {
+      "id": "fin-20260623-1206-asia-markets-fed-oil",
+      "category": "global-markets",
+      "categoryName": "글로벌 시장",
+      "categoryIcon": "🌐",
+      "title": "아시아 증시 약세, 연준 인상 재가격과 유가 반등 동시 부담",
+      "publishedAt": "2026-06-23",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/world/asia-pacific/global-markets-global-markets-2026-06-23/",
+      "description": "아시아 주식시장이 하락했고 유가는 반등했다. 금리 인상 가능성 재가격이 기술주와 위험자산 밸류에이션에 부담을 줬다.",
+      "score": 305,
+      "tags": ["아시아증시","연준","유가","위험자산","금리"]
+    },
+    {
+      "id": "fin-20260623-1206-oil-hormuz-flows",
+      "category": "energy-geopolitics",
+      "categoryName": "에너지·지정학",
+      "categoryIcon": "🛢️",
+      "title": "유가 반등, 호르무즈 원유 운송 회복 확인 전까지 변동성 지속",
+      "publishedAt": "2026-06-23",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/business/energy/oil-gains-after-selloff-awaits-progress-strait-hormuz-flows-2026-06-23/",
+      "description": "전일 급락했던 유가가 반등했다. 시장은 호르무즈 해협 물류 정상화와 미·이란 합의 이행 가능성을 핵심 변수로 보고 있다.",
+      "score": 298,
+      "tags": ["유가","호르무즈","원유운송","미이란","에너지리스크"]
+    },
+    {
+      "id": "fin-20260623-1206-bofa-deutsche-fed-hikes",
+      "category": "rates-policy",
+      "categoryName": "금리·정책",
+      "categoryIcon": "🏦",
+      "title": "BofA·도이체방크, 9월 연준 금리 인상 전망 제시",
+      "publishedAt": "2026-06-22",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/business/bofa-forecasts-75-bps-rate-hikes-2026-labour-market-resilience-new-fed-chair-2026-06-22/",
+      "description": "BofA와 도이체방크가 올해 9월 이후 연준 인상 가능성을 전망했다. 노동시장 탄력과 새 연준 의장의 매파 기조가 근거로 제시됐다.",
+      "score": 292,
+      "tags": ["연준","금리인상","BofA","도이체방크","채권"]
+    },
+    {
+      "id": "fin-20260623-1206-us-spr-loan",
+      "category": "energy-geopolitics",
+      "categoryName": "에너지·지정학",
+      "categoryIcon": "🛢️",
+      "title": "미국 전략비축유 50만 배럴 대여, 공급 완충 정책 지속",
+      "publishedAt": "2026-06-22",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/legal/litigation/us-loans-500000-barrels-oil-strategic-petroleum-reserve-2026-06-22/",
+      "description": "미 에너지부가 비톨에 전략비축유 50만 배럴을 대여했다. 중동 리스크 이후 원유 가격 완충 장치가 계속 가동되고 있다.",
+      "score": 286,
+      "tags": ["전략비축유","SPR","비톨","원유공급","유가"]
+    },
+    {
+      "id": "fin-20260623-1206-europe-shares-iran-starmer",
+      "category": "global-markets",
+      "categoryName": "글로벌 시장",
+      "categoryIcon": "🌐",
+      "title": "유럽 증시 상승, 미·이란 협상 기대와 영국 정권 이양 주시",
+      "publishedAt": "2026-06-22",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/markets/europe/european-shares-muted-investors-weigh-us-iran-talks-2026-06-22/",
+      "description": "유럽 증시가 미·이란 협상 진전 기대 속 상승했다. 스타머 사퇴 이후 영국 금융주와 정치 리스크도 주요 관찰 대상이 됐다.",
+      "score": 268,
+      "tags": ["유럽증시","미이란협상","영국정치","은행주","STOXX600"]
+    }
+  ],
+  "byCategory": {
+    "global-markets": [],
+    "energy-geopolitics": [],
+    "rates-policy": []
+  }
+}
