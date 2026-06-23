@@ -1,1 +1,388 @@
-{"generatedAt":"2026-06-24T07:08:49+09:00","source":"Latest financial public news overlay for GitHub Pages news site; finance and market-moving items prioritized","page":"financial-latest-overlay","categories":[{"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":2},{"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},{"id":"semiconductors","name":"반도체","icon":"💾","count":1},{"id":"global-markets","name":"글로벌시장","icon":"🌐","count":2},{"id":"rates-policy","name":"금리·정책","icon":"🏛️","count":1},{"id":"foreign-exchange","name":"외환·금리","icon":"💱","count":2},{"id":"financial-regulation","name":"금융규제","icon":"🏦","count":3}],"total":12,"allItems":[{"id":"fin-20260624-0708-reuters-cerebras-ai-chip-margin","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"Cerebras 주가 하락, AI칩 매출 성장보다 낮은 마진 전망에 반응","description":"Cerebras는 2026년 매출 전망을 시장 예상보다 높게 제시했지만, 총마진 전망이 Nvidia·AMD보다 크게 낮아 투자자들이 수익성 리스크를 재평가했다.","url":"https://www.reuters.com/technology/cerebras-posts-rise-quarterly-revenue-first-report-post-ipo-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":432,"tags":["Cerebras","AI칩","OpenAI","마진","반도체"]},{"id":"fin-20260624-0708-reuters-qualcomm-modular-ai-ma","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"퀄컴의 Modular 인수 논의, AI 데이터센터 칩 M&A 프리미엄 확대","description":"퀄컴이 Modular를 약 40억 달러로 평가하는 인수 협상을 진행 중이라는 보도는 AI칩 스타트업 가치 재평가와 데이터센터 반도체 경쟁 심화를 보여준다.","url":"https://www.reuters.com/legal/transactional/qualcomm-nearing-deal-ai-chip-startup-modular-bloomberg-news-reports-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":420,"tags":["퀄컴","Modular","AI칩","M&A","데이터센터"]},{"id":"fin-20260624-0708-reuters-oil-hormuz-peace-talks","category":"energy-geopolitics","categoryName":"에너지·지정학","categoryIcon":"🛢️","title":"유가 1% 하락, 호르무즈 해협 공급 흐름과 평화협상 기대 반영","description":"원유 가격은 호르무즈 해협 물류 흐름과 중동 평화협상 진전 기대를 반영하며 하락했다. 에너지 시장은 지정학 프리미엄 축소 여부를 주시하고 있다.","url":"https://www.reuters.com/business/energy/oil-gains-after-selloff-awaits-progress-strait-hormuz-flows-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":410,"tags":["유가","호르무즈","중동","원유","지정학"]},{"id":"fin-20260624-0708-reuters-micron-earnings-ai-rally","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"마이크론 실적, AI 반도체 랠리의 이익 지속성 핵심 점검","description":"마이크론의 실적은 데이터센터 투자 확대가 메모리칩 수요와 반도체 이익으로 계속 연결되는지 확인할 시험대다. AI 랠리의 폭과 지속성이 시장 관심사다.","url":"https://www.reuters.com/business/finance/wall-st-week-ahead-investors-see-micron-earnings-pulse-check-ai-rally-momentum-2026-06-19/","source":{"name":"Reuters"},"publishedAt":"2026-06-19","score":396,"tags":["마이크론","메모리","AI랠리","반도체","실적"]},{"id":"fin-20260624-0633-reuters-us-tech-ai-selloff","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"미 증시 하락, 반도체 급락·AI 지출 우려가 글로벌 위험자산 압박","description":"미국 반도체주가 크게 밀리며 나스닥과 S&P 500을 끌어내렸다. AI 인프라 투자 부담과 연준 금리 인상 가능성이 기술주 밸류에이션 재평가를 자극했다.","url":"https://www.reuters.com/business/nasdaq-futures-fall-2-tech-worries-fed-hike-bets-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":430,"tags":["미국증시","반도체","AI","연준","기술주"]},{"id":"fin-20260624-0633-guardian-global-markets-oil-dollar","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"글로벌 주식 약세와 달러 강세, 유가는 중동 협상 기대에 하락","description":"미 기술주 매도 여파로 글로벌 증시가 흔들렸고 달러는 강세를 보였다. 미국의 이란 제재 일시 완화와 평화협상 기대는 원유 가격 하락 요인으로 작용했다.","url":"https://www.theguardian.com/business/live/2026/jun/23/crude-oil-falls-us-waiver-iran-sanctions-peace-talks-progress-live-updates","source":{"name":"The Guardian"},"publishedAt":"2026-06-23","score":414,"tags":["글로벌증시","달러","유가","이란","중동"]},{"id":"fin-20260624-0633-reuters-boe-rate-hold","category":"rates-policy","categoryName":"금리·정책","categoryIcon":"🏛️","title":"BoE 위원, 지정학 긴장 속 금리 동결 연장 지지","description":"영란은행 정책위원이 지정학 리스크와 물가 불확실성을 이유로 금리 동결 기조 유지를 지지했다. 파운드와 영국 채권시장에는 정책 경로 재평가 요인이다.","url":"https://www.reuters.com/markets/europe/boes-taylor-backs-extended-hold-interest-rates-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":368,"tags":["영란은행","금리","파운드","채권","통화정책"]},{"id":"fin-20260624-0608-reuters-rupee-fed-dollar","category":"foreign-exchange","categoryName":"외환·금리","categoryIcon":"💱","title":"루피 약세, 달러 1년 고점·미 금리 상승이 아시아 통화 압박","description":"미 금리 인상 기대와 달러 강세가 루피와 아시아 통화에 부담을 줬다. 유가 하락 완충에도 글로벌 주식 약세가 신흥시장 통화 변동성을 키웠다.","url":"https://www.reuters.com/world/india/rupee-ride-oil-fall-tailwind-fed-rate-worries-may-cap-gains-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":398,"tags":["루피","달러","미국금리","아시아통화","신흥시장"]},{"id":"fin-20260624-0608-reuters-rand-dollar-fed","category":"foreign-exchange","categoryName":"외환·금리","categoryIcon":"💱","title":"남아공 랜드 약세, 강달러·매파 연준이 신흥시장 압박","description":"남아공 랜드가 달러 강세와 연준의 매파적 금리 전망에 약세를 보였다. 신흥시장 통화가 미국 금리와 위험회피 흐름에 민감하게 반응하고 있다.","url":"https://www.reuters.com/world/africa/south-african-rand-weakens-firmer-dollar-ahead-leading-indicator-data-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":386,"tags":["랜드","달러","연준","신흥시장","외환"]},{"id":"fin-20260624-0608-reuters-boe-private-market-stress","category":"financial-regulation","categoryName":"금융규제","categoryIcon":"🏦","title":"영란은행, 사모시장 충격 테스트 착수…비은행 금융 리스크 점검","description":"영란은행은 주가 35% 하락과 고물가 충격을 가정해 사모시장·사모신용의 복원력을 시험한다. 비은행 금융권의 불투명성과 시스템 리스크가 핵심이다.","url":"https://www.reuters.com/world/uk/bank-england-tests-private-credits-resilience-against-severe-recession-2026-06-19/","source":{"name":"Reuters"},"publishedAt":"2026-06-19","score":374,"tags":["영란은행","사모신용","스트레스테스트","비은행금융","시스템리스크"]},{"id":"fin-20260624-0608-reuters-us-bank-capital-rules","category":"financial-regulation","categoryName":"금융규제","categoryIcon":"🏦","title":"미 대형은행, 자본규제 완화 최종 압박…거래·카드 한도 기준 쟁점","description":"미국 대형은행들이 연준 자본규제 개편 협의 마감을 앞두고 추가 완화를 요구했다. 트레이딩 자본, 미사용 카드한도, 글로벌 은행 추가자본 기준이 핵심 쟁점이다.","url":"https://www.reuters.com/legal/transactional/us-banks-make-final-push-capital-rule-changes-fed-wraps-up-consultation-2026-06-18/","source":{"name":"Reuters"},"publishedAt":"2026-06-18","score":360,"tags":["미국은행","자본규제","바젤","연준","금융정책"]},{"id":"fin-20260624-0608-reuters-fed-bank-results-release","category":"financial-regulation","categoryName":"금융규제","categoryIcon":"🏦","title":"연준, 6월 24일 대형은행 스트레스 테스트 결과 공개 예정","description":"연준은 32개 대형은행의 경기침체 대응력을 점검한 2026년 스트레스 테스트 결과를 6월 24일 공개한다. 올해 결과는 직접 자본요건 변경 없이 제도 개편 논의와 연결된다.","url":"https://www.reuters.com/business/finance/us-fed-release-2026-bank-stress-test-results-june-24-2026-06-09/","source":{"name":"Reuters"},"publishedAt":"2026-06-09","score":350,"tags":["연준","은행","스트레스테스트","자본정책","금융안정"]}]}
+{
+  "generatedAt": "2026-06-24T08:15:00+09:00",
+  "source": "Latest financial public news overlay for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-overlay",
+  "categories": [
+    {
+      "id": "global-markets",
+      "name": "글로벌시장",
+      "icon": "🌐",
+      "count": 3
+    },
+    {
+      "id": "ai-infrastructure",
+      "name": "AI 인프라",
+      "icon": "🤖",
+      "count": 4
+    },
+    {
+      "id": "energy-geopolitics",
+      "name": "에너지·지정학",
+      "icon": "🛢️",
+      "count": 2
+    },
+    {
+      "id": "semiconductors",
+      "name": "반도체",
+      "icon": "💾",
+      "count": 1
+    },
+    {
+      "id": "rates-policy",
+      "name": "금리·정책",
+      "icon": "🏛️",
+      "count": 1
+    },
+    {
+      "id": "foreign-exchange",
+      "name": "외환·금리",
+      "icon": "💱",
+      "count": 2
+    },
+    {
+      "id": "financial-regulation",
+      "name": "금융규제",
+      "icon": "🏦",
+      "count": 3
+    }
+  ],
+  "total": 16,
+  "allItems": [
+    {
+      "id": "fin-20260624-0815-reuters-global-tech-selloff",
+      "category": "global-markets",
+      "categoryName": "글로벌시장",
+      "categoryIcon": "🌐",
+      "title": "글로벌 증시 급락, 기술·반도체 매도와 연준 긴축 우려가 동반 압박",
+      "description": "기술주와 반도체주 매도세가 미국·유럽·아시아 증시로 번지며 위험자산이 흔들렸다. 달러와 국채금리 상승, 9월 연준 금리 인상 가능성이 시장 변동성을 키웠다.",
+      "url": "https://www.reuters.com/world/asia-pacific/global-markets-global-markets-2026-06-23/",
+      "source": {
+        "name": "Reuters"
+      },
+      "publishedAt": "2026-06-23",
+      "score": 438,
+      "tags": [
+        "글로벌증시",
+        "반도체",
+        "AI",
+        "연준",
+        "달러"
+      ]
+    },
+    {
+      "id": "fin-20260624-0815-reuters-spacex-debt-market",
+      "category": "ai-infrastructure",
+      "categoryName": "AI 인프라",
+      "categoryIcon": "🤖",
+      "title": "SpaceX 급락, 차입 계획이 대형 기술주의 자금조달·AI 투자 경계감 자극",
+      "description": "SpaceX의 부채 조달 계획이 알려진 뒤 주가가 큰 폭으로 하락하며, 대형 기술기업의 AI 투자와 자금조달 부담에 대한 시장 경계가 커졌다.",
+      "url": "https://www.reuters.com/commentary/reuters-open-interest/global-markets-view-usa-2026-06-23/",
+      "source": {
+        "name": "Reuters"
+      },
+      "publishedAt": "2026-06-23",
+      "score": 426,
+      "tags": [
+        "SpaceX",
+        "AI투자",
+        "기술주",
+        "부채",
+        "밸류에이션"
+      ]
+    },
+    {
+      "id": "fin-20260624-0815-reuters-iran-sanctions-oil",
+      "category": "energy-geopolitics",
+      "categoryName": "에너지·지정학",
+      "categoryIcon": "🛢️",
+      "title": "미국의 이란 제재 60일 유예, 원유 수출 재개와 공급 리스크 변수",
+      "description": "미국이 이란 제재를 60일간 유예하면서 이란의 원유·관련 제품 수출 및 대금 수령이 가능해졌다. 유가와 호르무즈 물류 회복의 핵심 변수다.",
+      "url": "https://www.reuters.com/world/asia-pacific/us-waives-iran-sanctions-trump-says-he-will-do-what-i-have-to-if-tehran-2026-06-23/",
+      "source": {
+        "name": "Reuters"
+      },
+      "publishedAt": "2026-06-23",
+      "score": 422,
+      "tags": [
+        "이란",
+        "제재",
+        "원유",
+        "호르무즈",
+        "에너지"
+      ]
+    },
+    {
+      "id": "fin-20260624-0815-reuters-ai-europe-diversification",
+      "category": "ai-infrastructure",
+      "categoryName": "AI 인프라",
+      "categoryIcon": "🤖",
+      "title": "미국 AI 접근 제한, 유럽 기업의 멀티모델·자체 AI 투자 확대",
+      "description": "미국 AI 서비스 접근 제한이 유럽 기업의 공급자 다변화와 자체 AI 대안 구축을 재촉하고 있다. AI 인프라 조달과 규제 리스크가 투자 판단의 핵심 변수로 부상했다.",
+      "url": "https://www.reuters.com/legal/litigation/us-curbs-ai-spur-european-firms-spread-risk-2026-06-22/",
+      "source": {
+        "name": "Reuters"
+      },
+      "publishedAt": "2026-06-22",
+      "score": 404,
+      "tags": [
+        "AI",
+        "유럽",
+        "규제",
+        "공급망",
+        "기업투자"
+      ]
+    },
+    {
+      "id": "fin-20260624-0708-reuters-cerebras-ai-chip-margin",
+      "category": "ai-infrastructure",
+      "categoryName": "AI 인프라",
+      "categoryIcon": "🤖",
+      "title": "Cerebras 주가 하락, AI칩 매출 성장보다 낮은 마진 전망에 반응",
+      "description": "Cerebras는 2026년 매출 전망을 시장 예상보다 높게 제시했지만, 총마진 전망이 Nvidia·AMD보다 크게 낮아 투자자들이 수익성 리스크를 재평가했다.",
+      "url": "https://www.reuters.com/technology/cerebras-posts-rise-quarterly-revenue-first-report-post-ipo-2026-06-23/",
+      "source": {
+        "name": "Reuters"
+      },
+      "publishedAt": "2026-06-23",
+      "score": 432,
+      "tags": [
+        "Cerebras",
+        "AI칩",
+        "OpenAI",
+        "마진",
+        "반도체"
+      ]
+    },
+    {
+      "id": "fin-20260624-0708-reuters-qualcomm-modular-ai-ma",
+      "category": "ai-infrastructure",
+      "categoryName": "AI 인프라",
+      "categoryIcon": "🤖",
+      "title": "퀄컴의 Modular 인수 논의, AI 데이터센터 칩 M&A 프리미엄 확대",
+      "description": "퀄컴이 Modular를 약 40억 달러로 평가하는 인수 협상을 진행 중이라는 보도는 AI칩 스타트업 가치 재평가와 데이터센터 반도체 경쟁 심화를 보여준다.",
+      "url": "https://www.reuters.com/legal/transactional/qualcomm-nearing-deal-ai-chip-startup-modular-bloomberg-news-reports-2026-06-22/",
+      "source": {
+        "name": "Reuters"
+      },
+      "publishedAt": "2026-06-22",
+      "score": 420,
+      "tags": [
+        "퀄컴",
+        "Modular",
+        "AI칩",
+        "M&A",
+        "데이터센터"
+      ]
+    },
+    {
+      "id": "fin-20260624-0708-reuters-oil-hormuz-peace-talks",
+      "category": "energy-geopolitics",
+      "categoryName": "에너지·지정학",
+      "categoryIcon": "🛢️",
+      "title": "유가 1% 하락, 호르무즈 해협 공급 흐름과 평화협상 기대 반영",
+      "description": "원유 가격은 호르무즈 해협 물류 흐름과 중동 평화협상 진전 기대를 반영하며 하락했다. 에너지 시장은 지정학 프리미엄 축소 여부를 주시하고 있다.",
+      "url": "https://www.reuters.com/business/energy/oil-gains-after-selloff-awaits-progress-strait-hormuz-flows-2026-06-23/",
+      "source": {
+        "name": "Reuters"
+      },
+      "publishedAt": "2026-06-23",
+      "score": 410,
+      "tags": [
+        "유가",
+        "호르무즈",
+        "중동",
+        "원유",
+        "지정학"
+      ]
+    },
+    {
+      "id": "fin-20260624-0708-reuters-micron-earnings-ai-rally",
+      "category": "semiconductors",
+      "categoryName": "반도체",
+      "categoryIcon": "💾",
+      "title": "마이크론 실적, AI 반도체 랠리의 이익 지속성 핵심 점검",
+      "description": "마이크론의 실적은 데이터센터 투자 확대가 메모리칩 수요와 반도체 이익으로 계속 연결되는지 확인할 시험대다. AI 랠리의 폭과 지속성이 시장 관심사다.",
+      "url": "https://www.reuters.com/business/finance/wall-st-week-ahead-investors-see-micron-earnings-pulse-check-ai-rally-momentum-2026-06-19/",
+      "source": {
+        "name": "Reuters"
+      },
+      "publishedAt": "2026-06-19",
+      "score": 396,
+      "tags": [
+        "마이크론",
+        "메모리",
+        "AI랠리",
+        "반도체",
+        "실적"
+      ]
+    },
+    {
+      "id": "fin-20260624-0633-reuters-us-tech-ai-selloff",
+      "category": "global-markets",
+      "categoryName": "글로벌시장",
+      "categoryIcon": "🌐",
+      "title": "미 증시 하락, 반도체 급락·AI 지출 우려가 글로벌 위험자산 압박",
+      "description": "미국 반도체주가 크게 밀리며 나스닥과 S&P 500을 끌어내렸다. AI 인프라 투자 부담과 연준 금리 인상 가능성이 기술주 밸류에이션 재평가를 자극했다.",
+      "url": "https://www.reuters.com/business/nasdaq-futures-fall-2-tech-worries-fed-hike-bets-2026-06-23/",
+      "source": {
+        "name": "Reuters"
+      },
+      "publishedAt": "2026-06-23",
+      "score": 430,
+      "tags": [
+        "미국증시",
+        "반도체",
+        "AI",
+        "연준",
+        "기술주"
+      ]
+    },
+    {
+      "id": "fin-20260624-0633-guardian-global-markets-oil-dollar",
+      "category": "global-markets",
+      "categoryName": "글로벌시장",
+      "categoryIcon": "🌐",
+      "title": "글로벌 주식 약세와 달러 강세, 유가는 중동 협상 기대에 하락",
+      "description": "미 기술주 매도 여파로 글로벌 증시가 흔들렸고 달러는 강세를 보였다. 미국의 이란 제재 일시 완화와 평화협상 기대는 원유 가격 하락 요인으로 작용했다.",
+      "url": "https://www.theguardian.com/business/live/2026/jun/23/crude-oil-falls-us-waiver-iran-sanctions-peace-talks-progress-live-updates",
+      "source": {
+        "name": "The Guardian"
+      },
+      "publishedAt": "2026-06-23",
+      "score": 414,
+      "tags": [
+        "글로벌증시",
+        "달러",
+        "유가",
+        "이란",
+        "중동"
+      ]
+    },
+    {
+      "id": "fin-20260624-0633-reuters-boe-rate-hold",
+      "category": "rates-policy",
+      "categoryName": "금리·정책",
+      "categoryIcon": "🏛️",
+      "title": "BoE 위원, 지정학 긴장 속 금리 동결 연장 지지",
+      "description": "영란은행 정책위원이 지정학 리스크와 물가 불확실성을 이유로 금리 동결 기조 유지를 지지했다. 파운드와 영국 채권시장에는 정책 경로 재평가 요인이다.",
+      "url": "https://www.reuters.com/markets/europe/boes-taylor-backs-extended-hold-interest-rates-2026-06-23/",
+      "source": {
+        "name": "Reuters"
+      },
+      "publishedAt": "2026-06-23",
+      "score": 368,
+      "tags": [
+        "영란은행",
+        "금리",
+        "파운드",
+        "채권",
+        "통화정책"
+      ]
+    },
+    {
+      "id": "fin-20260624-0608-reuters-rupee-fed-dollar",
+      "category": "foreign-exchange",
+      "categoryName": "외환·금리",
+      "categoryIcon": "💱",
+      "title": "루피 약세, 달러 1년 고점·미 금리 상승이 아시아 통화 압박",
+      "description": "미 금리 인상 기대와 달러 강세가 루피와 아시아 통화에 부담을 줬다. 유가 하락 완충에도 글로벌 주식 약세가 신흥시장 통화 변동성을 키웠다.",
+      "url": "https://www.reuters.com/world/india/rupee-ride-oil-fall-tailwind-fed-rate-worries-may-cap-gains-2026-06-23/",
+      "source": {
+        "name": "Reuters"
+      },
+      "publishedAt": "2026-06-23",
+      "score": 398,
+      "tags": [
+        "루피",
+        "달러",
+        "미국금리",
+        "아시아통화",
+        "신흥시장"
+      ]
+    },
+    {
+      "id": "fin-20260624-0608-reuters-rand-dollar-fed",
+      "category": "foreign-exchange",
+      "categoryName": "외환·금리",
+      "categoryIcon": "💱",
+      "title": "남아공 랜드 약세, 강달러·매파 연준이 신흥시장 압박",
+      "description": "남아공 랜드가 달러 강세와 연준의 매파적 금리 전망에 약세를 보였다. 신흥시장 통화가 미국 금리와 위험회피 흐름에 민감하게 반응하고 있다.",
+      "url": "https://www.reuters.com/world/africa/south-african-rand-weakens-firmer-dollar-ahead-leading-indicator-data-2026-06-23/",
+      "source": {
+        "name": "Reuters"
+      },
+      "publishedAt": "2026-06-23",
+      "score": 386,
+      "tags": [
+        "랜드",
+        "달러",
+        "연준",
+        "신흥시장",
+        "외환"
+      ]
+    },
+    {
+      "id": "fin-20260624-0608-reuters-boe-private-market-stress",
+      "category": "financial-regulation",
+      "categoryName": "금융규제",
+      "categoryIcon": "🏦",
+      "title": "영란은행, 사모시장 충격 테스트 착수…비은행 금융 리스크 점검",
+      "description": "영란은행은 주가 35% 하락과 고물가 충격을 가정해 사모시장·사모신용의 복원력을 시험한다. 비은행 금융권의 불투명성과 시스템 리스크가 핵심이다.",
+      "url": "https://www.reuters.com/world/uk/bank-england-tests-private-credits-resilience-against-severe-recession-2026-06-19/",
+      "source": {
+        "name": "Reuters"
+      },
+      "publishedAt": "2026-06-19",
+      "score": 374,
+      "tags": [
+        "영란은행",
+        "사모신용",
+        "스트레스테스트",
+        "비은행금융",
+        "시스템리스크"
+      ]
+    },
+    {
+      "id": "fin-20260624-0608-reuters-us-bank-capital-rules",
+      "category": "financial-regulation",
+      "categoryName": "금융규제",
+      "categoryIcon": "🏦",
+      "title": "미 대형은행, 자본규제 완화 최종 압박…거래·카드 한도 기준 쟁점",
+      "description": "미국 대형은행들이 연준 자본규제 개편 협의 마감을 앞두고 추가 완화를 요구했다. 트레이딩 자본, 미사용 카드한도, 글로벌 은행 추가자본 기준이 핵심 쟁점이다.",
+      "url": "https://www.reuters.com/legal/transactional/us-banks-make-final-push-capital-rule-changes-fed-wraps-up-consultation-2026-06-18/",
+      "source": {
+        "name": "Reuters"
+      },
+      "publishedAt": "2026-06-18",
+      "score": 360,
+      "tags": [
+        "미국은행",
+        "자본규제",
+        "바젤",
+        "연준",
+        "금융정책"
+      ]
+    },
+    {
+      "id": "fin-20260624-0608-reuters-fed-bank-results-release",
+      "category": "financial-regulation",
+      "categoryName": "금융규제",
+      "categoryIcon": "🏦",
+      "title": "연준, 6월 24일 대형은행 스트레스 테스트 결과 공개 예정",
+      "description": "연준은 32개 대형은행의 경기침체 대응력을 점검한 2026년 스트레스 테스트 결과를 6월 24일 공개한다. 올해 결과는 직접 자본요건 변경 없이 제도 개편 논의와 연결된다.",
+      "url": "https://www.reuters.com/business/finance/us-fed-release-2026-bank-stress-test-results-june-24-2026-06-09/",
+      "source": {
+        "name": "Reuters"
+      },
+      "publishedAt": "2026-06-09",
+      "score": 350,
+      "tags": [
+        "연준",
+        "은행",
+        "스트레스테스트",
+        "자본정책",
+        "금융안정"
+      ]
+    }
+  ]
+}
