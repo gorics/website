@@ -1,0 +1,122 @@
+{
+  "generatedAt": "2026-06-25T05:07:00+09:00",
+  "source": "Latest public news overlay for GitHub Pages news site; generated from current public sources; merge ahead of data.json",
+  "page": "main-latest-overlay-archive",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"💹","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎭","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {
+      "id": "main-20260625-0507-sk-hynix-adr",
+      "category": "economy",
+      "categoryName": "경제",
+      "category_ko": "경제",
+      "categoryIcon": "💹",
+      "title": "SK하이닉스, AI 메모리 수요 속 나스닥 ADR로 최대 294억 달러 조달 추진",
+      "publishedAt": "2026-06-24",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/",
+      "description": "AI용 고대역폭메모리 수요가 커지는 가운데 SK하이닉스가 미국 ADR 상장을 통해 대규모 자금 조달을 추진한다.",
+      "score": 98,
+      "tags": ["SK하이닉스", "HBM", "ADR", "AI", "반도체"]
+    },
+    {
+      "id": "main-20260625-0507-us-stocks-tech",
+      "category": "economy",
+      "categoryName": "경제",
+      "category_ko": "경제",
+      "categoryIcon": "💹",
+      "title": "미 증시, 기술주 밸류에이션 부담에 S&P·나스닥 약세",
+      "publishedAt": "2026-06-24",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/business/sp-500-nasdaq-futures-tick-up-tech-shares-stabilize-2026-06-24/",
+      "description": "유가 하락에도 AI·반도체 고평가 우려가 이어지며 나스닥과 S&P500이 장중 약세를 보였다.",
+      "score": 94,
+      "tags": ["S&P500", "Nasdaq", "기술주", "유가", "Micron"]
+    },
+    {
+      "id": "main-20260625-0507-openai-broadcom-chip",
+      "category": "tech",
+      "categoryName": "기술",
+      "category_ko": "기술",
+      "categoryIcon": "🤖",
+      "title": "OpenAI, Broadcom과 설계한 첫 자체 AI 칩 공개",
+      "publishedAt": "2026-06-24",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/",
+      "description": "OpenAI가 추론 작업용 자체 AI 칩을 공개하며 Nvidia GPU 의존도를 낮추려는 인프라 전략을 강화했다.",
+      "score": 97,
+      "tags": ["OpenAI", "Broadcom", "AI칩", "인프라", "TSMC"]
+    },
+    {
+      "id": "main-20260625-0507-europe-heatwave",
+      "category": "global",
+      "categoryName": "국제",
+      "category_ko": "국제",
+      "categoryIcon": "🌍",
+      "title": "서유럽 ‘오메가’ 폭염, 전력·교통·보건 차질 확대",
+      "publishedAt": "2026-06-24",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/business/environment/power-cuts-france-leave-thousands-sweltering-amid-scorching-heatwave-2026-06-24/",
+      "description": "프랑스·영국·스페인 등에서 기록적 고온이 이어지며 전력 생산, 학교 운영, 대중교통에 충격이 번지고 있다.",
+      "score": 92,
+      "tags": ["유럽", "폭염", "기후", "전력", "프랑스"]
+    },
+    {
+      "id": "main-20260625-0507-voting-citizenship-ruling",
+      "category": "politics",
+      "categoryName": "정치",
+      "category_ko": "정치",
+      "categoryIcon": "🏛️",
+      "title": "미 연방법원, 유권자 등록 시민권 증명 의무화 명령 차단",
+      "publishedAt": "2026-06-24",
+      "source": {"name":"AP"},
+      "url": "https://apnews.com/article/358912bcb6c7223b3d2d36465156fde9",
+      "description": "보스턴 연방법원이 대통령 행정명령의 선거 규제 권한 남용을 지적하며 시민권 증명 의무화를 막았다.",
+      "score": 91,
+      "tags": ["미국", "선거", "시민권", "연방법원", "트럼프"]
+    },
+    {
+      "id": "main-20260625-0507-messi-birthday",
+      "category": "play",
+      "categoryName": "스포츠·엔터",
+      "category_ko": "스포츠·엔터",
+      "categoryIcon": "⚽",
+      "title": "아르헨티나, 월드컵 맹활약 메시 생일에 전국 축하 물결",
+      "publishedAt": "2026-06-24",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/sports/soccer/argentina-sings-collective-happy-birthday-messi-2026-06-24/",
+      "description": "월드컵에서 기록 행진을 이어가는 메시의 39번째 생일에 아르헨티나 전역에서 단체 축하 캠페인이 벌어졌다.",
+      "score": 88,
+      "tags": ["Messi", "Argentina", "World Cup", "축구"]
+    },
+    {
+      "id": "main-20260625-0507-louis-vuitton-paris",
+      "category": "culture",
+      "categoryName": "문화",
+      "category_ko": "문화",
+      "categoryIcon": "🎭",
+      "title": "파리 남성복 주간, 루이비통 2027 봄·여름 컬렉션 공개",
+      "publishedAt": "2026-06-24",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/pictures/pictures-day-june-24-2026-2026-06-24/2LGPHDXPJNIZFFJWVKIGQBVXWE",
+      "description": "파리 패션위크에서 퍼렐 윌리엄스가 이끄는 루이비통 남성복 2027 봄·여름 컬렉션이 공개됐다.",
+      "score": 80,
+      "tags": ["Louis Vuitton", "Paris Fashion Week", "패션", "문화"]
+    }
+  ],
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "global": [],
+    "politics": [],
+    "play": [],
+    "culture": []
+  }
+}
