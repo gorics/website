@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-06-24T22:32:49+09:00",
+  "source": "Latest financial public news overlay archive for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-overlay-archive",
+  "categories": [
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":3},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"fin-20260624-2232-reuters-openai-broadcom-custom-chip","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"OpenAI 자체 AI 추론칩 공개, 브로드컴·TSMC 공급망 부각","description":"OpenAI가 브로드컴과 설계한 자체 추론칩을 공개했다. 대규모 AI 서비스 운영비와 GPU 공급 제약을 낮추려는 수직통합 전략이 AI 인프라 투자 지형을 바꾸고 있다.","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["OpenAI","브로드컴","TSMC","AI칩","인프라"]},
+    {"id":"fin-20260624-2232-reuters-qualcomm-modular-acquisition","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"퀄컴의 Modular 40억달러 인수, AI 소프트웨어 플랫폼 경쟁 확대","description":"퀄컴이 Modular 인수로 AI 모델을 여러 칩 아키텍처에서 구동하는 소프트웨어 역량을 강화한다. 엔비디아 CUDA 중심 생태계에 맞선 데이터센터 전략으로 해석된다.","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":456,"tags":["퀄컴","Modular","AI소프트웨어","M&A","데이터센터"]},
+    {"id":"fin-20260624-2232-reuters-lingyi-hongkong-ipo-ai-demand","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"링이아이테크 홍콩 IPO, AI 서버·로봇·광통신 투자 자금 조달","description":"애플·화웨이·삼성 공급망에 속한 링이아이테크가 홍콩 IPO로 10.6억 달러를 조달한다. AI 서버와 휴머노이드, 광통신 설비 투자가 핵심 사용처다.","url":"https://www.reuters.com/world/asia-pacific/apple-supplier-lingyi-itech-prices-106-billion-hong-kong-ipo-tap-ai-demand-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":444,"tags":["홍콩IPO","AI서버","공급망","중국제조","자본시장"]},
+    {"id":"fin-20260624-2232-reuters-cerebras-margin-forecast","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"Cerebras 마진 전망 실망, AI칩 밸류에이션 재평가 압력","description":"Cerebras가 2026년 조정 총마진 전망을 낮게 제시하자 주가가 급락했다. AI칩 시장에서 매출 성장뿐 아니라 제조 수익성이 투자 판단의 핵심 변수로 떠올랐다.","url":"https://www.reuters.com/business/cerebras-sinks-14-full-year-margin-forecast-disappoints-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":438,"tags":["Cerebras","AI칩","마진","반도체주","수익성"]}
+  ],
+  "byCategory": {
+    "ai-infrastructure": [],
+    "semiconductors": []
+  }
+}
