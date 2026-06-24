@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-24T13:09:24+09:00",
+  "source": "Latest public news archive overlay for GitHub Pages news site; generated from current public sources; merge ahead of latest.json and data.json",
+  "page": "main-latest-archive-overlay",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"latest-20260624-1309-reuters-gold-fed-dollar","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"금값 2주 저점, 강달러·연준 인상 베팅이 귀금속 압박","description":"달러가 1년여 고점으로 오르고 연준 추가 금리 인상 기대가 커지며 금 가격이 약 2주 만의 저점으로 밀렸다. 이란 협상 불확실성에도 금리·달러 요인이 우세했다.","url":"https://www.reuters.com/world/india/gold-slips-fed-rate-hike-expectations-buoy-dollar-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":440,"tags":["금","달러","연준","금리","귀금속"]},
+    {"id":"latest-20260624-1309-reuters-china-supercomputer","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"중국, 자체칩 슈퍼컴퓨터로 TOP500 1위 복귀…AI 성능 한계는 남아","description":"중국 선전의 LineShine 시스템이 2026년 6월 TOP500 슈퍼컴퓨터 순위 1위에 올랐다. 국산칩 자립 신호지만 AI 워크로드 최적화와 실제 첨단 AI 성능은 별도 쟁점으로 남았다.","url":"https://www.reuters.com/world/china/china-beats-us-with-worlds-fastest-supercomputer-race-not-geared-ai-work-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":426,"tags":["중국","슈퍼컴퓨터","국산칩","TOP500","AI"]},
+    {"id":"latest-20260624-1309-reuters-ipsos-iran-war-poll","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"미국인 다수, 이란전 비용 회의적…트럼프 지지율 임기 최저권","description":"Reuters/Ipsos 조사에서 이란전이 비용을 감수할 가치가 있었다는 응답은 24%에 그쳤고, 트럼프 대통령 지지율은 34%로 임기 최저권과 같았다. 중동정책과 생활비 불만이 정치 부담으로 부상했다.","url":"https://www.reuters.com/world/middle-east/few-us-say-iran-war-was-worth-it-trump-approval-ties-lowest-term-reutersipsos-2026-06-23/","source":{"name":"Reuters/Ipsos"},"publishedAt":"2026-06-23","score":402,"tags":["미국정치","이란전","여론조사","트럼프","중간선거"]},
+    {"id":"latest-20260624-1309-ap-messi-mania-argentina","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"메시 월드컵 최다골 신기록 뒤 아르헨티나 전역 ‘메시 열풍’","description":"리오넬 메시가 남자 월드컵 통산 득점 신기록을 세우자 아르헨티나에서는 대형 조형물과 팬 참여 벽화 등 기념 열기가 확산됐다. 스포츠 기록이 문화적 결속의 상징으로 번지고 있다.","url":"https://apnews.com/article/cad9c7aeea718b4b1515630095df541f","source":{"name":"AP"},"publishedAt":"2026-06-24","score":376,"tags":["메시","월드컵","아르헨티나","축구","팬문화"]}
+  ],
+  "byCategory": {
+    "economy": [{"id":"latest-20260624-1309-reuters-gold-fed-dollar","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"금값 2주 저점, 강달러·연준 인상 베팅이 귀금속 압박","description":"달러가 1년여 고점으로 오르고 연준 추가 금리 인상 기대가 커지며 금 가격이 약 2주 만의 저점으로 밀렸다. 이란 협상 불확실성에도 금리·달러 요인이 우세했다.","url":"https://www.reuters.com/world/india/gold-slips-fed-rate-hike-expectations-buoy-dollar-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":440,"tags":["금","달러","연준","금리","귀금속"]}],
+    "tech": [{"id":"latest-20260624-1309-reuters-china-supercomputer","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"중국, 자체칩 슈퍼컴퓨터로 TOP500 1위 복귀…AI 성능 한계는 남아","description":"중국 선전의 LineShine 시스템이 2026년 6월 TOP500 슈퍼컴퓨터 순위 1위에 올랐다. 국산칩 자립 신호지만 AI 워크로드 최적화와 실제 첨단 AI 성능은 별도 쟁점으로 남았다.","url":"https://www.reuters.com/world/china/china-beats-us-with-worlds-fastest-supercomputer-race-not-geared-ai-work-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":426,"tags":["중국","슈퍼컴퓨터","국산칩","TOP500","AI"]}],
+    "politics": [{"id":"latest-20260624-1309-reuters-ipsos-iran-war-poll","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"미국인 다수, 이란전 비용 회의적…트럼프 지지율 임기 최저권","description":"Reuters/Ipsos 조사에서 이란전이 비용을 감수할 가치가 있었다는 응답은 24%에 그쳤고, 트럼프 대통령 지지율은 34%로 임기 최저권과 같았다. 중동정책과 생활비 불만이 정치 부담으로 부상했다.","url":"https://www.reuters.com/world/middle-east/few-us-say-iran-war-was-worth-it-trump-approval-ties-lowest-term-reutersipsos-2026-06-23/","source":{"name":"Reuters/Ipsos"},"publishedAt":"2026-06-23","score":402,"tags":["미국정치","이란전","여론조사","트럼프","중간선거"]}],
+    "play": [{"id":"latest-20260624-1309-ap-messi-mania-argentina","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"메시 월드컵 최다골 신기록 뒤 아르헨티나 전역 ‘메시 열풍’","description":"리오넬 메시가 남자 월드컵 통산 득점 신기록을 세우자 아르헨티나에서는 대형 조형물과 팬 참여 벽화 등 기념 열기가 확산됐다. 스포츠 기록이 문화적 결속의 상징으로 번지고 있다.","url":"https://apnews.com/article/cad9c7aeea718b4b1515630095df541f","source":{"name":"AP"},"publishedAt":"2026-06-24","score":376,"tags":["메시","월드컵","아르헨티나","축구","팬문화"]}]
+  }
+}
