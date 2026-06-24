@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-06-25T02:08:00+09:00",
+  "source": "Latest public news archive overlay for GitHub Pages news site; generated from current public sources; merge ahead of latest.json and data.json",
+  "page": "main-latest-archive",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1}
+  ],
+  "total": 6,
+  "allItems": [
+    {"id":"latest-20260625-0208-reuters-sk-hynix-us-adr","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"SK하이닉스, 미국 ADR 상장으로 최대 294억 달러 조달 추진","description":"SK하이닉스가 AI 메모리 수요와 높은 밸류에이션을 활용해 미국 ADR 상장으로 최대 294억 달러를 조달하려 한다. 조달금은 국내 반도체 공장 증설과 장비 투자에 쓰일 예정이다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-raise-up-29-billion-us-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":472,"tags":["SK하이닉스","ADR","AI메모리","반도체","자금조달"]},
+    {"id":"latest-20260625-0208-reuters-qualcomm-modular-deal","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"퀄컴, AI 소프트웨어 스타트업 Modular 40억 달러 인수 합의","description":"퀄컴이 AI 모델을 여러 칩에서 구동하게 하는 Modular를 약 40억 달러 규모 주식거래로 인수한다. 엔비디아 CUDA 생태계에 맞서는 데이터센터 AI 소프트웨어 전략이다.","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["퀄컴","Modular","AI소프트웨어","데이터센터","M&A"]},
+    {"id":"latest-20260625-0208-reuters-europe-shares-iran-rheinmetall","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"유럽 증시 보합권, 이란 불확실성·방산주 급락이 지수 압박","description":"STOXX 600은 소폭 상승에 그쳤고 독일 방산주 라인메탈은 프리깃 사업 취소 여파로 급락했다. 중동 협상, 원자재 약세, 방산·부동산 개별 이슈가 유럽장 흐름을 갈랐다.","url":"https://www.reuters.com/business/aerospace-defense/european-shares-muted-investors-assess-us-iran-talks-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":446,"tags":["유럽증시","STOXX600","이란","라인메탈","방산주"]},
+    {"id":"latest-20260625-0208-reuters-apple-intel-chip-strategy","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"애플-인텔 칩 생산 협력론, 미국 반도체 공급망 재편 기대 부각","description":"애플과 인텔의 잠재적 칩 생산 협력은 TSMC 의존을 낮추고 미국 내 제조 역량을 키우는 전략으로 평가된다. 다만 실제 양산까지는 수년이 걸릴 수 있다는 분석이다.","url":"https://www.reuters.com/world/china/apple-intel-chip-deal-makes-strategic-sense-production-is-years-away-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":432,"tags":["애플","인텔","파운드리","미국반도체","공급망"]},
+    {"id":"latest-20260625-0208-ap-trump-housing-bill-cancel","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"트럼프, 주택 법안 서명 취소…공화당 상원 방문 앞두고 정책 충돌","description":"트럼프 대통령이 초당적 주택 affordability 법안 서명을 돌연 취소했다. 선거법 우선 처리 요구와 주거비 대응 지연이 맞물리며 공화당 내부 갈등도 커졌다.","url":"https://apnews.com/article/463cb685670cb9eda7e23b685f8d4c8d","source":{"name":"AP"},"publishedAt":"2026-06-24","score":410,"tags":["트럼프","주택정책","미국정치","상원","선거법"]},
+    {"id":"latest-20260625-0208-ap-messi-mania-argentina","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"메시 월드컵 기록 열풍, 아르헨티나 전역 기념물·벽화로 확산","description":"메시가 월드컵 득점 기록을 새로 쓰자 아르헨티나에서 대형 조형물과 팬 벽화가 잇따라 공개됐다. 스포츠 스타의 기록이 국가적 문화 이벤트로 번지고 있다.","url":"https://apnews.com/article/cad9c7aeea718b4b1515630095df541f","source":{"name":"AP"},"publishedAt":"2026-06-24","score":388,"tags":["메시","월드컵","아르헨티나","축구","팬문화"]}
+  ],
+  "byCategory": {
+    "economy": [
+      {"id":"latest-20260625-0208-reuters-sk-hynix-us-adr","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"SK하이닉스, 미국 ADR 상장으로 최대 294억 달러 조달 추진","description":"SK하이닉스가 AI 메모리 수요와 높은 밸류에이션을 활용해 미국 ADR 상장으로 최대 294억 달러를 조달하려 한다. 조달금은 국내 반도체 공장 증설과 장비 투자에 쓰일 예정이다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-raise-up-29-billion-us-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":472,"tags":["SK하이닉스","ADR","AI메모리","반도체","자금조달"]},
+      {"id":"latest-20260625-0208-reuters-europe-shares-iran-rheinmetall","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"유럽 증시 보합권, 이란 불확실성·방산주 급락이 지수 압박","description":"STOXX 600은 소폭 상승에 그쳤고 독일 방산주 라인메탈은 프리깃 사업 취소 여파로 급락했다. 중동 협상, 원자재 약세, 방산·부동산 개별 이슈가 유럽장 흐름을 갈랐다.","url":"https://www.reuters.com/business/aerospace-defense/european-shares-muted-investors-assess-us-iran-talks-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":446,"tags":["유럽증시","STOXX600","이란","라인메탈","방산주"]}
+    ],
+    "tech": [
+      {"id":"latest-20260625-0208-reuters-qualcomm-modular-deal","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"퀄컴, AI 소프트웨어 스타트업 Modular 40억 달러 인수 합의","description":"퀄컴이 AI 모델을 여러 칩에서 구동하게 하는 Modular를 약 40억 달러 규모 주식거래로 인수한다. 엔비디아 CUDA 생태계에 맞서는 데이터센터 AI 소프트웨어 전략이다.","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["퀄컴","Modular","AI소프트웨어","데이터센터","M&A"]},
+      {"id":"latest-20260625-0208-reuters-apple-intel-chip-strategy","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"애플-인텔 칩 생산 협력론, 미국 반도체 공급망 재편 기대 부각","description":"애플과 인텔의 잠재적 칩 생산 협력은 TSMC 의존을 낮추고 미국 내 제조 역량을 키우는 전략으로 평가된다. 다만 실제 양산까지는 수년이 걸릴 수 있다는 분석이다.","url":"https://www.reuters.com/world/china/apple-intel-chip-deal-makes-strategic-sense-production-is-years-away-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":432,"tags":["애플","인텔","파운드리","미국반도체","공급망"]}
+    ],
+    "politics": [
+      {"id":"latest-20260625-0208-ap-trump-housing-bill-cancel","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"트럼프, 주택 법안 서명 취소…공화당 상원 방문 앞두고 정책 충돌","description":"트럼프 대통령이 초당적 주택 affordability 법안 서명을 돌연 취소했다. 선거법 우선 처리 요구와 주거비 대응 지연이 맞물리며 공화당 내부 갈등도 커졌다.","url":"https://apnews.com/article/463cb685670cb9eda7e23b685f8d4c8d","source":{"name":"AP"},"publishedAt":"2026-06-24","score":410,"tags":["트럼프","주택정책","미국정치","상원","선거법"]}
+    ],
+    "play": [
+      {"id":"latest-20260625-0208-ap-messi-mania-argentina","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"메시 월드컵 기록 열풍, 아르헨티나 전역 기념물·벽화로 확산","description":"메시가 월드컵 득점 기록을 새로 쓰자 아르헨티나에서 대형 조형물과 팬 벽화가 잇따라 공개됐다. 스포츠 스타의 기록이 국가적 문화 이벤트로 번지고 있다.","url":"https://apnews.com/article/cad9c7aeea718b4b1515630095df541f","source":{"name":"AP"},"publishedAt":"2026-06-24","score":388,"tags":["메시","월드컵","아르헨티나","축구","팬문화"]}
+    ]
+  }
+}
