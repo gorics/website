@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-06-25T01:09:16+09:00",
+  "source": "Latest financial public news archive overlay for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-archive",
+  "categories": [
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":2}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"fin-20260625-0109-reuters-sk-hynix-us-adr-listing","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"SK하이닉스, 최대 294억달러 미국 ADR 추진…HBM 투자자 수요 확인","description":"SK하이닉스의 나스닥 ADR 계획은 AI 메모리 수요와 HBM 경쟁력을 직접 반영한다. 조달 자금은 국내 팹 증설과 장비 투자에 쓰일 전망이다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":472,"tags":["SK하이닉스","HBM","ADR","나스닥","반도체"]},
+    {"id":"fin-20260625-0109-reuters-wallst-micron-focus","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"월가 반등, 마이크론 실적·PCE 물가가 AI 랠리 다음 시험대","description":"미 증시는 기술주 안정과 유가 하락에 반등했지만 마이크론 실적, PCE 물가, 연준 금리 경로가 위험자산 흐름을 좌우할 변수로 남았다.","url":"https://www.reuters.com/business/sp-500-nasdaq-futures-tick-up-tech-shares-stabilize-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["월가","마이크론","PCE","연준","기술주"]},
+    {"id":"fin-20260625-0109-reuters-openai-broadcom-custom-chip","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"OpenAI-Broadcom 자체칩 공개, AI 인프라 공급망 다변화 가속","description":"OpenAI의 자체 추론칩 공개는 엔비디아 GPU 의존도와 AI 서비스 원가를 낮추려는 전략이다. Broadcom·TSMC·메모리 공급망까지 투자 포인트가 확장된다.","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":456,"tags":["OpenAI","Broadcom","AI인프라","TSMC","GPU"]},
+    {"id":"fin-20260625-0109-reuters-qualcomm-modular-acquisition","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"퀄컴, Modular 40억달러 인수로 AI칩 소프트웨어 경쟁 진입","description":"퀄컴의 Modular 인수는 데이터센터 AI칩 시장에서 CUDA 의존을 낮추려는 시도다. 칩 자체보다 개발자 생태계와 소프트웨어 레이어 가치가 부각됐다.","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":450,"tags":["퀄컴","Modular","AI칩","M&A","데이터센터"]}
+  ],
+  "byCategory": {
+    "semiconductors": [
+      {"id":"fin-20260625-0109-reuters-sk-hynix-us-adr-listing","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"SK하이닉스, 최대 294억달러 미국 ADR 추진…HBM 투자자 수요 확인","description":"SK하이닉스의 나스닥 ADR 계획은 AI 메모리 수요와 HBM 경쟁력을 직접 반영한다. 조달 자금은 국내 팹 증설과 장비 투자에 쓰일 전망이다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":472,"tags":["SK하이닉스","HBM","ADR","나스닥","반도체"]}
+    ],
+    "global-markets": [
+      {"id":"fin-20260625-0109-reuters-wallst-micron-focus","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"월가 반등, 마이크론 실적·PCE 물가가 AI 랠리 다음 시험대","description":"미 증시는 기술주 안정과 유가 하락에 반등했지만 마이크론 실적, PCE 물가, 연준 금리 경로가 위험자산 흐름을 좌우할 변수로 남았다.","url":"https://www.reuters.com/business/sp-500-nasdaq-futures-tick-up-tech-shares-stabilize-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["월가","마이크론","PCE","연준","기술주"]}
+    ],
+    "ai-infrastructure": [
+      {"id":"fin-20260625-0109-reuters-openai-broadcom-custom-chip","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"OpenAI-Broadcom 자체칩 공개, AI 인프라 공급망 다변화 가속","description":"OpenAI의 자체 추론칩 공개는 엔비디아 GPU 의존도와 AI 서비스 원가를 낮추려는 전략이다. Broadcom·TSMC·메모리 공급망까지 투자 포인트가 확장된다.","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":456,"tags":["OpenAI","Broadcom","AI인프라","TSMC","GPU"]},
+      {"id":"fin-20260625-0109-reuters-qualcomm-modular-acquisition","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"퀄컴, Modular 40억달러 인수로 AI칩 소프트웨어 경쟁 진입","description":"퀄컴의 Modular 인수는 데이터센터 AI칩 시장에서 CUDA 의존을 낮추려는 시도다. 칩 자체보다 개발자 생태계와 소프트웨어 레이어 가치가 부각됐다.","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":450,"tags":["퀄컴","Modular","AI칩","M&A","데이터센터"]}
+    ]
+  }
+}
