@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-06-25T00:08:41+09:00",
+  "source": "Latest public news overlay for GitHub Pages news site; generated from current public sources; merge ahead of latest.json and data.json",
+  "page": "main-latest-archive",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 6,
+  "allItems": [
+    {"id":"latest-20260625-0008-reuters-openai-broadcom-jalapeno","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"OpenAI, 브로드컴과 자체 AI 추론칩 ‘Jalapeño’ 공개","description":"OpenAI가 브로드컴과 설계한 첫 자체 AI칩을 공개했다. 엔비디아 의존도를 낮추고 내부 추론 인프라를 확보하려는 대형 AI 기업의 반도체 내재화 흐름이 더 뚜렷해졌다.","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":468,"tags":["OpenAI","브로드컴","AI칩","추론","반도체"]},
+    {"id":"latest-20260625-0008-reuters-sk-hynix-us-adr","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"SK하이닉스, 미국 ADR 상장으로 최대 294억달러 조달 추진","description":"SK하이닉스가 AI 메모리 투자 재원과 글로벌 투자자 접근성 확대를 위해 미국 ADR 상장을 추진한다. AI 반도체 자본지출 사이클의 규모가 다시 부각됐다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-raise-up-29-billion-us-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["SK하이닉스","ADR","AI메모리","HBM","자본조달"]},
+    {"id":"latest-20260625-0008-reuters-qualcomm-modular-ai-software","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"퀄컴, AI 소프트웨어 스타트업 Modular 40억달러 인수 발표","description":"퀄컴이 Modular 인수를 통해 여러 칩에서 AI 모델을 구동하는 소프트웨어 계층을 확보한다. 데이터센터 AI 경쟁이 칩 성능뿐 아니라 개발자 생태계 경쟁으로 확장되고 있다.","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":456,"tags":["퀄컴","Modular","AI소프트웨어","M&A","데이터센터"]},
+    {"id":"latest-20260625-0008-ap-nato-rutte-trump-white-house","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"나토 사무총장, 정상회의 앞두고 트럼프 설득 위해 백악관 방문","description":"마르크 뤼터 나토 사무총장이 다음 달 정상회의를 앞두고 트럼프 대통령과 회동한다. 미국의 동맹 부담 불만과 유럽 주둔 검토가 맞물려 나토 결속이 핵심 쟁점이 됐다.","url":"https://apnews.com/article/5c2f88363f7a066c02103ab1ce1c8d6b","source":{"name":"AP"},"publishedAt":"2026-06-24","score":414,"tags":["나토","트럼프","뤼터","방위비","미국정치"]},
+    {"id":"latest-20260625-0008-ap-ioc-athlete-grants","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"IOC, 1억달러 기금으로 올림픽 선수 현금 지원 추진","description":"IOC가 새 기금을 통해 올림픽 선수들에게 직접 현금 보조를 제공한다. 엘리트 스포츠의 수익 배분과 선수 생계 지원 논의가 제도권 안으로 들어왔다.","url":"https://www.ctpost.com/sports/article/olympic-athletes-to-get-cash-grants-from-new-22318702.php","source":{"name":"AP"},"publishedAt":"2026-06-24","score":376,"tags":["IOC","올림픽","선수지원","스포츠재정","기금"]},
+    {"id":"latest-20260625-0008-reuters-apple-entertainment-cue","category":"culture","categoryName":"문화","categoryIcon":"🎬","title":"애플, 극장·스트리밍 동시 강화…엔터테인먼트 투자 확대 시사","description":"애플의 에디 큐가 Apple TV와 극장 개봉 콘텐츠를 모두 확대하겠다고 밝혔다. 플랫폼 기업의 콘텐츠 투자가 스트리밍 경쟁과 영화 산업 재편을 계속 자극하고 있다.","url":"https://www.reuters.com/business/media-telecom/apple-aims-better-more-entertainment-offerings-executive-cue-says-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":348,"tags":["애플","Apple TV","스트리밍","영화","엔터테인먼트"]}
+  ],
+  "byCategory": {
+    "tech": ["latest-20260625-0008-reuters-openai-broadcom-jalapeno"],
+    "economy": ["latest-20260625-0008-reuters-sk-hynix-us-adr", "latest-20260625-0008-reuters-qualcomm-modular-ai-software"],
+    "politics": ["latest-20260625-0008-ap-nato-rutte-trump-white-house"],
+    "play": ["latest-20260625-0008-ap-ioc-athlete-grants"],
+    "culture": ["latest-20260625-0008-reuters-apple-entertainment-cue"]
+  }
+}
