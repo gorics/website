@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-06-24T23:35:38+09:00",
+  "source": "Latest public news overlay archive for GitHub Pages news site; generated from current Reuters/AP public sources; merge ahead of latest.json and data.json",
+  "page": "main-latest-overlay-archive",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1}
+  ],
+  "total": 3,
+  "allItems": [
+    {"id":"latest-20260624-2335-reuters-jpmorgan-sp500-target-ai","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"JP모건, AI 투자·실적 모멘텀에 S&P500 연말 목표 7,800으로 상향","description":"JP모건이 AI 주도 투자 붐과 견조한 실적을 근거로 S&P500 2026년 말 목표치를 7,800으로 올렸다. 다만 높은 기대치와 긴축 가능성은 밸류에이션 부담으로 지목됐다.","url":"https://www.reuters.com/business/jpmorgan-raises-sp-500-year-end-target-7800-joins-bullish-trend-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":452,"tags":["S&P500","JP모건","AI투자","실적","미국증시"]},
+    {"id":"latest-20260624-2335-reuters-micron-earnings-chip-volatility","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"마이크론 실적 앞두고 반도체주 급등락…AI 랠리 지속성 시험대","description":"마이크론 실적 발표를 앞두고 반도체 섹터 변동성이 커졌다. AI 인프라 수요 기대가 주가를 끌어올렸지만, 시장은 과열된 밸류에이션과 가이던스 리스크를 동시에 점검하고 있다.","url":"https://www.reuters.com/business/nervous-investors-await-micron-earnings-chip-sector-whipsaws-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":450,"tags":["마이크론","반도체","AI인프라","실적","변동성"]},
+    {"id":"latest-20260624-2335-ap-bucks-post-giannis-rebuild","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"벅스, 야니스 트레이드 이후 재건 국면…NBA 판도 변화","description":"밀워키 벅스가 프랜차이즈 스타 야니스 아데토쿤보를 마이애미로 보낸 뒤 젊은 선수와 드래프트 자산 중심의 재건에 들어갔다. 동부 콘퍼런스 경쟁 구도도 크게 흔들렸다.","url":"https://apnews.com/article/271cd2648c856c534c5e41dc2565b327","source":{"name":"AP"},"publishedAt":"2026-06-24","score":386,"tags":["NBA","밀워키벅스","야니스","마이애미히트","트레이드"]}
+  ],
+  "byCategory": {
+    "economy": [
+      {"id":"latest-20260624-2335-reuters-jpmorgan-sp500-target-ai","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"JP모건, AI 투자·실적 모멘텀에 S&P500 연말 목표 7,800으로 상향","description":"JP모건이 AI 주도 투자 붐과 견조한 실적을 근거로 S&P500 2026년 말 목표치를 7,800으로 올렸다. 다만 높은 기대치와 긴축 가능성은 밸류에이션 부담으로 지목됐다.","url":"https://www.reuters.com/business/jpmorgan-raises-sp-500-year-end-target-7800-joins-bullish-trend-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":452,"tags":["S&P500","JP모건","AI투자","실적","미국증시"]}
+    ],
+    "tech": [
+      {"id":"latest-20260624-2335-reuters-micron-earnings-chip-volatility","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"마이크론 실적 앞두고 반도체주 급등락…AI 랠리 지속성 시험대","description":"마이크론 실적 발표를 앞두고 반도체 섹터 변동성이 커졌다. AI 인프라 수요 기대가 주가를 끌어올렸지만, 시장은 과열된 밸류에이션과 가이던스 리스크를 동시에 점검하고 있다.","url":"https://www.reuters.com/business/nervous-investors-await-micron-earnings-chip-sector-whipsaws-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":450,"tags":["마이크론","반도체","AI인프라","실적","변동성"]}
+    ],
+    "play": [
+      {"id":"latest-20260624-2335-ap-bucks-post-giannis-rebuild","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"벅스, 야니스 트레이드 이후 재건 국면…NBA 판도 변화","description":"밀워키 벅스가 프랜차이즈 스타 야니스 아데토쿤보를 마이애미로 보낸 뒤 젊은 선수와 드래프트 자산 중심의 재건에 들어갔다. 동부 콘퍼런스 경쟁 구도도 크게 흔들렸다.","url":"https://apnews.com/article/271cd2648c856c534c5e41dc2565b327","source":{"name":"AP"},"publishedAt":"2026-06-24","score":386,"tags":["NBA","밀워키벅스","야니스","마이애미히트","트레이드"]}
+    ]
+  }
+}
