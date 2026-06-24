@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-06-25T00:33:44+09:00",
+  "source": "Latest public news overlay for GitHub Pages news site; generated from current public sources; merge ahead of latest.json and data.json",
+  "page": "main-latest-archive",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"latest-20260625-0033-reuters-jpmorgan-sp500-target","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"JP모건, AI 투자 붐 근거로 S&P500 연말 목표 7,800으로 상향","description":"JP모건이 강한 이익 모멘텀과 AI 주도 투자 확대를 이유로 2026년 S&P500 연말 목표를 7,800으로 올렸다. 낙관론은 커졌지만 높은 실적 기대와 통화긴축 위험도 함께 제기됐다.","url":"https://www.reuters.com/business/jpmorgan-raises-sp-500-year-end-target-7800-joins-bullish-trend-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24T13:35:50Z","score":466,"tags":["S&P500","JP모건","AI투자","미국증시","실적"]},
+    {"id":"latest-20260625-0033-reuters-micron-earnings-chip-whipsaw","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"마이크론 실적 앞두고 반도체 변동성 확대…AI 랠리 지속성 시험대","description":"마이크론 실적 발표를 앞두고 반도체주가 크게 흔들렸다. AI 메모리 수요 기대가 주가를 끌어올렸지만, 이미 높아진 밸류에이션 탓에 실적과 가이던스가 시장 심리의 핵심 변수가 됐다.","url":"https://www.reuters.com/business/nervous-investors-await-micron-earnings-chip-sector-whipsaws-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":458,"tags":["마이크론","반도체","AI메모리","실적","나스닥"]},
+    {"id":"latest-20260625-0033-ap-speedy-deportations-ruling","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"미 항소법원, 트럼프 행정부의 신속 추방 확대 재개 허용","description":"미 연방항소법원이 국경 지역 밖에서도 신속 추방을 확대하려는 트럼프 행정부 정책을 재개할 수 있다고 판단했다. 이민 단속 효율성과 적법절차 보장 논쟁이 다시 커졌다.","url":"https://apnews.com/article/cd0ffc2dc1df05568952e9149569bbbb","source":{"name":"AP"},"publishedAt":"2026-06-24","score":414,"tags":["미국정치","이민","추방","트럼프","항소법원"]},
+    {"id":"latest-20260625-0033-ap-north-korea-nuclear-navy-warship","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"북한, 5천톤급 구축함 취역…김정은 ‘핵무장 해군’ 진전 주장","description":"북한이 신형 5천톤급 구축함 최현호를 취역시키며 해군의 핵무장 진전을 주장했다. 러시아 지원 가능성과 실제 전력화 수준을 둘러싼 분석이 엇갈리는 가운데 한반도 군사 긴장이 부각됐다.","url":"https://apnews.com/article/ab1896be64bd1e3e198104477b80109e","source":{"name":"AP"},"publishedAt":"2026-06-24","score":406,"tags":["북한","김정은","해군","핵무장","한반도"]},
+    {"id":"latest-20260625-0033-reuters-colombia-worldcup-last32","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"콜롬비아, DR콩고 꺾고 월드컵 32강 조기 확정","description":"콜롬비아가 다니엘 무뇨스의 결승골로 DR콩고를 1-0으로 누르고 조별리그 2연승을 달렸다. 포르투갈전 전부터 32강 진출을 확정하며 Group K 구도가 빨라졌다.","url":"https://www.reuters.com/sports/soccer/munoz-sends-colombia-into-world-cup-last-32-with-win-over-dr-congo-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":382,"tags":["월드컵","콜롬비아","DR콩고","축구","32강"]}
+  ],
+  "byCategory": {
+    "economy": ["latest-20260625-0033-reuters-jpmorgan-sp500-target", "latest-20260625-0033-reuters-micron-earnings-chip-whipsaw"],
+    "politics": ["latest-20260625-0033-ap-speedy-deportations-ruling"],
+    "global": ["latest-20260625-0033-ap-north-korea-nuclear-navy-warship"],
+    "play": ["latest-20260625-0033-reuters-colombia-worldcup-last32"]
+  }
+}
