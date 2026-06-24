@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-06-24T18:08:24+09:00",
+  "source": "Latest public news overlay archive for GitHub Pages news site; generated from current public sources; loaded ahead of latest.json and data.json",
+  "page": "main-latest-overlay-archive",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"latest-20260624-1808-reuters-sk-hynix-adr","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"SK하이닉스, 나스닥 ADR로 최대 294억달러 조달 추진","description":"SK하이닉스가 나스닥 ADR 발행으로 최대 294억달러를 조달해 용인 팹, 청주 첨단패키징, EUV 장비 투자에 투입할 계획이다. AI 메모리 투자 사이클의 대형 자금조달 사례다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["SK하이닉스","ADR","나스닥","HBM","반도체투자"]},
+    {"id":"latest-20260624-1808-reuters-qualcomm-bytedance-chip","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"퀄컴, 바이트댄스 맞춤형 칩 설계 서비스 논의","description":"퀄컴이 바이트댄스에 맞춤형 칩 설계 서비스를 제공하는 방안을 논의 중이다. 스마트폰 의존도를 줄이고 데이터센터·ASIC 사업으로 확장하려는 전략과 맞물린다.","url":"https://www.reuters.com/world/china/qualcomm-talks-provide-custom-chip-design-services-bytedance-sources-say-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":430,"tags":["퀄컴","바이트댄스","ASIC","AI칩","데이터센터"]},
+    {"id":"latest-20260624-1808-ap-asian-stocks-tech-selloff","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"아시아 증시 혼조, 빅테크 매도 이후 반도체 변동성 지속","description":"미국 빅테크 매도 여파 뒤 아시아 증시가 혼조세를 보였다. 한국은 급락 뒤 반등했지만 일본·대만은 약세를 보이며 반도체와 AI 투자 부담이 시장 변수로 남았다.","url":"https://apnews.com/article/b631564d3b359644eda586b047c9bcf0","source":{"name":"AP"},"publishedAt":"2026-06-24","score":424,"tags":["아시아증시","빅테크","반도체","AI","위험자산"]},
+    {"id":"latest-20260624-1808-reuters-worldcup-hydration-breaks","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"FIFA, 월드컵 의무 수분 휴식은 상업 아닌 경기 운영 목적이라고 해명","description":"인판티노 FIFA 회장이 2026 월드컵 의무 수분 휴식이 광고 수익 목적이 아니라 고온 환경 대응을 위한 경기 운영 조치라고 밝혔다. 경기 흐름과 선수 안전 논쟁이 이어지고 있다.","url":"https://www.reuters.com/sports/soccer/infantino-says-world-cup-hydration-breaks-purely-sporting-not-commercial-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":370,"tags":["월드컵","FIFA","수분휴식","폭염","스포츠운영"]}
+  ]
+}
