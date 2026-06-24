@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-06-25T02:33:11+09:00",
+  "source": "Latest financial public news overlay for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-overlay-archive",
+  "categories": [
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":2},
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"fin-20260625-0233-reuters-openai-broadcom-chip","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"OpenAI 자체 AI칩 공개, 브로드컴·TSMC 공급망의 AI 인프라 경쟁 가속","description":"OpenAI가 브로드컴과 자체 추론칩을 공개하며 엔비디아 GPU 의존도 축소에 나섰다. AI 인프라 투자와 주문형 반도체 공급망이 시장 핵심 변수로 부상했다.","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":470,"tags":["OpenAI","브로드컴","TSMC","AI칩","데이터센터"]},
+    {"id":"fin-20260625-0233-reuters-qualcomm-modular-deal","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"퀄컴의 Modular 인수, AI 소프트웨어 플랫폼 경쟁에 40억 달러 베팅","description":"퀄컴이 칩 독립형 AI 실행 소프트웨어를 가진 Modular를 인수한다. 데이터센터 AI 시장 진입과 엔비디아 CUDA 대항 전략이 투자 포인트다.","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":458,"tags":["퀄컴","Modular","AI소프트웨어","M&A","데이터센터"]},
+    {"id":"fin-20260625-0233-reuters-wall-st-chip-selloff","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"미 증시, 반도체 매도와 AI 투자비 우려로 기술주 중심 하락","description":"반도체지수 급락과 AI 투자 부담 우려가 나스닥·S&P500을 압박했다. 시장은 고평가 AI 테마와 연준 긴축 가능성을 동시에 재평가하고 있다.","url":"https://www.reuters.com/business/nasdaq-futures-fall-2-tech-worries-fed-hike-bets-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":450,"tags":["미국증시","반도체","나스닥","AI투자","연준"]},
+    {"id":"fin-20260625-0233-reuters-openai-chip-memory-supply","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"OpenAI 칩 공개로 HBM·패키징 공급망 주목…SK하이닉스·삼성도 변수","description":"OpenAI의 자체 AI칩은 고대역폭 메모리와 시스템 통합 수요를 동반한다. 브로드컴·TSMC뿐 아니라 HBM 공급업체와 서버 조립 밸류체인까지 주목된다.","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":444,"tags":["HBM","SK하이닉스","삼성전자","TSMC","AI반도체"]}
+  ],
+  "byCategory": {
+    "ai-infrastructure": ["fin-20260625-0233-reuters-openai-broadcom-chip", "fin-20260625-0233-reuters-qualcomm-modular-deal"],
+    "global-markets": ["fin-20260625-0233-reuters-wall-st-chip-selloff"],
+    "semiconductors": ["fin-20260625-0233-reuters-openai-chip-memory-supply"]
+  }
+}
