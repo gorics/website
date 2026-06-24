@@ -1,0 +1,78 @@
+{
+  "generatedAt": "2026-06-25T05:07:00+09:00",
+  "source": "Latest financial public news overlay for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-overlay-archive",
+  "categories": [
+    {"id":"semiconductor","name":"반도체","icon":"💾","count":1},
+    {"id":"ai-infra","name":"AI 인프라","icon":"🤖","count":2},
+    {"id":"global-market","name":"글로벌시장","icon":"🌐","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {
+      "id": "fin-20260625-0507-sk-hynix-adr",
+      "category": "semiconductor",
+      "categoryName": "반도체",
+      "category_ko": "반도체",
+      "categoryIcon": "💾",
+      "title": "SK하이닉스, AI 메모리 수요 속 나스닥 ADR로 최대 294억 달러 조달 추진",
+      "publishedAt": "2026-06-24",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/",
+      "description": "HBM 수요와 AI 투자 기대가 커지면서 SK하이닉스의 미국 ADR 추진이 글로벌 반도체 자금 흐름의 핵심 이슈로 부상했다.",
+      "score": 99,
+      "priority": 99,
+      "tags": ["SK하이닉스", "HBM", "ADR", "Nasdaq", "AI"]
+    },
+    {
+      "id": "fin-20260625-0507-openai-broadcom-chip",
+      "category": "ai-infra",
+      "categoryName": "AI 인프라",
+      "category_ko": "AI 인프라",
+      "categoryIcon": "🤖",
+      "title": "OpenAI, Broadcom과 자체 AI 칩 공개…AI 인프라 수직통합 가속",
+      "publishedAt": "2026-06-24",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/",
+      "description": "OpenAI의 자체 추론 칩 공개는 GPU 공급망·AI 반도체 경쟁·클라우드 인프라 투자 판단에 직접 영향을 줄 사안이다.",
+      "score": 98,
+      "priority": 98,
+      "tags": ["OpenAI", "Broadcom", "AI칩", "GPU", "인프라"]
+    },
+    {
+      "id": "fin-20260625-0507-micron-earnings-watch",
+      "category": "ai-infra",
+      "categoryName": "AI 인프라",
+      "category_ko": "AI 인프라",
+      "categoryIcon": "🤖",
+      "title": "투자자들, AI 랠리 지속성 가늠할 마이크론 실적 대기",
+      "publishedAt": "2026-06-24",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/business/nervous-investors-await-micron-earnings-chip-sector-whipsaws-2026-06-24/",
+      "description": "마이크론 실적은 데이터센터 투자와 메모리 수급, AI 반도체 랠리의 지속 가능성을 확인하는 핵심 이벤트로 주목받고 있다.",
+      "score": 95,
+      "priority": 95,
+      "tags": ["Micron", "AI랠리", "메모리", "반도체", "실적"]
+    },
+    {
+      "id": "fin-20260625-0507-us-stocks-tech-oil",
+      "category": "global-market",
+      "categoryName": "글로벌시장",
+      "category_ko": "글로벌시장",
+      "categoryIcon": "🌐",
+      "title": "유가 하락에도 기술주 부담에 미국 증시 혼조",
+      "publishedAt": "2026-06-24",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/business/sp-500-nasdaq-futures-tick-up-tech-shares-stabilize-2026-06-24/",
+      "description": "중동 리스크 완화로 유가는 밀렸지만 AI·반도체 밸류에이션 경계감이 커지며 미국 주식시장의 방향성이 엇갈렸다.",
+      "score": 94,
+      "priority": 94,
+      "tags": ["Nasdaq", "S&P500", "유가", "기술주", "시장"]
+    }
+  ],
+  "byCategory": {
+    "semiconductor": [],
+    "ai-infra": [],
+    "global-market": []
+  }
+}
