@@ -1,18 +1,19 @@
 {
-  "generatedAt": "2026-06-24T12:33:26+09:00",
+  "generatedAt": "2026-06-24T13:34:29+09:00",
   "source": "Latest financial public news overlay for GitHub Pages news site; finance and market-moving items prioritized",
   "page": "financial-latest-overlay",
   "categories": [
     {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":4},
     {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":5},
-    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":3},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":4},
     {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
     {"id":"rates-policy","name":"금리·정책","icon":"🏛️","count":1},
     {"id":"foreign-exchange","name":"외환·금리","icon":"💱","count":3},
     {"id":"financial-regulation","name":"금융규제","icon":"🏦","count":4}
   ],
-  "total": 22,
+  "total": 23,
   "allItems": [
+    {"id":"fin-20260624-1334-ap-rubio-gulf-iran-deal","category":"energy-geopolitics","categoryName":"에너지·지정학","categoryIcon":"🛢️","title":"루비오 걸프 순방, 이란 합의·호르무즈 통항 안정성 점검","description":"미 국무장관이 UAE·쿠웨이트·바레인을 방문해 이란 잠정 합의와 호르무즈 해협 재개방 문제를 설명한다. 통행료·미사일·대리세력 이슈가 에너지 리스크로 남아 있다.","url":"https://apnews.com/article/62611f2f167be12c60b7fcec5d6e7d2f","source":{"name":"AP"},"publishedAt":"2026-06-24","score":406,"tags":["이란","호르무즈","걸프","원유","지정학"]},
     {"id":"fin-20260624-1233-reuters-asia-stocks-tech-volatility","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"아시아 증시, 기술주 매도 이후 변동성 확대","description":"글로벌 기술·반도체주 매도 이후 아시아 증시가 혼조세를 보였다. 한국 증시는 반등했지만 AI 투자 부담과 연준 긴축 우려가 위험자산 변동성을 키웠다.","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":454,"tags":["아시아증시","기술주","반도체","AI","변동성"]},
     {"id":"fin-20260624-1233-reuters-nvidia-china-black-market","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"중국 암시장서 엔비디아 금수 AI칩 가격 두 배 급등","description":"미국 수출통제로 중국 내 공급이 제한된 엔비디아 AI칩 가격이 암시장에서 두 배 이상 뛰었다는 보도가 나왔다. 반도체 규제와 AI 인프라 수요가 시장 변수로 부상했다.","url":"https://www.reuters.com/world/asia-pacific/nvidias-banned-ai-chips-double-price-chinas-black-market-ft-reports-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":446,"tags":["엔비디아","AI칩","중국","수출통제","반도체"]},
     {"id":"fin-20260624-1233-reuters-oil-hormuz-4month-low","category":"energy-geopolitics","categoryName":"에너지·지정학","categoryIcon":"🛢️","title":"유가, 호르무즈 원유 흐름 정상화 기대에 4개월 저점권","description":"호르무즈 해협 물류 회복과 미·이란 긴장 완화 기대가 원유 가격을 압박했다. 에너지 시장은 지정학 프리미엄 축소 여부를 계속 반영하고 있다.","url":"https://www.reuters.com/business/energy/oil-prices-extend-decline-expectations-smoother-crude-flows-via-hormuz-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":448,"tags":["유가","호르무즈","원유","중동","에너지"]},
