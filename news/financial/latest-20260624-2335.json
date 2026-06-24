@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-06-24T23:35:38+09:00",
+  "source": "Latest financial public news archive overlay; finance and market-moving items prioritized",
+  "page": "financial-latest-archive",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1}
+  ],
+  "total": 2,
+  "allItems": [
+    {"id":"fin-20260624-2335-reuters-jpmorgan-sp500-target-ai","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"JP모건 S&P500 목표 상향, AI 투자·실적 모멘텀 재확인","description":"JP모건이 S&P500 연말 목표치를 7,800으로 높이며 AI 투자와 실적 성장을 핵심 근거로 제시했다. 강세론 확산과 함께 긴축·주식 공급 부담도 리스크로 남았다.","url":"https://www.reuters.com/business/jpmorgan-raises-sp-500-year-end-target-7800-joins-bullish-trend-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":452,"tags":["S&P500","JP모건","AI투자","미국증시","밸류에이션"]},
+    {"id":"fin-20260624-2335-reuters-micron-earnings-chip-volatility","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"마이크론 실적 대기, 반도체주 변동성이 AI 랠리 신뢰도 시험","description":"마이크론은 AI 메모리 수요의 핵심 수혜주로 주목받지만 급등 뒤 실적·가이던스 기대치가 높다. 발표 결과는 반도체와 AI 인프라 투자심리에 직접 영향을 줄 수 있다.","url":"https://www.reuters.com/business/nervous-investors-await-micron-earnings-chip-sector-whipsaws-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":450,"tags":["마이크론","HBM","반도체","AI인프라","실적"]}
+  ],
+  "byCategory": {
+    "global-markets": [
+      {"id":"fin-20260624-2335-reuters-jpmorgan-sp500-target-ai","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"JP모건 S&P500 목표 상향, AI 투자·실적 모멘텀 재확인","description":"JP모건이 S&P500 연말 목표치를 7,800으로 높이며 AI 투자와 실적 성장을 핵심 근거로 제시했다. 강세론 확산과 함께 긴축·주식 공급 부담도 리스크로 남았다.","url":"https://www.reuters.com/business/jpmorgan-raises-sp-500-year-end-target-7800-joins-bullish-trend-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":452,"tags":["S&P500","JP모건","AI투자","미국증시","밸류에이션"]}
+    ],
+    "semiconductors": [
+      {"id":"fin-20260624-2335-reuters-micron-earnings-chip-volatility","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"마이크론 실적 대기, 반도체주 변동성이 AI 랠리 신뢰도 시험","description":"마이크론은 AI 메모리 수요의 핵심 수혜주로 주목받지만 급등 뒤 실적·가이던스 기대치가 높다. 발표 결과는 반도체와 AI 인프라 투자심리에 직접 영향을 줄 수 있다.","url":"https://www.reuters.com/business/nervous-investors-await-micron-earnings-chip-sector-whipsaws-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":450,"tags":["마이크론","HBM","반도체","AI인프라","실적"]}
+    ]
+  }
+}
