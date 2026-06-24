@@ -1,0 +1,89 @@
+{
+  "generatedAt": "2026-06-24T20:08:56+09:00",
+  "source": "Latest public news archive overlay for GitHub Pages news site; generated from current public sources; merge ahead of latest.json and data.json",
+  "page": "main-latest-archive",
+  "categories": ["경제", "기술", "국제", "스포츠"],
+  "total": 5,
+  "allItems": [
+    {
+      "id": "news-20260624-2008-economy-brent-hormuz",
+      "category": "economy",
+      "categoryName": "경제",
+      "category_ko": "경제",
+      "categoryIcon": "💹",
+      "title": "브렌트유, 호르무즈 물류 정상화 기대에 4개월 저점권",
+      "publishedAt": "2026-06-24T01:17:12Z",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/energy/oil-prices-extend-decline-expectations-smoother-crude-flows-via-hormuz-2026-06-24/",
+      "description": "호르무즈 해협 선박 이동 정상화와 이란 원유 재유입 기대가 겹치며 브렌트유가 1% 넘게 하락했다.",
+      "score": 94,
+      "priority": 94,
+      "tags": ["oil", "Hormuz", "Iran", "energy", "markets"]
+    },
+    {
+      "id": "news-20260624-2008-economy-gold-dollar",
+      "category": "economy",
+      "categoryName": "경제",
+      "category_ko": "경제",
+      "categoryIcon": "💰",
+      "title": "금값, 강달러와 연준 인상 베팅에 2주 저점",
+      "publishedAt": "2026-06-24T01:23:36Z",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/india/gold-slips-fed-rate-hike-expectations-buoy-dollar-2026-06-24/",
+      "description": "달러지수 13개월 고점과 금리 인상 기대가 비이자 자산인 금 수요를 압박했다.",
+      "score": 91,
+      "priority": 91,
+      "tags": ["gold", "dollar", "Fed", "rates", "commodities"]
+    },
+    {
+      "id": "news-20260624-2008-tech-nvidia-china-blackmarket",
+      "category": "tech",
+      "categoryName": "기술",
+      "category_ko": "기술",
+      "categoryIcon": "🤖",
+      "title": "엔비디아 금수 AI칩, 중국 암시장 가격 두 배 이상 급등 보도",
+      "publishedAt": "2026-06-24T00:26:01Z",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/asia-pacific/nvidias-banned-ai-chips-double-price-chinas-black-market-ft-reports-2026-06-24/",
+      "description": "수출 규제로 공급이 막힌 엔비디아 AI 칩의 중국 암시장 가격이 급등했다는 FT 보도가 전해졌다.",
+      "score": 90,
+      "priority": 90,
+      "tags": ["Nvidia", "AI chips", "China", "export controls", "semiconductors"]
+    },
+    {
+      "id": "news-20260624-2008-tech-korea-chip-cluster",
+      "category": "tech",
+      "categoryName": "기술",
+      "category_ko": "기술",
+      "categoryIcon": "🔬",
+      "title": "한국 정부, 삼성·SK하이닉스와 대규모 반도체 투자 논의",
+      "publishedAt": "2026-06-24",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/asia-pacific/south-korea-discussing-new-chip-investments-with-samsung-sk-hynix-presidential-2026-06-24/",
+      "description": "AI 수요 급증에 맞춰 한국 정부가 새 반도체 클러스터와 생산시설 투자 확대를 검토하고 있다.",
+      "score": 88,
+      "priority": 88,
+      "tags": ["South Korea", "Samsung", "SK Hynix", "AI", "chip cluster"]
+    },
+    {
+      "id": "news-20260624-2008-play-worldcup-hydration",
+      "category": "play",
+      "categoryName": "스포츠·엔터",
+      "category_ko": "스포츠·엔터",
+      "categoryIcon": "⚽",
+      "title": "인판티노, 월드컵 의무 수분 휴식은 상업 아닌 경기 보호 조치라고 반박",
+      "publishedAt": "2026-06-24",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/sports/soccer/infantino-says-world-cup-hydration-breaks-purely-sporting-not-commercial-2026-06-24/",
+      "description": "FIFA는 북미 고온 환경에서 선수 보호를 위해 모든 경기 22분·67분 수분 휴식을 적용한다고 밝혔다.",
+      "score": 81,
+      "priority": 81,
+      "tags": ["World Cup", "FIFA", "hydration breaks", "football"]
+    }
+  ],
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "play": []
+  }
+}
