@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-06-25T00:08:41+09:00",
+  "source": "Latest financial public news overlay for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-archive",
+  "categories": [
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":2},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"fin-20260625-0008-reuters-openai-broadcom-jalapeno","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"OpenAI 자체 AI칩 공개, 추론 인프라 내재화 경쟁 가속","description":"OpenAI가 브로드컴과 설계한 자체 추론칩을 공개했다. 대형 AI 사업자가 엔비디아 공급 제약과 비용 부담을 줄이기 위해 맞춤형 반도체로 이동하는 흐름이다.","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":468,"tags":["OpenAI","브로드컴","AI칩","추론","인프라"]},
+    {"id":"fin-20260625-0008-reuters-sk-hynix-us-adr","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"SK하이닉스, 미국 ADR 상장 추진…AI 메모리 투자 재원 확보","description":"SK하이닉스가 최대 294억달러 조달을 목표로 미국 ADR 상장을 추진한다. HBM과 AI 메모리 증설 투자, 글로벌 반도체 밸류에이션에 직접 연결되는 이슈다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-raise-up-29-billion-us-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["SK하이닉스","ADR","HBM","AI메모리","반도체"]},
+    {"id":"fin-20260625-0008-reuters-qualcomm-modular-ai-software","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"퀄컴, Modular 인수로 AI칩 소프트웨어 생태계 확장","description":"퀄컴이 AI 스타트업 Modular를 40억달러 규모 주식 거래로 인수한다. CUDA 의존도를 낮추려는 시장 수요와 데이터센터 AI칩 경쟁이 결합된 거래다.","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":456,"tags":["퀄컴","Modular","AI소프트웨어","데이터센터","M&A"]},
+    {"id":"fin-20260625-0008-reuters-stocks-stabilise-tech-dollar","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"글로벌 증시, 기술주 회복에 안정…달러는 강세 유지","description":"기술주가 급락 뒤 일부 회복하며 글로벌 증시가 안정됐고 달러는 강세를 보였다. 투자자들은 반도체 실적과 AI 투자 부담, 연준 금리 경로를 함께 보고 있다.","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":450,"tags":["글로벌증시","기술주","달러","반도체","연준"]}
+  ],
+  "byCategory": {
+    "ai-infrastructure": ["fin-20260625-0008-reuters-openai-broadcom-jalapeno", "fin-20260625-0008-reuters-qualcomm-modular-ai-software"],
+    "semiconductors": ["fin-20260625-0008-reuters-sk-hynix-us-adr"],
+    "global-markets": ["fin-20260625-0008-reuters-stocks-stabilise-tech-dollar"]
+  }
+}
