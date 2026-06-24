@@ -17,7 +17,7 @@
 <section id="grid" class="grid"></section>
 </main>
 <script>
-const SOURCES=['latest-20260624-2109.json','latest-20260624-2008.json','latest-20260624-1907.json','latest-20260624-1808.json','latest-20260624-1731.json','latest-20260624-1707.json','latest-20260624-1608.json','latest-20260624-1508.json','latest-20260624-1407.json','latest-20260624-1309.json','latest-20260624-1110.json','latest-20260624-0734.json','latest.json','latest-20260624-0608.json','data.json'];
+const SOURCES=['latest-20260624-2207.json','latest-20260624-2109.json','latest-20260624-2008.json','latest-20260624-1907.json','latest-20260624-1808.json','latest-20260624-1731.json','latest-20260624-1707.json','latest-20260624-1608.json','latest-20260624-1508.json','latest-20260624-1407.json','latest-20260624-1309.json','latest-20260624-1110.json','latest-20260624-0734.json','latest.json','latest-20260624-0608.json','data.json'];
 const $=s=>document.querySelector(s),grid=$('#grid'),tabs=$('#tabs'),q=$('#q'),sort=$('#sort'),state=$('#state');let ITEMS=[],CUR='all';
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const src=x=>typeof x.source==='object'?(x.source.name||'원문'):(x.source||'원문');
