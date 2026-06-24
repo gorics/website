@@ -1,0 +1,23 @@
+{
+  "generatedAt":"2026-06-25T07:10:24+09:00",
+  "source":"Latest public news overlay archive for GitHub Pages news site; merge ahead of latest.json and data.json",
+  "page":"main-latest-overlay-archive",
+  "categories":[
+    {"id":"economy","name":"경제·금융","icon":"💹","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":2}
+  ],
+  "total":7,
+  "allItems":[
+    {"id":"latest-20260625-0710-reuters-openai-broadcom-jalapeno","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"OpenAI, 브로드컴과 자체 AI 추론칩 ‘Jalapeño’ 공개","description":"OpenAI가 브로드컴과 설계한 첫 자체 AI칩을 공개했다. 엔비디아 의존을 낮추고 자체 인프라를 강화하려는 전략으로, TSMC 생산·Celestica 통합이 포함된다.","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["OpenAI","브로드컴","AI칩","TSMC","AI인프라"]},
+    {"id":"latest-20260625-0710-reuters-moscow-refinery-offline","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"모스크바 정유공장, 드론 공격 피해로 연내 재가동 어려울 전망","description":"러시아 모스크바 지역 최대 연료 공급원인 정유공장이 우크라이나 드론 공격 피해로 최소 6개월 이상 멈출 전망이다. 러시아 연료 부족과 디젤 수출 제한 가능성이 시장 변수다.","url":"https://www.reuters.com/business/energy/moscow-oil-refinery-hit-by-drone-attacks-is-unlikely-resume-production-this-year-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":452,"tags":["러시아","정유","우크라이나","에너지","연료가격"]},
+    {"id":"latest-20260625-0710-ap-trump-proof-citizenship-vote-blocked","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"미 연방법원, 트럼프 ‘투표 시민권 증명’ 행정명령 영구 차단","description":"보스턴 연방법원이 유권자 등록 때 시민권 증명을 요구하려던 트럼프 행정명령 핵심 조항을 영구 차단했다. 선거 규율 권한은 대통령이 아니라 의회와 주에 있다는 판단이다.","url":"https://apnews.com/article/358912bcb6c7223b3d2d36465156fde9","source":{"name":"AP"},"publishedAt":"2026-06-24","score":430,"tags":["미국정치","선거법","트럼프","투표권","법원"]},
+    {"id":"latest-20260625-0710-reuters-france-ebola-doctor","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"프랑스, 콩고 귀국 의사 에볼라 확진…접촉자 격리·추적 착수","description":"콩고 인도주의 임무에서 돌아온 프랑스 의사가 에볼라 양성 판정을 받았다. 프랑스 당국은 환자를 격리하고 항공편 주변 접촉자 추적에 들어갔다.","url":"https://www.reuters.com/business/healthcare-pharmaceuticals/france-reports-ebola-case-doctor-returning-humanitarian-mission-congo-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":416,"tags":["프랑스","에볼라","콩고","보건","감염병"]},
+    {"id":"latest-20260625-0710-reuters-ukraine-oecd-bid","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"우크라이나, OECD 가입 신청 갱신…서방 제도권 통합 속도전","description":"젤렌스키 대통령은 우크라이나가 OECD 가입 신청을 갱신했다고 밝혔다. 전쟁 중에도 EU·OECD 편입을 안보 보장의 핵심 축으로 삼는 흐름이 이어지고 있다.","url":"https://www.reuters.com/world/europe/ukraine-submits-updated-bid-oecd-membership-zelenskiy-says-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":392,"tags":["우크라이나","OECD","젤렌스키","유럽통합","러시아"]},
+    {"id":"latest-20260625-0710-reuters-switzerland-canada-worldcup","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"스위스, 캐나다 2-1 제압…월드컵 B조 1위로 32강 진출","description":"스위스가 캐나다를 2-1로 꺾고 2026 월드컵 B조 1위를 확정했다. 캐나다도 조 2위로 토너먼트에 오르며 사상 첫 녹아웃 진출을 이뤘다.","url":"https://www.reuters.com/sports/soccer/switzerland-secure-world-cup-group-victory-with-2-1-win-over-canada-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":370,"tags":["월드컵","스위스","캐나다","축구","32강"]},
+    {"id":"latest-20260625-0710-reuters-ronaldinho-ravenna","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"호나우지뉴, 46세에 이탈리아 세리에C 라벤나 합류 발표","description":"브라질 축구 전설 호나우지뉴가 46세에 은퇴를 접고 이탈리아 3부 라벤나 FC에 합류한다. 작은 구단의 글로벌 인지도와 상업적 파급력이 단숨에 커졌다.","url":"https://www.reuters.com/sports/soccer/ronaldinho-trades-retirement-third-tier-italian-dreams-46-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":352,"tags":["호나우지뉴","라벤나","세리에C","축구","스포츠엔터"]}
+  ],
+  "byCategory":{}
+}
