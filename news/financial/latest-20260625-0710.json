@@ -1,0 +1,19 @@
+{
+  "generatedAt":"2026-06-25T07:10:24+09:00",
+  "source":"Latest financial public news overlay archive; finance and market-moving items prioritized",
+  "page":"financial-latest-overlay-archive",
+  "categories":[
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1}
+  ],
+  "total":4,
+  "allItems":[
+    {"id":"fin-20260625-0710-reuters-openai-broadcom-jalapeno","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"OpenAI 자체 AI칩 공개, 브로드컴·TSMC·메모리 공급망에 시장 관심","description":"OpenAI의 자체 추론칩 공개는 빅테크의 엔비디아 의존 완화와 AI 인프라 내재화 흐름을 보여준다. 브로드컴, TSMC, 고대역폭 메모리 공급망이 수혜·마진 변수로 부각된다.","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["OpenAI","브로드컴","TSMC","AI칩","HBM"]},
+    {"id":"fin-20260625-0710-reuters-moscow-refinery-offline","category":"energy-geopolitics","categoryName":"에너지·지정학","categoryIcon":"🛢️","title":"모스크바 정유공장 장기 중단 전망, 러시아 연료 수급 리스크 확대","description":"우크라이나 드론 공격을 받은 모스크바 정유공장이 연내 재가동하기 어렵다는 전망이 나왔다. 러시아 내 연료 부족, 수입 확대, 디젤 수출 제한 가능성이 에너지 시장 변수다.","url":"https://www.reuters.com/business/energy/moscow-oil-refinery-hit-by-drone-attacks-is-unlikely-resume-production-this-year-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":452,"tags":["러시아","정유","디젤","에너지","지정학"]},
+    {"id":"fin-20260625-0710-reuters-qualcomm-bytedance-chip","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"퀄컴, 바이트댄스 맞춤형 칩 설계 서비스 논의","description":"퀄컴이 바이트댄스와 맞춤형 칩 설계 서비스를 논의 중이다. 스마트폰 의존을 낮추고 AI·데이터센터 ASIC 시장으로 확장하려는 전략이 반도체 경쟁 구도를 흔들 수 있다.","url":"https://www.reuters.com/world/china/qualcomm-talks-provide-custom-chip-design-services-bytedance-sources-say-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":436,"tags":["퀄컴","바이트댄스","ASIC","AI칩","중국"]},
+    {"id":"fin-20260625-0710-reuters-france-ebola-market-risk","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"프랑스 에볼라 확진, 보건 리스크와 여행·방역 비용 재점검","description":"프랑스에서 콩고 귀국 의사 에볼라 확진이 확인되며 접촉자 추적이 시작됐다. 즉각적 시장 충격은 제한적이지만 항공·보건·공공 방역 비용 리스크를 재점검하게 한다.","url":"https://www.reuters.com/business/healthcare-pharmaceuticals/france-reports-ebola-case-doctor-returning-humanitarian-mission-congo-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":398,"tags":["에볼라","프랑스","보건","항공","리스크"]}
+  ],
+  "byCategory":{}
+}
