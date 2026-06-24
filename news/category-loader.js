@@ -2,7 +2,7 @@ const MAP={tech:['기술','tech'],global:['국제','global'],politics:['정치',
 const KEY=document.body?.dataset?.category||Object.keys(MAP).find(k=>location.pathname.includes('/'+k+'/'))||'all';
 const TITLE=(MAP[KEY]||MAP.all)[0], CAT=(MAP[KEY]||MAP.all)[1];
 const ROOT=location.pathname.endsWith('/news/')||location.pathname.endsWith('/news/index.html')?'./':'../';
-const SOURCES=window.NEWS_SOURCES||[ROOT+'latest-20260624-0734.json',ROOT+'latest.json',ROOT+'latest-20260624-0608.json',ROOT+'index.json',ROOT+'data.json'];
+const SOURCES=window.NEWS_SOURCES||[ROOT+'latest-20260624-1110.json',ROOT+'latest-20260624-0734.json',ROOT+'latest.json',ROOT+'latest-20260624-0608.json',ROOT+'index.json',ROOT+'data.json'];
 const $=s=>document.querySelector(s), grid=$('#grid'), q=$('#q'), sort=$('#sort'), state=$('#state')||$('#status'), tabs=$('#tabs');
 const titleEl=$('#title'); if(titleEl) titleEl.textContent=TITLE; document.title='GORICS '+TITLE+' NEWS';
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -10,7 +10,7 @@ const src=x=>typeof x.source==='object'?(x.source.name||'원문'):(x.source||'�
 function flat(p){if(!p)return[];let a=[];['allItems','items','posts','news'].forEach(k=>Array.isArray(p[k])&&a.push(...p[k]));if(p.byCategory)Object.values(p.byCategory).forEach(v=>Array.isArray(v)&&v.forEach(y=>{if(y&&typeof y==='object')a.push(y)}));return a}
 function norm(x){return{category:x.category||x.theme||'news',categoryName:x.categoryName||x.category_ko||x.theme||x.category||'뉴스',categoryIcon:x.categoryIcon||x.icon||'📰',title:x.title||x.name,description:x.description||x.summary||'',url:x.url||x.link,source:x.source||'원문',publishedAt:x.publishedAt||x.date||x.published_at||'',score:+(x.score??x.priority??0)||0,tags:x.tags||[]}}
 function inCat(x){return CAT==='all'||x.category===CAT||String(x.categoryName).includes(TITLE)}
-function dedupe(a){let u=new Set,t=new Set,o=[];for(const z of a.map(norm).filter(x=>x.title&&x.url&&inCat(x))){let U=z.url.toLowerCase().replace(/\/$/,''),T=(z.title+'|'+src(z)).toLowerCase().replace(/\s+/g,' ');if(u.has(U)||t.has(T))continue;u.add(U);t.add(T);o.push(z)}return o}
+function dedupe(a){let u=new Set,t=new Set,o=[];for(const z of a.map(norm).filter(x=>x.title&&x.url&&inCat(x))){let U=z.url.toLowerCase().replace(/[#?].*$/,'').replace(/\/$/,''),T=(z.title+'|'+src(z)).toLowerCase().replace(/\s+/g,' ');if(u.has(U)||t.has(T))continue;u.add(U);t.add(T);o.push(z)}return o}
 function card(x){let d=new Date(x.publishedAt),ds=isNaN(d)?(x.publishedAt||'-'):d.toLocaleString('ko-KR',{timeZone:'Asia/Seoul'});return `<article class=card><b>${esc(x.categoryIcon)} ${esc(x.categoryName)} · HOT ${esc(x.score)}</b><h2><a target=_blank rel=noopener href="${esc(x.url)}">${esc(x.title)}</a></h2><p>${esc(x.description||'요약 없음')}</p><small>${esc(src(x))} · ${esc(ds)}</small></article>`}
 function render(){let s=(q?.value||'').toLowerCase();let a=[...ITEMS].filter(x=>!s||(x.title+x.description+src(x)+(x.tags||[]).join()).toLowerCase().includes(s));a.sort((sort?.value)==='latest'?(a,b)=>new Date(b.publishedAt)-new Date(a.publishedAt):(a,b)=>b.score-a.score);if(grid)grid.innerHTML=a.length?a.map(card).join(''):'<article class=card>표시할 뉴스 없음</article>';if(state)state.textContent=TITLE+' '+a.length+'개'}
 async function get(p){try{let r=await fetch(p+'?v='+Date.now(),{cache:'no-store'});return r.ok?await r.json():null}catch(e){return null}}
