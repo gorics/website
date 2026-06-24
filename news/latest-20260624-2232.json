@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-06-24T22:32:49+09:00",
+  "source": "Latest public news overlay archive for GitHub Pages news site; generated from current public Reuters/AP sources; merge ahead of latest.json and data.json",
+  "page": "main-latest-overlay-archive",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"latest-20260624-2232-reuters-openai-broadcom-custom-chip","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"OpenAI, 브로드컴과 자체 AI 추론칩 공개…엔비디아 의존도 낮추기","description":"OpenAI가 브로드컴과 설계한 자체 AI 추론칩을 공개했다. 대규모 AI 서비스 운영비와 GPU 공급 제약을 줄이려는 빅테크의 자체 반도체 전략이 더 선명해졌다.","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["OpenAI","브로드컴","AI칩","추론","반도체"]},
+    {"id":"latest-20260624-2232-reuters-qualcomm-modular-acquisition","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"퀄컴, AI 소프트웨어 스타트업 Modular 40억달러 인수 발표","description":"퀄컴이 AI 모델을 다양한 칩에서 구동하게 하는 Modular를 약 40억 달러 규모 주식 거래로 인수한다. CUDA 대항 생태계와 데이터센터 AI 확장 경쟁이 핵심이다.","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":456,"tags":["퀄컴","Modular","AI소프트웨어","M&A","데이터센터"]},
+    {"id":"latest-20260624-2232-reuters-lingyi-hongkong-ipo-ai-demand","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"애플 협력사 링이아이테크, AI 수요 겨냥 홍콩 IPO로 10.6억달러 조달","description":"중국 링이아이테크가 홍콩 IPO 가격을 확정하고 AI 서버·휴머노이드·광통신 생산 역량 확충에 자금을 투입한다. AI 인프라 투자 수요가 아시아 IPO 시장을 자극하고 있다.","url":"https://www.reuters.com/world/asia-pacific/apple-supplier-lingyi-itech-prices-106-billion-hong-kong-ipo-tap-ai-demand-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":444,"tags":["홍콩IPO","AI인프라","애플공급망","중국제조","자본시장"]},
+    {"id":"latest-20260624-2232-reuters-cerebras-margin-forecast","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"Cerebras, 2026년 마진 전망 실망에 주가 급락","description":"AI칩 업체 Cerebras가 연간 조정 총마진 전망을 낮게 제시하자 주가가 급락했다. AI 인프라 매출 성장보다 수익성·제조비 부담이 시장의 핵심 검증 포인트로 부상했다.","url":"https://www.reuters.com/business/cerebras-sinks-14-full-year-margin-forecast-disappoints-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":438,"tags":["Cerebras","AI칩","마진","반도체주","수익성"]},
+    {"id":"latest-20260624-2232-ap-supreme-court-green-card-holders","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"미 연방대법원, 영주권자 이민 사건서 트럼프 행정부 손 들어줘","description":"미 연방대법원이 영주권자 입국·추방 절차와 관련한 사건에서 트럼프 행정부에 유리한 판단을 내렸다. 이민 집행 권한과 적법절차 논쟁이 다시 커지고 있다.","url":"https://apnews.com/article/b9ea1079296c0d7be844213986f96e6f","source":{"name":"AP"},"publishedAt":"2026-06-23","score":414,"tags":["미국대법원","이민정책","영주권","트럼프","적법절차"]},
+    {"id":"latest-20260624-2232-ap-nba-draft-wizards-number-one","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"워싱턴 위저즈, NBA 드래프트 1순위 지명권 행사 앞두고 재건 분기점","description":"워싱턴 위저즈가 2026 NBA 드래프트 전체 1순위 지명권을 보유했다. AJ 디반사 등 유망주 후보와 동부권 대형 트레이드가 리그 판도 변화의 관전 포인트다.","url":"https://apnews.com/article/e9358f909b9f862c567fb8deae1a145b","source":{"name":"AP"},"publishedAt":"2026-06-24","score":382,"tags":["NBA","드래프트","워싱턴위저즈","AJ디반사","농구"]},
+    {"id":"latest-20260624-2232-ap-qatari-doctor-rainbow-worldcup","category":"culture","categoryName":"문화","categoryIcon":"🎬","title":"월드컵 무대의 무지개 장식 카타르 의사, 성소수자 인권 메시지 확산","description":"샌프란시스코에 거주하는 카타르 출신 의사가 월드컵 현장에서 무지개 장식 전통 의상을 입고 성소수자 인권 메시지를 전했다. 스포츠 이벤트가 문화·인권 발언의 장으로 확장됐다.","url":"https://apnews.com/article/4d8de76c563153cb4bc7eb6a3a4bba0a","source":{"name":"AP"},"publishedAt":"2026-06-24","score":352,"tags":["월드컵","인권","LGBTQ","카타르","문화"]}
+  ],
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "politics": [],
+    "play": [],
+    "culture": []
+  }
+}
