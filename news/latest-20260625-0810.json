@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-06-25T08:10:30+09:00",
+  "source": "Latest public news overlay for GitHub Pages news site; generated from current public sources; merge ahead of latest.json, index.json, data.json",
+  "page": "main-latest-overlay-archive",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":3},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"latest-20260625-0810-reuters-openai-broadcom-jalapeno","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"OpenAI, 브로드컴과 자체 AI칩 ‘Jalapeño’ 공개…엔비디아 의존도 낮추기","description":"OpenAI가 브로드컴과 설계한 자체 AI 추론칩을 공개했다. TSMC 제조와 자체 사용 계획을 내세우며 AI 인프라 공급망과 반도체 경쟁 구도에 직접 영향을 줄 사안이다.","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":470,"tags":["OpenAI","Broadcom","AI칩","TSMC","반도체"]},
+    {"id":"latest-20260625-0810-reuters-qualcomm-modular-acquisition","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"퀄컴, AI 소프트웨어 스타트업 Modular 인수…CUDA 대항 생태계 포석","description":"퀄컴이 약 40억 달러 규모의 주식 거래로 Modular를 인수한다고 밝혔다. 칩별 맞춤 코드 부담을 낮추는 AI 소프트웨어 확보로 데이터센터 AI 시장 진입을 강화한다.","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":458,"tags":["퀄컴","Modular","AI소프트웨어","데이터센터","M&A"]},
+    {"id":"latest-20260625-0810-reuters-sk-hynix-adr-listing","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"SK하이닉스, 최대 294억 달러 ADR 상장 추진…AI 메모리 투자 재원 확보","description":"SK하이닉스가 나스닥 ADR 상장으로 대규모 자금 조달을 추진한다. HBM 수요 급증과 미국 투자자 접근성 확대가 반도체 밸류에이션 재평가 변수로 부상했다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":466,"tags":["SK하이닉스","ADR","HBM","AI메모리","나스닥"]},
+    {"id":"latest-20260625-0810-reuters-us-stocks-tech-lower","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"나스닥·S&P500 하락, AI 밸류에이션 부담 속 기술주 약세","description":"미국 증시는 기술주 약세와 추가 금리 인상 우려로 나스닥과 S&P500이 하락했다. 유가 급락은 항공·여행주를 밀어 올렸지만 AI 투자 비용 논쟁은 계속됐다.","url":"https://www.reuters.com/business/sp-500-nasdaq-futures-tick-up-tech-shares-stabilize-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":452,"tags":["미국증시","나스닥","AI투자","기술주","연준"]},
+    {"id":"latest-20260625-0810-reuters-brent-hormuz-low","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"브렌트유, 이란전 이전 최저권…호르무즈 통항 회복 기대 반영","description":"브렌트와 WTI가 호르무즈 해협 공급 차질 우려 완화로 급락했다. 중동 리스크 프리미엄이 빠지며 에너지 가격과 인플레이션 전망을 동시에 낮추는 재료가 됐다.","url":"https://www.reuters.com/business/energy/oil-prices-extend-decline-expectations-smoother-crude-flows-via-hormuz-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":448,"tags":["브렌트유","WTI","호르무즈","이란","인플레이션"]},
+    {"id":"latest-20260625-0810-ap-trump-america250-rally","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"트럼프, 미국 250주년 킥오프를 선거식 집회로 전환","description":"트럼프 대통령이 워싱턴 내셔널몰 행사에서 미국 250주년 기념을 시작했다. 초당적 축제 성격보다 선거식 메시지가 강해졌다는 비판과 정치적 상징성이 부각됐다.","url":"https://apnews.com/article/75e2bb4f4d2b3f7ab8cdddb86879bec7","source":{"name":"AP"},"publishedAt":"2026-06-24","score":402,"tags":["트럼프","미국250주년","내셔널몰","중간선거","미국정치"]},
+    {"id":"latest-20260625-0810-reuters-switzerland-canada-worldcup","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"스위스, 캐나다 꺾고 월드컵 조 1위…양팀 모두 32강 진출","description":"스위스가 캐나다를 2-1로 이기며 조 1위를 확정했다. 캐나다도 조 2위로 토너먼트에 오르면서 북미 개최국 흥행 흐름을 이어갔다.","url":"https://www.reuters.com/sports/soccer/switzerland-secure-world-cup-group-victory-with-2-1-win-over-canada-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":382,"tags":["월드컵","스위스","캐나다","축구","32강"]},
+    {"id":"latest-20260625-0810-guardian-entertainment-guide","category":"culture","categoryName":"문화","categoryIcon":"🎬","title":"이번 주 문화 신작, ‘토이 스토리 5’부터 ‘더 베어’까지 공개","description":"가디언의 주간 엔터테인먼트 가이드는 영화·스트리밍·음악·게임 신작을 폭넓게 정리했다. 여름 성수기 콘텐츠 경쟁과 플랫폼별 소비 분산이 두드러진다.","url":"https://www.theguardian.com/culture/2026/jun/20/entertainment-guide-week-ahead-toy-story-the-bear-brassed-off-graham-coxon-cinema-theatre-art-music","source":{"name":"The Guardian"},"publishedAt":"2026-06-20","score":330,"tags":["문화","스트리밍","영화","게임","음악"]}
+  ],
+  "byCategory": {
+    "tech": [],
+    "economy": [],
+    "politics": [],
+    "play": [],
+    "culture": []
+  }
+}
