@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-24T17:07:00+09:00",
+  "source": "Latest financial public news archive for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-archive",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":2},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1}
+  ],
+  "total": 3,
+  "allItems": [
+    {"id":"fin-20260624-1707-reuters-chip-stocks-plunge","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"미 반도체주 급락, AI 랠리 과열 경계 속 저가매수로 낙폭 제한","description":"미국 반도체주가 대형 기술주 매도와 금리 부담 속에 급락했다. 마이크론·퀄컴·마벨 등이 크게 밀렸지만 일부 저가매수가 낙폭을 제한했다.","url":"https://www.reuters.com/business/media-telecom/nasdaq-100-set-shed-over-1-trillion-tech-selloff-deepens-spacex-slides-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":452,"tags":["반도체","AI","나스닥","기술주","마이크론"]},
+    {"id":"fin-20260624-1707-reuters-morning-bid-chips","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"유럽 모닝비드, 반도체 쏠림과 달러 강세가 글로벌 시장 변수","description":"반도체가 과밀 거래라는 펀드매니저 인식과 달러 강세, 일본 환율 논의가 시장 초점으로 떠올랐다. 마이크론 실적은 AI칩 투자심리의 시험대다.","url":"https://www.reuters.com/world/china/global-markets-view-europe-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":430,"tags":["반도체","달러","마이크론","AI","글로벌시장"]},
+    {"id":"fin-20260624-1707-reuters-li-qiang-huawei-tech-rise","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"리창 중국 총리, 화웨이 거론하며 기술 굴기·보조금 비판 반박","description":"리창 총리가 중국의 AI·전기차·양자·반도체 성장을 보조금보다 혁신과 민간투자 결과라고 설명했다. 미·EU의 기술·보조금 견제와 연결되는 시장 이슈다.","url":"https://www.reuters.com/world/asia-pacific/singling-out-huawei-chinas-premier-defends-tech-rise-rejects-subsidy-claims-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":418,"tags":["중국","화웨이","AI","반도체","기술정책"]}
+  ],
+  "byCategory": {
+    "global-markets": [
+      {"id":"fin-20260624-1707-reuters-chip-stocks-plunge","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"미 반도체주 급락, AI 랠리 과열 경계 속 저가매수로 낙폭 제한","description":"미국 반도체주가 대형 기술주 매도와 금리 부담 속에 급락했다. 마이크론·퀄컴·마벨 등이 크게 밀렸지만 일부 저가매수가 낙폭을 제한했다.","url":"https://www.reuters.com/business/media-telecom/nasdaq-100-set-shed-over-1-trillion-tech-selloff-deepens-spacex-slides-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":452,"tags":["반도체","AI","나스닥","기술주","마이크론"]},
+      {"id":"fin-20260624-1707-reuters-morning-bid-chips","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"유럽 모닝비드, 반도체 쏠림과 달러 강세가 글로벌 시장 변수","description":"반도체가 과밀 거래라는 펀드매니저 인식과 달러 강세, 일본 환율 논의가 시장 초점으로 떠올랐다. 마이크론 실적은 AI칩 투자심리의 시험대다.","url":"https://www.reuters.com/world/china/global-markets-view-europe-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":430,"tags":["반도체","달러","마이크론","AI","글로벌시장"]}
+    ],
+    "ai-infrastructure": [
+      {"id":"fin-20260624-1707-reuters-li-qiang-huawei-tech-rise","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"리창 중국 총리, 화웨이 거론하며 기술 굴기·보조금 비판 반박","description":"리창 총리가 중국의 AI·전기차·양자·반도체 성장을 보조금보다 혁신과 민간투자 결과라고 설명했다. 미·EU의 기술·보조금 견제와 연결되는 시장 이슈다.","url":"https://www.reuters.com/world/asia-pacific/singling-out-huawei-chinas-premier-defends-tech-rise-rejects-subsidy-claims-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":418,"tags":["중국","화웨이","AI","반도체","기술정책"]}
+    ]
+  }
+}
