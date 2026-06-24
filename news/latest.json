@@ -1,17 +1,21 @@
 {
-  "generatedAt": "2026-06-24T12:33:26+09:00",
+  "generatedAt": "2026-06-24T13:34:29+09:00",
   "source": "Latest public news overlay for GitHub Pages news site; generated from current public sources; merge ahead of data.json",
   "page": "main-latest-overlay",
   "categories": [
     {"id":"economy","name":"경제·금융","icon":"💹","count":13},
-    {"id":"tech","name":"기술","icon":"🤖","count":6},
-    {"id":"global","name":"국제","icon":"🌍","count":3},
-    {"id":"culture","name":"문화","icon":"🎬","count":5},
-    {"id":"politics","name":"정치","icon":"🏛️","count":4},
+    {"id":"tech","name":"기술","icon":"🤖","count":7},
+    {"id":"global","name":"국제","icon":"🌍","count":4},
+    {"id":"culture","name":"문화","icon":"🎬","count":6},
+    {"id":"politics","name":"정치","icon":"🏛️","count":5},
     {"id":"play","name":"스포츠·엔터","icon":"⚽","count":8}
   ],
-  "total": 39,
+  "total": 43,
   "allItems": [
+    {"id":"latest-20260624-1334-ap-trump-senate-gop-tensions","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"트럼프, 공화당 상원 방문…선거법·인사 문제로 당내 갈등 확대","description":"트럼프 대통령이 공화당 상원의원들과 비공개 회동에 나섰다. SAVE America Act와 인사 지연, 현역 의원 경선 개입을 둘러싼 당내 불만이 커지고 있다.","url":"https://apnews.com/article/968c1454ede461d2db413790670c07df","source":{"name":"AP"},"publishedAt":"2026-06-24","score":408,"tags":["미국정치","트럼프","공화당","상원","선거법"]},
+    {"id":"latest-20260624-1334-ap-rubio-gulf-iran-deal","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"루비오, 이란 합의 불안 달래려 걸프 순방…호르무즈 개방 쟁점","description":"미 국무장관이 UAE를 시작으로 걸프 3개국을 방문해 이란 잠정 합의와 호르무즈 해협 재개방 문제를 설명한다. 미사일·대리세력·통행료 문제가 핵심 불안 요인이다.","url":"https://apnews.com/article/62611f2f167be12c60b7fcec5d6e7d2f","source":{"name":"AP"},"publishedAt":"2026-06-24","score":406,"tags":["이란","걸프","호르무즈","미국외교","중동"]},
+    {"id":"latest-20260624-1334-reuters-china-fastest-supercomputer","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"중국, 세계 최고속 슈퍼컴퓨터 1위 복귀…AI용 성능과는 별개","description":"중국 선전의 LineShine 시스템이 TOP500 1위에 올랐다. 국산 칩 기반 자립 성과를 보여줬지만, 전문가들은 AI 작업용 최적화와는 다른 전통 과학계산 성능이라고 평가했다.","url":"https://www.reuters.com/world/china/china-beats-us-with-worlds-fastest-supercomputer-race-not-geared-ai-work-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":400,"tags":["중국","슈퍼컴퓨터","TOP500","반도체","AI"]},
+    {"id":"latest-20260624-1334-ap-song-of-summer-2026","category":"culture","categoryName":"문화","categoryIcon":"🎬","title":"AP, 2026 여름 대표곡 후보 공개…컨트리·K팝·월드컵곡까지 분산","description":"AP가 2026년 ‘송 오브 더 서머’ 후보를 정리했다. 컨트리 크로스오버, 댄스팝, K팝, 월드컵 테마곡 등 음악 소비가 장르와 플랫폼별로 쪼개진 흐름이 두드러졌다.","url":"https://apnews.com/article/0d2c000ccce4ea35a74baa3e6cc34090","source":{"name":"AP"},"publishedAt":"2026-06-24","score":342,"tags":["음악","여름노래","AP","K팝","월드컵"]},
     {"id":"latest-20260624-1233-reuters-asia-stocks-tech-volatility","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"아시아 증시, 기술주 매도 충격 뒤 변동성 확대","description":"글로벌 기술·반도체주 매도 이후 아시아 증시가 혼조세를 보였다. 한국 증시는 전일 급락 뒤 반등했지만, AI 투자 부담과 연준 긴축 우려가 변동성을 키웠다.","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":454,"tags":["아시아증시","기술주","반도체","AI","변동성"]},
     {"id":"latest-20260624-1233-reuters-nvidia-china-black-market","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"중국 암시장서 엔비디아 금수 AI칩 가격 두 배 급등","description":"미국 수출통제로 중국 내 공급이 제한된 엔비디아 AI칩 가격이 암시장에서 두 배 이상 뛰었다는 보도가 나왔다. AI 인프라 수요와 지정학적 반도체 규제가 동시에 부각됐다.","url":"https://www.reuters.com/world/asia-pacific/nvidias-banned-ai-chips-double-price-chinas-black-market-ft-reports-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":446,"tags":["엔비디아","AI칩","중국","수출통제","반도체"]},
     {"id":"latest-20260624-1233-ap-senate-iran-war-powers","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"미 상원, 이란전 전쟁권한 결의 통과로 트럼프 견제","description":"미 상원이 이란 관련 군사행동을 제한하는 전쟁권한 결의를 50대 48로 통과시켰다. 결의의 실효성과 별개로 중동 정책을 둘러싼 의회 견제가 강화됐다.","url":"https://apnews.com/article/c50d1be17ed452eed015d250ae94eb77","source":{"name":"AP"},"publishedAt":"2026-06-23","score":390,"tags":["미국정치","상원","이란","전쟁권한","트럼프"]},
