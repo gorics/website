@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-06-24T21:09:03+09:00",
+  "source": "Latest public news overlay archive for GitHub Pages news site; generated from current public sources; loaded ahead of latest.json and data.json",
+  "page": "main-latest-overlay-archive",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1}
+  ],
+  "total": 3,
+  "allItems": [
+    {"id":"latest-20260624-2109-reuters-chip-stocks-plunge","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"반도체주 급락, 저가 매수에도 기술주 조정 압력 지속","description":"AI 투자비 부담과 금리 인상 베팅이 겹치며 반도체주가 급락했다. 일부 저가 매수로 낙폭은 제한됐지만 기술주 밸류에이션 경계가 이어졌다.","url":"https://www.reuters.com/business/media-telecom/nasdaq-100-set-shed-over-1-trillion-tech-selloff-deepens-spacex-slides-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":452,"tags":["반도체","기술주","나스닥","AI투자","위험자산"]},
+    {"id":"latest-20260624-2109-reuters-trump-250th-rally","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"트럼프, 미국 250주년 기념행사 시작…공식행사와 정치집회 경계 논란","description":"트럼프 대통령이 내셔널몰에서 미국 250주년 기념 16일 행사를 시작한다. 전쟁·물가 부담 속 애국 행사가 선거식 정치 메시지와 결합됐다는 평가가 나온다.","url":"https://www.reuters.com/world/us/trump-set-mark-nations-250th-birthday-with-campaign-style-rally-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":394,"tags":["미국정치","트럼프","250주년","내셔널몰","정치행사"]},
+    {"id":"latest-20260624-2109-ap-bode-miller-drug-charge","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"보드 밀러, 아이다호 약물 혐의에 무죄 주장","description":"올림픽 스키 금메달리스트 보드 밀러가 아이다호에서 환각버섯·약물도구 소지 혐의에 대해 무죄를 주장했다. 선수 개인 이슈와 환각제 규제 논쟁이 함께 주목받고 있다.","url":"https://apnews.com/article/aac1aa4cb2ab3593965d1a4f5bfccbfa","source":{"name":"AP"},"publishedAt":"2026-06-24","score":352,"tags":["보드밀러","스키","올림픽","약물혐의","스포츠"]}
+  ]
+}
