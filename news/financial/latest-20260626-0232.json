@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-06-26T02:32:46+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":3},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":0},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":3},
+    {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":1},
+    {"id":"trade-fx","name":"무역·환율","icon":"💱","count":0}
+  ],
+  "total": 9,
+  "allItems": [
+    {"id":"fin-20260626-0232-global-chip-stocks-micron-ai-rally","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"마이크론발 AI 메모리 랠리, 글로벌 반도체주 동반 급등","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"마이크론의 실적 서프라이즈와 타이트한 공급 전망이 메모리 업황 회복 기대를 키우며 SK하이닉스·삼성전자·ASML 등으로 매수세가 확산됐다.","score":100,"priority":100,"tags":["마이크론","HBM","AI메모리","반도체주","SK하이닉스"]},
+    {"id":"fin-20260626-0232-wall-street-micron-apple-mixed","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"뉴욕증시 혼조, 마이크론·퀄컴 강세와 애플 약세가 충돌","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/119e56cb6b1fc041b46af9bb778bdf07","description":"AI 반도체 기대가 기술주 일부를 끌어올렸지만 애플 하락과 금리 부담이 지수 상승을 제한해 시장이 업종별로 엇갈렸다.","score":97,"priority":97,"tags":["S&P500","나스닥","마이크론","애플","퀄컴"]},
+    {"id":"fin-20260626-0232-trump-iran-war-funds-fiscal-risk","category":"rates-policy","categoryName":"금리·정책","category_ko":"금리·정책","categoryIcon":"🏦","title":"미국 이란전 추가예산 요구, 재정·국채시장 부담 변수로 부상","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/us/trump-administration-sends-congress-876-billion-supplemental-budget-request-2026-06-24/","description":"876억달러 규모 추가 예산 요청은 전쟁비용과 재정적자 우려를 동시에 자극해 국채금리와 위험자산 심리에 영향을 줄 수 있다.","score":93,"priority":93,"tags":["미국재정","이란전","국채금리","추가예산","정책리스크"]},
+    {"id":"fin-20260626-0232-elal-russia-aviation-war-risk","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"우크라이나의 러시아 에너지시설 공격 여파, 항공 노선 리스크로 확산","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/middle-east/el-al-suspends-tel-aviv-moscow-flights-after-ukraine-strikes-russia-2026-06-25/","description":"러시아 정유·에너지 인프라 타격 이후 엘알항공이 모스크바 노선을 중단하면서 전쟁 리스크가 항공·보험·물류 비용으로 번질 가능성이 커졌다.","score":91,"priority":91,"tags":["항공리스크","러시아","우크라이나","정유시설","물류"]},
+    {"id":"fin-20260626-0206-oil-oman-hormuz-supply-worries","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"오만 인근 선박 피격에 원유시장 공급 불안 재점화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-prices-fall-tankers-exit-strait-hormuz-2026-06-25/","description":"호르무즈 통항 정상화 기대가 커진 직후 오만 인근 선박 피격이 발생하며 브렌트와 WTI가 반등했고 중동 해상 리스크가 다시 가격에 반영됐다.","score":99,"priority":99,"tags":["유가","호르무즈","오만","해상안보","브렌트"]},
+    {"id":"fin-20260626-0206-iraq-opec-quota-exit-warning","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"이라크 OPEC 쿼터 상향 요구, 산유국 공급정책 변수로 부상","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/iraq-consider-all-options-if-opec-quota-is-not-raised-has-weighed-exit-sources-2026-06-25/","description":"이라크가 생산 쿼터 확대를 압박하며 OPEC 탈퇴 가능성까지 검토한 것으로 알려져 2027년 산유량 재조정 협상에 변동성이 커졌다.","score":96,"priority":96,"tags":["OPEC","이라크","산유량","원유공급","쿼터"]},
+    {"id":"fin-20260626-0206-ibm-subnanometer-ai-chip","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"IBM 0.7나노 칩 기술 공개, 차세대 AI 반도체 공정 경쟁 가속","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM의 1나노 미만 적층 트랜지스터 기술은 AI 칩 성능·전력 효율 개선 기대를 키우며 첨단 공정 투자 경쟁의 새 촉매로 평가된다.","score":98,"priority":98,"tags":["IBM","AI반도체","0.7나노","첨단공정","SRAM"]},
+    {"id":"fin-20260626-0206-imf-energy-commodity-normalization-after-iran-deal","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"IMF, 이란 합의 후 에너지·원자재 하락에도 정상화는 단계적 전망","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/markets/asia/imf-says-energy-commodity-prices-fall-after-iran-deal-will-take-time-normalize-2026-06-25/","description":"IMF는 중동 긴장 완화로 에너지·원자재 가격이 내려갔지만 물류 시차와 불확실성 탓에 시장 정상화에는 시간이 필요하다고 평가했다.","score":94,"priority":94,"tags":["IMF","원자재","이란합의","글로벌시장","에너지"]},
+    {"id":"fin-20260626-0206-india-stocks-oil-slide-winning-streak","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"유가 하락에 인도 증시 3주 연속 상승, 항공·금융주가 지수 지지","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/india/indian-shares-set-rise-after-oil-slips-pre-iran-war-levels-2026-06-25/","description":"브렌트 하락과 RBI 정책 기대가 인도 증시를 지지하며 Nifty와 Sensex가 7개월 만의 최장 주간 상승 흐름을 이어갔다.","score":91,"priority":91,"tags":["인도증시","유가하락","Sensex","Nifty","항공주"]}
+  ],
+  "byCategory": {
+    "global-markets": [],
+    "semiconductors": [],
+    "ai-infrastructure": [],
+    "energy-geopolitics": [],
+    "rates-policy": [],
+    "trade-fx": []
+  }
+}
