@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-06-25T12:08:45+09:00",
+  "source": "Latest financial public news overlay archive; finance and market-moving items prioritized",
+  "page": "financial-latest-overlay-archive",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
+    {"id":"rates-fx","name":"금리·환율","icon":"💱","count":1}
+  ],
+  "total": 2,
+  "allItems": [
+    {"id":"fin-20260625-1208-reuters-nasdaq-sp-tech-fall","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"📈","title":"기술주 약세에 나스닥·S&P500 하락, 유가 하락은 여행주 지지","description":"미국 증시는 기술주 밸류에이션 부담과 연준 인상 기대를 소화하며 혼조였다. 유가 하락은 여행·항공주에 긍정적으로 작용했다.","url":"https://www.reuters.com/business/sp-500-nasdaq-futures-tick-up-tech-shares-stabilize-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-25","score":462,"tags":["나스닥","S&P500","기술주","유가","연준"]},
+    {"id":"fin-20260625-1208-reuters-dollar-13-month-high","category":"rates-fx","categoryName":"금리·환율","categoryIcon":"💱","title":"연준 인상 베팅에 달러지수 13개월 고점","description":"미국 금리 인상 기대와 기술주 조정으로 안전자산 수요가 늘며 달러가 강세를 보였다. 엔화 약세와 주요 통화 하락도 환율 변동성을 키웠다.","url":"https://www.reuters.com/world/asia-pacific/dollar-13-month-high-rate-hike-bets-stock-rout-boost-demand-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":438,"tags":["달러","연준","환율","금리","안전자산"]}
+  ],
+  "byCategory": {"global-markets": [], "rates-fx": []}
+}
