@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-06-25T23:09:42+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
+    {"id":"fx-rates","name":"금리·환율","icon":"💱","count":0},
+    {"id":"crypto-risk","name":"크립토 리스크","icon":"🪙","count":0}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260625-2309-global-markets-ai-chip-rally","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"AI 반도체 호실적에 글로벌 증시 반등, 유가 하락은 인플레 우려 완화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/","description":"마이크론·퀄컴발 AI 수요 안도감이 증시를 밀어올렸고, 브렌트유 약세는 채권금리와 인플레이션 기대를 낮추는 재료가 됐다.","score":99,"priority":99,"tags":["증시","나스닥","AI","유가","채권금리"]},
+    {"id":"fin-20260625-2309-micron-global-chip-rally","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"마이크론 실적 서프라이즈에 글로벌 메모리·반도체주 동반 랠리","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"HBM 공급 부족과 고객 선주문이 확인되며 메모리 가격 사이클과 AI 인프라 투자 지속성에 대한 시장 신뢰가 회복됐다.","score":98,"priority":98,"tags":["마이크론","HBM","메모리","SK하이닉스","삼성전자"]},
+    {"id":"fin-20260625-2309-ibm-sub-nano-chip","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"IBM 0.7나노 칩 기술, 장기 AI 인프라 효율 경쟁 변수로 부상","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM의 초미세 공정 발표는 데이터센터 전력 효율과 첨단 파운드리 경쟁 구도에 중장기 영향을 줄 수 있는 기술 이벤트다.","score":94,"priority":94,"tags":["IBM","AI인프라","공정기술","전력효율","데이터센터"]},
+    {"id":"fin-20260625-2309-ukraine-russia-energy-strikes","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"우크라이나 선제 타격 방침, 러시아 정유 차질과 에너지 리스크 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/ukraine-conduct-preemptive-attacks-facilities-russia-uses-war-zelenskiy-says-2026-06-25/","description":"러시아 정유·전력 인프라 타격이 연료 부족과 수출 흐름 변화로 이어지며 원유·석유제품 시장의 지정학 프리미엄을 흔들고 있다.","score":93,"priority":93,"tags":["우크라이나","러시아","정유","원유","지정학"]},
+    {"id":"fin-20260625-2309-russia-record-oil-exports","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"러시아, 정유 차질 속 서부항 원유 수출 사상 최대 전망","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/business/energy/russia-set-export-record-oil-volumes-from-western-ports-june-sources-say-2026-06-24/","description":"정유공장 피격으로 처리하지 못한 원유가 수출로 전환되며 러시아 서부항 선적 증가가 국제 유가의 하방 압력으로 작용할 수 있다.","score":91,"priority":91,"tags":["러시아원유","수출","정유차질","유가","서방제재"]}
+  ],
+  "byCategory": {
+    "global-markets": [],
+    "semiconductors": [],
+    "ai-infrastructure": [],
+    "energy-geopolitics": [],
+    "fx-rates": [],
+    "crypto-risk": []
+  }
+}
