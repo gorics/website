@@ -1,31 +1,25 @@
 {
-  "generatedAt": "2026-06-26T00:10:03+09:00",
+  "generatedAt": "2026-06-26T00:35:07+09:00",
   "source": "gorics-news-automation",
   "page": "news",
   "categories": [
-    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"economy","name":"경제","icon":"📈","count":3},
     {"id":"tech","name":"기술","icon":"🤖","count":1},
     {"id":"global","name":"국제","icon":"🌍","count":1},
     {"id":"politics","name":"정치","icon":"🏛️","count":1},
     {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
-    {"id":"culture","name":"문화","icon":"🎾","count":1}
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
   ],
-  "total": 7,
+  "total": 8,
   "allItems": [
-    {"id":"main-20260626-0010-reuters-hormuz-crude-shipments","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"호르무즈 원유 선적, 전쟁 이후 최고치…유가는 전쟁 이전 수준으로 후퇴","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/crude-shipments-through-hormuz-highest-since-war-amid-concerns-over-iran-exit-2026-06-25/","description":"휴전 뒤 호르무즈 해협 원유 선적이 전쟁 이후 최고 수준으로 늘었지만, 항로 통제와 지뢰 우려가 남아 에너지 시장 변동성은 계속된다.","score":99,"priority":99,"tags":["호르무즈","원유","유가","중동","에너지"]},
-    {"id":"main-20260626-0010-reuters-china-iran-oil-imports","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"중국 국영 정유사, 2019년 이후 첫 이란산 원유 수입 재개 검토","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/china-state-refiners-considering-resuming-iran-oil-imports-sources-say-2026-06-25/","description":"미국의 한시적 제재 유예 이후 중국 국영 정유사들이 이란산 원유 구매 재개를 검토하며 원유 수급과 달러 결제 흐름의 변수로 떠올랐다.","score":97,"priority":97,"tags":["중국","이란원유","제재유예","정유","에너지"]},
-    {"id":"main-20260626-0010-reuters-ibm-sub-1nm-ai-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"IBM, 0.7나노급 AI 칩 기술 공개…초미세 반도체 경쟁 가속","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM은 1나노미터보다 작은 0.7나노급 트랜지스터 구조를 공개하며 AI 칩 성능·전력 효율 개선 경쟁에 다시 불을 붙였다.","score":96,"priority":96,"tags":["IBM","AI칩","반도체","나노스택","초미세공정"]},
-    {"id":"main-20260626-0010-ap-scotus-tps-haiti-syria","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 아이티·시리아 이주민 임시보호 종료 허용","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/1bbbf8115f984a0d53336656924e989d","description":"미 대법원은 트럼프 행정부가 아이티·시리아 출신 이주민의 임시보호 지위를 종료할 수 있다고 판단해 35만명 이상이 추방 위험에 놓였다.","score":95,"priority":95,"tags":["미대법원","TPS","이민","아이티","시리아"]},
-    {"id":"main-20260626-0010-reuters-trump-gulf-iran-deal","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"트럼프-공화당 내홍, 이란 합의 설명전과 걸프 동맹 설득에 부담","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/middle-east/oil-back-pre-war-levels-hormuz-traffic-rebounds-us-tries-reassure-gulf-allies-2026-06-25/","description":"이란 평화합의를 둘러싼 트럼프 대통령과 공화당 의원 간 충돌이 걸프 동맹국 설득과 호르무즈 안정 논의에 정치적 부담을 더했다.","score":92,"priority":92,"tags":["미국","이란합의","걸프","호르무즈","외교"]},
-    {"id":"main-20260626-0010-reuters-ioc-neutrality-charter","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"IOC, ‘복잡한 세계’ 속 스포츠 정치적 중립 헌장 개정 강조","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/sports/ioc-official-says-charter-changes-sports-neutrality-vital-complicated-world-2026-06-25/","description":"IOC 고위 인사는 국제정세 압박이 커진 상황에서 스포츠의 정치적 중립을 강화한 올림픽 헌장 개정이 필요하다고 설명했다.","score":88,"priority":88,"tags":["IOC","올림픽","스포츠외교","중립성","헌장"]},
-    {"id":"main-20260626-0010-guardian-wimbledon-bbc-free-to-air","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎾","title":"윔블던, BBC와 2033년까지 무료 지상파 중계 연장","publishedAt":"2026-06-25","date":"2026-06-25","source":"The Guardian","url":"https://www.theguardian.com/sport/2026/jun/25/wimbledon-free-to-air-2033-bbc-television-tennis","description":"올잉글랜드클럽과 BBC의 새 계약으로 윔블던은 최소 2033년까지 영국 무료 지상파 중계를 유지하며 스포츠 콘텐츠 접근성 논의를 이어간다.","score":84,"priority":84,"tags":["윔블던","BBC","스포츠미디어","중계권","테니스"]}
+    {"id":"main-20260626-0035-reuters-global-chip-stocks-micron-ai","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"마이크론 실적 서프라이즈에 글로벌 반도체주 급등, AI 랠리 재점화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"마이크론의 강한 실적과 전망이 AI 메모리 수요 기대를 키우며 SK하이닉스·삼성전자 등 글로벌 반도체주를 끌어올렸다.","score":99,"priority":99,"tags":["마이크론","AI랠리","반도체","SK하이닉스","삼성전자"]},
+    {"id":"main-20260626-0035-reuters-global-markets-tech-stocks-micron","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"기술주 반등에도 대형주 부담 지속, 달러는 1년 고점권","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/","description":"마이크론·퀄컴 전망이 AI 거래를 되살렸지만 일부 대형 기술주 약세와 달러 강세가 글로벌 증시의 단기 변동성을 키웠다.","score":96,"priority":96,"tags":["글로벌증시","기술주","달러","퀄컴","AI거래"]},
+    {"id":"main-20260626-0035-reuters-korea-wild-stock-ride-ai","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"한국 증시 AI 쏠림 심화, 레버리지 개인투자와 대형 반도체 집중이 변수","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/markets/econ-world/south-koreas-wild-stock-ride-2026-06-25/","description":"KOSPI 급등락은 삼성전자·SK하이닉스 중심의 AI 기대와 개인 레버리지 확대가 결합된 구조적 변동성으로 분석된다.","score":94,"priority":94,"tags":["KOSPI","개인투자","레버리지","AI버블","한국증시"]},
+    {"id":"main-20260626-0035-reuters-apple-vk-app-store","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"러시아, VK 앱 삭제 놓고 애플에 설명 요구…플랫폼 제재 갈등 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/europe/kremlin-demands-explanation-apple-after-russian-apps-removed-app-store-2026-06-25/","description":"애플이 러시아 VK 관련 앱을 앱스토어에서 삭제하자 크렘린이 설명을 요구하며 서방 플랫폼과 러시아 디지털 통제 갈등이 다시 부각됐다.","score":93,"priority":93,"tags":["애플","VK","앱스토어","러시아","플랫폼규제"]},
+    {"id":"main-20260626-0035-ap-scotus-metering-asylum-policy","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 국경 망명 신청 제한 정책 부활 길 열어","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/d36d0092617c7115780c06de38e2000f","description":"미 대법원은 하루 망명 신청자 수를 제한하는 ‘metering’ 정책을 다시 추진할 수 있게 해 이민·국경정책 논쟁을 키웠다.","score":92,"priority":92,"tags":["미대법원","망명","국경정책","이민","metering"]},
+    {"id":"main-20260626-0035-reuters-ukraine-risk-insurance-fund","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"미 DFC·세계은행 MIGA, 우크라이나 투자용 정치위험 보험 추진","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/us-dfc-world-banks-miga-set-up-political-risk-insurance-ukraine-fund-2026-06-25/","description":"미국 개발금융공사와 세계은행 산하 MIGA가 우크라이나 재건 투자 유치를 위해 정치위험 보험 장치를 마련하기로 했다.","score":90,"priority":90,"tags":["우크라이나","세계은행","DFC","MIGA","재건투자"]},
+    {"id":"main-20260626-0035-ap-world-cup-us-group-decisions","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"월드컵 미국, 조 1위 확정 뒤 터키전 로테이션 고민","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/447f8fc813a635f3520208141b0112eb","description":"미국은 1930년 이후 처음으로 월드컵 2연승을 거둔 뒤 조 1위를 확정했고, 터키전에서 주전 휴식과 경고 관리를 저울질한다.","score":88,"priority":88,"tags":["월드컵","미국대표팀","터키전","포체티노","조별리그"]},
+    {"id":"main-20260626-0035-guardian-entertainment-week-toy-story-bear","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"토이 스토리 5·더 베어 등 주간 엔터테인먼트 신작 라인업 주목","publishedAt":"2026-06-20","date":"2026-06-20","source":"The Guardian","url":"https://www.theguardian.com/culture/2026/jun/20/entertainment-guide-week-ahead-toy-story-the-bear-brassed-off-graham-coxon-cinema-theatre-art-music","description":"영화·스트리밍·게임·음악 신작이 동시에 공개되며 여름 문화 소비와 프랜차이즈 콘텐츠 경쟁이 본격화하고 있다.","score":82,"priority":82,"tags":["토이스토리5","더베어","문화콘텐츠","게임","음악"]}
   ],
-  "byCategory": {
-    "economy": [],
-    "tech": [],
-    "global": [],
-    "politics": [],
-    "play": [],
-    "culture": []
-  }
+  "byCategory": {"economy":[],"tech":[],"global":[],"politics":[],"play":[],"culture":[]}
 }
