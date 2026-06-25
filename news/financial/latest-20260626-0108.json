@@ -1,0 +1,14 @@
+{
+  "generatedAt":"2026-06-26T01:08:35+09:00",
+  "source":"gorics-news-automation",
+  "page":"financial",
+  "categories":[{"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},{"id":"semiconductors","name":"반도체","icon":"💾","count":0},{"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":0},{"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},{"id":"rates-policy","name":"금리·정책","icon":"🏦","count":1},{"id":"trade-fx","name":"무역·환율","icon":"💱","count":0}],
+  "total":4,
+  "allItems":[
+    {"id":"fin-20260626-0108-india-stocks-oil-slide","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"유가 하락이 인도 증시·루피에 호재, Nifty·Sensex 3주 연속 상승","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/india/indian-shares-set-rise-after-oil-slips-pre-iran-war-levels-2026-06-25/","description":"저유가와 해외자금 유입 기대가 인도 주식·통화 시장을 지지했다.","score":96,"priority":96,"tags":["인도증시","저유가","루피","외국인자금"]},
+    {"id":"fin-20260626-0108-gulf-markets-oil-fed","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"중동 공급 회복에 유가 약세, 걸프 증시는 금리 부담까지 겹쳐 하락","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/middle-east/most-gulf-markets-ease-weaker-oil-fed-rate-hike-bets-2026-06-25/","description":"호르무즈 교통 정상화와 미 금리 인상 베팅이 유가·걸프 증시에 부담을 줬다.","score":95,"priority":95,"tags":["걸프증시","유가","호르무즈","연준"]},
+    {"id":"fin-20260626-0108-reuters-oil-prewar-levels","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"원유 가격, 중동 공급 확대 기대에 이란 충돌 이전 수준 복귀","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-prices-fall-tankers-exit-strait-hormuz-2026-06-25/","description":"브렌트와 WTI가 낮아지며 에너지 인플레이션 압력이 완화됐다.","score":94,"priority":94,"tags":["브렌트유","WTI","호르무즈","에너지"]},
+    {"id":"fin-20260626-0108-fed-inflation-dilemma-ai-oil","category":"rates-policy","categoryName":"금리·정책","category_ko":"금리·정책","categoryIcon":"🏦","title":"유가 안정에도 Fed 인플레이션 고민 지속, AI 투자 붐이 수요 압력으로 작용","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/commentary/reuters-open-interest/iran-peace-deal-no-silver-bullet-feds-inflation-dilemma-2026-06-25/","description":"에너지 가격은 안정됐지만 AI 투자와 강한 수요가 금리 경로 불확실성을 키운다.","score":92,"priority":92,"tags":["연준","인플레이션","AI투자","금리"]}
+  ],
+  "byCategory":{"global-markets":[],"semiconductors":[],"ai-infrastructure":[],"energy-geopolitics":[],"rates-policy":[],"trade-fx":[]}
+}
