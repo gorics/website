@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-06-26T03:08:59+09:00",
+  "generatedAt": "2026-06-26T03:34:02+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
-    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":2},
-    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
     {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
-    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":0},
-    {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
+    {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":0},
     {"id":"trade-fx","name":"무역·환율","icon":"💱","count":0}
   ],
   "total": 5,
   "allItems": [
-    {"id":"fin-20260626-0308-europe-shares-record-close","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"유럽 STOXX 600 사상 최고, 헬스케어와 AI 반도체 기대가 동반 견인","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-gain-upbeat-micron-forecast-revives-ai-rally-2026-06-25/","description":"바이엘 급등과 마이크론 호실적 여파가 유럽 증시를 사상 최고권으로 밀어올리며 글로벌 위험선호 회복 신호를 만들었다.","score":100,"priority":100,"tags":["STOXX600","유럽증시","헬스케어","AI","바이엘"]},
-    {"id":"fin-20260626-0308-nasdaq-megacap-tech-pressure","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"나스닥 약세, AI 반도체 강세에도 빅테크와 금리 우려가 상쇄","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-jump-2-micron-qualcomm-forecasts-relieve-investors-2026-06-25/","description":"반도체 업종은 강했지만 애플 등 메가캡 하락과 인플레이션 재가속 우려가 성장주 밸류에이션 부담을 키웠다.","score":98,"priority":98,"tags":["나스닥","메가캡","금리","인플레이션","반도체"]},
-    {"id":"fin-20260626-0308-openai-broadcom-jalapeno-asic","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"OpenAI 자체 ASIC 공개, AI 인프라 비용 절감 경쟁의 새 변수","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI·브로드컴의 Jalapeño 칩은 엔비디아 GPU 의존도를 낮추고 추론 비용을 통제하려는 AI 데이터센터 투자 경쟁을 가속할 수 있다.","score":97,"priority":97,"tags":["OpenAI","브로드컴","ASIC","AI인프라","엔비디아"]},
-    {"id":"fin-20260626-0308-morning-bid-micron-chips-dollar-yen","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"마이크론발 AI 메모리 기대, 한국 반도체주와 달러·엔 흐름까지 자극","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-view-europe-2026-06-25/","description":"마이크론 수주 가시성이 반도체 업황 기대를 되살린 가운데 유가 안정, 달러 강세, 엔화 약세가 아시아 금융시장의 핵심 변수로 떠올랐다.","score":95,"priority":95,"tags":["마이크론","HBM","달러","엔화","KOSPI"]},
-    {"id":"fin-20260626-0308-poland-ukraine-reconstruction-political-risk","category":"rates-policy","categoryName":"금리·정책","category_ko":"금리·정책","categoryIcon":"🏦","title":"폴란드-우크라이나 역사 갈등, 재건 협력과 EU 가입 경로의 정치 리스크로 부상","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/europe/poland-ukraines-difficult-history-creates-political-minefield-tusk-2026-06-25/","description":"전후 재건과 EU 가입 논의가 진행되는 가운데 양국의 역사 갈등이 투자·외교 협력 일정에 불확실성을 더하고 있다.","score":90,"priority":90,"tags":["우크라이나재건","폴란드","EU가입","정치리스크","투자"]}
+    {"id":"fin-20260626-0334-oil-oman-hormuz-supply-risk","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"오만 인근 선박 피격에 유가 반등, 호르무즈 해협 리스크 재가격화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-prices-fall-tankers-exit-strait-hormuz-2026-06-25/","description":"화물선 피격과 해협 정상화 지연 우려가 브렌트·WTI를 끌어올리며 에너지 인플레이션과 아시아 수입국 비용 부담을 다시 키웠다.","score":100,"priority":100,"tags":["유가","호르무즈","오만","공급리스크","에너지"]},
+    {"id":"fin-20260626-0334-global-chip-stocks-micron-ai-rally","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"마이크론 호실적 이후 글로벌 반도체주 급등, AI 랠리 재개 신호","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"마이크론의 강한 실적과 수요 전망이 미국·유럽·한국 반도체주 전반의 위험선호를 되살리며 AI 인프라 투자 기대를 강화했다.","score":99,"priority":99,"tags":["마이크론","글로벌증시","AI랠리","반도체","HBM"]},
+    {"id":"fin-20260626-0334-south-korea-chip-shares-micron-readthrough","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"한국 반도체주, 마이크론 전망 효과로 강세…HBM 수급 기대 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"SK하이닉스와 삼성전자가 AI 메모리 수요 기대를 반영하며 상승했고, 메모리 업황 회복이 한국 증시 핵심 동력으로 재부각됐다.","score":96,"priority":96,"tags":["SK하이닉스","삼성전자","HBM","KOSPI","메모리"]},
+    {"id":"fin-20260626-0334-ibm-sub-one-nm-chip-ai-hardware","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"IBM 0.7나노 칩 기술 공개, 차세대 AI 반도체 공정 경쟁 심화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM의 나노스택 기술은 성능·전력 효율을 동시에 겨냥하며 첨단 공정 경쟁과 장기 라이선스 시장에 영향을 줄 수 있다.","score":95,"priority":95,"tags":["IBM","0.7나노","반도체공정","AI칩","나노스택"]},
+    {"id":"fin-20260626-0334-openai-broadcom-jalapeno-asic-followthrough","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"OpenAI 자체 ASIC 공개 여파, AI 인프라 비용 절감 경쟁 지속","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI·브로드컴 칩 공개는 빅테크가 GPU 의존도를 낮추고 추론 비용을 통제하려는 자체 반도체 전략의 핵심 사례다.","score":92,"priority":92,"tags":["OpenAI","브로드컴","ASIC","AI인프라","데이터센터"]}
   ],
   "byCategory": {
     "global-markets": [],
