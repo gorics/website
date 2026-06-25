@@ -1,30 +1,24 @@
 {
-  "generatedAt": "2026-06-25T18:33:13+09:00",
+  "generatedAt": "2026-06-25T19:08:03+09:00",
   "source": "gorics-news-automation",
   "page": "news",
   "categories": [
     {"id":"economy","name":"경제","icon":"📈","count":2},
-    {"id":"tech","name":"기술","icon":"🤖","count":2},
-    {"id":"global","name":"국제","icon":"🌍","count":0},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
     {"id":"politics","name":"정치","icon":"🏛️","count":1},
     {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
-    {"id":"culture","name":"문화","icon":"🎧","count":0}
+    {"id":"culture","name":"문화","icon":"🎧","count":1}
   ],
-  "total": 6,
+  "total": 7,
   "allItems": [
-    {"id":"main-20260625-1833-reuters-asia-stocks-micron-ai","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"아시아 증시 급등, 마이크론 실적이 AI 투자 불안 완화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/","description":"마이크론과 퀄컴의 강한 전망이 AI 반도체 수요 우려를 낮추며 일본·한국 등 아시아 증시를 끌어올렸다.","score":99,"priority":99,"tags":["아시아증시","마이크론","퀄컴","AI반도체","위험선호"]},
-    {"id":"main-20260625-1833-reuters-europe-shares-ai-rally","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📊","title":"유럽 증시 상승, AI 반도체 랠리 재개와 유가 하락이 동반 호재","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-gain-upbeat-micron-forecast-revives-ai-rally-2026-06-25/","description":"마이크론 전망과 유가 안정이 유럽 기술주와 위험자산 심리를 개선했다. ASML·인피니언 등 반도체 관련주가 강세를 보였다.","score":96,"priority":96,"tags":["유럽증시","STOXX600","ASML","유가","AI랠리"]},
-    {"id":"main-20260625-1833-reuters-korea-chip-shares","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"💾","title":"한국 반도체주 급등, SK하이닉스 미국 상장 계획도 재료","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"마이크론 호실적과 AI 메모리 수요 기대가 SK하이닉스·삼성전자 주가를 밀어올렸다. 미국 상장 기대도 밸류에이션 재평가 요인이다.","score":95,"priority":95,"tags":["SK하이닉스","삼성전자","HBM","마이크론","한국증시"]},
-    {"id":"main-20260625-1833-reuters-lingyi-hk-ipo-ai","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🏭","title":"애플 협력사 링이아이테크, AI 제조 투자 위해 홍콩 IPO 가격 확정","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/apple-supplier-lingyi-itech-prices-106-billion-hong-kong-ipo-tap-ai-demand-2026-06-24/","description":"중국 부품업체 링이아이테크가 홍콩 IPO로 AI 서버·휴머노이드·광통신 제조 역량 확대 자금을 조달한다.","score":88,"priority":88,"tags":["홍콩IPO","애플공급망","AI서버","휴머노이드","중국제조"]},
-    {"id":"main-20260625-1833-ap-america-250-launch","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🇺🇸","title":"트럼프, 워싱턴 내셔널몰에서 미국 건국 250주년 행사 개막","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/3119b0773f5e3f12d452e7cde4217c0b","description":"미국 건국 250주년 기념행사가 워싱턴 내셔널몰에서 시작됐다. 16일간 국가 정체성과 정치 메시지를 둘러싼 행사가 이어진다.","score":84,"priority":84,"tags":["미국정치","America250","트럼프","내셔널몰","기념행사"]},
-    {"id":"main-20260625-1833-reuters-haiti-worldcup-stage","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"아이티, 52년 만의 월드컵 복귀 마무리…패배 속 존재감 입증","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/sports/soccer/haiti-prove-they-belong-world-cup-stage-vow-return-2026-06-25/","description":"아이티는 조별리그에서 탈락했지만 모로코전 2골 등으로 월드컵 무대 경쟁력을 보였다. 팀은 재도전을 다짐했다.","score":81,"priority":81,"tags":["월드컵","아이티","모로코","축구","디아스포라"]}
+    {"id":"main-20260625-1908-reuters-oil-hormuz-supply","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"🛢️","title":"국제유가 하락 지속, 호르무즈 물동량 회복과 중동 공급 증가 반영","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-prices-fall-tankers-exit-strait-hormuz-2026-06-25/","description":"호르무즈 해협 통항 정상화와 중동 공급 증가 기대가 커지며 브렌트·WTI가 전쟁 이전 수준에 가까워졌다.","score":98,"priority":98,"tags":["유가","브렌트","WTI","호르무즈","중동공급"]},
+    {"id":"main-20260625-1908-reuters-korea-chip-rally","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"한국 반도체주 랠리 확대, 마이크론 호실적과 SK하이닉스 미국 상장 기대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"AI 메모리 수요 기대와 SK하이닉스 미국 상장 계획이 맞물리며 국내 반도체 밸류에이션 재평가가 이어졌다.","score":96,"priority":96,"tags":["SK하이닉스","삼성전자","마이크론","HBM","한국증시"]},
+    {"id":"main-20260625-1908-reuters-europe-ai-rally","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"유럽 기술주 강세, 마이크론 전망이 AI 반도체 랠리 재점화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-gain-upbeat-micron-forecast-revives-ai-rally-2026-06-25/","description":"마이크론의 낙관적 전망이 ASML·인피니언 등 유럽 반도체·장비주를 끌어올리며 AI 투자심리를 회복시켰다.","score":94,"priority":94,"tags":["AI반도체","유럽증시","ASML","인피니언","마이크론"]},
+    {"id":"main-20260625-1908-reuters-ukraine-preemptive-strikes","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"젤렌스키, 러시아 전쟁 지원 시설 선제타격 방침 확인","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/ukraine-conduct-preemptive-attacks-facilities-russia-uses-war-zelenskiy-says-2026-06-25/","description":"우크라이나가 러시아 에너지·군수 기반을 겨냥한 선제 행동을 예고하며 전쟁 비용을 높이는 전략을 강화했다.","score":91,"priority":91,"tags":["우크라이나","러시아","젤렌스키","에너지시설","지정학"]},
+    {"id":"main-20260625-1908-ap-america-250-politics","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🇺🇸","title":"미국 건국 250주년 개막식, 애국 행사와 정치 메시지 논란 병행","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/75e2bb4f4d2b3f7ab8cdddb86879bec7","description":"트럼프 대통령의 내셔널몰 행사는 국가 기념행사 성격과 선거 유세식 메시지가 겹치며 정치적 논쟁을 낳았다.","score":86,"priority":86,"tags":["미국정치","America250","트럼프","내셔널몰","정치행사"]},
+    {"id":"main-20260625-1908-reuters-brazil-worldcup-knockouts","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"브라질, 스코틀랜드 3-0 완파하고 월드컵 토너먼트 진출","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/sports/soccer/vinicius-fires-brazil-into-world-cup-knockouts-with-3-0-win-over-scotland-2026-06-25/","description":"비니시우스 주니오르의 멀티골과 네이마르 복귀 속에 브라질이 조 1위로 32강 진출을 확정했다.","score":85,"priority":85,"tags":["월드컵","브라질","비니시우스","네이마르","스코틀랜드"]},
+    {"id":"main-20260625-1908-ap-worldcup-ticket-scams","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎟️","title":"월드컵 티켓 사기 경고 확산, 공식 채널 확인 필요","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/","description":"월드컵 열기가 커지며 온라인 티켓 사기 주의가 주요 생활·문화 뉴스로 부상했다. 공식 판매처와 결제 안전 확인이 핵심이다.","score":77,"priority":77,"tags":["월드컵","티켓사기","온라인안전","문화","스포츠팬"]}
   ],
-  "byCategory": {
-    "economy": [],
-    "tech": [],
-    "global": [],
-    "politics": [],
-    "play": [],
-    "culture": []
-  }
+  "byCategory": {"economy": [],"tech": [],"global": [],"politics": [],"play": [],"culture": []}
 }
