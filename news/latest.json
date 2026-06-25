@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-26T01:33:41+09:00",
+  "generatedAt": "2026-06-26T02:06:45+09:00",
   "source": "gorics-news-automation",
   "page": "news",
   "categories": [
@@ -8,16 +8,24 @@
     {"id":"global","name":"국제","icon":"🌍","count":1},
     {"id":"politics","name":"정치","icon":"🏛️","count":1},
     {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
-    {"id":"culture","name":"문화","icon":"🎬","count":0}
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
   ],
-  "total": 6,
+  "total": 7,
   "allItems": [
-    {"id":"main-20260626-0133-reuters-global-chip-stocks-micron-ai-rally","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"마이크론 실적 서프라이즈에 글로벌 반도체주 급등, AI 메모리 수요 재점화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"마이크론의 강한 실적 전망과 고객 공급 약정이 AI 메모리 수요 신뢰를 키우며 SK하이닉스·삼성전자·ASML 등 글로벌 반도체주를 끌어올렸다.","score":99,"priority":99,"tags":["마이크론","AI반도체","메모리","SK하이닉스","ASML"]},
-    {"id":"main-20260626-0133-reuters-world-stocks-chip-rally-dollar","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"세계 증시, 칩 랠리 타고 상승…달러는 1년 고점 부근 유지","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/","description":"AI 반도체 랠리가 세계 주식시장을 지지했지만, 고평가 부담·금리 경로·강한 달러가 위험자산 회복의 상단을 제한했다.","score":97,"priority":97,"tags":["세계증시","달러","금리","반도체","AI랠리"]},
-    {"id":"main-20260626-0133-reuters-imf-iran-deal-commodities","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"IMF, 이란 합의 후 에너지·원자재 가격 하락…정상화엔 시간 필요","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/markets/asia/imf-says-energy-commodity-prices-fall-after-iran-deal-will-take-time-normalize-2026-06-25/","description":"IMF는 이란 관련 긴장 완화로 에너지·원자재 가격이 내려갔지만 걸프 교역과 가격 안정이 완전히 정상화되기까지 시간이 걸린다고 평가했다.","score":95,"priority":95,"tags":["IMF","이란합의","원자재","에너지","세계경제"]},
-    {"id":"main-20260626-0133-ap-venezuela-earthquakes-survivors","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"베네수엘라 강진 사망자 164명 이상, 생존자 수색과 국제 지원 본격화","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/0a62e6fc9feb5202a750c4fbb11a6aec","description":"규모 7대 강진 두 차례로 베네수엘라 북부에서 대규모 붕괴와 정전이 발생했고, 구조 작업과 국제 지원 제안이 이어지고 있다.","score":96,"priority":96,"tags":["베네수엘라","지진","재난","구조","국제지원"]},
-    {"id":"main-20260626-0133-ap-scotus-asylum-metering-policy","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 국경 망명 신청 제한 정책 부활 길 열어","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/d36d0092617c7115780c06de38e2000f","description":"미 대법원이 국경에서 하루 망명 신청 인원을 제한하는 ‘metering’ 정책 관련 하급심 판단을 뒤집으며 트럼프 행정부의 강경 이민정책 여지를 넓혔다.","score":94,"priority":94,"tags":["미대법원","망명정책","이민","트럼프","국경"]},
-    {"id":"main-20260626-0133-ap-world-cup-us-turkey-final-group-preview","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"월드컵 조별리그 막판, 미국은 터키전 로테이션·경고 관리 고민","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/447f8fc813a635f3520208141b0112eb","description":"미국이 조 1위를 확정한 가운데 터키전에서 핵심 선수 출전 시간과 경고 누적 위험을 조절해야 하며, 에콰도르·일본·네덜란드 등도 순위 경쟁을 이어간다.","score":88,"priority":88,"tags":["월드컵","미국","터키","조별리그","로테이션"]}
+    {"id":"main-20260626-0206-reuters-oil-oman-hormuz-supply-worries","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"오만 인근 선박 피격에 유가 반등, 호르무즈 정상화 기대에 공급 리스크 재부각","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-prices-fall-tankers-exit-strait-hormuz-2026-06-25/","description":"호르무즈 통항 재개 기대에도 오만 인근 선박 피격 소식이 더해지며 브렌트·WTI가 반등했고, 보험·항로 리스크가 원유시장 변동성을 키웠다.","score":99,"priority":99,"tags":["유가","호르무즈","오만","공급리스크","중동"]},
+    {"id":"main-20260626-0206-reuters-iraq-opec-quota-exit-warning","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"이라크, OPEC 산유량 쿼터 상향 압박…불발 시 탈퇴 가능성까지 거론","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/iraq-consider-all-options-if-opec-quota-is-not-raised-has-weighed-exit-sources-2026-06-25/","description":"이라크가 재정난과 수출 차질 속에 OPEC 생산 쿼터 확대를 요구하며, 산유국 협의체 내부의 공급정책 균열 가능성이 커졌다.","score":96,"priority":96,"tags":["이라크","OPEC","산유량","원유","쿼터"]},
+    {"id":"main-20260626-0206-reuters-ibm-subnanometer-ai-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"IBM, 1나노 미만 AI 칩 기술 공개…0.7나노 ‘나노스택’으로 밀도·효율 개선","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM이 0.7나노급 적층 트랜지스터 기술을 공개하며 AI 반도체의 성능과 전력 효율을 높일 차세대 공정 경쟁에 불을 붙였다.","score":98,"priority":98,"tags":["IBM","AI칩","0.7나노","반도체","나노스택"]},
+    {"id":"main-20260626-0206-reuters-ukraine-preemptive-strikes-russia-war-facilities","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"젤렌스키, 러시아 전쟁 시설 선제 타격 지시…에너지 인프라 압박 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/ukraine-conduct-preemptive-attacks-facilities-russia-uses-war-zelenskiy-says-2026-06-25/","description":"우크라이나가 러시아의 전쟁 수행 시설을 선제적으로 타격하겠다고 밝히며 정유·전력 인프라를 겨냥한 장거리 공격 전략을 강화했다.","score":97,"priority":97,"tags":["우크라이나","러시아","젤렌스키","정유시설","전쟁"]},
+    {"id":"main-20260626-0206-ap-scotus-tps-haiti-syria","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 아이티·시리아 이민자 임시보호 종료 허용…트럼프 이민정책 힘 실려","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/3ae03581673c844c7c69b3d8e100315d","description":"미 연방대법원이 아이티·시리아 출신 이민자의 임시보호지위 종료를 허용하면서 대규모 추방 위험과 이민정책 논쟁이 커졌다.","score":95,"priority":95,"tags":["미대법원","TPS","이민","아이티","시리아"]},
+    {"id":"main-20260626-0206-reuters-south-africa-south-korea-world-cup-knockout","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"남아공, 한국 꺾고 사상 첫 월드컵 32강 진출…한국은 3위 와일드카드 대기","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/sports/soccer/south-africa-beat-south-korea-reach-world-cup-knockout-stage-first-time-2026-06-25/","description":"남아공이 한국을 1-0으로 꺾고 처음으로 월드컵 토너먼트에 올랐고, 한국은 조 3위 성적에 따른 추가 진출 가능성을 기다리게 됐다.","score":93,"priority":93,"tags":["월드컵","남아공","한국","32강","축구"]},
+    {"id":"main-20260626-0206-ap-america-250-national-mall-launch","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"미국 건국 250주년 행사 개막, 워싱턴 내셔널몰서 16일 축제 시작","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/3119b0773f5e3f12d452e7cde4217c0b","description":"워싱턴 내셔널몰에서 미국 건국 250주년 기념 행사가 시작됐고, 군·보건·애국·독립기념일 주제를 묶은 대규모 문화행사가 이어진다.","score":88,"priority":88,"tags":["미국250주년","문화행사","내셔널몰","독립기념일","축제"]}
   ],
-  "byCategory": {"economy":[],"tech":[],"global":[],"politics":[],"play":[],"culture":[]}
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "global": [],
+    "politics": [],
+    "play": [],
+    "culture": []
+  }
 }
