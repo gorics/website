@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-06-25T11:31:36+09:00",
+  "source": "Latest public news overlay for GitHub Pages news site; generated from current public sources; merge ahead of data.json",
+  "page": "main-latest-overlay",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":2},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"latest-20260625-1131-reuters-ai-chip-rally","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"마이크론·퀄컴 호재에 AI 반도체주 시총 4천억달러 반등","description":"마이크론의 강한 AI 메모리 수요 전망과 퀄컴의 데이터센터 전략이 반도체 밸류체인 전반의 반등을 이끌었다. 고평가 우려 속에서도 AI 인프라 투자가 시장 핵심 변수로 남았다.","url":"https://www.reuters.com/business/micron-qualcomm-forecasts-ignite-400-billion-ai-chip-stock-rally-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-25","score":476,"tags":["AI칩","마이크론","퀄컴","반도체","데이터센터"]},
+    {"id":"latest-20260625-1131-reuters-korea-chip-rally","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"마이크론 전망에 삼성전자·SK하이닉스 등 한국 반도체주 급등","description":"마이크론 실적과 가이던스가 AI 메모리 수요 기대를 키우며 한국 반도체주를 끌어올렸다. SK하이닉스의 나스닥 ADR 추진도 글로벌 투자자 관심을 키우는 요인으로 작용했다.","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","source":{"name":"Reuters"},"publishedAt":"2026-06-25","score":472,"tags":["SK하이닉스","삼성전자","마이크론","HBM","AI메모리"]},
+    {"id":"latest-20260625-1131-reuters-oil-hormuz-tankers","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"호르무즈 유조선 이동 재개로 유가 전쟁 전 수준에 접근","description":"호르무즈 해협을 빠져나가는 유조선이 늘며 원유 공급 차질 우려가 완화됐다. 브렌트와 WTI 하락은 에너지 인플레이션 부담을 낮추는 재료로 평가된다.","url":"https://www.reuters.com/business/energy/oil-prices-fall-tankers-exit-strait-hormuz-2026-06-25/","source":{"name":"Reuters"},"publishedAt":"2026-06-25","score":466,"tags":["유가","호르무즈","원유","중동","인플레이션"]},
+    {"id":"latest-20260625-1131-ap-white-house-supplemental","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"백악관, 이란전 비용 등 876억달러 추가예산 의회 요청","description":"백악관이 이란전 비용 보전, 농가 지원, 에볼라 대응 등을 포함한 대규모 추가예산을 제출했다. 전쟁권한 논란과 재정 부담이 맞물려 의회 충돌이 커질 전망이다.","url":"https://apnews.com/article/c0cbd21df91c48fa821fc21e021d8831","source":{"name":"AP"},"publishedAt":"2026-06-25","score":446,"tags":["미국","이란전","추가예산","의회","트럼프"]},
+    {"id":"latest-20260625-1131-ap-north-korea-destroyer","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"북한, 5천톤급 구축함 취역…김정은 핵무장 해군 진전 주장","description":"북한이 새 구축함 최현호를 해군에 배치하며 해상 핵전력 확대를 선전했다. 남북 긴장과 북러 협력 의혹 속에 한반도 안보 리스크가 다시 부각됐다.","url":"https://apnews.com/article/ab1896be64bd1e3e198104477b80109e","source":{"name":"AP"},"publishedAt":"2026-06-24","score":432,"tags":["북한","김정은","해군","핵무장","한반도"]},
+    {"id":"latest-20260625-1131-ap-shincheonji-election-probe","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"신천지 이만희 총회장, 선거 개입 의혹 수사 중 체포","description":"한국 수사당국이 보수정당 가입 동원 의혹과 관련해 신천지 지도자를 체포했다. 종교단체와 정치권 연계 의혹이 전 정부 수사와 맞물려 확대되고 있다.","url":"https://apnews.com/article/5eba7b336642d66b79036e68e8946574","source":{"name":"AP"},"publishedAt":"2026-06-24","score":418,"tags":["신천지","이만희","선거","정치수사","한국"]},
+    {"id":"latest-20260625-1131-ap-india-heat-worker","category":"culture","categoryName":"문화","categoryIcon":"🎬","title":"인도 섬유노동자의 폭염 노동, 기후위기 속 생활 조건 조명","description":"AP는 인도 수라트 섬유공장 노동자의 하루를 통해 폭염, 이주노동, 열악한 주거가 겹친 현실을 조명했다. 기후변화가 노동·생활 안전 문제로 확장되고 있다.","url":"https://apnews.com/article/3fd96aa31437eef62b9120af23d96634","source":{"name":"AP"},"publishedAt":"2026-06-25","score":390,"tags":["인도","폭염","노동","기후변화","생활"]}
+  ],
+  "byCategory": {"economy":[],"tech":[],"politics":[],"global":[],"culture":[]}
+}
