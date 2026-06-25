@@ -1,0 +1,93 @@
+{
+  "generatedAt": "2026-06-25T15:09:16+09:00",
+  "source": "hourly-financial-news-overlay",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":2}
+  ],
+  "total": 5,
+  "allItems": [
+    {
+      "id": "fin-20260625-1509-asian-markets-micron-ai",
+      "category": "global-markets",
+      "categoryName": "글로벌시장",
+      "category_ko": "글로벌시장",
+      "categoryIcon": "📈",
+      "title": "마이크론 실적이 AI 수요 우려 완화, 아시아 증시 동반 상승",
+      "publishedAt": "2026-06-25",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/",
+      "description": "AI 메모리 수요 확인으로 위험자산 선호가 되살아나며 아시아 증시가 상승했다. 달러 강세, 일본 엔 약세, 유가 안정이 함께 시장 방향을 좌우했다.",
+      "score": 98,
+      "priority": 98,
+      "tags": ["아시아증시", "마이크론", "AI수요", "달러", "유가"]
+    },
+    {
+      "id": "fin-20260625-1509-moscow-refinery-energy-risk",
+      "category": "energy-geopolitics",
+      "categoryName": "에너지·지정학",
+      "category_ko": "에너지·지정학",
+      "categoryIcon": "🛢️",
+      "title": "모스크바 정유공장 장기 중단 전망, 러시아 연료시장 압박 확대",
+      "publishedAt": "2026-06-24",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/energy/moscow-oil-refinery-hit-by-drone-attacks-is-unlikely-resume-production-this-year-2026-06-24/",
+      "description": "러시아 핵심 정유시설의 장기 가동 중단 가능성이 연료 부족과 가격 압박을 키우고 있다. 디젤 수출 제한과 수입 확대 논의가 에너지 시장 변수로 부상했다.",
+      "score": 96,
+      "priority": 96,
+      "tags": ["정유", "러시아", "연료난", "디젤", "우크라이나"]
+    },
+    {
+      "id": "fin-20260625-1509-openai-broadcom-custom-chip",
+      "category": "ai-infrastructure",
+      "categoryName": "AI 인프라",
+      "category_ko": "AI 인프라",
+      "categoryIcon": "🤖",
+      "title": "OpenAI 자체 추론칩 공개, AI 인프라 공급망 재편 신호",
+      "publishedAt": "2026-06-24",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/",
+      "description": "OpenAI와 브로드컴의 자체 칩 공개는 대형 AI 기업이 GPU 공급 병목과 비용을 줄이려는 흐름을 보여준다. TSMC·메모리·서버 밸류체인에도 파급이 예상된다.",
+      "score": 94,
+      "priority": 94,
+      "tags": ["OpenAI", "Broadcom", "AI인프라", "TSMC", "추론칩"]
+    },
+    {
+      "id": "fin-20260625-1509-qualcomm-modular-ai-software",
+      "category": "ai-infrastructure",
+      "categoryName": "AI 인프라",
+      "category_ko": "AI 인프라",
+      "categoryIcon": "🤖",
+      "title": "퀄컴, AI 소프트웨어 스타트업 Modular 40억달러 인수",
+      "publishedAt": "2026-06-24",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/",
+      "description": "퀄컴이 엔비디아 CUDA 생태계에 맞설 AI 소프트웨어 역량 강화를 위해 Modular 인수를 발표했다. 스마트폰 중심 사업에서 데이터센터·AI 플랫폼으로 확장하려는 전략이다.",
+      "score": 90,
+      "priority": 90,
+      "tags": ["퀄컴", "Modular", "AI소프트웨어", "CUDA", "데이터센터"]
+    },
+    {
+      "id": "fin-20260625-1509-russia-fuel-tax-changes",
+      "category": "energy-geopolitics",
+      "categoryName": "에너지·지정학",
+      "category_ko": "에너지·지정학",
+      "categoryIcon": "🛢️",
+      "title": "러시아 의회, 연료난 완화 위한 세제 변경 승인",
+      "publishedAt": "2026-06-24",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/energy/russias-parliament-approves-tax-changes-address-fuel-shortages-2026-06-24/",
+      "description": "우크라이나 공격 이후 정유 차질이 커지자 러시아가 저품질 혼합유 사용과 수입 보조 등 세제 조정에 나섰다. 국내 연료 공급 안정과 가격 억제가 핵심이다.",
+      "score": 88,
+      "priority": 88,
+      "tags": ["러시아", "연료세제", "정유차질", "수입보조", "에너지"]
+    }
+  ],
+  "byCategory": {
+    "global-markets": [],
+    "energy-geopolitics": [],
+    "ai-infrastructure": []
+  }
+}
