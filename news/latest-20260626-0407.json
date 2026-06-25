@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-06-26T04:07:05+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"main-20260626-0407-reuters-global-markets-chip-rally-dollar","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"글로벌 증시, 반도체 랠리에 상승…달러는 1년 고점 부근서 숨고르기","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/","description":"마이크론·퀄컴발 AI 반도체 기대가 세계 증시를 밀어 올렸지만, 고평가 부담과 금리 경계가 나스닥 일부 대형주를 압박했다.","score":100,"priority":100,"tags":["글로벌증시","마이크론","퀄컴","AI반도체","달러"]},
+    {"id":"main-20260626-0407-reuters-gold-pce-dollar-yields","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"미 PCE 확인 뒤 금값 반등, 달러·국채금리 하락에 안전자산 수요 회복","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/gold-extends-losses-fed-tightening-outlook-dollar-strength-2026-06-25/","description":"미국 물가 지표가 예상에 대체로 부합하자 추가 긴축 우려가 일부 완화되고 달러·금리가 내려 금 가격이 온스당 4천 달러대로 반등했다.","score":97,"priority":97,"tags":["금","PCE","달러","국채금리","연준"]},
+    {"id":"main-20260626-0407-ft-qualcomm-meta-data-center-chips","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"퀄컴, 메타를 첫 빅테크 데이터센터 칩 고객으로 확보…AI 서버 시장 진입 가속","publishedAt":"2026-06-25","date":"2026-06-25","source":"Financial Times","url":"https://www.ft.com/content/e9c2ef9c-856c-48cf-a47e-48a807519a2b","description":"퀄컴이 메타의 서버용 C1000 프로세서 도입 계획을 공개하며 스마트폰 의존도를 낮추고 AI 데이터센터 칩 시장 확장을 본격화했다.","score":96,"priority":96,"tags":["퀄컴","메타","AI데이터센터","C1000","반도체"]},
+    {"id":"main-20260626-0407-reuters-ukraine-preemptive-attacks-russia","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"젤렌스키, 러시아 전쟁시설 선제타격 지시…에너지 인프라 압박 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/ukraine-conduct-preemptive-attacks-facilities-russia-uses-war-zelenskiy-says-2026-06-25/","description":"우크라이나가 러시아 전쟁 수행에 쓰이는 시설을 선제적으로 공격하겠다고 밝히며 정유·전력 인프라를 겨냥한 압박 전략을 강화했다.","score":95,"priority":95,"tags":["우크라이나","러시아","젤렌스키","에너지인프라","드론"]},
+    {"id":"main-20260626-0407-ap-supreme-court-asylum-metering","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 국경 혼잡 시 망명 신청 제한 정책 부활 길 열어","publishedAt":"2026-06-25","date":"2026-06-25","source":"Associated Press","url":"https://apnews.com/article/d36d0092617c7115780c06de38e2000f","description":"미 연방대법원이 이른바 ‘미터링’ 정책을 허용하는 취지로 판단하면서 트럼프 행정부의 국경·망명 통제 권한이 커질 수 있게 됐다.","score":94,"priority":94,"tags":["미대법원","망명","이민정책","트럼프","국경"]},
+    {"id":"main-20260626-0407-reuters-south-africa-world-cup-last32","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"남아공, 한국 꺾고 사상 첫 월드컵 32강…캐나다와 토너먼트 격돌","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/sports/soccer/jubilation-south-africa-beat-south-korea-reach-world-cup-knockout-stage-first-time-2026-06-25/","description":"남아공이 한국을 1-0으로 꺾고 네 번째 월드컵 도전 만에 처음으로 조별리그를 통과해 공동 개최국 캐나다와 맞붙게 됐다.","score":92,"priority":92,"tags":["월드컵","남아공","한국","32강","축구"]},
+    {"id":"main-20260626-0407-ap-viking-textile-denmark","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"덴마크서 대형 바이킹 직물 생산 유적 발견, 조직적 생산경제 재조명","publishedAt":"2026-06-24","date":"2026-06-24","source":"Associated Press","url":"https://apnews.com/article/54f9b57b5485aa602591185ff3b911cd","description":"오르후스 인근 쇠프텐에서 80개 넘는 작업용 구덩이집과 아마 가공 흔적이 확인돼 바이킹 사회의 대규모 직물 생산 역량이 부각됐다.","score":88,"priority":88,"tags":["바이킹","덴마크","고고학","직물","문화유산"]}
+  ],
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "global": [],
+    "politics": [],
+    "play": [],
+    "culture": []
+  }
+}
