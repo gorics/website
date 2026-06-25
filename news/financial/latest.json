@@ -1,20 +1,29 @@
 {
-  "generatedAt": "2026-06-25T19:08:03+09:00",
+  "generatedAt": "2026-06-25T20:09:36+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
     {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
     {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
-    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":0},
-    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
-    {"id":"fx-rates","name":"금리·환율","icon":"💱","count":0}
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
+    {"id":"fx-rates","name":"금리·환율","icon":"💱","count":0},
+    {"id":"crypto-risk","name":"크립토 리스크","icon":"🪙","count":1}
   ],
-  "total": 4,
+  "total": 5,
   "allItems": [
-    {"id":"fin-20260625-1908-oil-hormuz-supply","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"유가 하락 지속, 호르무즈 통항 회복과 중동 공급 증가가 압박","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-prices-fall-tankers-exit-strait-hormuz-2026-06-25/","description":"브렌트와 WTI가 동반 하락했다. 해상 물동량 회복과 이란 수출 기대가 에너지 인플레이션 부담을 낮추는 재료다.","score":98,"priority":98,"tags":["유가","호르무즈","브렌트","WTI","에너지"]},
-    {"id":"fin-20260625-1908-korea-chip-rally","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"한국 반도체주 랠리, AI 메모리 공급계약과 미국 상장 기대 반영","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"마이크론 실적과 SK하이닉스 미국 상장 계획이 HBM·메모리 체인의 투자심리를 강화했다.","score":96,"priority":96,"tags":["반도체","SK하이닉스","삼성전자","마이크론","HBM"]},
-    {"id":"fin-20260625-1908-europe-ai-rally","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"유럽 증시 상승, AI 랠리와 유가 안정이 위험선호 개선","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-gain-upbeat-micron-forecast-revives-ai-rally-2026-06-25/","description":"STOXX 600이 상승했고 반도체·장비주가 주도했다. 유가 하락은 금리·인플레 부담 완화 신호로 해석됐다.","score":94,"priority":94,"tags":["유럽증시","AI랠리","STOXX600","ASML","유가"]},
-    {"id":"fin-20260625-1908-ukraine-russia-energy-risk","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"우크라이나 선제타격 방침, 러시아 에너지 인프라 리스크 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/ukraine-conduct-preemptive-attacks-facilities-russia-uses-war-zelenskiy-says-2026-06-25/","description":"러시아 정유·전력 시설을 겨냥한 공격 가능성이 커지며 연료 공급과 지정학 프리미엄 변동성이 재부각됐다.","score":90,"priority":90,"tags":["러시아","우크라이나","정유시설","지정학","에너지리스크"]}
+    {"id":"fin-20260625-2009-nasdaq-micron-qualcomm","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"마이크론·퀄컴 전망에 AI 인프라 투자심리 회복","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-jump-2-micron-qualcomm-forecasts-relieve-investors-2026-06-25/","description":"메모리와 데이터센터 칩 수요 전망이 상향되며 AI CAPEX 둔화 우려를 완화했고 나스닥 선물 반등을 촉발했다.","score":99,"priority":99,"tags":["AI인프라","마이크론","퀄컴","데이터센터","나스닥"]},
+    {"id":"fin-20260625-2009-global-markets-tech-oil","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"세계 증시 반등, 반도체 강세와 유가 하락이 동시 작용","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/119e56cb6b1fc041b46af9bb778bdf07","description":"일본·한국 기술주가 급등하고 유가가 내려가면서 위험자산 선호가 회복됐다.","score":96,"priority":96,"tags":["글로벌증시","반도체","유가","위험선호","아시아증시"]},
+    {"id":"fin-20260625-2009-europe-ai-rally","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"유럽 반도체주 상승, 마이크론 실적이 AI 랠리 재점화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-gain-upbeat-micron-forecast-revives-ai-rally-2026-06-25/","description":"ASML·인피니언 등 유럽 반도체 체인이 강세를 보이며 AI 수요 논쟁 속 매수세가 재유입됐다.","score":94,"priority":94,"tags":["유럽증시","ASML","인피니언","마이크론","AI반도체"]},
+    {"id":"fin-20260625-2009-ukraine-energy-risk","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"우크라이나 선제타격 방침, 러시아 에너지 인프라 변동성 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/ukraine-conduct-preemptive-attacks-facilities-russia-uses-war-zelenskiy-says-2026-06-25/","description":"정유·전력 시설 공격 가능성이 커지며 러시아 연료 공급과 지정학 프리미엄이 금융시장 변수로 남았다.","score":91,"priority":91,"tags":["에너지리스크","러시아","우크라이나","정유시설","지정학"]},
+    {"id":"fin-20260625-2009-thailand-crypto-crime","category":"crypto-risk","categoryName":"크립토 리스크","category_ko":"크립토 리스크","categoryIcon":"🪙","title":"태국 불법 채굴 수사, 암호화폐 범죄·전력 비용 리스크 부각","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/legal/government/thailand-seeks-arrest-fugitive-chinese-businessman-over-illegal-crypto-mining-2026-06-25/","description":"수천만달러 규모 전력 절도 의혹과 온라인 사기 자금세탁 수사가 맞물리며 크립토 규제 리스크가 커졌다.","score":86,"priority":86,"tags":["암호화폐","불법채굴","전력비용","자금세탁","태국"]}
   ],
-  "byCategory": {"global-markets": [],"semiconductors": [],"ai-infrastructure": [],"energy-geopolitics": [],"fx-rates": []}
+  "byCategory": {
+    "global-markets": [],
+    "semiconductors": [],
+    "ai-infrastructure": [],
+    "energy-geopolitics": [],
+    "fx-rates": [],
+    "crypto-risk": []
+  }
 }
