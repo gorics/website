@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-06-25T21:07:50+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎧","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"main-20260625-2107-reuters-oil-hormuz-prewar","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"🛢️","title":"호르무즈 통행 회복에 유가 전쟁 전 수준으로 하락","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/middle-east/oil-back-pre-war-levels-hormuz-traffic-rebounds-us-tries-reassure-gulf-allies-2026-06-25/","description":"호르무즈 해협 원유 흐름이 정상화에 가까워졌다는 미국 설명과 걸프 외교전이 맞물리며 에너지 프리미엄이 낮아졌다.","score":99,"priority":99,"tags":["유가","호르무즈","이란","걸프","에너지"]},
+    {"id":"main-20260625-2107-reuters-ibm-subnanometer-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"IBM, AI 연산용 0.7나노급 반도체 기술 공개","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM이 7옹스트롬급 나노스택 트랜지스터 기술을 공개하며 AI 칩 성능·전력효율 경쟁에 새 변수를 만들었다.","score":96,"priority":96,"tags":["IBM","반도체","AI칩","나노스택","무어의법칙"]},
+    {"id":"main-20260625-2107-reuters-venezuela-earthquake","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"베네수엘라 강진 피해 확대, 수천 명 사망 우려","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/environment/thousands-feared-dead-after-two-major-earthquakes-strike-venezuela-2026-06-25/","description":"카라카스 인근 연쇄 강진으로 건물 붕괴와 구조 지연이 이어지며 국제 구호와 에너지 인프라 영향이 주목된다.","score":98,"priority":98,"tags":["베네수엘라","지진","카라카스","재난","국제구호"]},
+    {"id":"main-20260625-2107-reuters-rubio-gulf-iran","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"루비오, 걸프 순방 마무리…이란 평화안 우려 진화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/middle-east/rubio-visits-bahrain-seeking-gulf-backing-iran-deal-2026-06-25/","description":"미국이 이란 합의가 걸프 동맹 안보를 해치지 않겠다고 강조했지만 호르무즈와 제재 완화 조건을 둘러싼 불안은 남았다.","score":92,"priority":92,"tags":["미국외교","이란","걸프","호르무즈","루비오"]},
+    {"id":"main-20260625-2107-reuters-kenya-protest-anniversary","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"케냐, 2024년 반정부 시위 희생자 추모 행진에 긴장 고조","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/africa/kenyans-march-mark-anniversary-deadly-2024-anti-government-protests-2026-06-25/","description":"나이로비와 몸바사에서 희생자 추모 행진이 열리고 경찰 배치가 강화되며 정부 책임론과 치안 리스크가 재부상했다.","score":88,"priority":88,"tags":["케냐","시위","나이로비","인권","정치불안"]},
+    {"id":"main-20260625-2107-reuters-brazil-scotland-worldcup","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"비니시우스 멀티골, 브라질 월드컵 조 1위로 32강 진출","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/sports/soccer/vinicius-fires-brazil-into-world-cup-knockouts-with-3-0-win-over-scotland-2026-06-25/","description":"브라질이 스코틀랜드를 3-0으로 꺾고 무실점 조 1위로 토너먼트에 올랐고, 네이마르 복귀도 관심을 모았다.","score":90,"priority":90,"tags":["월드컵","브라질","비니시우스","네이마르","스코틀랜드"]},
+    {"id":"main-20260625-2107-ap-america250-kickoff","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎆","title":"미국 건국 250주년 행사 개막, 내셔널몰 축제로 문화·정치 논쟁 병행","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/3119b0773f5e3f12d452e7cde4217c0b","description":"워싱턴 내셔널몰의 America 250 개막 행사가 대형 국가 기념행사로 시작됐지만 정치적 색채를 둘러싼 논쟁도 이어졌다.","score":82,"priority":82,"tags":["America250","미국문화","내셔널몰","기념행사","정치문화"]}
+  ],
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "global": [],
+    "politics": [],
+    "play": [],
+    "culture": []
+  }
+}
