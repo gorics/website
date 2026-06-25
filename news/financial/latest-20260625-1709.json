@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-06-25T17:09:03+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260625-1709-nasdaq-futures-ai-chip","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"나스닥 선물 2% 급등, AI 반도체 전망이 위험선호 회복","publishedAt":"2026-06-25T07:00:00Z","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-jump-2-micron-qualcomm-forecasts-relieve-investors-2026-06-25/","description":"마이크론과 퀄컴 전망이 AI 투자 우려를 완화하며 미국 지수선물과 글로벌 기술주에 강한 반등 신호를 줬다.","score":97,"priority":97,"tags":["나스닥선물","AI랠리","기술주","위험선호"]},
+    {"id":"fin-20260625-1709-micron-customer-deals","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"마이크론, AI 메모리 수요로 예상 상회 전망·220억달러 계약","publishedAt":"2026-06-24T20:19:00Z","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/business/micron-forecasts-quarterly-revenue-above-estimates-2026-06-24/","description":"AI 서버용 메모리 수요와 공급제약이 마이크론 실적 기대를 끌어올렸다. HBM·DRAM 가격과 반도체주 방향성의 핵심 재료다.","score":95,"priority":95,"tags":["마이크론","AI메모리","HBM","DRAM","반도체"]},
+    {"id":"fin-20260625-1709-openai-broadcom-chip","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"OpenAI 자체칩 공개, AI 인프라 공급망 재편 가속","publishedAt":"2026-06-24T00:00:00Z","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI의 브로드컴 협력 칩은 추론 비용과 공급망 통제력을 둘러싼 빅테크 투자 경쟁을 보여준다.","score":92,"priority":92,"tags":["OpenAI","Broadcom","AI인프라","추론칩","TSMC"]},
+    {"id":"fin-20260625-1709-france-nuclear-heat","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"폭염으로 프랑스 원전 출력 축소, 유럽 전력시장 압박","publishedAt":"2026-06-24T11:56:21Z","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/business/energy/europes-heatwave-curbs-french-nuclear-plants-2026-06-24/","description":"냉각수 제약에 따른 원전 출력 감축이 유럽 전력 가격을 밀어올렸다. 기후 리스크가 에너지 시장 변수로 부각됐다.","score":90,"priority":90,"tags":["프랑스원전","전력가격","폭염","기후리스크"]},
+    {"id":"fin-20260625-1709-russia-refinery-offline","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"모스크바 정유공장 장기 가동중단 전망, 러시아 연료난 심화","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/business/energy/moscow-oil-refinery-hit-by-drone-attacks-is-unlikely-resume-production-this-year-2026-06-24/","description":"드론 공격 피해를 입은 모스크바 정유공장이 올해 재가동되기 어려울 것으로 전해졌다. 러시아 내 연료가격과 수출 흐름에 충격이 예상된다.","score":89,"priority":89,"tags":["러시아","정유공장","연료난","우크라이나","원유"]}
+  ],
+  "byCategory": {
+    "global-markets": [],
+    "semiconductors": [],
+    "ai-infrastructure": [],
+    "energy-geopolitics": []
+  }
+}
