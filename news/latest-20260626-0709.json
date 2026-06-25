@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-06-26T07:09:53+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"main-20260626-0709-reuters-gold-pce-dollar-yields","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"미 PCE가 예상에 부합하자 금 반등…달러·국채금리 하락이 귀금속 매수 자극","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/gold-extends-losses-fed-tightening-outlook-dollar-strength-2026-06-25/","description":"미국 PCE 물가가 예상 수준에 머물자 달러와 국채금리가 낮아졌고, 금 가격은 4,000달러 선 회복 기대 속에 반등했다.","score":97,"priority":97,"tags":["금","PCE","달러","국채금리","연준"]},
+    {"id":"main-20260626-0709-ap-wall-street-micron-apple-mixed","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"월가 혼조 마감…마이크론 급등에도 애플 하락이 나스닥 부담","publishedAt":"2026-06-25","date":"2026-06-25","source":"Associated Press","url":"https://apnews.com/article/119e56cb6b1fc041b46af9bb778bdf07","description":"AI 메모리 수요로 마이크론이 급등했지만 애플 가격 인상 우려가 대형 기술주를 압박하며 미국 증시는 엇갈린 흐름을 보였다.","score":95,"priority":95,"tags":["월가","마이크론","애플","나스닥","AI"]},
+    {"id":"main-20260626-0709-reuters-micron-ai-memory-contracts","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"마이크론, AI 장기 공급계약으로 메모리 업황 사이클 완화 시도","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/legal/transactional/micron-joins-rivals-pitching-ai-deals-cure-memorys-boom-bust-cycle-2026-06-25/","description":"마이크론과 경쟁사들은 AI 고객과 장기 구매계약을 확대해 메모리 산업의 급등락을 줄이고 공급 가시성을 높이려 하고 있다.","score":96,"priority":96,"tags":["마이크론","HBM","AI메모리","삼성전자","SK하이닉스"]},
+    {"id":"main-20260626-0709-ap-venezuela-earthquake-survivors","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"베네수엘라 강진 사망자 188명…잔해 수색과 국제 지원 요청 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Associated Press","url":"https://apnews.com/article/0a62e6fc9feb5202a750c4fbb11a6aec","description":"북부 베네수엘라를 강타한 연속 지진으로 대규모 인명피해가 발생했고, 구조대는 생존자 수색과 주요 인프라 복구에 집중하고 있다.","score":98,"priority":98,"tags":["베네수엘라","지진","라과이라","재난","구조"]},
+    {"id":"main-20260626-0709-ap-supreme-court-hawaii-guns","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 하와이 총기 휴대 제한 위헌 판단…공개 사유지 규제에 영향","publishedAt":"2026-06-25","date":"2026-06-25","source":"Associated Press","url":"https://apnews.com/article/c5dbdf945bc870f70a03455f5eb1dec7","description":"대법원이 상점·호텔 등 공개된 사유지에서 총기 휴대 전 허가를 요구한 하와이 법을 위헌으로 판단하며 총기권 논쟁이 재점화됐다.","score":96,"priority":96,"tags":["미대법원","하와이","총기규제","수정헌법2조","정치"]},
+    {"id":"main-20260626-0709-ap-world-cup-halfway-104-matches","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"월드컵 104경기 중 54경기 완료…공동 개최국 동반 32강으로 흥행 가속","publishedAt":"2026-06-25","date":"2026-06-25","source":"Associated Press","url":"https://apnews.com/article/5379403678cb2eda3ba0da2c04c3e1e0","description":"미국·멕시코·캐나다가 모두 32강에 오르고 득점 페이스도 높아지며 확대 월드컵의 후반부 대진 관심이 커지고 있다.","score":92,"priority":92,"tags":["월드컵","32강","미국","멕시코","캐나다"]},
+    {"id":"main-20260626-0709-ap-venezuela-earthquake-photos-culture","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"AP 사진으로 본 베네수엘라 강진 피해…재난 기록과 공동체 회복의 현장","publishedAt":"2026-06-25","date":"2026-06-25","source":"Associated Press","url":"https://apnews.com/article/8ac96a783cd3c3b4312653806511d824","description":"AP 사진 갤러리는 붕괴 건물과 구조 현장, 주민들의 대응을 기록하며 대형 재난이 지역사회에 남긴 충격을 시각적으로 전한다.","score":88,"priority":88,"tags":["사진","베네수엘라","지진","재난기록","AP"]}
+  ],
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "global": [],
+    "politics": [],
+    "play": [],
+    "culture": []
+  }
+}
