@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-06-26T03:34:02+09:00",
+  "generatedAt": "2026-06-26T04:07:05+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
     {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
-    {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":0},
     {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
     {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
-    {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":0},
-    {"id":"trade-fx","name":"무역·환율","icon":"💱","count":0}
+    {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":1},
+    {"id":"trade-fx","name":"무역·환율","icon":"💱","count":1}
   ],
   "total": 5,
   "allItems": [
-    {"id":"fin-20260626-0334-oil-oman-hormuz-supply-risk","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"오만 인근 선박 피격에 유가 반등, 호르무즈 해협 리스크 재가격화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-prices-fall-tankers-exit-strait-hormuz-2026-06-25/","description":"화물선 피격과 해협 정상화 지연 우려가 브렌트·WTI를 끌어올리며 에너지 인플레이션과 아시아 수입국 비용 부담을 다시 키웠다.","score":100,"priority":100,"tags":["유가","호르무즈","오만","공급리스크","에너지"]},
-    {"id":"fin-20260626-0334-global-chip-stocks-micron-ai-rally","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"마이크론 호실적 이후 글로벌 반도체주 급등, AI 랠리 재개 신호","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"마이크론의 강한 실적과 수요 전망이 미국·유럽·한국 반도체주 전반의 위험선호를 되살리며 AI 인프라 투자 기대를 강화했다.","score":99,"priority":99,"tags":["마이크론","글로벌증시","AI랠리","반도체","HBM"]},
-    {"id":"fin-20260626-0334-kospi-sk-hynix-nasdaq-listing","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"SK하이닉스 미국 상장 추진에 코스피 급등, AI 메모리 기대 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Business Insider","url":"https://www.businessinsider.com/south-korea-kospi-stock-market-today-sk-hynix-nasdaq-listing-2026-6","description":"SK하이닉스의 나스닥 상장 추진과 마이크론 효과가 겹치며 한국 반도체주와 코스피 반등을 이끈 핵심 재료로 작용했다.","score":96,"priority":96,"tags":["SK하이닉스","나스닥","KOSPI","HBM","삼성전자"]},
-    {"id":"fin-20260626-0334-ibm-sub-one-nm-chip-ai-hardware","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"IBM 0.7나노 칩 기술 공개, 차세대 AI 반도체 공정 경쟁 심화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM의 나노스택 기술은 성능·전력 효율을 동시에 겨냥하며 첨단 공정 경쟁과 장기 라이선스 시장에 영향을 줄 수 있다.","score":95,"priority":95,"tags":["IBM","0.7나노","반도체공정","AI칩","나노스택"]},
-    {"id":"fin-20260626-0334-openai-broadcom-jalapeno-asic-followthrough","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"OpenAI 자체 ASIC 공개 여파, AI 인프라 비용 절감 경쟁 지속","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI·브로드컴 칩 공개는 빅테크가 GPU 의존도를 낮추고 추론 비용을 통제하려는 자체 반도체 전략의 핵심 사례다.","score":92,"priority":92,"tags":["OpenAI","브로드컴","ASIC","AI인프라","데이터센터"]}
+    {"id":"fin-20260626-0407-reuters-world-stocks-chip-dollar","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"세계 증시, AI 반도체 기대에 상승…달러는 고점권 유지","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/","description":"마이크론 전망과 퀄컴 데이터센터 매출 목표가 위험선호를 살렸지만, AI 밸류에이션 부담과 금리 경계가 시장 변동성을 남겼다.","score":100,"priority":100,"tags":["세계증시","AI반도체","마이크론","퀄컴","달러"]},
+    {"id":"fin-20260626-0407-reuters-qualcomm-meta-ai-datacenter","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"퀄컴, 메타 공급으로 AI 데이터센터 CPU 시장 진입 신호","publishedAt":"2026-06-25","date":"2026-06-25","source":"Financial Times","url":"https://www.ft.com/content/e9c2ef9c-856c-48cf-a47e-48a807519a2b","description":"메타의 C1000 도입과 2029년 데이터센터 매출 목표 상향은 AI 서버 칩 경쟁 구도와 퀄컴 비핸드셋 성장 전망을 동시에 부각했다.","score":98,"priority":98,"tags":["퀄컴","메타","데이터센터","AI칩","비핸드셋"]},
+    {"id":"fin-20260626-0407-reuters-gold-pce-fed","category":"rates-policy","categoryName":"금리·정책","category_ko":"금리·정책","categoryIcon":"🏦","title":"미 PCE 예상 부합에 금 반등, 연준 추가 긴축 베팅 일부 완화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/gold-extends-losses-fed-tightening-outlook-dollar-strength-2026-06-25/","description":"PCE가 예상선에 머물자 달러와 미 국채금리가 하락했고, 이는 금·은 등 귀금속 가격의 단기 반등을 이끌었다.","score":96,"priority":96,"tags":["PCE","금","연준","국채금리","달러"]},
+    {"id":"fin-20260626-0407-reuters-dollar-data-fed-yen","category":"trade-fx","categoryName":"무역·환율","category_ko":"무역·환율","categoryIcon":"💱","title":"미 달러, 13개월 고점 후 하락…물가·소비 지표가 금리 전망 흔들어","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/dollar-rides-high-fed-rate-hike-bets-2026-06-25/","description":"미국 물가가 높지만 예상에 부합하고 소비가 견조하게 나오면서 달러는 숨고르기에 들어갔고 엔화 약세는 개입 경계감을 키웠다.","score":94,"priority":94,"tags":["달러","엔화","PCE","환율","연준"]},
+    {"id":"fin-20260626-0407-reuters-ukraine-russia-energy-strikes","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"우크라이나 선제타격 방침, 러시아 정유·전력 인프라 리스크 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/ukraine-conduct-preemptive-attacks-facilities-russia-uses-war-zelenskiy-says-2026-06-25/","description":"러시아 에너지 시설 타격 확대는 연료 부족과 정유 차질을 심화시켜 유럽 에너지·원자재 시장의 지정학 프리미엄을 키울 수 있다.","score":93,"priority":93,"tags":["우크라이나","러시아","정유시설","에너지안보","지정학"]}
   ],
   "byCategory": {
     "global-markets": [],
