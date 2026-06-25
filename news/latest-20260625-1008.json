@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-06-25T10:08:20+09:00",
+  "source": "Latest public news overlay for GitHub Pages news site; generated from current public sources; merge ahead of data.json",
+  "page": "main-latest-overlay",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":3},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"latest-20260625-1008-reuters-micron-qualcomm-ai-chip-rally","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"마이크론·퀄컴 전망에 AI 반도체주 4천억 달러 랠리","description":"마이크론의 강한 실적 전망과 퀄컴의 데이터센터 매출 목표가 AI 반도체 전반의 매수세를 자극했다. 메모리·저장장치·장비주까지 동반 상승하며 기술주 변동성의 핵심 변수로 부상했다.","url":"https://www.reuters.com/business/micron-qualcomm-forecasts-ignite-400-billion-ai-chip-stock-rally-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":468,"tags":["마이크론","퀄컴","AI반도체","메모리","증시"]},
+    {"id":"latest-20260625-1008-reuters-sk-hynix-us-adr-listing","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"SK하이닉스, AI 수요 속 최대 294억 달러 미국 ADR 상장 추진","description":"SK하이닉스가 나스닥 ADR 상장으로 대규모 자금 조달을 추진한다. HBM 수요와 AI 인프라 투자 확대가 한국 반도체 기업의 글로벌 밸류에이션 재평가로 이어지고 있다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["SK하이닉스","ADR","나스닥","HBM","AI"]},
+    {"id":"latest-20260625-1008-ibd-dow-futures-micron-pce","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"마이크론 호실적에 나스닥 선물 급등, PCE 물가 대기","description":"마이크론 시간외 급등이 AI·메모리 관련주를 끌어올리며 미 주가지수 선물을 지지했다. 시장은 다음 변수로 5월 PCE 물가와 연준 금리 경로를 주시하고 있다.","url":"https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-micron-earnings-sandisk-memory-chip-stocks-fed-inflation-data/","source":{"name":"Investor's Business Daily"},"publishedAt":"2026-06-25","score":440,"tags":["나스닥선물","마이크론","PCE","연준","AI주"]},
+    {"id":"latest-20260625-1008-reuters-openai-broadcom-custom-chip","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"OpenAI, 브로드컴과 설계한 자체 AI칩 공개","description":"OpenAI가 브로드컴과 함께 설계한 첫 자체 AI칩을 공개하며 인프라 속도와 비용 통제에 나섰다. 빅테크의 맞춤형 가속기 경쟁이 더 치열해지고 있다.","url":"https://www.reuters.com/technology/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":432,"tags":["OpenAI","브로드컴","AI칩","데이터센터","인프라"]},
+    {"id":"latest-20260625-1008-reuters-europe-omega-heatwave","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"서유럽 ‘오메가’ 폭염, 기록 경신·정전·학교 폐쇄 확산","description":"서유럽에서 오메가 블로킹 패턴이 극심한 폭염을 가두며 영국·프랑스 최고기온 기록이 깨졌다. 전력·교통·학교·문화시설 운영 차질과 인명 피해가 이어지고 있다.","url":"https://www.reuters.com/business/environment/power-cuts-france-leave-thousands-sweltering-amid-scorching-heatwave-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":426,"tags":["유럽","폭염","기후위기","프랑스","영국"]},
+    {"id":"latest-20260625-1008-ap-trump-america-250-rally","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"트럼프, 미국 250주년 행사를 선거식 집회로 전환","description":"트럼프 대통령이 워싱턴 내셔널몰에서 미국 250주년 기념행사를 시작했다. 애국 행사와 군사 퍼포먼스가 중간선거 메시지와 결합되며 정치화 논란이 커졌다.","url":"https://apnews.com/article/75e2bb4f4d2b3f7ab8cdddb86879bec7","source":{"name":"AP"},"publishedAt":"2026-06-24","score":410,"tags":["트럼프","미국정치","250주년","중간선거","내셔널몰"]},
+    {"id":"latest-20260625-1008-reuters-ioc-charter-neutrality","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"IOC, 스포츠 중립성·올림픽 종목 구조 개정안 승인","description":"IOC가 정치·사회적 압력에서 스포츠를 보호한다는 명분의 헌장 개정을 승인했다. 러시아 선수 복귀 논란과 2032년 이후 올림픽 종목 평가 방식 변화가 핵심 쟁점이다.","url":"https://www.reuters.com/sports/ioc-consider-olympic-charter-neutrality-changes-with-russia-focus-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":390,"tags":["IOC","올림픽","러시아","스포츠정치","중립성"]},
+    {"id":"latest-20260625-1008-reuters-seattle-worldcup-pride-match","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"시애틀, 월드컵 ‘프라이드 매치’ 강행…이집트·이란 반발 속 포용 메시지","description":"시애틀 조직위가 월드컵 기간 프라이드 매치 계획을 유지한다. 이집트·이란의 반발에도 지역사회는 글로벌 스포츠 무대를 포용과 가시성의 장으로 만들겠다는 입장이다.","url":"https://www.reuters.com/sports/soccer/seattle-sticking-with-world-cup-pride-match-hoping-it-can-change-minds-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":376,"tags":["월드컵","시애틀","프라이드","LGBTQ","스포츠문화"]}
+  ]
+}
