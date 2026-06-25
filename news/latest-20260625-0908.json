@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-06-25T09:08:16+09:00",
+  "source": "Latest public news overlay archive for GitHub Pages news site; generated from current public sources; merge ahead of latest.json and data.json",
+  "page": "main-latest-overlay-archive",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":3},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"latest-20260625-0908-reuters-ai-chip-rally","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"마이크론·퀄컴 전망에 AI 반도체주 4천억달러 랠리","description":"마이크론의 강한 실적 전망과 퀄컴의 데이터센터 매출 목표가 반도체주 전반을 끌어올렸다. AI 인프라 수요가 다시 시장의 핵심 동력으로 부각됐다.","url":"https://www.reuters.com/business/micron-qualcomm-forecasts-ignite-400-billion-ai-chip-stock-rally-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":468,"tags":["AI반도체","마이크론","퀄컴","증시","데이터센터"]},
+    {"id":"latest-20260625-0908-reuters-sk-hynix-us-listing","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"SK하이닉스, AI 수요 속 최대 294억달러 미국 상장 추진","description":"SK하이닉스가 AI 투자 열기에 맞춰 대규모 미국 ADR 상장을 추진한다. 엔비디아 공급망과 HBM 수요 확대가 기업가치 재평가의 배경이다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":460,"tags":["SK하이닉스","HBM","AI","ADR","반도체"]},
+    {"id":"latest-20260625-0908-reuters-moscow-refinery-offline","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"모스크바 정유공장, 드론 피해로 연내 재가동 어려워 에너지 리스크 확대","description":"우크라이나 드론 공격을 받은 모스크바 핵심 정유공장이 최소 6개월 멈출 가능성이 제기됐다. 러시아 연료 공급과 디젤 수출 제한 논의가 시장 변수로 커졌다.","url":"https://www.reuters.com/business/energy/moscow-oil-refinery-hit-by-drone-attacks-is-unlikely-resume-production-this-year-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":454,"tags":["러시아","정유공장","우크라이나","연료난","에너지"]},
+    {"id":"latest-20260625-0908-reuters-russia-fuel-tax","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"러시아 의회, 연료난 대응 세제 변경 승인","description":"러시아가 정유시설 타격으로 인한 연료 부족을 완화하기 위해 저품질 혼합연료 허용과 수입 보조 등 세제 조정을 승인했다. 국내 공급 안정이 긴급 과제로 떠올랐다.","url":"https://www.reuters.com/business/energy/russias-parliament-approves-tax-changes-address-fuel-shortages-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":438,"tags":["러시아","연료","세제","정유","에너지정책"]},
+    {"id":"latest-20260625-0908-ap-trump-citizenship-vote-ruling","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"미 연방법원, 트럼프의 유권자 시민권 증명 요건 영구 차단","description":"보스턴 연방법원이 유권자 등록 때 시민권 증명을 요구하려던 트럼프 행정부의 선거 행정명령 핵심 조항을 영구 차단했다. 선거 규율 권한은 의회와 주에 있다는 판단이다.","url":"https://apnews.com/article/358912bcb6c7223b3d2d36465156fde9","source":{"name":"AP"},"publishedAt":"2026-06-24","score":430,"tags":["미국정치","선거법","트럼프","유권자등록","법원"]},
+    {"id":"latest-20260625-0908-ap-un-ai-energy-transparency","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"유엔 사무총장, AI 기업에 전력 사용 정보 공유 촉구","description":"유엔이 AI 기업의 전력·인프라 사용 투명성을 요구했다. 생성형 AI 확산으로 전력망, 기후정책, 데이터센터 규제가 국제 의제로 부상하고 있다.","url":"https://apnews.com/","source":{"name":"AP"},"publishedAt":"2026-06-25","score":382,"tags":["AI","유엔","전력","데이터센터","기후"]},
+    {"id":"latest-20260625-0908-reuters-switzerland-canada-worldcup","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"스위스, 캐나다 2-1 제압하고 월드컵 조 1위로 32강행","description":"스위스가 캐나다를 꺾고 월드컵 조 1위로 토너먼트에 올랐다. 공동 개최국 캐나다도 조 2위로 함께 진출하며 북미 흥행 흐름을 이어갔다.","url":"https://www.reuters.com/","source":{"name":"Reuters"},"publishedAt":"2026-06-25","score":366,"tags":["월드컵","스위스","캐나다","축구","토너먼트"]},
+    {"id":"latest-20260625-0908-ap-worldcup-ticket-scams","category":"culture","categoryName":"문화","categoryIcon":"🎬","title":"월드컵 티켓 사기 경고, 온라인 구매 보안 이슈 부각","description":"월드컵 열기가 커지며 온라인 티켓 사기 주의가 강조됐다. 대형 스포츠 이벤트가 디지털 소비자 보호와 플랫폼 신뢰 문제까지 확장되고 있다.","url":"https://apnews.com/","source":{"name":"AP"},"publishedAt":"2026-06-25","score":330,"tags":["월드컵","티켓","사기","온라인보안","문화소비"]}
+  ],
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "global": [],
+    "politics": [],
+    "play": [],
+    "culture": []
+  }
+}
