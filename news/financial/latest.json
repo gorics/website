@@ -1,21 +1,20 @@
 {
-  "generatedAt": "2026-06-25T22:07:04+09:00",
+  "generatedAt": "2026-06-25T22:32:08+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
-    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":2},
-    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
-    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":0},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":0},
     {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":0},
-    {"id":"fx-rates","name":"금리·환율","icon":"💱","count":0},
+    {"id":"fx-rates","name":"금리·환율","icon":"💱","count":2},
     {"id":"crypto-risk","name":"크립토 리스크","icon":"🪙","count":0}
   ],
-  "total": 4,
+  "total": 3,
   "allItems": [
-    {"id":"fin-20260625-2207-global-markets-ai-oil","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"AI 반도체 호실적에 글로벌 증시 반등, 유가 하락은 위험선호 보강","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/","description":"마이크론·퀄컴발 AI 랠리로 일본·한국·유럽 기술주가 상승했고, 브렌트유 하락은 인플레이션 부담을 낮췄다.","score":99,"priority":99,"tags":["글로벌시장","AI랠리","마이크론","퀄컴","유가"]},
-    {"id":"fin-20260625-2207-micron-qualcomm-chip-rally","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"마이크론·퀄컴 전망이 AI 칩주 약 4천억달러 랠리 견인","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/business/micron-qualcomm-forecasts-ignite-400-billion-ai-chip-stock-rally-2026-06-24/","description":"HBM·데이터센터 수요 전망이 반도체 밸류체인 전반의 투자심리를 되살린 핵심 촉매로 작용했다.","score":98,"priority":98,"tags":["반도체","HBM","마이크론","퀄컴","AI투자"]},
-    {"id":"fin-20260625-2207-ibm-subnanometer-chip","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"IBM 0.7나노급 기술 공개, AI 인프라 전력효율 경쟁 부각","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"전력효율과 집적도 개선 가능성이 데이터센터 비용 구조와 차세대 파운드리 로드맵의 핵심 변수로 떠올랐다.","score":96,"priority":96,"tags":["AI인프라","IBM","0.7나노","전력효율","데이터센터"]},
-    {"id":"fin-20260625-2207-europe-ai-rally","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"유럽 기술주, 마이크론발 AI 랠리에 동반 상승","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-gain-upbeat-micron-forecast-revives-ai-rally-2026-06-25/","description":"ASML 등 유럽 반도체 관련주가 강세를 보이며 AI 수요가 지역 증시에도 확산되는 흐름을 보였다.","score":92,"priority":92,"tags":["유럽증시","ASML","반도체","AI랠리","기술주"]}
+    {"id":"fin-20260625-2232-dollar-fed-rate-hike","category":"fx-rates","categoryName":"금리·환율","category_ko":"금리·환율","categoryIcon":"💱","title":"달러 13개월 고점, 연준 재인상 가능성에 환율 변동성 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/dollar-rides-high-fed-rate-hike-bets-2026-06-25/","description":"미 물가 지표와 금리 전망 변화로 달러 인덱스가 13개월 고점권에 머물며 주요 통화와 위험자산에 압력을 줬다.","score":98,"priority":98,"tags":["달러","연준","금리인상","환율","위험자산"]},
+    {"id":"fin-20260625-2232-pound-uk-political-risk","category":"fx-rates","categoryName":"금리·환율","category_ko":"금리·환율","categoryIcon":"💱","title":"파운드 월간 약세 확대, 영국 금리 기대와 정치 리스크 반영","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/uk/pound-heads-worst-monthly-performance-since-july-2026-06-25/","description":"유가 하락이 영란은행 긴축 기대를 낮추고 총리 사임 이후 정책 불확실성이 더해지며 파운드 매도 압력이 커졌다.","score":92,"priority":92,"tags":["파운드","영국정치","BOE","유가","환율"]},
+    {"id":"fin-20260625-2232-asia-currency-poll","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌏","title":"유가 안정에 루피아·루피 약세 베팅 완화, 원화는 여전히 부담","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/bears-loosen-grip-rupiah-rupee-lower-oil-prices-policy-support-2026-06-25/","description":"로이터 조사에서 인도네시아 루피아·인도 루피 매도 심리는 완화됐지만, 원화와 일부 아시아 통화는 강달러 압력에 취약했다.","score":90,"priority":90,"tags":["아시아통화","원화","루피아","루피","유가"]}
   ],
-  "byCategory": {"global-markets":[],"semiconductors":[],"ai-infrastructure":[],"energy-geopolitics":[],"fx-rates":[],"crypto-risk":[]}
+  "byCategory": {"global-markets": [],"semiconductors": [],"ai-infrastructure": [],"energy-geopolitics": [],"fx-rates": [],"crypto-risk": []}
 }
