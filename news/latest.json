@@ -1,27 +1,30 @@
 {
-  "generatedAt": "2026-06-25T20:09:36+09:00",
+  "generatedAt": "2026-06-25T20:35:36+09:00",
   "source": "gorics-news-automation",
   "page": "news",
   "categories": [
-    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"economy","name":"경제","icon":"📈","count":3},
     {"id":"tech","name":"기술","icon":"🤖","count":1},
     {"id":"global","name":"국제","icon":"🌍","count":1},
     {"id":"politics","name":"정치","icon":"🏛️","count":1},
-    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":2},
     {"id":"culture","name":"문화","icon":"🎧","count":1}
   ],
-  "total": 7,
+  "total": 9,
   "allItems": [
+    {"id":"main-20260625-2035-reuters-global-chip-stocks","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"💾","title":"마이크론발 AI 랠리, 한국·유럽 반도체주 동반 급등","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"마이크론의 호실적과 고객 물량 약정이 AI 메모리 수요 신뢰를 높이며 SK하이닉스·삼성전자·유럽 반도체주까지 끌어올렸다.","score":98,"priority":98,"tags":["마이크론","SK하이닉스","삼성전자","AI반도체","유럽증시"]},
     {"id":"main-20260625-2009-reuters-nasdaq-micron-qualcomm","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"나스닥 선물 2% 급등, 마이크론·퀄컴 전망이 AI 투자 불안 완화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-jump-2-micron-qualcomm-forecasts-relieve-investors-2026-06-25/","description":"마이크론의 대규모 메모리 수요와 퀄컴의 데이터센터 매출 전망이 AI 인프라 투자심리를 되살리며 기술주 반등을 이끌었다.","score":99,"priority":99,"tags":["나스닥","마이크론","퀄컴","AI인프라","기술주"]},
     {"id":"main-20260625-2009-ap-global-markets-tech-oil","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"🌐","title":"세계 증시 반등, 기술주 강세와 유가 하락이 위험선호 회복","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/119e56cb6b1fc041b46af9bb778bdf07","description":"아시아·유럽 증시가 반도체주 중심으로 올랐고, 유가 하락은 인플레이션 부담 완화 재료로 작용했다.","score":96,"priority":96,"tags":["세계증시","기술주","유가","니케이","코스피"]},
     {"id":"main-20260625-2009-reuters-thailand-crypto-mining","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🪙","title":"태국, 불법 암호화폐 채굴·사기 연루 중국 사업가 체포영장","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/legal/government/thailand-seeks-arrest-fugitive-chinese-businessman-over-illegal-crypto-mining-2026-06-25/","description":"동남아 온라인 사기·불법 채굴 단속이 강화되며 디지털 자산 범죄와 전력 절도 리스크가 다시 부각됐다.","score":89,"priority":89,"tags":["암호화폐","불법채굴","태국","온라인사기","디지털범죄"]},
     {"id":"main-20260625-2009-reuters-ukraine-preemptive-energy","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"우크라이나, 러시아 전쟁 지원 시설 선제타격 방침 공식화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/ukraine-conduct-preemptive-attacks-facilities-russia-uses-war-zelenskiy-says-2026-06-25/","description":"젤렌스키 대통령이 러시아 에너지·군수 인프라를 겨냥한 선제 행동을 지시하며 전쟁의 에너지 리스크가 커졌다.","score":92,"priority":92,"tags":["우크라이나","러시아","젤렌스키","에너지시설","전쟁"]},
     {"id":"main-20260625-2009-ap-trump-supplemental-budget","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"백악관, 이란전 비용·농가 지원·에볼라 대응 포함 876억달러 추가예산 요청","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/c0cbd21df91c48fa821fc21e021d8831","description":"이란전 군비 보전과 농가 지원, 에볼라 대응 예산이 묶인 요청안이 의회 전쟁권한 논쟁과 재정 부담 논란을 키웠다.","score":90,"priority":90,"tags":["미국정치","추가예산","이란전","에볼라","의회"]},
+    {"id":"main-20260625-2035-reuters-south-africa-korea-world-cup","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"남아공, 한국 꺾고 사상 첫 월드컵 토너먼트 진출","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/sports/soccer/south-africa-beat-south-korea-reach-world-cup-knockout-stage-first-time-2026-06-25/","description":"남아공이 한국을 1-0으로 꺾고 사상 처음 월드컵 32강에 올랐고, 한국은 3위 와일드카드 가능성만 남겼다.","score":91,"priority":91,"tags":["월드컵","남아공","한국","32강","축구"]},
     {"id":"main-20260625-2009-reuters-neymar-brazil-comeback","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"네이마르, 981일 만의 브라질 대표팀 복귀 후 눈물","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/sports/soccer/neymar-sheds-tears-dressing-room-after-emotional-brazil-comeback-2026-06-25/","description":"브라질의 월드컵 승리 속 네이마르가 장기 부상 공백을 끝내고 대표팀에 복귀하며 대회 서사의 중심에 섰다.","score":86,"priority":86,"tags":["월드컵","네이마르","브라질","복귀","축구"]},
     {"id":"main-20260625-2009-axios-obama-center-tickets","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🏛️","title":"오바마 대통령센터 추가 입장권 공개, 개관 직후 방문 수요 급증","publishedAt":"2026-06-25","date":"2026-06-25","source":"Axios","url":"https://www.axios.com/local/chicago/2026/06/24/obama-presidential-center-tickets-july-8-sale-september-january-2027","description":"시카고 오바마 대통령센터가 추가 관람권 일정을 내놓으며 새 문화·역사 공간에 대한 관심이 이어지고 있다.","score":78,"priority":78,"tags":["오바마센터","시카고","문화공간","박물관","관람권"]}
   ],
   "byCategory": {
     "economy": [
+      {"id":"main-20260625-2035-reuters-global-chip-stocks","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"💾","title":"마이크론발 AI 랠리, 한국·유럽 반도체주 동반 급등","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"마이크론의 호실적과 고객 물량 약정이 AI 메모리 수요 신뢰를 높이며 SK하이닉스·삼성전자·유럽 반도체주까지 끌어올렸다.","score":98,"priority":98,"tags":["마이크론","SK하이닉스","삼성전자","AI반도체","유럽증시"]},
       {"id":"main-20260625-2009-reuters-nasdaq-micron-qualcomm","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"나스닥 선물 2% 급등, 마이크론·퀄컴 전망이 AI 투자 불안 완화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-jump-2-micron-qualcomm-forecasts-relieve-investors-2026-06-25/","description":"마이크론의 대규모 메모리 수요와 퀄컴의 데이터센터 매출 전망이 AI 인프라 투자심리를 되살리며 기술주 반등을 이끌었다.","score":99,"priority":99,"tags":["나스닥","마이크론","퀄컴","AI인프라","기술주"]},
       {"id":"main-20260625-2009-ap-global-markets-tech-oil","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"🌐","title":"세계 증시 반등, 기술주 강세와 유가 하락이 위험선호 회복","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/119e56cb6b1fc041b46af9bb778bdf07","description":"아시아·유럽 증시가 반도체주 중심으로 올랐고, 유가 하락은 인플레이션 부담 완화 재료로 작용했다.","score":96,"priority":96,"tags":["세계증시","기술주","유가","니케이","코스피"]}
     ],
@@ -35,6 +38,7 @@
       {"id":"main-20260625-2009-ap-trump-supplemental-budget","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"백악관, 이란전 비용·농가 지원·에볼라 대응 포함 876억달러 추가예산 요청","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/c0cbd21df91c48fa821fc21e021d8831","description":"이란전 군비 보전과 농가 지원, 에볼라 대응 예산이 묶인 요청안이 의회 전쟁권한 논쟁과 재정 부담 논란을 키웠다.","score":90,"priority":90,"tags":["미국정치","추가예산","이란전","에볼라","의회"]}
     ],
     "play": [
+      {"id":"main-20260625-2035-reuters-south-africa-korea-world-cup","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"남아공, 한국 꺾고 사상 첫 월드컵 토너먼트 진출","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/sports/soccer/south-africa-beat-south-korea-reach-world-cup-knockout-stage-first-time-2026-06-25/","description":"남아공이 한국을 1-0으로 꺾고 사상 처음 월드컵 32강에 올랐고, 한국은 3위 와일드카드 가능성만 남겼다.","score":91,"priority":91,"tags":["월드컵","남아공","한국","32강","축구"]},
       {"id":"main-20260625-2009-reuters-neymar-brazil-comeback","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"네이마르, 981일 만의 브라질 대표팀 복귀 후 눈물","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/sports/soccer/neymar-sheds-tears-dressing-room-after-emotional-brazil-comeback-2026-06-25/","description":"브라질의 월드컵 승리 속 네이마르가 장기 부상 공백을 끝내고 대표팀에 복귀하며 대회 서사의 중심에 섰다.","score":86,"priority":86,"tags":["월드컵","네이마르","브라질","복귀","축구"]}
     ],
     "culture": [
