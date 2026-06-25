@@ -1,20 +1,29 @@
 {
-  "generatedAt": "2026-06-25T22:32:08+09:00",
+  "generatedAt": "2026-06-25T23:09:42+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
     {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
-    {"id":"semiconductors","name":"반도체","icon":"💾","count":0},
-    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":0},
-    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":0},
-    {"id":"fx-rates","name":"금리·환율","icon":"💱","count":2},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
+    {"id":"fx-rates","name":"금리·환율","icon":"💱","count":0},
     {"id":"crypto-risk","name":"크립토 리스크","icon":"🪙","count":0}
   ],
-  "total": 3,
+  "total": 5,
   "allItems": [
-    {"id":"fin-20260625-2232-dollar-fed-rate-hike","category":"fx-rates","categoryName":"금리·환율","category_ko":"금리·환율","categoryIcon":"💱","title":"달러 13개월 고점, 연준 재인상 가능성에 환율 변동성 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/dollar-rides-high-fed-rate-hike-bets-2026-06-25/","description":"미 물가 지표와 금리 전망 변화로 달러 인덱스가 13개월 고점권에 머물며 주요 통화와 위험자산에 압력을 줬다.","score":98,"priority":98,"tags":["달러","연준","금리인상","환율","위험자산"]},
-    {"id":"fin-20260625-2232-pound-uk-political-risk","category":"fx-rates","categoryName":"금리·환율","category_ko":"금리·환율","categoryIcon":"💱","title":"파운드 월간 약세 확대, 영국 금리 기대와 정치 리스크 반영","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/uk/pound-heads-worst-monthly-performance-since-july-2026-06-25/","description":"유가 하락이 영란은행 긴축 기대를 낮추고 총리 사임 이후 정책 불확실성이 더해지며 파운드 매도 압력이 커졌다.","score":92,"priority":92,"tags":["파운드","영국정치","BOE","유가","환율"]},
-    {"id":"fin-20260625-2232-asia-currency-poll","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌏","title":"유가 안정에 루피아·루피 약세 베팅 완화, 원화는 여전히 부담","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/bears-loosen-grip-rupiah-rupee-lower-oil-prices-policy-support-2026-06-25/","description":"로이터 조사에서 인도네시아 루피아·인도 루피 매도 심리는 완화됐지만, 원화와 일부 아시아 통화는 강달러 압력에 취약했다.","score":90,"priority":90,"tags":["아시아통화","원화","루피아","루피","유가"]}
+    {"id":"fin-20260625-2309-global-markets-ai-chip-rally","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"AI 반도체 호실적에 글로벌 증시 반등, 유가 하락은 인플레 우려 완화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/","description":"마이크론·퀄컴발 AI 수요 안도감이 증시를 밀어올렸고, 브렌트유 약세는 채권금리와 인플레이션 기대를 낮추는 재료가 됐다.","score":99,"priority":99,"tags":["증시","나스닥","AI","유가","채권금리"]},
+    {"id":"fin-20260625-2309-micron-global-chip-rally","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"마이크론 실적 서프라이즈에 글로벌 메모리·반도체주 동반 랠리","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"HBM 공급 부족과 고객 선주문이 확인되며 메모리 가격 사이클과 AI 인프라 투자 지속성에 대한 시장 신뢰가 회복됐다.","score":98,"priority":98,"tags":["마이크론","HBM","메모리","SK하이닉스","삼성전자"]},
+    {"id":"fin-20260625-2309-ibm-sub-nano-chip","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"IBM 0.7나노 칩 기술, 장기 AI 인프라 효율 경쟁 변수로 부상","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM의 초미세 공정 발표는 데이터센터 전력 효율과 첨단 파운드리 경쟁 구도에 중장기 영향을 줄 수 있는 기술 이벤트다.","score":94,"priority":94,"tags":["IBM","AI인프라","공정기술","전력효율","데이터센터"]},
+    {"id":"fin-20260625-2309-ukraine-russia-energy-strikes","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"우크라이나 선제 타격 방침, 러시아 정유 차질과 에너지 리스크 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/ukraine-conduct-preemptive-attacks-facilities-russia-uses-war-zelenskiy-says-2026-06-25/","description":"러시아 정유·전력 인프라 타격이 연료 부족과 수출 흐름 변화로 이어지며 원유·석유제품 시장의 지정학 프리미엄을 흔들고 있다.","score":93,"priority":93,"tags":["우크라이나","러시아","정유","원유","지정학"]},
+    {"id":"fin-20260625-2309-russia-record-oil-exports","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"러시아, 정유 차질 속 서부항 원유 수출 사상 최대 전망","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/business/energy/russia-set-export-record-oil-volumes-from-western-ports-june-sources-say-2026-06-24/","description":"정유공장 피격으로 처리하지 못한 원유가 수출로 전환되며 러시아 서부항 선적 증가가 국제 유가의 하방 압력으로 작용할 수 있다.","score":91,"priority":91,"tags":["러시아원유","수출","정유차질","유가","서방제재"]}
   ],
-  "byCategory": {"global-markets": [],"semiconductors": [],"ai-infrastructure": [],"energy-geopolitics": [],"fx-rates": [],"crypto-risk": []}
+  "byCategory": {
+    "global-markets": [],
+    "semiconductors": [],
+    "ai-infrastructure": [],
+    "energy-geopolitics": [],
+    "fx-rates": [],
+    "crypto-risk": []
+  }
 }
