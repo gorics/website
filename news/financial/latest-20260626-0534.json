@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-06-26T05:34:58+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
+    {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":1},
+    {"id":"trade-fx","name":"무역·환율","icon":"💱","count":0}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260626-0534-reuters-global-chip-stocks-micron-ai-memory","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"마이크론발 글로벌 칩주 랠리, AI 메모리 공급 부족 전망이 주가 재평가 촉발","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"마이크론의 호실적과 장기 공급 약정은 HBM·메모리 업사이클 기대를 강화했고, 한국·유럽·미국 반도체주 전반의 위험선호를 끌어올렸다.","score":100,"priority":100,"tags":["마이크론","HBM","SK하이닉스","AI메모리","반도체"]},
+    {"id":"fin-20260626-0534-reuters-markets-dollar-high-oil-gold","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"글로벌 증시 약세 속 달러 1년 고점, 금 7개월 저점권…위험자산 부담 확대","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-24/","description":"밸류에이션 부담과 안전자산 수요로 달러가 강세를 보이고 금은 밀렸으며, 원유는 호르무즈 통항 재개 기대 속 4개월 저점권에 머물렀다.","score":97,"priority":97,"tags":["글로벌증시","달러","금","유가","호르무즈"]},
+    {"id":"fin-20260626-0534-reuters-ibm-sub-1nm-ai-chip-licensing","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"IBM 0.7나노 칩 기술, AI 인프라 전력효율 경쟁과 파운드리 라이선스 기대 부각","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"수직 적층 트랜지스터 기술은 AI 연산용 칩의 성능·전력비 개선을 겨냥하며, IBM의 반도체 IP 라이선스와 첨단공정 생태계에 투자 포인트를 만든다.","score":95,"priority":95,"tags":["IBM","AI칩","첨단공정","파운드리","전력효율"]},
+    {"id":"fin-20260626-0534-reuters-oil-hormuz-tankers-dollar","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"호르무즈 통항 재개 기대에도 유가 변동성 지속…중동 리스크 프리미엄 재조정","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-24/","description":"걸프 유조선 운항 재개 기대가 유가를 낮췄지만 지정학 리스크와 달러 강세가 맞물려 에너지 시장의 방향성 불확실성이 이어졌다.","score":94,"priority":94,"tags":["유가","호르무즈","중동리스크","원유","달러"]},
+    {"id":"fin-20260626-0534-reuters-us-homebuilders-housing-bill","category":"rates-policy","categoryName":"금리·정책","category_ko":"금리·정책","categoryIcon":"🏦","title":"미 주택공급 법안 통과에 홈빌더주 급등…서명 지연에도 장기 공급 확대 기대","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/us/us-homebuilders-advance-after-congress-passes-affordable-housing-bill-2026-06-24/","description":"초당적 주택법안이 의회를 통과하자 D.R.호튼·레나 등 홈빌더주가 올랐고, 높은 금리와 공급 부족에 시달리는 주택시장에 중장기 정책 기대가 붙었다.","score":93,"priority":93,"tags":["미국주택","홈빌더","금리","주택공급","정책"]}
+  ],
+  "byCategory": {
+    "global-markets": [],
+    "semiconductors": [],
+    "ai-infrastructure": [],
+    "energy-geopolitics": [],
+    "rates-policy": [],
+    "trade-fx": []
+  }
+}
