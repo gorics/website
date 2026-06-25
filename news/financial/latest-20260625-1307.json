@@ -1,0 +1,74 @@
+{
+  "generatedAt": "2026-06-25T04:07:17Z",
+  "source": "hourly-public-news-overlay",
+  "page": "financial",
+  "categories": ["semiconductors", "globalMarkets", "energy"],
+  "total": 4,
+  "allItems": [
+    {
+      "id": "fin-20260625-1307-korea-chip-rally",
+      "category": "semiconductors",
+      "categoryName": "반도체",
+      "category_ko": "반도체",
+      "categoryIcon": "💾",
+      "title": "한국 반도체주, 마이크론 AI 수요 전망에 급등",
+      "publishedAt": "2026-06-25",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/",
+      "description": "마이크론의 강한 실적과 AI 메모리 수요 전망이 삼성전자·SK하이닉스 랠리로 이어져 한국 증시를 끌어올렸다.",
+      "score": 99,
+      "priority": 99,
+      "tags": ["반도체", "AI", "마이크론", "SK하이닉스", "삼성전자"]
+    },
+    {
+      "id": "fin-20260625-1307-asia-markets-ai-relief",
+      "category": "globalMarkets",
+      "categoryName": "글로벌시장",
+      "category_ko": "글로벌시장",
+      "categoryIcon": "📈",
+      "title": "아시아 증시, AI 밸류에이션 불안 완화에 상승",
+      "publishedAt": "2026-06-25",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/",
+      "description": "마이크론·퀄컴발 반도체 호재가 AI 투자심리를 되살리며 아시아 주요 지수를 밀어 올렸다.",
+      "score": 96,
+      "priority": 96,
+      "tags": ["아시아증시", "AI", "마이크론", "퀄컴", "위험선호"]
+    },
+    {
+      "id": "fin-20260625-1307-russia-refinery-outage",
+      "category": "energy",
+      "categoryName": "에너지·지정학",
+      "category_ko": "에너지·지정학",
+      "categoryIcon": "🛢️",
+      "title": "모스크바 정유공장 장기 가동 중단 전망, 러시아 연료난 심화",
+      "publishedAt": "2026-06-24",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/energy/moscow-oil-refinery-hit-by-drone-attacks-is-unlikely-resume-production-this-year-2026-06-24/",
+      "description": "우크라이나 드론 공격 피해로 모스크바 정유공장 재가동이 올해 어려울 수 있다는 관측이 나오며 러시아 내 연료 공급 불안이 커졌다.",
+      "score": 93,
+      "priority": 93,
+      "tags": ["러시아", "정유", "유가", "우크라이나", "연료난"]
+    },
+    {
+      "id": "fin-20260625-1307-russia-oil-export-pressure",
+      "category": "energy",
+      "categoryName": "에너지·지정학",
+      "category_ko": "에너지·지정학",
+      "categoryIcon": "⛽",
+      "title": "러시아, 정유 차질 속 서부항 원유 수출 확대 전망",
+      "publishedAt": "2026-06-24",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/energy/russia-set-export-record-oil-volumes-western-ports-june-sources-say-2026-06-24/",
+      "description": "정유시설 피해로 내수 연료 부족이 커지는 가운데 러시아가 원유를 수출시장으로 돌리며 국제 유가에 하방 압력을 줄 수 있다는 분석이 나왔다.",
+      "score": 90,
+      "priority": 90,
+      "tags": ["원유", "러시아", "수출", "정유시설", "유가"]
+    }
+  ],
+  "byCategory": {
+    "semiconductors": [],
+    "globalMarkets": [],
+    "energy": []
+  }
+}
