@@ -1,0 +1,102 @@
+{
+  "generatedAt": "2026-06-25T16:08:27+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": ["economy", "tech", "finance"],
+  "total": 5,
+  "allItems": [
+    {
+      "id": "main-20260625-1608-ai-chip-rally",
+      "category": "economy",
+      "categoryName": "경제",
+      "category_ko": "경제",
+      "categoryIcon": "💹",
+      "title": "마이크론·퀄컴 전망에 AI 반도체 랠리 재점화",
+      "publishedAt": "2026-06-25T02:28:36Z",
+      "date": "2026-06-25",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/",
+      "description": "마이크론 실적과 퀄컴 데이터센터 매출 전망이 AI 수요 우려를 완화하며 아시아 증시와 반도체주를 끌어올렸다.",
+      "score": 96,
+      "priority": 96,
+      "tags": ["AI", "반도체", "증시", "마이크론", "퀄컴"]
+    },
+    {
+      "id": "main-20260625-1608-korea-chip-shares",
+      "category": "economy",
+      "categoryName": "경제",
+      "category_ko": "경제",
+      "categoryIcon": "📈",
+      "title": "한국 반도체주, 마이크론 호실적·SK하이닉스 미국 상장 계획에 급등",
+      "publishedAt": "2026-06-25T01:00:01Z",
+      "date": "2026-06-25",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/",
+      "description": "SK하이닉스와 삼성전자가 AI 메모리 수요 기대와 미국 ADR 상장 가능성에 힘입어 큰 폭으로 상승했다.",
+      "score": 95,
+      "priority": 95,
+      "tags": ["SK하이닉스", "삼성전자", "ADR", "HBM", "KOSPI"]
+    },
+    {
+      "id": "main-20260625-1608-openai-broadcom-chip",
+      "category": "tech",
+      "categoryName": "기술",
+      "category_ko": "기술",
+      "categoryIcon": "🤖",
+      "title": "OpenAI, 브로드컴과 설계한 자체 AI 칩 공개",
+      "publishedAt": "2026-06-24T00:00:00Z",
+      "date": "2026-06-24",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/",
+      "description": "OpenAI가 추론용 자체 칩을 공개하며 엔비디아 의존도를 낮추고 AI 인프라 확보 경쟁에 직접 뛰어들었다.",
+      "score": 94,
+      "priority": 94,
+      "tags": ["OpenAI", "Broadcom", "AI칩", "TSMC", "인프라"]
+    },
+    {
+      "id": "financial-20260625-1608-ai-chip-400b",
+      "category": "finance",
+      "categoryName": "금융",
+      "category_ko": "금융",
+      "categoryIcon": "💵",
+      "title": "마이크론·퀄컴 전망, AI 칩주 시총 4천억 달러 랠리 촉발",
+      "publishedAt": "2026-06-24T23:50:24Z",
+      "date": "2026-06-24",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/micron-qualcomm-forecasts-ignite-400-billion-ai-chip-stock-rally-2026-06-24/",
+      "description": "AI 인프라 지출이 메모리·데이터센터 칩 매출로 이어질 수 있다는 전망이 반도체 전반의 투자심리를 되살렸다.",
+      "score": 97,
+      "priority": 97,
+      "tags": ["AI랠리", "반도체", "시총", "마이크론", "퀄컴"]
+    },
+    {
+      "id": "financial-20260625-1608-sk-hynix-us-listing",
+      "category": "finance",
+      "categoryName": "금융",
+      "category_ko": "금융",
+      "categoryIcon": "🏦",
+      "title": "SK하이닉스, 미국 상장으로 최대 294억 달러 조달 추진",
+      "publishedAt": "2026-06-24T00:00:00Z",
+      "date": "2026-06-24",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-raise-up-29-billion-us-listing-2026-06-24/",
+      "description": "SK하이닉스가 미국 ADR 상장으로 AI 메모리 생산 확대 자금을 조달하려 하며 글로벌 반도체 밸류에이션 재평가 기대가 커졌다.",
+      "score": 94,
+      "priority": 94,
+      "tags": ["SK하이닉스", "ADR", "자금조달", "AI메모리"]
+    }
+  ],
+  "byCategory": {
+    "economy": [
+      {"id":"main-20260625-1608-ai-chip-rally","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"💹","title":"마이크론·퀄컴 전망에 AI 반도체 랠리 재점화","publishedAt":"2026-06-25T02:28:36Z","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/","description":"마이크론 실적과 퀄컴 데이터센터 매출 전망이 AI 수요 우려를 완화하며 아시아 증시와 반도체주를 끌어올렸다.","score":96,"priority":96,"tags":["AI","반도체","증시","마이크론","퀄컴"]},
+      {"id":"main-20260625-1608-korea-chip-shares","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"한국 반도체주, 마이크론 호실적·SK하이닉스 미국 상장 계획에 급등","publishedAt":"2026-06-25T01:00:01Z","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"SK하이닉스와 삼성전자가 AI 메모리 수요 기대와 미국 ADR 상장 가능성에 힘입어 큰 폭으로 상승했다.","score":95,"priority":95,"tags":["SK하이닉스","삼성전자","ADR","HBM","KOSPI"]}
+    ],
+    "tech": [
+      {"id":"main-20260625-1608-openai-broadcom-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"OpenAI, 브로드컴과 설계한 자체 AI 칩 공개","publishedAt":"2026-06-24T00:00:00Z","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI가 추론용 자체 칩을 공개하며 엔비디아 의존도를 낮추고 AI 인프라 확보 경쟁에 직접 뛰어들었다.","score":94,"priority":94,"tags":["OpenAI","Broadcom","AI칩","TSMC","인프라"]}
+    ],
+    "finance": [
+      {"id":"financial-20260625-1608-ai-chip-400b","category":"finance","categoryName":"금융","category_ko":"금융","categoryIcon":"💵","title":"마이크론·퀄컴 전망, AI 칩주 시총 4천억 달러 랠리 촉발","publishedAt":"2026-06-24T23:50:24Z","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/business/micron-qualcomm-forecasts-ignite-400-billion-ai-chip-stock-rally-2026-06-24/","description":"AI 인프라 지출이 메모리·데이터센터 칩 매출로 이어질 수 있다는 전망이 반도체 전반의 투자심리를 되살렸다.","score":97,"priority":97,"tags":["AI랠리","반도체","시총","마이크론","퀄컴"]},
+      {"id":"financial-20260625-1608-sk-hynix-us-listing","category":"finance","categoryName":"금융","category_ko":"금융","categoryIcon":"🏦","title":"SK하이닉스, 미국 상장으로 최대 294억 달러 조달 추진","publishedAt":"2026-06-24T00:00:00Z","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-raise-up-29-billion-us-listing-2026-06-24/","description":"SK하이닉스가 미국 ADR 상장으로 AI 메모리 생산 확대 자금을 조달하려 하며 글로벌 반도체 밸류에이션 재평가 기대가 커졌다.","score":94,"priority":94,"tags":["SK하이닉스","ADR","자금조달","AI메모리"]}
+    ]
+  }
+}
