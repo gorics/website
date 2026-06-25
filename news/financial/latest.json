@@ -1,29 +1,22 @@
 {
-  "generatedAt": "2026-06-26T00:10:03+09:00",
+  "generatedAt": "2026-06-26T00:35:07+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
-    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":3},
     {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
-    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":0},
-    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
-    {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":1},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":0},
+    {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":0},
     {"id":"trade-fx","name":"무역·환율","icon":"💱","count":0}
   ],
   "total": 5,
   "allItems": [
-    {"id":"fin-20260626-0010-hormuz-crude-shipments","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"호르무즈 원유 선적 회복, 중동 리스크 프리미엄 일부 축소","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/crude-shipments-through-hormuz-highest-since-war-amid-concerns-over-iran-exit-2026-06-25/","description":"휴전 이후 원유 선적이 늘며 공급 우려가 완화됐지만, 이란의 항로 통제와 안전 리스크가 유가 변동성의 핵심 변수로 남았다.","score":99,"priority":99,"tags":["호르무즈","원유선적","유가","중동리스크","해운"]},
-    {"id":"fin-20260626-0010-china-iran-oil-imports","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"중국 국영 정유사 이란산 원유 재개 검토, 아시아 원유 수급 변수","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/china-state-refiners-considering-resuming-iran-oil-imports-sources-say-2026-06-25/","description":"중국 대형 정유사의 이란산 원유 구매 재개 가능성은 중동 물량, 달러 결제, 운송보험 리스크를 함께 움직일 수 있다.","score":97,"priority":97,"tags":["중국정유","이란원유","제재","아시아수요","달러결제"]},
-    {"id":"fin-20260626-0010-oil-prewar-levels","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"유가 전쟁 이전 수준 하락, 단기 공급 확대로 인플레 압력 완화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-prices-fall-tankers-exit-strait-hormuz-2026-06-25/","description":"브렌트와 WTI가 전쟁 이전 수준으로 내려오며 단기 인플레이션 기대와 에너지 관련 자산 가격에 완화 신호를 줬다.","score":95,"priority":95,"tags":["브렌트","WTI","인플레이션","원유공급","호르무즈"]},
-    {"id":"fin-20260626-0010-ibm-sub-1nm-ai-chip","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"IBM 0.7나노 기술 공개, 차세대 AI 반도체 밸류체인 기대 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM의 초미세 트랜지스터 기술은 장기적으로 파운드리·장비·AI 가속기 경쟁 구도에 영향을 줄 수 있는 연구 성과로 평가된다.","score":93,"priority":93,"tags":["IBM","AI반도체","파운드리","초미세공정","장비"]},
-    {"id":"fin-20260626-0010-gulf-markets-oil-fed","category":"rates-policy","categoryName":"금리·정책","category_ko":"금리·정책","categoryIcon":"🏦","title":"걸프 증시, 약한 유가와 Fed 인상 기대에 동반 하락","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/middle-east/most-gulf-markets-ease-weaker-oil-fed-rate-hike-bets-2026-06-25/","description":"유가 하락과 미국 금리 인상 베팅이 달러 페그 지역인 걸프 증시에 부담을 주며 부동산·은행주 중심 조정을 만들었다.","score":90,"priority":90,"tags":["걸프증시","Fed","금리","유가","달러페그"]}
+    {"id":"fin-20260626-0035-global-chip-stocks-micron-ai","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"마이크론 전망이 글로벌 메모리·AI 반도체 랠리 재점화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"마이크론의 실적과 고객 약정 확대가 AI 메모리 공급 부족 기대를 키우며 한국·미국·유럽 반도체주 전반에 매수세를 만들었다.","score":99,"priority":99,"tags":["마이크론","HBM","SK하이닉스","삼성전자","AI반도체"]},
+    {"id":"fin-20260626-0035-global-markets-wrapup-ai-dollar","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"AI 낙관론에 증시 반등, 달러 강세와 기술 대형주 약세는 부담","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/","description":"마이크론·퀄컴 호재가 위험자산 심리를 회복시켰지만, 달러 1년 고점권과 대형 기술주 하락이 시장 상승폭을 제한했다.","score":96,"priority":96,"tags":["글로벌증시","AI거래","달러","퀄컴","위험자산"]},
+    {"id":"fin-20260626-0035-sp-nasdaq-micron-qualcomm-megacap","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"S&P500·나스닥 하락, 반도체 강세에도 빅테크 매도 우위","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-jump-2-micron-qualcomm-forecasts-relieve-investors-2026-06-25/","description":"마이크론·퀄컴은 강세였지만 애플·엔비디아·마이크로소프트 등 대형 기술주 하락이 지수를 끌어내렸다.","score":94,"priority":94,"tags":["S&P500","나스닥","빅테크","마이크론","퀄컴"]},
+    {"id":"fin-20260626-0035-korea-wild-stock-ride-ai-leverage","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"한국 AI 주식 쏠림, 반도체 집중도와 개인 레버리지 리스크 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/markets/econ-world/south-koreas-wild-stock-ride-2026-06-25/","description":"삼성전자·SK하이닉스 비중 확대와 개인 신용거래 급증은 AI 인프라 랠리의 상승 탄력과 조정 위험을 동시에 키운다.","score":92,"priority":92,"tags":["한국증시","AI인프라","레버리지","KOSPI","반도체비중"]},
+    {"id":"fin-20260626-0035-russell-reconstitution-spacex-liquidity","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"러셀 지수 재편 앞두고 거래량 급증 전망, SpaceX 편입도 변수","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/wall-street-trading-surge-russell-1000-index-set-add-spacex-small-cap-stocks-2026-06-25/","description":"FTSE 러셀 지수 반기 재구성이 약 1,500억달러 규모 거래를 유발할 가능성이 있어 금요일 유동성·수급 변동이 커질 전망이다.","score":90,"priority":90,"tags":["러셀1000","SpaceX","지수재편","유동성","수급"]}
   ],
-  "byCategory": {
-    "global-markets": [],
-    "semiconductors": [],
-    "ai-infrastructure": [],
-    "energy-geopolitics": [],
-    "rates-policy": [],
-    "trade-fx": []
-  }
+  "byCategory": {"global-markets":[],"semiconductors":[],"ai-infrastructure":[],"energy-geopolitics":[],"rates-policy":[],"trade-fx":[]}
 }
