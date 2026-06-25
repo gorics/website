@@ -1,21 +1,27 @@
 {
-  "generatedAt": "2026-06-25T17:34:21+09:00",
+  "generatedAt": "2026-06-25T18:08:07+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
     {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
     {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
-    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":0},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
     {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
-    {"id":"fx-rates","name":"금리·환율","icon":"💱","count":1}
+    {"id":"fx-rates","name":"금리·환율","icon":"💱","count":0}
   ],
   "total": 5,
   "allItems": [
-    {"id":"fin-20260625-1734-korea-chip-shares","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"한국 반도체주, 마이크론 호실적·SK하이닉스 상장 기대에 급등","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"AI 메모리 수요가 마이크론 실적과 한국 반도체 밸류에이션을 동시에 끌어올렸다. SK하이닉스·삼성전자 수급에 직접적인 재료다.","score":98,"priority":98,"tags":["SK하이닉스","삼성전자","마이크론","HBM","코스피"]},
-    {"id":"fin-20260625-1734-oil-hormuz-supply","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"호르무즈 통행 회복으로 유가 하락, 에너지 리스크 완화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-prices-fall-tankers-exit-strait-hormuz-2026-06-25/","description":"탱커 이동 회복과 중동 공급 증가가 유가를 끌어내렸다. 물가·금리 기대와 항공·화학 업종 마진에 영향을 줄 변수다.","score":96,"priority":96,"tags":["유가","호르무즈","브렌트","WTI","인플레이션"]},
-    {"id":"fin-20260625-1734-europe-shares-ai-rally","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"유럽 증시, AI 반도체 랠리 재개로 상승","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-gain-upbeat-micron-forecast-revives-ai-rally-2026-06-25/","description":"마이크론과 퀄컴 전망이 유럽 반도체·장비주를 밀어올렸다. 글로벌 주식시장의 AI 프리미엄 지속 여부가 다시 핵심 변수가 됐다.","score":92,"priority":92,"tags":["유럽증시","AI랠리","ASML","인피니언","STOXX600"]},
-    {"id":"fin-20260625-1734-rupee-oil-rbi","category":"fx-rates","categoryName":"금리·환율","category_ko":"금리·환율","categoryIcon":"💱","title":"유가 급락과 RBI 대응에 인도 루피, 아시아 통화 상위권 반등","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/india/rupee-rally-oil-slide-below-pre-iran-war-levels-bucks-asia-weakness-2026-06-25/","description":"유가 하락과 인도 중앙은행의 달러 유입 유도 조치가 루피 반등을 이끌었다. 아시아 FX와 원유 수입국 자금흐름에 참고할 재료다.","score":86,"priority":86,"tags":["인도루피","아시아FX","RBI","유가","달러"]},
-    {"id":"fin-20260625-1734-middle-east-fuel-oil","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"중동 연료유 수출 4개월 최고 전망, 전쟁 전 수준은 하회","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/mideast-fuel-oil-exports-hit-four-month-high-june-still-below-pre-war-levels-2026-06-25/","description":"호르무즈 물류 개선으로 중동 연료유 수출이 회복되지만 전쟁 전 평균에는 못 미친다. 정제마진과 아시아 에너지 수입비용의 변수다.","score":84,"priority":84,"tags":["연료유","중동수출","호르무즈","정제마진","에너지"]}
+    {"id":"fin-20260625-1808-nasdaq-chip-futures","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"나스닥 선물 2% 급등, AI 반도체 실적 전망이 위험선호 회복","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-jump-2-micron-qualcomm-forecasts-relieve-investors-2026-06-25/","description":"마이크론·퀄컴 전망이 기술주 리스크 프리미엄을 낮추며 미국 지수선물을 밀어올렸다. 단기 시장 방향의 핵심 재료다.","score":99,"priority":99,"tags":["나스닥선물","S&P500","AI반도체","마이크론","퀄컴"]},
+    {"id":"fin-20260625-1808-ai-chip-rally","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"AI칩 랠리 4000억달러 확대, 메모리·데이터센터 수요 재평가","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/micron-qualcomm-forecasts-ignite-400-billion-ai-chip-stock-rally-2026-06-24/","description":"마이크론의 메모리 수요와 퀄컴 데이터센터 목표가 반도체 밸류에이션을 끌어올렸다. HBM·AI 서버 체인에 직접 재료다.","score":98,"priority":98,"tags":["HBM","메모리","데이터센터","반도체주","AI랠리"]},
+    {"id":"fin-20260625-1808-openai-broadcom-chip","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"OpenAI 자체칩 공개, AI 인프라 공급망 경쟁 심화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI와 브로드컴의 자체 추론칩 공개는 GPU 의존 완화와 주문형 ASIC 시장 확대를 뜻한다. 브로드컴·TSMC·메모리 체인에 중요하다.","score":96,"priority":96,"tags":["OpenAI","Broadcom","ASIC","TSMC","AI인프라"]},
+    {"id":"fin-20260625-1808-russia-oil-exports","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"러시아 서부항 원유 수출 사상 최대 전망, 정유 차질이 공급구조 전환","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/russia-set-export-record-oil-volumes-western-ports-june-sources-say-2026-06-24/","description":"정유시설 피해로 러시아가 원유 수출을 늘리며 글로벌 원유 공급과 제품유 부족이 엇갈리고 있다. 유가 하방과 정제마진 상방 요인이다.","score":94,"priority":94,"tags":["러시아원유","정제마진","제품유","유가","우크라이나"]},
+    {"id":"fin-20260625-1808-russia-gasoline-kazakhstan","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"⛽","title":"러시아, 연료난 완화 위해 카자흐스탄에 휘발유 요청","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/business/energy/russia-asks-kazakhstan-gasoline-ease-shortages-sources-say-2026-06-24/","description":"러시아가 정유시설 피해와 내수 부족에 대응해 인접국 휘발유 조달을 모색한다. 지역 에너지 물류와 제품유 가격에 부담이 남는다.","score":88,"priority":88,"tags":["휘발유","카자흐스탄","러시아연료난","제품유","에너지물류"]}
   ],
-  "byCategory": {"global-markets":[],"semiconductors":[],"ai-infrastructure":[],"energy-geopolitics":[],"fx-rates":[]}
+  "byCategory": {
+    "global-markets": [],
+    "semiconductors": [],
+    "ai-infrastructure": [],
+    "energy-geopolitics": [],
+    "fx-rates": []
+  }
 }
