@@ -1,29 +1,29 @@
 {
-  "generatedAt": "2026-06-25T23:09:42+09:00",
+  "generatedAt": "2026-06-25T23:34:45+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
     {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
     {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
     {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
-    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
-    {"id":"fx-rates","name":"금리·환율","icon":"💱","count":0},
-    {"id":"crypto-risk","name":"크립토 리스크","icon":"🪙","count":0}
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":0},
+    {"id":"rates-policy","name":"재정·정책","icon":"🏦","count":1},
+    {"id":"trade-fx","name":"무역·환율","icon":"💱","count":1}
   ],
   "total": 5,
   "allItems": [
-    {"id":"fin-20260625-2309-global-markets-ai-chip-rally","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"AI 반도체 호실적에 글로벌 증시 반등, 유가 하락은 인플레 우려 완화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/","description":"마이크론·퀄컴발 AI 수요 안도감이 증시를 밀어올렸고, 브렌트유 약세는 채권금리와 인플레이션 기대를 낮추는 재료가 됐다.","score":99,"priority":99,"tags":["증시","나스닥","AI","유가","채권금리"]},
-    {"id":"fin-20260625-2309-micron-global-chip-rally","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"마이크론 실적 서프라이즈에 글로벌 메모리·반도체주 동반 랠리","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"HBM 공급 부족과 고객 선주문이 확인되며 메모리 가격 사이클과 AI 인프라 투자 지속성에 대한 시장 신뢰가 회복됐다.","score":98,"priority":98,"tags":["마이크론","HBM","메모리","SK하이닉스","삼성전자"]},
-    {"id":"fin-20260625-2309-ibm-sub-nano-chip","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"IBM 0.7나노 칩 기술, 장기 AI 인프라 효율 경쟁 변수로 부상","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM의 초미세 공정 발표는 데이터센터 전력 효율과 첨단 파운드리 경쟁 구도에 중장기 영향을 줄 수 있는 기술 이벤트다.","score":94,"priority":94,"tags":["IBM","AI인프라","공정기술","전력효율","데이터센터"]},
-    {"id":"fin-20260625-2309-ukraine-russia-energy-strikes","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"우크라이나 선제 타격 방침, 러시아 정유 차질과 에너지 리스크 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/ukraine-conduct-preemptive-attacks-facilities-russia-uses-war-zelenskiy-says-2026-06-25/","description":"러시아 정유·전력 인프라 타격이 연료 부족과 수출 흐름 변화로 이어지며 원유·석유제품 시장의 지정학 프리미엄을 흔들고 있다.","score":93,"priority":93,"tags":["우크라이나","러시아","정유","원유","지정학"]},
-    {"id":"fin-20260625-2309-russia-record-oil-exports","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"러시아, 정유 차질 속 서부항 원유 수출 사상 최대 전망","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/business/energy/russia-set-export-record-oil-volumes-from-western-ports-june-sources-say-2026-06-24/","description":"정유공장 피격으로 처리하지 못한 원유가 수출로 전환되며 러시아 서부항 선적 증가가 국제 유가의 하방 압력으로 작용할 수 있다.","score":91,"priority":91,"tags":["러시아원유","수출","정유차질","유가","서방제재"]}
+    {"id":"fin-20260625-2334-global-markets-micron-oil-dollar","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"마이크론 실적이 AI 투자 우려를 완화, 유가 하락은 인플레 압력 낮춰","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/","description":"AI 메모리 수요 확인으로 기술주가 반등했고 호르무즈 운항 정상화 기대와 유가 하락이 채권·인플레이션 전망에 우호적으로 작용했다.","score":99,"priority":99,"tags":["마이크론","AI","유가","채권","달러"]},
+    {"id":"fin-20260625-2334-chip-stocks-micron-ai-rally","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"글로벌 반도체주, 마이크론 호실적에 AI 메모리 사이클 재평가","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"마이크론의 강한 실적과 공급 타이트 전망이 SK하이닉스·삼성전자 등 메모리 관련주 투자심리를 개선했다.","score":98,"priority":98,"tags":["반도체","HBM","SK하이닉스","삼성전자","마이크론"]},
+    {"id":"fin-20260625-2334-white-house-iran-war-budget","category":"rates-policy","categoryName":"재정·정책","category_ko":"재정·정책","categoryIcon":"🏦","title":"미국 876억달러 추가예산 요청, 국채 발행·재정 논쟁 변수","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/c0cbd21df91c48fa821fc21e021d8831","description":"이란전 비용 보전과 농가 지원을 포함한 대규모 추가예산 요구는 방위비 확대, 재정적자, 국채 수급 논쟁을 동시에 자극할 수 있다.","score":95,"priority":95,"tags":["미국재정","국방비","국채","추가예산","정책"]},
+    {"id":"fin-20260625-2334-ap-ai-environment-data-centers","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"AI 데이터센터 전력·탄소 공개 압박, 인프라 투자비용 변수로 부상","publishedAt":"2026-06-23","date":"2026-06-23","source":"AP","url":"https://apnews.com/article/cdba9edbe2081aec15b115d043b5f75c","description":"유엔의 환경 투명성 요구는 AI 데이터센터 전력 조달, 물 사용, 재생에너지 구매 비용을 둘러싼 규제 리스크를 키운다.","score":92,"priority":92,"tags":["AI인프라","데이터센터","전력","ESG","규제"]},
+    {"id":"fin-20260625-2334-swiss-us-trade-tariffs","category":"trade-fx","categoryName":"무역·환율","category_ko":"무역·환율","categoryIcon":"💱","title":"스위스-미국 관세 협상 공식화 추진, 유럽 통상 불확실성 완화 시도","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/swiss-president-visit-us-amid-push-trade-deal-2026-06-25/","description":"스위스의 대미 관세 합의 공식화 시도는 유럽 기업과 환율·무역 리스크 프리미엄에 영향을 줄 수 있는 통상 이벤트다.","score":89,"priority":89,"tags":["관세","스위스","미국","무역","환율"]}
   ],
   "byCategory": {
     "global-markets": [],
     "semiconductors": [],
     "ai-infrastructure": [],
     "energy-geopolitics": [],
-    "fx-rates": [],
-    "crypto-risk": []
+    "rates-policy": [],
+    "trade-fx": []
   }
 }
