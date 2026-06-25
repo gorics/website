@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-06-26T02:06:45+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"main-20260626-0206-reuters-oil-oman-hormuz-supply-worries","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"오만 인근 선박 피격에 유가 반등, 호르무즈 정상화 기대에 공급 리스크 재부각","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-prices-fall-tankers-exit-strait-hormuz-2026-06-25/","description":"호르무즈 통항 재개 기대에도 오만 인근 선박 피격 소식이 더해지며 브렌트·WTI가 반등했고, 보험·항로 리스크가 원유시장 변동성을 키웠다.","score":99,"priority":99,"tags":["유가","호르무즈","오만","공급리스크","중동"]},
+    {"id":"main-20260626-0206-reuters-iraq-opec-quota-exit-warning","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"이라크, OPEC 산유량 쿼터 상향 압박…불발 시 탈퇴 가능성까지 거론","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/iraq-consider-all-options-if-opec-quota-is-not-raised-has-weighed-exit-sources-2026-06-25/","description":"이라크가 재정난과 수출 차질 속에 OPEC 생산 쿼터 확대를 요구하며, 산유국 협의체 내부의 공급정책 균열 가능성이 커졌다.","score":96,"priority":96,"tags":["이라크","OPEC","산유량","원유","쿼터"]},
+    {"id":"main-20260626-0206-reuters-ibm-subnanometer-ai-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"IBM, 1나노 미만 AI 칩 기술 공개…0.7나노 ‘나노스택’으로 밀도·효율 개선","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM이 0.7나노급 적층 트랜지스터 기술을 공개하며 AI 반도체의 성능과 전력 효율을 높일 차세대 공정 경쟁에 불을 붙였다.","score":98,"priority":98,"tags":["IBM","AI칩","0.7나노","반도체","나노스택"]},
+    {"id":"main-20260626-0206-reuters-ukraine-preemptive-strikes-russia-war-facilities","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"젤렌스키, 러시아 전쟁 시설 선제 타격 지시…에너지 인프라 압박 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/ukraine-conduct-preemptive-attacks-facilities-russia-uses-war-zelenskiy-says-2026-06-25/","description":"우크라이나가 러시아의 전쟁 수행 시설을 선제적으로 타격하겠다고 밝히며 정유·전력 인프라를 겨냥한 장거리 공격 전략을 강화했다.","score":97,"priority":97,"tags":["우크라이나","러시아","젤렌스키","정유시설","전쟁"]},
+    {"id":"main-20260626-0206-ap-scotus-tps-haiti-syria","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 아이티·시리아 이민자 임시보호 종료 허용…트럼프 이민정책 힘 실려","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/3ae03581673c844c7c69b3d8e100315d","description":"미 연방대법원이 아이티·시리아 출신 이민자의 임시보호지위 종료를 허용하면서 대규모 추방 위험과 이민정책 논쟁이 커졌다.","score":95,"priority":95,"tags":["미대법원","TPS","이민","아이티","시리아"]},
+    {"id":"main-20260626-0206-reuters-south-africa-south-korea-world-cup-knockout","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"남아공, 한국 꺾고 사상 첫 월드컵 32강 진출…한국은 3위 와일드카드 대기","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/sports/soccer/south-africa-beat-south-korea-reach-world-cup-knockout-stage-first-time-2026-06-25/","description":"남아공이 한국을 1-0으로 꺾고 처음으로 월드컵 토너먼트에 올랐고, 한국은 조 3위 성적에 따른 추가 진출 가능성을 기다리게 됐다.","score":93,"priority":93,"tags":["월드컵","남아공","한국","32강","축구"]},
+    {"id":"main-20260626-0206-ap-america-250-national-mall-launch","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"미국 건국 250주년 행사 개막, 워싱턴 내셔널몰서 16일 축제 시작","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/3119b0773f5e3f12d452e7cde4217c0b","description":"워싱턴 내셔널몰에서 미국 건국 250주년 기념 행사가 시작됐고, 군·보건·애국·독립기념일 주제를 묶은 대규모 문화행사가 이어진다.","score":88,"priority":88,"tags":["미국250주년","문화행사","내셔널몰","독립기념일","축제"]}
+  ],
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "global": [],
+    "politics": [],
+    "play": [],
+    "culture": []
+  }
+}
