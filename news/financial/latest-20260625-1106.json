@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-06-25T11:06:33+09:00",
+  "source": "Latest financial public news overlay for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-overlay",
+  "categories": [
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
+    {"id":"financial-regulation","name":"금융규제","icon":"🏦","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260625-1106-reuters-ai-chip-rally","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"마이크론·퀄컴 전망, AI칩 밸류체인에 4천억달러 랠리 촉발","description":"마이크론의 AI 메모리 수요 전망과 퀄컴의 데이터센터 전략이 반도체주 전반의 시가총액 반등을 이끌었다. AI 인프라 투자 모멘텀이 다시 시장의 중심에 섰다.","url":"https://www.reuters.com/business/micron-qualcomm-forecasts-ignite-400-billion-ai-chip-stock-rally-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-25","score":472,"tags":["AI칩","마이크론","퀄컴","데이터센터","반도체"]},
+    {"id":"fin-20260625-1106-reuters-korea-memory-rally","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"한국 메모리주 급등, 마이크론 가이던스가 HBM 수요 기대 강화","description":"마이크론 호실적 이후 SK하이닉스와 삼성전자가 강세를 보였다. AI 서버용 메모리 부족과 HBM 수요가 한국 반도체 업황의 핵심 촉매로 부상했다.","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","source":{"name":"Reuters"},"publishedAt":"2026-06-25","score":468,"tags":["SK하이닉스","삼성전자","HBM","메모리","AI"]},
+    {"id":"fin-20260625-1106-reuters-oil-hormuz-tankers","category":"energy-geopolitics","categoryName":"에너지·지정학","categoryIcon":"🛢️","title":"호르무즈 유조선 이동 정상화에 유가 하락세 지속","description":"해협을 빠져나가는 유조선이 늘며 원유 공급 차질 우려가 낮아졌다. 브렌트와 WTI는 전쟁 전 수준에 가까워지며 에너지 인플레이션 압력이 완화됐다.","url":"https://www.reuters.com/business/energy/oil-prices-fall-tankers-exit-strait-hormuz-2026-06-25/","source":{"name":"Reuters"},"publishedAt":"2026-06-25","score":462,"tags":["호르무즈","유가","원유","중동","공급망"]},
+    {"id":"fin-20260625-1106-reuters-fed-stress-tests","category":"financial-regulation","categoryName":"금융규제","categoryIcon":"🏦","title":"미 대형은행 스트레스테스트 통과, 주주환원 확대 기대","description":"연준은 대형은행들이 심각한 경기침체 시나리오에서도 최소 자본요건을 웃돈다고 밝혔다. 일부 은행은 곧바로 배당 인상과 자사주 매입 계획을 제시했다.","url":"https://www.reuters.com/business/finance/us-banks-look-new-bill-health-fed-stress-tests-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-25","score":452,"tags":["연준","은행주","스트레스테스트","배당","자본규제"]},
+    {"id":"fin-20260625-1106-reuters-moscow-refinery","category":"energy-geopolitics","categoryName":"에너지·지정학","categoryIcon":"🛢️","title":"모스크바 정유공장 장기 가동중단 전망, 러시아 연료시장 압박","description":"모스크바 정유공장의 연내 재가동이 어려울 수 있다는 보도가 나왔다. 러시아는 연료 부족과 가격 상승 속에 수출 제한 가능성을 검토하고 있다.","url":"https://www.reuters.com/business/energy/moscow-oil-refinery-hit-by-drone-attacks-is-unlikely-resume-production-this-year-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-25","score":444,"tags":["러시아","정유","우크라이나","에너지시설","연료난"]}
+  ],
+  "byCategory": {
+    "ai-infrastructure": [],
+    "semiconductors": [],
+    "energy-geopolitics": [],
+    "financial-regulation": []
+  }
+}
