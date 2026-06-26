@@ -1,30 +1,23 @@
 {
-  "generatedAt": "2026-06-26T09:09:53+09:00",
+  "generatedAt": "2026-06-26T10:07:39+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
-    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":2},
-    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
-    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":0},
-    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
     {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":1},
     {"id":"trade-fx","name":"무역·환율","icon":"💱","count":0}
   ],
   "total": 6,
   "allItems": [
-    {"id":"fin-20260626-0909-reuters-world-stocks-chip-rally-dollar","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"세계 증시 반도체주 주도로 상승…달러는 1년 고점권 유지","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/","description":"마이크론·퀄컴발 AI 반도체 기대가 세계 주식을 끌어올렸지만, 미국 물가와 연준 긴축 가능성은 달러 강세와 시장 변동성을 지지했다.","score":98,"priority":98,"tags":["MSCI","달러","마이크론","퀄컴","연준"]},
-    {"id":"fin-20260626-0909-reuters-wallstreet-micron-apple","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"월가 혼조…마이크론 급등에도 애플·대형 기술주 약세가 나스닥 압박","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-jump-2-micron-qualcomm-forecasts-relieve-investors-2026-06-25/","description":"마이크론의 강한 전망과 퀄컴 데이터센터 목표가 반도체 지수를 밀어 올렸지만 애플 하락과 금리 우려가 지수 상승을 제한했다.","score":96,"priority":96,"tags":["월가","나스닥","마이크론","애플","반도체지수"]},
-    {"id":"fin-20260626-0909-reuters-ai-chip-rally-400b","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"AI 반도체 랠리 재점화…마이크론·퀄컴 전망에 관련주 시총 4천억달러 증가","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/business/micron-qualcomm-forecasts-ignite-400-billion-ai-chip-stock-rally-2026-06-24/","description":"HBM·데이터센터 칩 수요 기대가 재부각되며 마이크론, 퀄컴, 저장장치·장비주까지 광범위한 반도체 매수세가 이어졌다.","score":98,"priority":98,"tags":["AI칩","HBM","퀄컴","마이크론","반도체장비"]},
-    {"id":"fin-20260626-0909-reuters-gulf-markets-oil-fed","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"유가 약세·미 금리 경계에 걸프 증시 하락…호르무즈 안정 기대는 일부 완충","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/middle-east/most-gulf-markets-ease-weaker-oil-fed-rate-hike-bets-2026-06-25/","description":"중동 공급 우려가 완화되며 유가가 내려갔지만, 달러 연동 통화권인 걸프 시장은 연준 긴축 전망에 민감하게 반응했다.","score":96,"priority":96,"tags":["유가","호르무즈","걸프증시","연준","사우디"]},
-    {"id":"fin-20260626-0909-reuters-us-oil-executives-survey","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"미 석유업계, 생산은 소폭 증가 전망…비용·정책 불확실성은 지속","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/business/energy/us-oil-executives-see-slight-output-growth-future-outlook-uncertain-survey-says-2026-06-24/","description":"댈러스 연은 조사에서 에너지 기업들은 현재 유가 수준에서 완만한 생산 증가를 예상했지만 인건비·연료비와 규제 리스크를 부담으로 꼽았다.","score":92,"priority":92,"tags":["미국원유","댈러스연은","에너지기업","생산","비용"]},
-    {"id":"fin-20260626-0909-reuters-airlines-oil-retreat","category":"rates-policy","categoryName":"금리·정책","category_ko":"금리·정책","categoryIcon":"🏦","title":"유가 전쟁 이전 수준 후퇴에 항공주 강세…인플레·마진 전망 개선 기대","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/business/energy/us-airline-stocks-rise-oil-retreats-pre-iran-war-levels-2026-06-24/","description":"원유와 항공유 가격이 낮아지며 항공사 비용 부담 완화 기대가 커졌고, 이는 물가 압력과 소비주 마진 전망에도 영향을 줄 수 있다.","score":91,"priority":91,"tags":["항공주","유가","항공유","인플레이션","마진"]}
+    {"id":"fin-20260626-1007-reuters-onsemi-synaptics-physical-ai","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"온세미, 시냅틱스 70억달러 인수…엣지·피지컬 AI 반도체 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/legal/transactional/onsemi-buy-synaptics-7-billion-all-stock-deal-2026-06-25/","description":"온세미는 시냅틱스의 연결 컴퓨팅·휴먼 인터페이스 기술을 흡수해 자동차·산업·로보틱스 AI 시장을 노리는 포트폴리오를 강화한다.","score":99,"priority":99,"tags":["온세미","시냅틱스","M&A","엣지AI","자동차반도체"]},
+    {"id":"fin-20260626-1007-reuters-ibm-sub-one-nm-chip","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"IBM 0.7나노 기술 공개…차세대 AI 칩 제조 경쟁 재점화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM의 나노스택 구조 발표는 고성능·저전력 AI 칩 로드맵에 영향을 줄 수 있으며, 삼성·라피더스 등 잠재 파트너십도 시장 관심사다.","score":98,"priority":98,"tags":["IBM","0.7나노","AI칩","공정기술","삼성"]},
+    {"id":"fin-20260626-1007-reuters-micron-market-value-ai-infra","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"마이크론, AI 인프라 메모리 수요로 시총 도약…HBM 공급난 부각","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/micron-overtakes-meta-market-value-amid-relentless-ai-infrastructure-demand-2026-06-25/","description":"AI 서버 투자 확대가 고대역폭 메모리 가격과 실적 전망을 밀어 올리며 마이크론의 시장가치 재평가를 이끌었다.","score":98,"priority":98,"tags":["마이크론","HBM","AI서버","DRAM","데이터센터"]},
+    {"id":"fin-20260626-1007-reuters-nasdaq-micron-qualcomm-futures","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"미 증시, 반도체 호재에도 대형 기술주·금리 부담에 변동성 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-jump-2-micron-qualcomm-forecasts-relieve-investors-2026-06-25/","description":"마이크론·퀄컴발 안도 랠리가 반도체주를 끌어올렸지만, 애플 등 대형주의 약세와 금리 전망이 지수 방향성을 제한했다.","score":96,"priority":96,"tags":["나스닥","반도체","마이크론","퀄컴","금리"]},
+    {"id":"fin-20260626-1007-reuters-gulf-oil-fed-markets","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"걸프 증시, 유가 약세와 미 금리 경계로 하락 압력 지속","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/middle-east/most-gulf-markets-ease-weaker-oil-fed-rate-hike-bets-2026-06-25/","description":"중동 리스크 프리미엄이 일부 빠지며 유가가 약세를 보였고, 달러 연동 통화권인 걸프 증시는 미 금리 전망에 민감하게 반응했다.","score":95,"priority":95,"tags":["걸프증시","유가","연준","호르무즈","사우디"]},
+    {"id":"fin-20260626-1007-reuters-us-supreme-court-asylum-policy","category":"rates-policy","categoryName":"금리·정책","category_ko":"금리·정책","categoryIcon":"🏦","title":"미 대법원 이민 판결, 노동시장·정책 불확실성 변수로 부상","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/us-supreme-court-sides-with-trump-asylum-processing-case-2026-06-25/","description":"망명 처리 제한과 TPS 판결은 노동 공급과 주별 서비스업 비용, 정책 리스크 프리미엄에 간접 영향을 줄 수 있어 시장도 후속 조치를 주시한다.","score":90,"priority":90,"tags":["미국정책","이민","노동시장","대법원","리스크"]}
   ],
-  "byCategory": {
-    "global-markets": [],
-    "semiconductors": [],
-    "ai-infrastructure": [],
-    "energy-geopolitics": [],
-    "rates-policy": [],
-    "trade-fx": []
-  }
+  "byCategory": {"global-markets":[],"semiconductors":[],"ai-infrastructure":[],"energy-geopolitics":[],"rates-policy":[],"trade-fx":[]}
 }
