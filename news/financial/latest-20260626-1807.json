@@ -4,11 +4,10 @@
   "page": "financial",
   "categories": [
     {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
-    {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
     {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
     {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":1}
   ],
-  "total": 5,
+  "total": 3,
   "allItems": [
     {
       "id": "fin-20260626-1807-reuters-take-five-h2-markets",
@@ -43,38 +42,6 @@
       "tags": ["삼성","AI데이터센터","반도체투자","한국","공급망"]
     },
     {
-      "id": "fin-20260626-1807-reuters-onsemi-synaptics-deal",
-      "category": "semiconductors",
-      "categoryName": "반도체",
-      "category_ko": "반도체",
-      "categoryIcon": "💾",
-      "title": "온세미-시냅틱스 70억달러 딜…피지컬 AI 반도체 M&A 프리미엄 확인",
-      "publishedAt": "2026-06-25",
-      "date": "2026-06-25",
-      "source": "Reuters",
-      "url": "https://www.reuters.com/legal/transactional/onsemi-buy-synaptics-7-billion-all-stock-deal-2026-06-25/",
-      "description": "자동차·산업용 전력 반도체와 연결 컴퓨팅, 로봇 인터페이스를 결합하려는 인수로 엣지 AI 밸류체인의 재평가가 이어졌다.",
-      "score": 98,
-      "priority": 98,
-      "tags": ["온세미","시냅틱스","반도체M&A","피지컬AI","엣지컴퓨팅"]
-    },
-    {
-      "id": "fin-20260626-1807-reuters-micron-ai-memory-deals",
-      "category": "semiconductors",
-      "categoryName": "반도체",
-      "category_ko": "반도체",
-      "categoryIcon": "💾",
-      "title": "마이크론·메모리 장기 AI 계약 주목…HBM 공급 부족이 가격 사이클 바꾼다",
-      "publishedAt": "2026-06-25",
-      "date": "2026-06-25",
-      "source": "Reuters",
-      "url": "https://www.reuters.com/legal/transactional/micron-joins-rivals-pitching-ai-deals-cure-memorys-boom-bust-cycle-2026-06-25/",
-      "description": "AI 고객의 장기 공급계약 확대는 메모리 반도체의 전통적 급등락 사이클을 완화하고 HBM 업체의 협상력을 높일 수 있다.",
-      "score": 97,
-      "priority": 97,
-      "tags": ["마이크론","HBM","AI메모리","장기계약","반도체사이클"]
-    },
-    {
       "id": "fin-20260626-1807-reuters-trading-day-pce-tech",
       "category": "rates-policy",
       "categoryName": "금리·정책",
@@ -86,14 +53,13 @@
       "source": "Reuters",
       "url": "https://www.reuters.com/commentary/reuters-open-interest/global-markets-trading-day-graphic-2026-06-25/",
       "description": "미 물가와 국채시장 레버리지, 빅테크 조정이 겹치며 금리 인상 기대와 위험자산 선호가 동시에 흔들리는 구간이 됐다.",
-      "score": 96,
-      "priority": 96,
+      "score": 98,
+      "priority": 98,
       "tags": ["PCE","연준","빅테크","국채","금리"]
     }
   ],
   "byCategory": {
     "global-markets": [],
-    "semiconductors": [],
     "ai-infrastructure": [],
     "rates-policy": []
   }
