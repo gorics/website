@@ -15,7 +15,7 @@ body{margin:0;background:#070a12;color:#e5edf8;font-family:-apple-system,BlinkMa
 <section id="grid" class="grid"></section>
 </main>
 <script>
-const SOURCES=['./latest-20260626-1807.json','./latest.json','./latest-20260626-1708.json','./latest-20260626-1610.json','./data.json'];
+const SOURCES=['./latest-20260626-1833.json','./latest.json','./latest-20260626-1807.json','./latest-20260626-1708.json','./latest-20260626-1610.json','./data.json'];
 const $=s=>document.querySelector(s),grid=$('#grid'),tabs=$('#tabs'),q=$('#q'),sort=$('#sort'),state=$('#state');let ITEMS=[],CUR='all';
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const src=x=>typeof x.source==='object'?(x.source.name||'원문'):(x.source||'원문');
