@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-26T21:06:33+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"main-20260626-2106-reuters-global-markets-apple-oil","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"글로벌 증시 하락…애플 가격 인상·AI 칩 비용 우려가 기술주 압박","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-26/","description":"애플의 가격 인상과 메모리·저장장치 비용 상승 우려가 기술주 매도를 자극했고, 유가 하락과 달러·금리 변수까지 겹치며 위험자산 심리가 약해졌다.","score":100,"priority":100,"tags":["글로벌증시","애플","AI칩","유가","기술주"]},
+    {"id":"main-20260626-2106-reuters-dollar-winner-takes-all","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"달러, 2026년 하반기에도 강세 전망…‘승자독식’ 자금 흐름 부각","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/markets/europe/dollar-rides-into-second-half-2026-winner-takes-it-all-wave-2026-06-26/","description":"미국 자산 선호와 금리 격차가 달러 강세를 뒷받침하면서 엔·유로·신흥국 통화의 변동성 리스크가 이어질 수 있다는 분석이 나왔다.","score":99,"priority":99,"tags":["달러","외환","금리","자금흐름","하반기전망"]},
+    {"id":"main-20260626-2106-reuters-samsung-ai-investment","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"삼성, 10년간 6480억달러 규모 AI·반도체 투자 보도","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/samsung-invest-1000-trillion-won-south-korea-media-report-says-2026-06-25/","description":"삼성그룹의 대규모 국내 투자 계획이 AI 데이터센터, 배터리, 디스플레이, 반도체 공장으로 확장될 가능성이 제기되며 한국 AI 인프라 전략이 주목받고 있다.","score":98,"priority":98,"tags":["삼성","AI","반도체","데이터센터","한국경제"]},
+    {"id":"main-20260626-2106-ap-europe-heat-wave-france","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"프랑스, 폭염에 공공 음주·야외 스포츠 제한…유럽 기후 리스크 확대","publishedAt":"2026-06-21","date":"2026-06-21","source":"Associated Press","url":"https://apnews.com/article/337471b5950543447c92010ca1081a8d","description":"프랑스 일부 지역이 40도 안팎 폭염에 적색경보를 내리고 학교·행사·야외 활동을 제한하면서 유럽 도시의 기후 적응 부담이 커졌다.","score":95,"priority":95,"tags":["유럽","프랑스","폭염","기후위기","공공안전"]},
+    {"id":"main-20260626-2106-ap-alligator-alcatraz-closed","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"플로리다 ‘앨리게이터 알카트라즈’ 이민수용소 폐쇄…인권·환경 논란 지속","publishedAt":"2026-06-26","date":"2026-06-26","source":"Associated Press","url":"https://apnews.com/article/3c371f51fe71ed64b7ae9d22d0fab5cb","description":"디샌티스 주지사가 임시 이민수용소 폐쇄를 발표했지만, 열악한 처우와 에버글레이즈 환경 훼손, 이민 단속 정치화 논쟁은 계속되고 있다.","score":97,"priority":97,"tags":["미국정치","이민","플로리다","디샌티스","인권"]},
+    {"id":"main-20260626-2106-ap-world-cup-uniforms","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"월드컵 유니폼, 국가 상징과 냉각 기술 결합…무더위 대응도 경쟁력","publishedAt":"2026-06-26","date":"2026-06-26","source":"Associated Press","url":"https://apnews.com/article/0f9e6e865a7621788fff69cc7bb18317","description":"나이키 등 스포츠 브랜드가 고온다습한 월드컵 환경에 맞춰 통기성 소재와 각국 상징을 결합한 유니폼을 내놓으며 경기력·팬덤 마케팅 경쟁이 커졌다.","score":94,"priority":94,"tags":["월드컵","유니폼","나이키","스포츠과학","축구"]},
+    {"id":"main-20260626-2106-ap-south-africa-prison-art","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"남아공 교정시설, 수감자 미술 갤러리 운영…재범 방지형 문화정책 주목","publishedAt":"2026-06-24","date":"2026-06-24","source":"Associated Press","url":"https://apnews.com/article/5606f65268748be2a16e29e2160537b0","description":"남아프리카공화국 교정 당국이 수감자 작품 전시·판매 프로그램을 확대하며 예술을 재활과 사회 복귀의 통로로 활용하고 있다.","score":91,"priority":91,"tags":["남아공","미술","교정시설","재활","문화정책"]}
+  ],
+  "byCategory": {"economy":[],"tech":[],"global":[],"politics":[],"play":[],"culture":[]}
+}
