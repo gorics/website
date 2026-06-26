@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-06-26T15:08:40+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":3},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":4},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":3},
+    {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":2},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
+    {"id":"trade-fx","name":"무역·환율","icon":"💱","count":1}
+  ],
+  "total": 14,
+  "allItems": [
+    {"id":"fin-20260626-1508-ap-asian-shares-ai-profit-taking","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"아시아 증시, AI 랠리 차익실현에 급락…위험자산 선별 장세 강화","publishedAt":"2026-06-26","date":"2026-06-26","source":"Associated Press","url":"https://apnews.com/article/e356760ec69cab916e53a9804336b845","description":"AI 관련주 급등 뒤 차익실현이 닛케이·코스피 급락으로 번지며 메모리 가격, 유가, 물가가 동시에 시장 방향성을 좌우하고 있다.","score":100,"priority":100,"tags":["아시아증시","AI랠리","코스피","닛케이","위험자산"]},
+    {"id":"fin-20260626-1508-reuters-micron-market-value-ai","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"마이크론, AI 메모리 수요로 시총 급등…메타·테슬라급 밸류에이션 접근","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/micron-overtakes-meta-market-value-amid-relentless-ai-infrastructure-demand-2026-06-25/","description":"대규모 AI 메모리 선주문과 공급 부족 전망이 마이크론 주가를 끌어올리며 반도체 사이클의 과열·지속성 논쟁을 키웠다.","score":99,"priority":99,"tags":["마이크론","메모리","AI서버","반도체","시총"]},
+    {"id":"fin-20260626-1508-reuters-openai-broadcom-chip","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"오픈AI 자체 칩 공개…브로드컴·TSMC·HBM 밸류체인 주목","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"오픈AI의 추론용 ASIC은 엔비디아 의존 축소와 맞춤형 AI 반도체 생태계 확대를 시사해 브로드컴, TSMC, 메모리 공급망을 재평가하게 한다.","score":98,"priority":98,"tags":["오픈AI","브로드컴","ASIC","TSMC","AI인프라"]},
+    {"id":"fin-20260626-1508-reuters-rupee-oil-slide-inflows","category":"trade-fx","categoryName":"무역·환율","category_ko":"무역·환율","categoryIcon":"💱","title":"유가 하락·외국인 자금 유입에 루피 강세…신흥국 매크로 부담 완화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/india/rupee-rally-oil-slide-below-pre-iran-war-levels-bucks-asia-weakness-2026-06-25/","description":"브렌트유 하락과 외국인 포트폴리오 유입이 인도 루피를 지지하며 에너지 수입국의 경상수지와 환율 부담을 일부 낮췄다.","score":94,"priority":94,"tags":["루피","유가","외국인자금","신흥국","환율"]}
+  ],
+  "byCategory": {"global-markets":[],"semiconductors":[],"ai-infrastructure":[],"rates-policy":[],"energy-geopolitics":[],"trade-fx":[]}
+}
