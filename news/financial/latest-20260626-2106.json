@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-06-26T21:06:33+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":2},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":1},
+    {"id":"trade-fx","name":"무역·환율","icon":"💱","count":1}
+  ],
+  "total": 6,
+  "allItems": [
+    {"id":"fin-20260626-2106-reuters-global-markets-apple-oil","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"애플 가격 인상발 기술주 압박…글로벌 증시·유가 동반 약세","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-26/","description":"AI 데이터센터발 메모리 비용 상승이 소비재 가격과 기술주 밸류에이션을 동시에 흔들며 주식·유가·통화 시장의 위험 회피를 키웠다.","score":100,"priority":100,"tags":["글로벌증시","애플","AI칩","유가","기술주"]},
+    {"id":"fin-20260626-2106-reuters-wall-st-chip-slide","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"마이크론 랠리 뒤 반도체주 재하락…AI 밸류에이션 경계 재점화","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/wall-st-futures-fall-chip-stocks-resume-slide-after-micron-led-rally-2026-06-26/","description":"마이크론 호실적 효과가 오래가지 못하고 반도체주가 다시 밀리며 AI 투자 수익성, 고평가, 포지션 조정이 시장 핵심 리스크로 떠올랐다.","score":99,"priority":99,"tags":["마이크론","반도체주","AI밸류에이션","나스닥","월가"]},
+    {"id":"fin-20260626-2106-reuters-dollar-second-half","category":"trade-fx","categoryName":"무역·환율","category_ko":"무역·환율","categoryIcon":"💱","title":"달러 강세 전망 지속…하반기 외환시장 ‘승자독식’ 흐름 경계","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/markets/europe/dollar-rides-into-second-half-2026-winner-takes-it-all-wave-2026-06-26/","description":"미국 성장·금리 매력에 자금이 몰리며 달러가 하반기에도 강세를 유지할 가능성이 커졌고, 엔화와 신흥국 통화 변동성이 확대될 수 있다.","score":98,"priority":98,"tags":["달러","외환","엔화","자금흐름","하반기"]},
+    {"id":"fin-20260626-2106-reuters-fed-hold-rates-poll","category":"rates-policy","categoryName":"금리·정책","category_ko":"금리·정책","categoryIcon":"🏦","title":"로이터 설문, 연준 연내 동결 전망 우세…시장 인상 베팅과 괴리","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/fed-hold-rates-this-year-economists-say-defying-market-bets-hikes-2026-06-26/","description":"경제학자 다수는 물가가 높아도 연준이 올해 금리를 유지할 것으로 봤지만, 시장은 인상 가능성을 일부 반영해 채권·주식 변동성이 남아 있다.","score":97,"priority":97,"tags":["연준","금리","인플레이션","로이터설문","채권"]},
+    {"id":"fin-20260626-2106-reuters-samsung-ai-investment","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"삼성 6480억달러 투자 보도…AI 데이터센터·반도체 공급망 기대 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/samsung-invest-1000-trillion-won-south-korea-media-report-says-2026-06-25/","description":"대규모 AI·반도체 투자는 전력망, 장비, 소재, 지방 산업단지 밸류체인에 장기 수요 기대를 만들지만 인력·인프라 병목도 변수다.","score":96,"priority":96,"tags":["삼성","AI데이터센터","반도체","전력인프라","한국증시"]},
+    {"id":"fin-20260626-2106-reuters-tech-page-ibm-onsemi","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"IBM 1나노 미만 공정·온세미 M&A…반도체 장기 경쟁축 재편","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/technology/","description":"IBM의 초미세 공정 발표와 온세미의 시냅틱스 인수 소식이 AI 칩 성능, 엣지 컴퓨팅, 반도체 M&A 프리미엄을 다시 부각시켰다.","score":94,"priority":94,"tags":["IBM","온세미","시냅틱스","반도체M&A","AI칩"]}
+  ],
+  "byCategory": {"global-markets":[],"semiconductors":[],"ai-infrastructure":[],"rates-policy":[],"trade-fx":[]}
+}
