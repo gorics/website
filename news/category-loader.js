@@ -2,7 +2,7 @@ const MAP={tech:['기술','tech'],global:['국제','global'],politics:['정치',
 const KEY=document.body?.dataset?.category||Object.keys(MAP).find(k=>location.pathname.includes('/'+k+'/'))||'all';
 const TITLE=(MAP[KEY]||MAP.all)[0], CAT=(MAP[KEY]||MAP.all)[1];
 const ROOT=location.pathname.endsWith('/news/')||location.pathname.endsWith('/news/index.html')?'./':'../';
-const SOURCES=window.NEWS_SOURCES||[ROOT+'latest-20260627-0208.json',ROOT+'latest-20260627-0109.json',ROOT+'latest-20260627-0009.json',ROOT+'latest-20260626-2307.json',ROOT+'latest-20260626-2209.json',ROOT+'latest-20260626-2106.json',ROOT+'latest-20260626-2007.json',ROOT+'latest-20260626-1909.json',ROOT+'latest-20260626-1833.json',ROOT+'latest.json',ROOT+'index.json',ROOT+'data.json'];
+const SOURCES=window.NEWS_SOURCES||[ROOT+'latest-20260627-0309.json',ROOT+'latest-20260627-0208.json',ROOT+'latest-20260627-0109.json',ROOT+'latest-20260627-0009.json',ROOT+'latest-20260626-2307.json',ROOT+'latest-20260626-2209.json',ROOT+'latest-20260626-2106.json',ROOT+'latest-20260626-2007.json',ROOT+'latest-20260626-1909.json',ROOT+'latest-20260626-1833.json',ROOT+'latest.json',ROOT+'index.json',ROOT+'data.json'];
 const $=s=>document.querySelector(s), grid=$('#grid'), q=$('#q'), sort=$('#sort'), state=$('#state')||$('#status'), tabs=$('#tabs');
 const titleEl=$('#title'); if(titleEl) titleEl.textContent=TITLE; document.title='GORICS '+TITLE+' NEWS';
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
