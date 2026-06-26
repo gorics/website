@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-26T20:07:29+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"main-20260626-2007-reuters-apple-price-hikes-memory","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"애플, 메모리 가격 급등에 맥북·아이패드 가격 인상","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/apple-raises-prices-macbooks-ipads-memory-costs-skyrocket-2026-06-25/","description":"AI 데이터센터 수요가 메모리·저장장치 가격을 밀어올리자 애플이 주요 기기 가격을 올렸고, 소비자 전가와 하드웨어 수요 둔화 우려가 커졌다.","score":100,"priority":100,"tags":["애플","메모리","AI인프라","가격인상","반도체"]},
+    {"id":"main-20260626-2007-reuters-wall-st-futures-chip-slide","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"미 주가지수 선물 하락…마이크론 랠리 뒤 반도체주 재차 약세","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/wall-st-futures-fall-chip-stocks-resume-slide-after-micron-led-rally-2026-06-26/","description":"마이크론 호실적 이후에도 AI 밸류에이션 부담과 금리 경계가 되살아나며 엔비디아·AMD·인텔 등 반도체주가 다시 압박을 받았다.","score":99,"priority":99,"tags":["월가","반도체","마이크론","AI밸류에이션","금리"]},
+    {"id":"main-20260626-2007-reuters-us-stocks-jobs-data-fed","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"상반기 강세장 마감 앞둔 월가, 고용지표·연준 베팅에 촉각","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/wall-st-week-ahead-jobs-data-rate-bets-focus-us-stocks-close-solid-first-half-2026-06-26/","description":"S&P500이 상반기 강세를 이어갔지만 6월 기술주 변동성이 커졌고, 다음 고용지표가 연준 금리 인상 기대와 주식 밸류에이션을 좌우할 변수로 떠올랐다.","score":98,"priority":98,"tags":["미국증시","고용지표","연준","금리","상반기"]},
+    {"id":"main-20260626-2007-reuters-supreme-court-immigration-agenda","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 트럼프 이민 제한 의제 잇단 승인…사법부 역할 논쟁","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/legal/government/immigration-supreme-court-accedes-trumps-restrictive-agenda-2026-06-26/","description":"망명·TPS·영주권자 재입국 기준 등에서 보수 다수 대법원이 트럼프 행정부 손을 들어주며 이민자 권리와 대통령 권한 논쟁이 커졌다.","score":97,"priority":97,"tags":["미국대법원","이민","트럼프","TPS","망명"]},
+    {"id":"main-20260626-2007-ap-ecuador-germany-world-cup","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"에콰도르, 독일 2-1 격파…20년 만의 월드컵 토너먼트 진출","publishedAt":"2026-06-26","date":"2026-06-26","source":"Associated Press","url":"https://apnews.com/article/a76afaec09bf5ff96e216265c2e18bc1","description":"곤살로 플라타의 결승골로 에콰도르가 독일을 꺾고 조별리그를 통과해 남미 축구의 반등과 독일의 수비 불안을 동시에 드러냈다.","score":95,"priority":95,"tags":["월드컵","에콰도르","독일","플라타","축구"]},
+    {"id":"main-20260626-2007-reuters-venezuela-hormuz-roundup","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"베네수엘라 구조 난항·호르무즈 긴장…재난과 해상안보 리스크 동시 부각","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/podcasts/trump-immigration-wins-venezuela-rescues-brazils-three-centenarian-sisters-2026-06-26/","description":"베네수엘라 강진 실종자 수색과 호르무즈 해협 선박 호위 중단이 겹치며 인도주의 위기와 에너지 수송로 안전 문제가 다시 주목받았다.","score":94,"priority":94,"tags":["베네수엘라","지진","호르무즈","해상안보","재난"]},
+    {"id":"main-20260626-2007-guardian-uk-leading-characters","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"영국, 총리·제임스 본드·닥터 후 동시 ‘새 주인공’ 찾기","publishedAt":"2026-06-26","date":"2026-06-26","source":"The Guardian","url":"https://www.theguardian.com/commentisfree/2026/jun/26/prime-minister-james-bond-doctor-who-uk","description":"정치 리더십 공백과 본드·닥터 후 캐스팅 논쟁이 겹치며 영국 사회가 공유할 서사와 정체성을 둘러싼 문화적 불안을 드러냈다.","score":90,"priority":90,"tags":["영국","제임스본드","닥터후","문화정체성","정치문화"]}
+  ],
+  "byCategory": {"economy":[],"tech":[],"global":[],"politics":[],"play":[],"culture":[]}
+}
