@@ -3,6 +3,7 @@ name: DSHW Body Continuation
 on:
   pull_request:
     branches: ["main"]
+    paths: ["tmp/dshw_body_continuation_trigger_20260627.txt"]
   workflow_dispatch:
 
 permissions:
