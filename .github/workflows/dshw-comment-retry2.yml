@@ -1,0 +1,48 @@
+name: DSHW Comment Retry 2
+
+on:
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  retry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Retry public comments
+        env:
+          SHARD_INDEX: "${{ matrix.shard }}"
+          SHARD_COUNT: "80"
+          REQUEST_CONCURRENCY: "2"
+          REQUEST_DELAY_MS: "700"
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install cheerio@1.0.0-rc.12 >/dev/null 2>&1
+          sed -n "/cat > collect_comments.mjs <<'NODE'/,/^          NODE$/p" .github/workflows/dshw-comment-collector.yml \
+            | sed '1d;$d;s/^          //' > collect_comments.mjs
+          sed -i 's#tmp/dshw_comment_input_68435_20260627.csv#tmp/dshw_comment_retry_all_20260627.csv#' collect_comments.mjs
+          node collect_comments.mjs
+
+      - name: Upload retry artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dshw-comments-retry2-${{ matrix.shard }}
+          retention-days: 1
+          path: |
+            dshw_comments_${{ matrix.shard }}.csv
+            dshw_comment_status_${{ matrix.shard }}.csv
+            dshw_comment_log_${{ matrix.shard }}.json
+          if-no-files-found: warn
