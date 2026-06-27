@@ -3,6 +3,7 @@ name: DSHW Continuation Comments
 on:
   pull_request:
     branches: ["main"]
+    paths: ["tmp/dshw_comment_continuation_trigger*.txt"]
   workflow_dispatch:
 
 permissions:
