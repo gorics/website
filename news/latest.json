@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-06-27T16:09:19+09:00",
+  "generatedAt": "2026-06-27T16:35:05+09:00",
   "source": "gorics-news-automation",
   "page": "news",
   "categories": [
-    {"id":"economy","name":"경제","icon":"📈","count":2},
-    {"id":"tech","name":"기술","icon":"🤖","count":1},
-    {"id":"global","name":"국제","icon":"🌍","count":1},
-    {"id":"politics","name":"정치","icon":"🏛️","count":1},
-    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
-    {"id":"culture","name":"문화","icon":"🎬","count":1}
+    {"id":"economy","name":"경제","icon":"📈","count":4},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"global","name":"국제","icon":"🌍","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":2},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":2},
+    {"id":"culture","name":"문화","icon":"🎬","count":2}
   ],
-  "total": 7,
+  "total": 14,
   "allItems": [
     {"id":"main-20260627-1609-reuters-us-equity-outflows","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"미국 주식형 펀드, 기술주 약세에 주간 순유출 전환","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/us-equity-funds-record-weekly-outflows-tech-weakness-weighs-2026-06-26/","description":"AI·기술주 밸류에이션 부담과 금리 우려가 겹치며 미국 주식형 펀드에서 자금이 빠져나갔다.","score":105,"priority":105,"tags":["미국주식","펀드플로우","기술주","금리","위험회피"]},
     {"id":"main-20260627-1609-reuters-sp500-chips","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"S&P500 약보합 마감…AI 반도체주 급락이 지수 압박","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/wall-st-futures-fall-chip-stocks-resume-slide-after-micron-led-rally-2026-06-26/","description":"AI 투자 수익성 논란과 금리 경계 속에 필라델피아 반도체지수가 크게 밀리며 뉴욕 증시가 약세를 보였다.","score":104,"priority":104,"tags":["S&P500","반도체","AI","나스닥","월가"]},
@@ -18,7 +18,14 @@
     {"id":"main-20260627-1609-ap-venezuela-quake-rescue","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"베네수엘라 쌍둥이 강진 사흘째…생존자 구조 골든타임 임박","publishedAt":"2026-06-27","date":"2026-06-27","source":"AP","url":"https://apnews.com/article/92a3d6c13c0f9af9c1bfb4ff6d041254","description":"대규모 사망·실종 피해 속에 구조 인력과 장비 부족이 이어지며 국제 지원의 속도와 조율이 핵심 과제로 떠올랐다.","score":102,"priority":102,"tags":["베네수엘라","지진","구조","재난","국제지원"]},
     {"id":"main-20260627-1609-ap-digital-tax-tariff","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"트럼프, 디지털세 부과국에 100% 관세 위협","publishedAt":"2026-06-26","date":"2026-06-26","source":"AP","url":"https://apnews.com/article/d2007fee8ae733a15f240c5f83462c96","description":"미국 빅테크를 겨냥한 디지털서비스세 논쟁이 유럽과의 통상 갈등으로 번지며 정치·시장 변수가 됐다.","score":101,"priority":101,"tags":["트럼프","디지털세","관세","EU","빅테크"]},
     {"id":"main-20260627-1609-reuters-belgium-worldcup","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"벨기에, 뉴질랜드 5-1 완파…월드컵 조 1위로 32강행","publishedAt":"2026-06-27","date":"2026-06-27","source":"Reuters","url":"https://www.reuters.com/sports/soccer/belgium-beat-new-zealand-5-1-advance-world-cup-knockout-stage-2026-06-27/","description":"트로사르 멀티골과 루카쿠 기록 경신으로 벨기에가 조 1위를 확정했고 뉴질랜드는 탈락했다.","score":97,"priority":97,"tags":["월드컵","벨기에","뉴질랜드","트로사르","루카쿠"]},
-    {"id":"main-20260627-1609-ap-streaming-week","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"이번 주 스트리밍 신작: 에놀라 홈즈·마돈나·‘엘르’ 라인업","publishedAt":"2026-06-27","date":"2026-06-27","source":"AP","url":"https://apnews.com/article/587bf83b9098091ee91d9a6d83c0cfcd","description":"6월 말~7월 초 OTT·음악·게임 신작 공개 일정이 몰리며 여름 콘텐츠 경쟁이 본격화한다.","score":92,"priority":92,"tags":["스트리밍","에놀라홈즈","마돈나","엘르","OTT"]}
+    {"id":"main-20260627-1609-ap-streaming-week","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"이번 주 스트리밍 신작: 에놀라 홈즈·마돈나·‘엘르’ 라인업","publishedAt":"2026-06-27","date":"2026-06-27","source":"AP","url":"https://apnews.com/article/587bf83b9098091ee91d9a6d83c0cfcd","description":"6월 말~7월 초 OTT·음악·게임 신작 공개 일정이 몰리며 여름 콘텐츠 경쟁이 본격화한다.","score":92,"priority":92,"tags":["스트리밍","에놀라홈즈","마돈나","엘르","OTT"]},
+    {"id":"main-20260627-1635-trowe-global-markets-weekly","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"글로벌 증시 혼조…유가 하락·PCE 안도에 국채금리 하락","publishedAt":"2026-06-27","date":"2026-06-27","source":"T. Rowe Price","url":"https://www.troweprice.com/personal-investing/resources/insights/global-markets-weekly-update.html","description":"미국 주요 지수는 엇갈렸고 유가 하락과 PCE 지표 안정으로 미 국채금리가 한 달여 만에 4.40% 아래로 내려갔다.","score":101,"priority":101,"tags":["글로벌시장","국채금리","PCE","유가","주간시장"]},
+    {"id":"main-20260627-1635-times-oil-monthly-drop","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"국제유가, 코로나 이후 최대 월간 하락 흐름","publishedAt":"2026-06-27","date":"2026-06-27","source":"The Times","url":"https://www.thetimes.com/business/companies-markets/article/oil-price-monthly-fall-20-percent-swgbvlqf6","description":"호르무즈 통항 회복 기대와 공급 우려 완화로 브렌트와 WTI가 큰 폭의 월간 하락세를 보이며 인플레이션 부담을 낮췄다.","score":100,"priority":100,"tags":["유가","브렌트","WTI","호르무즈","인플레이션"]},
+    {"id":"main-20260627-1635-reuters-malaysia-ai-chips","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"말레이시아, 쿠알라룸푸르 공항서 AI칩 1,300만달러 규모 압수","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/malaysia-customs-seizes-ai-chips-worth-13-mln-kuala-lumpur-airport-2026-06-26/","description":"첨단 AI칩 우회 수출 의심 화물이 적발되며 동남아 경유 기술 공급망과 수출통제 리스크가 다시 부각됐다.","score":99,"priority":99,"tags":["AI칩","말레이시아","수출통제","반도체","공급망"]},
+    {"id":"main-20260627-1635-ap-europe-heat-climate","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"유럽 기록적 폭염, 기후변화 없이는 사실상 불가능했다는 분석","publishedAt":"2026-06-26","date":"2026-06-26","source":"AP","url":"https://apnews.com/article/8633dbe64319523484c8feabf2205234","description":"세계기상기여 분석은 프랑스·이탈리아·스페인 등 유럽 폭염이 화석연료 기후변화로 훨씬 잦고 강해졌다고 평가했다.","score":98,"priority":98,"tags":["유럽폭염","기후변화","히트돔","프랑스","기상이변"]},
+    {"id":"main-20260627-1635-ap-texas-bible-reading","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"텍사스, 공립학교 필독 목록에 성경 이야기 포함 승인","publishedAt":"2026-06-26","date":"2026-06-26","source":"AP","url":"https://apnews.com/article/eb6ea9e23e303da0ca2da6132889e020","description":"500만 명 이상 학생에게 적용될 독서 목록이 종교와 공교육의 경계를 둘러싼 미국 내 논쟁을 키우고 있다.","score":96,"priority":96,"tags":["텍사스","공교육","성경","종교자유","미국정치"]},
+    {"id":"main-20260627-1635-reuters-senegal-worldcup","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"세네갈, 이라크 5-0 대파…월드컵 32강 희망 유지","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/sports/soccer/senegal-rout-10-man-iraq-stay-world-cup-hunt-2026-06-26/","description":"세네갈은 이라크를 탈락시키고 조 3위로 32강 가능성을 남겼으며, 이스마일라 사르는 자국 월드컵 최다골 기록을 세웠다.","score":95,"priority":95,"tags":["월드컵","세네갈","이라크","이스마일라사르","32강"]},
+    {"id":"main-20260627-1635-ap-song-summer-2026","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"AP가 꼽은 2026년 ‘여름의 노래’ 후보들","publishedAt":"2026-06-24","date":"2026-06-24","source":"AP","url":"https://apnews.com/article/0d2c000ccce4ea35a74baa3e6cc34090","description":"알고리즘 소비로 대중음악 히트가 분산된 가운데 컨트리팝, 월드컵 송, K팝 협업 등 다양한 여름 음악 후보가 제시됐다.","score":91,"priority":91,"tags":["여름노래","대중음악","AP플레이리스트","월드컵송","팝"]}
   ],
   "byCategory": {
     "economy": [],
