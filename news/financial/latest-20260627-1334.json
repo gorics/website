@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-06-27T13:34:31+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
+    {"id":"trade-fx","name":"무역·환율","icon":"💱","count":1}
+  ],
+  "total": 6,
+  "allItems": [
+    {"id":"fin-20260627-1334-reuters-openai-broadcom-chip","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"OpenAI, 브로드컴 공동 설계 AI칩 공개…자체 인프라 투자 확대","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"추론용 자체칩 공개로 AI 서비스 비용 구조와 브로드컴·TSMC·메모리 공급망 수혜 구도가 시장 관심사로 떠올랐다.","score":103,"priority":103,"tags":["OpenAI","브로드컴","AI인프라","TSMC","메모리"]},
+    {"id":"fin-20260627-1334-reuters-ibm-subnanometer-chip","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"IBM 0.7나노 기술 발표…차세대 AI 반도체 로드맵 경쟁 심화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"초미세 트랜지스터 적층 기술이 공개되며 TSMC·인텔·삼성 등 선단공정 경쟁과 AI칩 전력효율 이슈가 다시 부각됐다.","score":101,"priority":101,"tags":["IBM","반도체","AI칩","선단공정","전력효율"]},
+    {"id":"fin-20260627-1334-reuters-trump-digital-tax-tariff","category":"trade-fx","categoryName":"무역·환율","category_ko":"무역·환율","categoryIcon":"💱","title":"트럼프 100% 관세 경고…디지털세가 새 무역 리스크로 부상","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/us/trump-threatens-100-tariff-any-country-that-imposes-digital-services-tax-2026-06-26/","description":"미국 빅테크 과세를 둘러싼 보복관세 위협이 유럽 수출·자동차·플랫폼 기업 밸류에이션에 새 변수로 떠올랐다.","score":100,"priority":100,"tags":["관세","디지털세","무역갈등","유럽","빅테크"]},
+    {"id":"fin-20260627-1334-reuters-eu-digital-tax-response","category":"rates-policy","categoryName":"금리·정책","category_ko":"금리·정책","categoryIcon":"🏦","title":"EU “디지털세는 주권적 과세”…미국 보복 시 대응 예고","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/eu-defends-digital-tax-approach-says-ready-act-if-turmp-takes-measures-2026-06-26/","description":"EU가 디지털세를 방어하며 미국의 일방 조치에 맞대응하겠다고 밝혀 글로벌 조세·통상 정책 불확실성이 커졌다.","score":98,"priority":98,"tags":["EU","디지털세","조세정책","미국","통상"]},
+    {"id":"fin-20260627-1334-reuters-global-markets-chipflation","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"‘칩플레이션’ 경계 지속…AI 수요·메모리 가격이 증시와 달러 흔들어","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-view-europe-2026-06-26/","description":"AI 데이터센터 수요와 메모리 가격 상승, 애플 가격 인상, 달러 강세가 연결되며 글로벌 증시 변동성을 키웠다.","score":97,"priority":97,"tags":["칩플레이션","메모리","달러","애플","AI수요"]},
+    {"id":"fin-20260627-1334-reuters-israel-lebanon-deal","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"이스라엘·레바논 합의 첫발…중동 지정학 프리미엄 완화 여부 주목","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/middle-east/israel-drops-leaflets-over-south-lebanon-town-ordering-residents-leave-2026-06-26/","description":"미국 중재 합의가 중동 리스크 완화 신호로 해석될 수 있지만, 헤즈볼라 반발과 남부 레바논 긴장은 에너지 시장 변수로 남았다.","score":96,"priority":96,"tags":["중동","이스라엘","레바논","지정학","원유"]}
+  ],
+  "byCategory": {
+    "global-markets": [],
+    "semiconductors": [],
+    "ai-infrastructure": [],
+    "rates-policy": [],
+    "energy-geopolitics": [],
+    "trade-fx": []
+  }
+}
