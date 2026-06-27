@@ -16,7 +16,7 @@ body{margin:0;background:#070a12;color:#e5edf8;font-family:-apple-system,BlinkMa
 <section id="grid" class="grid"></section>
 </main>
 <script>
-const SOURCES=['latest-20260627-1309.json','latest-20260627-1206.json','latest-20260627-1107.json','latest-20260627-0607.json','latest-20260627-0510.json','latest-20260627-0409.json','latest-20260627-0309.json','latest-20260627-0208.json','latest-20260627-0109.json','latest-20260627-0009.json','latest-20260626-2307.json','latest-20260626-2209.json','latest-20260626-2106.json','latest-20260626-2007.json','latest-20260626-1909.json','latest-20260626-1833.json','latest.json','data.json'];
+const SOURCES=['latest-20260627-1334.json','latest-20260627-1309.json','latest-20260627-1206.json','latest-20260627-1107.json','latest-20260627-0607.json','latest-20260627-0510.json','latest-20260627-0409.json','latest-20260627-0309.json','latest-20260627-0208.json','latest-20260627-0109.json','latest-20260627-0009.json','latest-20260626-2307.json','latest-20260626-2209.json','latest-20260626-2106.json','latest-20260626-2007.json','latest-20260626-1909.json','latest-20260626-1833.json','latest.json','data.json'];
 const $=s=>document.querySelector(s),grid=$('#grid'),tabs=$('#tabs'),q=$('#q'),sort=$('#sort'),state=$('#state');let ITEMS=[],CUR='all';
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const src=x=>typeof x.source==='object'?(x.source.name||'원문'):(x.source||'원문');
@@ -27,7 +27,8 @@ function card(x){let d=new Date(x.publishedAt),ds=isNaN(d)?(x.publishedAt||'-'):
 function drawTabs(){let cats=[...new Set(ITEMS.map(x=>x.category))];tabs.innerHTML='<button class="tab on" data-c="all">전체 '+ITEMS.length+'</button>'+cats.map(c=>`<button class=tab data-c="${esc(c)}">${esc(c)} ${ITEMS.filter(x=>x.category===c).length}</button>`).join('');tabs.onclick=e=>{if(e.target.dataset.c){CUR=e.target.dataset.c;tabs.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));e.target.classList.add('on');render()}}}
 function render(){let s=q.value.toLowerCase();let a=[...ITEMS].filter(x=>(CUR==='all'||x.category===CUR)&&(!s||(x.title+x.description+src(x)+(x.tags||[]).join()).toLowerCase().includes(s)));a.sort(sort.value==='latest'?(a,b)=>new Date(b.publishedAt)-new Date(a.publishedAt):(a,b)=>b.score-a.score);grid.innerHTML=a.length?a.map(card).join(''):'<article class=card>표시할 금융 뉴스 없음</article>';state.textContent='표시 '+a.length+' / 전체 '+ITEMS.length}
 async function get(p){try{let r=await fetch(p+'?v='+Date.now(),{cache:'no-store'});return r.ok?await r.json():null}catch(e){return null}}
-async function load(){state.textContent='loading';let docs=await Promise.all(SOURCES.map(get));ITEMS=dedupe(docs.flatMap(flat));drawTabs();render()}q.oninput=render;sort.onchange=render;$('#reload').onclick=load;load();
+async function load(){state.textContent='loading';let docs=await Promise.all(SOURCES.map(get));ITEMS=dedupe(docs.flatMap(flat));drawTabs();render()}
+q.oninput=render;sort.onchange=render;$('#reload').onclick=load;load();
 </script>
 </body>
 </html>
