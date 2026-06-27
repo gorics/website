@@ -26,7 +26,7 @@ jobs:
           SHARD_INDEX: "${{ matrix.shard }}"
           SHARD_COUNT: "20"
           REQUEST_CONCURRENCY: "1"
-          REQUEST_DELAY_MS: "1000"
+          REQUEST_DELAY_MS: "1100"
         run: |
           npm init -y >/dev/null 2>&1
           npm install cheerio@1.0.0-rc.12 >/dev/null 2>&1
@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: dshw-comments-cont-retry2-${{ matrix.shard }}
+          name: dshw-comments-cont-retry3-${{ matrix.shard }}
           retention-days: 1
           path: |
             dshw_comments_${{ matrix.shard }}.csv
