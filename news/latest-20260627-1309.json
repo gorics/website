@@ -45,20 +45,20 @@
       "tags": ["연준", "카시카리", "금리", "AI투자", "인플레이션"]
     },
     {
-      "id": "main-20260627-1309-reuters-us-china-tech-crackdown",
+      "id": "main-20260627-1309-ap-greece-space-wildfire",
       "category": "tech",
       "categoryName": "기술",
       "category_ko": "기술",
       "categoryIcon": "🤖",
-      "title": "미국, 중국산 기술장비 단속 확대…화웨이·ZTE 구형 모델까지 겨냥",
+      "title": "그리스, 산불 대응에 전용 위성망 도입…AI 우주기술 재난관리 실험",
       "publishedAt": "2026-06-26",
       "date": "2026-06-26",
-      "source": "Reuters",
-      "url": "https://www.reuters.com/world/asia-pacific/us-launches-new-chinese-tech-crackdown-will-ban-some-imports-2026-06-26/",
-      "description": "FCC가 통신·감시 장비 규제 범위를 넓히며 미중 기술안보 갈등이 공급망과 기업 조달 전략에 다시 영향을 주고 있다.",
+      "source": "Associated Press",
+      "url": "https://apnews.com/article/8fe0df5f61f336ef59403f189a5a29de",
+      "description": "열감지 위성과 AI 필터링을 국가 소방체계에 통합해 작은 산불 조짐까지 빠르게 포착하려는 유럽형 재난기술 모델이 등장했다.",
       "score": 99,
       "priority": 99,
-      "tags": ["미중기술경쟁", "FCC", "화웨이", "ZTE", "보안"]
+      "tags": ["위성", "AI", "산불", "그리스", "재난기술"]
     },
     {
       "id": "main-20260627-1309-reuters-crimea-emergency",
@@ -125,12 +125,5 @@
       "tags": ["BET어워즈", "드러스키", "문화", "음악", "시상식"]
     }
   ],
-  "byCategory": {
-    "economy": [],
-    "tech": [],
-    "global": [],
-    "politics": [],
-    "play": [],
-    "culture": []
-  }
+  "byCategory": {"economy": [],"tech": [],"global": [],"politics": [],"play": [],"culture": []}
 }
