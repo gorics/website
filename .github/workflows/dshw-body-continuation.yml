@@ -3,7 +3,7 @@ name: DSHW Body Continuation
 on:
   pull_request:
     branches: ["main"]
-    paths: ["tmp/dshw_body_continuation_trigger_20260627.txt"]
+    paths: ["tmp/dshw_body_continuation_trigger*.txt"]
   workflow_dispatch:
 
 permissions:
@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       max-parallel: 20
       matrix:
-        start: [1, 41, 81, 121, 1532, 1572, 1612, 1652, 1692, 1732, 1772, 1812, 1852, 1892, 1932, 1972, 2012, 2052, 2092, 2132, 2172, 2212, 2252, 2292]
+        start: [2332, 2372, 2412, 2452, 2492, 2532, 2572, 2612, 2652, 2692, 2732, 2772, 2812, 2852, 2892, 2932, 2972, 3012, 3052, 3092]
     steps:
       - uses: actions/checkout@v4
       - name: Collect public DSHW post bodies
