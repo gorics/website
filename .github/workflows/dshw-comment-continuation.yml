@@ -18,15 +18,15 @@ jobs:
       fail-fast: false
       max-parallel: 20
       matrix:
-        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79]
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
     steps:
       - uses: actions/checkout@v4
       - name: Collect continuation comments
         env:
           SHARD_INDEX: "${{ matrix.shard }}"
-          SHARD_COUNT: "80"
+          SHARD_COUNT: "20"
           REQUEST_CONCURRENCY: "1"
-          REQUEST_DELAY_MS: "900"
+          REQUEST_DELAY_MS: "1000"
         run: |
           npm init -y >/dev/null 2>&1
           npm install cheerio@1.0.0-rc.12 >/dev/null 2>&1
@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: dshw-comments-cont-retry1-${{ matrix.shard }}
+          name: dshw-comments-cont-retry2-${{ matrix.shard }}
           retention-days: 1
           path: |
             dshw_comments_${{ matrix.shard }}.csv
