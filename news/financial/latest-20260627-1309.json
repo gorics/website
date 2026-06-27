@@ -27,20 +27,20 @@
       "tags": ["브렌트유", "바클레이즈", "호르무즈", "원유", "전망"]
     },
     {
-      "id": "fin-20260627-1309-reuters-sp500-chip-selloff",
+      "id": "fin-20260627-1309-times-oil-monthly-drop",
       "category": "global-markets",
       "categoryName": "글로벌시장",
       "category_ko": "글로벌시장",
       "categoryIcon": "📈",
-      "title": "S&P500 약보합 마감…AI 반도체 급락이 위험자산 심리 압박",
+      "title": "유가, 코로나 이후 최대 월간 낙폭 경로…채권금리·인플레 기대도 완화",
       "publishedAt": "2026-06-26",
       "date": "2026-06-26",
-      "source": "Reuters",
-      "url": "https://www.reuters.com/business/wall-st-futures-fall-chip-stocks-resume-slide-after-micron-led-rally-2026-06-26/",
-      "description": "PHLX 반도체지수 급락과 AI 투자 수익성 우려가 뉴욕 증시를 눌렀고, 헬스케어 강세가 일부 낙폭을 상쇄했다.",
+      "source": "The Times",
+      "url": "https://www.thetimes.com/business/companies-markets/article/oil-price-monthly-fall-20-percent-swgbvlqf6",
+      "description": "호르무즈 재개 기대와 공급 정상화 전망으로 유가가 큰 폭 하락하면서 인플레이션·국채금리 압력도 일부 낮아졌다.",
       "score": 101,
       "priority": 101,
-      "tags": ["S&P500", "나스닥", "반도체", "AI", "뉴욕증시"]
+      "tags": ["유가", "국채금리", "인플레이션", "호르무즈", "브렌트"]
     },
     {
       "id": "fin-20260627-1309-marketwatch-kashkari-rate-hike",
@@ -91,10 +91,5 @@
       "tags": ["크림반도", "연료난", "물류", "흑해", "우크라이나"]
     }
   ],
-  "byCategory": {
-    "global-markets": [],
-    "rates-policy": [],
-    "energy-geopolitics": [],
-    "trade-fx": []
-  }
+  "byCategory": {"global-markets": [],"rates-policy": [],"energy-geopolitics": [],"trade-fx": []}
 }
