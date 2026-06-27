@@ -4,12 +4,12 @@
   "page": "financial",
   "categories": [
     {"id":"global-markets","name":"글로벌시장","icon":"📈","count":3},
-    {"id":"semiconductors","name":"반도체","icon":"💾","count":3},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
     {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
     {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":3},
     {"id":"trade-fx","name":"무역·환율","icon":"💱","count":2}
   ],
-  "total": 12,
+  "total": 11,
   "allItems": [
     {"id":"fin-20260627-1609-reuters-us-equity-outflows","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"미국 주식형 펀드 순유출…기술주 약세가 자금흐름 압박","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/us-equity-funds-record-weekly-outflows-tech-weakness-weighs-2026-06-26/","description":"기술주 밸류에이션과 연준 긴축 우려가 겹치며 주식형 펀드에서 자금이 빠지고 방어적 흐름이 강화됐다.","score":105,"priority":105,"tags":["펀드플로우","미국주식","기술주","금리","위험회피"]},
     {"id":"fin-20260627-1609-reuters-sp500-chip-selloff","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"AI 반도체 매도 재개…S&P500·나스닥 동반 압박","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/wall-st-futures-fall-chip-stocks-resume-slide-after-micron-led-rally-2026-06-26/","description":"AI 자본지출 부담과 수익성 논란 속에 반도체지수가 급락하며 성장주 리스크 프리미엄이 커졌다.","score":104,"priority":104,"tags":["반도체","AI주","S&P500","나스닥","위험자산"]},
@@ -21,7 +21,6 @@
     {"id":"fin-20260627-1635-wsj-oil-iran-strike","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"이란 긴장 속 유가 70달러선 회복…공급 안정 기대와 지정학 리스크 충돌","publishedAt":"2026-06-27","date":"2026-06-27","source":"Wall Street Journal","url":"https://www.wsj.com/finance/commodities-futures/oil-futures-fall-on-likely-technical-correction-93e57fe0","description":"호르무즈 통항 정상화 기대에도 미국의 추가 대응과 선박 공격 이슈가 유가 변동성을 다시 키웠다.","score":100,"priority":100,"tags":["유가","이란","WTI","브렌트","지정학"]},
     {"id":"fin-20260627-1635-times-oil-monthly-drop","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"유가, 코로나 이후 최대 월간 낙폭 경로…물가·채권시장 부담 완화","publishedAt":"2026-06-27","date":"2026-06-27","source":"The Times","url":"https://www.thetimes.com/business/companies-markets/article/oil-price-monthly-fall-20-percent-swgbvlqf6","description":"브렌트와 WTI의 급락 흐름은 공급 차질 우려 완화와 맞물려 인플레이션 및 금리 전망에도 영향을 주고 있다.","score":99,"priority":99,"tags":["유가하락","인플레이션","채권금리","호르무즈","에너지"]},
     {"id":"fin-20260627-1635-ft-digital-tax-tariff","category":"trade-fx","categoryName":"무역·환율","category_ko":"무역·환율","categoryIcon":"💱","title":"디지털서비스세 관세 위협, 대서양 통상갈등 재점화","publishedAt":"2026-06-27","date":"2026-06-27","source":"Financial Times","url":"https://www.ft.com/content/5d886d47-c509-44a4-9077-bcd25158b61e","description":"미국의 100% 관세 경고와 EU의 대응 가능성이 빅테크 과세, 유럽 수출주, 달러·유로 변동성을 흔들 변수로 부상했다.","score":98,"priority":98,"tags":["디지털세","관세","EU","빅테크","환율"]},
-    {"id":"fin-20260627-1635-reuters-malaysia-ai-chips-followup","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"AI칩 환적 단속 강화…동남아 반도체 물류 리스크 확대","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/malaysia-customs-seizes-ai-chips-worth-13-mln-kuala-lumpur-airport-2026-06-26/?utm_source=gorics-news","description":"말레이시아 세관의 AI칩 압수는 고성능 GPU·서버 공급망에서 우회 수출 통제 리스크가 커지고 있음을 보여준다.","score":97,"priority":97,"tags":["AI칩","GPU","환적","수출통제","말레이시아"]},
     {"id":"fin-20260627-1635-ap-us-iran-latest","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"미국-이란 긴장 재고조…원유·방산·위험자산 변동성 변수","publishedAt":"2026-06-26","date":"2026-06-26","source":"AP","url":"https://apnews.com/article/d85b508a55becf7e5e438bebbf6aecb5","description":"휴전 위반 논란과 미국의 대응 보도는 에너지 가격, 방산주, 안전자산 선호에 영향을 줄 수 있는 지정학 이벤트다.","score":96,"priority":96,"tags":["미국이란","지정학","원유","위험자산","안전자산"]}
   ],
   "byCategory": {
