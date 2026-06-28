@@ -1,21 +1,21 @@
 {
-  "generatedAt": "2026-06-29T06:10:10+09:00",
+  "generatedAt": "2026-06-29T06:35:12+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
-    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1},
-    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
     {"id":"ai-infrastructure","name":"AI인프라","icon":"🧠","count":1},
-    {"id":"supply-chain","name":"공급망","icon":"🏭","count":1},
-    {"id":"fintech-platforms","name":"핀테크·플랫폼","icon":"💹","count":1}
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1},
+    {"id":"monetary-policy","name":"통화정책","icon":"🏦","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
+    {"id":"supply-chain","name":"공급망","icon":"🏭","count":1}
   ],
   "total": 5,
   "allItems": [
-    {"id":"fin-20260629-0610-reuters-bis-global-risks","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌐","title":"BIS, 부채·AI 붐·국채시장 취약성 동시 경고","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/business/finance/global-markets-bis-pix-2026-06-28/","description":"BIS는 공공부채 확대, AI 투자 과열 가능성, 레버리지 기반 국채 거래 확대가 금융시장 충격을 키울 수 있다고 경고했다.","score":193,"priority":193,"tags":["BIS","국채시장","AI투자","금융안정","부채"]},
-    {"id":"fin-20260629-0610-reuters-gulf-markets-iran","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"미·이란 긴장에 걸프 증시 혼조…유가·에너지주 리스크 재점검","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/world/middle-east/gulf-markets-mixed-us-iran-trade-attacks-2026-06-28/","description":"걸프 주요 증시가 미·이란 충돌 여파로 엇갈리며 원유, 은행, 지역 리스크 프리미엄이 다시 금융시장 변수로 부상했다.","score":187,"priority":187,"tags":["걸프증시","이란","미국","유가","중동"]},
-    {"id":"fin-20260629-0610-reuters-openai-broadcom-chip","category":"ai-infrastructure","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🧠","title":"OpenAI 자체 AI칩 공개, AI 인프라 공급망 재편 신호","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI가 브로드컴과 추론용 AI칩을 공개하면서 엔비디아 중심 AI 인프라 비용 구조와 반도체 공급망 경쟁이 한층 치열해졌다.","score":184,"priority":184,"tags":["OpenAI","브로드컴","AI인프라","엔비디아","TSMC"]},
-    {"id":"fin-20260629-0610-reuters-tata-apple-security","category":"supply-chain","categoryName":"공급망","category_ko":"공급망","categoryIcon":"🏭","title":"애플 협력사 타타 보안 강화, 인도 공급망 통제 비용 부각","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/apple-supplier-tata-tightens-internal-controls-after-data-breach-sources-say-2026-06-26/","description":"타타의 내부 자료 유출 대응은 애플의 인도 생산 확대 전략에서 협력사 보안, 원격접근 통제, 공급망 감사 비용이 커질 수 있음을 보여준다.","score":174,"priority":174,"tags":["애플","타타","인도","공급망","보안"]},
-    {"id":"fin-20260629-0610-reuters-meta-prediction-markets","category":"fintech-platforms","categoryName":"핀테크·플랫폼","category_ko":"핀테크·플랫폼","categoryIcon":"💹","title":"메타 예측시장 검토, 소셜·핀테크·이벤트거래 경계 확대","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/zuckerberg-asks-meta-explore-working-with-polymarket-kalshi-nyt-reports-2026-06-26/","description":"메타가 예측시장 협업을 검토하며 스포츠·정치 이벤트 거래와 소셜 플랫폼 트래픽 수익화가 결합될 가능성이 커졌다.","score":170,"priority":170,"tags":["메타","예측시장","핀테크","Polymarket","Kalshi"]}
+    {"id":"fin-20260629-0635-reuters-baidu-kunlunxin-ipo","category":"ai-infrastructure","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🧠","title":"바이두 쿤룬신 500억달러 IPO 추진 보도, 중국 AI칩 자립 랠리 부각","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/baidus-ai-chip-unit-kunlunxin-targets-50-billion-hong-kong-ipo-information-2026-06-28/","description":"쿤룬신의 홍콩 IPO 추진 보도는 중국 AI 반도체 기업의 자금조달, 고객사 선점, 미·중 기술경쟁이 시장 테마로 남아 있음을 보여준다.","score":194,"priority":194,"tags":["AI칩","중국","IPO","바이두","홍콩"]},
+    {"id":"fin-20260629-0635-ft-ai-stocks-turbulence","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌐","title":"AI주 추가 변동성 경계…기술주 조정과 금리 변수 동시 점검","publishedAt":"2026-06-28","date":"2026-06-28","source":"Financial Times","url":"https://www.ft.com/content/bc8ce24b-b6ed-4e2d-a628-69f30751ce9e","description":"AI 관련주 조정은 고평가 부담과 금리 전망, 경기지표 확인 심리가 겹친 결과로 해석된다. 단기적으로 기술주 변동성이 금융시장 핵심 변수가 됐다.","score":190,"priority":190,"tags":["AI주","나스닥","금리","섹터로테이션","밸류에이션"]},
+    {"id":"fin-20260629-0635-reuters-pboc-overnight-repo","category":"monetary-policy","categoryName":"통화정책","category_ko":"통화정책","categoryIcon":"🏦","title":"중국 PBOC 익일 역레포 도입, 단기금리 관리 정교화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/china-central-bank-add-tool-better-manage-short-term-liquidity-2026-06-25/","description":"PBOC의 새 유동성 도구는 월말 자금 수요 완충과 단기금리 통제를 겨냥한다. 중국 채권시장과 정책금리 체계 개편 기대가 커졌다.","score":186,"priority":186,"tags":["PBOC","중국채권","유동성","역레포","통화정책"]},
+    {"id":"fin-20260629-0635-guardian-hormuz-risk","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"호르무즈 리스크 재점화, 에너지 운송·보험 프리미엄 부담 확대","publishedAt":"2026-06-28","date":"2026-06-28","source":"The Guardian","url":"https://www.theguardian.com/world/live/2026/jun/28/iran-strait-of-hormuz-donald-trump-vance-peace-talks-bahrain-kuwait-strikes-latest-news-updates","description":"미·이란 긴장 재고조는 원유·LNG 운송, 해상보험, 중동 리스크 프리미엄을 다시 시장 변수로 만들고 있다.","score":181,"priority":181,"tags":["호르무즈","유가","중동","해운","지정학"]},
+    {"id":"fin-20260629-0635-reuters-tata-apple-breach","category":"supply-chain","categoryName":"공급망","category_ko":"공급망","categoryIcon":"🏭","title":"타타 자료 유출 대응, 애플 인도 공급망 보안비용 변수 부각","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/apple-supplier-tata-tightens-internal-controls-after-data-breach-sources-say-2026-06-26/","description":"타타의 보안 통제 강화는 애플의 인도 생산 확대 과정에서 사이버보안, 원격접근 통제, 협력사 감사 비용이 커질 수 있음을 시사한다.","score":176,"priority":176,"tags":["애플","타타","인도","공급망","사이버보안"]}
   ],
   "byCategory": {}
 }
