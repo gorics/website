@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-06-29T06:10:10+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"economy","name":"경제","icon":"📈","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":2},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"main-20260629-0610-reuters-scotus-trump-rulings","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 연방대법원 임기 막판, 트럼프 행정권·출생시민권 등 핵심 판결 임박","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/legal/government/supreme-courts-term-nears-its-end-three-major-trump-rulings-due-2026-06-28/","description":"미 연방대법원이 임기 종료를 앞두고 트럼프 대통령의 독립기관 해임권, 출생시민권 제한, 선거·감시·트랜스젠더 선수 관련 사건 등 굵직한 판결을 남겨뒀다.","score":193,"priority":193,"tags":["미국","연방대법원","트럼프","행정권","출생시민권"]},
+    {"id":"main-20260629-0610-reuters-bis-global-risks","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"BIS, 부채·AI 투자붐·채권시장 취약성 경고…글로벌 금융 리스크 부각","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/business/finance/global-markets-bis-pix-2026-06-28/","description":"국제결제은행은 공공부채 확대와 AI 투자붐의 지속 가능성, 비은행 금융권과 국채시장 취약성이 결합해 글로벌 금융 불안 요인이 커졌다고 경고했다.","score":191,"priority":191,"tags":["BIS","글로벌시장","AI버블","국채","금융안정"]},
+    {"id":"main-20260629-0610-reuters-drcongo-england","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"DR콩고, 월드컵 첫 승으로 32강 진출…잉글랜드와 격돌","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/sports/soccer/dr-congo-seal-place-world-cup-knockouts-with-comeback-win-over-uzbekistan-2026-06-28/","description":"DR콩고가 우즈베키스탄에 3-1 역전승을 거두며 사상 첫 월드컵 승리와 32강 진출을 동시에 달성했다. 다음 상대는 잉글랜드다.","score":187,"priority":187,"tags":["월드컵","DR콩고","잉글랜드","우즈베키스탄","32강"]},
+    {"id":"main-20260629-0610-ap-iran-worldcup-eliminated","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"이란, 정치적 긴장 속 월드컵 탈락…오스트리아 극장골에 32강 좌절","publishedAt":"2026-06-28","date":"2026-06-28","source":"AP","url":"https://apnews.com/article/3d644f91e648232e2a407eab23748afd","description":"이란은 비자·이동 제한과 미·이란 긴장 속에서 조별리그를 치렀지만, 오스트리아의 마지막 동점골로 32강 진출권을 놓쳤다.","score":184,"priority":184,"tags":["이란","월드컵","오스트리아","미국","지정학"]},
+    {"id":"main-20260629-0610-reuters-openai-broadcom-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"OpenAI, 브로드컴과 자체 AI칩 공개…엔비디아 의존도 낮추기 가속","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI가 브로드컴과 개발한 추론용 자체 AI칩을 공개했다. 내부 인프라 비용을 줄이고 GPU 공급 의존도를 완화하려는 전략으로 해석된다.","score":180,"priority":180,"tags":["OpenAI","브로드컴","AI칩","엔비디아","TSMC"]},
+    {"id":"main-20260629-0610-reuters-austria-algeria-thriller","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"오스트리아-알제리 3-3 난타전…이란 탈락·양팀 32강 진출","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/sports/soccer/austria-draw-with-algeria-thriller-reach-knockout-stage-iran-out-2026-06-28/","description":"오스트리아와 알제리가 후반 추가시간에만 두 골을 주고받는 3-3 명승부를 펼쳤고, 이 결과로 양팀은 32강에 오르고 이란은 탈락했다.","score":178,"priority":178,"tags":["월드컵","오스트리아","알제리","이란","32강"]},
+    {"id":"main-20260629-0610-reuters-meta-prediction-markets","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"메타, 예측시장 앱 검토…정책·스포츠 이벤트 거래와 소셜 플랫폼 결합 주목","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/zuckerberg-asks-meta-explore-working-with-polymarket-kalshi-nyt-reports-2026-06-26/","description":"메타가 Polymarket·Kalshi와의 협업 가능성을 검토한 것으로 전해지며 예측시장과 소셜 플랫폼 수익화 모델의 접점이 커지고 있다.","score":170,"priority":170,"tags":["메타","예측시장","Polymarket","Kalshi","핀테크"]},
+    {"id":"main-20260629-0610-ap-utah-fireworks-wildfire","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"미 유타, 대형 산불 속 독립기념일 불꽃놀이 제한…지역 행사 안전 변수 확대","publishedAt":"2026-06-26","date":"2026-06-26","source":"AP","url":"https://apnews.com/article/9604ee19a108b0a54051b04902f6b0a6","description":"유타주가 산불 확산으로 비상사태를 선포하고 7월 4일 전후 불꽃놀이를 제한했다. 지역 축제와 야외 행사에도 안전 리스크가 커졌다.","score":158,"priority":158,"tags":["유타","산불","불꽃놀이","지역행사","독립기념일"]}
+  ],
+  "byCategory": {}
+}
