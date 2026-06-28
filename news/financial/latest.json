@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-06-29T07:31:54+09:00",
+  "generatedAt": "2026-06-29T08:09:02+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
-    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":2},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
     {"id":"ai-infrastructure","name":"AI인프라","icon":"🧠","count":1},
-    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1},
-    {"id":"semiconductors","name":"반도체","icon":"💾","count":1}
+    {"id":"policy-regulation","name":"정책·규제","icon":"⚖️","count":1}
   ],
   "total": 5,
   "allItems": [
-    {"id":"fin-20260629-0731-reuters-oil-us-iran","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"미·이란 충돌 재개에 유가 상승, 호르무즈 프리미엄 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-climbs-following-renewed-us-iran-strikes-middle-east-2026-06-28/","description":"브렌트와 WTI가 중동 긴장 재고조에 상승했다. 호르무즈 해협 불안은 에너지 수송, 인플레이션, 위험자산 선호에 직접 영향을 줄 수 있다.","score":205,"priority":205,"tags":["유가","호르무즈","중동리스크","브렌트","WTI"]},
-    {"id":"fin-20260629-0731-ap-iran-gulf-attacks","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"이란의 걸프 공격, 해상 수송·에너지 프리미엄 리스크 확대","publishedAt":"2026-06-28","date":"2026-06-28","source":"AP","url":"https://apnews.com/article/1132d316545db2cddb3928b6e7840f51","description":"바레인·쿠웨이트 공격은 호르무즈 주변 안보 리스크를 키우며 원유·LNG 운송과 보험료, 에너지 관련 자산 가격에 영향을 줄 수 있다.","score":202,"priority":202,"tags":["걸프","이란","해상수송","원유","LNG"]},
-    {"id":"fin-20260629-0731-reuters-firmus-nvidia","category":"ai-infrastructure","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🧠","title":"Firmus-엔비디아 협력, AI 컴퓨팅 접근성 확대 경쟁 가속","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/australias-firmus-technologies-strikes-ai-access-deal-with-nvidia-2026-06-28/","description":"엔비디아 생태계 기반 AI 컴퓨팅 공급 모델이 확대되며 GPU 접근성, 데이터센터 수요, AI 스타트업 비용 구조가 시장 변수로 부상했다.","score":198,"priority":198,"tags":["Nvidia","Firmus","AI컴퓨팅","GPU","데이터센터"]},
-    {"id":"fin-20260629-0706-reuters-sp500-chip-selloff","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌐","title":"S&P500 약세, AI 반도체주 급락이 위험선호 위축","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/wall-st-futures-fall-chip-stocks-resume-slide-after-micron-led-rally-2026-06-26/","description":"칩 지수 급락과 나스닥 약세는 AI 투자 과열 우려가 단기 시장 리스크로 재부상했음을 보여준다. 헬스케어 반등은 방어적 순환매 성격이 강하다.","score":193,"priority":193,"tags":["S&P500","나스닥","반도체","AI주","변동성"]},
-    {"id":"fin-20260629-0706-reuters-chipflation","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"메모리 가격 상승 ‘칩플레이션’, 빅테크 마진과 소비자 가격 압박","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-view-europe-2026-06-26/","description":"AI 데이터센터 수요가 메모리 가격을 밀어 올리며 애플 등 하드웨어 기업의 비용 부담으로 이어지고 있다. 반도체 공급 부족과 제품 가격 인상 우려가 겹쳤다.","score":190,"priority":190,"tags":["메모리","AI데이터센터","애플","반도체","인플레이션"]}
+    {"id":"fin-20260629-0809-reuters-bis-global-risks","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌐","title":"BIS, AI 붐과 공공부채가 시장 취약성 키운다고 경고","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/business/finance/global-markets-bis-pix-2026-06-28/","description":"BIS는 AI 투자 기대가 자산가치와 부채 조달에 과도하게 반영될 경우 금융시장 조정이 길어질 수 있다고 봤다. 채권시장 레버리지도 핵심 위험으로 지목됐다.","score":210,"priority":210,"tags":["BIS","AI투자","채권시장","레버리지","공공부채"]},
+    {"id":"fin-20260629-0809-reuters-gulf-markets","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌐","title":"걸프 증시 혼조, 중동 위험프리미엄 재가격화","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/world/middle-east/gulf-markets-mixed-us-iran-trade-attacks-2026-06-28/","description":"사우디·카타르·이집트 증시가 엇갈리며 지정학 리스크가 지역 주식시장과 은행·에너지주 가격에 다시 반영됐다.","score":204,"priority":204,"tags":["걸프증시","중동리스크","사우디","카타르","이집트"]},
+    {"id":"fin-20260629-0809-reuters-saudi-aramco-crash","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"아람코 헬기 추락, 라스 타누라 에너지 거점 리스크 부각","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/world/saudi-aramco-helicopter-crash-kills-14-state-new-agency-says-2026-06-28/","description":"라스 타누라는 사우디 핵심 정유·수출 거점이다. 헬기 추락 사고는 조사 중이지만, 에너지 인프라 안전 리스크가 재조명됐다.","score":200,"priority":200,"tags":["아람코","라스 타누라","에너지인프라","사우디","원유"]},
+    {"id":"fin-20260629-0809-reuters-qualcomm-modular","category":"ai-infrastructure","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🧠","title":"퀄컴-Modular 거래, AI칩 경쟁의 소프트웨어 전선 확대","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","description":"퀄컴의 Modular 인수 추진은 AI 가속기 시장에서 하드웨어뿐 아니라 개발자 생태계와 범용 실행 소프트웨어가 기업가치 변수로 커졌다는 신호다.","score":196,"priority":196,"tags":["Qualcomm","Modular","AI인프라","AI칩","소프트웨어"]},
+    {"id":"fin-20260629-0809-reuters-eu-digital-tax","category":"policy-regulation","categoryName":"정책·규제","category_ko":"정책·규제","categoryIcon":"⚖️","title":"EU 디지털세 방어, 빅테크·통상 리스크 재부상","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/eu-defends-digital-tax-approach-says-ready-act-if-turmp-takes-measures-2026-06-26/","description":"EU가 디지털세를 방어하며 미국 조치 가능성에 맞서겠다고 밝히자 빅테크 과세, 무역갈등, 플랫폼 규제 불확실성이 다시 시장 변수로 떠올랐다.","score":190,"priority":190,"tags":["디지털세","EU","빅테크","통상","규제"]}
   ],
   "byCategory": {}
 }
