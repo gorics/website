@@ -1,19 +1,20 @@
 {
-  "generatedAt": "2026-06-29T07:06:46+09:00",
+  "generatedAt": "2026-06-29T07:31:54+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
+    {"id":"ai-infrastructure","name":"AI인프라","icon":"🧠","count":1},
     {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1},
-    {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
-    {"id":"ai-infrastructure","name":"AI인프라","icon":"🧠","count":2}
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1}
   ],
   "total": 5,
   "allItems": [
+    {"id":"fin-20260629-0731-reuters-oil-us-iran","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"미·이란 충돌 재개에 유가 상승, 호르무즈 프리미엄 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-climbs-following-renewed-us-iran-strikes-middle-east-2026-06-28/","description":"브렌트와 WTI가 중동 긴장 재고조에 상승했다. 호르무즈 해협 불안은 에너지 수송, 인플레이션, 위험자산 선호에 직접 영향을 줄 수 있다.","score":205,"priority":205,"tags":["유가","호르무즈","중동리스크","브렌트","WTI"]},
+    {"id":"fin-20260629-0731-ap-iran-gulf-attacks","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"이란의 걸프 공격, 해상 수송·에너지 프리미엄 리스크 확대","publishedAt":"2026-06-28","date":"2026-06-28","source":"AP","url":"https://apnews.com/article/1132d316545db2cddb3928b6e7840f51","description":"바레인·쿠웨이트 공격은 호르무즈 주변 안보 리스크를 키우며 원유·LNG 운송과 보험료, 에너지 관련 자산 가격에 영향을 줄 수 있다.","score":202,"priority":202,"tags":["걸프","이란","해상수송","원유","LNG"]},
+    {"id":"fin-20260629-0731-reuters-firmus-nvidia","category":"ai-infrastructure","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🧠","title":"Firmus-엔비디아 협력, AI 컴퓨팅 접근성 확대 경쟁 가속","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/australias-firmus-technologies-strikes-ai-access-deal-with-nvidia-2026-06-28/","description":"엔비디아 생태계 기반 AI 컴퓨팅 공급 모델이 확대되며 GPU 접근성, 데이터센터 수요, AI 스타트업 비용 구조가 시장 변수로 부상했다.","score":198,"priority":198,"tags":["Nvidia","Firmus","AI컴퓨팅","GPU","데이터센터"]},
     {"id":"fin-20260629-0706-reuters-sp500-chip-selloff","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌐","title":"S&P500 약세, AI 반도체주 급락이 위험선호 위축","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/wall-st-futures-fall-chip-stocks-resume-slide-after-micron-led-rally-2026-06-26/","description":"칩 지수 급락과 나스닥 약세는 AI 투자 과열 우려가 단기 시장 리스크로 재부상했음을 보여준다. 헬스케어 반등은 방어적 순환매 성격이 강하다.","score":193,"priority":193,"tags":["S&P500","나스닥","반도체","AI주","변동성"]},
-    {"id":"fin-20260629-0706-reuters-chipflation","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"메모리 가격 상승 ‘칩플레이션’, 빅테크 마진과 소비자 가격 압박","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-view-europe-2026-06-26/","description":"AI 데이터센터 수요가 메모리 가격을 밀어 올리며 애플 등 하드웨어 기업의 비용 부담으로 이어지고 있다. 반도체 공급 부족과 제품 가격 인상 우려가 겹쳤다.","score":190,"priority":190,"tags":["메모리","AI데이터센터","애플","반도체","인플레이션"]},
-    {"id":"fin-20260629-0706-theverge-openai-jalapeno","category":"ai-infrastructure","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🧠","title":"OpenAI 자체 AI 프로세서 Jalapeño 공개, 엔비디아 의존 완화 시도","publishedAt":"2026-06-24","date":"2026-06-24","source":"The Verge","url":"https://www.theverge.com/ai-artificial-intelligence/955939/openai-reveals-its-first-ai-processor-jalapeno","description":"OpenAI가 브로드컴과 개발한 추론용 ASIC을 공개했다. AI 인프라 기업들이 GPU 조달 병목과 비용 부담을 줄이려는 흐름이 강화되고 있다.","score":187,"priority":187,"tags":["OpenAI","Jalapeño","브로드컴","AI칩","추론"]},
-    {"id":"fin-20260629-0706-reuters-sk-hynix-adr","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"SK하이닉스 294억달러 미국 ADR 상장 추진, HBM 투자 확대 기대","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/","description":"SK하이닉스가 AI 메모리 수요를 배경으로 대규모 미국 ADR 상장을 추진한다. 조달 자금은 한국 내 팹과 EUV 장비 투자에 쓰일 전망이다.","score":184,"priority":184,"tags":["SK하이닉스","HBM","ADR","AI메모리","반도체투자"]},
-    {"id":"fin-20260629-0706-theverge-apple-m7-silicon","category":"ai-infrastructure","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🧠","title":"애플 M7 전환설, 온디바이스 AI용 고성능 실리콘 전략 변화","publishedAt":"2026-06-27","date":"2026-06-27","source":"The Verge","url":"https://www.theverge.com/tech/957561/apple-m6-m7-ai-chip-release-timeline-gurman","description":"애플이 일부 M6 고급형 라인업보다 M7 개발에 무게를 두는 것으로 전해지며, 고성능 맥과 온디바이스 AI 경쟁 구도에 영향을 줄 수 있다.","score":180,"priority":180,"tags":["애플","M7","AI실리콘","맥","온디바이스AI"]}
+    {"id":"fin-20260629-0706-reuters-chipflation","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"메모리 가격 상승 ‘칩플레이션’, 빅테크 마진과 소비자 가격 압박","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-view-europe-2026-06-26/","description":"AI 데이터센터 수요가 메모리 가격을 밀어 올리며 애플 등 하드웨어 기업의 비용 부담으로 이어지고 있다. 반도체 공급 부족과 제품 가격 인상 우려가 겹쳤다.","score":190,"priority":190,"tags":["메모리","AI데이터센터","애플","반도체","인플레이션"]}
   ],
   "byCategory": {}
 }
