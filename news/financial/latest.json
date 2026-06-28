@@ -1,20 +1,21 @@
 {
-  "generatedAt": "2026-06-29T05:10:30+09:00",
+  "generatedAt": "2026-06-29T05:36:03+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
-    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":2},
-    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
-    {"id":"ai-infrastructure","name":"AI인프라","icon":"🧠","count":1},
-    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1}
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1},
+    {"id":"supply-chain","name":"공급망","icon":"🏭","count":1},
+    {"id":"trade-policy","name":"무역·정책","icon":"🏛️","count":1},
+    {"id":"fintech-platforms","name":"핀테크·플랫폼","icon":"💹","count":1},
+    {"id":"ai-infrastructure","name":"AI인프라","icon":"🧠","count":1}
   ],
   "total": 5,
   "allItems": [
-    {"id":"fin-20260629-0510-reuters-bis-global-risks","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌐","title":"BIS, 부채·AI 붐·채권시장 취약성 결합 경고","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/business/finance/global-markets-bis-pix-2026-06-28/","description":"BIS는 공공부채와 AI 투자붐, 레버리지 펀드 중심의 채권시장 구조가 결합해 금융시장 충격을 키울 수 있다고 봤다.","score":196,"priority":196,"tags":["BIS","채권시장","AI투자","공공부채","금융리스크"]},
-    {"id":"fin-20260629-0510-reuters-baidu-kunlunxin-ipo","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"바이두 쿤룬신 500억달러 IPO 추진설, 중국 AI칩 밸류에이션 시험대","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/baidus-ai-chip-unit-kunlunxin-targets-50-billion-hong-kong-ipo-information-2026-06-28/","description":"홍콩 IPO 목표가 사실화될 경우 중국 AI칩 자립 테마와 대형 테크 분사 상장 밸류에이션의 기준점이 될 수 있다.","score":191,"priority":191,"tags":["바이두","쿤룬신","AI칩","홍콩IPO","중국테크"]},
-    {"id":"fin-20260629-0510-reuters-firmus-nvidia","category":"ai-infrastructure","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🧠","title":"Firmus-엔비디아 AI 접근성 계약, GPU 컴퓨팅 공급망 확대 신호","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/australias-firmus-technologies-strikes-ai-access-deal-with-nvidia-2026-06-28/","description":"호주 Firmus가 엔비디아와 AI 컴퓨팅 접근성 확대 계약을 맺으며 중소 AI 기업의 GPU 자원 확보 경쟁이 완화될 가능성이 제기됐다.","score":177,"priority":177,"tags":["Firmus","엔비디아","GPU","AI컴퓨팅","데이터센터"]},
-    {"id":"fin-20260629-0510-reuters-europe-heatwave","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"유럽 폭염, 원전 출력·전력망·물류 부담 확대","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/business/environment/france-records-1000-excess-deaths-during-record-breaking-heatwave-2026-06-28/","description":"기록적 폭염으로 일부 전력·교통 인프라가 흔들리고 원전 냉각·하천 수위 문제가 부각되며 에너지 시장의 계절 리스크가 커졌다.","score":173,"priority":173,"tags":["유럽폭염","전력망","원전","기후리스크","에너지"]},
-    {"id":"fin-20260629-0510-reuters-iran-talks-canceled","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌐","title":"이란 기술협상 취소, 중동 리스크 프리미엄 재상승 변수","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/world/middle-east/iran-canceled-participation-technical-talks-over-recent-attacks-official-tells-2026-06-28/","description":"이란이 미국과의 기술협상 참가를 취소하면서 중동 긴장 완화 기대가 약해졌고, 원유·해운·위험자산 가격에 다시 변수가 생겼다.","score":171,"priority":171,"tags":["이란","미국","중동리스크","원유","시장심리"]}
+    {"id":"fin-20260629-0536-reuters-gulf-markets-iran","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌐","title":"걸프 증시, 미·이란 공격 여파로 혼조…위험자산 심리 재점검","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/world/middle-east/gulf-markets-mixed-us-iran-trade-attacks-2026-06-28/","description":"사우디·카타르·이집트 시장이 엇갈리며 중동 지정학 리스크가 원유·은행·에너지주 투자심리의 핵심 변수로 다시 떠올랐다.","score":188,"priority":188,"tags":["걸프증시","중동","이란","위험자산","유가"]},
+    {"id":"fin-20260629-0536-reuters-tata-apple-supplychain","category":"supply-chain","categoryName":"공급망","category_ko":"공급망","categoryIcon":"🏭","title":"타타 자료 유출 대응, 애플 인도 공급망 보안 리스크 부각","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/apple-supplier-tata-tightens-internal-controls-after-data-breach-sources-say-2026-06-26/","description":"타타가 접근통제와 포렌식 감사를 강화하면서 애플의 탈중국 생산전략에서 사이버보안·협력사 통제 비용이 새 변수로 떠올랐다.","score":178,"priority":178,"tags":["애플","타타","인도생산","사이버보안","공급망"]},
+    {"id":"fin-20260629-0536-reuters-eu-digital-tax","category":"trade-policy","categoryName":"무역·정책","category_ko":"무역·정책","categoryIcon":"🏛️","title":"EU 디지털세 방어, 미국과 빅테크 통상갈등 재점화 가능성","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/eu-defends-digital-tax-approach-says-ready-act-if-turmp-takes-measures-2026-06-26/","description":"EU가 디지털세 방침을 고수하며 미국의 일방 조치에 대응하겠다고 밝혀 플랫폼 기업과 대서양 통상협상에 정책 리스크가 커졌다.","score":172,"priority":172,"tags":["EU","디지털세","미국","빅테크","관세"]},
+    {"id":"fin-20260629-0536-reuters-meta-prediction-markets","category":"fintech-platforms","categoryName":"핀테크·플랫폼","category_ko":"핀테크·플랫폼","categoryIcon":"💹","title":"메타 예측시장 진출 검토, 이벤트 베팅·소셜 플랫폼 경계 확대","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/zuckerberg-asks-meta-explore-working-with-polymarket-kalshi-nyt-reports-2026-06-26/","description":"메타가 Polymarket·Kalshi 협업을 검토한 것으로 전해지며 예측시장, 스포츠·정책 이벤트 거래, 소셜 플랫폼 수익화의 접점이 커졌다.","score":170,"priority":170,"tags":["메타","예측시장","핀테크","Polymarket","Kalshi"]},
+    {"id":"fin-20260629-0536-reuters-data-centre-fire","category":"ai-infrastructure","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🧠","title":"뉴델리 데이터센터 화재, 클라우드 복원력·백업 비용 리스크 부각","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/tata-unit-says-extensive-damage-fire-delhi-data-centre-hampers-recovery-2026-06-24/","description":"STT·타타 데이터센터 화재가 구글 클라우드 네트워크와 기업 데이터 복구에 영향을 주며 데이터센터 보험·백업·운영 리스크가 부각됐다.","score":168,"priority":168,"tags":["데이터센터","클라우드","구글","백업","인프라리스크"]}
   ],
   "byCategory": {}
 }
