@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-29T07:06:46+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"play","name":"스포츠","icon":"⚽","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":2},
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"main-20260629-0706-ap-iran-world-cup-exit","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"이란, 오스트리아 극장골에 월드컵 조별리그 탈락","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/3d644f91e648232e2a407eab23748afd","description":"이란이 조별리그 3무에도 오스트리아의 막판 동점골로 32강 경쟁에서 밀려났다. 지정학 긴장과 비자 문제 속에서 치른 대회라 여파가 크다.","score":196,"priority":196,"tags":["월드컵","이란","오스트리아","32강","축구"]},
+    {"id":"main-20260629-0706-reuters-korea-president-worldcup","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"한국 월드컵 조기 탈락에 대통령 공개 질타, 축구협회 개혁 압박","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/sports/soccer/south-koreas-utterly-baffled-president-lets-rip-after-early-world-cup-exit-2026-06-28/","description":"이재명 대통령이 한국의 월드컵 조기 탈락을 두고 지도자 선임과 축구 행정의 불투명성을 강하게 비판했다. 문체부 조사와 개혁 요구가 커졌다.","score":194,"priority":194,"tags":["한국축구","월드컵","홍명보","축구협회","스포츠정책"]},
+    {"id":"main-20260629-0706-ap-trump-dc-golf","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"트럼프, 워싱턴 D.C. 공공 골프장 대규모 개보수·메이저 대회 유치 구상","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/b6b32b4a989728ed15e3cb2dab19a113","description":"트럼프 대통령이 이스트 포토맥 골프장 개보수 계획을 공개하며 메이저 골프대회 유치 가능성을 언급했다. 공공부지 활용과 정치적 상징성이 함께 부각됐다.","score":188,"priority":188,"tags":["트럼프","워싱턴DC","골프장","공공부지","정치"]},
+    {"id":"main-20260629-0706-guardian-tps-migrants","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 국토안보장관, TPS 이민자에 영주권 신청 또는 출국 요구","publishedAt":"2026-06-28","date":"2026-06-28","source":"The Guardian","url":"https://www.theguardian.com/us-news/2026/jun/28/markwayne-mullin-migrants-permanent-residence-tps-ruling","description":"미 대법원 판단 이후 국토안보장관이 임시보호신분 이민자들에게 합법 영주 지위를 얻거나 출국해야 한다고 밝혔다. 아이티·시리아 출신 이민자들이 직접 영향을 받는다.","score":185,"priority":185,"tags":["미국","이민","TPS","대법원","국토안보부"]},
+    {"id":"main-20260629-0706-reuters-sp500-chip-selloff","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"S&P500 약보합, AI 반도체주 급락 속 시장 변동성 확대","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/wall-st-futures-fall-chip-stocks-resume-slide-after-micron-led-rally-2026-06-26/","description":"미 증시는 AI 반도체주 급락과 헬스케어 반등이 엇갈리며 약세 마감했다. 칩 지수 급락은 AI 투자 과열·수익성 우려가 다시 시장 핵심 변수임을 보여준다.","score":184,"priority":184,"tags":["S&P500","반도체","AI주","나스닥","증시"]},
+    {"id":"main-20260629-0706-reuters-chipflation","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"‘칩플레이션’ 부각, 메모리 가격 상승이 빅테크 비용 압박","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-view-europe-2026-06-26/","description":"AI 데이터센터 수요로 메모리칩 가격이 오르며 애플 제품 가격과 글로벌 물가 압력까지 번지는 흐름이 나타났다. 기술주 비용 구조에 부담이 커졌다.","score":182,"priority":182,"tags":["칩플레이션","메모리","애플","AI데이터센터","물가"]},
+    {"id":"main-20260629-0706-theverge-apple-m7","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"애플 고성능 맥 칩 업그레이드 2027년 이후로 밀릴 가능성","publishedAt":"2026-06-27","date":"2026-06-27","source":"The Verge","url":"https://www.theverge.com/tech/957561/apple-m6-m7-ai-chip-release-timeline-gurman","description":"애플이 M6 Pro·Max를 건너뛰고 M7 개발을 앞당기는 전략을 검토하는 것으로 전해졌다. 고성능 맥 업그레이드 주기와 온디바이스 AI 성능 경쟁에 영향을 줄 수 있다.","score":179,"priority":179,"tags":["애플","M7","맥","AI칩","온디바이스AI"]},
+    {"id":"main-20260629-0706-ap-america250-culture","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"미 독립 250주년 행사 앞두고 국가 정체성·권력 상징 논쟁 확산","publishedAt":"2026-06-28","date":"2026-06-28","source":"AP","url":"https://apnews.com/article/13c1b8f5ad2cb4c94d879d5738000e53","description":"미국 독립 250주년을 앞두고 대통령 권한, 공화정 전통, 국가 기념행사의 정치성이 문화 논쟁으로 번지고 있다.","score":174,"priority":174,"tags":["미국독립250주년","문화정치","국가정체성","공화정","트럼프"]}
+  ],
+  "byCategory": {}
+}
