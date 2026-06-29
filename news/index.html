@@ -9,20 +9,21 @@
 </head>
 <body>
 <nav class="wrap nav"><b>GORICS NEWS</b><div class="links"><a href="../">홈</a><a href="./">뉴스</a><a href="financial/">금융뉴스</a><a href="tech/">기술</a><a href="global/">국제</a><a href="politics/">정치</a><a href="play/">스포츠</a><a href="culture/">문화</a></div></nav>
-<header class="wrap hero"><h1>GORICS<br>NEWS</h1><p>latest.json overlay를 먼저 읽고 data.json 장기 데이터와 병합해 최신순으로 표시합니다. URL/제목 기준으로 중복 제거하며 기존 뉴스는 보존됩니다.</p><p id="state" class="muted">데이터 연결 중</p></header>
+<header class="wrap hero"><h1>GORICS<br>NEWS</h1><p>latest.json overlay와 timestamp archive를 먼저 읽고 data.json 장기 데이터와 병합해 최신순으로 표시합니다. allItems, items, posts, news, byCategory fallback을 모두 지원합니다.</p><p id="state" class="muted">데이터 연결 중</p></header>
 <main class="wrap"><section class="toolbar"><div class="controls"><input id="q" placeholder="제목·요약·출처 검색"><select id="sort"><option value="latest">최신순</option><option value="hot">HOT순</option></select></div><div id="tabs" class="tabs"></div></section><section id="grid" class="grid"></section></main>
 <script>
+const SOURCES=['./latest-20260630-0134.json','./latest.json','./index.json','./data.json'];
 const $=id=>document.getElementById(id), grid=$('grid'), tabs=$('tabs'), q=$('q'), sort=$('sort'), state=$('state');let items=[], current='all';
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 function flatten(p){let arr=[]; if(!p) return arr; ['allItems','items','posts','news'].forEach(k=>{if(Array.isArray(p[k])) arr=arr.concat(p[k]);}); if(p.byCategory&&typeof p.byCategory==='object') Object.values(p.byCategory).forEach(v=>{if(Array.isArray(v)) arr=arr.concat(v);}); return arr.filter(x=>x&&x.title&&(x.url||x.link));}
-function key(x){return (x.url||x.link||'').trim().toLowerCase() || ((x.title||'').replace(/\s+/g,' ').trim().toLowerCase()+'|'+String(x.source?.name||x.source||'').toLowerCase());}
+function key(x){return (x.url||x.link||'').trim().toLowerCase().replace(/[#?].*$/,'').replace(/\/$/,'') || ((x.title||'').replace(/\s+/g,' ').trim().toLowerCase()+'|'+String(x.source?.name||x.source||'').toLowerCase());}
 function merge(list){const seen=new Set(), out=[]; list.forEach(x=>{const k=key(x); if(!seen.has(k)){seen.add(k); out.push(x);}}); return out;}
 async function get(path){try{const r=await fetch(path+'?v='+Date.now(),{cache:'no-store'}); return r.ok?await r.json():null;}catch(e){return null;}}
 function cats(){const m={}; items.forEach(x=>{const id=x.category||x.categoryName||'news'; m[id] ||= {id,name:x.categoryName||x.category_ko||id,icon:x.categoryIcon||'📰',count:0}; m[id].count++;}); return Object.values(m);}
 function card(x){const d=x.publishedAt||x.date||x.published_at||''; return `<article class="card"><span class="chip">${esc(x.categoryIcon||'📰')} ${esc(x.categoryName||x.category_ko||x.category||'뉴스')}</span><h2><a target="_blank" rel="noopener noreferrer" href="${esc(x.url||x.link)}">${esc(x.title)}</a></h2><p>${esc(x.description||x.summary||'요약 없음')}</p><div class="meta"><span>${esc(x.source?.name||x.source||'원문')}</span><span>${esc(d)}</span></div></article>`;}
 function render(){const term=q.value.trim().toLowerCase(); let arr=[...items].filter(x=>(current==='all'||x.category===current||x.categoryName===current)&&(!term||(x.title+' '+(x.description||x.summary||'')+' '+(x.source?.name||x.source||'')).toLowerCase().includes(term))); arr.sort(sort.value==='hot'?((a,b)=>(b.score||b.priority||0)-(a.score||a.priority||0)):((a,b)=>new Date(b.publishedAt||b.date||0)-new Date(a.publishedAt||a.date||0))); grid.innerHTML=arr.length?arr.map(card).join(''):'<article class="card"><h2>표시할 뉴스가 없습니다</h2></article>'; state.textContent=`총 ${items.length}건 · 현재 ${arr.length}건 표시`;}
 function drawTabs(){const cs=cats(); tabs.innerHTML=`<button class="tab active" data-id="all">전체 ${items.length}</button>`+cs.map(c=>`<button class="tab" data-id="${esc(c.id)}">${esc(c.icon)} ${esc(c.name)} ${c.count}</button>`).join(''); tabs.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{tabs.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');current=b.dataset.id;render();});}
-async function load(){const latest=await get('./latest.json'), base=await get('./data.json'); items=merge([...flatten(latest),...flatten(base)]); drawTabs(); render();}
+async function load(){const docs=(await Promise.all(SOURCES.map(get))).filter(Boolean); items=merge(docs.flatMap(flatten)); drawTabs(); render();}
 q.oninput=render; sort.onchange=render; load();
 </script>
 </body>
