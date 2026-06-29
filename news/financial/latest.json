@@ -1,23 +1,20 @@
 {
-  "generatedAt": "2026-06-29T22:34:18+09:00",
+  "generatedAt": "2026-06-29T23:08:37+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
-    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":2},
-    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
-    {"id":"semiconductors","name":"반도체","icon":"🧩","count":2}
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":2},
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1},
+    {"id":"monetary-policy","name":"통화정책","icon":"🏦","count":1},
+    {"id":"ai-infrastructure","name":"AI인프라","icon":"🖥️","count":1}
   ],
   "total": 5,
   "allItems": [
-    {"id":"fin-20260629-2234-reuters-markets-oil","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"미 선물 상승·유가 안정, 미·이란 공격 중단 기대가 위험자산 지지","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"미·이란 확전 완화 기대가 주가지수 선물을 끌어올리고 유가 상승폭을 제한했다. AI 투자 과열, 달러 강세, 연준 인상 베팅은 글로벌 자산 가격의 핵심 변수다.","score":336,"priority":336,"tags":["글로벌시장","유가","미국선물","이란","연준"]},
-    {"id":"fin-20260629-2234-reuters-gulf-markets","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"걸프 증시 동반 약세, 지정학 리스크가 지역 금융시장 압박","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/middle-east/major-gulf-markets-ease-us-iran-tensions-keep-investors-edge-2026-06-29/","description":"사우디·UAE·카타르 주요 지수가 미·이란 긴장과 에너지 수송 불확실성으로 약세를 보였다. 원유 수출 재개에도 투자자들은 휴전 지속성을 주시하고 있다.","score":328,"priority":328,"tags":["걸프시장","사우디","카타르","UAE","지정학"]},
-    {"id":"fin-20260629-2234-reuters-hormuz-oil","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"호르무즈 원유 물류 재개, 단기 공급 과잉과 병목이 유가 변동성 자극","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/reuters-open-interest/hormuz-oil-exodus-sets-stage-chaotic-rebalancing-act-2026-06-29/","description":"해협 재개 뒤 대기하던 탱커와 원유 물량이 한꺼번에 움직이며 부유식 저장과 단기 콘탱고 가능성이 거론된다. 지정학 불안은 유가 하방을 제한한다.","score":322,"priority":322,"tags":["호르무즈","원유","유가","탱커","콘탱고"]},
-    {"id":"fin-20260629-2234-reuters-baidu-chip-ipo","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"바이두 쿤룬신 IPO, 중국 AI 반도체 밸류에이션 과열 신호","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/breakingviews/baidu-chip-ipo-channels-extreme-ai-frenzy-2026-06-29/","description":"바이두 AI칩 자회사 쿤룬신의 홍콩 IPO 추진은 중국 반도체 자립 수혜와 AI 투자 과열 우려를 동시에 보여준다. 엔비디아 대체 수요가 밸류에이션을 끌어올리고 있다.","score":318,"priority":318,"tags":["바이두","쿤룬신","AI칩","IPO","중국반도체"]},
-    {"id":"fin-20260629-2234-ap-nvidia-china","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"엔비디아 중국 매출 압박, 화웨이 부상으로 AI칩 시장 지형 변화","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/1ae6228c4928ddbb43f984e9b38f49dd","description":"미국 수출통제 이후 중국 AI칩 시장에서 화웨이 등 현지 업체 점유율이 커졌다. 엔비디아의 중국 노출과 글로벌 반도체 공급망 재편이 투자 리스크로 부각된다.","score":314,"priority":314,"tags":["엔비디아","화웨이","AI칩","중국","수출통제"]}
+    {"id":"fin-20260629-2308-reuters-cxmt-tencent","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"CXMT-텐센트 29억달러 DRAM 계약, 중국 메모리 IPO 기대와 서버 수요 자극","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-cxmt-wins-3-billion-memory-supply-deal-with-tencent-sources-say-2026-06-29/","description":"CXMT가 텐센트와 장기 DRAM 공급 계약을 맺은 것으로 전해지며 중국 메모리 자립과 AI 서버용 메모리 가격 사이클이 시장 핵심 변수로 떠올랐다.","score":356,"priority":356,"tags":["CXMT","텐센트","DRAM","메모리","AI서버"]},
+    {"id":"fin-20260629-2308-reuters-europe-shares","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"유럽 증시 보합, 기술주와 AI M&A가 중동 리스크 방어","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-steady-tech-gains-offset-middle-east-ceasefire-caution-2026-06-29/","description":"STOXX 600은 중동 휴전 불확실성에도 기술주 강세로 버텼다. AI 기업 인수 제안과 반도체주 상승이 유럽 위험자산 심리를 지지했다.","score":344,"priority":344,"tags":["유럽증시","STOXX600","기술주","AI","중동"]},
+    {"id":"fin-20260629-2308-reuters-pboc-repo","category":"monetary-policy","categoryName":"통화정책","category_ko":"통화정책","categoryIcon":"🏦","title":"PBOC 첫 오버나이트 역레포, 중국 단기금리 조절 체계 개편 신호","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/china-debuts-overnight-reverse-repos-125-sources-say-2026-06-29/","description":"중국 인민은행이 3000억위안 규모의 오버나이트 역레포를 도입했다. 단기자금시장 금리 통제력과 정책금리 전달력을 높이려는 조치로 풀이된다.","score":338,"priority":338,"tags":["PBOC","역레포","유동성","중국금리","통화정책"]},
+    {"id":"fin-20260629-2308-reuters-baidu-ipo","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"바이두 AI칩 IPO 고평가 논쟁, 중국 반도체 과열 경고 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/breakingviews/baidu-chip-ipo-channels-extreme-ai-frenzy-2026-06-29/","description":"바이두 쿤룬신 IPO 추진은 중국 AI 가속기 수요와 고평가 우려를 동시에 키웠다. 국산 반도체 자립 수혜가 밸류에이션을 끌어올리고 있다.","score":326,"priority":326,"tags":["바이두","쿤룬신","AI칩","IPO","밸류에이션"]},
+    {"id":"fin-20260629-2308-barrons-nvidia-ai-demand","category":"ai-infrastructure","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🖥️","title":"엔비디아 주가 반등, 인도네시아 AI 데이터센터 GPU 수요가 투자심리 지지","publishedAt":"2026-06-29","date":"2026-06-29","source":"Barron's","url":"https://www.barrons.com/articles/nvidia-stock-price-ai-chips-2f6a897a","description":"엔비디아 주가는 AI칩 수요 기대에 상승했다. Firmus의 인도네시아 AI 데이터센터 계획은 대규모 GPU 수요가 아직 견조하다는 신호로 받아들여졌다.","score":314,"priority":314,"tags":["엔비디아","AI데이터센터","GPU","인도네시아","AI인프라"]}
   ],
-  "byCategory": {
-    "global-markets": [],
-    "energy-geopolitics": [],
-    "semiconductors": []
-  }
+  "byCategory": {"semiconductors": [], "global-markets": [], "monetary-policy": [], "ai-infrastructure": []}
 }
