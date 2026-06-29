@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-06-29T16:31:55+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":3},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌐","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎤","count":1}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"main-20260629-1631-reuters-sk-exports-record","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"한국 6월 수출, AI 반도체 호황에 48년 만의 최대 증가율 전망","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korea-exports-set-grow-strongest-pace-nearly-5-decades-2026-06-29/","description":"로이터 조사에서 한국 6월 수출은 전년 대비 61% 증가가 예상됐다. AI 투자 붐으로 메모리 반도체 가격과 출하가 급증하며 무역수지 흑자도 사상 최대권으로 전망됐다.","score":266,"priority":266,"tags":["한국수출","반도체","AI","삼성전자","SK하이닉스"]},
+    {"id":"main-20260629-1631-reuters-sk-ai-chip-investment","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"한국, 삼성·SK하이닉스 중심 5760억달러 AI·반도체 투자 드라이브 공개","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-president-unveil-massive-ai-chip-investment-drive-2026-06-29/","description":"이재명 대통령은 AI 데이터센터·반도체·피지컬AI를 국가 도약의 핵심축으로 제시했다. 삼성전자·SK하이닉스와 협력해 서남권 신규 팹과 패키징 클러스터 투자를 추진한다.","score":262,"priority":262,"tags":["AI반도체","HBM","삼성전자","SK하이닉스","산업정책"]},
+    {"id":"main-20260629-1631-reuters-europe-shares-tech","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"유럽증시, 기술주 반등이 중동 휴전 불확실성 상쇄","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-steady-tech-gains-offset-middle-east-ceasefire-caution-2026-06-29/","description":"STOXX 600은 기술주 강세에 보합권을 유지했다. AI 밸류에이션 부담과 미·이란 휴전 불안이 남았지만, 일부 M&A 소식과 브로커리지 목표가 상향이 투자심리를 지지했다.","score":250,"priority":250,"tags":["유럽증시","STOXX600","기술주","중동","AI밸류에이션"]},
+    {"id":"main-20260629-1631-ap-europe-heat-deaths","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌐","title":"유럽 폭염, 프랑스 초과사망 약 1000명…기후 리스크 현실화","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/61f444317600cf1bd9af5af84cb582bd","description":"기록적 폭염이 프랑스·독일·체코 등 유럽 전역을 강타하며 프랑스에서 약 1000명의 초과사망이 집계됐다. 산불·교통 차질·응급 출동 증가까지 겹치며 적응 대책 필요성이 커졌다.","score":246,"priority":246,"tags":["유럽폭염","기후변화","프랑스","초과사망","산불"]},
+    {"id":"main-20260629-1631-reuters-china-pmi-poll","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"중국 6월 제조업 PMI, AI 수출에도 가까스로 확장 전망","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-factory-activity-likely-returned-meagre-growth-june-2026-06-29/","description":"로이터 조사에서 중국 공식 제조업 PMI는 50.1로 소폭 확장이 예상됐다. AI 관련 고기술 수출은 버팀목이지만 부동산 침체와 내수 부진, 재고 조정 부담이 이어지고 있다.","score":240,"priority":240,"tags":["중국PMI","제조업","AI수출","내수부진","부동산"]},
+    {"id":"main-20260629-1631-reuters-tps-immigration","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 국토안보장관, TPS 이민자에 영주권 취득 또는 귀국 압박","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/us/migrants-us-temporary-status-should-seek-permanent-status-or-leave-homeland-2026-06-28/","description":"미 국토안보장관은 임시보호신분 이민자들이 영주권을 찾거나 출신국으로 돌아가야 한다고 밝혔다. 대법원의 TPS 종료 허용 이후 대규모 추방·노동시장 영향 논쟁이 커졌다.","score":234,"priority":234,"tags":["TPS","미국이민","국토안보부","대법원","추방정책"]},
+    {"id":"main-20260629-1631-ap-world-cup-round-32","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"월드컵 조별리그 최종일, 32강 대진 윤곽…브라질-일본 등 빅매치 확정","publishedAt":"2026-06-28","date":"2026-06-28","source":"AP","url":"https://apnews.com/article/35a72baeef527fc815952f9b5997eb14","description":"2026 월드컵 조별리그 마지막 날을 앞두고 미국·캐나다·멕시코와 주요 강호들이 32강에 올랐다. 브라질-일본, 네덜란드-모로코, 프랑스-스웨덴 등 토너먼트 대진이 주목받는다.","score":228,"priority":228,"tags":["월드컵","32강","브라질","일본","토너먼트"]},
+    {"id":"main-20260629-1631-ap-bet-lauryn-hill","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎤","title":"로린 힐 BET 어워즈 공로상…재닛 잭슨 깜짝 등장·AI 시대 창작자 권리 강조","publishedAt":"2026-06-28","date":"2026-06-28","source":"AP","url":"https://apnews.com/article/9e0dfdf0079cd8550ba4d2430e97ace3","description":"BET 어워즈에서 로린 힐이 Living Legend Icon Award를 받았고 재닛 잭슨은 테야나 테일러 시상자로 깜짝 등장했다. 실비아 론은 AI 시대의 음악 창작자 보상과 권리 보호를 촉구했다.","score":216,"priority":216,"tags":["BET어워즈","로린힐","재닛잭슨","음악산업","AI저작권"]}
+  ],
+  "byCategory": {}
+}
