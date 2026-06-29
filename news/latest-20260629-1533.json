@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-06-29T15:33:00+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"global","name":"국제","icon":"🌐","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎤","count":1}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"main-20260629-1533-reuters-asian-markets-ai-iran","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"아시아 증시 혼조…AI 투자 의구심·이란 긴장에 코스피 약세","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/asian-markets-mixed-choppy-trade-ai-doubts-iran-tensions-cloud-outlook-2026-06-29/","description":"아시아 시장은 AI 투자수익률 우려와 미·이란 긴장 재부각 속에 혼조세를 보였다. 코스피는 연초 이후 급등 부담과 기술주 조정으로 약세를 보였고, 대만·동남아 일부 시장은 차별화됐다.","score":252,"priority":252,"tags":["아시아증시","AI","이란","코스피","위험자산"]},
+    {"id":"main-20260629-1533-reuters-china-pmi-june","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"중국 6월 제조업 PMI, 간신히 확장 전환 전망…내수 부진은 지속","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-factory-activity-likely-returned-meagre-growth-june-2026-06-29/","description":"로이터 설문은 중국 공식 제조업 PMI가 50.1로 소폭 확장 전환할 것으로 봤다. AI 관련 고기술 수출은 버팀목이지만 부동산 침체와 소비 약세가 경기 회복을 제한하고 있다.","score":244,"priority":244,"tags":["중국PMI","제조업","내수부진","수출","경기"]},
+    {"id":"main-20260629-1533-reuters-korea-ai-chip-drive","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"한국, AI·반도체 대형 투자 드라이브 공개…서남권 칩 클러스터 부상","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-president-unveil-massive-ai-chip-investment-drive-2026-06-29/","description":"정부와 삼성전자·SK하이닉스가 AI·반도체·데이터센터 중심의 대규모 성장 프로젝트를 추진한다. 서남권 전력 인프라를 활용한 칩 생산 거점 구상이 핵심이다.","score":242,"priority":242,"tags":["한국","AI","반도체","데이터센터","지역균형"]},
+    {"id":"main-20260629-1533-reuters-samsung-sk-fabs","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"삼성전자·SK하이닉스, 국내 서남권에 대형 반도체 팹 각각 2곳 투자","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/samsung-electronics-sk-hynix-invest-two-new-fabrication-sites-south-korea-2026-06-29/","description":"정부 발표에 따르면 양사는 서남권에 각각 두 곳의 대형 반도체 생산시설을 구축한다. AI 메모리 수요와 첨단 제조 경쟁을 겨냥한 국가 단위 공급망 강화책이다.","score":238,"priority":238,"tags":["삼성전자","SK하이닉스","팹","HBM","공급망"]},
+    {"id":"main-20260629-1533-ap-mississippi-immigrant-list-law","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미시시피, 불법체류자 명단 작성 법 시행 앞두고 인권단체 반발","publishedAt":"2026-06-28","date":"2026-06-28","source":"AP","url":"https://apnews.com/article/2404fbdd42d8ad0d7b96e4b37d9c480b","description":"미시시피주가 서류 미비 이민자 명단 작성 권한을 공공안전부에 부여하면서 인권단체가 대규모 추방·인종 프로파일링 우려를 제기했다. 미국 이민정책 갈등이 주 단위로 확산되는 흐름이다.","score":226,"priority":226,"tags":["미국정치","이민정책","미시시피","인권","트럼프"]},
+    {"id":"main-20260629-1533-ap-colorado-wildfires-firefighters","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌐","title":"미 서부 산불 확산…콜로라도 인근 진화 중 소방관 3명 사망","publishedAt":"2026-06-28","date":"2026-06-28","source":"AP","url":"https://apnews.com/article/a5fb3b05719d2a6b77feacffd2cbdba9","description":"폭염과 강풍으로 미 서부 산불이 커지는 가운데 콜로라도·유타 접경 지역에서 소방관 3명이 숨졌다. 여러 주가 비상사태를 선포하며 독립기념일 전후 화재 위험 관리에 나섰다.","score":220,"priority":220,"tags":["미국","산불","기후","재난","콜로라도"]},
+    {"id":"main-20260629-1533-reuters-canada-world-cup-last16","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"캐나다, 남아공 꺾고 월드컵 사상 첫 16강…유스타키우 극장골","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/sports/soccer/canada-score-late-winner-advance-last-16-world-cup-2026-06-28/","description":"캐나다가 스티븐 유스타키우의 후반 추가시간 결승골로 남아공을 1-0으로 꺾고 사상 첫 월드컵 16강에 올랐다. 공동 개최국의 흥행과 북미 축구 성장 서사가 더 강해졌다.","score":216,"priority":216,"tags":["캐나다","월드컵","16강","유스타키우","남아공"]},
+    {"id":"main-20260629-1533-ap-viking-textile-denmark","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎤","title":"덴마크서 대형 바이킹 시대 직물 생산 유적 발견","publishedAt":"2026-06-24","date":"2026-06-24","source":"AP","url":"https://apnews.com/article/54f9b57b5485aa602591185ff3b911cd","description":"덴마크 오르후스 인근에서 80개 이상 반지하 작업장과 방추차·직기추 등이 확인된 대형 직물 생산 유적이 발견됐다. 바이킹 사회의 조직적 생산·교역 역량을 보여주는 사례다.","score":204,"priority":204,"tags":["바이킹","덴마크","고고학","직물","문화유산"]}
+  ],
+  "byCategory": {}
+}
