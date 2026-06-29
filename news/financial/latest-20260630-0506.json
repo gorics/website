@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-06-30T05:06:54+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1},
+    {"id":"commodities","name":"원자재","icon":"🛢️","count":1},
+    {"id":"macro","name":"거시경제","icon":"🌐","count":1}
+  ],
+  "total": 3,
+  "allItems": [
+    {"id":"fin-20260630-0506-reuters-uk-doctors-pay","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🌐","title":"영국 NHS 전공의 파업 종료, 공공부문 임금 압력 완화 신호","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/world-at-work/resident-doctors-england-vote-uk-governments-pay-offer-ending-strikes-2026-06-29/","description":"잉글랜드 전공의가 정부 제안을 수용하며 장기 파업이 끝났다. 공공서비스 정상화와 임금 협상 비용은 영국 재정·물가 경로의 변수다.","score":396,"priority":396,"tags":["영국","NHS","임금","공공부문","인플레이션"]},
+    {"id":"fin-20260630-0506-reuters-global-tech-mideast","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"글로벌 시장, 기술주 밸류에이션·중동 리스크 사이에서 변동성 지속","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-view-europe-2026-06-29/","description":"투자자들은 AI 인프라 지출 수익성, 유가 변동, 달러 강세와 엔화 약세를 동시에 주시하고 있다. 이번 주 미국 고용지표와 ECB 신트라 회의가 핵심 이벤트다.","score":392,"priority":392,"tags":["글로벌시장","기술주","중동","달러","엔화"]},
+    {"id":"fin-20260630-0506-reuters-oil-us-iran","category":"commodities","categoryName":"원자재","category_ko":"원자재","categoryIcon":"🛢️","title":"유가, 미·이란 충돌 재개에도 선적 회복 기대에 상승폭 제한","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-climbs-following-renewed-us-iran-strikes-middle-east-2026-06-28/","description":"브렌트·WTI가 미·이란 긴장 재점화로 올랐지만 호르무즈 선적 회복과 도하 협상 기대가 급등을 억제했다. 에너지 프리미엄은 외교와 보험 리스크에 좌우된다.","score":388,"priority":388,"tags":["유가","호르무즈","미국","이란","원유"]}
+  ],
+  "byCategory": {
+    "macro": [],
+    "global-markets": [],
+    "commodities": []
+  }
+}
