@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-06-30T00:09:34+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":2},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 9,
+  "allItems": [
+    {"id":"main-20260630-0009-reuters-cxmt-tencent","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"중국 CXMT, 텐센트와 30억달러 메모리 공급 계약","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-cxmt-wins-3-billion-memory-supply-deal-with-tencent-sources-say-2026-06-29/","description":"중국 메모리업체 CXMT가 텐센트와 서버용 DRAM 장기 공급 계약을 맺었다. AI·클라우드 수요와 메모리 부족 속에서 중국 반도체 자립 흐름이 더 강해졌다.","score":382,"priority":382,"tags":["CXMT","텐센트","DRAM","중국반도체","AI서버"]},
+    {"id":"main-20260630-0009-reuters-global-markets","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"미국 선물 반등·유가 진정, 중동 긴장 완화가 시장 지지","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"미·이란 충돌 완화와 협상 기대가 위험자산을 지지하며 미국 주가지수 선물이 올랐다. 유가는 안정됐지만 금리와 AI 과열 우려는 여전히 변수다.","score":374,"priority":374,"tags":["글로벌시장","유가","미국선물","중동","금리"]},
+    {"id":"main-20260630-0009-reuters-korea-chip-drive","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"한국, 삼성·SK하이닉스 중심 5760억달러 AI·반도체 투자전략","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-president-unveil-massive-ai-chip-investment-drive-2026-06-29/","description":"정부가 반도체·AI·데이터센터를 묶은 대규모 산업 전략을 발표했다. 삼성전자와 SK하이닉스 신규 팹, HBM 지원, 지역 클러스터가 핵심이다.","score":368,"priority":368,"tags":["한국","삼성전자","SK하이닉스","AI칩","HBM"]},
+    {"id":"main-20260630-0009-ap-mail-ballots","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 선거일 뒤 도착 우편투표도 주별 집계 허용","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/5f24f718ea92a33838485ce6302e079e","description":"대법원이 선거일 소인이 찍힌 우편투표의 사후 도착분 집계를 허용하는 주 법률을 인정했다. 2026년 중간선거 전 투표 규칙 논쟁에 큰 영향을 줬다.","score":356,"priority":356,"tags":["미대법원","우편투표","선거법","중간선거","미국정치"]},
+    {"id":"main-20260630-0009-ap-trump-monarchy","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미국 독립 250주년 앞두고 트럼프식 권력 집중 논쟁 격화","publishedAt":"2026-06-28","date":"2026-06-28","source":"AP","url":"https://apnews.com/article/13c1b8f5ad2cb4c94d879d5738000e53","description":"미국이 군주제와 결별한 지 250주년을 앞둔 가운데 트럼프 2기 권력 행사 방식이 견제와 균형, 대통령 권한 논쟁을 다시 키우고 있다.","score":342,"priority":342,"tags":["트럼프","미국정치","대통령권한","독립250주년","견제와균형"]},
+    {"id":"main-20260630-0009-ap-europe-heat","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"유럽 기록적 폭염, 프랑스 초과사망 약 1000명·파리 장례시설 포화","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/a9095af72d14cfdd9ca43637490083e9","description":"프랑스 등 유럽을 덮친 폭염으로 고령층 사망이 급증했고 파리 장례·안치 시설이 포화 상태에 몰렸다. 기후 적응과 취약계층 보호 문제가 부각됐다.","score":336,"priority":336,"tags":["유럽폭염","프랑스","기후위기","초과사망","보건"]},
+    {"id":"main-20260630-0009-reuters-korea-exports","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"한국 6월 수출 급증 전망, 반도체가 무역흑자 기대 견인","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korea-exports-set-grow-strongest-pace-nearly-5-decades-2026-06-29/","description":"AI 서버 수요에 따른 반도체 수출 급증으로 한국 수출 증가율이 50년 만의 최고 수준을 기록할 가능성이 제기됐다. 증시·원화 심리의 핵심 지표다.","score":334,"priority":334,"tags":["한국수출","반도체","무역흑자","원화","코스피"]},
+    {"id":"main-20260630-0009-reuters-worldcup-whistle","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"월드컵 ‘가벼운 휘슬’ 기조, 경기 속도와 피지컬 부담 동시 확대","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/sports/soccer/world-cups-lighter-whistle-helps-fuel-faster-fiercer-tournament-2026-06-28/","description":"FIFA의 흐름 우선 판정 기조로 경기 중단이 줄고 템포가 빨라졌다. 득점과 압박 강도는 높아졌지만 부상 위험과 체력 부담도 커졌다.","score":328,"priority":328,"tags":["월드컵","판정","FIFA","축구","부상"]},
+    {"id":"main-20260630-0009-ap-streaming-week","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"이번 주 스트리밍, ‘에놀라 홈즈3’·마돈나 신보·‘엘르’ 공개","publishedAt":"2026-06-28","date":"2026-06-28","source":"AP","url":"https://apnews.com/article/587bf83b9098091ee91d9a6d83c0cfcd","description":"AP가 6월 29일~7월 5일 주요 신작으로 넷플릭스 ‘에놀라 홈즈3’, 마돈나 신보, ‘금발이 너무해’ 프리퀄 ‘엘르’ 등을 꼽았다.","score":306,"priority":306,"tags":["스트리밍","넷플릭스","마돈나","프라임비디오","문화"]}
+  ],
+  "byCategory": {"economy":[],"tech":[],"politics":[],"global":[],"play":[],"culture":[]}
+}
