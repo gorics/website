@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-06-29T12:35:22+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"fx-rates","name":"환율·금리","icon":"💵","count":1},
+    {"id":"commodities","name":"원자재","icon":"🥇","count":1},
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"emerging-markets","name":"신흥시장","icon":"🌏","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260629-1235-reuters-dollar-jobs-gulf","category":"fx-rates","categoryName":"환율·금리","category_ko":"환율·금리","categoryIcon":"💵","title":"달러, 6월 강세 마감권…고용지표와 걸프 긴장이 금리 전망 흔든다","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/africa/dollar-poised-best-month-nearly-year-eyes-jobs-data-gulf-tension-2026-06-29/","description":"달러지수가 지정학 리스크와 연준 긴축 경계 속에 상승했다. 이번 주 미국 고용지표는 금리·환율·위험자산 흐름을 동시에 바꿀 수 있는 분기점이다.","score":240,"priority":240,"tags":["달러","연준","고용지표","환율","채권"]},
+    {"id":"fin-20260629-1235-reuters-gold-us-iran-fed","category":"commodities","categoryName":"원자재","category_ko":"원자재","categoryIcon":"🥇","title":"금 약세·유가 강세, 미·이란 긴장과 연준 인상 베팅이 원자재 차별화","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/india/gold-slips-fresh-us-iran-strikes-boost-oil-fed-rate-hike-bets-weigh-2026-06-29/","description":"지정학 긴장은 유가를 밀어올렸지만, 금은 높은 금리 기대와 달러 강세에 눌렸다. 원자재 포트폴리오에서 에너지와 귀금속의 방향성이 갈렸다.","score":236,"priority":236,"tags":["금","유가","원자재","연준","이란"]},
+    {"id":"fin-20260629-1235-reuters-sovereign-investors-energy-dollar","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"29조달러 국부펀드·중앙은행, 에너지 자산 비중 확대…달러 장기 신뢰 우려","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/finance/sovereign-investors-with-29-trillion-pivot-energy-assets-flag-dollar-fears-2026-06-28/","description":"대형 국부펀드와 중앙은행이 지정학 리스크와 AI 전력 수요를 이유로 에너지·인프라 자산을 늘리고 있다. 미국 부채와 달러 준비통화 지위에 대한 우려도 커졌다.","score":232,"priority":232,"tags":["국부펀드","중앙은행","에너지","달러","인프라"]},
+    {"id":"fin-20260629-1235-guardian-ai-chipmaker-shares","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"상반기 AI 반도체·메모리주 급등, 하드웨어 중심 수급 쏠림 심화","publishedAt":"2026-06-29","date":"2026-06-29","source":"The Guardian","url":"https://www.theguardian.com/business/2026/jun/29/shares-in-chipmakers-underpinning-ai-boom-surge-in-first-half-of-2026","description":"AI 투자 테마가 소프트웨어보다 반도체·메모리·스토리지 업체 주가를 더 강하게 끌어올렸다. 급등 이후 차익실현과 밸류에이션 부담은 단기 리스크다.","score":226,"priority":226,"tags":["AI반도체","메모리","삼성","SK하이닉스","마이크론"]},
+    {"id":"fin-20260629-1235-reuters-india-rupee-bonds-iran-fed","category":"emerging-markets","categoryName":"신흥시장","category_ko":"신흥시장","categoryIcon":"🌏","title":"인도 루피·채권, 이란 전쟁 변수와 연준 경로가 이번 주 핵심 리스크","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/middle-east/iran-war-developments-fed-rate-path-cues-focus-indian-rupee-bonds-2026-06-29/","description":"인도 루피와 국채는 중동 긴장, 유가, 미국 고용지표와 연준 경로에 민감한 흐름을 보일 전망이다. 외국인 채권 유입과 지수 편입 기대는 완충 요인이다.","score":220,"priority":220,"tags":["인도","루피","국채","연준","유가"]}
+  ],
+  "byCategory": {}
+}
