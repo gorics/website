@@ -1,19 +1,23 @@
 {
-  "generatedAt": "2026-06-29T22:08:58+09:00",
+  "generatedAt": "2026-06-29T22:34:18+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
     {"id":"global-markets","name":"글로벌시장","icon":"📊","count":2},
-    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
-    {"id":"ai-infrastructure","name":"AI인프라","icon":"🤖","count":1}
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":2}
   ],
   "total": 5,
   "allItems": [
-    {"id":"fin-20260629-2208-reuters-wall-st-comcast","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"미 증시 선물 상승, 중동 긴장 완화와 컴캐스트 분사 호재 반영","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-lead-wall-st-higher-middle-east-tensions-ease-2026-06-29/","description":"미·이란 긴장 완화 기대가 위험자산을 지지했고 컴캐스트 분사 발표가 개별주 모멘텀을 만들었다. 다만 AI 지출 부담과 연준 금리 인상 베팅은 시장의 상단을 제한하는 변수다.","score":326,"priority":326,"tags":["미국증시","나스닥","컴캐스트","연준","중동"]},
-    {"id":"fin-20260629-2208-reuters-comcast-spinoff","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"컴캐스트 미디어 분사, 레거시 미디어 M&A와 밸류에이션 재평가 촉발","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/comcast-spin-off-nbcuniversal-sky-into-separate-companies-2026-06-29/","description":"컴캐스트가 NBC유니버설·스카이를 별도 상장사로 분사하기로 하면서 미디어 자산 매각·인수 기대가 커졌다. 주주가치, 스트리밍 경쟁, 케이블 현금흐름이 핵심 투자 포인트다.","score":320,"priority":320,"tags":["컴캐스트","NBC유니버설","스카이","M&A","미디어"]},
-    {"id":"fin-20260629-2208-reuters-hormuz-oil-rebalancing","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"호르무즈 원유 수출 재개, 물류 병목과 공급 과잉 우려가 유가 변수","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/reuters-open-interest/hormuz-oil-exodus-sets-stage-chaotic-rebalancing-act-2026-06-29/","description":"호르무즈 해협 재개 뒤 대기 중이던 탱커와 원유 물량이 한꺼번에 움직이며 단기 시장 재균형이 흔들리고 있다. 물류 병목, 부유식 저장, 이란 생산 회복 가능성이 유가 변동성을 키운다.","score":312,"priority":312,"tags":["호르무즈","원유","유가","탱커","중동"]},
-    {"id":"fin-20260629-2208-reuters-gold-fed-bets","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"금값 하락, 중동발 인플레와 연준 인상 베팅이 안전자산 압박","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/india/gold-slips-fresh-us-iran-strikes-boost-oil-fed-rate-hike-bets-weigh-2026-06-29/","description":"중동 긴장이 물가 압력을 키우고 연준 추가 인상 가능성이 부각되면서 금 가격이 하락했다. 달러·실질금리·에너지 가격이 귀금속 시장의 핵심 변수로 떠올랐다.","score":304,"priority":304,"tags":["금","연준","인플레이션","중동","원자재"]},
-    {"id":"fin-20260629-2208-reuters-ai-debt-financing","category":"ai-infrastructure","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🤖","title":"AI 설비투자 부채 급증, 하이퍼스케일러 채권 발행과 데이터센터 금융 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/finance/banks-get-creative-look-further-afield-ai-fueled-debt-soars-2026-06-29/","description":"AI·클라우드 지출이 커지며 빅테크가 다통화 채권과 데이터센터 임대 기반 금융을 활용하고 있다. 투자 수요는 강하지만 장기 수익성 검증과 신용 리스크가 함께 커졌다.","score":300,"priority":300,"tags":["AI인프라","데이터센터","회사채","빅테크","신용시장"]}
+    {"id":"fin-20260629-2234-reuters-markets-oil","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"미 선물 상승·유가 안정, 미·이란 공격 중단 기대가 위험자산 지지","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"미·이란 확전 완화 기대가 주가지수 선물을 끌어올리고 유가 상승폭을 제한했다. AI 투자 과열, 달러 강세, 연준 인상 베팅은 글로벌 자산 가격의 핵심 변수다.","score":336,"priority":336,"tags":["글로벌시장","유가","미국선물","이란","연준"]},
+    {"id":"fin-20260629-2234-reuters-gulf-markets","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"걸프 증시 동반 약세, 지정학 리스크가 지역 금융시장 압박","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/middle-east/major-gulf-markets-ease-us-iran-tensions-keep-investors-edge-2026-06-29/","description":"사우디·UAE·카타르 주요 지수가 미·이란 긴장과 에너지 수송 불확실성으로 약세를 보였다. 원유 수출 재개에도 투자자들은 휴전 지속성을 주시하고 있다.","score":328,"priority":328,"tags":["걸프시장","사우디","카타르","UAE","지정학"]},
+    {"id":"fin-20260629-2234-reuters-hormuz-oil","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"호르무즈 원유 물류 재개, 단기 공급 과잉과 병목이 유가 변동성 자극","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/reuters-open-interest/hormuz-oil-exodus-sets-stage-chaotic-rebalancing-act-2026-06-29/","description":"해협 재개 뒤 대기하던 탱커와 원유 물량이 한꺼번에 움직이며 부유식 저장과 단기 콘탱고 가능성이 거론된다. 지정학 불안은 유가 하방을 제한한다.","score":322,"priority":322,"tags":["호르무즈","원유","유가","탱커","콘탱고"]},
+    {"id":"fin-20260629-2234-reuters-baidu-chip-ipo","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"바이두 쿤룬신 IPO, 중국 AI 반도체 밸류에이션 과열 신호","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/breakingviews/baidu-chip-ipo-channels-extreme-ai-frenzy-2026-06-29/","description":"바이두 AI칩 자회사 쿤룬신의 홍콩 IPO 추진은 중국 반도체 자립 수혜와 AI 투자 과열 우려를 동시에 보여준다. 엔비디아 대체 수요가 밸류에이션을 끌어올리고 있다.","score":318,"priority":318,"tags":["바이두","쿤룬신","AI칩","IPO","중국반도체"]},
+    {"id":"fin-20260629-2234-ap-nvidia-china","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"엔비디아 중국 매출 압박, 화웨이 부상으로 AI칩 시장 지형 변화","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/1ae6228c4928ddbb43f984e9b38f49dd","description":"미국 수출통제 이후 중국 AI칩 시장에서 화웨이 등 현지 업체 점유율이 커졌다. 엔비디아의 중국 노출과 글로벌 반도체 공급망 재편이 투자 리스크로 부각된다.","score":314,"priority":314,"tags":["엔비디아","화웨이","AI칩","중국","수출통제"]}
   ],
-  "byCategory": {}
+  "byCategory": {
+    "global-markets": [],
+    "energy-geopolitics": [],
+    "semiconductors": []
+  }
 }
