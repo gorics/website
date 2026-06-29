@@ -1,17 +1,21 @@
 {
-  "generatedAt": "2026-06-30T01:08:13+09:00",
+  "generatedAt": "2026-06-30T02:08:43+09:00",
   "source": "gorics-news-automation",
   "page": "news",
   "categories": [
     {"id":"economy","name":"경제","icon":"📈","count":5},
-    {"id":"tech","name":"기술","icon":"🤖","count":2},
-    {"id":"politics","name":"정치","icon":"🏛️","count":2},
-    {"id":"global","name":"국제","icon":"🌍","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":3},
+    {"id":"politics","name":"정치","icon":"🏛️","count":3},
+    {"id":"global","name":"국제","icon":"🌍","count":4},
     {"id":"play","name":"스포츠","icon":"⚽","count":3},
     {"id":"culture","name":"문화","icon":"🎬","count":2}
   ],
-  "total": 16,
+  "total": 20,
   "allItems": [
+    {"id":"main-20260630-0208-reuters-baidu-kunlunxin-ipo","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"바이두 AI칩 자회사 쿤룬신, 홍콩 IPO로 AI 반도체 열기 시험대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/breakingviews/baidu-chip-ipo-channels-extreme-ai-frenzy-2026-06-29/","description":"바이두의 AI칩 자회사 쿤룬신이 홍콩 상장을 준비하며 500억달러 안팎의 평가액을 노린다. 중국의 AI 가속기 자립 흐름과 함께 밸류에이션 과열 논쟁도 커졌다.","score":398,"priority":398,"tags":["바이두","쿤룬신","AI칩","홍콩IPO","중국반도체"]},
+    {"id":"main-20260630-0208-ap-ukraine-russian-strikes","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"러시아 미사일·드론 공습에 우크라이나 민간인 11명 사망","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/70ba832d0e760e08e5d50c5f467d953f","description":"우크라이나 여러 지역에서 러시아 공습으로 최소 11명이 숨지고 40명이 다쳤다. 젤렌스키 대통령은 유럽에 방공망 지원 확대를 촉구했다.","score":392,"priority":392,"tags":["우크라이나","러시아","공습","드론","방공망"]},
+    {"id":"main-20260630-0208-reuters-russia-fuel-shortages","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"우크라이나 공격 여파로 러시아 연료난 확산, 모스크바도 대기줄","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/fuel-shortages-spread-more-parts-russia-ukrainian-attacks-bite-2026-06-29/","description":"우크라이나의 정유·수송 인프라 공격 이후 러시아 남부와 크림반도, 시베리아뿐 아니라 모스크바 일부 주유소까지 연료난과 구매 제한이 번졌다.","score":386,"priority":386,"tags":["러시아","연료난","우크라이나","정유시설","에너지안보"]},
+    {"id":"main-20260630-0208-reuters-fed-cook-independence","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"연준 쿡 이사, 대법원 판결은 중앙은행 독립성 방어라고 평가","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/legal/government/feds-cook-says-supreme-court-decision-defends-central-banks-independence-2026-06-29/","description":"리사 쿡 연준 이사는 대법원의 해임 제동 판결이 개인 문제가 아니라 통화정책 독립성과 공공경제 임무를 지킨 결정이라고 밝혔다.","score":380,"priority":380,"tags":["연준","리사쿡","대법원","중앙은행독립성","통화정책"]},
     {"id":"main-20260630-0108-reuters-global-markets-yen-oil","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"글로벌 증시·유가 소폭 상승, 엔화는 40년 저점권","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"미·이란 외교 기대 속 주식과 유가가 올랐지만, 강한 미국 고용·물가와 연준 인상 전망이 달러를 지지했다. 엔화는 달러 대비 1986년 이후 최저권까지 밀렸다.","score":394,"priority":394,"tags":["글로벌시장","유가","엔화","연준","고용지표"]},
     {"id":"main-20260630-0108-reuters-oil-hormuz","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"유가 1%대 상승, 호르무즈 운송 회복 기대가 상승폭 제한","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-climbs-following-renewed-us-iran-strikes-middle-east-2026-06-28/","description":"미·이란 교전 재개로 브렌트와 WTI가 올랐지만 호르무즈 해협 선적 정상화 기대가 급등을 막았다. 에너지 시장은 전쟁 프리미엄과 공급 회복 속도를 동시에 주시 중이다.","score":390,"priority":390,"tags":["유가","브렌트","WTI","호르무즈","중동"]},
     {"id":"main-20260630-0108-reuters-gold-fed-hike","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"금값 하락, 중동발 인플레·연준 인상 우려가 안전자산 매력 압박","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/india/gold-slips-fresh-us-iran-strikes-boost-oil-fed-rate-hike-bets-weigh-2026-06-29/","description":"유가 반등과 달러 강세, 연준의 금리 인상 가능성이 금 가격을 끌어내렸다. 이번 주 미국 고용지표가 금리와 귀금속 흐름의 핵심 변수다.","score":382,"priority":382,"tags":["금","달러","연준","금리","인플레이션"]},
