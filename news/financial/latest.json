@@ -1,20 +1,27 @@
 {
-  "generatedAt": "2026-06-29T23:08:37+09:00",
+  "generatedAt": "2026-06-29T23:33:46+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
-    {"id":"semiconductors","name":"반도체","icon":"🧩","count":2},
     {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":1},
+    {"id":"macro","name":"거시경제","icon":"🌐","count":1},
     {"id":"monetary-policy","name":"통화정책","icon":"🏦","count":1},
-    {"id":"ai-infrastructure","name":"AI인프라","icon":"🖥️","count":1}
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1}
   ],
   "total": 5,
   "allItems": [
-    {"id":"fin-20260629-2308-reuters-cxmt-tencent","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"CXMT-텐센트 29억달러 DRAM 계약, 중국 메모리 IPO 기대와 서버 수요 자극","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-cxmt-wins-3-billion-memory-supply-deal-with-tencent-sources-say-2026-06-29/","description":"CXMT가 텐센트와 장기 DRAM 공급 계약을 맺은 것으로 전해지며 중국 메모리 자립과 AI 서버용 메모리 가격 사이클이 시장 핵심 변수로 떠올랐다.","score":356,"priority":356,"tags":["CXMT","텐센트","DRAM","메모리","AI서버"]},
-    {"id":"fin-20260629-2308-reuters-europe-shares","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"유럽 증시 보합, 기술주와 AI M&A가 중동 리스크 방어","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-steady-tech-gains-offset-middle-east-ceasefire-caution-2026-06-29/","description":"STOXX 600은 중동 휴전 불확실성에도 기술주 강세로 버텼다. AI 기업 인수 제안과 반도체주 상승이 유럽 위험자산 심리를 지지했다.","score":344,"priority":344,"tags":["유럽증시","STOXX600","기술주","AI","중동"]},
-    {"id":"fin-20260629-2308-reuters-pboc-repo","category":"monetary-policy","categoryName":"통화정책","category_ko":"통화정책","categoryIcon":"🏦","title":"PBOC 첫 오버나이트 역레포, 중국 단기금리 조절 체계 개편 신호","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/china-debuts-overnight-reverse-repos-125-sources-say-2026-06-29/","description":"중국 인민은행이 3000억위안 규모의 오버나이트 역레포를 도입했다. 단기자금시장 금리 통제력과 정책금리 전달력을 높이려는 조치로 풀이된다.","score":338,"priority":338,"tags":["PBOC","역레포","유동성","중국금리","통화정책"]},
-    {"id":"fin-20260629-2308-reuters-baidu-ipo","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"바이두 AI칩 IPO 고평가 논쟁, 중국 반도체 과열 경고 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/breakingviews/baidu-chip-ipo-channels-extreme-ai-frenzy-2026-06-29/","description":"바이두 쿤룬신 IPO 추진은 중국 AI 가속기 수요와 고평가 우려를 동시에 키웠다. 국산 반도체 자립 수혜가 밸류에이션을 끌어올리고 있다.","score":326,"priority":326,"tags":["바이두","쿤룬신","AI칩","IPO","밸류에이션"]},
-    {"id":"fin-20260629-2308-barrons-nvidia-ai-demand","category":"ai-infrastructure","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🖥️","title":"엔비디아 주가 반등, 인도네시아 AI 데이터센터 GPU 수요가 투자심리 지지","publishedAt":"2026-06-29","date":"2026-06-29","source":"Barron's","url":"https://www.barrons.com/articles/nvidia-stock-price-ai-chips-2f6a897a","description":"엔비디아 주가는 AI칩 수요 기대에 상승했다. Firmus의 인도네시아 AI 데이터센터 계획은 대규모 GPU 수요가 아직 견조하다는 신호로 받아들여졌다.","score":314,"priority":314,"tags":["엔비디아","AI데이터센터","GPU","인도네시아","AI인프라"]}
+    {"id":"fin-20260629-2333-reuters-global-markets","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"미 선물 반등·유가 진정, 중동 긴장 완화가 글로벌 위험자산 지지","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"미·이란 충돌 완화와 협상 기대가 S&P500·나스닥 선물을 끌어올렸다. 유가가 고점에서 내려오며 인플레이션 우려는 완화됐지만 금리와 AI 과열 리스크는 남았다.","score":374,"priority":374,"tags":["미국선물","유가","글로벌시장","중동","금리"]},
+    {"id":"fin-20260629-2333-reuters-korea-chip-drive","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"한국 5760억달러 AI·반도체 전략, 메모리·HBM 공급 사이클 핵심 변수 부상","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-president-unveil-massive-ai-chip-investment-drive-2026-06-29/","description":"삼성전자·SK하이닉스 중심의 신규 팹 투자와 HBM 지원책은 글로벌 AI 메모리 공급 확대 기대를 키웠다. 동시에 장기 과잉투자 우려도 투자자들이 주시하고 있다.","score":370,"priority":370,"tags":["삼성전자","SK하이닉스","HBM","AI칩","반도체투자"]},
+    {"id":"fin-20260629-2333-reuters-korea-exports","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🌐","title":"한국 수출 50년 만의 최고 증가율 전망, 반도체가 무역흑자 확대 견인","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korea-exports-set-grow-strongest-pace-nearly-5-decades-2026-06-29/","description":"AI 서버 수요로 반도체 수출이 급증하며 6월 한국 수출이 사상급 증가세를 보일 전망이다. 공식 지표는 원화·코스피·메모리 업종 심리에 직접 영향을 줄 수 있다.","score":348,"priority":348,"tags":["한국수출","무역수지","반도체","원화","코스피"]},
+    {"id":"fin-20260629-2333-ap-scotus-fed-cook","category":"monetary-policy","categoryName":"통화정책","category_ko":"통화정책","categoryIcon":"🏦","title":"미 대법원, 연준 독립성 예외 인정…금리정책 정치 리스크 제한","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/7b7676e5a066f8df41077a0920b9f334","description":"대법원은 독립기관 해임권을 넓히면서도 연준에는 특수성을 인정했다. 중앙은행 독립성과 금리 경로를 둘러싼 시장 불확실성을 일부 낮춘 결정이다.","score":342,"priority":342,"tags":["연준","리사쿡","미대법원","중앙은행독립성","금리"]},
+    {"id":"fin-20260629-2333-ap-trump-iran-qatar","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"미·이란 카타르 회동 혼선, 휴전 지속성과 원유 리스크 재부각","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/39107f657c717e480171dba89798d889","description":"트럼프는 이란이 회동을 원한다고 했지만 테헤란은 부인했다. 휴전 신뢰도가 흔들릴 경우 원유 공급 프리미엄과 걸프 지역 자산 변동성이 다시 커질 수 있다.","score":334,"priority":334,"tags":["미국","이란","카타르","원유","지정학"]}
   ],
-  "byCategory": {"semiconductors": [], "global-markets": [], "monetary-policy": [], "ai-infrastructure": []}
+  "byCategory": {
+    "global-markets": [],
+    "semiconductors": [],
+    "macro": [],
+    "monetary-policy": [],
+    "energy-geopolitics": []
+  }
 }
