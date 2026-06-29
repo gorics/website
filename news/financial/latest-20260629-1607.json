@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-29T16:07:00+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":2},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
+    {"id":"rates-fx","name":"금리·환율","icon":"💵","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260629-1607-reuters-bis-global-risks","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"BIS, 고부채·AI 투자붐·시장 취약성 결합이 금융안정 리스크라고 경고","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/finance/global-markets-bis-pix-2026-06-28/","description":"BIS는 AI 투자 붐의 수익성 불확실성과 레버리지, 공공부채 부담이 채권·주식시장 취약성을 높인다고 봤다. 정책 지연은 향후 조정 비용을 키울 수 있다.","score":262,"priority":262,"tags":["BIS","금융안정","AI투자","공공부채","채권시장"]},
+    {"id":"fin-20260629-1607-reuters-oil-us-iran-strikes","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"유가, 미·이란 재충돌에 반등…호르무즈 선적 정상화 속도 주목","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-climbs-following-renewed-us-iran-strikes-middle-east-2026-06-28/","description":"브렌트와 WTI가 지정학 긴장에 상승했다. 협상 재개에도 라스 타누라 재가동, 호르무즈 물류, 인프라 피해 복구가 에너지 가격과 인플레이션 기대를 좌우할 변수다.","score":258,"priority":258,"tags":["유가","브렌트","WTI","이란","호르무즈"]},
+    {"id":"fin-20260629-1607-reuters-hormuz-oil-exodus","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"호르무즈 원유 물량 급증, 단기 공급과잉·콘탱고 리스크 부각","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/reuters-open-interest/hormuz-oil-exodus-sets-stage-chaotic-rebalancing-act-2026-06-29/","description":"걸프에 묶였던 유조선이 한꺼번에 빠져나오며 원유 시장 재조정이 불안정해졌다. 이란 생산 회복과 약한 단기 수요가 겹치면 부유식 저장과 콘탱고 구조가 강화될 수 있다.","score":252,"priority":252,"tags":["호르무즈","원유공급","콘탱고","유조선","IEA"]},
+    {"id":"fin-20260629-1607-reuters-gold-fed-oil","category":"rates-fx","categoryName":"금리·환율","category_ko":"금리·환율","categoryIcon":"💵","title":"금값, 유가발 인플레·연준 인상 베팅에 하락","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/india/gold-slips-fresh-us-iran-strikes-boost-oil-fed-rate-hike-bets-weigh-2026-06-29/","description":"중동 긴장으로 유가가 올랐지만 금은 연준 추가 금리인상 기대와 달러 강세 부담에 밀렸다. 비수익 자산인 금은 고금리 전망이 강화될수록 단기 매력이 낮아질 수 있다.","score":244,"priority":244,"tags":["금","연준","금리","달러","인플레이션"]},
+    {"id":"fin-20260629-1607-reuters-global-markets-europe","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"글로벌 시장, 기술주 밸류에이션·중동 불안·달러 강세 사이에서 변동성 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-view-europe-2026-06-29/","description":"유럽·미국 선물은 외교 재개 기대에 지지됐지만 아시아 증시는 AI 지출 회수 의구심과 달러 강세에 압박받았다. 엔화 약세와 금 가격 조정도 시장의 핵심 관찰 지점이다.","score":240,"priority":240,"tags":["글로벌시장","기술주","달러","엔화","중동"]}
+  ],
+  "byCategory": {}
+}
