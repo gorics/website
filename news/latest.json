@@ -3,14 +3,12 @@
   "source": "gorics-news-automation",
   "page": "news",
   "categories": [
-    {"id":"economy","name":"경제","icon":"📈","count":12},
-    {"id":"tech","name":"기술","icon":"🤖","count":6},
-    {"id":"politics","name":"정치","icon":"🏛️","count":7},
-    {"id":"global","name":"국제","icon":"🌍","count":4},
-    {"id":"play","name":"스포츠","icon":"⚽","count":7},
-    {"id":"culture","name":"문화","icon":"🎬","count":6}
+    {"id":"economy","name":"경제","icon":"📈","count":3},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
   ],
-  "total": 42,
+  "total": 6,
   "allItems": [
     {"id":"main-20260630-0806-reuters-us-spr-lowest-1983","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"미 전략비축유, 1983년 이후 최저치로 감소","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-stocks-us-strategic-petroleum-reserve-fall-by-55-million-lowest-level-since-2026-06-29/","description":"미 에너지부 자료에서 전략비축유가 550만 배럴 줄어 3억2570만 배럴로 내려갔다. 이란 전쟁 이후 공급 부족을 메우기 위한 방출이 계속되며 유가·에너지안보 리스크가 커졌다.","score":430,"priority":430,"tags":["전략비축유","SPR","미국","유가","이란전쟁"]},
     {"id":"main-20260630-0806-reuters-hormuz-oil-rebalancing","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"호르무즈 원유 수출 재개, 공급 과잉·물류 혼선 동시 유발","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/reuters-open-interest/hormuz-oil-exodus-sets-stage-chaotic-rebalancing-act-2026-06-29/","description":"호르무즈 재개방 뒤 중동 원유가 한꺼번에 시장으로 나오며 단기 수급 균형이 흔들리고 있다. 일부 물량은 부유식 저장으로 전환돼 유가 변동성이 이어질 가능성이 있다.","score":424,"priority":424,"tags":["호르무즈","원유","중동","유조선","공급과잉"]},
