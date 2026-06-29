@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-06-30T06:09:59+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1},
+    {"id":"macro","name":"거시경제","icon":"🌐","count":1}
+  ],
+  "total": 2,
+  "allItems": [
+    {"id":"fin-20260630-0609-guardian-uk-borrowing-burnham","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"영국 국채금리 하락·파운드 상승, 번햄 경제구상에 시장 안도","publishedAt":"2026-06-29","date":"2026-06-29","source":"The Guardian","url":"https://www.theguardian.com/business/live/2026/jun/29/bank-of-england-inflation-warning-ai-stock-markets-oil-burnham-bond-yields-live-news-updates","description":"번햄의 재정준칙 유지 발언 뒤 영국 30년물 국채금리와 파운드가 안정 흐름을 보였다. 재정 신뢰, 주택공급, 지역투자 정책이 영국 자산 가격의 단기 변수다.","score":395,"priority":395,"tags":["영국채","파운드","재정준칙","정책리스크","시장심리"]},
+    {"id":"fin-20260630-0609-reuters-china-pmi-poll","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🌐","title":"중국 제조업 PMI 50.1 전망, AI 수출 호조와 내수 부진의 엇갈림","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-factory-activity-likely-returned-meagre-growth-june-2026-06-29/","description":"중국 제조업 경기는 소폭 확장 전환이 예상되지만 내수·부동산 약세가 이어진다. 글로벌 원자재·아시아 증시·위안화에 영향을 줄 경기 신호다.","score":392,"priority":392,"tags":["중국PMI","위안화","아시아증시","제조업","내수"]}
+  ],
+  "byCategory": {"global-markets":[],"macro":[]}
+}
