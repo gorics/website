@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-29T22:34:18+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"politics","name":"정치","icon":"🏛️","count":2},
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎤","count":1}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"main-20260629-2234-reuters-us-iran-doha","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미국, 쿠슈너·윗코프 도하 파견…이란 회동 추진으로 중동 외교 재가동","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/middle-east/us-says-trump-envoys-kushner-witkoff-will-travel-iran-meeting-doha-2026-06-29/","description":"미국이 재러드 쿠슈너와 스티브 윗코프를 도하로 보내 이란 관련 고위급 논의를 진행한다. 호르무즈 해협과 휴전 합의의 지속성이 핵심 의제로 부상했다.","score":338,"priority":338,"tags":["미국","이란","도하","쿠슈너","중동외교"]},
+    {"id":"main-20260629-2234-ap-trump-iran-meeting","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"트럼프 ‘이란이 회동 요청’…이란은 일정 부인, 걸프 긴장 속 메시지 엇갈려","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/d1c0ec8aa84c0e5693b94f0cf0862bab","description":"트럼프 대통령은 이란이 미국과의 회동을 요청했다고 밝혔지만 이란 측은 예정된 회담이 없다고 반박했다. 걸프 지역 공격 이후 협상 신뢰가 다시 시험대에 올랐다.","score":334,"priority":334,"tags":["트럼프","이란","걸프","협상","호르무즈"]},
+    {"id":"main-20260629-2234-reuters-markets-oil","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"미·이란 공격 중단 기대에 미 선물 상승, 유가는 제한적 움직임","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"미국 주가지수 선물이 중동 확전 완화 기대에 올랐고 유가는 공급 차질 우려가 누그러지며 제한적으로 움직였다. AI 과열과 연준 금리 전망은 여전히 시장 변수다.","score":330,"priority":330,"tags":["글로벌시장","유가","미국증시","이란","연준"]},
+    {"id":"main-20260629-2234-reuters-gulf-markets","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"걸프 증시 약세, 미·이란 긴장과 에너지 물류 불확실성 반영","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/middle-east/major-gulf-markets-ease-us-iran-tensions-keep-investors-edge-2026-06-29/","description":"사우디·두바이·아부다비·카타르 증시가 미·이란 긴장 재점화 속 하락했다. 호르무즈 물류와 원유 수급 정상화 속도가 지역 투자심리를 흔들고 있다.","score":324,"priority":324,"tags":["걸프증시","사우디","유가","호르무즈","지정학"]},
+    {"id":"main-20260629-2234-reuters-baidu-chip-ipo","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"바이두 AI칩 자회사 IPO 추진, 중국 반도체 자립과 AI 과열 논쟁 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/breakingviews/baidu-chip-ipo-channels-extreme-ai-frenzy-2026-06-29/","description":"바이두의 AI칩 자회사 쿤룬신이 홍콩 IPO에서 고평가를 노리고 있다. 중국 내 엔비디아 대체 수요와 AI 투자 과열 우려가 동시에 부각됐다.","score":318,"priority":318,"tags":["바이두","AI칩","IPO","중국반도체","엔비디아"]},
+    {"id":"main-20260629-2234-ap-nvidia-china","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"엔비디아 중국 AI칩 판매 급감, 화웨이 등 현지 업체 점유율 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/1ae6228c4928ddbb43f984e9b38f49dd","description":"미국 수출통제와 중국의 자립 정책 속에 엔비디아의 중국 AI칩 점유율이 크게 줄고 화웨이 등 현지 업체가 빠르게 성장했다. 글로벌 AI칩 공급망 재편이 빨라지고 있다.","score":316,"priority":316,"tags":["엔비디아","화웨이","중국","AI칩","수출통제"]},
+    {"id":"main-20260629-2234-reuters-canada-worldcup","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"캐나다, 에스타키우 결승골로 월드컵 16강 진출…공동 개최국 흥행 탄력","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/sports/soccer/canada-score-late-winner-advance-last-16-world-cup-2026-06-28/","description":"스티븐 에스타키우의 후반 추가시간 골로 캐나다가 남아공을 1-0으로 꺾고 월드컵 16강에 올랐다. 북미 개최국의 흥행과 축구 관심이 더욱 커졌다.","score":304,"priority":304,"tags":["월드컵","캐나다","남아공","에스타키우","16강"]},
+    {"id":"main-20260629-2234-ap-kara-swisher","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎤","title":"카라 스위셔, 실리콘밸리 저널리즘 영향력을 정치 영역으로 확장","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/kara-swisher-pivot-podcast-politics-election-2028-3bf10c88fdaef1142ad2d8e6e9faf648","description":"테크 저널리스트 카라 스위셔가 팟캐스트와 공개 인터뷰 영향력을 바탕으로 정치 담론에서 존재감을 키우고 있다. 기술권력과 선거정치의 접점이 문화 이슈로 떠올랐다.","score":292,"priority":292,"tags":["카라스위셔","팟캐스트","실리콘밸리","정치문화","미디어"]}
+  ],
+  "byCategory": {"politics": [], "economy": [], "tech": [], "play": [], "culture": []}
+}
