@@ -1,17 +1,25 @@
 {
-  "generatedAt": "2026-06-30T02:08:43+09:00",
+  "generatedAt": "2026-06-30T02:34:31+09:00",
   "source": "gorics-news-automation",
   "page": "news",
   "categories": [
-    {"id":"economy","name":"경제","icon":"📈","count":5},
-    {"id":"tech","name":"기술","icon":"🤖","count":3},
-    {"id":"politics","name":"정치","icon":"🏛️","count":3},
+    {"id":"economy","name":"경제","icon":"📈","count":7},
+    {"id":"tech","name":"기술","icon":"🤖","count":4},
+    {"id":"politics","name":"정치","icon":"🏛️","count":6},
     {"id":"global","name":"국제","icon":"🌍","count":4},
-    {"id":"play","name":"스포츠","icon":"⚽","count":3},
-    {"id":"culture","name":"문화","icon":"🎬","count":2}
+    {"id":"play","name":"스포츠","icon":"⚽","count":4},
+    {"id":"culture","name":"문화","icon":"🎬","count":3}
   ],
-  "total": 20,
+  "total": 28,
   "allItems": [
+    {"id":"main-20260630-0234-ap-mail-ballots","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 선거일 소인 우편투표의 사후 도착 집계 허용","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/5f24f718ea92a33838485ce6302e079e","description":"대법원이 선거일 소인이 찍힌 우편투표를 이후 도착해도 집계할 수 있다고 판단했다. 2026년 중간선거 전 주별 선거 규칙 혼선을 줄이는 결정이다.","score":410,"priority":410,"tags":["미대법원","우편투표","선거법","중간선거","트럼프"]},
+    {"id":"main-20260630-0234-ap-agency-firings-fed","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 독립기관장 해임권 확대하되 연준은 예외로 보호","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/7b7676e5a066f8df41077a0920b9f334","description":"대법원이 대통령의 독립기관장 해임 권한을 넓히면서도 연준 쿡 이사의 직위는 일단 유지하도록 했다. 행정권과 중앙은행 독립성의 경계가 핵심 쟁점이다.","score":406,"priority":406,"tags":["대통령권한","독립기관","연준","리사쿡","행정권"]},
+    {"id":"main-20260630-0234-ap-carroll-verdict","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 트럼프의 E. 진 캐럴 500만달러 평결 파기 요청 기각","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/1a50d1e9e1d12898e78e0803c4627771","description":"대법원이 성추행·명예훼손 평결을 뒤집어 달라는 트럼프 측 요청을 받아들이지 않았다. 별도 8330만달러 명예훼손 배상 항소는 계속될 전망이다.","score":390,"priority":390,"tags":["트럼프","E진캐럴","대법원","명예훼손","성추행평결"]},
+    {"id":"main-20260630-0234-reuters-anthropic-eu","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"오스트리아, 미국 AI 접근 제한 대응해 EU 내 Anthropic 유치 제안","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/business/austria-lobbies-eu-host-anthropic-ai-after-us-curbs-bloomberg-news-reports-2026-06-28/","description":"오스트리아가 미국의 고급 AI 모델 접근 제한에 대응해 EU가 Anthropic을 역내에 유치하는 방안을 검토하자고 제안했다. 유럽의 AI 주권 논의가 커지고 있다.","score":386,"priority":386,"tags":["Anthropic","EU","AI주권","오스트리아","Claude"]},
+    {"id":"main-20260630-0234-reuters-golden-pass-lng","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"엑손·카타르에너지 Golden Pass LNG, 가스 유입 급감으로 가동 중단 신호","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/energy/golden-pass-lng-appears-offline-after-near-halt-gas-intake-lseg-data-show-2026-06-29/","description":"텍사스 Golden Pass LNG가 최근 사흘간 천연가스 투입을 거의 받지 않아 오프라인 상태로 보인다는 LSEG 데이터가 나왔다. 미국 LNG 수출 증설 일정의 변수다.","score":384,"priority":384,"tags":["LNG","엑손모빌","카타르에너지","GoldenPass","천연가스"]},
+    {"id":"main-20260630-0234-reuters-hormuz-loadings","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"중동 산유국, 선박 공격에도 원유·LNG 선적 지속","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/energy/middle-east-producers-push-with-oil-lng-loadings-despite-ship-attacks-2026-06-29/","description":"호르무즈 해협 선박 공격과 미·이란 긴장에도 중동 산유국의 원유·LNG 선적이 이어졌다. 물동량 회복 여부가 유가와 에너지 리스크 프리미엄을 좌우한다.","score":382,"priority":382,"tags":["호르무즈","원유","LNG","중동","에너지운송"]},
+    {"id":"main-20260630-0234-reuters-czech-coach-resigns","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"체코 축구대표팀 쿠벡 감독, 월드컵 부진 책임지고 사임","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/sports/soccer/czech-national-team-coach-koubek-resigns-after-woeful-world-cup-campaign-2026-06-29/","description":"체코가 월드컵 조별리그 최하위로 탈락한 뒤 미로슬라프 쿠벡 감독이 사임했다. 보수적 전술과 핵심 선수 기용 논란이 거센 비판을 불렀다.","score":360,"priority":360,"tags":["월드컵","체코","쿠벡","축구대표팀","감독사임"]},
+    {"id":"main-20260630-0234-ap-dershowitz-cnn","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"미 대법원, 더쇼위츠의 CNN 상대 3억달러 명예훼손 소송 부활 거부","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/6831b54f0b0f4fcfe51e243bcfef0ed5","description":"대법원이 앨런 더쇼위츠의 CNN 상대 명예훼손 소송을 되살리지 않았다. 공인 명예훼손 기준과 언론 보도 편집의 경계가 다시 주목받고 있다.","score":340,"priority":340,"tags":["CNN","명예훼손","언론법","더쇼위츠","대법원"]},
     {"id":"main-20260630-0208-reuters-baidu-kunlunxin-ipo","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"바이두 AI칩 자회사 쿤룬신, 홍콩 IPO로 AI 반도체 열기 시험대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/breakingviews/baidu-chip-ipo-channels-extreme-ai-frenzy-2026-06-29/","description":"바이두의 AI칩 자회사 쿤룬신이 홍콩 상장을 준비하며 500억달러 안팎의 평가액을 노린다. 중국의 AI 가속기 자립 흐름과 함께 밸류에이션 과열 논쟁도 커졌다.","score":398,"priority":398,"tags":["바이두","쿤룬신","AI칩","홍콩IPO","중국반도체"]},
     {"id":"main-20260630-0208-ap-ukraine-russian-strikes","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"러시아 미사일·드론 공습에 우크라이나 민간인 11명 사망","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/70ba832d0e760e08e5d50c5f467d953f","description":"우크라이나 여러 지역에서 러시아 공습으로 최소 11명이 숨지고 40명이 다쳤다. 젤렌스키 대통령은 유럽에 방공망 지원 확대를 촉구했다.","score":392,"priority":392,"tags":["우크라이나","러시아","공습","드론","방공망"]},
     {"id":"main-20260630-0208-reuters-russia-fuel-shortages","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"우크라이나 공격 여파로 러시아 연료난 확산, 모스크바도 대기줄","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/fuel-shortages-spread-more-parts-russia-ukrainian-attacks-bite-2026-06-29/","description":"우크라이나의 정유·수송 인프라 공격 이후 러시아 남부와 크림반도, 시베리아뿐 아니라 모스크바 일부 주유소까지 연료난과 구매 제한이 번졌다.","score":386,"priority":386,"tags":["러시아","연료난","우크라이나","정유시설","에너지안보"]},
