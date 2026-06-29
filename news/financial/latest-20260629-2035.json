@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-06-29T20:35:21+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial-archive",
+  "categories": [
+    {"id":"macro-economy","name":"거시경제","icon":"🌐","count":2}
+  ],
+  "total": 2,
+  "allItems": [
+    {"id":"fin-20260629-2035-reuters-china-pmi-poll","category":"macro-economy","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🌐","title":"중국 제조업 PMI 50.1 전망, 경기 회복은 여전히 미약","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-factory-activity-likely-returned-meagre-growth-june-2026-06-29/","description":"중국 6월 제조업 PMI가 간신히 확장권으로 복귀할 것으로 조사됐다. 고기술 수출과 AI 공급망은 지지 요인이지만 내수 둔화와 부동산 부담은 시장 리스크다.","score":282,"priority":282,"tags":["중국PMI","제조업","거시경제","수출","내수"]},
+    {"id":"fin-20260629-2035-guardian-uk-mortgage-approvals","category":"macro-economy","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🌐","title":"영국 모기지 승인 2년 반 만의 최저, 고금리 부담 재확인","publishedAt":"2026-06-29","date":"2026-06-29","source":"The Guardian","url":"https://www.theguardian.com/business/live/2026/jun/29/bank-of-england-inflation-warning-ai-stock-markets-oil-burnham-bond-yields-live-news-updates","description":"영국 5월 모기지 승인이 크게 줄며 주택시장과 소비 여건의 금리 민감도가 다시 드러났다. 중동발 유가·물가 압력과 영란은행 경로가 금융시장 변수다.","score":270,"priority":270,"tags":["영국","모기지","금리","부동산","BOE"]}
+  ],
+  "byCategory": {}
+}
