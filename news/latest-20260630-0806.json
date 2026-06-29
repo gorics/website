@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-06-30T08:06:38+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":3},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 6,
+  "allItems": [
+    {"id":"main-20260630-0806-reuters-us-spr-lowest-1983","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"미 전략비축유, 1983년 이후 최저치로 감소","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-stocks-us-strategic-petroleum-reserve-fall-by-55-million-lowest-level-since-2026-06-29/","description":"미 에너지부 자료에서 전략비축유가 550만 배럴 줄어 3억2570만 배럴로 내려갔다. 이란 전쟁 이후 공급 부족을 메우기 위한 방출이 계속되며 유가·에너지안보 리스크가 커졌다.","score":430,"priority":430,"tags":["전략비축유","SPR","미국","유가","이란전쟁"]},
+    {"id":"main-20260630-0806-reuters-hormuz-oil-rebalancing","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"호르무즈 원유 수출 재개, 공급 과잉·물류 혼선 동시 유발","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/reuters-open-interest/hormuz-oil-exodus-sets-stage-chaotic-rebalancing-act-2026-06-29/","description":"호르무즈 재개방 뒤 중동 원유가 한꺼번에 시장으로 나오며 단기 수급 균형이 흔들리고 있다. 일부 물량은 부유식 저장으로 전환돼 유가 변동성이 이어질 가능성이 있다.","score":424,"priority":424,"tags":["호르무즈","원유","중동","유조선","공급과잉"]},
+    {"id":"main-20260630-0806-reuters-bis-global-risks-ai-debt","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"BIS, 부채·AI 투자 붐이 세계 금융 취약성 키운다고 경고","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/business/finance/global-markets-bis-pix-2026-06-28/","description":"국제결제은행은 높은 공공부채와 AI 관련 자금조달 구조가 채권시장과 금융시스템의 취약성을 키운다고 지적했다. 인플레이션 재발과 비은행권 감독이 핵심 과제로 제시됐다.","score":410,"priority":410,"tags":["BIS","공공부채","AI투자","금융안정","인플레이션"]},
+    {"id":"main-20260630-0806-ap-brazil-japan-worldcup","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"브라질, 마르티넬리 극장골로 일본 꺾고 월드컵 16강 진출","publishedAt":"2026-06-30","date":"2026-06-30","source":"AP","url":"https://apnews.com/article/d5c025da2efeaf08a6b7c694b8e6534e","description":"브라질이 일본에 선제골을 내줬지만 카세미루 동점골과 마르티넬리 추가시간 결승골로 2-1 승리를 거뒀다. 일본은 또다시 월드컵 토너먼트 첫 승에 실패했다.","score":388,"priority":388,"tags":["월드컵","브라질","일본","마르티넬리","16강"]},
+    {"id":"main-20260630-0806-wired-worldcup-hydration-breaks","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"월드컵 고정 수분휴식 논란, 선수보호인가 광고시간인가","publishedAt":"2026-06-30","date":"2026-06-30","source":"Wired","url":"https://www.wired.com/story/world-cup-new-hydration-breaks-are-about-more-than-water","description":"2026 월드컵의 전 경기 고정 수분휴식이 경기 흐름을 끊는다는 비판을 받고 있다. FIFA는 선수 안전을 강조하지만 방송 광고 수익과 미국식 스포츠화 논란도 커졌다.","score":360,"priority":360,"tags":["월드컵","FIFA","수분휴식","방송","스포츠비즈니스"]},
+    {"id":"main-20260630-0806-wsj-soitec-zensemi","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"Soitec, 중국 ZenSemi와 AI·전기차용 반도체 기판 협력","publishedAt":"2026-06-30","date":"2026-06-30","source":"WSJ","url":"https://www.wsj.com/tech/soitec-shares-climb-on-partnership-with-chinas-zensemi-74a4ba0f","description":"프랑스 반도체 소재업체 Soitec이 중국 ZenSemi에 Power-SOI 기판을 공급한다. AI 데이터센터·로봇·전기차용 전력반도체 수요 확대가 배경이다.","score":372,"priority":372,"tags":["Soitec","ZenSemi","반도체기판","AI데이터센터","전기차"]}
+  ],
+  "byCategory": {"economy":[],"tech":[],"politics":[],"global":[],"play":[],"culture":[]}
+}
