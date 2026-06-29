@@ -1,0 +1,89 @@
+{
+  "generatedAt": "2026-06-30T07:10:03+09:00",
+  "source": "Fresh public financial news scan: Reuters, Barron's and reputable public sources",
+  "page": "financial",
+  "categories": ["energy-geopolitics", "global-markets", "semiconductors"],
+  "total": 5,
+  "allItems": [
+    {
+      "id": "fin-20260630-0710-oil-iran-talks",
+      "category": "energy-geopolitics",
+      "categoryName": "에너지·지정학",
+      "category_ko": "에너지·지정학",
+      "categoryIcon": "🛢️",
+      "title": "미·이란 회동 전망에 유가 반등…호르무즈 긴장 완화 기대와 불확실성 공존",
+      "publishedAt": "2026-06-29",
+      "source": "Barron's",
+      "url": "https://www.barrons.com/articles/oil-prices-today-iran-hormuz-d32acfde",
+      "description": "미·이란 회동 소식에 브렌트와 WTI가 올랐다. 공격 중단 기대에도 휴전 지속성과 호르무즈 리스크는 시장의 핵심 변수로 남았다.",
+      "score": 94,
+      "priority": 94,
+      "tags": ["oil", "Iran", "Hormuz", "energy", "markets"]
+    },
+    {
+      "id": "fin-20260630-0710-us-futures-tech-bounce",
+      "category": "global-markets",
+      "categoryName": "글로벌시장",
+      "category_ko": "글로벌시장",
+      "categoryIcon": "📈",
+      "title": "미 주가지수 선물, 기술주 반등·미이란 공격 중단 기대에 상승",
+      "publishedAt": "2026-06-29",
+      "source": "Barron's",
+      "url": "https://www.barrons.com/livecoverage/stock-market-news-today-062926/card/stock-futures-jump-driven-by-tech-bounce-after-u-s-and-iran-agree-to-stop-strikes-XTcSZcX9dYIjMWIrc30i",
+      "description": "미국 주가지수 선물이 기술주 반등과 중동 긴장 완화 기대에 상승했다. 이번 주 고용·제조업 지표와 중앙은행 발언이 추가 변수다.",
+      "score": 93,
+      "priority": 93,
+      "tags": ["US stocks", "Nasdaq", "technology", "Iran"]
+    },
+    {
+      "id": "fin-20260630-0710-korea-chip-capex",
+      "category": "semiconductors",
+      "categoryName": "반도체",
+      "category_ko": "반도체",
+      "categoryIcon": "🧠",
+      "title": "한국 AI 반도체 메가 프로젝트, 장기 공급 확대 기대와 과잉투자 우려 동시 부각",
+      "publishedAt": "2026-06-29",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/media-telecom/key-facts-south-koreas-three-chip-ai-mega-projects-2026-06-29/",
+      "description": "삼성·SK·네이버 등이 반도체, 피지컬 AI, 데이터센터 투자 계획을 제시했다. HBM·DRAM 공급 확대 기대와 과잉투자 우려가 함께 나온다.",
+      "score": 92,
+      "priority": 92,
+      "tags": ["semiconductor", "AI datacenter", "Samsung", "SK Hynix"]
+    },
+    {
+      "id": "fin-20260630-0710-baidu-ai-chip-ipo",
+      "category": "semiconductors",
+      "categoryName": "반도체",
+      "category_ko": "반도체",
+      "categoryIcon": "🧠",
+      "title": "바이두 쿤룬신 IPO 추진, 중국 AI칩 밸류에이션 부담 확대",
+      "publishedAt": "2026-06-29",
+      "source": "Reuters Breakingviews",
+      "url": "https://www.reuters.com/commentary/breakingviews/baidu-chip-ipo-channels-extreme-ai-frenzy-2026-06-29/",
+      "description": "쿤룬신의 상장 추진은 중국 AI 반도체 자립 수혜를 보여주지만, 단기간 급등한 기업가치가 AI 투자 과열 논쟁을 키우고 있다.",
+      "score": 90,
+      "priority": 90,
+      "tags": ["Baidu", "Kunlunxin", "AI chip", "IPO"]
+    },
+    {
+      "id": "fin-20260630-0710-india-markets-monsoon",
+      "category": "global-markets",
+      "categoryName": "글로벌시장",
+      "category_ko": "글로벌시장",
+      "categoryIcon": "📈",
+      "title": "인도 증시, 몬순 부진 우려에 랠리 후 숨고르기",
+      "publishedAt": "2026-06-29",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/india/indian-shares-likely-open-steady-us-iran-talks-ease-escalation-fears-2026-06-29/",
+      "description": "인도 증시는 3주 랠리 뒤 약세를 보였다. 6월 강우 부족이 물가·소비·자동차 업종에 부담이 될 수 있다는 우려가 반영됐다.",
+      "score": 86,
+      "priority": 86,
+      "tags": ["India", "stocks", "monsoon", "inflation"]
+    }
+  ],
+  "byCategory": {
+    "energy-geopolitics": [],
+    "global-markets": [],
+    "semiconductors": []
+  }
+}
