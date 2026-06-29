@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-06-30T03:35:23+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1}
+  ],
+  "total": 2,
+  "allItems": [
+    {"id":"main-20260630-0335-reuters-hormuz-oil-exodus","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"호르무즈 원유 수출 재개, 단기 공급 과잉·물류 혼선 우려","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/reuters-open-interest/hormuz-oil-exodus-sets-stage-chaotic-rebalancing-act-2026-06-29/","description":"호르무즈 재개방 뒤 걸프에 묶였던 탱커가 한꺼번에 빠져나오며 원유 시장 재균형이 흔들리고 있다. 단기 수요 둔화와 선박 부족, 이란 제재 완화가 유가 변동성을 키우는 변수다.","score":420,"priority":420,"tags":["호르무즈","원유","탱커","유가","공급과잉"]},
+    {"id":"main-20260630-0335-reuters-cxmt-tencent-dram","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"중국 CXMT, 텐센트와 30억달러 DRAM 장기 공급 계약","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-cxmt-wins-3-billion-memory-supply-deal-with-tencent-sources-say-2026-06-29/","description":"중국 메모리 업체 CXMT가 텐센트 서버용 DRAM 장기 공급 계약을 따낸 것으로 전해졌다. AI·클라우드 수요와 중국 반도체 자립 전략이 맞물린 대형 거래다.","score":418,"priority":418,"tags":["CXMT","텐센트","DRAM","중국반도체","AI서버"]}
+  ],
+  "byCategory": {"economy":[],"tech":[]}
+}
