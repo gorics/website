@@ -1,17 +1,25 @@
 {
-  "generatedAt": "2026-06-30T02:34:31+09:00",
+  "generatedAt": "2026-06-30T03:10:12+09:00",
   "source": "gorics-news-automation",
   "page": "news",
   "categories": [
-    {"id":"economy","name":"경제","icon":"📈","count":7},
-    {"id":"tech","name":"기술","icon":"🤖","count":4},
-    {"id":"politics","name":"정치","icon":"🏛️","count":6},
+    {"id":"economy","name":"경제","icon":"📈","count":9},
+    {"id":"tech","name":"기술","icon":"🤖","count":5},
+    {"id":"politics","name":"정치","icon":"🏛️","count":7},
     {"id":"global","name":"국제","icon":"🌍","count":4},
-    {"id":"play","name":"스포츠","icon":"⚽","count":4},
-    {"id":"culture","name":"문화","icon":"🎬","count":3}
+    {"id":"play","name":"스포츠","icon":"⚽","count":6},
+    {"id":"culture","name":"문화","icon":"🎬","count":5}
   ],
-  "total": 28,
+  "total": 36,
   "allItems": [
+    {"id":"main-20260630-0310-ap-arizona-voting-laws","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 애리조나 시민권 증명 투표법 심리하기로","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/888283794ee8b43b8785ab4c8c96b479","description":"대법원이 애리조나의 주·지방선거 시민권 증명 요구 법안을 심리하기로 했다. 2026년 중간선거 이후 선거법 지형을 바꿀 수 있는 사건이다.","score":412,"priority":412,"tags":["미대법원","애리조나","시민권증명","선거법","투표권"]},
+    {"id":"main-20260630-0310-reuters-korea-exports-poll","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"한국 6월 수출, 반도체 호황에 50년 만의 최고 증가율 전망","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korea-exports-set-grow-strongest-pace-nearly-5-decades-2026-06-29/","description":"로이터 조사에서 한국 6월 수출은 AI 반도체 수요에 힘입어 전년 대비 61% 증가가 예상됐다. 메모리·HBM 호황이 무역수지와 성장률 전망을 끌어올리고 있다.","score":410,"priority":410,"tags":["한국수출","반도체","HBM","무역수지","AI투자"]},
+    {"id":"main-20260630-0310-guardian-chipmakers-rally","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"AI 하드웨어 랠리, 삼성·SK하이닉스 등 글로벌 칩주 상반기 급등","publishedAt":"2026-06-29","date":"2026-06-29","source":"The Guardian","url":"https://www.theguardian.com/business/2026/jun/29/shares-in-chipmakers-underpinning-ai-boom-surge-in-first-half-of-2026","description":"AI 데이터센터 수요와 메모리 공급 부족이 맞물리며 글로벌 칩주가 상반기 급등했다. 소프트웨어에서 하드웨어로 투자 초점이 이동하는 흐름이 뚜렷하다.","score":400,"priority":400,"tags":["AI반도체","삼성전자","SK하이닉스","메모리","데이터센터"]},
+    {"id":"main-20260630-0310-reuters-china-reverse-repo","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"중국 인민은행, 첫 오버나이트 역레포 1.25% 도입","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/china-debuts-overnight-reverse-repos-125-below-market-expectations-sources-say-2026-06-29/","description":"중국 인민은행이 오버나이트 역레포를 새 유동성 수단으로 도입했다. 단기금리 통제력 강화와 통화정책 전달 개선을 노린 조치로 해석된다.","score":392,"priority":392,"tags":["중국","PBOC","역레포","유동성","통화정책"]},
+    {"id":"main-20260630-0310-reuters-england-drcongo","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"잉글랜드, 월드컵 32강서 DR콩고와 맞대결…공격력 부진 시험대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/sports/soccer/england-face-dangerous-dr-congo-test-after-flat-group-stage-2026-06-29/","description":"조 1위에도 경기력 논란이 남은 잉글랜드가 돌풍의 DR콩고와 32강을 치른다. 벨링엄·케인 의존도를 줄이고 공격 전개를 회복할지가 관건이다.","score":370,"priority":370,"tags":["월드컵","잉글랜드","DR콩고","32강","투헬"]},
+    {"id":"main-20260630-0310-reuters-france-sweden","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"프랑스, 스웨덴전 앞두고 공격 축구 유지 선언","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/sports/soccer/france-will-not-give-up-attacking-philosophy-says-deschamps-2026-06-29/","description":"데샹 감독은 조별리그에서 득점력을 보인 프랑스가 토너먼트에서도 공격 철학을 버리지 않겠다고 밝혔다. 스웨덴의 역습·세트피스 대응이 변수다.","score":362,"priority":362,"tags":["월드컵","프랑스","스웨덴","데샹","32강"]},
+    {"id":"main-20260630-0310-ap-pelosi-institute","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"UC버클리, 낸시 펠로시 민주주의 연구소 설립","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/42c78b47021b3a95f226906bf8368999","description":"UC버클리가 낸시 펠로시와 함께 대표민주주의 연구소를 세운다. 의회·민주주의·시민 리더십 교육과 연구를 결합한 정치문화 프로젝트다.","score":350,"priority":350,"tags":["UC버클리","낸시펠로시","민주주의","정치문화","교육"]},
+    {"id":"main-20260630-0310-ap-kara-swisher","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"카라 스위셔, 실리콘밸리 넘어 2028 대선 미디어 영향력 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/3bf10c88fdaef1142ad2d8e6e9faf648","description":"기술 저널리스트 카라 스위셔가 팟캐스트와 인터뷰를 통해 2028년 대선 담론의 영향력 있는 미디어 인물로 부상하고 있다.","score":342,"priority":342,"tags":["카라스위셔","팟캐스트","정치미디어","실리콘밸리","2028대선"]},
     {"id":"main-20260630-0234-ap-mail-ballots","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 선거일 소인 우편투표의 사후 도착 집계 허용","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/5f24f718ea92a33838485ce6302e079e","description":"대법원이 선거일 소인이 찍힌 우편투표를 이후 도착해도 집계할 수 있다고 판단했다. 2026년 중간선거 전 주별 선거 규칙 혼선을 줄이는 결정이다.","score":410,"priority":410,"tags":["미대법원","우편투표","선거법","중간선거","트럼프"]},
     {"id":"main-20260630-0234-ap-agency-firings-fed","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 독립기관장 해임권 확대하되 연준은 예외로 보호","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/7b7676e5a066f8df41077a0920b9f334","description":"대법원이 대통령의 독립기관장 해임 권한을 넓히면서도 연준 쿡 이사의 직위는 일단 유지하도록 했다. 행정권과 중앙은행 독립성의 경계가 핵심 쟁점이다.","score":406,"priority":406,"tags":["대통령권한","독립기관","연준","리사쿡","행정권"]},
     {"id":"main-20260630-0234-ap-carroll-verdict","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 트럼프의 E. 진 캐럴 500만달러 평결 파기 요청 기각","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/1a50d1e9e1d12898e78e0803c4627771","description":"대법원이 성추행·명예훼손 평결을 뒤집어 달라는 트럼프 측 요청을 받아들이지 않았다. 별도 8330만달러 명예훼손 배상 항소는 계속될 전망이다.","score":390,"priority":390,"tags":["트럼프","E진캐럴","대법원","명예훼손","성추행평결"]},
