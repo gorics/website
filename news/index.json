@@ -3,14 +3,14 @@
   "source": "compatibility copy of current latest overlay; canonical base data.json and latest.json remain preserved",
   "page": "news-index-compatibility",
   "categories": [
-    {"id":"economy","name":"경제","icon":"📈","count":8},
-    {"id":"tech","name":"기술","icon":"🤖","count":4},
-    {"id":"politics","name":"정치","icon":"🏛️","count":2},
-    {"id":"global","name":"국제","icon":"🌍","count":4},
-    {"id":"play","name":"스포츠","icon":"⚽","count":3},
-    {"id":"culture","name":"문화","icon":"🎤","count":3}
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎤","count":1}
   ],
-  "total": 24,
+  "total": 8,
   "allItems": [
     {"id":"main-20260629-2107-reuters-korea-ai-chip-megaprojects","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"한국, 삼성·SK 중심 5760억달러 AI·반도체 메가프로젝트 공개","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-president-unveil-massive-ai-chip-investment-drive-2026-06-29/","description":"한국 정부가 삼성전자·SK하이닉스와 함께 반도체, 물리 AI, 데이터센터를 축으로 하는 초대형 투자 전략을 제시했다. HBM·AI칩 공급망과 지역 균형성장 이슈가 함께 부각됐다.","score":310,"priority":310,"tags":["한국","삼성전자","SK하이닉스","AI칩","HBM"]},
     {"id":"main-20260629-2107-reuters-cxmt-tencent-memory","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"중국 CXMT, 텐센트와 30억달러급 서버 DRAM 공급 계약","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-cxmt-wins-3-billion-memory-supply-deal-with-tencent-sources-say-2026-06-29/","description":"중국 메모리 업체 CXMT가 텐센트에 서버용 DRAM을 장기 공급하는 대형 계약을 따냈다. AI 서버 수요, 중국 반도체 자립, 메모리 가격 상승 흐름을 동시에 보여주는 재료다.","score":306,"priority":306,"tags":["CXMT","텐센트","DRAM","AI서버","중국반도체"]},
