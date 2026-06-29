@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-06-30T04:07:14+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"commodities","name":"원자재","icon":"🛢️","count":3},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛰️","count":2},
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1},
+    {"id":"macro","name":"거시경제","icon":"🌐","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"fin-20260630-0407-reuters-hormuz-rebalancing","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛰️","title":"호르무즈 원유 재균형 혼선, 수출 재개가 단기 공급 과잉 리스크로 전환","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/reuters-open-interest/hormuz-oil-exodus-sets-stage-chaotic-rebalancing-act-2026-06-29/","description":"호르무즈 재개방 이후 갇혀 있던 탱커와 중동 원유가 한꺼번에 시장으로 나오며 물류 병목·부유식 저장·컨탱고 가능성이 커졌다.","score":420,"priority":420,"tags":["호르무즈","원유","유가","컨탱고","중동"]},
+    {"id":"fin-20260630-0407-reuters-sovereign-energy-assets","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"29조달러 국부자금, 에너지 인프라와 금으로 분산","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/finance/sovereign-investors-with-29-trillion-pivot-energy-assets-flag-dollar-fears-2026-06-28/","description":"국부펀드·중앙은행이 지정학 리스크와 AI 전력 수요를 반영해 에너지 인프라 투자를 늘리고, 달러 의존 완화와 금 보유 확대를 검토하고 있다.","score":414,"priority":414,"tags":["국부펀드","중앙은행","에너지","달러","금"]},
+    {"id":"fin-20260630-0407-reuters-guinea-gold-refinery","category":"commodities","categoryName":"원자재","category_ko":"원자재","categoryIcon":"🛢️","title":"기니 금 정제 허브 추진, 서아프리카 원자재 부가가치 경쟁 심화","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/africa/guinea-plans-regional-gold-refining-hub-west-african-race-intensifies-2026-06-29/","description":"기니는 원광 금 수출 금지와 대형 정제소를 앞세워 금 가치사슬을 국내에 붙잡으려 한다. 고금리·고금값 환경에서 자원국 정책 리스크가 커진다.","score":396,"priority":396,"tags":["금","기니","정제","서아프리카","원자재"]},
+    {"id":"fin-20260630-0407-reuters-gold-fed-dollar","category":"commodities","categoryName":"원자재","category_ko":"원자재","categoryIcon":"🛢️","title":"금값 약세, 유가발 인플레와 연준 인상 기대가 달러를 지지","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/india/gold-slips-fresh-us-iran-strikes-boost-oil-fed-rate-hike-bets-weigh-2026-06-29/","description":"중동 긴장에도 금은 안전자산 랠리 대신 금리 부담에 눌렸다. 시장은 미국 고용지표와 9월 금리 인상 가능성을 핵심 변수로 본다.","score":390,"priority":390,"tags":["금","달러","연준","금리","고용지표"]},
+    {"id":"fin-20260630-0407-reuters-global-markets-yen","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"글로벌 증시·유가 소폭 상승, 엔화는 달러 대비 40년 저점권","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"미·이란 외교 기대에 위험자산은 반등했지만 강한 미국 고용과 연준 인상 베팅이 달러를 지지했다. 엔화 약세와 금 하락이 동반됐다.","score":386,"priority":386,"tags":["글로벌시장","엔화","달러","유가","연준"]},
+    {"id":"fin-20260630-0407-reuters-india-rupee-bonds","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🌐","title":"인도 루피·채권, 이란 전쟁 흐름과 연준 경로가 주간 핵심 변수","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/middle-east/iran-war-developments-fed-rate-path-cues-focus-indian-rupee-bonds-2026-06-29/","description":"중동 전개와 미국 금리 경로가 인도 루피와 국채 수익률을 좌우할 전망이다. 유가·외국인 채권자금·미국 고용지표가 동시에 주목된다.","score":374,"priority":374,"tags":["인도","루피","채권","유가","연준"]},
+    {"id":"fin-20260630-0407-reuters-sovereign-dollar-fears","category":"commodities","categoryName":"원자재","category_ko":"원자재","categoryIcon":"🛢️","title":"중앙은행 금 보유 확대 전망, 달러 신뢰 약화 우려 반영","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/finance/sovereign-investors-with-29-trillion-pivot-energy-assets-flag-dollar-fears-2026-06-28/","description":"같은 Invesco 조사에서 일부 중앙은행은 미국 부채와 지정학 리스크를 이유로 금 보유 확대와 달러 커스터디 의존 축소를 검토하는 것으로 나타났다.","score":368,"priority":368,"tags":["중앙은행","금","달러","외환보유액","국부펀드"]}
+  ],
+  "byCategory": {"commodities":[],"energy-geopolitics":[],"global-markets":[],"macro":[]}
+}
