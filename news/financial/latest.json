@@ -1,18 +1,24 @@
 {
-  "generatedAt": "2026-06-30T02:34:31+09:00",
+  "generatedAt": "2026-06-30T03:10:12+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
-    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":4},
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":5},
     {"id":"commodities","name":"원자재","icon":"🛢️","count":2},
     {"id":"fx-rates","name":"환율","icon":"💱","count":2},
     {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛰️","count":5},
     {"id":"media-deals","name":"미디어딜","icon":"🎬","count":1},
-    {"id":"monetary-policy","name":"통화정책","icon":"🏦","count":2},
-    {"id":"semiconductors","name":"반도체","icon":"🧩","count":2}
+    {"id":"monetary-policy","name":"통화정책","icon":"🏦","count":3},
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":5},
+    {"id":"macro","name":"거시경제","icon":"🌐","count":2}
   ],
-  "total": 18,
+  "total": 23,
   "allItems": [
+    {"id":"fin-20260630-0310-reuters-korea-exports-poll","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🌐","title":"한국 6월 수출, AI 반도체 호황에 50년 만의 최고 증가율 전망","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korea-exports-set-grow-strongest-pace-nearly-5-decades-2026-06-29/","description":"로이터 조사에서 한국 수출은 6월 전년 대비 61% 증가가 예상됐다. 반도체 수출 급증과 무역흑자 확대가 한국 증시·원화·성장률의 핵심 변수다.","score":414,"priority":414,"tags":["한국수출","반도체","무역수지","원화","성장률"]},
+    {"id":"fin-20260630-0310-guardian-chipmakers-rally","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"AI 칩주 상반기 랠리, 메모리 공급 부족과 데이터센터 수요가 견인","publishedAt":"2026-06-29","date":"2026-06-29","source":"The Guardian","url":"https://www.theguardian.com/business/2026/jun/29/shares-in-chipmakers-underpinning-ai-boom-surge-in-first-half-of-2026","description":"삼성전자·SK하이닉스·마이크론 등 AI 하드웨어 관련주가 상반기 크게 올랐다. 투자자금이 소프트웨어에서 칩·스토리지로 이동하는 신호다.","score":408,"priority":408,"tags":["AI칩","메모리","삼성전자","SK하이닉스","데이터센터"]},
+    {"id":"fin-20260630-0310-reuters-china-reverse-repo","category":"monetary-policy","categoryName":"통화정책","category_ko":"통화정책","categoryIcon":"🏦","title":"중국 PBOC, 오버나이트 역레포 1.25% 도입…단기금리 관리 강화","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/china-debuts-overnight-reverse-repos-125-below-market-expectations-sources-say-2026-06-29/","description":"인민은행이 첫 오버나이트 역레포를 1.25%에 공급했다. 7일물 정책금리의 신호 기능을 유지하면서 단기 유동성 통제력을 높이려는 조치다.","score":400,"priority":400,"tags":["PBOC","역레포","중국금리","유동성","단기자금"]},
+    {"id":"fin-20260630-0310-reuters-china-pmi-poll","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🌐","title":"중국 6월 제조업 PMI, 미약한 확장 복귀 전망","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-factory-activity-likely-returned-meagre-growth-june-2026-06-29/","description":"로이터 조사에서 중국 공식 제조업 PMI는 50.1로 소폭 확장 전환이 예상됐다. AI 관련 수출은 강하지만 내수·부동산 부진이 경기 회복을 제한하고 있다.","score":392,"priority":392,"tags":["중국PMI","제조업","수출","부동산","내수"]},
+    {"id":"fin-20260630-0310-reuters-alphabet-dow","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"알파벳, 다우지수 편입 첫날 상승…지수의 기술주 비중 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/alphabet-debuts-dow-jones-industrial-average-index-tilts-toward-tech-2026-06-29/","description":"구글 모회사 알파벳이 버라이즌을 대체해 다우존스산업평균지수에 편입됐다. 전통 지수도 기술 대형주의 시장 지배력을 더 반영하는 흐름이다.","score":386,"priority":386,"tags":["알파벳","다우지수","기술주","구글","지수편입"]},
     {"id":"fin-20260630-0234-reuters-golden-pass-lng","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛰️","title":"Golden Pass LNG 가동 중단 신호, 미국 LNG 수출 증설 일정 변수","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/energy/golden-pass-lng-appears-offline-after-near-halt-gas-intake-lseg-data-show-2026-06-29/","description":"카타르에너지·엑손모빌의 텍사스 Golden Pass LNG가 가스 유입 급감으로 오프라인 상태로 보인다. 첫 트레인 시운전 지연은 LNG 공급 확대 기대에 변수다.","score":404,"priority":404,"tags":["LNG","엑손모빌","카타르에너지","미국수출","천연가스"]},
     {"id":"fin-20260630-0234-reuters-hormuz-loadings","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛰️","title":"호르무즈 선박 공격에도 중동 원유·LNG 선적 지속","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/energy/middle-east-producers-push-with-oil-lng-loadings-despite-ship-attacks-2026-06-29/","description":"사우디·이란·UAE·카타르의 원유와 LNG 선적이 공격 이후에도 이어졌다. 해상 보험·선박 추적 회피·도하 협상 진전이 유가 리스크 프리미엄의 핵심이다.","score":400,"priority":400,"tags":["호르무즈","원유선적","LNG","중동리스크","유가"]},
     {"id":"fin-20260630-0234-reuters-australia-gas-exploration","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛰️","title":"호주 에너지 탐사 10년 최고, 아시아 가스 수요가 투자 회복 견인","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/energy/australian-energy-exploration-hits-10-year-high-hunt-gas-2026-06-29/","description":"호주의 1분기 석유·가스 탐사 지출이 10년 만의 최고치로 뛰었다. 아시아 LNG 수요, 내수 가스 부족 우려, 중동 리스크가 공급 확보 경쟁을 키웠다.","score":384,"priority":384,"tags":["호주","LNG","가스탐사","아시아수요","에너지안보"]},
@@ -32,5 +38,5 @@
     {"id":"fin-20260630-0035-reuters-fed-cook","category":"monetary-policy","categoryName":"통화정책","category_ko":"통화정책","categoryIcon":"🏦","title":"미 대법원, 연준 이사 해임 시도 기각…Fed 독립성 방어","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/us-supreme-court-rejects-trumps-unprecedented-bid-fire-feds-cook-2026-06-29/","description":"리사 쿡 이사 해임 시도에 제동이 걸리며 통화정책 독립성 우려가 일부 완화됐다. 금리 기대와 달러·채권시장에 직접 영향을 줄 수 있는 판결이다.","score":358,"priority":358,"tags":["연준","리사쿡","대법원","금리","중앙은행독립성"]},
     {"id":"fin-20260630-0035-reuters-korea-megaprojects","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"한국 반도체·AI 메가프로젝트, HBM·데이터센터 투자 사이클 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/key-facts-south-koreas-three-chip-ai-mega-projects-2026-06-29/","description":"삼성·SK의 신규 팹, AI 데이터센터, 로봇 클러스터 계획은 메모리·전력·장비 수요의 장기 변수가 됐다. 시장은 성장성과 과잉투자 리스크를 동시에 본다.","score":352,"priority":352,"tags":["삼성전자","SK하이닉스","HBM","AI데이터센터","반도체"]}
   ],
-  "byCategory": {"global-markets":[],"commodities":[],"fx-rates":[],"energy-geopolitics":[],"media-deals":[],"monetary-policy":[],"semiconductors":[]}
+  "byCategory": {"global-markets":[],"commodities":[],"fx-rates":[],"energy-geopolitics":[],"media-deals":[],"monetary-policy":[],"semiconductors":[],"macro":[]}
 }
