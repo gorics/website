@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-06-29T10:33:54+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
+    {"id":"ai-infrastructure","name":"AI인프라","icon":"🧠","count":1},
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260629-1033-reuters-korea-ai-chip-drive","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"한국 AI·반도체 메가 프로젝트, 삼성·SK 투자 기대 부각","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-president-unveil-massive-ai-chip-investment-drive-2026-06-29/","description":"정부가 서남권 반도체 허브와 AI 데이터센터·로봇 프로젝트를 묶어 투자 드라이브를 예고했다. 메모리·HBM 공급망과 전력·용수 인프라가 금융시장 핵심 테마로 떠올랐다.","score":230,"priority":230,"tags":["삼성전자","SK하이닉스","HBM","AI데이터센터","한국증시"]},
+    {"id":"fin-20260629-1033-reuters-oil-us-iran-strikes","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"미·이란 재충돌에 원유 반등, 공급 회복 지연 리스크 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-climbs-following-renewed-us-iran-strikes-middle-east-2026-06-28/","description":"브렌트와 WTI가 호르무즈 해협 긴장 재고조에 상승했다. 지난주 급락 뒤에도 선박 공격과 병목 가능성이 남아 에너지주·인플레이션 기대에 영향을 줄 수 있다.","score":226,"priority":226,"tags":["브렌트","WTI","호르무즈","에너지주","지정학"]},
+    {"id":"fin-20260629-1033-reuters-ibm-sub-1nm-chip","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"IBM 0.7나노 기술 공개, 차세대 AI 칩 경쟁 재점화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM의 나노스택 구조는 성능 50% 또는 전력효율 70% 개선 가능성을 제시했다. 생산 파트너는 미정이지만 삼성·라피더스 라이선스 이력이 있어 공급망 관심이 커졌다.","score":218,"priority":218,"tags":["IBM","나노스택","AI칩","삼성","라피더스"]},
+    {"id":"fin-20260629-1033-ibd-futures-market-tipping-point","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"미 주가지수 선물 상승, AI·반도체 조정 뒤 시장 분기점","publishedAt":"2026-06-29","date":"2026-06-29","source":"Investor's Business Daily","url":"https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-stock-market-tipping-point-eli-lilly-tesla/","description":"다우·S&P500·나스닥 선물이 미·이란 긴장 완화 기대에 반등했다. 다만 나스닥과 반도체 약세, 테슬라 인도량·미 고용지표 발표를 앞둔 경계감이 남아 있다.","score":210,"priority":210,"tags":["다우선물","나스닥","반도체","테슬라","고용지표"]},
+    {"id":"fin-20260629-1033-reuters-world-cup-flow-data","category":"ai-infrastructure","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"📈","title":"월드컵 경기 데이터, 더 빠른 플레이와 부상 리스크 동시 확인","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/sports/soccer/world-cups-lighter-whistle-helps-fuel-faster-fiercer-tournament-2026-06-28/","description":"심판 판정 기조 변화로 볼 인플레이 시간이 늘고 고속 움직임이 증가했다. 스포츠 데이터·피트니스 분석 시장에서 경기 운영 데이터의 상업적 가치가 커지는 사례다.","score":198,"priority":198,"tags":["스포츠데이터","AI분석","월드컵","피트니스테크","부상예측"]}
+  ],
+  "byCategory": {}
+}
