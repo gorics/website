@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-06-30T01:34:00+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":1}
+  ],
+  "total": 2,
+  "allItems": [
+    {"id":"fin-20260630-0134-reuters-gulf-markets-us-iran","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"걸프 증시 하락, 미·이란 긴장과 유가 변동성이 리스크 프리미엄 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/middle-east/major-gulf-markets-ease-us-iran-tensions-keep-investors-edge-2026-06-29/","description":"사우디 TASI와 UAE·카타르 지수가 미·이란 긴장 속 약세를 보였다. 중동 금융시장은 휴전 지속성, 호르무즈 물류, 원유 가격 재평가에 민감하게 반응 중이다.","score":386,"priority":386,"tags":["걸프증시","TASI","유가","호르무즈","지정학"]},
+    {"id":"fin-20260630-0134-reuters-onsemi-synaptics-deal","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"온세미 70억달러 시냅틱스 인수, 피지컬 AI·자동차 반도체 M&A 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/legal/transactional/onsemi-buy-synaptics-7-billion-all-stock-deal-2026-06-25/","description":"온세미는 시냅틱스의 연결 컴퓨팅·HMI 역량을 흡수해 자동차·산업·로봇용 피지컬 AI 반도체 시장을 넓히려 한다. 반도체 M&A와 AI 엣지 디바이스 투자 사이클에 영향을 줄 딜이다.","score":370,"priority":370,"tags":["Onsemi","Synaptics","반도체M&A","피지컬AI","자동차반도체"]}
+  ],
+  "byCategory": {"global-markets":[],"semiconductors":[]}
+}
