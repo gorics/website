@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-06-29T17:06:33+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"global","name":"국제","icon":"🌐","count":1},
+    {"id":"culture","name":"문화","icon":"🎤","count":1}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"main-20260629-1706-reuters-markets-tech-mideast","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"글로벌 시장, AI 밸류에이션·중동 불안 사이 등락","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-view-europe-2026-06-29/","description":"미·이란 긴장과 AI 투자 수익성 의구심이 시장 변동성을 키웠다. 다만 외교 재개 기대와 유럽·미국 선물 반등이 위험자산 심리를 일부 회복시켰다.","score":270,"priority":270,"tags":["글로벌시장","AI밸류에이션","중동","유가","달러"]},
+    {"id":"main-20260629-1706-reuters-pboc-overnight-repo","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"중국 PBOC, 첫 오버나이트 역레포 도입…단기금리 관리 강화","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/china-debuts-overnight-reverse-repos-125-sources-say-2026-06-29/","description":"중국 인민은행이 3000억위안 규모의 오버나이트 역레포를 처음 실시했다. 시장은 1.25% 금리를 단기 유동성 통제와 통화정책 프레임 개편 신호로 해석했다.","score":266,"priority":266,"tags":["중국","PBOC","역레포","유동성","통화정책"]},
+    {"id":"main-20260629-1706-reuters-openai-gpt56-delay","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"OpenAI, 미 정부 사전검토 요구에 GPT-5.6 공개 출시 연기","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/legal/litigation/openai-defers-public-rollout-gpt56-us-seeks-early-access-frontier-ai-models-2026-06-26/","description":"OpenAI가 최신 모델 GPT-5.6의 전체 공개를 늦추고 제한 파트너에게만 우선 제공한다. 미 정부의 프런티어 AI 사전 접근·안보 테스트 요구가 출시 전략의 핵심 변수로 떠올랐다.","score":260,"priority":260,"tags":["OpenAI","GPT-5.6","AI안전","사이버안보","미국정부"]},
+    {"id":"main-20260629-1706-reuters-openai-broadcom-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"OpenAI, 브로드컴과 자체 AI 추론칩 공개…엔비디아 의존 낮추기","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI가 브로드컴과 설계한 첫 자체 AI 칩 ‘Jalapeño’를 공개했다. 추론 비용 절감과 인프라 확보가 목표이며 TSMC 제조, 삼성·SK하이닉스 메모리 수요와도 연결된다.","score":254,"priority":254,"tags":["OpenAI","브로드컴","AI칩","TSMC","엔비디아"]},
+    {"id":"main-20260629-1706-ap-supreme-court-trump-power","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 트럼프 권한 관련 핵심 사건 막판 결정 임박","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/2e85ff5c40982b08d7d71a8a4c0d4a63","description":"미 대법원이 출생시민권 제한, 독립기관장 해임, 연준 이사 해임, 긴급권한 관세 등 대통령 권한을 둘러싼 대형 사건 결정을 앞두고 있다.","score":248,"priority":248,"tags":["미대법원","트럼프","대통령권한","출생시민권","관세"]},
+    {"id":"main-20260629-1706-ap-canada-worldcup-last16","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"캐나다, 남아공 꺾고 월드컵 첫 토너먼트 승리…16강 진출","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/704407e25c4ec253daaa2803996d58b0","description":"캐나다가 스티븐 유스타키오의 후반 추가시간 결승골로 남아공을 1-0으로 이겼다. 공동 개최국 캐나다는 사상 첫 월드컵 토너먼트 승리로 16강에 올랐다.","score":242,"priority":242,"tags":["월드컵","캐나다","남아공","16강","유스타키오"]},
+    {"id":"main-20260629-1706-reuters-japan-growth-blueprint","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌐","title":"일본, 실질성장률 1%대 회복 목표…2040년까지 대규모 투자 청사진","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/japan-targets-more-than-doubling-real-growth-over-1-economic-blueprint-2026-06-29/","description":"일본 정부가 장기 경제운영 초안에서 연 1% 초과 실질성장, 3%대 명목성장, 2040년까지 370조엔 이상 공공·민간 투자를 목표로 제시했다.","score":236,"priority":236,"tags":["일본경제","성장전략","투자","BOJ","재정"]},
+    {"id":"main-20260629-1706-ap-streaming-week-jun29","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎤","title":"이번 주 스트리밍: ‘에놀라 홈즈3’·마돈나 신보·‘엘’ 공개 예정","publishedAt":"2026-06-27","date":"2026-06-27","source":"AP","url":"https://apnews.com/article/587bf83b9098091ee91d9a6d83c0cfcd","description":"6월 29일~7월 5일 공개작으로 넷플릭스 ‘에놀라 홈즈3’, 프라임비디오 ‘엘’, 마돈나 ‘Confessions II’, 닌텐도 ‘Rhythm Heaven Groove’ 등이 꼽혔다.","score":222,"priority":222,"tags":["스트리밍","넷플릭스","마돈나","프라임비디오","게임"]}
+  ],
+  "byCategory": {}
+}
