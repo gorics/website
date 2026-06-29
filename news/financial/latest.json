@@ -1,17 +1,23 @@
 {
-  "generatedAt": "2026-06-29T21:07:51+09:00",
+  "generatedAt": "2026-06-29T21:33:34+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
-    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":2},
-    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
-    {"id":"semiconductors","name":"반도체","icon":"💾","count":3},
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":4},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":3},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":4},
     {"id":"ai-infrastructure","name":"AI인프라","icon":"🤖","count":1},
     {"id":"monetary-policy","name":"통화정책","icon":"🏦","count":1},
-    {"id":"macro-economy","name":"거시경제","icon":"🌐","count":3}
+    {"id":"macro-economy","name":"거시경제","icon":"🌐","count":3},
+    {"id":"policy-regulation","name":"정책·규제","icon":"⚖️","count":1}
   ],
-  "total": 12,
+  "total": 17,
   "allItems": [
+    {"id":"fin-20260629-2133-ap-iran-qatar-assets","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"이란 동결자금 해제 언급, 걸프 협상·해상 리스크 동시 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/d1c0ec8aa84c0e5693b94f0cf0862bab","description":"이란이 카타르 동결자금 60억달러 해제를 언급한 가운데 걸프 선박 공격과 미·이란 협상 불확실성이 이어졌다. 원유·LNG 운송, 보험료, 지정학 프리미엄이 핵심 변수다.","score":318,"priority":318,"tags":["이란","카타르","동결자금","호르무즈","유가"]},
+    {"id":"fin-20260629-2133-reuters-europe-shares-tech","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"유럽 증시 보합, AI·반도체주가 중동 리스크 방어","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-steady-tech-gains-offset-middle-east-ceasefire-caution-2026-06-29/","description":"유럽 증시는 중동 휴전 불확실성에도 기술주와 반도체주 반등으로 보합권을 유지했다. AI 관련 M&A와 ECB 회의 기대가 섹터별 수급을 갈랐다.","score":304,"priority":304,"tags":["유럽증시","STOXX600","기술주","반도체","중동"]},
+    {"id":"fin-20260629-2133-reuters-baidu-chip-breakingviews","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"바이두 AI칩 IPO 과열 논쟁, 중국 반도체 밸류에이션 변수","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters Breakingviews","url":"https://www.reuters.com/commentary/breakingviews/baidu-chip-ipo-channels-extreme-ai-frenzy-2026-06-29/","description":"쿤룬신 IPO 추진은 중국 AI 가속기 수요와 국산화 기대를 보여주지만, 단기간 가치평가 급등은 AI 반도체 버블 논쟁을 키우는 재료다.","score":302,"priority":302,"tags":["바이두","쿤룬신","AI칩","IPO","반도체"]},
+    {"id":"fin-20260629-2133-reuters-europe-defense-russia","category":"policy-regulation","categoryName":"정책·규제","category_ko":"정책·규제","categoryIcon":"⚖️","title":"유럽 방위전략 재편, 드론·요격체계 수요 확대 전망","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/aerospace-defense/europe-rethinks-how-it-fights-war-russian-threat-looms-2026-06-29/","description":"러시아 위협 평가가 높아지며 유럽 방산 조달이 고가 플랫폼에서 대량생산형 드론·요격체계·전자전으로 이동할 가능성이 커졌다. 방산주와 정부지출 테마에 영향이 있다.","score":294,"priority":294,"tags":["유럽방산","NATO","드론","국방비","정책"]},
+    {"id":"fin-20260629-2133-reuters-asia-markets-ai-korea","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"아시아 증시 혼조 지속, AI 투자 기대와 밸류에이션 부담 병존","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/asian-markets-mixed-choppy-trade-ai-doubts-iran-tensions-cloud-outlook-2026-06-29/","description":"아시아 시장은 AI 성장 기대와 비용·밸류에이션 부담 사이에서 혼조세를 보였다. 한국 반도체 투자 발표가 일부 심리를 지지했지만 중동 리스크는 계속 남아 있다.","score":290,"priority":290,"tags":["아시아증시","AI투자","반도체","한국","중동"]},
     {"id":"fin-20260629-2107-reuters-korea-ai-chip-megaprojects","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"한국 5760억달러 AI칩 드라이브, 삼성·SK 투자 집중","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-president-unveil-massive-ai-chip-investment-drive-2026-06-29/","description":"한국이 삼성전자·SK하이닉스 중심의 대규모 반도체·AI 프로젝트를 발표했다. HBM 공급, 메모리 증설, 신규 팹 투자 기대가 반도체 밸류체인에 직접 영향을 줄 수 있다.","score":310,"priority":310,"tags":["한국반도체","삼성전자","SK하이닉스","HBM","AI칩"]},
     {"id":"fin-20260629-2107-reuters-cxmt-tencent-memory","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"CXMT, 텐센트 서버 DRAM 계약으로 중국 메모리 자립 가속","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-cxmt-wins-3-billion-memory-supply-deal-with-tencent-sources-say-2026-06-29/","description":"CXMT가 텐센트와 약 30억달러 규모 서버 DRAM 장기 공급 계약을 맺었다. 중국 클라우드·AI 수요와 글로벌 DRAM 공급부족이 메모리 가격 변수로 이어진다.","score":306,"priority":306,"tags":["CXMT","텐센트","DRAM","메모리","중국반도체"]},
     {"id":"fin-20260629-2107-reuters-asia-markets-ai-korea","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"아시아 시장 혼조, 한국 AI칩 발표가 반도체 낙폭 제한","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/asian-markets-mixed-choppy-trade-ai-doubts-iran-tensions-cloud-outlook-2026-06-29/","description":"AI 과잉투자 우려와 중동 리스크 속 아시아 증시는 혼조였지만, 한국 대형 반도체 투자 계획이 칩 관련 심리를 방어했다. 대만·한국·동남아 증시 차별화가 나타났다.","score":296,"priority":296,"tags":["아시아증시","AI투자","반도체","한국","위험자산"]},
