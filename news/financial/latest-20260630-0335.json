@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-06-30T03:35:23+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"commodities","name":"원자재","icon":"🛢️","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":1}
+  ],
+  "total": 2,
+  "allItems": [
+    {"id":"fin-20260630-0335-reuters-hormuz-oil-exodus","category":"commodities","categoryName":"원자재","category_ko":"원자재","categoryIcon":"🛢️","title":"호르무즈 원유 엑소더스, 원유시장 재균형 혼선 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/reuters-open-interest/hormuz-oil-exodus-sets-stage-chaotic-rebalancing-act-2026-06-29/","description":"호르무즈 재개방 뒤 묶여 있던 중동 원유 물량이 한꺼번에 풀리며 단기 공급 과잉과 물류 병목이 동시에 나타나고 있다. 유가 안정 뒤에도 탱커·저장·아시아 수요가 변수다.","score":430,"priority":430,"tags":["호르무즈","원유","탱커","공급과잉","유가"]},
+    {"id":"fin-20260630-0335-reuters-cxmt-tencent-dram","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"CXMT·텐센트 30억달러 DRAM 계약, 중국 메모리 자립 가속","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-cxmt-wins-3-billion-memory-supply-deal-with-tencent-sources-say-2026-06-29/","description":"CXMT가 텐센트 서버 DRAM 장기 공급 계약을 따내며 IPO 기대와 중국 AI 인프라 공급망 내재화 흐름이 강해졌다. 글로벌 메모리 가격·점유율에도 영향을 줄 수 있다.","score":424,"priority":424,"tags":["CXMT","텐센트","DRAM","중국반도체","AI서버"]}
+  ],
+  "byCategory": {"commodities":[],"semiconductors":[]}
+}
