@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-06-29T23:08:37+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":2},
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1},
+    {"id":"monetary-policy","name":"통화정책","icon":"🏦","count":1},
+    {"id":"ai-infrastructure","name":"AI인프라","icon":"🖥️","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260629-2308-reuters-cxmt-tencent","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"CXMT-텐센트 29억달러 DRAM 계약, 중국 메모리 IPO 기대와 서버 수요 자극","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-cxmt-wins-3-billion-memory-supply-deal-with-tencent-sources-say-2026-06-29/","description":"CXMT가 텐센트와 장기 DRAM 공급 계약을 맺은 것으로 전해지며 중국 메모리 자립과 AI 서버용 메모리 가격 사이클이 시장 핵심 변수로 떠올랐다.","score":356,"priority":356,"tags":["CXMT","텐센트","DRAM","메모리","AI서버"]},
+    {"id":"fin-20260629-2308-reuters-europe-shares","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"유럽 증시 보합, 기술주와 AI M&A가 중동 리스크 방어","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-steady-tech-gains-offset-middle-east-ceasefire-caution-2026-06-29/","description":"STOXX 600은 중동 휴전 불확실성에도 기술주 강세로 버텼다. AI 기업 인수 제안과 반도체주 상승이 유럽 위험자산 심리를 지지했다.","score":344,"priority":344,"tags":["유럽증시","STOXX600","기술주","AI","중동"]},
+    {"id":"fin-20260629-2308-reuters-pboc-repo","category":"monetary-policy","categoryName":"통화정책","category_ko":"통화정책","categoryIcon":"🏦","title":"PBOC 첫 오버나이트 역레포, 중국 단기금리 조절 체계 개편 신호","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/china-debuts-overnight-reverse-repos-125-sources-say-2026-06-29/","description":"중국 인민은행이 3000억위안 규모의 오버나이트 역레포를 도입했다. 단기자금시장 금리 통제력과 정책금리 전달력을 높이려는 조치로 풀이된다.","score":338,"priority":338,"tags":["PBOC","역레포","유동성","중국금리","통화정책"]},
+    {"id":"fin-20260629-2308-reuters-baidu-ipo","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"바이두 AI칩 IPO 고평가 논쟁, 중국 반도체 과열 경고 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/breakingviews/baidu-chip-ipo-channels-extreme-ai-frenzy-2026-06-29/","description":"바이두 쿤룬신 IPO 추진은 중국 AI 가속기 수요와 고평가 우려를 동시에 키웠다. 국산 반도체 자립 수혜가 밸류에이션을 끌어올리고 있다.","score":326,"priority":326,"tags":["바이두","쿤룬신","AI칩","IPO","밸류에이션"]},
+    {"id":"fin-20260629-2308-barrons-nvidia-ai-demand","category":"ai-infrastructure","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🖥️","title":"엔비디아 주가 반등, 인도네시아 AI 데이터센터 GPU 수요가 투자심리 지지","publishedAt":"2026-06-29","date":"2026-06-29","source":"Barron's","url":"https://www.barrons.com/articles/nvidia-stock-price-ai-chips-2f6a897a","description":"엔비디아 주가는 AI칩 수요 기대에 상승했다. Firmus의 인도네시아 AI 데이터센터 계획은 대규모 GPU 수요가 아직 견조하다는 신호로 받아들여졌다.","score":314,"priority":314,"tags":["엔비디아","AI데이터센터","GPU","인도네시아","AI인프라"]}
+  ],
+  "byCategory": {"semiconductors": [], "global-markets": [], "monetary-policy": [], "ai-infrastructure": []}
+}
