@@ -1,18 +1,21 @@
 {
-  "generatedAt": "2026-06-30T01:08:13+09:00",
+  "generatedAt": "2026-06-30T02:08:43+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
     {"id":"global-markets","name":"글로벌시장","icon":"📊","count":3},
     {"id":"commodities","name":"원자재","icon":"🛢️","count":2},
     {"id":"fx-rates","name":"환율","icon":"💱","count":1},
-    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛰️","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛰️","count":2},
     {"id":"media-deals","name":"미디어딜","icon":"🎬","count":1},
-    {"id":"monetary-policy","name":"통화정책","icon":"🏦","count":1},
-    {"id":"semiconductors","name":"반도체","icon":"🧩","count":1}
+    {"id":"monetary-policy","name":"통화정책","icon":"🏦","count":2},
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":2}
   ],
-  "total": 10,
+  "total": 13,
   "allItems": [
+    {"id":"fin-20260630-0208-reuters-baidu-kunlunxin-ipo","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"바이두 쿤룬신 IPO 추진, 중국 AI 가속기 밸류에이션 과열 신호","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/breakingviews/baidu-chip-ipo-channels-extreme-ai-frenzy-2026-06-29/","description":"쿤룬신은 엔비디아 대체 수요와 중국 반도체 자립 기대를 업고 홍콩 상장을 준비 중이다. 6개월 전 30억달러 수준에서 500억달러 평가액으로 뛴 점이 시장 과열 논쟁을 키운다.","score":398,"priority":398,"tags":["바이두","쿤룬신","AI가속기","홍콩IPO","중국반도체"]},
+    {"id":"fin-20260630-0208-reuters-russia-fuel-shortages","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛰️","title":"러시아 연료난 확산, 우크라이나 에너지 인프라 공격의 시장 파급 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/fuel-shortages-spread-more-parts-russia-ukrainian-attacks-bite-2026-06-29/","description":"정유·수송망 타격 이후 러시아 여러 지역에서 연료 구매 제한과 주유소 대기줄이 나타났다. 원유 수출국 내부 공급 차질이 에너지 리스크 프리미엄 변수로 떠올랐다.","score":390,"priority":390,"tags":["러시아","연료난","정유시설","우크라이나","에너지안보"]},
+    {"id":"fin-20260630-0208-reuters-fed-cook-independence","category":"monetary-policy","categoryName":"통화정책","category_ko":"통화정책","categoryIcon":"🏦","title":"연준 쿡, 대법원 판결은 Fed 독립성 방어…금리 신뢰도 이슈 완화","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/legal/government/feds-cook-says-supreme-court-decision-defends-central-banks-independence-2026-06-29/","description":"쿡 이사는 해임 제동 판결이 중앙은행 독립성과 통화정책 신뢰성을 지켰다고 평가했다. 달러·채권시장에는 정치 리스크 완화 신호로 해석될 수 있다.","score":384,"priority":384,"tags":["연준","리사쿡","대법원","금리","중앙은행독립성"]},
     {"id":"fin-20260630-0108-reuters-global-markets-yen-oil","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"글로벌 증시·유가 상승, 엔화 40년 저점권과 연준 인상 베팅 부각","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"미·이란 회담 기대가 위험자산을 지지했지만, 미국 고용 강세와 물가 우려로 연준 인상 전망이 유지됐다. 달러 강세 속 엔화는 1986년 이후 최저권으로 하락했다.","score":396,"priority":396,"tags":["글로벌시장","달러","엔화","유가","연준"]},
     {"id":"fin-20260630-0108-reuters-oil-hormuz-shipping","category":"commodities","categoryName":"원자재","category_ko":"원자재","categoryIcon":"🛢️","title":"유가 1% 상승, 미·이란 교전에도 호르무즈 선적 회복 기대 지속","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-climbs-following-renewed-us-iran-strikes-middle-east-2026-06-28/","description":"브렌트와 WTI가 중동 리스크로 올랐지만 호르무즈 해협 물동량 회복과 산유국 선적 재개 기대가 상승폭을 제한했다. 공급 정상화 속도가 핵심 리스크다.","score":392,"priority":392,"tags":["브렌트","WTI","호르무즈","원유","중동리스크"]},
     {"id":"fin-20260630-0108-reuters-gold-fed-dollar","category":"commodities","categoryName":"원자재","category_ko":"원자재","categoryIcon":"🛢️","title":"금값 하락, 달러 강세와 금리 인상 전망이 비수익 자산 압박","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/india/gold-slips-fresh-us-iran-strikes-boost-oil-fed-rate-hike-bets-weigh-2026-06-29/","description":"중동 긴장에 따른 유가·인플레 우려가 오히려 연준 인상 베팅을 키우며 금에 부담으로 작용했다. 시장은 이번 주 ADP와 비농업 고용지표를 대기 중이다.","score":384,"priority":384,"tags":["금","달러","금리","인플레이션","고용지표"]},
