@@ -1,17 +1,25 @@
 {
-  "generatedAt": "2026-06-30T00:35:21+09:00",
+  "generatedAt": "2026-06-30T01:08:13+09:00",
   "source": "gorics-news-automation",
   "page": "news",
   "categories": [
-    {"id":"economy","name":"경제","icon":"📈","count":2},
-    {"id":"tech","name":"기술","icon":"🤖","count":1},
-    {"id":"politics","name":"정치","icon":"🏛️","count":1},
-    {"id":"global","name":"국제","icon":"🌍","count":1},
-    {"id":"play","name":"스포츠","icon":"⚽","count":2},
-    {"id":"culture","name":"문화","icon":"🎬","count":1}
+    {"id":"economy","name":"경제","icon":"📈","count":5},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":2},
+    {"id":"global","name":"국제","icon":"🌍","count":2},
+    {"id":"play","name":"스포츠","icon":"⚽","count":3},
+    {"id":"culture","name":"문화","icon":"🎬","count":2}
   ],
-  "total": 8,
+  "total": 16,
   "allItems": [
+    {"id":"main-20260630-0108-reuters-global-markets-yen-oil","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"글로벌 증시·유가 소폭 상승, 엔화는 40년 저점권","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"미·이란 외교 기대 속 주식과 유가가 올랐지만, 강한 미국 고용·물가와 연준 인상 전망이 달러를 지지했다. 엔화는 달러 대비 1986년 이후 최저권까지 밀렸다.","score":394,"priority":394,"tags":["글로벌시장","유가","엔화","연준","고용지표"]},
+    {"id":"main-20260630-0108-reuters-oil-hormuz","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"유가 1%대 상승, 호르무즈 운송 회복 기대가 상승폭 제한","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-climbs-following-renewed-us-iran-strikes-middle-east-2026-06-28/","description":"미·이란 교전 재개로 브렌트와 WTI가 올랐지만 호르무즈 해협 선적 정상화 기대가 급등을 막았다. 에너지 시장은 전쟁 프리미엄과 공급 회복 속도를 동시에 주시 중이다.","score":390,"priority":390,"tags":["유가","브렌트","WTI","호르무즈","중동"]},
+    {"id":"main-20260630-0108-reuters-gold-fed-hike","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"금값 하락, 중동발 인플레·연준 인상 우려가 안전자산 매력 압박","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/india/gold-slips-fresh-us-iran-strikes-boost-oil-fed-rate-hike-bets-weigh-2026-06-29/","description":"유가 반등과 달러 강세, 연준의 금리 인상 가능성이 금 가격을 끌어내렸다. 이번 주 미국 고용지표가 금리와 귀금속 흐름의 핵심 변수다.","score":382,"priority":382,"tags":["금","달러","연준","금리","인플레이션"]},
+    {"id":"main-20260630-0108-reuters-korea-ai-chip-drive","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"한국, 삼성·SK 앞세운 5760억달러 AI·반도체 투자전략 발표","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-president-unveil-massive-ai-chip-investment-drive-2026-06-29/","description":"정부가 AI·반도체 주도권 확보를 위해 대규모 팹·패키징·데이터센터 투자를 제시했다. HBM과 전력·용수 인프라, 지역 개발 효과가 핵심 쟁점이다.","score":374,"priority":374,"tags":["한국","삼성전자","SK하이닉스","AI반도체","HBM"]},
+    {"id":"main-20260630-0108-reuters-us-iran-deescalation","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"미·이란 도하 기술회담 앞두고 긴장완화 채널 가동","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/middle-east/mediators-set-up-de-escalation-channels-ahead-us-iran-talks-source-says-2026-06-29/","description":"중재진이 우발 충돌을 막기 위한 소통 채널을 열고 도하 기술회담을 준비 중이다. 호르무즈 재개방과 이란 동결자산 일부 해제가 핵심 의제다.","score":368,"priority":368,"tags":["미국","이란","도하","호르무즈","중재"]},
+    {"id":"main-20260630-0108-reuters-serbia-vucic","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"세르비아 부치치, 대통령직 조기 퇴진 의사…정치 재편 예고","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/serbias-vucic-eyes-new-political-chapter-he-steps-down-presidency-2026-06-29/","description":"알렉산다르 부치치가 임기 단축과 퇴진 의사를 밝히며 조기 선거 가능성이 커졌다. 총리 복귀 등 실질 권력 유지 시나리오도 함께 거론된다.","score":350,"priority":350,"tags":["세르비아","부치치","조기선거","유럽정치","권력재편"]},
+    {"id":"main-20260630-0108-ap-fifa-streaming-brazil","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"브라질 월드컵 104경기 전 경기, 인플루언서 플랫폼 CazéTV가 스트리밍","publishedAt":"2026-06-10","date":"2026-06-10","source":"AP","url":"https://apnews.com/article/08feed47be7b423bafcfe9ae941bed1b","description":"FIFA가 젊은 시청자 확보를 위해 디지털 전용 중계를 확대했다. 브라질에서는 CazéTV가 전 경기를 스트리밍하며 유튜브·틱톡 라이브 연계도 늘어난다.","score":338,"priority":338,"tags":["월드컵","FIFA","스트리밍","CazéTV","디지털중계"]},
+    {"id":"main-20260630-0108-ap-bet-awards","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"BET 어워즈 개최, 드루스키가 역대 최연소 진행자로 무대 장식","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/f1809410e34624bd363ef048684212ee","description":"로스앤젤레스 피콕 시어터에서 열린 BET 어워즈가 공연과 패션, 블랙 엔터테인먼트 성과를 조명했다. 코미디언 드루스키는 31세로 최연소 진행자가 됐다.","score":326,"priority":326,"tags":["BET어워즈","문화","음악","엔터테인먼트","로스앤젤레스"]},
     {"id":"main-20260630-0035-reuters-wallst-comcast","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"월가 상승, 미·이란 긴장 완화와 컴캐스트 분사 기대가 지수 지지","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-lead-wall-st-higher-middle-east-tensions-ease-2026-06-29/","description":"미·이란 공격 중단과 도하 협상 기대가 위험자산 심리를 살리며 다우·S&P500·나스닥이 올랐다. 컴캐스트는 NBC유니버설·스카이 분사 계획으로 급등했다.","score":386,"priority":386,"tags":["월가","나스닥","컴캐스트","중동","유가"]},
     {"id":"main-20260630-0035-reuters-comcast-nbcu","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"컴캐스트, NBC유니버설·스카이 분사 추진…미디어 재편 가속","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/comcast-spin-off-nbcuniversal-sky-into-separate-companies-2026-06-29/","description":"컴캐스트가 브로드밴드 사업과 콘텐츠·스트리밍 사업을 분리하기로 했다. NBC, 피콕, 유니버설 스튜디오, 스카이가 별도 상장사로 묶이며 M&A 가능성도 커졌다.","score":378,"priority":378,"tags":["컴캐스트","NBCUniversal","Sky","Peacock","미디어"]},
     {"id":"main-20260630-0035-reuters-europe-shares-tech","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"유럽 증시 보합, 기술주 강세가 중동 경계감을 상쇄","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-steady-tech-gains-offset-middle-east-ceasefire-caution-2026-06-29/","description":"STOXX600은 중동 휴전 불확실성에도 기술주와 반도체주 강세로 버텼다. AI 관련 M&A와 ECB 신트라 회의, 유가 흐름이 유럽 시장의 핵심 변수로 부상했다.","score":364,"priority":364,"tags":["유럽증시","STOXX600","기술주","ECB","유가"]},
