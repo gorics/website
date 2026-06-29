@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-06-29T09:08:24+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1},
+    {"id":"ai-infrastructure","name":"AI인프라","icon":"🧠","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"policy-regulation","name":"정책·규제","icon":"⚖️","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260629-0908-reuters-oil-us-iran","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"유가 반등, 미·이란 재충돌과 호르무즈 병목 재가격화","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-climbs-following-renewed-us-iran-strikes-middle-east-2026-06-28/","description":"브렌트와 WTI가 중동 긴장 재고조로 상승했다. 휴전 기대가 가격 상단을 제한했지만, 호르무즈 선박 지연과 탱커 리스크가 에너지 시장 프리미엄을 키웠다.","score":214,"priority":214,"tags":["유가","브렌트","WTI","호르무즈","중동리스크"]},
+    {"id":"fin-20260629-0908-reuters-gulf-markets","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌐","title":"걸프 증시 혼조, 지정학 충격이 은행·에너지주에 재반영","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/world/middle-east/gulf-markets-mixed-us-iran-trade-attacks-2026-06-28/","description":"미·이란 충돌 속 사우디·카타르·이집트 증시가 엇갈렸다. 아람코 반등과 이집트 급락이 동시에 나타나며 지역 리스크 선별 반영이 강화됐다.","score":208,"priority":208,"tags":["걸프증시","사우디","카타르","이집트","지정학"]},
+    {"id":"fin-20260629-0908-reuters-baidu-kunlunxin-ipo","category":"ai-infrastructure","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🧠","title":"바이두 쿤룬신 IPO 추진, 중국 AI칩 밸류에이션 시험대","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/baidus-ai-chip-unit-kunlunxin-targets-50-billion-hong-kong-ipo-information-2026-06-28/","description":"쿤룬신의 500억달러 목표 가치는 중국 AI칩 생태계와 홍콩 기술 IPO 회복세의 핵심 시험대다. 투자자에게 칩 구매 조건이 붙었다는 보도도 주목된다.","score":204,"priority":204,"tags":["바이두","쿤룬신","AI칩","홍콩IPO","중국반도체"]},
+    {"id":"fin-20260629-0908-reuters-micron-qualcomm-ai-rally","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"마이크론·퀄컴 전망, AI 반도체 밸류체인 랠리 촉발","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/micron-qualcomm-forecasts-ignite-400-billion-ai-chip-stock-rally-2026-06-24/","description":"마이크론의 AI 메모리 수요 전망과 퀄컴의 데이터센터 매출 목표가 반도체 전반의 재평가를 이끌었다. 장비·스토리지·IP 업체까지 상승세가 확산됐다.","score":200,"priority":200,"tags":["마이크론","퀄컴","AI메모리","반도체","데이터센터"]},
+    {"id":"fin-20260629-0908-ap-us-iran-strikes","category":"policy-regulation","categoryName":"정책·규제","category_ko":"정책·규제","categoryIcon":"⚖️","title":"미국 대이란 공습 재개, 전쟁권한·방산예산·원유 리스크 동시 확대","publishedAt":"2026-06-27","date":"2026-06-27","source":"AP","url":"https://apnews.com/article/d85b508a55becf7e5e438bebbf6aecb5","description":"미국의 대이란 보복 공습은 에너지 가격뿐 아니라 의회 전쟁권한, 방산 지출, 해상보험료 등 금융시장 정책 변수로 번지고 있다.","score":194,"priority":194,"tags":["미국","이란","전쟁권한","방산","정책리스크"]}
+  ],
+  "byCategory": {}
+}
