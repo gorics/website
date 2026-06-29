@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-29T14:09:00+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":2},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
+    {"id":"macro","name":"거시경제","icon":"🏦","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260629-1409-reuters-sovereign-energy-dollar","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"29조달러 국부펀드·중앙은행, 에너지·인프라 확대와 달러 리스크 동시 점검","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/finance/sovereign-investors-with-29-trillion-pivot-energy-assets-flag-dollar-fears-2026-06-28/","description":"대형 장기자금이 지정학 충격, AI 전력 수요, 인플레이션 리스크에 대응해 에너지와 실물 인프라 비중을 높이고 있다. 미국 부채와 달러 준비통화 지위에 대한 우려도 커졌다.","score":248,"priority":248,"tags":["국부펀드","중앙은행","에너지인프라","달러","금"]},
+    {"id":"fin-20260629-1409-reuters-asia-markets-mideast-rates","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"아시아 증시 방향성 약화, 중동 리스크·미 금리 인상 베팅이 위험자산 압박","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"중동 긴장이 유가를 지지하고 미국 금리 인상 기대가 되살아나며 아시아 증시가 혼조를 보였다. 달러 강세와 AI주 밸류에이션 경계가 글로벌 자금 흐름의 부담이다.","score":240,"priority":240,"tags":["아시아증시","유가","연준","달러","AI주"]},
+    {"id":"fin-20260629-1409-reuters-korea-ai-chip-drive","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"한국 AI·반도체 투자 드라이브, HBM·데이터센터·전력 인프라 기대 재부각","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-president-unveil-massive-ai-chip-investment-drive-2026-06-29/","description":"정부의 AI·칩 메가 프로젝트는 삼성·SK 중심 반도체 공급망과 지역 데이터센터 인프라 투자를 시장 테마로 끌어올렸다. 전력·용수·인재 확보가 핵심 리스크다.","score":236,"priority":236,"tags":["반도체","HBM","AI데이터센터","삼성전자","SK하이닉스"]},
+    {"id":"fin-20260629-1409-reuters-china-pmi-ai-exports","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🏦","title":"중국 PMI 소폭 확장 전망, AI 관련 수출 호조와 부동산·소비 부진의 줄다리기","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-factory-activity-likely-returned-meagre-growth-june-2026-06-29/","description":"중국 제조업은 6월 간신히 확장권 복귀가 예상되지만 회복 강도는 약하다. AI 서버·자동처리장비 수출은 강한 반면 주택가격과 소매 흐름은 경기 하방 압력으로 남았다.","score":228,"priority":228,"tags":["중국경제","PMI","수출","부동산","소비"]},
+    {"id":"fin-20260629-1409-guardian-ai-chip-rally","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"AI 하드웨어주 상반기 급등, 메모리·스토리지로 자금 이동 뚜렷","publishedAt":"2026-06-29","date":"2026-06-29","source":"The Guardian","url":"https://www.theguardian.com/business/2026/jun/29/shares-in-chipmakers-underpinning-ai-boom-surge-in-first-half-of-2026","description":"AI 수요가 소프트웨어보다 반도체·메모리·스토리지 기업 주가를 더 강하게 밀어 올렸다는 분석이 나왔다. 다만 일부 종목은 차익실현과 과열 논란이 커지는 구간에 들어섰다.","score":222,"priority":222,"tags":["AI반도체","메모리","스토리지","SK하이닉스","마이크론"]}
+  ],
+  "byCategory": {}
+}
