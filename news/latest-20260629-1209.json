@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-29T12:09:32+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":2},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎤","count":2}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"main-20260629-1209-reuters-korea-ai-chip-drive","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"한국, AI·반도체 초대형 투자 드라이브 예고…지역 반도체 허브·데이터센터 부각","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-president-unveil-massive-ai-chip-investment-drive-2026-06-29/","description":"정부가 반도체 허브, AI 데이터센터, 로봇을 묶은 대규모 성장 프로젝트를 발표할 예정이다. 삼성·SK 등 대기업 투자와 전력·용수·인력 인프라가 시장 핵심 변수로 떠올랐다.","score":240,"priority":240,"tags":["한국","AI","반도체","데이터센터","삼성","SK"]},
+    {"id":"main-20260629-1209-reuters-global-markets-oil-us-iran","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"유가 상승·아시아 증시 혼조…미·이란 휴전 불확실성과 AI주 부담이 동시 압박","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"미·이란 공격 중단에도 호르무즈 해협 리스크가 남아 브렌트유와 WTI가 올랐다. 아시아 증시는 AI주 고평가 부담과 달러 강세까지 겹치며 방향성을 잃었다.","score":236,"priority":236,"tags":["유가","아시아증시","미국","이란","달러","AI주"]},
+    {"id":"main-20260629-1209-reuters-baidu-kunlunxin-ipo","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"바이두 AI칩 자회사 쿤룬신, 홍콩 IPO서 500억달러 가치 목표","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/baidus-ai-chip-unit-kunlunxin-targets-50-billion-hong-kong-ipo-information-2026-06-28/","description":"바이두의 AI칩 자회사 쿤룬신이 홍콩 상장에서 500억달러 가치를 노리는 것으로 전해졌다. 중국의 AI 반도체 자립 전략과 빅테크 공급망 경쟁이 맞물린 이슈다.","score":228,"priority":228,"tags":["바이두","쿤룬신","AI칩","홍콩IPO","중국테크"]},
+    {"id":"main-20260629-1209-reuters-supreme-court-trump-rulings","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 트럼프 행정권·출생시민권·선거규칙 핵심 판결 임박","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/legal/government/supreme-courts-term-nears-its-end-three-major-trump-rulings-due-2026-06-28/","description":"미 연방대법원이 대통령의 독립기관 인사 해임권, 출생시민권 제한, 선거 절차 관련 사건을 곧 결론낼 전망이다. 판결 결과는 행정권과 2026년 정치 일정에 큰 영향을 줄 수 있다.","score":220,"priority":220,"tags":["미대법원","트럼프","행정권","시민권","선거"]},
+    {"id":"main-20260629-1209-reuters-tps-migrants-status","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 국토안보장관 “TPS 이민자, 영주권 찾거나 출국해야”…대법원 결정 후폭풍","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/us/migrants-us-temporary-status-should-seek-permanent-status-or-leave-homeland-2026-06-28/","description":"미 정부가 임시보호지위 종료 흐름 속에 아이티·시리아 출신 이민자에게 영주권 취득 또는 귀국을 압박했다. 인도주의 위기와 노동시장 영향이 동시에 논쟁거리다.","score":216,"priority":216,"tags":["TPS","이민정책","미국","아이티","시리아"]},
+    {"id":"main-20260629-1209-reuters-canada-world-cup-last16","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"캐나다, 추가시간 결승골로 사상 첫 월드컵 16강 진출","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/sports/soccer/canada-score-late-winner-advance-last-16-world-cup-2026-06-28/","description":"스티븐 유스타키오가 남아공전 추가시간 강슛으로 결승골을 넣으며 캐나다가 1-0으로 승리했다. 개최국 캐나다는 사상 처음으로 월드컵 16강에 올랐다.","score":212,"priority":212,"tags":["월드컵","캐나다","남아공","16강","유스타키오"]},
+    {"id":"main-20260629-1209-ap-si-world-cup-concerts","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎤","title":"스포츠일러스트레이티드, 월드컵 연계 콘서트 시리즈 확대…스포츠·공연 결합 강화","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/43223fc554e3d510d244392b2f0a4aeb","description":"50 Cent, Nelly, The Chainsmokers 등이 참여하는 월드컵 연계 콘서트 시리즈가 주목받고 있다. 대형 스포츠 이벤트가 경기장 밖 공연·VIP 경험 산업으로 확장되는 흐름이다.","score":198,"priority":198,"tags":["월드컵","콘서트","대중문화","스포츠비즈니스","공연"]},
+    {"id":"main-20260629-1209-people-oasis-wonderwall-world-cup","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎸","title":"오아시스 ‘Wonderwall’, 잉글랜드 월드컵 응원가로 재부상","publishedAt":"2026-06-24","date":"2026-06-24","source":"People","url":"https://people.com/noel-gallagher-oasis-wonderwall-england-2026-world-cup-anthem-12004758","description":"잉글랜드 팬과 선수들이 월드컵 승리 뒤 ‘Wonderwall’을 함께 부르며 1990년대 브릿팝 명곡이 새 응원 문화로 떠올랐다. 노엘 갤러거도 팬들의 재해석을 언급했다.","score":190,"priority":190,"tags":["오아시스","Wonderwall","월드컵","잉글랜드","음악"]}
+  ],
+  "byCategory": {}
+}
