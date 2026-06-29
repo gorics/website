@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-29T23:08:37+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":2},
+    {"id":"play","name":"스포츠","icon":"🎾","count":2},
+    {"id":"culture","name":"문화","icon":"🎤","count":1}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"main-20260629-2308-reuters-cxmt-tencent","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"중국 CXMT, 텐센트와 29억달러 DRAM 공급계약…AI 서버 메모리 경쟁 격화","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-cxmt-wins-3-billion-memory-supply-deal-with-tencent-sources-say-2026-06-29/","description":"중국 메모리 업체 CXMT가 텐센트에 서버용 DRAM을 장기 공급하는 대형 계약을 따낸 것으로 전해졌다. AI·클라우드 수요와 중국 반도체 자립 흐름이 맞물렸다.","score":354,"priority":354,"tags":["CXMT","텐센트","DRAM","AI서버","중국반도체"]},
+    {"id":"main-20260629-2308-reuters-europe-shares","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"유럽 증시 보합권, 기술주 강세가 중동 휴전 불안 상쇄","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-steady-tech-gains-offset-middle-east-ceasefire-caution-2026-06-29/","description":"STOXX 600은 중동 휴전 경계감에도 기술주 상승으로 버텼다. AI 관련 M&A와 반도체주 강세가 유럽 시장의 핵심 지지 요인으로 작용했다.","score":342,"priority":342,"tags":["유럽증시","기술주","STOXX600","중동","AI"]},
+    {"id":"main-20260629-2308-reuters-pboc-repo","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"중국 인민은행, 첫 오버나이트 역레포 도입…단기금리 관리 강화","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/china-debuts-overnight-reverse-repos-125-sources-say-2026-06-29/","description":"PBOC가 1.25% 수준의 오버나이트 역레포를 처음 실시하며 단기 유동성 조절 도구를 넓혔다. 중국 통화정책의 금리 전달 체계가 더 세분화되는 흐름이다.","score":338,"priority":338,"tags":["중국","PBOC","역레포","유동성","통화정책"]},
+    {"id":"main-20260629-2308-ap-scotus-carroll","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 트럼프 E. 진 캐럴 500만달러 평결 불복 심리 거부","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/1a50d1e9e1d12898e78e0803c4627771","description":"미 연방대법원이 트럼프 측의 성폭력·명예훼손 500만달러 배상 평결 파기 요청을 받아들이지 않았다. 트럼프 관련 민사 소송 부담이 이어지는 모양새다.","score":332,"priority":332,"tags":["미대법원","트럼프","E진캐럴","명예훼손","정치사법"]},
+    {"id":"main-20260629-2308-ap-dershowitz-cnn","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 더쇼위츠의 CNN 상대 3억달러 명예훼손 소송 부활 거부","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/6831b54f0b0f4fcfe51e243bcfef0ed5","description":"대법원이 앨런 더쇼위츠의 CNN 상대 명예훼손 소송 재심리를 거부했다. 공적 인물 보도와 실제 악의 기준을 둘러싼 논쟁은 계속 남았다.","score":318,"priority":318,"tags":["미대법원","CNN","더쇼위츠","명예훼손","언론법"]},
+    {"id":"main-20260629-2308-reuters-wimbledon-media","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"🎾","title":"윔블던 선수단, 미디어 보이콧 중단…상금·복지 협상은 계속","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/sports/tennis/top-players-end-media-protests-wimbledon-2026-06-29/","description":"상위권 선수들이 윔블던 개막 주간 미디어 의무를 정상화하기로 했다. 다만 그랜드슬램 수익 배분과 선수 복지 요구는 여전히 해결되지 않았다.","score":312,"priority":312,"tags":["윔블던","테니스","선수복지","상금","미디어보이콧"]},
+    {"id":"main-20260629-2308-reuters-wimbledon-day-one","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"🎾","title":"윔블던 개막일, 조비치·조다르 첫 승과 부상 변수 동시 부각","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/sports/tennis/wimbledon-day-one-2026-06-29/","description":"윔블던 첫날 여러 신예와 시드 선수들이 2회전에 올랐고 일부 경기는 부상 변수로 흔들렸다. 신너·사발렌카·조코비치 등 톱시드 일정에도 관심이 쏠렸다.","score":306,"priority":306,"tags":["윔블던","테니스","조코비치","사발렌카","신너"]},
+    {"id":"main-20260629-2308-ap-bet-awards","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎤","title":"BET 어워즈 개최, 드러스키 최연소 진행자로 흑인 엔터 문화 조명","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/f1809410e34624bd363ef048684212ee","description":"로스앤젤레스 피콕 시어터에서 열린 BET 어워즈가 음악·스포츠·문화 성취를 조명했다. 코미디언 드러스키는 31세로 역대 최연소 진행자가 됐다.","score":296,"priority":296,"tags":["BET어워즈","드러스키","음악","흑인문화","엔터테인먼트"]}
+  ],
+  "byCategory": {"tech": [], "economy": [], "politics": [], "play": [], "culture": []}
+}
