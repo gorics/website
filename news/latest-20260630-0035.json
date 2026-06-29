@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-06-30T00:35:21+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":2},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"main-20260630-0035-reuters-wallst-comcast","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"월가 상승, 미·이란 긴장 완화와 컴캐스트 분사 기대가 지수 지지","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-lead-wall-st-higher-middle-east-tensions-ease-2026-06-29/","description":"미·이란 공격 중단과 도하 협상 기대가 위험자산 심리를 살리며 다우·S&P500·나스닥이 올랐다. 컴캐스트는 NBC유니버설·스카이 분사 계획으로 급등했다.","score":386,"priority":386,"tags":["월가","나스닥","컴캐스트","중동","유가"]},
+    {"id":"main-20260630-0035-reuters-comcast-nbcu","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"컴캐스트, NBC유니버설·스카이 분사 추진…미디어 재편 가속","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/comcast-spin-off-nbcuniversal-sky-into-separate-companies-2026-06-29/","description":"컴캐스트가 브로드밴드 사업과 콘텐츠·스트리밍 사업을 분리하기로 했다. NBC, 피콕, 유니버설 스튜디오, 스카이가 별도 상장사로 묶이며 M&A 가능성도 커졌다.","score":378,"priority":378,"tags":["컴캐스트","NBCUniversal","Sky","Peacock","미디어"]},
+    {"id":"main-20260630-0035-reuters-europe-shares-tech","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"유럽 증시 보합, 기술주 강세가 중동 경계감을 상쇄","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-steady-tech-gains-offset-middle-east-ceasefire-caution-2026-06-29/","description":"STOXX600은 중동 휴전 불확실성에도 기술주와 반도체주 강세로 버텼다. AI 관련 M&A와 ECB 신트라 회의, 유가 흐름이 유럽 시장의 핵심 변수로 부상했다.","score":364,"priority":364,"tags":["유럽증시","STOXX600","기술주","ECB","유가"]},
+    {"id":"main-20260630-0035-reuters-korea-megaprojects","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"한국 반도체·AI 3대 메가프로젝트 세부안 공개","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/key-facts-south-koreas-three-chip-ai-mega-projects-2026-06-29/","description":"삼성·SK 중심의 신규 팹, AI 데이터센터, 피지컬 AI·로봇 클러스터 계획이 구체화됐다. 전력·용수·인력 확보와 과잉투자 가능성이 동시에 쟁점이다.","score":360,"priority":360,"tags":["한국","반도체","AI데이터센터","로봇","삼성"]},
+    {"id":"main-20260630-0035-reuters-fed-cook","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 트럼프의 연준 이사 해임 시도 제동","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/us-supreme-court-rejects-trumps-unprecedented-bid-fire-feds-cook-2026-06-29/","description":"대법원이 리사 쿡 연준 이사 해임 시도를 기각하며 통화정책 독립성을 확인했다. 대통령 권한 확대 논쟁 속에서도 연준 보호선은 유지된 셈이다.","score":354,"priority":354,"tags":["미대법원","연준","리사쿡","트럼프","통화정책"]},
+    {"id":"main-20260630-0035-reuters-us-iran-doha","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"미국, 이란 도하 회담에 쿠슈너·위트코프 파견","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/middle-east/us-says-trump-envoys-kushner-witkoff-will-travel-iran-meeting-doha-2026-06-29/","description":"미국이 이란과의 도하 회동에 트럼프 핵심 특사를 보내기로 했다. 호르무즈 해협 재개방과 휴전 유지가 시장·안보의 단기 분기점으로 떠올랐다.","score":348,"priority":348,"tags":["미국","이란","도하","호르무즈","중동"]},
+    {"id":"main-20260630-0035-ap-canada-worldcup","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"캐나다, 남아공 꺾고 월드컵 첫 토너먼트 승리","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/704407e25c4ec253daaa2803996d58b0","description":"스티븐 유스타키오의 추가시간 결승골로 캐나다가 남아공을 1-0으로 꺾었다. 개최국 캐나다는 사상 첫 월드컵 토너먼트 승리로 16강 진출 흐름을 만들었다.","score":336,"priority":336,"tags":["월드컵","캐나다","남아공","유스타키오","토너먼트"]},
+    {"id":"main-20260630-0035-reuters-saudi-fa","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"사우디 축구협회장, 월드컵 조별리그 탈락 책임지고 사임","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/sports/soccer/saudi-federation-president-al-misehal-stands-down-after-world-cup-exit-2026-06-29/","description":"사우디가 월드컵 조 최하위로 탈락하자 야세르 알미세할 축구협회장이 사퇴했다. 2034 월드컵 개최국이자 대규모 축구 투자국인 사우디의 구조 개편 압력이 커졌다.","score":326,"priority":326,"tags":["사우디","월드컵","축구협회","2034월드컵","대표팀"]}
+  ],
+  "byCategory": {"economy":[],"tech":[],"politics":[],"global":[],"play":[],"culture":[]}
+}
