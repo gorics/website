@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-06-29T11:07:30+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":2},
+    {"id":"global","name":"국제","icon":"🌐","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎾","count":2}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"main-20260629-1107-reuters-global-markets-us-iran","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"아시아 증시 혼조·유가 상승, 미·이란 휴전 불확실성에 시장 방향성 약화","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"미·이란 충돌이 일단 멈췄지만 호르무즈 해협 선박 공격 여파와 AI주 밸류에이션 부담이 겹치며 아시아 증시가 흔들렸다. 달러 강세와 금 약세도 시장 변수로 부각됐다.","score":232,"priority":232,"tags":["글로벌시장","유가","미국","이란","달러","AI주"]},
+    {"id":"main-20260629-1107-reuters-openai-broadcom-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"OpenAI, Broadcom과 자체 AI 추론칩 공개…Nvidia 의존도 낮추기 가속","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI가 Broadcom과 설계한 자체 AI 추론칩 ‘Jalapeño’를 공개했다. 대규모 모델 서비스 비용과 공급망 리스크를 낮추려는 빅테크 자체칩 경쟁이 더 치열해지고 있다.","score":224,"priority":224,"tags":["OpenAI","Broadcom","AI칩","추론","Nvidia","TSMC"]},
+    {"id":"main-20260629-1107-reuters-supreme-court-trump-rulings","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 트럼프 권한·시민권·선거규칙 판결 임박","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/legal/government/supreme-courts-term-nears-its-end-three-major-trump-rulings-due-2026-06-28/","description":"미 연방대법원이 임기 말 주요 판결을 앞두고 있다. 대통령의 독립기관 인사 해임권, 출생시민권 제한, 선거 관련 쟁점이 미국 행정권과 대선 규칙을 흔들 수 있다.","score":216,"priority":216,"tags":["미대법원","트럼프","행정권","시민권","선거"]},
+    {"id":"main-20260629-1107-ap-iran-world-cup-eliminated","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌐","title":"이란, 지정학 긴장 속 월드컵 탈락…비자·이동 제한 논란도 부각","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/3d644f91e648232e2a407eab23748afd","description":"이란이 조별리그 무패에도 32강 진출에 실패했다. 대회 기간 미국 여행 제한과 외교 긴장 속 베이스캠프·비자 문제가 겹치며 스포츠와 지정학이 맞물린 사례가 됐다.","score":208,"priority":208,"tags":["이란","월드컵","미국","비자","지정학"]},
+    {"id":"main-20260629-1107-reuters-messi-seven-world-cups","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"메시, 7개 월드컵 연속 득점 신기록…아르헨티나 3연승 32강행","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/sports/soccer/seventh-heaven-messi-argentina-beat-jordan-3-1-2026-06-28/","description":"리오넬 메시가 요르단전 프리킥 골로 7개 월드컵 연속 득점 기록을 세웠다. 아르헨티나는 조별리그 3전 전승으로 32강에 올라 카보베르데와 맞붙는다.","score":204,"priority":204,"tags":["메시","아르헨티나","월드컵","32강","기록"]},
+    {"id":"main-20260629-1107-reuters-raducanu-wimbledon-withdrawal","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎾","title":"라두카누, 윔블던 개막 직전 다리 피로골절로 기권","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/sports/tennis/raducanu-plans-wimbledon-start-despite-leg-injury-concerns-2026-06-28/","description":"엠마 라두카누가 오른쪽 다리 피로골절 진단으로 윔블던 출전을 포기했다. 영국 여자 테니스의 흥행 카드가 빠지면서 대회 초반 관심 구도도 바뀌었다.","score":198,"priority":198,"tags":["윔블던","라두카누","테니스","부상","영국"]},
+    {"id":"main-20260629-1107-people-teyana-taylor-bet-icon","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎤","title":"테야나 테일러, BET ‘Icon of the Year’ 수상…20년 커리어 조명","publishedAt":"2026-06-29","date":"2026-06-29","source":"People","url":"https://people.com/bet-awards-2026-teyana-taylor-icon-of-the-year-12006061","description":"테야나 테일러가 2026 BET 어워즈에서 올해의 아이콘상을 받았다. 음악·연기·연출·안무를 넘나든 커리어가 재조명되며 대중문화 영향력을 인정받았다.","score":192,"priority":192,"tags":["BET","테야나테일러","음악","대중문화","수상"]},
+    {"id":"main-20260629-1107-ny-post-aoc-apple-price-hike","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"AOC, 애플 가격 인상 비판…AI 데이터센터·메모리 부족이 정치 쟁점화","publishedAt":"2026-06-29","date":"2026-06-29","source":"New York Post","url":"https://nypost.com/2026/06/28/us-news/aoc-says-congress-should-break-up-apple-amid-looming-price-hikes-for-macbooks-and-iphones/","description":"AOC가 애플의 가격 인상과 AI발 메모리 부족을 빅테크 권력 문제로 비판했다. AI 데이터센터 전력·공급망·소비자 물가가 미국 정치권의 규제 의제로 번지고 있다.","score":190,"priority":190,"tags":["AOC","애플","빅테크","AI데이터센터","반독점"]}
+  ],
+  "byCategory": {}
+}
