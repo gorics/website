@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-06-30T15:09:38+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎨","count":1}
+  ],
+  "total": 6,
+  "allItems": [
+    {"id":"main-20260630-1509-reuters-asian-stocks-record-quarter","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"아시아 증시, 반도체 랠리로 기록적 분기 마감","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"일본·한국·대만 증시가 반도체와 위험자산 선호 회복에 힘입어 강세를 보였다. 유가 안정과 달러 강세, 금·엔 약세가 동시에 나타나 시장 재배분 신호가 커졌다.","score":492,"priority":492,"tags":["아시아증시","반도체","코스피","닛케이","달러"]},
+    {"id":"main-20260630-1509-reuters-china-pmi-ai-exports","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"중국 제조업 PMI 확장 전환…AI 관련 수출이 회복 견인","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/chinas-factory-activity-expands-june-high-tech-exports-2026-06-30/","description":"중국 6월 제조업 PMI가 확장 국면으로 돌아섰다. 칩·컴퓨터 등 AI 관련 수출 수요가 생산과 신규주문 회복을 이끌었지만 내수와 부동산 부담은 남아 있다.","score":481,"priority":481,"tags":["중국PMI","AI수출","제조업","반도체","경기"]},
+    {"id":"main-20260630-1509-ap-supreme-court-agency-heads","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 독립기관장 해임권 확대…연준 독립성은 별도 방어","publishedAt":"2026-06-30","date":"2026-06-30","source":"AP","url":"https://apnews.com/article/39107f657c717e480171dba89798d889","description":"미 대법원이 대통령의 독립기관장 해임 권한을 넓히는 판단을 내렸다. 다만 연준 이사 해임 시도는 막아 행정부 권한과 중앙은행 독립성 논쟁이 병존하게 됐다.","score":469,"priority":469,"tags":["미국대법원","대통령권한","독립기관","연준","미국정치"]},
+    {"id":"main-20260630-1509-ap-venezuela-deportees-missing-quake","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"미국서 추방된 베네수엘라인 100여 명, 강진 직후 실종","publishedAt":"2026-06-30","date":"2026-06-30","source":"AP","url":"https://apnews.com/article/783140c04b418de2308f548402ace9af","description":"미국에서 추방된 베네수엘라인들이 현지 호텔에 머문 직후 강진이 발생해 100명 이상이 실종됐다. 재난 대응과 이민정책, 인도주의 위기가 맞물린 사건으로 커지고 있다.","score":458,"priority":458,"tags":["베네수엘라","지진","추방","인도주의","실종"]},
+    {"id":"main-20260630-1509-reuters-paraguay-germany-world-cup","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"파라과이, 독일 격파 뒤 공휴일 선포…월드컵 최대 이변","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/sports/soccer/paraguay-declares-national-holiday-after-team-shock-germany-world-cup-2026-06-30/","description":"파라과이가 승부차기 끝에 독일을 꺾자 정부가 국가 공휴일을 선포했다. 독일의 월드컵 승부차기 첫 패배라는 상징성까지 겹치며 대회 최대 이변으로 기록됐다.","score":446,"priority":446,"tags":["월드컵","파라과이","독일","승부차기","스포츠문화"]},
+    {"id":"main-20260630-1509-ap-viking-textile-denmark","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎨","title":"덴마크서 대규모 바이킹 직물 생산지 발견","publishedAt":"2026-06-24","date":"2026-06-24","source":"AP","url":"https://apnews.com/article/54f9b57b5485aa602591185ff3b911cd","description":"덴마크 오르후스 인근에서 10만㎡ 규모의 바이킹 시대 직물 생산 유적이 확인됐다. 방직·아마 가공 흔적은 바이킹 사회의 조직적 생산과 교역 능력을 보여준다.","score":421,"priority":421,"tags":["바이킹","고고학","덴마크","직물","문화유산"]}
+  ],
+  "byCategory": {"economy": [], "tech": [], "politics": [], "global": [], "play": [], "culture": []}
+}
