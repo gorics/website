@@ -1,19 +1,18 @@
 {
-  "generatedAt": "2026-06-30T13:07:40+09:00",
+  "generatedAt": "2026-06-30T14:06:36+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
-    {"id":"commodities","name":"원자재","icon":"🪙","count":1},
-    {"id":"macro","name":"거시경제","icon":"🏭","count":1},
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":2},
     {"id":"semiconductors","name":"반도체","icon":"🧩","count":1},
-    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1}
+    {"id":"korea-markets","name":"한국시장","icon":"🇰🇷","count":1}
   ],
   "total": 4,
   "allItems": [
-    {"id":"fin-20260630-1307-reuters-gold-monthly-drop","category":"commodities","categoryName":"원자재","category_ko":"원자재","categoryIcon":"🪙","title":"금, 달러 강세·고금리 전망에 2008년 이후 최대 월간 낙폭","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/gold-set-fourth-monthly-fall-bets-fed-rate-hikes-2026-06-30/","description":"연준 추가 긴축 기대와 달러 강세가 금 가격을 압박했다. 인플레이션 헤지 자산임에도 금리 상승기에는 보유 비용이 커져 귀금속 약세가 확대됐다.","score":474,"priority":474,"tags":["금","원자재","연준","달러","금리"]},
-    {"id":"fin-20260630-1307-reuters-china-pmi-ai-exports","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🏭","title":"중국 제조업 PMI 확장 전환, AI 수출이 경기 둔화 완충","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/chinas-factory-activity-expands-june-high-tech-exports-2026-06-30/","description":"중국 제조업 지표가 AI 관련 수출과 선적 앞당기기 영향으로 개선됐다. 다만 고용과 공장 출하가격 약세는 내수·디플레이션 우려를 계속 남긴다.","score":463,"priority":463,"tags":["중국PMI","제조업","AI수출","거시경제","디플레이션"]},
-    {"id":"fin-20260630-1307-reuters-cxmt-tencent-dram","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"CXMT-텐센트 DRAM 계약, AI 서버 메모리 공급 부족의 중국식 해법","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-cxmt-wins-3-billion-memory-supply-deal-with-tencent-sources-say-2026-06-29/","description":"텐센트의 서버용 DRAM 장기 조달은 AI 워크로드 증가와 메모리 가격 상승 국면을 반영한다. CXMT IPO 기대와 중국 반도체 자립 전략에도 직접 연결된다.","score":458,"priority":458,"tags":["CXMT","텐센트","DRAM","AI서버","IPO"]},
-    {"id":"fin-20260630-1307-reuters-global-markets-q2","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"아시아 증시 기록적 분기 마감, 달러·엔·금이 다음 변수","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"일본·한국·대만 증시가 AI·반도체 랠리로 강한 분기를 보냈지만 달러 강세, 엔저, 금 약세가 하반기 자금 흐름의 핵심 변수로 남았다.","score":456,"priority":456,"tags":["아시아증시","달러","엔저","금","반도체"]}
+    {"id":"fin-20260630-1406-reuters-financial-firms-korea","category":"korea-markets","categoryName":"한국시장","category_ko":"한국시장","categoryIcon":"🇰🇷","title":"글로벌 금융사, 중국·인도보다 한국 확장 선호 확대","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-financial-firms-pivot-south-korea-cautious-china-india-survey-shows-2026-06-30/","description":"한국 주식·채권시장에 대한 해외 금융사의 관심이 1년 사이 크게 높아졌다. WGBI 편입 기대와 제도 개선 기대가 한국시장 재평가 요인으로 작용했다.","score":482,"priority":482,"tags":["한국시장","WGBI","외국계금융사","채권","주식"]},
+    {"id":"fin-20260630-1406-reuters-global-markets-q2","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"아시아 증시 기록적 분기, 달러·엔·금 가격이 하반기 리스크","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"AI·반도체 랠리가 일본·한국·대만 증시를 끌어올렸지만 달러 강세와 엔저, 금 약세가 글로벌 자금 배분의 변수가 됐다.","score":474,"priority":474,"tags":["아시아증시","달러","엔저","금","자금흐름"]},
+    {"id":"fin-20260630-1406-reuters-korea-chip-megaproject","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"삼성·SK하이닉스 서남권 팹 투자, AI 메모리 공급망 경쟁 확대","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/samsung-electronics-sk-hynix-invest-two-new-fabrication-sites-south-korea-2026-06-29/","description":"대형 반도체 팹 투자 계획은 AI 서버·HBM·메모리 수요에 대응하는 장기 공급망 전략이다. 전력·용수·인력 확보가 실행 리스크로 남는다.","score":468,"priority":468,"tags":["삼성전자","SK하이닉스","AI메모리","팹투자","공급망"]},
+    {"id":"fin-20260630-1406-reuters-oil-iran-yen","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"이란 변수 속 유가 반등, 엔화 40년 저점으로 환율 경계 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"중동 리스크와 이란 관련 뉴스가 유가를 다시 끌어올렸고, 엔화는 달러 대비 40년 저점 부근까지 밀렸다. 원유·환율 변동성이 동시에 커졌다.","score":455,"priority":455,"tags":["유가","이란","엔저","환율","글로벌시장"]}
   ],
-  "byCategory": {"commodities": [], "macro": [], "semiconductors": [], "global-markets": []}
+  "byCategory": {"global-markets": [], "semiconductors": [], "korea-markets": []}
 }
