@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-30T09:08:55+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛰️","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":1},
+    {"id":"macro","name":"거시경제","icon":"🌐","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"fin-20260630-0908-reuters-global-markets-iran-yen","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"글로벌 증시·유가 상승, 이란 리스크 완화 기대와 엔저 동시 진행","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"위험자산 선호가 되살아 주식과 유가가 올랐지만 엔화 약세가 심화됐다. 중동 긴장과 통화정책 경로가 동시에 시장 방향을 좌우하고 있다.","score":435,"priority":435,"tags":["증시","유가","엔화","달러","이란"]},
+    {"id":"fin-20260630-0908-reuters-oil-us-iran-strikes","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛰️","title":"미·이란 충돌 이후 유가 반등, 해운·호르무즈 리스크 재평가","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-climbs-following-renewed-us-iran-strikes-middle-east-2026-06-28/","description":"미·이란 충돌 여파로 유가가 상승했다. 시장은 호르무즈 통항, 해운 보험료, 공급 차질 가능성을 다시 가격에 반영하고 있다.","score":425,"priority":425,"tags":["유가","이란","호르무즈","해운","중동"]},
+    {"id":"fin-20260630-0908-reuters-korea-ai-chip-investment","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"한국 AI칩 투자 계획, HBM·DRAM 공급 확대 기대와 과잉 우려 병존","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-president-unveil-massive-ai-chip-investment-drive-2026-06-29/","description":"삼성전자·SK하이닉스 중심의 대규모 투자 계획이 발표됐다. AI 메모리 주도권 강화 기대가 있지만 중장기 공급과잉과 지역 인프라 부담도 시장 변수다.","score":397,"priority":397,"tags":["HBM","DRAM","AI반도체","삼성전자","SK하이닉스"]},
+    {"id":"fin-20260630-0908-reuters-india-monsoon-markets","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🌐","title":"인도 증시, 몬순 부진에 소비·물가 우려 반영","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/india/indian-shares-likely-open-steady-us-iran-talks-ease-escalation-fears-2026-06-29/","description":"인도 증시는 강우 부족과 소비 둔화 우려로 약세를 보였다. 몬순 흐름은 식품물가와 자동차·소비재 실적의 핵심 변수로 남았다.","score":386,"priority":386,"tags":["인도증시","몬순","물가","소비","신흥국"]}
+  ],
+  "byCategory": {
+    "global-markets": [],
+    "energy-geopolitics": [],
+    "semiconductors": [],
+    "macro": []
+  }
+}
