@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-30T13:07:40+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"commodities","name":"원자재","icon":"🪙","count":1},
+    {"id":"macro","name":"거시경제","icon":"🏭","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":1},
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"fin-20260630-1307-reuters-gold-monthly-drop","category":"commodities","categoryName":"원자재","category_ko":"원자재","categoryIcon":"🪙","title":"금, 달러 강세·고금리 전망에 2008년 이후 최대 월간 낙폭","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/gold-set-fourth-monthly-fall-bets-fed-rate-hikes-2026-06-30/","description":"연준 추가 긴축 기대와 달러 강세가 금 가격을 압박했다. 귀금속 약세가 확대됐다.","score":474,"priority":474,"tags":["금","원자재","연준","달러","금리"]},
+    {"id":"fin-20260630-1307-reuters-china-pmi-ai-exports","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🏭","title":"중국 제조업 PMI 확장 전환, AI 수출이 경기 둔화 완충","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/chinas-factory-activity-expands-june-high-tech-exports-2026-06-30/","description":"중국 제조업 지표가 AI 관련 수출과 선적 앞당기기 영향으로 개선됐다.","score":463,"priority":463,"tags":["중국PMI","제조업","AI수출","거시경제"]},
+    {"id":"fin-20260630-1307-reuters-cxmt-tencent-dram","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"CXMT-텐센트 DRAM 계약, AI 서버 메모리 공급 부족의 중국식 해법","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-cxmt-wins-3-billion-memory-supply-deal-with-tencent-sources-say-2026-06-29/","description":"텐센트의 서버용 DRAM 장기 조달은 AI 워크로드 증가와 메모리 가격 상승 국면을 반영한다.","score":458,"priority":458,"tags":["CXMT","텐센트","DRAM","AI서버"]},
+    {"id":"fin-20260630-1307-reuters-global-markets-q2","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"아시아 증시 기록적 분기 마감, 달러·엔·금이 다음 변수","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"일본·한국·대만 증시가 AI·반도체 랠리로 강한 분기를 보냈다.","score":456,"priority":456,"tags":["아시아증시","달러","엔저","금"]}
+  ],
+  "byCategory": {"commodities": [], "macro": [], "semiconductors": [], "global-markets": []}
+}
