@@ -1,18 +1,16 @@
 {
-  "generatedAt": "2026-06-30T14:06:36+09:00",
+  "generatedAt": "2026-06-30T14:31:40+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
     {"id":"global-markets","name":"글로벌시장","icon":"📊","count":2},
-    {"id":"semiconductors","name":"반도체","icon":"🧩","count":1},
-    {"id":"korea-markets","name":"한국시장","icon":"🇰🇷","count":1}
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":1}
   ],
-  "total": 4,
+  "total": 3,
   "allItems": [
-    {"id":"fin-20260630-1406-reuters-financial-firms-korea","category":"korea-markets","categoryName":"한국시장","category_ko":"한국시장","categoryIcon":"🇰🇷","title":"글로벌 금융사, 중국·인도보다 한국 확장 선호 확대","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-financial-firms-pivot-south-korea-cautious-china-india-survey-shows-2026-06-30/","description":"한국 주식·채권시장에 대한 해외 금융사의 관심이 1년 사이 크게 높아졌다. WGBI 편입 기대와 제도 개선 기대가 한국시장 재평가 요인으로 작용했다.","score":482,"priority":482,"tags":["한국시장","WGBI","외국계금융사","채권","주식"]},
-    {"id":"fin-20260630-1406-reuters-global-markets-q2","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"아시아 증시 기록적 분기, 달러·엔·금 가격이 하반기 리스크","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"AI·반도체 랠리가 일본·한국·대만 증시를 끌어올렸지만 달러 강세와 엔저, 금 약세가 글로벌 자금 배분의 변수가 됐다.","score":474,"priority":474,"tags":["아시아증시","달러","엔저","금","자금흐름"]},
-    {"id":"fin-20260630-1406-reuters-korea-chip-megaproject","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"삼성·SK하이닉스 서남권 팹 투자, AI 메모리 공급망 경쟁 확대","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/samsung-electronics-sk-hynix-invest-two-new-fabrication-sites-south-korea-2026-06-29/","description":"대형 반도체 팹 투자 계획은 AI 서버·HBM·메모리 수요에 대응하는 장기 공급망 전략이다. 전력·용수·인력 확보가 실행 리스크로 남는다.","score":468,"priority":468,"tags":["삼성전자","SK하이닉스","AI메모리","팹투자","공급망"]},
-    {"id":"fin-20260630-1406-reuters-oil-iran-yen","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"이란 변수 속 유가 반등, 엔화 40년 저점으로 환율 경계 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"중동 리스크와 이란 관련 뉴스가 유가를 다시 끌어올렸고, 엔화는 달러 대비 40년 저점 부근까지 밀렸다. 원유·환율 변동성이 동시에 커졌다.","score":455,"priority":455,"tags":["유가","이란","엔저","환율","글로벌시장"]}
+    {"id":"fin-20260630-1431-reuters-wall-st-record-tech","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"월가 상승 마감, 다우 사상 최고 종가와 기술주 반등","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-lead-wall-st-higher-middle-east-tensions-ease-2026-06-29/","description":"중동 긴장 완화와 기술주 반등이 미국 증시를 밀어 올렸다. 분기말 수급과 위험자산 선호 회복이 함께 작용했다.","score":478,"priority":478,"tags":["미국증시","다우","기술주","위험자산","중동"]},
+    {"id":"fin-20260630-1431-reuters-nexchip-hk-ipo","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"넥스칩 홍콩 IPO, 중국 반도체 자금조달 열기 지속","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/chinas-nexchip-semiconductor-seeks-up-8903-million-hong-kong-share-sale-2026-06-29/","description":"넥스칩의 최대 8.9억 달러 홍콩 상장 추진은 중국 반도체 기업들의 자본시장 활용이 이어지고 있음을 보여준다. AI 생산능력과 22나노 플랫폼 투자가 핵심 사용처다.","score":466,"priority":466,"tags":["중국반도체","홍콩IPO","넥스칩","AI","파운드리"]},
+    {"id":"fin-20260630-1431-reuters-europe-equity-targets","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"JP모건, 유럽 증시 목표치 상향…비미국 자산 로테이션 주목","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/europe-could-be-compelling-story-jp-morgan-says-lifts-equity-index-targets-2026-06-29/","description":"JP모건은 유럽 기업이익 개선과 유가·금리 안정, 지정학 리스크 완화를 근거로 유럽 주식 목표치를 높였다. 미국 기술주 집중 이후 대체 투자처 논리가 강화됐다.","score":459,"priority":459,"tags":["유럽증시","JP모건","STOXX600","자산배분","로테이션"]}
   ],
-  "byCategory": {"global-markets": [], "semiconductors": [], "korea-markets": []}
+  "byCategory": {"global-markets": [], "semiconductors": []}
 }
