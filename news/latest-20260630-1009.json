@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-06-30T10:09:21+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"politics","name":"정치","icon":"🏛️","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"economy","name":"경제","icon":"📈","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1}
+  ],
+  "total": 6,
+  "allItems": [
+    {"id":"main-20260630-1009-ap-scotus-fed-cook-agency-heads","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 연준 이사 즉각 해임은 막고 독립기관장 해임권은 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/7b7676e5a066f8df41077a0920b9f334","description":"대법원이 리사 쿡 연준 이사 해임은 절차상 제동을 걸었지만, 대부분 독립기관장에 대한 대통령 해임권은 크게 넓혔다. 연준 독립성과 행정권 확대가 동시에 핵심 쟁점이 됐다.","score":452,"priority":452,"tags":["미국대법원","연준","리사쿡","대통령권한","독립기관"]},
+    {"id":"main-20260630-1009-ap-geofence-privacy-location-history","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"미 대법원, 휴대전화 위치기록에도 헌법상 프라이버시 보호 인정","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/a3adee8a3fd32b8ea1b42eb72cbcc35f","description":"대법원이 지오펜스 영장과 위치기록 수사에 대해 이용자가 디지털 서비스에 위치정보를 제공했다는 이유만으로 사생활 보호를 포기한 것은 아니라고 판단했다.","score":430,"priority":430,"tags":["프라이버시","위치기록","지오펜스","대법원","디지털권리"]},
+    {"id":"main-20260630-1009-reuters-borrowed-money-stock-rally","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"차입자금이 떠받친 미국 증시 랠리, 조달비용 상승이 새 부담","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/legal/transactional/borrowed-money-fueling-us-stock-rally-is-getting-more-expensive-2026-06-29/","description":"레버리지 ETF·옵션·헤지펀드 수요로 미국 주식 익스포저가 커진 가운데, equity repo 등 차입 비용 상승이 랠리 지속성의 리스크로 부상했다.","score":421,"priority":421,"tags":["미국증시","레버리지","AI랠리","자금조달","리스크"]},
+    {"id":"main-20260630-1009-reuters-cxmt-tencent-dram-deal","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"중국 CXMT, 텐센트와 약 30억달러 DRAM 공급 계약","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-cxmt-wins-3-billion-memory-supply-deal-with-tencent-sources-say-2026-06-29/","description":"CXMT가 텐센트와 서버용 DRAM 장기 공급 계약을 맺은 것으로 전해졌다. AI·클라우드 메모리 수요와 중국 반도체 자립 흐름이 맞물린 대형 거래다.","score":414,"priority":414,"tags":["CXMT","텐센트","DRAM","AI서버","중국반도체"]},
+    {"id":"main-20260630-1009-ap-worldcup-heat-dome","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"미 동부 폭염돔, 월드컵 녹아웃 경기 운영 변수로 부상","publishedAt":"2026-06-30","date":"2026-06-30","source":"AP","url":"https://apnews.com/article/9d3bc20785bc731c5e78362c4bb2e26c","description":"미국 중·동부 폭염으로 일부 월드컵 개최 도시의 체감온도가 크게 오를 전망이다. FIFA와 개최 도시는 냉각구역·급수·쿨링브레이크 등 대응을 준비했다.","score":392,"priority":392,"tags":["월드컵","폭염","기후","쿨링브레이크","미국"]},
+    {"id":"main-20260630-1009-ap-carroll-trump-supreme-court","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 트럼프의 E. Jean Carroll 500만달러 평결 파기 요청 기각","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/1a50d1e9e1d12898e78e0803c4627771","description":"대법원이 캐럴 사건 500만달러 배상 평결을 뒤집어 달라는 트럼프 측 요청을 받아들이지 않았다. 별도 명예훼손 판결과 함께 법적 부담이 계속된다.","score":378,"priority":378,"tags":["미국정치","대법원","트럼프","캐럴","법원"]}
+  ],
+  "byCategory": {
+    "politics": [],
+    "tech": [],
+    "economy": [],
+    "play": []
+  }
+}
