@@ -1,27 +1,21 @@
 {
-  "generatedAt": "2026-06-30T19:32:48+09:00",
+  "generatedAt": "2026-06-30T20:07:10+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
-    {"id":"fx-rates","name":"환율·금리","icon":"💱","count":1},
-    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
-    {"id":"macro","name":"거시경제","icon":"📊","count":1},
     {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1},
+    {"id":"macro","name":"거시경제","icon":"📊","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
+    {"id":"fx-rates","name":"환율·금리","icon":"💱","count":1},
     {"id":"semiconductors","name":"반도체","icon":"💾","count":1}
   ],
   "total": 5,
   "allItems": [
-    {"id":"fin-20260630-1932-reuters-central-banks-dollar","category":"fx-rates","categoryName":"환율·금리","category_ko":"환율·금리","categoryIcon":"💱","title":"중앙은행 달러 축소 선호 첫 우위…외환보유 다변화가 장기 환율 변수","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/first-time-more-central-banks-are-set-shrink-dollar-holdings-survey-finds-2026-06-30/","description":"OMFIF 조사에서 중앙은행들이 달러 비중 축소와 금·유로·위안 등 대체 보유 확대를 더 선호하는 것으로 나타났다. 준비통화 다극화 전망이 외환시장 장기 변수로 부상했다.","score":552,"priority":552,"tags":["달러","중앙은행","외환보유액","금","준비통화"]},
-    {"id":"fin-20260630-1932-reuters-oil-quarterly-loss","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"유가, 2020년 이후 최대 분기 낙폭 경로…미·이란 협상 기대가 리스크 프리미엄 압축","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-falls-investors-focus-potential-iran-us-talks-doha-2026-06-30/","description":"브렌트와 WTI가 중동 긴장 완화와 공급초과 전망 속에 큰 월간 낙폭을 기록했다. 도하 접촉 가능성과 호르무즈 해상 물류 회복 여부가 다음 유가 방향을 좌우한다.","score":538,"priority":538,"tags":["유가","브렌트","WTI","이란","호르무즈"]},
-    {"id":"fin-20260630-1932-reuters-ecb-oil-inflation","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"📊","title":"유가 급락에도 ECB 인플레 경계 유지…추가 긴축 시점은 데이터 의존","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/finance/ecbs-inflation-fears-linger-despite-oil-price-retreat-2026-06-30/","description":"유가가 빠르게 내려왔지만 ECB 인사들은 에너지 충격의 잔여 물가 압력을 경계하고 있다. 시장은 7월 인상 가능성을 낮게 보면서도 연내 추가 긴축 가능성은 남겨뒀다.","score":522,"priority":522,"tags":["ECB","인플레이션","유가","금리","유럽"]},
-    {"id":"fin-20260630-1932-reuters-global-stocks-dollar","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌐","title":"글로벌 증시 2분기 강세 지속…달러 강세와 금·엔 약세가 동시 진행","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"MSCI 전세계 지수가 2020년 이후 가장 강한 2분기 흐름을 보인 가운데 AI 관련주가 랠리를 주도했다. 동시에 달러 강세, 엔 약세, 금 가격 조정이 자산배분 변동성을 키웠다.","score":514,"priority":514,"tags":["글로벌증시","달러","엔화","금","AI랠리"]},
-    {"id":"fin-20260630-1932-reuters-onsemi-synaptics","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"온세미 70억달러 시냅틱스 인수…AI 디바이스 반도체 M&A 프리미엄 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/legal/transactional/onsemi-buy-synaptics-7-billion-all-stock-deal-2026-06-25/","description":"온세미가 시냅틱스에 19% 프리미엄을 제시하며 AI 내장 기기·로봇·휴먼머신 인터페이스 영역으로 확장을 노린다. 반도체 섹터의 AI 적용처 확대 신호로 해석된다.","score":501,"priority":501,"tags":["온세미","시냅틱스","반도체M&A","피지컬AI","로봇"]}
+    {"id":"fin-20260630-2007-reuters-global-markets","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌐","title":"글로벌 증시 2분기 랠리 지속…AI 주도 강세와 달러 변동성 동시 확대","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"MSCI 전세계 지수가 2020년 이후 가장 강한 2분기 흐름을 보였다. AI 관련주가 상승을 이끌었고 달러·엔·금 움직임이 포트폴리오 리스크를 키웠다.","score":560,"priority":560,"tags":["글로벌증시","AI랠리","달러","엔화","금"]},
+    {"id":"fin-20260630-2007-reuters-china-pmi","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"📊","title":"중국 제조업 확장 재진입…AI 수출 의존형 회복과 내수 부진이 병존","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/chinas-factory-activity-expands-june-high-tech-exports-2026-06-30/","description":"6월 중국 제조업 PMI가 50.3으로 상승했다. AI 관련 고기술 수출이 회복을 견인했지만, 소매판매와 고용·공장가격 지표는 여전히 취약하다는 평가다.","score":545,"priority":545,"tags":["중국PMI","거시경제","AI수출","내수","디플레이션"]},
+    {"id":"fin-20260630-2007-reuters-oil-talks","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"유가, 미·이란 접촉 기대와 공급 부담에 약세…중동 리스크 프리미엄 축소","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-falls-investors-focus-potential-iran-us-talks-doha-2026-06-30/","description":"투자자들이 도하에서의 미·이란 접촉 가능성과 공급 전망을 주시하면서 유가가 약세를 보였다. 호르무즈 긴장 완화 여부가 에너지 가격의 핵심 변수다.","score":535,"priority":535,"tags":["유가","이란","미국","호르무즈","에너지"]},
+    {"id":"fin-20260630-2007-reuters-central-banks-dollar","category":"fx-rates","categoryName":"환율·금리","category_ko":"환율·금리","categoryIcon":"💱","title":"중앙은행 달러 보유 축소 선호 우위…외환보유 다변화가 장기 환율 변수","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/first-time-more-central-banks-are-set-shrink-dollar-holdings-survey-finds-2026-06-30/","description":"중앙은행들의 장기 외환보유 전략에서 달러 축소 응답이 확대됐다. 금·유로·위안 등 대체자산 선호가 커지며 달러 지위와 장기 환율 흐름의 변수로 떠올랐다.","score":525,"priority":525,"tags":["달러","중앙은행","외환보유액","환율","금"]},
+    {"id":"fin-20260630-2007-reuters-onsemi-synaptics","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"온세미-시냅틱스 70억달러 딜, AI 디바이스 반도체 M&A 프리미엄 재확인","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/legal/transactional/onsemi-buy-synaptics-7-billion-all-stock-deal-2026-06-25/","description":"온세미의 시냅틱스 인수는 자동차·산업 전력반도체와 휴먼머신 인터페이스·연결 컴퓨팅을 결합하려는 거래다. AI 내장 기기 수요가 반도체 M&A를 자극하고 있다.","score":505,"priority":505,"tags":["온세미","시냅틱스","반도체","M&A","AI디바이스"]}
   ],
-  "byCategory": {
-    "fx-rates": [],
-    "energy-geopolitics": [],
-    "macro": [],
-    "global-markets": [],
-    "semiconductors": []
-  }
+  "byCategory": {"global-markets":[],"macro":[],"energy-geopolitics":[],"fx-rates":[],"semiconductors":[]}
 }
