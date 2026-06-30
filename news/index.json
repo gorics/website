@@ -1,22 +1,30 @@
 {
-  "generatedAt": "2026-06-30T18:09:46+09:00",
-  "source": "compatibility copy of 20260630-1809 overlay; canonical base data.json remains preserved",
+  "generatedAt": "2026-06-30T19:07:44+09:00",
+  "source": "compatibility copy of 20260630-1907 overlay; canonical base data.json remains preserved",
   "page": "news",
   "categories": [
-    {"id":"economy","name":"경제","icon":"📈","count":2},
-    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"economy","name":"경제","icon":"📈","count":1},
     {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
     {"id":"play","name":"스포츠","icon":"⚽","count":1},
     {"id":"culture","name":"문화","icon":"🎨","count":1}
   ],
   "total": 6,
   "allItems": [
-    {"id":"main-20260630-1809-reuters-global-markets-q2-ai","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"글로벌 증시 6년 만의 강한 2분기…AI 랠리·유가 급락이 동력","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"MSCI 전세계 지수와 미국 기술주가 AI 수요 기대에 강세를 보이며 2분기를 마감했다. 호르무즈 리스크 완화로 유가가 크게 밀리고 달러·엔·금 흐름도 재조정됐다.","score":520,"priority":520,"tags":["글로벌증시","AI랠리","유가","달러","2분기"]},
-    {"id":"main-20260630-1809-reuters-oil-quarterly-loss","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"국제유가, 2020년 이후 최대 분기 낙폭 전망…미·이란 협상 주시","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-falls-investors-focus-potential-iran-us-talks-doha-2026-06-30/","description":"브렌트와 WTI가 6월 들어 약 20% 안팎 하락하며 팬데믹 초기 이후 가장 큰 분기 낙폭을 향하고 있다. 시장은 도하 미·이란 접촉과 호르무즈 운항 리스크를 동시에 본다.","score":512,"priority":512,"tags":["국제유가","브렌트","WTI","미국이란","호르무즈"]},
-    {"id":"main-20260630-1809-reuters-supreme-court-fed-cook","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 연준 쿡 이사 해임 제동…FTC 판결과 권한 경계 갈림","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/us-supreme-court-rejects-trumps-unprecedented-bid-fire-feds-cook-2026-06-29/","description":"대법원이 리사 쿡 연준 이사 해임 시도를 막아 중앙은행 독립성을 방어했다. 동시에 FTC 위원 해임은 인정해 독립기관별 대통령 권한 경계가 달라졌다.","score":498,"priority":498,"tags":["미대법원","연준","리사쿡","FTC","중앙은행독립성"]},
-    {"id":"main-20260630-1809-reuters-openai-broadcom-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"OpenAI-브로드컴 맞춤형 AI칩 공개 여파…AI 인프라 내재화 경쟁 심화","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI가 브로드컴과 설계한 추론용 맞춤형 AI칩을 공개했다. 엔비디아 의존을 낮추고 자체 인프라를 확보하려는 빅테크·AI 기업의 반도체 내재화 흐름이 더 뚜렷해졌다.","score":486,"priority":486,"tags":["OpenAI","Broadcom","AI칩","추론","인프라"]},
-    {"id":"main-20260630-1809-ap-brazil-japan-worldcup","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"브라질, 일본에 추가시간 역전골…월드컵 16강 진출","publishedAt":"2026-06-30","date":"2026-06-30","source":"AP","url":"https://apnews.com/article/d5c025da2efeaf08a6b7c694b8e6534e","description":"가브리엘 마르티넬리가 추가시간 결승골을 넣어 브라질이 일본을 2-1로 꺾었다. 일본은 선제골 후 버텼지만 브라질의 후반 반격을 막지 못했다.","score":470,"priority":470,"tags":["월드컵","브라질","일본","마르티넬리","16강"]},
-    {"id":"main-20260630-1809-ap-bet-awards-gallery","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎨","title":"BET 어워즈 주요 장면 공개…블랙 엔터테인먼트·문화 시상식 조명","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/f1809410e34624bd363ef048684212ee","description":"로스앤젤레스 피콕시어터에서 열린 BET 어워즈의 주요 장면이 공개됐다. 공연·패션·수상 장면을 통해 블랙 엔터테인먼트와 대중문화 흐름을 보여준다.","score":438,"priority":438,"tags":["BET어워즈","엔터테인먼트","문화","시상식","공연"]}
+    {"id":"main-20260630-1907-reuters-china-pmi-ai","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"중국 제조업 PMI 확장 전환…AI 수출이 경기 하방 압력 일부 상쇄","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/chinas-factory-activity-expands-june-high-tech-exports-2026-06-30/","description":"중국 6월 제조업 PMI가 50.3으로 확장 국면에 복귀했다. AI 관련 칩·컴퓨터 수출이 버팀목이지만 내수 부진과 디플레이션 압력은 여전히 남아 있다.","score":535,"priority":535,"tags":["중국PMI","AI수출","제조업","경기","디플레이션"]},
+    {"id":"main-20260630-1907-ft-mag7-tech-rotation","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"매그니피센트7, 6월 2.3조달러 증발…AI 지출 수익성 의문에 기술주 순환","publishedAt":"2026-06-30","date":"2026-06-30","source":"Financial Times","url":"https://www.ft.com/content/b90bdfcb-d773-42f7-bb5f-52dbd28b2174","description":"대형 AI 플랫폼주의 주가가 대규모 인프라 투자 수익성 우려로 흔들렸다. 투자자 관심은 AI 서비스를 쓰는 기업보다 메모리·반도체 공급망으로 이동하고 있다.","score":526,"priority":526,"tags":["매그니피센트7","AI투자","기술주","반도체","월가"]},
+    {"id":"main-20260630-1907-reuters-scotus-ftc-power","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, FTC 해임권 인정…대통령 권한 확대 판례로 행정국가 흔들림","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/legal/government/supreme-court-strengthens-trumps-hold-key-levers-government-power-2026-06-30/","description":"미 대법원이 독립 규제기관 수장을 대통령이 해임할 수 있다는 취지의 판단을 내렸다. 연준 독립성은 별도로 선을 그었지만 규제기관 정치화 논란이 커졌다.","score":518,"priority":518,"tags":["미대법원","FTC","대통령권한","행정국가","규제기관"]},
+    {"id":"main-20260630-1907-reuters-gulf-doha-talks","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"도하 미·이란 접촉 불확실성에 걸프 증시 약세…유가도 동반 하락","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/middle-east/major-gulf-markets-subdued-amid-uncertainty-over-doha-talks-2026-06-30/","description":"미·이란 협상 가능성을 둘러싼 혼선 속에 사우디·두바이·아부다비 증시가 약세를 보였다. 브렌트유도 하락하며 중동 지정학 변수가 금융시장에 반영됐다.","score":503,"priority":503,"tags":["도하","미국이란","걸프증시","브렌트유","중동"]},
+    {"id":"main-20260630-1907-ap-paraguay-germany-worldcup","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"파라과이, 승부차기로 독일 격파…2026 월드컵 최대 이변","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/819ffc6e897f8be74f48d6b9d3e76e9b","description":"파라과이가 독일과 1-1로 비긴 뒤 승부차기에서 4-3으로 이겼다. 골키퍼 오를란도 질의 선방과 호세 카날레의 결승 킥으로 16강행 이변을 만들었다.","score":492,"priority":492,"tags":["월드컵","파라과이","독일","승부차기","이변"]},
+    {"id":"main-20260630-1907-ap-bet-lauryn-hill","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎨","title":"로린 힐 BET 어워즈 레전드 아이콘 수상…재닛 잭슨 깜짝 등장","publishedAt":"2026-06-28","date":"2026-06-28","source":"AP","url":"https://apnews.com/article/9e0dfdf0079cd8550ba4d2430e97ace3","description":"2026 BET 어워즈에서 로린 힐이 Living Legend Icon Award를 받았고, 재닛 잭슨은 티아나 테일러 시상자로 깜짝 등장했다. 음악·패션·블랙 문화의 주요 장면이 집중 조명됐다.","score":455,"priority":455,"tags":["BET어워즈","로린힐","재닛잭슨","음악","문화"]}
   ],
-  "byCategory": {"economy": [], "politics": [], "tech": [], "play": [], "culture": []}
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "politics": [],
+    "global": [],
+    "play": [],
+    "culture": []
+  }
 }
