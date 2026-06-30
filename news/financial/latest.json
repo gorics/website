@@ -1,23 +1,19 @@
 {
-  "generatedAt": "2026-06-30T10:09:21+09:00",
+  "generatedAt": "2026-06-30T11:08:52+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
-    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":2},
-    {"id":"semiconductors","name":"반도체","icon":"🧩","count":2},
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":3},
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1},
     {"id":"fx-rates","name":"환율·금리","icon":"💱","count":1}
   ],
   "total": 5,
   "allItems": [
-    {"id":"fin-20260630-1009-reuters-borrowed-money-stock-rally","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"미 증시 레버리지 랠리, equity repo 비용 상승이 시장 리스크로 부상","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/legal/transactional/borrowed-money-fueling-us-stock-rally-is-getting-more-expensive-2026-06-29/","description":"AI 주도 주식 랠리에 레버리지 자금이 깊게 들어온 상황에서 차입 비용이 높아지고 있다. 시장이 횡보하거나 하락하면 포지션 청산 압력이 커질 수 있다.","score":421,"priority":421,"tags":["레버리지","미국증시","repo","AI랠리","리스크"]},
-    {"id":"fin-20260630-1009-reuters-cxmt-tencent-dram-deal","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"CXMT-텐센트 DRAM 계약, 중국 AI 서버 메모리 공급망 재편 신호","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-cxmt-wins-3-billion-memory-supply-deal-with-tencent-sources-say-2026-06-29/","description":"텐센트의 장기 DRAM 조달과 CXMT의 IPO 기대가 맞물리며 중국 내 메모리 자립 흐름이 강화됐다. 글로벌 DRAM 가격과 경쟁 구도에도 영향을 줄 수 있다.","score":414,"priority":414,"tags":["DRAM","CXMT","텐센트","AI서버","중국반도체"]},
-    {"id":"fin-20260630-1009-reuters-baidu-chip-ipo","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"바이두 AI칩 자회사 IPO 기대, 중국 AI 반도체 밸류에이션 과열 논쟁","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/breakingviews/baidu-chip-ipo-channels-extreme-ai-frenzy-2026-06-29/","description":"바이두의 쿤룬신 IPO 기대가 AI칩 투자 열기를 보여준다. 중국 내 AI 가속기 자립 수요는 커졌지만, 단기간 급등한 밸류에이션에 과열 우려도 따른다.","score":406,"priority":406,"tags":["바이두","AI칩","IPO","중국기술주","밸류에이션"]},
-    {"id":"fin-20260630-1009-reuters-europe-shares-tech-oil","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"유럽증시 보합, 기술주 반등이 중동 리스크를 상쇄","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-steady-tech-gains-offset-middle-east-ceasefire-caution-2026-06-29/","description":"STOXX 600은 기술주 상승과 건설주 약세가 맞물리며 보합권에 머물렀다. 유가와 중동 휴전 불확실성, ECB 신트라 회의가 단기 변수로 남았다.","score":389,"priority":389,"tags":["유럽증시","기술주","유가","ECB","중동"]},
-    {"id":"fin-20260630-1009-reuters-global-markets-iran-yen-followup","category":"fx-rates","categoryName":"환율·금리","category_ko":"환율·금리","categoryIcon":"💱","title":"엔화 1986년 이후 최저권, 미 금리 경로가 환율시장 압박","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"글로벌 위험자산 반등 속에서도 엔화는 달러 대비 40년 저점권으로 밀렸다. 미국 고금리 전망과 일본 통화정책 격차가 환율 변동성의 핵심이다.","score":383,"priority":383,"tags":["엔화","달러","금리","환율","BOJ"]}
+    {"id":"fin-20260630-1108-ap-korea-chipmaking-hub-ai-demand","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"삼성·SK하이닉스 5180억달러 투자, AI 메모리 공급능력 확대 베팅","publishedAt":"2026-06-30","date":"2026-06-30","source":"AP","url":"https://apnews.com/article/22352d95c7a821c5f4548b2d1a4ebde8","description":"대규모 반도체 허브 투자 발표는 AI 서버·데이터센터용 메모리 수요가 중장기 설비투자를 계속 자극하고 있음을 보여준다. 전력·용수·인력 확보가 투자 리스크다.","score":468,"priority":468,"tags":["삼성전자","SK하이닉스","HBM","AI서버","설비투자"]},
+    {"id":"fin-20260630-1108-reuters-korea-ai-chip-megaprojects","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"한국 반도체·AI 데이터센터 메가 프로젝트, 장기 CAPEX 사이클 강화","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/key-facts-south-koreas-three-chip-ai-mega-projects-2026-06-29/","description":"삼성·SK·네이버 등 대기업과 정부가 반도체·AI 데이터센터·로봇 생태계 투자를 묶어 제시했다. 메모리·전력·건설·장비 밸류체인에 장기 파급이 예상된다.","score":435,"priority":435,"tags":["CAPEX","AI데이터센터","반도체장비","전력","한국증시"]},
+    {"id":"fin-20260630-1108-wsj-soitec-zensemi-partnership","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"Soitec-ZenSemi 협력, AI·전기차용 전력반도체 소재 수요 부각","publishedAt":"2026-06-30","date":"2026-06-30","source":"WSJ","url":"https://www.wsj.com/tech/soitec-shares-climb-on-partnership-with-chinas-zensemi-74a4ba0f","description":"프랑스 Soitec가 중국 ZenSemi와 Power-SOI 기판 공급 협력을 발표하면서 주가가 상승했다. AI 데이터센터·로봇·전기차용 전력반도체 수요가 투자 포인트로 재부상했다.","score":407,"priority":407,"tags":["Soitec","ZenSemi","Power-SOI","전력반도체","AI인프라"]},
+    {"id":"fin-20260630-1108-reuters-global-markets-yen-oil-iran","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"주식·유가 동반 상승, 중동 리스크 완화와 금리 전망이 교차","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"이란 관련 불확실성이 완화되는 듯한 흐름 속에서 위험자산과 원유가 반등했다. 다만 금리 전망과 통화 변동성은 하반기 포트폴리오 리스크로 남아 있다.","score":442,"priority":442,"tags":["주식","원유","이란","위험자산","글로벌매크로"]},
+    {"id":"fin-20260630-1108-reuters-yen-forty-year-low","category":"fx-rates","categoryName":"환율·금리","category_ko":"환율·금리","categoryIcon":"💱","title":"엔화 40년 저점권, 일본 당국 개입 경계와 미 금리 부담 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"엔화 약세가 1980년대 이후 저점권으로 밀리며 외환시장 경계감이 커졌다. 미국 금리 경로와 일본은행 정책 격차가 단기 변동성을 좌우할 전망이다.","score":383,"priority":383,"tags":["엔화","달러엔","BOJ","금리차","외환"]}
   ],
-  "byCategory": {
-    "global-markets": [],
-    "semiconductors": [],
-    "fx-rates": []
-  }
+  "byCategory": {"semiconductors":[],"global-markets":[],"fx-rates":[]}
 }
