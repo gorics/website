@@ -1,22 +1,19 @@
 {
-  "generatedAt": "2026-06-30T12:10:27+09:00",
+  "generatedAt": "2026-06-30T13:07:40+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
-    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":2},
-    {"id":"rates-fx","name":"금리·환율","icon":"💱","count":1},
-    {"id":"semiconductors","name":"반도체","icon":"🧩","count":1}
+    {"id":"commodities","name":"원자재","icon":"🪙","count":1},
+    {"id":"macro","name":"거시경제","icon":"🏭","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":1},
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1}
   ],
   "total": 4,
   "allItems": [
-    {"id":"fin-20260630-1210-reuters-global-markets-record-quarter","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"아시아 증시 기록적 분기, 반도체 랠리와 달러 강세가 시장 핵심 변수","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"한국·일본·대만 증시가 AI·반도체 기대에 큰 폭으로 올랐지만 달러 강세와 엔화 급락, 금 약세가 포트폴리오 리밸런싱 압력을 키웠다.","score":468,"priority":468,"tags":["글로벌시장","아시아증시","AI","반도체","달러"]},
-    {"id":"fin-20260630-1210-reuters-fed-cook-supreme-court","category":"rates-fx","categoryName":"금리·환율","category_ko":"금리·환율","categoryIcon":"💱","title":"미 대법원 연준 독립성 판단, 금리 기대와 달러 방향성에 새 변수","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/us-supreme-court-rejects-trumps-unprecedented-bid-fire-feds-cook-2026-06-29/","description":"연준 이사 해임 시도가 막히며 통화정책 독립성은 유지됐지만, 행정권 확대 판결은 장기적으로 금융규제와 금리 기대에 불확실성을 남겼다.","score":462,"priority":462,"tags":["연준","금리","달러","대법원","중앙은행독립성"]},
-    {"id":"fin-20260630-1210-guardian-ai-chipmakers-first-half","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"AI 인프라 자금, 소프트웨어보다 반도체·메모리로 이동","publishedAt":"2026-06-29","date":"2026-06-29","source":"The Guardian","url":"https://www.theguardian.com/business/2026/jun/29/shares-in-chipmakers-underpinning-ai-boom-surge-in-first-half-of-2026","description":"AI 투자 사이클의 수혜가 데이터센터용 메모리와 스토리지, 반도체 장비로 확산되며 글로벌 칩주가 상반기 시장 주도 섹터로 부상했다.","score":425,"priority":425,"tags":["반도체","AI인프라","메모리","스토리지","데이터센터"]},
-    {"id":"fin-20260630-1210-ibd-us-stocks-iran-ai-rally","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"미 증시, 미·이란 긴장 완화와 AI주 반등에 강세","publishedAt":"2026-06-29","date":"2026-06-29","source":"Investor's Business Daily","url":"https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-us-iran-spacex-spcx-tesla-tsla/","description":"미·이란 관련 긴장 완화와 기술주 반등으로 다우·S&P500·나스닥이 상승했다. 대형 AI·우주·전기차 관련 종목이 위험선호 회복을 주도했다.","score":402,"priority":402,"tags":["미국증시","AI주","테슬라","나스닥","이란"]}
+    {"id":"fin-20260630-1307-reuters-gold-monthly-drop","category":"commodities","categoryName":"원자재","category_ko":"원자재","categoryIcon":"🪙","title":"금, 달러 강세·고금리 전망에 2008년 이후 최대 월간 낙폭","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/gold-set-fourth-monthly-fall-bets-fed-rate-hikes-2026-06-30/","description":"연준 추가 긴축 기대와 달러 강세가 금 가격을 압박했다. 인플레이션 헤지 자산임에도 금리 상승기에는 보유 비용이 커져 귀금속 약세가 확대됐다.","score":474,"priority":474,"tags":["금","원자재","연준","달러","금리"]},
+    {"id":"fin-20260630-1307-reuters-china-pmi-ai-exports","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🏭","title":"중국 제조업 PMI 확장 전환, AI 수출이 경기 둔화 완충","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/chinas-factory-activity-expands-june-high-tech-exports-2026-06-30/","description":"중국 제조업 지표가 AI 관련 수출과 선적 앞당기기 영향으로 개선됐다. 다만 고용과 공장 출하가격 약세는 내수·디플레이션 우려를 계속 남긴다.","score":463,"priority":463,"tags":["중국PMI","제조업","AI수출","거시경제","디플레이션"]},
+    {"id":"fin-20260630-1307-reuters-cxmt-tencent-dram","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"CXMT-텐센트 DRAM 계약, AI 서버 메모리 공급 부족의 중국식 해법","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-cxmt-wins-3-billion-memory-supply-deal-with-tencent-sources-say-2026-06-29/","description":"텐센트의 서버용 DRAM 장기 조달은 AI 워크로드 증가와 메모리 가격 상승 국면을 반영한다. CXMT IPO 기대와 중국 반도체 자립 전략에도 직접 연결된다.","score":458,"priority":458,"tags":["CXMT","텐센트","DRAM","AI서버","IPO"]},
+    {"id":"fin-20260630-1307-reuters-global-markets-q2","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"아시아 증시 기록적 분기 마감, 달러·엔·금이 다음 변수","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"일본·한국·대만 증시가 AI·반도체 랠리로 강한 분기를 보냈지만 달러 강세, 엔저, 금 약세가 하반기 자금 흐름의 핵심 변수로 남았다.","score":456,"priority":456,"tags":["아시아증시","달러","엔저","금","반도체"]}
   ],
-  "byCategory": {
-    "global-markets": [],
-    "rates-fx": [],
-    "semiconductors": []
-  }
+  "byCategory": {"commodities": [], "macro": [], "semiconductors": [], "global-markets": []}
 }
