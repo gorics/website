@@ -1,24 +1,27 @@
 {
-  "generatedAt": "2026-06-30T19:07:44+09:00",
+  "generatedAt": "2026-06-30T19:32:48+09:00",
   "source": "gorics-news-automation",
   "page": "financial",
   "categories": [
-    {"id":"macro","name":"거시경제","icon":"📊","count":1},
-    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"fx-rates","name":"환율·금리","icon":"💱","count":1},
     {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
-    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1}
+    {"id":"macro","name":"거시경제","icon":"📊","count":1},
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1}
   ],
-  "total": 4,
+  "total": 5,
   "allItems": [
-    {"id":"fin-20260630-1907-reuters-china-pmi-ai","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"📊","title":"중국 제조업 확장 복귀…AI 수출 의존 경기 회복 신호","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/chinas-factory-activity-expands-june-high-tech-exports-2026-06-30/","description":"중국 PMI가 50선을 넘으며 확장으로 돌아섰다. AI 관련 수출이 제조업을 지탱하지만 내수·고용·공장도 가격 약세는 정책 완화 기대를 남긴다.","score":536,"priority":536,"tags":["중국","PMI","AI수출","거시경제","부양책"]},
-    {"id":"fin-20260630-1907-ft-mag7-semiconductor-rotation","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"AI 플랫폼주 약세, 반도체·메모리 공급망으로 자금 회전","publishedAt":"2026-06-30","date":"2026-06-30","source":"Financial Times","url":"https://www.ft.com/content/b90bdfcb-d773-42f7-bb5f-52dbd28b2174","description":"매그니피센트7이 대규모 시총 손실을 겪는 동안 필라델피아 반도체 지수와 메모리·스토리지 종목이 강세를 보였다. AI 투자 수혜의 중심이 서비스에서 하드웨어로 이동했다.","score":528,"priority":528,"tags":["AI","반도체","메모리","월가","기술주순환"]},
-    {"id":"fin-20260630-1907-reuters-gulf-oil-doha","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"도하 협상 불확실성에 걸프 증시·브렌트유 약세","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/middle-east/major-gulf-markets-subdued-amid-uncertainty-over-doha-talks-2026-06-30/","description":"미·이란 접촉 여부가 엇갈리며 걸프 증시가 방향성을 잃었다. 사우디 아람코와 주요 은행주가 눌렸고 브렌트유는 중동 리스크 재평가 속 하락했다.","score":512,"priority":512,"tags":["브렌트유","걸프증시","도하","미국이란","지정학"]},
-    {"id":"fin-20260630-1907-reuters-global-stocks-dollar-gold","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌐","title":"글로벌 주식 강세 속 달러·금·엔 급변…분기 말 리밸런싱 변수 확대","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"전세계 주식이 강한 2분기를 보인 반면 달러·금·엔은 큰 폭으로 재가격화됐다. AI 랠리와 금리 기대 변화가 분기 말 포지션 조정의 핵심 변수다.","score":506,"priority":506,"tags":["글로벌시장","달러","금","엔화","리밸런싱"]}
+    {"id":"fin-20260630-1932-reuters-central-banks-dollar","category":"fx-rates","categoryName":"환율·금리","category_ko":"환율·금리","categoryIcon":"💱","title":"중앙은행 달러 축소 선호 첫 우위…외환보유 다변화가 장기 환율 변수","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/first-time-more-central-banks-are-set-shrink-dollar-holdings-survey-finds-2026-06-30/","description":"OMFIF 조사에서 중앙은행들이 달러 비중 축소와 금·유로·위안 등 대체 보유 확대를 더 선호하는 것으로 나타났다. 준비통화 다극화 전망이 외환시장 장기 변수로 부상했다.","score":552,"priority":552,"tags":["달러","중앙은행","외환보유액","금","준비통화"]},
+    {"id":"fin-20260630-1932-reuters-oil-quarterly-loss","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"유가, 2020년 이후 최대 분기 낙폭 경로…미·이란 협상 기대가 리스크 프리미엄 압축","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-falls-investors-focus-potential-iran-us-talks-doha-2026-06-30/","description":"브렌트와 WTI가 중동 긴장 완화와 공급초과 전망 속에 큰 월간 낙폭을 기록했다. 도하 접촉 가능성과 호르무즈 해상 물류 회복 여부가 다음 유가 방향을 좌우한다.","score":538,"priority":538,"tags":["유가","브렌트","WTI","이란","호르무즈"]},
+    {"id":"fin-20260630-1932-reuters-ecb-oil-inflation","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"📊","title":"유가 급락에도 ECB 인플레 경계 유지…추가 긴축 시점은 데이터 의존","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/finance/ecbs-inflation-fears-linger-despite-oil-price-retreat-2026-06-30/","description":"유가가 빠르게 내려왔지만 ECB 인사들은 에너지 충격의 잔여 물가 압력을 경계하고 있다. 시장은 7월 인상 가능성을 낮게 보면서도 연내 추가 긴축 가능성은 남겨뒀다.","score":522,"priority":522,"tags":["ECB","인플레이션","유가","금리","유럽"]},
+    {"id":"fin-20260630-1932-reuters-global-stocks-dollar","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌐","title":"글로벌 증시 2분기 강세 지속…달러 강세와 금·엔 약세가 동시 진행","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"MSCI 전세계 지수가 2020년 이후 가장 강한 2분기 흐름을 보인 가운데 AI 관련주가 랠리를 주도했다. 동시에 달러 강세, 엔 약세, 금 가격 조정이 자산배분 변동성을 키웠다.","score":514,"priority":514,"tags":["글로벌증시","달러","엔화","금","AI랠리"]},
+    {"id":"fin-20260630-1932-reuters-onsemi-synaptics","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"온세미 70억달러 시냅틱스 인수…AI 디바이스 반도체 M&A 프리미엄 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/legal/transactional/onsemi-buy-synaptics-7-billion-all-stock-deal-2026-06-25/","description":"온세미가 시냅틱스에 19% 프리미엄을 제시하며 AI 내장 기기·로봇·휴먼머신 인터페이스 영역으로 확장을 노린다. 반도체 섹터의 AI 적용처 확대 신호로 해석된다.","score":501,"priority":501,"tags":["온세미","시냅틱스","반도체M&A","피지컬AI","로봇"]}
   ],
   "byCategory": {
-    "macro": [],
-    "semiconductors": [],
+    "fx-rates": [],
     "energy-geopolitics": [],
-    "global-markets": []
+    "macro": [],
+    "global-markets": [],
+    "semiconductors": []
   }
 }
