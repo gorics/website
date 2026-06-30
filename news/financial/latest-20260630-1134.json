@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-06-30T11:34:13+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":3},
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":2}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260630-1134-reuters-asia-shares-korea-chip-ai","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"아시아 증시 혼조, 한국 AI·반도체 투자 발표가 하방 완충","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/asian-markets-mixed-choppy-trade-ai-doubts-iran-tensions-cloud-outlook-2026-06-29/","description":"AI 투자 피로와 중동 리스크가 남아 있지만 한국의 대형 반도체·AI 투자 계획이 아시아 기술주 심리를 일부 떠받쳤다. 외환·원자재 변동성은 여전히 리스크다.","score":432,"priority":432,"tags":["아시아증시","한국반도체","AI투자","이란휴전","위험자산"]},
+    {"id":"fin-20260630-1134-reuters-europe-tech-middle-east-oil","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"유럽 증시 보합, 기술주 반등이 중동 경계감을 상쇄","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-steady-tech-gains-offset-middle-east-ceasefire-caution-2026-06-29/","description":"STOXX 600은 기술주 반등에도 건설·통신 약세와 중동 휴전 지속성 우려로 보합권에 머물렀다. 원유와 ECB 정책 회의가 단기 시장 변수로 남았다.","score":417,"priority":417,"tags":["유럽증시","기술주","중동리스크","원유","ECB"]},
+    {"id":"fin-20260630-1134-reuters-baidu-kunlunxin-ai-chip-ipo","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"바이두 쿤룬신 IPO 추진, 중국 AI 가속기 밸류에이션 과열 신호","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/commentary/breakingviews/baidu-chip-ipo-channels-extreme-ai-frenzy-2026-06-29/","description":"쿤룬신의 고평가 상장 추진은 중국 AI칩 자립 수요와 공급 부족이 반도체 자산 가격을 밀어 올리고 있음을 보여준다. 투자자에게는 성장성과 버블 리스크가 공존한다.","score":421,"priority":421,"tags":["AI칩","중국반도체","바이두","IPO","밸류에이션"]},
+    {"id":"fin-20260630-1134-guardian-chipmakers-first-half-ai-boom","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"AI 붐 수혜 반도체주 상반기 급등, 메모리·스토리지로 자금 이동","publishedAt":"2026-06-30","date":"2026-06-30","source":"The Guardian","url":"https://www.theguardian.com/business/2026/jun/29/shares-in-chipmakers-underpinning-ai-boom-surge-in-first-half-of-2026","description":"AI 인프라 투자가 소프트웨어보다 메모리·스토리지·반도체 장비 쪽 수익 기대를 키우며 글로벌 반도체주가 상반기 시장을 주도했다. 급등 이후 차익실현 위험도 커졌다.","score":409,"priority":409,"tags":["AI붐","메모리","반도체주","스토리지","차익실현"]},
+    {"id":"fin-20260630-1134-ap-us-stocks-ai-rebound","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"미 증시 반등, AI 투자 기대가 S&P500·나스닥 회복 견인","publishedAt":"2026-06-30","date":"2026-06-30","source":"AP","url":"https://apnews.com/article/8e1287dac3ff8f27ff280beb9a9c06b0","description":"미 증시는 지난주 하락 뒤 AI 관련주와 반도체 투자 기대에 반등했다. 대형 기술주 집중도와 원유·금리 변수는 하반기 시장 변동성의 핵심 요인으로 남았다.","score":404,"priority":404,"tags":["미국증시","S&P500","나스닥","AI투자","기술주"]}
+  ],
+  "byCategory": {"global-markets": [], "semiconductors": []}
+}
