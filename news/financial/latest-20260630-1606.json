@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-30T16:06:49+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":3},
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1},
+    {"id":"macro","name":"거시경제","icon":"🏦","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260630-1606-ap-korea-chip-hub","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"삼성·SK하이닉스 800조원 반도체 허브, 글로벌 메모리 공급 변수","publishedAt":"2026-06-30","date":"2026-06-30","source":"AP","url":"https://apnews.com/article/22352d95c7a821c5f4548b2d1a4ebde8","description":"한국 메모리 양강이 AI 수요 확대에 맞춰 초대형 반도체 허브 투자를 추진한다. 장기적으로 HBM·DRAM 공급능력과 경쟁사 가격 전망에 영향을 줄 수 있다.","score":497,"priority":497,"tags":["삼성전자","SK하이닉스","HBM","DRAM","AI수요"]},
+    {"id":"fin-20260630-1606-barrons-micron-memory-threat","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"마이크론, 한국 메모리 투자발 공급 확대 우려에도 단기 충격 제한","publishedAt":"2026-06-30","date":"2026-06-30","source":"Barron's","url":"https://www.barrons.com/articles/micron-stock-price-sk-hynix-samsung-memory-e7b30372","description":"삼성·SK하이닉스의 대규모 투자 발표가 마이크론 주가와 메모리 업황에 부담으로 거론됐다. 다만 실제 공급 증가는 수년 뒤라 단기 가격 영향은 제한적이라는 분석이 나왔다.","score":472,"priority":472,"tags":["마이크론","메모리","삼성전자","SK하이닉스","HBM"]},
+    {"id":"fin-20260630-1606-wsj-soitec-zensemi","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"Soitec-ZenSemi 협력, AI 인프라용 반도체 소재주 재평가","publishedAt":"2026-06-30","date":"2026-06-30","source":"WSJ","url":"https://www.wsj.com/tech/soitec-shares-climb-on-partnership-with-chinas-zensemi-74a4ba0f","description":"Soitec가 중국 ZenSemi와 Power-SOI 기판 공급 협력을 발표하며 주가가 상승했다. AI 데이터센터와 전기차 수요가 반도체 소재 밸류체인까지 확산되는 흐름이다.","score":468,"priority":468,"tags":["Soitec","ZenSemi","반도체소재","Power-SOI","AI인프라"]},
+    {"id":"fin-20260630-1606-reuters-asian-stocks-quarter-context","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"아시아 증시 기록적 분기, 반도체·달러·원자재 동시 재가격화","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"일본·한국·대만 증시가 반도체 강세를 배경으로 큰 폭의 분기 상승률을 기록했다. 동시에 달러 강세, 금 약세, 유가 안정이 글로벌 포트폴리오 조정을 자극했다.","score":462,"priority":462,"tags":["아시아증시","달러","반도체","금","유가"]},
+    {"id":"fin-20260630-1606-reuters-china-pmi-high-tech","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🏦","title":"중국 PMI 확장 전환, AI 고기술 수출 의존 회복세","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/chinas-factory-activity-expands-june-high-tech-exports-2026-06-30/","description":"중국 제조업 지표가 AI 관련 칩·컴퓨터 수출 증가에 힘입어 확장 국면으로 돌아섰다. 다만 부동산과 내수 부진은 추가 정책 완화 기대를 남겼다.","score":455,"priority":455,"tags":["중국PMI","AI수출","거시경제","제조업","정책완화"]}
+  ],
+  "byCategory": {"semiconductors": [], "global-markets": [], "macro": []}
+}
