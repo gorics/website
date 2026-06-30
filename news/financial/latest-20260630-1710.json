@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-06-30T17:10:15+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":3},
+    {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"fin-20260630-1710-reuters-us-spr-lowest-1983","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"미 전략비축유 1983년 이후 최저…원유 수급 완충력 약화","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-stocks-us-strategic-petroleum-reserve-fall-by-55-million-lowest-level-since-2026-06-29/","description":"미국 SPR이 325.7백만 배럴까지 줄어 1983년 이후 최저치를 기록했다. 이란전 대응 방출과 상업 재고 감소가 겹쳐 에너지 시장의 비상 완충력이 약해졌다.","score":503,"priority":503,"tags":["SPR","전략비축유","원유재고","에너지안보","이란전"]},
+    {"id":"fin-20260630-1710-reuters-us-iran-doha-envoys","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"미·이란 도하 회동 추진, 호르무즈 정상화 기대와 불확실성 병존","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/middle-east/us-says-trump-envoys-kushner-witkoff-will-travel-iran-meeting-doha-2026-06-29/","description":"미국 특사단이 도하에서 이란 관련 논의에 나서며 호르무즈 재개 합의 이행 여부가 다시 시장 변수로 떠올랐다. 원유·LNG 운송 리스크 프리미엄의 방향이 핵심이다.","score":491,"priority":491,"tags":["호르무즈","미국이란","원유","LNG","지정학"]},
+    {"id":"fin-20260630-1710-reuters-gulf-markets-us-iran","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"걸프 증시, 미·이란 긴장에 약세…에너지·은행주 동반 부담","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/middle-east/major-gulf-markets-ease-us-iran-tensions-keep-investors-edge-2026-06-29/","description":"사우디·UAE·카타르 등 걸프 주요 증시가 미·이란 긴장 지속에 하락했다. 유가가 진정돼도 호르무즈 리스크가 지역 은행·에너지주 심리를 누르고 있다.","score":472,"priority":472,"tags":["걸프증시","사우디","UAE","이란","에너지주"]},
+    {"id":"fin-20260630-1710-reuters-fed-cook-independence","category":"rates-policy","categoryName":"금리·정책","category_ko":"금리·정책","categoryIcon":"🏦","title":"미 대법원, 연준 이사 해임 제동…중앙은행 독립성 방어","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/us-supreme-court-rejects-trumps-unprecedented-bid-fire-feds-cook-2026-06-29/","description":"대법원이 연준 리사 쿡 이사 해임 시도를 막으며 통화정책 독립성을 확인했다. 동시에 다른 독립기관 통제권은 넓혀 금융시장은 연준 예외 조항의 범위에 주목한다.","score":468,"priority":468,"tags":["연준","Lisa Cook","중앙은행독립성","금리","미국대법원"]}
+  ],
+  "byCategory": {"energy-geopolitics": [], "rates-policy": []}
+}
