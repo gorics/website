@@ -1,22 +1,28 @@
 {
-  "generatedAt": "2026-06-30T11:08:52+09:00",
+  "generatedAt": "2026-06-30T11:34:13+09:00",
   "source": "gorics-news-automation",
   "page": "news",
   "categories": [
-    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":2},
+    {"id":"economy","name":"경제","icon":"📈","count":1},
     {"id":"tech","name":"기술","icon":"🤖","count":1},
-    {"id":"politics","name":"정치","icon":"🏛️","count":1},
     {"id":"play","name":"스포츠","icon":"⚽","count":1},
     {"id":"culture","name":"문화","icon":"🎭","count":1}
   ],
   "total": 6,
   "allItems": [
-    {"id":"main-20260630-1108-ap-korea-chipmaking-hub-ai-demand","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"삼성·SK하이닉스, AI 수요 대응 5180억달러 반도체 허브 투자 발표","publishedAt":"2026-06-30","date":"2026-06-30","source":"AP","url":"https://apnews.com/article/22352d95c7a821c5f4548b2d1a4ebde8","description":"삼성전자와 SK하이닉스가 광주 등 서남권에 대규모 반도체 생산 거점을 구축하기로 했다. AI 인프라와 메모리 수요 확대가 한국 제조 투자 재편의 핵심 동력으로 부상했다.","score":468,"priority":468,"tags":["삼성전자","SK하이닉스","AI반도체","메모리","한국경제"]},
-    {"id":"main-20260630-1108-reuters-global-markets-yen-oil-iran","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"글로벌 증시·유가 상승, 엔화는 달러 대비 40년 저점권","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"투자자들이 이란 관련 긴장과 금리 경로를 주시하는 가운데 주식과 유가가 올랐다. 엔화 약세는 미·일 금리차와 개입 가능성을 다시 시장 변수로 만들었다.","score":442,"priority":442,"tags":["글로벌시장","유가","엔화","이란","금리"]},
-    {"id":"main-20260630-1108-reuters-korea-ai-chip-megaprojects","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"한국, 반도체·피지컬AI·AI 데이터센터 3대 메가 프로젝트 제시","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/key-facts-south-koreas-three-chip-ai-mega-projects-2026-06-29/","description":"한국 정부와 대기업들이 반도체 클러스터, 로봇 기반 피지컬 AI, 대규모 AI 데이터센터 구축 계획을 내놨다. 전력·인력·입지 확보가 실행력의 관건이다.","score":435,"priority":435,"tags":["피지컬AI","AI데이터센터","반도체클러스터","로봇","한국산업"]},
-    {"id":"main-20260630-1108-ap-mail-ballots-supreme-court","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 선거일 소인 우편투표의 지연 도착 개표 허용","publishedAt":"2026-06-30","date":"2026-06-30","source":"AP","url":"https://apnews.com/article/5f24f718ea92a33838485ce6302e079e","description":"대법원이 선거일까지 소인이 찍힌 우편투표는 이후 도착해도 주가 개표할 수 있다고 판단했다. 중간선거를 앞두고 군인·해외 유권자와 주 선거행정에 직접 영향을 준다.","score":424,"priority":424,"tags":["미국대법원","우편투표","선거법","중간선거","투표권"]},
-    {"id":"main-20260630-1108-reuters-brazil-japan-world-cup-last32","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"브라질, 마르티넬리 95분 결승골로 일본 꺾고 월드컵 8강행","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/sports/soccer/martinelli-rescue-brazil-edge-japan-2-1-last-32-2026-06-29/","description":"일본이 선제골로 앞섰지만 브라질이 후반 카세미루 동점골과 마르티넬리의 추가시간 결승골로 2-1 역전승을 거뒀다. 일본의 첫 월드컵 토너먼트 승리 도전은 무산됐다.","score":399,"priority":399,"tags":["월드컵","브라질","일본","마르티넬리","축구"]},
-    {"id":"main-20260630-1108-reuters-bet-awards-teyana-taylor","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎭","title":"테야나 테일러, 2026 BET 어워즈 4관왕","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/teyana-taylor-wins-big-2026-bet-awards-2026-06-29/","description":"테야나 테일러가 2026 BET 어워즈에서 올해의 아이콘 등 4개 부문을 수상했다. 행사에서는 블랙 음악·영화·패션 성취와 장기 커리어를 기리는 흐름이 두드러졌다.","score":372,"priority":372,"tags":["BET어워즈","테야나테일러","음악","문화","엔터테인먼트"]}
+    {"id":"main-20260630-1134-ap-supreme-court-geofence-privacy","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 휴대전화 위치기록에도 헌법상 프라이버시 보호 인정","publishedAt":"2026-06-30","date":"2026-06-30","source":"AP","url":"https://apnews.com/article/a3adee8a3fd32b8ea1b42eb72cbcc35f","description":"미 대법원이 지오펜스 영장으로 수집한 휴대전화 위치기록에 헌법상 사생활 보호가 적용된다고 판단했다. 디지털 수사와 플랫폼 위치데이터 활용에 큰 제동을 거는 판례다.","score":463,"priority":463,"tags":["미국대법원","위치정보","프라이버시","지오펜스","디지털수사"]},
+    {"id":"main-20260630-1134-ap-dea-fentanyl-new-mexico","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"뉴멕시코, DEA 펜타닐 수사 논란에 수십억달러 배상 검토","publishedAt":"2026-06-30","date":"2026-06-30","source":"AP","url":"https://apnews.com/article/a0f612e1c3c65f132a81c80fbf65582c","description":"뉴멕시코 주지사는 DEA가 대형 사건 수사를 이유로 펜타닐 유통을 방치했다는 의혹에 대해 민사 손해배상을 검토한다고 밝혔다. 마약 단속 책임성과 연방 수사 관행이 쟁점이다.","score":438,"priority":438,"tags":["DEA","펜타닐","뉴멕시코","마약정책","연방수사"]},
+    {"id":"main-20260630-1134-reuters-asia-shares-korea-chip-ai","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"아시아 증시 혼조, 한국 반도체 투자와 이란 휴전이 투자심리 지지","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/asian-markets-mixed-choppy-trade-ai-doubts-iran-tensions-cloud-outlook-2026-06-29/","description":"아시아 증시는 AI 밸류에이션 부담과 지정학 불확실성 속에 혼조세를 보였다. 한국의 대규모 반도체·AI 투자와 이란 휴전 기대가 위험자산 하락을 일부 막았다.","score":432,"priority":432,"tags":["아시아증시","AI투자","한국반도체","이란휴전","위험자산"]},
+    {"id":"main-20260630-1134-reuters-baidu-kunlunxin-ai-chip-ipo","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"바이두 AI칩 자회사 쿤룬신, 홍콩 IPO 추진 속 고평가 논쟁","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/commentary/breakingviews/baidu-chip-ipo-channels-extreme-ai-frenzy-2026-06-29/","description":"바이두의 AI칩 자회사 쿤룬신이 홍콩 상장을 추진하면서 중국산 AI 가속기 수요와 고평가 논쟁이 함께 커졌다. 미·중 기술 갈등과 반도체 자립 흐름이 배경이다.","score":421,"priority":421,"tags":["바이두","쿤룬신","AI칩","홍콩IPO","중국반도체"]},
+    {"id":"main-20260630-1134-wired-world-cup-hydration-breaks","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"월드컵 수분 휴식 논란, 선수 보호와 광고 수익 논쟁으로 확대","publishedAt":"2026-06-30","date":"2026-06-30","source":"Wired","url":"https://www.wired.com/story/world-cup-new-hydration-breaks-are-about-more-than-water","description":"2026 월드컵의 정례 수분 휴식이 폭염 대응책인지 방송 광고 시간 확대인지 논란이 커지고 있다. 경기 흐름과 선수 보호, FIFA의 상업화 전략이 동시에 도마에 올랐다.","score":394,"priority":394,"tags":["월드컵","수분휴식","FIFA","폭염","스포츠비즈니스"]},
+    {"id":"main-20260630-1134-people-lauryn-hill-bet-living-legend","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎭","title":"로린 힐, BET 어워즈 첫 ‘리빙 레전드 아이콘’ 수상","publishedAt":"2026-06-30","date":"2026-06-30","source":"People","url":"https://people.com/bet-awards-2026-lauryn-hill-receives-living-legend-icon-award-12005910","description":"로린 힐이 2026 BET 어워즈에서 첫 리빙 레전드 아이콘상을 받았다. 힙합·R&B와 대중문화에 남긴 장기적 영향력을 기리는 무대가 이어졌다.","score":371,"priority":371,"tags":["로린힐","BET어워즈","음악","문화","힙합"]}
   ],
-  "byCategory": {"economy":[],"tech":[],"politics":[],"play":[],"culture":[]}
+  "byCategory": {
+    "politics": [],
+    "economy": [],
+    "tech": [],
+    "play": [],
+    "culture": []
+  }
 }
