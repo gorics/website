@@ -11,8 +11,8 @@
     <header>
       <h1>GORICS Real Linux ISO Launcher</h1>
       <p>
-        HTML로 만든 가짜 OS가 아니라, 사이트 안의 <code>os/linux/1/linux.iso</code> 실제 ISO 파일을
-        브라우저 x86 VM(v86)에서 CD-ROM으로 부팅합니다.
+        HTML로 만든 가짜 OS가 아니라, 실제 Linux ISO/CD-ROM 이미지를 브라우저 x86 VM(v86)에서 부팅합니다.
+        기본값은 v86에서 검증된 ISO이며, 사이트 내부 <code>os/linux/1/linux.iso</code>도 선택할 수 있습니다.
       </p>
     </header>
 
@@ -25,7 +25,7 @@
         <button id="fullscreen-btn" class="secondary">전체화면</button>
       </div>
       <p class="hint" id="preset-detail">프리셋 정보를 불러오는 중...</p>
-      <p class="hint">브라우저 제한 때문에 v86 호환 32-bit/레거시 BIOS 계열 이미지를 우선 실행합니다.</p>
+      <p class="hint">페이지가 열리면 기본 ISO를 자동 부팅합니다. 안 뜨면 중지 후 다른 프리셋을 선택하세요.</p>
     </section>
 
     <section class="panel status-panel">
