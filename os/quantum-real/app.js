@@ -21,6 +21,12 @@
   const BUILTIN_ISO = './assets/gorics-quantum-webboot-i386.iso';
   const BUILTIN_SHA = './assets/gorics-quantum-webboot-i386.iso.sha256';
   const FALLBACK_ISO = '../linux/1/linux.iso';
+  const DIRECT_LINUX = {
+    label: 'GORICS Instant Linux',
+    bzimage: 'https://copy.sh/v86/images/buildroot-bzimage.bin',
+    initrd: 'https://copy.sh/v86/images/buildroot-rootfs.ext2',
+    cmdline: 'rw root=/dev/ram0 console=ttyS0 console=tty0 init=/bin/sh',
+  };
 
   const $ = (id) => document.getElementById(id);
   const logEl = $('log');
@@ -33,7 +39,6 @@
   const stopBtn = $('stop-vm');
   const focusBtn = $('focus-vm');
   const fullBtn = $('fullscreen');
-
   const downloadIso = document.querySelector('a[href="./assets/gorics-quantum-webboot-i386.iso"]');
   const downloadSha = document.querySelector('a[href="./assets/gorics-quantum-webboot-i386.iso.sha256"]');
 
@@ -128,7 +133,7 @@
     });
   }
 
-  async function bootFromUrl(url, label) {
+  async function startVm(config, label) {
     stopVm();
     setStatus('BOOTING');
     bootBuiltin.disabled = true;
@@ -144,12 +149,12 @@
         screen_container: screen,
         memory_size: 128 * 1024 * 1024,
         vga_memory_size: 8 * 1024 * 1024,
-        cdrom: { url, async: true },
         autostart: true,
+        ...config,
       });
       window.goricsQuantumVm = emulator;
       bindEvents(label);
-      log(`booting ISO: ${url}`);
+      log(`booting: ${label}`);
     } catch (error) {
       setStatus('ERROR', 'err');
       log(`boot failed: ${error.message}`);
@@ -160,95 +165,83 @@
     }
   }
 
+  async function bootFromUrl(url, label) {
+    await startVm({ cdrom: { url, async: true } }, label);
+  }
+
+  async function bootDirectLinux() {
+    await startVm({
+      bzimage: { url: DIRECT_LINUX.bzimage, async: true },
+      initrd: { url: DIRECT_LINUX.initrd, async: true },
+      cmdline: DIRECT_LINUX.cmdline,
+    }, DIRECT_LINUX.label);
+  }
+
   async function bootFromFile(file) {
-    stopVm();
-    setStatus('BOOTING');
-    bootBuiltin.disabled = true;
-    bootFile.disabled = true;
     try {
-      const runtime = await ensureRuntime();
-      const V86Ctor = window.V86Starter || window.V86;
       const buffer = await file.arrayBuffer();
-      screen.innerHTML = '';
-      emulator = new V86Ctor({
-        wasm_path: runtime.wasm,
-        bios: { url: runtime.bios },
-        vga_bios: { url: runtime.vga },
-        screen_container: screen,
-        memory_size: 128 * 1024 * 1024,
-        vga_memory_size: 8 * 1024 * 1024,
-        cdrom: { buffer },
-        autostart: true,
-      });
-      window.goricsQuantumVm = emulator;
-      bindEvents(file.name);
-      log(`booting local ISO: ${file.name} (${Math.round(file.size / 1024 / 1024)} MB)`);
+      await startVm({ cdrom: { buffer } }, file.name);
+      log(`local ISO loaded: ${file.name} (${Math.round(file.size / 1024 / 1024)} MB)`);
     } catch (error) {
       setStatus('ERROR', 'err');
-      log(`local boot failed: ${error.message}`);
-      alert(`로컬 ISO 부팅 실패: ${error.message}`);
-    } finally {
-      bootBuiltin.disabled = false;
-      bootFile.disabled = false;
+      log(`local ISO read failed: ${error.message}`);
+      alert(`로컬 ISO 읽기 실패: ${error.message}`);
     }
   }
 
-  async function chooseBuiltinIso() {
-    if (await headOk(BUILTIN_ISO)) return { url: BUILTIN_ISO, label: 'GORICS Quantum ISO', sha: BUILTIN_SHA };
-    if (await headOk(FALLBACK_ISO)) return { url: FALLBACK_ISO, label: 'Fallback Linux ISO', sha: null };
-    return null;
+  async function chooseBootSource() {
+    if (await headOk(BUILTIN_ISO)) return { type: 'iso', url: BUILTIN_ISO, label: 'GORICS Quantum ISO', sha: BUILTIN_SHA };
+    if (await headOk(FALLBACK_ISO)) return { type: 'iso', url: FALLBACK_ISO, label: 'Fallback Linux ISO', sha: null };
+    return { type: 'direct', label: DIRECT_LINUX.label, sha: null };
   }
 
   async function refreshLinks() {
-    const picked = await chooseBuiltinIso();
-    if (!picked) {
-      assetState.textContent = 'ISO 빌드 필요';
-      assetState.style.color = 'var(--danger)';
-      if (downloadIso) {
+    const picked = await chooseBootSource();
+    const hasIso = picked.type === 'iso';
+
+    assetState.textContent = hasIso
+      ? (picked.url === BUILTIN_ISO ? 'GORICS ISO 내장 완료' : '대체 Linux ISO 사용 가능')
+      : '즉시 Linux 커널 부팅 가능';
+    assetState.style.color = picked.url === BUILTIN_ISO ? 'var(--ok)' : 'var(--accent)';
+    bootBuiltin.textContent = hasIso ? '사용 가능한 OS 부팅' : 'Instant Linux 부팅';
+
+    if (downloadIso) {
+      if (hasIso) {
+        downloadIso.href = picked.url;
+        downloadIso.setAttribute('download', '');
+        downloadIso.removeAttribute('aria-disabled');
+      } else {
         downloadIso.href = '#';
         downloadIso.removeAttribute('download');
         downloadIso.setAttribute('aria-disabled', 'true');
       }
-      if (downloadSha) {
-        downloadSha.href = '#';
-        downloadSha.removeAttribute('download');
-        downloadSha.setAttribute('aria-disabled', 'true');
-      }
-      log('no built-in or fallback ISO found.');
-      return null;
     }
 
-    assetState.textContent = picked.url === BUILTIN_ISO ? 'GORICS ISO 내장 완료' : '대체 Linux ISO 사용 가능';
-    assetState.style.color = picked.url === BUILTIN_ISO ? 'var(--ok)' : 'var(--accent)';
-    if (downloadIso) {
-      downloadIso.href = picked.url;
-      downloadIso.setAttribute('download', '');
-      downloadIso.removeAttribute('aria-disabled');
-    }
     if (downloadSha) {
       if (picked.sha && await headOk(picked.sha)) {
         downloadSha.href = picked.sha;
         downloadSha.setAttribute('download', '');
         downloadSha.removeAttribute('aria-disabled');
+        downloadSha.textContent = 'SHA256';
       } else {
         downloadSha.href = '#';
         downloadSha.removeAttribute('download');
         downloadSha.setAttribute('aria-disabled', 'true');
-        downloadSha.textContent = 'SHA256 없음';
+        downloadSha.textContent = hasIso ? 'SHA256 없음' : '직접 커널 부팅';
       }
     }
-    log(`${picked.label} ready: ${picked.url}`);
+
+    log(`${picked.label} ready.`);
     return picked;
   }
 
   bootBuiltin.addEventListener('click', async () => {
     const picked = await refreshLinks();
-    if (!picked) {
-      setStatus('NO ISO', 'err');
-      alert('사용 가능한 ISO가 없습니다. GitHub Actions ISO 빌드 또는 기존 Linux ISO 경로를 확인하세요.');
-      return;
+    if (picked.type === 'iso') {
+      await bootFromUrl(picked.url, picked.label);
+    } else {
+      await bootDirectLinux();
     }
-    await bootFromUrl(picked.url, picked.label);
   });
 
   bootFile.addEventListener('click', async () => {
