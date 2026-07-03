@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Real OS Multiboot (Linux + Windows)</title>
+  <title>GORICS Real Linux ISO Launcher</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
   <main class="app">
     <header>
-      <h1>Real OS Multiboot</h1>
+      <h1>GORICS Real Linux ISO Launcher</h1>
       <p>
-        기존 <code>os/</code> 코드는 수정하지 않고, 새 폴더에 실제 부팅 가능한 OS 런처를 추가했습니다.
-        (v86 + 공개 이미지)
+        HTML로 만든 가짜 OS가 아니라, 사이트 안의 <code>os/linux/1/linux.iso</code> 실제 ISO 파일을
+        브라우저 x86 VM(v86)에서 CD-ROM으로 부팅합니다.
       </p>
     </header>
 
@@ -24,12 +24,13 @@
         <button id="stop-btn" class="danger">중지</button>
         <button id="fullscreen-btn" class="secondary">전체화면</button>
       </div>
-      <p class="hint">Linux/Windows 모두 실제 디스크/ISO 이미지로 부팅됩니다. (가짜 UI 아님)</p>
+      <p class="hint" id="preset-detail">프리셋 정보를 불러오는 중...</p>
+      <p class="hint">브라우저 제한 때문에 v86 호환 32-bit/레거시 BIOS 계열 이미지를 우선 실행합니다.</p>
     </section>
 
     <section class="panel status-panel">
       <h2>상태 로그</h2>
-      <pre id="log" aria-live="polite">[ready] 런처 준비 완료.</pre>
+      <pre id="log" aria-live="polite">[ready] 실제 ISO 런처 준비 완료.</pre>
     </section>
 
     <section class="screen-wrap">
