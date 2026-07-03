@@ -28,7 +28,7 @@ code { color: var(--accent); }
 .control-card { padding: 18px; min-height: 190px; display: flex; flex-direction: column; gap: 12px; }
 .control-card.primary { border-color: rgba(85,230,255,.55); }
 button, .button-like { appearance: none; border: 0; border-radius: 12px; background: linear-gradient(135deg, var(--accent2), var(--accent)); color: #020617; font-weight: 900; padding: 12px 14px; cursor: pointer; text-decoration: none; text-align: center; margin-top: auto; }
-button:disabled { opacity: .55; cursor: wait; }
+button:disabled, .button-like[aria-disabled="true"] { opacity: .55; cursor: not-allowed; pointer-events: none; }
 .button-like.secondary, .small { background: #1f2a3d; color: var(--text); border: 1px solid var(--line); }
 input[type=file] { width: 100%; border: 1px dashed var(--line); border-radius: 12px; padding: 12px; color: var(--muted); background: rgba(0,0,0,.22); }
 .vm-panel { min-height: min(70vh, 720px); display: flex; flex-direction: column; overflow: hidden; }
