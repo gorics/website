@@ -20,19 +20,9 @@
 
   const OS_PRESETS = [
     {
-      id: 'gorics-linux-iso',
-      label: 'GORICS Linux ISO (사이트 내 실제 ISO)',
-      detail: 'os/linux/1/linux.iso를 CD-ROM으로 직접 부팅합니다. HTML 가짜 UI가 아닙니다.',
-      memorySize: 192 * 1024 * 1024,
-      vgaMemorySize: 8 * 1024 * 1024,
-      setup: {
-        cdrom: { url: '../linux/1/linux.iso', async: true },
-      },
-    },
-    {
       id: 'buildroot-kernel',
-      label: 'Buildroot Linux (빠른 커널 부팅)',
-      detail: 'v86 공식 샘플 커널+initrd. 사이트 내 ISO 문제 확인용 백업 프리셋입니다.',
+      label: 'Buildroot Linux (즉시 부팅 / 실제 Linux)',
+      detail: 'v86에서 가장 안정적으로 바로 부팅되는 실제 Linux kernel+rootfs입니다. HTML 가짜 UI가 아닙니다.',
       memorySize: 128 * 1024 * 1024,
       vgaMemorySize: 8 * 1024 * 1024,
       setup: {
@@ -43,12 +33,22 @@
     },
     {
       id: 'dsl-linux-iso',
-      label: 'Damn Small Linux ISO (검증된 실제 ISO)',
-      detail: 'v86에서 부팅되는 실제 Linux ISO입니다. 로컬 ISO가 실패할 때 기본 실행용으로 사용합니다.',
+      label: 'Damn Small Linux ISO (실제 ISO)',
+      detail: 'v86에서 부팅 가능한 실제 Linux CD-ROM ISO입니다. 느리면 Buildroot 프리셋을 쓰세요.',
       memorySize: 192 * 1024 * 1024,
       vgaMemorySize: 8 * 1024 * 1024,
       setup: {
         cdrom: { url: 'https://copy.sh/v86/images/linux4.iso', async: true },
+      },
+    },
+    {
+      id: 'gorics-linux-iso',
+      label: 'GORICS Linux ISO (사이트 내부 ISO)',
+      detail: 'os/linux/1/linux.iso를 CD-ROM으로 직접 부팅합니다. 이 ISO가 v86과 맞지 않으면 부팅이 멈출 수 있습니다.',
+      memorySize: 192 * 1024 * 1024,
+      vgaMemorySize: 8 * 1024 * 1024,
+      setup: {
+        cdrom: { url: '../linux/1/linux.iso', async: true },
       },
     },
   ];
@@ -81,17 +81,25 @@
 
   const ensureScript = async (src) => {
     if (window.V86Starter || window.V86) return;
-    if (document.querySelector(`script[data-v86-src="${src}"]`)) return;
 
     await new Promise((resolve, reject) => {
-      const script = document.createElement('script');
+      const existing = document.querySelector(`script[data-v86-src="${src}"]`);
+      if (existing && existing.dataset.loaded === 'true') {
+        resolve();
+        return;
+      }
+
+      const script = existing || document.createElement('script');
       script.src = src;
       script.async = true;
       script.crossOrigin = 'anonymous';
       script.dataset.v86Src = src;
-      script.onload = resolve;
+      script.onload = () => {
+        script.dataset.loaded = 'true';
+        resolve();
+      };
       script.onerror = () => reject(new Error(`v86 런타임 로드 실패: ${src}`));
-      document.head.appendChild(script);
+      if (!existing) document.head.appendChild(script);
     });
   };
 
@@ -117,30 +125,6 @@
     throw lastError || new Error('v86 런타임을 로드하지 못했습니다.');
   };
 
-  const headCheck = async (url) => {
-    try {
-      const response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
-      return response.ok ? 'ok' : `http-${response.status}`;
-    } catch (_) {
-      return 'unknown';
-    }
-  };
-
-  const preflightPreset = async (preset) => {
-    const targets = [];
-    if (preset.setup.cdrom?.url) targets.push(['cdrom', preset.setup.cdrom.url]);
-    if (preset.setup.bzimage?.url) targets.push(['bzimage', preset.setup.bzimage.url]);
-    if (preset.setup.initrd?.url) targets.push(['initrd', preset.setup.initrd.url]);
-
-    for (const [kind, url] of targets) {
-      appendLog(`${kind} 확인: ${url}`);
-      const status = await headCheck(url);
-      if (status !== 'ok' && status !== 'unknown') {
-        throw new Error(`${kind} 이미지 접근 실패: ${url} (${status})`);
-      }
-    }
-  };
-
   const stopMachine = () => {
     if (!emulator) {
       appendLog('중지할 VM 없음.');
@@ -158,6 +142,18 @@
     appendLog('VM 종료 완료.');
   };
 
+  const bindLogs = (preset) => {
+    emulator.add_listener('emulator-ready', () => appendLog(`${preset.label} emulator-ready`));
+    emulator.add_listener('emulator-started', () => appendLog(`${preset.label} emulator-started`));
+    emulator.add_listener('emulator-stopped', () => appendLog(`${preset.label} emulator-stopped`));
+    emulator.add_listener('download-error', (event) => appendLog(`download-error: ${event && event.url ? event.url : 'unknown'}`));
+    emulator.add_listener('download-progress', (event) => {
+      if (!event || !event.total) return;
+      const progress = ((event.loaded / event.total) * 100).toFixed(1);
+      appendLog(`${preset.id} download ${progress}%`);
+    });
+  };
+
   const bootMachine = async () => {
     const preset = selectedPreset();
     if (!preset) {
@@ -172,7 +168,6 @@
       if (emulator) stopMachine();
       screenEl.innerHTML = '';
 
-      await preflightPreset(preset);
       const cdn = await ensureV86Runtime();
       const V86Ctor = window.V86Starter || window.V86;
 
@@ -187,19 +182,10 @@
         ...preset.setup,
       };
 
+      appendLog('VM 생성 중...');
       emulator = new V86Ctor(config);
       window.goricsEmulator = emulator;
-
-      emulator.add_listener('emulator-ready', () => appendLog(`${preset.label} emulator-ready`));
-      emulator.add_listener('emulator-started', () => appendLog(`${preset.label} emulator-started`));
-      emulator.add_listener('emulator-stopped', () => appendLog(`${preset.label} emulator-stopped`));
-      emulator.add_listener('download-error', (event) => appendLog(`download-error: ${event && event.url ? event.url : 'unknown'}`));
-      emulator.add_listener('download-progress', (event) => {
-        if (!event || !event.total) return;
-        const progress = ((event.loaded / event.total) * 100).toFixed(1);
-        appendLog(`${preset.id} download ${progress}%`);
-      });
-
+      bindLogs(preset);
       appendLog(`${preset.label} 부팅 시작.`);
     } catch (error) {
       appendLog(`부팅 실패: ${error.message}`);
@@ -215,7 +201,7 @@
     selectEl.appendChild(option);
   });
 
-  selectEl.value = 'dsl-linux-iso';
+  selectEl.value = 'buildroot-kernel';
   updatePresetDetail();
 
   selectEl.addEventListener('change', updatePresetDetail);
