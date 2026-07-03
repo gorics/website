@@ -1,0 +1,33 @@
+name: Build GORICS Quantum OS ISO
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - 'os/quantum-real/**'
+      - '.github/workflows/build-quantum-os-iso.yml'
+
+jobs:
+  build-iso:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install ISO build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends xorriso isolinux syslinux-common cpio gzip curl ca-certificates
+
+      - name: Build browser-bootable Linux ISO
+        run: bash os/quantum-real/scripts/build-browser-iso.sh
+
+      - name: Upload ISO artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: gorics-quantum-webboot-i386
+          path: |
+            os/quantum-real/assets/gorics-quantum-webboot-i386.iso
+            os/quantum-real/assets/gorics-quantum-webboot-i386.iso.sha256
+            os/quantum-real/assets/gorics-quantum-webboot-i386.iso.meta.json
