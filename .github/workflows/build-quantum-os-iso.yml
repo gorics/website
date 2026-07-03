@@ -8,6 +8,9 @@ on:
       - 'os/quantum-real/**'
       - '.github/workflows/build-quantum-os-iso.yml'
 
+permissions:
+  contents: write
+
 jobs:
   build-iso:
     runs-on: ubuntu-latest
@@ -31,3 +34,9 @@ jobs:
             os/quantum-real/assets/gorics-quantum-webboot-i386.iso
             os/quantum-real/assets/gorics-quantum-webboot-i386.iso.sha256
             os/quantum-real/assets/gorics-quantum-webboot-i386.iso.meta.json
+
+      - name: Commit ISO into site assets
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Add generated GORICS Quantum WebBoot ISO
+          file_pattern: os/quantum-real/assets/gorics-quantum-webboot-i386.iso os/quantum-real/assets/gorics-quantum-webboot-i386.iso.sha256 os/quantum-real/assets/gorics-quantum-webboot-i386.iso.meta.json
