@@ -4,9 +4,6 @@ on:
   workflow_dispatch:
   push:
     branches: [ main ]
-    paths:
-      - 'os/quantum-real/**'
-      - '.github/workflows/build-quantum-os-iso.yml'
 
 permissions:
   contents: write
@@ -40,5 +37,3 @@ jobs:
         with:
           commit_message: Add generated GORICS Quantum WebBoot ISO
           file_pattern: os/quantum-real/assets/gorics-quantum-webboot-i386.iso os/quantum-real/assets/gorics-quantum-webboot-i386.iso.sha256 os/quantum-real/assets/gorics-quantum-webboot-i386.iso.meta.json
-
-# run: 2026-07-03T12:31Z
