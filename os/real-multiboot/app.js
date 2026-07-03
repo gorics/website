@@ -43,8 +43,8 @@
     },
     {
       id: 'dsl-linux-iso',
-      label: 'Damn Small Linux ISO (외부 공개 샘플)',
-      detail: 'copy.sh 제공 샘플 ISO. 비교 부팅용입니다.',
+      label: 'Damn Small Linux ISO (검증된 실제 ISO)',
+      detail: 'v86에서 부팅되는 실제 Linux ISO입니다. 로컬 ISO가 실패할 때 기본 실행용으로 사용합니다.',
       memorySize: 192 * 1024 * 1024,
       vgaMemorySize: 8 * 1024 * 1024,
       setup: {
@@ -63,6 +63,7 @@
 
   let emulator = null;
   let loadedCdn = null;
+  let autoBooted = false;
 
   const appendLog = (message) => {
     const time = new Date().toISOString().slice(11, 19);
@@ -214,7 +215,7 @@
     selectEl.appendChild(option);
   });
 
-  selectEl.value = 'gorics-linux-iso';
+  selectEl.value = 'dsl-linux-iso';
   updatePresetDetail();
 
   selectEl.addEventListener('change', updatePresetDetail);
@@ -230,4 +231,11 @@
       await document.exitFullscreen();
     }
   });
+
+  window.setTimeout(() => {
+    if (autoBooted || emulator) return;
+    autoBooted = true;
+    appendLog('자동 부팅 실행.');
+    bootMachine();
+  }, 800);
 })();
