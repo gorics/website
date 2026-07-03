@@ -1,3 +1,4 @@
-triggered_at_utc=2026-07-03T12:18:00Z
-reason=manual-build-request-from-chatgpt
+triggered_at_utc=2026-07-03T12:22:30Z
+reason=publish-iso-directly-into-site-assets
 workflow=build-quantum-os-iso
+expected_output=os/quantum-real/assets/gorics-quantum-webboot-i386.iso
