@@ -21,6 +21,7 @@
   const BUILTIN_ISO = './assets/gorics-quantum-webboot-i386.iso';
   const BUILTIN_SHA = './assets/gorics-quantum-webboot-i386.iso.sha256';
   const FALLBACK_ISO = '../linux/1/linux.iso';
+  const MIN_ISO_BYTES = 1024 * 1024;
   const DIRECT_LINUX = {
     label: 'GORICS Instant Linux',
     bzimage: 'https://copy.sh/v86/images/buildroot-bzimage.bin',
@@ -66,6 +67,26 @@
       return res.ok || res.status === 206;
     } catch (_) {
       return false;
+    }
+  }
+
+  async function isoInfo(url) {
+    try {
+      const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+      if (!res.ok) return { ok: false, size: 0 };
+      const size = Number(res.headers.get('content-length') || 0);
+      if (size && size < MIN_ISO_BYTES) return { ok: false, size };
+      return { ok: true, size };
+    } catch (_) {}
+    try {
+      const res = await fetch(url, { method: 'GET', headers: { Range: 'bytes=0-0' }, cache: 'no-store' });
+      if (!(res.ok || res.status === 206)) return { ok: false, size: 0 };
+      const range = res.headers.get('content-range') || '';
+      const size = Number(range.split('/')[1] || res.headers.get('content-length') || 0);
+      if (size && size < MIN_ISO_BYTES) return { ok: false, size };
+      return { ok: true, size };
+    } catch (_) {
+      return { ok: false, size: 0 };
     }
   }
 
@@ -190,9 +211,12 @@
   }
 
   async function chooseBootSource() {
-    if (await headOk(BUILTIN_ISO)) return { type: 'iso', url: BUILTIN_ISO, label: 'GORICS Quantum ISO', sha: BUILTIN_SHA };
-    if (await headOk(FALLBACK_ISO)) return { type: 'iso', url: FALLBACK_ISO, label: 'Fallback Linux ISO', sha: null };
-    return { type: 'direct', label: DIRECT_LINUX.label, sha: null };
+    const builtIn = await isoInfo(BUILTIN_ISO);
+    if (builtIn.ok) return { type: 'iso', url: BUILTIN_ISO, label: 'GORICS Quantum ISO', sha: BUILTIN_SHA, size: builtIn.size };
+    if (builtIn.size > 0) log(`ignored invalid built-in ISO: ${builtIn.size} bytes`);
+    const fallback = await isoInfo(FALLBACK_ISO);
+    if (fallback.ok) return { type: 'iso', url: FALLBACK_ISO, label: 'Fallback Linux ISO', sha: null, size: fallback.size };
+    return { type: 'direct', label: DIRECT_LINUX.label, sha: null, size: 0 };
   }
 
   async function refreshLinks() {
