@@ -19,6 +19,7 @@
   ];
 
   const BUILTIN_ISO = './assets/gorics-quantum-webboot-i386.iso';
+  const BUILTIN_SHA = './assets/gorics-quantum-webboot-i386.iso.sha256';
   const FALLBACK_ISO = '../linux/1/linux.iso';
 
   const $ = (id) => document.getElementById(id);
@@ -32,6 +33,9 @@
   const stopBtn = $('stop-vm');
   const focusBtn = $('focus-vm');
   const fullBtn = $('fullscreen');
+
+  const downloadIso = document.querySelector('a[href="./assets/gorics-quantum-webboot-i386.iso"]');
+  const downloadSha = document.querySelector('a[href="./assets/gorics-quantum-webboot-i386.iso.sha256"]');
 
   let emulator = null;
   let selectedRuntime = null;
@@ -50,7 +54,11 @@
   async function headOk(url) {
     try {
       const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
-      return res.ok;
+      if (res.ok) return true;
+    } catch (_) {}
+    try {
+      const res = await fetch(url, { method: 'GET', headers: { Range: 'bytes=0-0' }, cache: 'no-store' });
+      return res.ok || res.status === 206;
     } catch (_) {
       return false;
     }
@@ -186,20 +194,61 @@
   }
 
   async function chooseBuiltinIso() {
-    if (await headOk(BUILTIN_ISO)) return BUILTIN_ISO;
-    if (await headOk(FALLBACK_ISO)) return FALLBACK_ISO;
+    if (await headOk(BUILTIN_ISO)) return { url: BUILTIN_ISO, label: 'GORICS Quantum ISO', sha: BUILTIN_SHA };
+    if (await headOk(FALLBACK_ISO)) return { url: FALLBACK_ISO, label: 'Fallback Linux ISO', sha: null };
     return null;
   }
 
+  async function refreshLinks() {
+    const picked = await chooseBuiltinIso();
+    if (!picked) {
+      assetState.textContent = 'ISO 빌드 필요';
+      assetState.style.color = 'var(--danger)';
+      if (downloadIso) {
+        downloadIso.href = '#';
+        downloadIso.removeAttribute('download');
+        downloadIso.setAttribute('aria-disabled', 'true');
+      }
+      if (downloadSha) {
+        downloadSha.href = '#';
+        downloadSha.removeAttribute('download');
+        downloadSha.setAttribute('aria-disabled', 'true');
+      }
+      log('no built-in or fallback ISO found.');
+      return null;
+    }
+
+    assetState.textContent = picked.url === BUILTIN_ISO ? 'GORICS ISO 내장 완료' : '대체 Linux ISO 사용 가능';
+    assetState.style.color = picked.url === BUILTIN_ISO ? 'var(--ok)' : 'var(--accent)';
+    if (downloadIso) {
+      downloadIso.href = picked.url;
+      downloadIso.setAttribute('download', '');
+      downloadIso.removeAttribute('aria-disabled');
+    }
+    if (downloadSha) {
+      if (picked.sha && await headOk(picked.sha)) {
+        downloadSha.href = picked.sha;
+        downloadSha.setAttribute('download', '');
+        downloadSha.removeAttribute('aria-disabled');
+      } else {
+        downloadSha.href = '#';
+        downloadSha.removeAttribute('download');
+        downloadSha.setAttribute('aria-disabled', 'true');
+        downloadSha.textContent = 'SHA256 없음';
+      }
+    }
+    log(`${picked.label} ready: ${picked.url}`);
+    return picked;
+  }
+
   bootBuiltin.addEventListener('click', async () => {
-    const iso = await chooseBuiltinIso();
-    if (!iso) {
+    const picked = await refreshLinks();
+    if (!picked) {
       setStatus('NO ISO', 'err');
-      log('no bootable ISO found. Run the GitHub Actions ISO builder first.');
-      alert('내장 ISO가 아직 없습니다. GitHub Actions 빌드가 끝나면 assets/gorics-quantum-webboot-i386.iso가 생성됩니다.');
+      alert('사용 가능한 ISO가 없습니다. GitHub Actions ISO 빌드 또는 기존 Linux ISO 경로를 확인하세요.');
       return;
     }
-    await bootFromUrl(iso, iso.includes('quantum') ? 'GORICS Quantum ISO' : 'Fallback Linux ISO');
+    await bootFromUrl(picked.url, picked.label);
   });
 
   bootFile.addEventListener('click', async () => {
@@ -217,18 +266,5 @@
     if (screen.requestFullscreen) await screen.requestFullscreen();
   });
 
-  (async () => {
-    if (await headOk(BUILTIN_ISO)) {
-      assetState.textContent = 'GORICS ISO 내장 완료';
-      assetState.style.color = 'var(--ok)';
-      log('built-in GORICS Quantum ISO detected.');
-    } else if (await headOk(FALLBACK_ISO)) {
-      assetState.textContent = '대체 Linux ISO 사용 가능';
-      log('built-in ISO missing; fallback ISO detected.');
-    } else {
-      assetState.textContent = 'ISO 빌드 필요';
-      assetState.style.color = 'var(--danger)';
-      log('no built-in ISO yet.');
-    }
-  })();
+  refreshLinks();
 })();
