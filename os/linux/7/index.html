@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Linux 7 - Real Boot</title>
-  <link rel="stylesheet" href="../../real-os/launcher.css" />
+  <title>Linux 7 - FreeDOS Real Boot</title>
+  <link rel="stylesheet" href="../../real-os/launcher.css?v=20260705-gui2" />
 </head>
 <body>
   <main>
@@ -18,13 +18,15 @@
   </main>
   <script>
     window.REAL_OS_CONFIG = {
-      name: 'Linux 7 (TTY Linux, Real VM)',
-      description: '실제 ttylinux ISO 이미지로 부팅합니다.',
-      memory: 192 * 1024 * 1024,
-      boot: { cdrom: { url: 'https://gorics.github.io/website/os/linux/1/linux.iso', async: true } }
-      boot: { cdrom: { url: 'https://copy.sh/v86/images/ttylinux-pc_i486-16.1.iso', async: true } }
+      name: 'Linux 7 / FreeDOS Compatibility VM',
+      description: '작고 안정적인 FreeDOS HDD 이미지를 부팅해 v86 화면/입력 호환성을 검증합니다.',
+      memory: 64 * 1024 * 1024,
+      vgaMemory: 4 * 1024 * 1024,
+      boot: {
+        hda: { url: 'https://i.copy.sh/freedos722.img', async: true }
+      }
     };
   </script>
-  <script src="../../real-os/launcher.js"></script>
+  <script src="../../real-os/launcher.js?v=20260705-gui2"></script>
 </body>
 </html>
