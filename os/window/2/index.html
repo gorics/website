@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Windows Browser VM 2.0</title>
   <link rel="stylesheet" href="./styles.css" />
-  <script defer src="https://cdn.jsdelivr.net/npm/v86@0.5.319/build/libv86.js"></script>
-  <script defer src="./app.js"></script>
+  <script defer src="https://copy.sh/v86/build/libv86.js"></script>
+  <script defer src="./app.js?v=20260705-real1"></script>
 </head>
 <body>
   <div class="app">
     <section class="hero">
       <div>
         <h1>🪟 Windows Browser VM 2.0</h1>
-        <p class="sub">실제 x86 VM(v86) 기반 부팅. <code>assets/boot.img</code> 또는 <code>assets/boot.iso</code> 자동 탐색.</p>
+        <p class="sub">실제 x86 VM(v86) 기반 부팅. 로컬 이미지가 없으면 공식 v86 Windows 테스트 이미지로 자동 부팅합니다.</p>
       </div>
       <div class="pill-row">
         <div class="pill">v86</div>
@@ -45,6 +45,6 @@
     </section>
   </div>
 
-  <script src="../../runtime-real-os-launcher.js"></script>
+  <script src="../../runtime-real-os-launcher.js?v=20260705-real1"></script>
 </body>
 </html>
