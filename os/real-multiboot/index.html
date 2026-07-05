@@ -3,28 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>GORICS Web Linux GUI OS</title>
-  <link rel="stylesheet" href="./styles.css?v=20260706-unified-os1" />
+  <title>GORICS Real OS Multiboot</title>
+  <link rel="stylesheet" href="./styles.css?v=20260706-multiboot-restore1" />
 </head>
 <body>
   <main class="app">
     <header>
-      <div class="eyebrow">ONE BOOT · ONE OS · WEB LINUX GUI</div>
-      <h1>GORICS Web Linux GUI OS</h1>
-      <p>여러 OS 선택 화면을 없애고 하나의 통합 Linux GUI OS 실행 화면으로 정리했습니다.</p>
+      <div class="eyebrow">MULTIBOOT RESTORED · REAL V86 · GUI FIRST</div>
+      <h1>GORICS Real OS Multiboot</h1>
+      <p>메인은 GORICS Web Linux GUI OS로 유지하고, Linux / Safe Linux / Tiny Linux / FreeDOS / Windows 테스트 이미지를 다시 선택 가능하게 복구했습니다.</p>
     </header>
-    <section class="panel">
-      <div class="service-badge" id="service-mode">단일 통합 OS</div>
-      <label for="os-select" style="position:absolute;left:-9999px">부팅 대상</label>
-      <select id="os-select" style="position:absolute;left:-9999px;width:1px;height:1px" aria-hidden="true"></select>
-      <div class="boot-label">부팅 대상</div>
+
+    <section class="panel boot-panel">
+      <div class="service-badge" id="service-mode">메인 서비스</div>
+      <label for="os-select">OS 선택</label>
+      <select id="os-select"></select>
+      <div class="boot-label">현재 부팅 대상</div>
       <div class="boot-target" id="boot-target">GORICS Web Linux GUI OS</div>
-      <div class="actions"><button id="boot-btn" type="button">통합 OS 실행</button><button id="stop-btn" type="button" class="danger">정지</button><button id="fullscreen-btn" type="button" class="secondary">전체화면</button></div>
-      <p class="hint" id="preset-detail">단일 통합 부팅 정보를 불러오는 중...</p>
+      <div class="actions">
+        <button id="boot-btn" type="button">선택 OS 실행</button>
+        <button id="stop-btn" type="button" class="danger">정지</button>
+        <button id="fullscreen-btn" type="button" class="secondary">전체화면</button>
+      </div>
+      <p class="hint" id="preset-detail">프리셋 정보를 불러오는 중...</p>
+      <p class="hint">GUI가 있는 DSL Linux를 메인으로 먼저 부팅하고, 이미지 로드/화면 생성이 실패하면 Safe Linux로 자동 대체합니다. 상세 로그는 복사/파일 저장 가능합니다.</p>
     </section>
-    <section class="panel status-panel"><h2>상세 로그</h2><pre id="log" aria-live="polite">[ready] GORICS Unified Web Linux OS ready.</pre></section>
-    <section class="screen-wrap"><div id="screen" class="screen" tabindex="0"></div></section>
+
+    <section class="panel status-panel">
+      <h2>상세 로그</h2>
+      <pre id="log" aria-live="polite">[ready] verbose diagnostics enabled.</pre>
+    </section>
+
+    <section class="screen-wrap">
+      <div id="screen" class="screen" tabindex="0" aria-label="v86 OS screen"></div>
+    </section>
   </main>
-  <script src="./app.js?v=20260706-unified-os1"></script>
+  <script src="./app.js?v=20260706-multiboot-restore1"></script>
 </body>
 </html>
