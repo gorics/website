@@ -52,12 +52,15 @@ jobs:
               print(name, dst.stat().st_size)
           bz = 'buildroot-bzimage68.bin'
           urllib.request.urlretrieve(hi + bz, imgroot / bz)
+          old_sel = 'selectEl.value = ' + chr(39) + 'dsl' + '-linux-iso' + chr(39)
+          new_sel = 'selectEl.value = ' + chr(39) + 'buildroot' + '-kernel' + chr(39)
           repl = {
               h + 'build/libv86.js': '/website/vendor/v86/libv86.js',
               h + 'build/v86.wasm': '/website/vendor/v86/v86.wasm',
               h + 'bios/seabios.bin': '/website/vendor/v86/seabios.bin',
               h + 'bios/vgabios.bin': '/website/vendor/v86/vgabios.bin',
               hi + bz: '/website/vendor/v86/images/' + bz,
+              old_sel: new_sel,
           }
           for path in build.rglob('*'):
               if not path.is_file() or path.suffix.lower() not in {'.html', '.js'}:
