@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -24,11 +24,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Prepare local VM runtime
+      - name: Build live site with local VM runtime
         shell: python
         run: |
-          import pathlib, urllib.request
-          root = pathlib.Path('vendor/v86')
+          import pathlib, shutil, urllib.request
+          build = pathlib.Path('_site')
+          if build.exists():
+              shutil.rmtree(build)
+          shutil.copytree('.', build, ignore=shutil.ignore_patterns('.git', '_site'))
+          (build / '.nojekyll').write_text('', encoding='utf-8')
+          root = build / 'vendor' / 'v86'
           root.mkdir(parents=True, exist_ok=True)
           h = ''.join(['https://','co','py','.sh','/v86/'])
           files = {
@@ -48,20 +53,26 @@ jobs:
               h + 'bios/seabios.bin': '/website/vendor/v86/seabios.bin',
               h + 'bios/vgabios.bin': '/website/vendor/v86/vgabios.bin',
           }
-          targets = [
-              pathlib.Path('os/real-multiboot/app.js'),
-              pathlib.Path('os/real-os/launcher.js'),
-              pathlib.Path('os/window/2/app.js'),
-              pathlib.Path('os/runtime-real-os-launcher.js'),
-          ]
-          for path in targets:
-              if not path.exists():
-                  continue
-              text = path.read_text(encoding='utf-8')
-              for old, new in repl.items():
-                  text = text.replace(old, new)
-              path.write_text(text, encoding='utf-8')
-              print('patched', path)
+          for path in [
+              build / 'os' / 'real-multiboot' / 'app.js',
+              build / 'os' / 'real-os' / 'launcher.js',
+              build / 'os' / 'window' / '2' / 'app.js',
+              build / 'os' / 'runtime-real-os-launcher.js',
+          ]:
+              if path.exists():
+                  text = path.read_text(encoding='utf-8')
+                  for old, new in repl.items():
+                      text = text.replace(old, new)
+                  path.write_text(text, encoding='utf-8')
+                  print('patched', path)
+
+      - name: Publish gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./_site
+          force_orphan: true
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -69,7 +80,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
