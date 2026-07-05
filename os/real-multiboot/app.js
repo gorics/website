@@ -1,12 +1,15 @@
 (() => {
   'use strict';
 
+  const SITE_PREFIX = location.pathname.startsWith('/website/') ? '/website/' : '/';
+  const vmAsset = (path) => `${SITE_PREFIX}vendor/v86/${path}`;
+
   const V86_RUNTIME = {
-    name: 'copy.sh v86 runtime',
-    lib: 'https://copy.sh/v86/build/libv86.js',
-    wasm: 'https://copy.sh/v86/build/v86.wasm',
-    bios: 'https://copy.sh/v86/bios/seabios.bin',
-    vga: 'https://copy.sh/v86/bios/vgabios.bin',
+    name: 'local v86 runtime',
+    lib: vmAsset('libv86.js'),
+    wasm: vmAsset('v86.wasm'),
+    bios: vmAsset('seabios.bin'),
+    vga: vmAsset('vgabios.bin'),
   };
 
   const OFFICIAL_V86_BASE = 'https://copy.sh/v86/';
@@ -15,20 +18,20 @@
     {
       id: 'dsl-linux-iso',
       label: 'Damn Small Linux GUI ISO (기본 / 실제 GUI)',
-      detail: 'DSL 4.11 실제 GUI ISO입니다. 외부 이미지 핫링크가 막히면 공식 v86 프로필을 화면 안에 즉시 임베드합니다.',
+      detail: 'DSL 4.11 실제 GUI ISO입니다. ISO까지 같은 사이트 경로에서 읽도록 고정했습니다.',
       memorySize: 256 * 1024 * 1024,
       vgaMemorySize: 16 * 1024 * 1024,
       officialProfile: 'dsl',
-      setup: { cdrom: { url: 'https://i.copy.sh/dsl-4.11.rc2.iso', size: 52824064, async: false } },
+      setup: { cdrom: { url: vmAsset('images/dsl-4.11.rc2.iso'), size: 52824064, async: false } },
     },
     {
       id: 'buildroot-kernel',
       label: 'Buildroot Linux 6.8 (빠른 검증용)',
-      detail: '가장 빠르게 부팅 확인 가능한 Linux 커널입니다. GUI는 아니지만 v86 동작 확인에 안정적입니다.',
+      detail: '가장 빠르게 부팅 확인 가능한 Linux 커널입니다. v86 동작 검증용입니다.',
       memorySize: 128 * 1024 * 1024,
       vgaMemorySize: 8 * 1024 * 1024,
       officialProfile: 'buildroot6',
-      setup: { bzimage: { url: 'https://i.copy.sh/buildroot-bzimage68.bin', size: 10068480, async: false }, cmdline: 'rw root=/dev/ram0 console=ttyS0 console=tty0' },
+      setup: { bzimage: { url: vmAsset('images/buildroot-bzimage68.bin'), size: 10068480, async: false }, cmdline: 'rw root=/dev/ram0 console=ttyS0 console=tty0' },
     },
     {
       id: 'browser-linux-iso',
@@ -37,7 +40,7 @@
       memorySize: 128 * 1024 * 1024,
       vgaMemorySize: 8 * 1024 * 1024,
       officialProfile: 'linux4',
-      setup: { cdrom: { url: 'https://i.copy.sh/linux4.iso', size: 7731200, async: false } },
+      setup: { cdrom: { url: vmAsset('images/linux4.iso'), size: 7731200, async: false } },
     },
     {
       id: 'freedos',
@@ -46,7 +49,7 @@
       memorySize: 64 * 1024 * 1024,
       vgaMemorySize: 4 * 1024 * 1024,
       officialProfile: 'freedos',
-      setup: { fda: { url: 'https://i.copy.sh/freedos722.img', size: 737280, async: false } },
+      setup: { fda: { url: vmAsset('images/freedos722.img'), size: 737280, async: false } },
     },
     {
       id: 'windows101',
@@ -55,7 +58,7 @@
       memorySize: 64 * 1024 * 1024,
       vgaMemorySize: 4 * 1024 * 1024,
       officialProfile: 'windows1',
-      setup: { fda: { url: 'https://i.copy.sh/windows101.img', size: 1474560, async: false } },
+      setup: { fda: { url: vmAsset('images/windows101.img'), size: 1474560, async: false } },
     },
   ];
 
@@ -102,7 +105,7 @@
 
   function updatePresetDetail() {
     const preset = selectedPreset();
-    if (hintEl) hintEl.textContent = `${preset.detail} / RAM ${fmtBytes(preset.memorySize)} / VGA ${fmtBytes(preset.vgaMemorySize)} / 공식 프로필 ${preset.officialProfile}`;
+    if (hintEl) hintEl.textContent = `${preset.detail} / RAM ${fmtBytes(preset.memorySize)} / VGA ${fmtBytes(preset.vgaMemorySize)} / 직접 이미지 ${bootUrls(preset.setup).join(', ')}`;
     appendLog(`preset selected id=${preset.id} label=${preset.label}`);
   }
 
@@ -112,6 +115,7 @@
     appendLog(`ua=${navigator.userAgent}`);
     appendLog(`wasm=${typeof WebAssembly !== 'undefined'} cores=${navigator.hardwareConcurrency || 'unknown'} memoryGB=${navigator.deviceMemory || 'unknown'}`);
     appendLog(`runtime lib=${V86_RUNTIME.lib}`);
+    appendLog(`runtime wasm=${V86_RUNTIME.wasm}`);
   }
 
   window.addEventListener('error', (e) => appendLog(`window.error ${e.message || e.error || 'unknown'} at ${e.filename || ''}:${e.lineno || ''}:${e.colno || ''}`, 'error'));
@@ -121,12 +125,12 @@
     const started = performance.now();
     appendLog(`probe start ${label}: ${url}`);
     try {
-      const res = await fetch(url, { method: 'HEAD', cache: 'no-store', mode: 'cors' });
+      const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
       appendLog(`probe HEAD ${label}: status=${res.status} ok=${res.ok} type=${res.type} size=${fmtBytes(Number(res.headers.get('content-length') || 0))} time=${Math.round(performance.now() - started)}ms`);
       if (res.ok) return true;
     } catch (e) { appendLog(`probe HEAD ${label} failed: ${e.name}: ${e.message}`, 'warn'); }
     try {
-      const res = await fetch(url, { method: 'GET', cache: 'no-store', mode: 'cors', headers: { Range: 'bytes=0-0' } });
+      const res = await fetch(url, { method: 'GET', cache: 'no-store', headers: { Range: 'bytes=0-0' } });
       const range = res.headers.get('content-range') || '';
       appendLog(`probe RANGE ${label}: status=${res.status} ok=${res.ok} type=${res.type} range=${range || 'none'} size=${fmtBytes(Number(range.split('/')[1] || res.headers.get('content-length') || 0))} time=${Math.round(performance.now() - started)}ms`);
       return res.ok || res.status === 206;
@@ -232,7 +236,7 @@
       clearScreen();
       const preflight = await runPreflight(preset);
       if (!preflight.ok) {
-        renderOfficialFallback(preset, `직접 로드 실패: ${preflight.failed.join(', ')}. copy.sh/i.copy.sh CORS 또는 403 차단 우회.`);
+        renderOfficialFallback(preset, `직접 로드 실패: ${preflight.failed.join(', ')}. 새 캐시가 배포되지 않았거나 파일이 아직 없는 상태입니다.`);
         return;
       }
       const runtime = await ensureV86Runtime();
