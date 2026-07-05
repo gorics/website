@@ -11,9 +11,19 @@
 
   const OS_PRESETS = [
     {
+      id: 'dsl-linux-iso',
+      label: 'Damn Small Linux GUI ISO (기본 / 실제 GUI)',
+      detail: 'v86에서 검증된 linux4.iso를 CD-ROM으로 부팅합니다. GUI 데스크톱 확인용 기본 프리셋입니다. 첫 화면까지 시간이 걸릴 수 있습니다.',
+      memorySize: 192 * 1024 * 1024,
+      vgaMemorySize: 16 * 1024 * 1024,
+      setup: {
+        cdrom: { url: 'https://i.copy.sh/linux4.iso', async: true },
+      },
+    },
+    {
       id: 'buildroot-kernel',
-      label: 'Buildroot Linux (즉시 부팅 / 실제 Linux)',
-      detail: '공식 v86 테스트 이미지 기반의 실제 Linux 커널입니다. ISO 없이 빠르게 부팅됩니다.',
+      label: 'Buildroot Linux (빠른 콘솔 Linux)',
+      detail: '공식 v86 테스트 이미지 기반 실제 Linux 커널입니다. 빠르지만 GUI 데스크톱이 아니라 콘솔 확인용입니다.',
       memorySize: 128 * 1024 * 1024,
       vgaMemorySize: 8 * 1024 * 1024,
       setup: {
@@ -24,21 +34,11 @@
     {
       id: 'browser-linux-iso',
       label: 'Tiny v86 Linux ISO (실제 ISO)',
-      detail: 'v86 공식 테스트용 Linux ISO를 CD-ROM으로 부팅합니다.',
+      detail: 'v86 공식 테스트용 Linux ISO를 CD-ROM으로 부팅합니다. GUI보다 부팅 검증/콘솔 확인에 적합합니다.',
       memorySize: 128 * 1024 * 1024,
       vgaMemorySize: 8 * 1024 * 1024,
       setup: {
         cdrom: { url: 'https://i.copy.sh/linux.iso', async: true },
-      },
-    },
-    {
-      id: 'dsl-linux-iso',
-      label: 'Damn Small Linux ISO (실제 ISO)',
-      detail: 'v86에서 검증된 linux4.iso를 CD-ROM으로 부팅합니다. Buildroot보다 느릴 수 있습니다.',
-      memorySize: 192 * 1024 * 1024,
-      vgaMemorySize: 8 * 1024 * 1024,
-      setup: {
-        cdrom: { url: 'https://i.copy.sh/linux4.iso', async: true },
       },
     },
     {
@@ -75,9 +75,10 @@
   let runtimeReady = false;
   let autoBooted = false;
 
-  const appendLog = (message) => {
+  const appendLog = (message, level = 'info') => {
     const time = new Date().toISOString().slice(11, 19);
-    logEl.textContent += `\n[${time}] ${message}`;
+    const prefix = level === 'error' ? '[error]' : level === 'warn' ? '[warn]' : '[info]';
+    logEl.textContent += `\n[${time}] ${prefix} ${message}`;
     logEl.scrollTop = logEl.scrollHeight;
   };
 
@@ -120,7 +121,7 @@
 
   const stopMachine = () => {
     if (!emulator) {
-      appendLog('중지할 VM 없음.');
+      appendLog('중지할 VM 없음.', 'warn');
       return;
     }
 
@@ -128,7 +129,7 @@
       if (typeof emulator.destroy === 'function') emulator.destroy();
       else if (typeof emulator.stop === 'function') emulator.stop();
     } catch (error) {
-      appendLog(`stop 오류: ${error.message}`);
+      appendLog(`stop 오류: ${error.message}`, 'error');
     }
 
     emulator = null;
@@ -140,7 +141,7 @@
     emulator.add_listener('emulator-ready', () => appendLog(`${preset.label} emulator-ready`));
     emulator.add_listener('emulator-started', () => appendLog(`${preset.label} emulator-started`));
     emulator.add_listener('emulator-stopped', () => appendLog(`${preset.label} emulator-stopped`));
-    emulator.add_listener('download-error', (event) => appendLog(`download-error: ${event && event.url ? event.url : 'unknown'}`));
+    emulator.add_listener('download-error', (event) => appendLog(`download-error: ${event && event.url ? event.url : 'unknown'}`, 'error'));
     emulator.add_listener('download-progress', (event) => {
       if (!event || !event.total) return;
       const progress = ((event.loaded / event.total) * 100).toFixed(1);
@@ -177,9 +178,9 @@
       emulator = new V86Ctor(config);
       window.goricsEmulator = emulator;
       bindLogs(preset);
-      appendLog(`${preset.label} 부팅 시작.`);
+      appendLog(`${preset.label} 부팅 시작. GUI 프리셋은 첫 화면까지 시간이 걸릴 수 있습니다.`);
     } catch (error) {
-      appendLog(`부팅 실패: ${error && error.message ? error.message : String(error)}`);
+      appendLog(`부팅 실패: ${error && error.message ? error.message : String(error)}`, 'error');
     } finally {
       bootBtn.disabled = false;
     }
@@ -192,7 +193,7 @@
     selectEl.appendChild(option);
   });
 
-  selectEl.value = 'buildroot-kernel';
+  selectEl.value = 'dsl-linux-iso';
   updatePresetDetail();
 
   selectEl.addEventListener('change', updatePresetDetail);
@@ -206,14 +207,14 @@
       }
       if (document.fullscreenElement && document.exitFullscreen) await document.exitFullscreen();
     } catch (error) {
-      appendLog(`전체화면 실패: ${error.message}`);
+      appendLog(`전체화면 실패: ${error.message}`, 'error');
     }
   });
 
   window.setTimeout(() => {
     if (autoBooted || emulator) return;
     autoBooted = true;
-    appendLog('자동 부팅 실행.');
+    appendLog('GUI 기본 프리셋 자동 부팅 실행.');
     bootMachine();
   }, 600);
 })();
