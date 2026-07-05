@@ -2,26 +2,26 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GORICS Real GUI OS Multiboot</title>
-  <link rel="stylesheet" href="./styles.css?v=20260705-local-v86-gui1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>GORICS Web Linux GUI OS Multiboot</title>
+  <link rel="stylesheet" href="./styles.css?v=20260705-direct-v86-gui2" />
 </head>
 <body>
   <main class="app">
     <header>
-      <h1>GORICS Real GUI OS Multiboot</h1>
-      <p>v86 파일을 같은 사이트 경로에서 로드해 브라우저 차단을 줄입니다.</p>
+      <h1>GORICS Web Linux GUI OS Multiboot</h1>
+      <p>웹에서만 실행되는 Linux 기반 GUI OS 서비스입니다. v86으로 실제 Linux GUI ISO를 직접 부팅하고, 실패 시 작은 Linux 프리셋으로 자동 대체합니다.</p>
     </header>
     <section class="panel">
       <label for="os-select">OS 선택</label>
       <select id="os-select"></select>
-      <div class="actions"><button id="boot-btn">실행</button><button id="stop-btn" class="danger">중지</button><button id="fullscreen-btn" class="secondary">전체화면</button></div>
+      <div class="actions"><button id="boot-btn" type="button">실행</button><button id="stop-btn" type="button" class="danger">중지</button><button id="fullscreen-btn" type="button" class="secondary">전체화면</button></div>
       <p class="hint" id="preset-detail">프리셋 정보를 불러오는 중...</p>
-      <p class="hint">로그에서 runtime, wasm, image 경로가 /website/vendor/v86/로 잡히면 정상입니다.</p>
+      <p class="hint">사전 진단은 로그용으로만 사용하고 실제 v86 부팅을 먼저 시도합니다. 상세 로그는 복사/파일 저장 가능합니다.</p>
     </section>
     <section class="panel status-panel"><h2>상세 로그</h2><pre id="log" aria-live="polite">[ready] verbose diagnostics enabled.</pre></section>
-    <section class="screen-wrap"><div id="screen" class="screen"></div></section>
+    <section class="screen-wrap"><div id="screen" class="screen" tabindex="0"></div></section>
   </main>
-  <script src="./app.js?v=20260705-local-v86-gui1"></script>
+  <script src="./app.js?v=20260705-direct-v86-gui2"></script>
 </body>
 </html>
