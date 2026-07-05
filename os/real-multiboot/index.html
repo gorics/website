@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GORICS Real Linux ISO Launcher</title>
-  <link rel="stylesheet" href="./styles.css?v=20260705-real1" />
+  <title>GORICS Real GUI OS Multiboot</title>
+  <link rel="stylesheet" href="./styles.css?v=20260705-gui2" />
 </head>
 <body>
   <main class="app">
     <header>
-      <h1>GORICS Real Linux ISO Launcher</h1>
+      <h1>GORICS Real GUI OS Multiboot</h1>
       <p>
-        HTML로 만든 가짜 OS가 아니라, 실제 Linux/Windows/DOS 이미지를 브라우저 x86 VM(v86)에서 부팅합니다.
-        기본값은 안정 부팅용 실제 Linux이며, 모든 기본 프리셋은 검증된 v86 테스트 이미지를 사용합니다.
+        실제 Linux/Windows/DOS 이미지를 브라우저 x86 VM(v86)에서 부팅합니다.
+        기본값은 그래픽 화면 확인용 Damn Small Linux GUI ISO입니다. 콘솔 Linux가 필요하면 Buildroot를 선택하세요.
       </p>
     </header>
 
@@ -25,12 +25,12 @@
         <button id="fullscreen-btn" class="secondary">전체화면</button>
       </div>
       <p class="hint" id="preset-detail">프리셋 정보를 불러오는 중...</p>
-      <p class="hint">페이지가 열리면 안정 부팅용 Buildroot Linux가 자동 부팅됩니다.</p>
+      <p class="hint">페이지가 열리면 GUI 확인용 Linux ISO가 자동 부팅됩니다. 첫 화면까지 시간이 걸릴 수 있습니다.</p>
     </section>
 
     <section class="panel status-panel">
       <h2>상태 로그</h2>
-      <pre id="log" aria-live="polite">[ready] 실제 OS 런처 준비 완료.</pre>
+      <pre id="log" aria-live="polite">[ready] 실제 GUI OS 런처 준비 완료.</pre>
     </section>
 
     <section class="screen-wrap">
@@ -38,6 +38,6 @@
     </section>
   </main>
 
-  <script src="./app.js?v=20260705-real1"></script>
+  <script src="./app.js?v=20260705-gui2"></script>
 </body>
 </html>
