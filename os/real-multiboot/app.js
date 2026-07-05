@@ -9,12 +9,54 @@
     vga: 'https://copy.sh/v86/bios/vgabios.bin',
   };
 
+  const OFFICIAL_V86_BASE = 'https://copy.sh/v86/';
+
   const OS_PRESETS = [
-    { id: 'dsl-linux-iso', label: 'Damn Small Linux GUI ISO (기본 / 실제 GUI)', detail: 'GUI 데스크톱 확인용 ISO입니다. 느릴 수 있으니 로그의 다운로드/이벤트를 확인하세요.', memorySize: 192 * 1024 * 1024, vgaMemorySize: 16 * 1024 * 1024, setup: { cdrom: { url: 'https://i.copy.sh/linux4.iso', async: true } } },
-    { id: 'buildroot-kernel', label: 'Buildroot Linux (빠른 검증용)', detail: '가장 빠르게 부팅 확인 가능한 Linux 커널입니다. GUI는 아니지만 v86 동작 확인에 가장 안정적입니다.', memorySize: 128 * 1024 * 1024, vgaMemorySize: 8 * 1024 * 1024, setup: { bzimage: { url: 'https://i.copy.sh/buildroot-bzimage68.bin', async: true }, cmdline: 'rw root=/dev/ram0 console=ttyS0 console=tty0' } },
-    { id: 'browser-linux-iso', label: 'Tiny v86 Linux ISO', detail: 'v86 공식 테스트용 작은 Linux ISO입니다.', memorySize: 128 * 1024 * 1024, vgaMemorySize: 8 * 1024 * 1024, setup: { cdrom: { url: 'https://i.copy.sh/linux.iso', async: true } } },
-    { id: 'freedos', label: 'FreeDOS 7.22', detail: '작고 안정적인 HDD 이미지입니다.', memorySize: 64 * 1024 * 1024, vgaMemorySize: 4 * 1024 * 1024, setup: { hda: { url: 'https://i.copy.sh/freedos722.img', async: true } } },
-    { id: 'windows101', label: 'Windows 1.01', detail: 'v86 공식 테스트 Windows 이미지입니다.', memorySize: 64 * 1024 * 1024, vgaMemorySize: 4 * 1024 * 1024, setup: { hda: { url: 'https://i.copy.sh/windows101.img', async: true } } },
+    {
+      id: 'dsl-linux-iso',
+      label: 'Damn Small Linux GUI ISO (기본 / 실제 GUI)',
+      detail: 'DSL 4.11 실제 GUI ISO입니다. 외부 이미지 핫링크가 막히면 공식 v86 프로필을 화면 안에 즉시 임베드합니다.',
+      memorySize: 256 * 1024 * 1024,
+      vgaMemorySize: 16 * 1024 * 1024,
+      officialProfile: 'dsl',
+      setup: { cdrom: { url: 'https://i.copy.sh/dsl-4.11.rc2.iso', size: 52824064, async: false } },
+    },
+    {
+      id: 'buildroot-kernel',
+      label: 'Buildroot Linux 6.8 (빠른 검증용)',
+      detail: '가장 빠르게 부팅 확인 가능한 Linux 커널입니다. GUI는 아니지만 v86 동작 확인에 안정적입니다.',
+      memorySize: 128 * 1024 * 1024,
+      vgaMemorySize: 8 * 1024 * 1024,
+      officialProfile: 'buildroot6',
+      setup: { bzimage: { url: 'https://i.copy.sh/buildroot-bzimage68.bin', size: 10068480, async: false }, cmdline: 'rw root=/dev/ram0 console=ttyS0 console=tty0' },
+    },
+    {
+      id: 'browser-linux-iso',
+      label: 'Tiny v86 Linux ISO',
+      detail: 'v86 공식 테스트용 작은 Linux ISO입니다.',
+      memorySize: 128 * 1024 * 1024,
+      vgaMemorySize: 8 * 1024 * 1024,
+      officialProfile: 'linux4',
+      setup: { cdrom: { url: 'https://i.copy.sh/linux4.iso', size: 7731200, async: false } },
+    },
+    {
+      id: 'freedos',
+      label: 'FreeDOS 7.22',
+      detail: '작고 안정적인 플로피 이미지입니다.',
+      memorySize: 64 * 1024 * 1024,
+      vgaMemorySize: 4 * 1024 * 1024,
+      officialProfile: 'freedos',
+      setup: { fda: { url: 'https://i.copy.sh/freedos722.img', size: 737280, async: false } },
+    },
+    {
+      id: 'windows101',
+      label: 'Windows 1.01',
+      detail: 'v86 공식 테스트 Windows 이미지입니다.',
+      memorySize: 64 * 1024 * 1024,
+      vgaMemorySize: 4 * 1024 * 1024,
+      officialProfile: 'windows1',
+      setup: { fda: { url: 'https://i.copy.sh/windows101.img', size: 1474560, async: false } },
+    },
   ];
 
   const logEl = document.getElementById('log');
@@ -29,6 +71,8 @@
   let runtimeReady = false;
   let autoBooted = false;
   let serialBuffer = '';
+  let screenObserver = null;
+  let fallbackFrame = null;
 
   const now = () => new Date().toISOString();
   const appendLog = (message, level = 'info') => {
@@ -43,19 +87,22 @@
   const cloneSetup = (setup) => JSON.parse(JSON.stringify(setup));
   const bootUrls = (setup) => Object.values(setup || {}).filter((v) => v && v.url).map((v) => v.url);
   const safeConfig = (cfg) => JSON.stringify(cfg, (k, v) => k === 'screen_container' ? '[HTMLElement]' : v, 2);
+  const officialUrl = (profile) => `${OFFICIAL_V86_BASE}?profile=${encodeURIComponent(profile)}`;
 
   function installLogButtons() {
     if (document.getElementById('copy-log-btn')) return;
-    const copy = document.createElement('button'); copy.id = 'copy-log-btn'; copy.className = 'secondary'; copy.textContent = '로그 복사';
+    const copy = document.createElement('button');
+    copy.id = 'copy-log-btn'; copy.className = 'secondary'; copy.textContent = '로그 복사';
     copy.onclick = async () => { try { await navigator.clipboard.writeText(logEl.textContent); appendLog('로그 복사 완료.'); } catch (e) { appendLog(`로그 복사 실패: ${e.message}`, 'error'); } };
-    const save = document.createElement('button'); save.className = 'secondary'; save.textContent = '로그 파일';
+    const save = document.createElement('button');
+    save.className = 'secondary'; save.textContent = '로그 파일';
     save.onclick = () => { const blob = new Blob([logEl.textContent], { type: 'text/plain;charset=utf-8' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `gorics-multiboot-log-${Date.now()}.txt`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); appendLog('로그 파일 생성.'); };
     bootBtn.parentElement.append(copy, save);
   }
 
   function updatePresetDetail() {
     const preset = selectedPreset();
-    if (hintEl) hintEl.textContent = `${preset.detail} / RAM ${fmtBytes(preset.memorySize)} / VGA ${fmtBytes(preset.vgaMemorySize)}`;
+    if (hintEl) hintEl.textContent = `${preset.detail} / RAM ${fmtBytes(preset.memorySize)} / VGA ${fmtBytes(preset.vgaMemorySize)} / 공식 프로필 ${preset.officialProfile}`;
     appendLog(`preset selected id=${preset.id} label=${preset.label}`);
   }
 
@@ -88,12 +135,16 @@
 
   async function runPreflight(preset) {
     appendLog(`preflight start preset=${preset.id}`);
-    await probe(V86_RUNTIME.lib, 'runtime.js');
-    await probe(V86_RUNTIME.wasm, 'runtime.wasm');
-    await probe(V86_RUNTIME.bios, 'bios');
-    await probe(V86_RUNTIME.vga, 'vga-bios');
-    for (const [i, url] of bootUrls(preset.setup).entries()) await probe(url, `guest-image-${i}`);
-    appendLog('preflight end');
+    const checks = [];
+    checks.push(['runtime.js', await probe(V86_RUNTIME.lib, 'runtime.js')]);
+    checks.push(['runtime.wasm', await probe(V86_RUNTIME.wasm, 'runtime.wasm')]);
+    checks.push(['bios', await probe(V86_RUNTIME.bios, 'bios')]);
+    checks.push(['vga-bios', await probe(V86_RUNTIME.vga, 'vga-bios')]);
+    let i = 0;
+    for (const url of bootUrls(preset.setup)) checks.push([`guest-image-${i++}`, await probe(url, `guest-image-${i - 1}`)]);
+    const failed = checks.filter(([, ok]) => !ok).map(([name]) => name);
+    appendLog(`preflight end failed=${failed.length ? failed.join(',') : 'none'}`);
+    return { ok: failed.length === 0, failed };
   }
 
   const loadScript = (src) => new Promise((resolve, reject) => {
@@ -114,11 +165,19 @@
     return V86_RUNTIME;
   };
 
+  function clearScreen() {
+    if (screenObserver) { try { screenObserver.disconnect(); } catch (_) {} screenObserver = null; }
+    fallbackFrame = null;
+    screenEl.innerHTML = '';
+  }
+
   function stopMachine() {
-    if (!emulator) { appendLog('stop requested but no VM', 'warn'); return; }
-    try { if (typeof emulator.destroy === 'function') emulator.destroy(); else if (typeof emulator.stop === 'function') emulator.stop(); appendLog('VM stop/destroy called'); }
-    catch (error) { appendLog(`stop error: ${error.message}`, 'error'); }
-    emulator = null; screenEl.innerHTML = ''; serialBuffer = ''; appendLog('VM state cleared');
+    if (!emulator && !fallbackFrame) { appendLog('stop requested but no VM', 'warn'); clearScreen(); return; }
+    if (emulator) {
+      try { if (typeof emulator.destroy === 'function') emulator.destroy(); else if (typeof emulator.stop === 'function') emulator.stop(); appendLog('VM stop/destroy called'); }
+      catch (error) { appendLog(`stop error: ${error.message}`, 'error'); }
+    }
+    emulator = null; serialBuffer = ''; clearScreen(); appendLog('VM state cleared');
   }
 
   function bindLogs(preset) {
@@ -138,9 +197,30 @@
   }
 
   function watchScreen() {
-    const obs = new MutationObserver(() => appendLog(`screen mutation children=${screenEl.children.length} canvas=${!!screenEl.querySelector('canvas')} text=${screenEl.textContent.trim().slice(0, 80) || 'none'}`));
-    obs.observe(screenEl, { childList: true, subtree: true });
-    setTimeout(() => { const r = screenEl.getBoundingClientRect(); appendLog(`screen box ${Math.round(r.width)}x${Math.round(r.height)} children=${screenEl.children.length} canvas=${!!screenEl.querySelector('canvas')}`); }, 1500);
+    if (screenObserver) screenObserver.disconnect();
+    screenObserver = new MutationObserver(() => appendLog(`screen mutation children=${screenEl.children.length} canvas=${!!screenEl.querySelector('canvas')} iframe=${!!screenEl.querySelector('iframe')} text=${screenEl.textContent.trim().slice(0, 80) || 'none'}`));
+    screenObserver.observe(screenEl, { childList: true, subtree: true });
+    setTimeout(() => { const r = screenEl.getBoundingClientRect(); appendLog(`screen box ${Math.round(r.width)}x${Math.round(r.height)} children=${screenEl.children.length} canvas=${!!screenEl.querySelector('canvas')} iframe=${!!screenEl.querySelector('iframe')}`); }, 1500);
+  }
+
+  function renderOfficialFallback(preset, reason) {
+    clearScreen();
+    watchScreen();
+    const url = officialUrl(preset.officialProfile);
+    const frame = document.createElement('iframe');
+    frame.className = 'official-v86-frame';
+    frame.title = `${preset.label} official v86 fallback`;
+    frame.src = url;
+    frame.allow = 'fullscreen; clipboard-read; clipboard-write; pointer-lock';
+    frame.sandbox = 'allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-downloads allow-popups allow-modals allow-presentation';
+
+    const notice = document.createElement('div');
+    notice.className = 'fallback-notice';
+    notice.innerHTML = `<strong>공식 v86 임베드 모드</strong><span>${reason}</span><a target="_blank" rel="noopener noreferrer" href="${url}">새 창으로 열기</a>`;
+
+    screenEl.append(frame, notice);
+    fallbackFrame = frame;
+    appendLog(`fallback iframe profile=${preset.officialProfile} url=${url} reason=${reason}`, 'warn');
   }
 
   async function bootMachine() {
@@ -148,9 +228,13 @@
     bootBtn.disabled = true;
     appendLog(`start requested preset=${preset.id} ${preset.label}`);
     try {
-      if (emulator) stopMachine();
-      screenEl.innerHTML = '';
-      await runPreflight(preset);
+      if (emulator || fallbackFrame) stopMachine();
+      clearScreen();
+      const preflight = await runPreflight(preset);
+      if (!preflight.ok) {
+        renderOfficialFallback(preset, `직접 로드 실패: ${preflight.failed.join(', ')}. copy.sh/i.copy.sh CORS 또는 403 차단 우회.`);
+        return;
+      }
       const runtime = await ensureV86Runtime();
       const config = { wasm_path: runtime.wasm, bios: { url: runtime.bios }, vga_bios: { url: runtime.vga }, autostart: true, screen_container: screenEl, memory_size: preset.memorySize, vga_memory_size: preset.vgaMemorySize, ...cloneSetup(preset.setup) };
       appendLog(`create VM config=${safeConfig(config)}`);
@@ -159,7 +243,10 @@
       window.goricsEmulator = emulator;
       bindLogs(preset);
       appendLog('VM constructor returned. Waiting for events and guest screen.');
-    } catch (error) { appendLog(`start failed: ${error && error.stack ? error.stack : error}`, 'error'); }
+    } catch (error) {
+      appendLog(`start failed: ${error && error.stack ? error.stack : error}`, 'error');
+      renderOfficialFallback(preset, '직접 실행 중 예외 발생. 공식 v86 프로필로 대체 실행.');
+    }
     finally { bootBtn.disabled = false; }
   }
 
@@ -171,6 +258,6 @@
   selectEl.addEventListener('change', updatePresetDetail);
   bootBtn.addEventListener('click', bootMachine);
   stopBtn.addEventListener('click', stopMachine);
-  fullscreenBtn.addEventListener('click', async () => { try { if (!document.fullscreenElement && screenEl.requestFullscreen) { await screenEl.requestFullscreen(); return; } if (document.fullscreenElement && document.exitFullscreen) await document.exitFullscreen(); } catch (error) { appendLog(`fullscreen failed: ${error.message}`, 'error'); } });
-  window.setTimeout(() => { if (autoBooted || emulator) return; autoBooted = true; appendLog('auto start triggered'); bootMachine(); }, 600);
+  fullscreenBtn.addEventListener('click', async () => { try { const target = screenEl.closest('.screen-wrap') || screenEl; if (!document.fullscreenElement && target.requestFullscreen) { await target.requestFullscreen(); return; } if (document.fullscreenElement && document.exitFullscreen) await document.exitFullscreen(); } catch (error) { appendLog(`fullscreen failed: ${error.message}`, 'error'); } });
+  window.setTimeout(() => { if (autoBooted || emulator || fallbackFrame) return; autoBooted = true; appendLog('auto start triggered'); bootMachine(); }, 600);
 })();
