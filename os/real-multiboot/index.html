@@ -4,24 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GORICS Real GUI OS Multiboot</title>
-  <link rel="stylesheet" href="./styles.css?v=20260705-log1" />
+  <link rel="stylesheet" href="./styles.css?v=20260705-cors-fallback1" />
 </head>
 <body>
   <main class="app">
     <header>
       <h1>GORICS Real GUI OS Multiboot</h1>
-      <p>v86 실행 상태를 네트워크, 런타임, 이미지, 이벤트, 화면 단계별로 자세히 출력합니다.</p>
+      <p>v86 직접 실행이 CORS/403으로 막히면 공식 v86 프로필을 같은 화면 안에 자동 임베드합니다.</p>
     </header>
     <section class="panel">
       <label for="os-select">OS 선택</label>
       <select id="os-select"></select>
       <div class="actions"><button id="boot-btn">실행</button><button id="stop-btn" class="danger">중지</button><button id="fullscreen-btn" class="secondary">전체화면</button></div>
       <p class="hint" id="preset-detail">프리셋 정보를 불러오는 중...</p>
-      <p class="hint">안 뜨면 아래 로그에서 probe, runtime, constructor, event, screen 줄을 보세요.</p>
+      <p class="hint">로그에서 probe 실패가 보이면 자동으로 공식 v86 임베드 모드로 우회합니다.</p>
     </section>
     <section class="panel status-panel"><h2>상세 로그</h2><pre id="log" aria-live="polite">[ready] verbose diagnostics enabled.</pre></section>
     <section class="screen-wrap"><div id="screen" class="screen"></div></section>
   </main>
-  <script src="./app.js?v=20260705-log1"></script>
+  <script src="./app.js?v=20260705-cors-fallback1"></script>
 </body>
 </html>
