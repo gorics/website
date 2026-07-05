@@ -13,38 +13,42 @@
 
   const OS_PRESETS = [
     {
-      id: 'dsl-linux-gui',
-      label: 'Damn Small Linux GUI ISO (기본 GUI)',
-      detail: 'DSL 4.11.rc2 실제 Linux GUI ISO입니다. 실패 시 Tiny Linux로 자동 대체합니다.',
+      id: 'gorics-web-linux-main',
+      group: 'MAIN',
+      label: 'GORICS Web Linux GUI OS (메인 서비스)',
+      detail: '나만의 웹 전용 Linux 기반 GUI OS 서비스입니다. 브라우저 안에서 실제 Linux GUI 게스트를 부팅하고, GORICS OS 서비스 화면을 메인으로 제공합니다.',
       memorySize: 256 * 1024 * 1024,
       vgaMemorySize: 16 * 1024 * 1024,
       officialProfile: 'dsl',
-      fallbackPresetId: 'tiny-linux-iso',
+      fallbackPresetId: 'gorics-safe-linux',
       setup: { cdrom: { url: 'https://i.copy.sh/dsl-4.11.rc2.iso', size: 52824064, async: true } },
     },
     {
-      id: 'tiny-linux-iso',
-      label: 'Tiny v86 Linux ISO',
-      detail: 'v86 공식 테스트용 작은 Linux ISO입니다.',
-      memorySize: 128 * 1024 * 1024,
-      vgaMemorySize: 8 * 1024 * 1024,
-      officialProfile: 'linux',
-      fallbackPresetId: 'buildroot-kernel',
-      setup: { cdrom: { url: 'https://i.copy.sh/linux4.iso', size: 7731200, async: true } },
-    },
-    {
-      id: 'buildroot-kernel',
-      label: 'Buildroot Linux 6.8 (빠른 검증용)',
-      detail: '가장 빠르게 부팅 확인 가능한 Linux 커널입니다. GUI는 아니지만 v86 호환성 확인에 안정적입니다.',
+      id: 'gorics-safe-linux',
+      group: 'MAIN-FALLBACK',
+      label: 'GORICS Safe Linux Mode (대체 부팅)',
+      detail: '메인 GUI 이미지가 느리거나 차단될 때 쓰는 GORICS 안전 Linux 모드입니다. 빠른 Linux 커널로 서비스 접근성을 유지합니다.',
       memorySize: 128 * 1024 * 1024,
       vgaMemorySize: 8 * 1024 * 1024,
       officialProfile: 'buildroot',
       setup: { bzimage: { url: 'https://i.copy.sh/buildroot-bzimage68.bin', size: 10068480, async: false }, cmdline: 'rw root=/dev/ram0 console=ttyS0 console=tty0' },
     },
     {
+      id: 'tiny-linux-iso',
+      group: 'COMPAT',
+      label: '호환성 옵션: Tiny v86 Linux ISO',
+      detail: '남의 테스트 이미지입니다. 메인이 아니라 브라우저/v86 호환성 확인용 옵션입니다.',
+      memorySize: 128 * 1024 * 1024,
+      vgaMemorySize: 8 * 1024 * 1024,
+      officialProfile: 'linux',
+      fallbackPresetId: 'gorics-safe-linux',
+      setup: { cdrom: { url: 'https://i.copy.sh/linux4.iso', size: 7731200, async: true } },
+    },
+    {
       id: 'freedos',
-      label: 'FreeDOS 7.22',
-      detail: '작고 안정적인 플로피 이미지입니다.',
+      group: 'COMPAT',
+      label: '호환성 옵션: FreeDOS 7.22',
+      detail: '남의 테스트 이미지입니다. OS 서비스 메인이 아니라 부팅 호환성 확인용입니다.',
       memorySize: 64 * 1024 * 1024,
       vgaMemorySize: 4 * 1024 * 1024,
       officialProfile: 'freedos',
@@ -52,8 +56,9 @@
     },
     {
       id: 'windows101',
-      label: 'Windows 1.01',
-      detail: 'v86 공식 테스트 Windows 이미지입니다.',
+      group: 'COMPAT',
+      label: '호환성 옵션: Windows 1.01',
+      detail: '남의 테스트 이미지입니다. GORICS OS와 별개로 선택 가능한 검증 옵션입니다.',
       memorySize: 64 * 1024 * 1024,
       vgaMemorySize: 4 * 1024 * 1024,
       officialProfile: 'windows1',
@@ -68,6 +73,7 @@
   const fullscreenBtn = document.getElementById('fullscreen-btn');
   const screenEl = document.getElementById('screen');
   const hintEl = document.getElementById('preset-detail');
+  const modeEl = document.getElementById('service-mode');
 
   let emulator = null;
   let runtimeReady = false;
@@ -92,7 +98,7 @@
       logEl.textContent += `\n${line}`;
       logEl.scrollTop = logEl.scrollHeight;
     }
-    try { console[level === 'error' ? 'error' : level === 'warn' ? 'warn' : 'log']('[GORICS multiboot]', message); } catch (_) {}
+    try { console[level === 'error' ? 'error' : level === 'warn' ? 'warn' : 'log']('[GORICS OS]', message); } catch (_) {}
   }
 
   function installLogButtons() {
@@ -115,7 +121,7 @@
       const blob = new Blob([logEl.textContent], { type: 'text/plain;charset=utf-8' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = `gorics-multiboot-log-${Date.now()}.txt`;
+      a.download = `gorics-web-linux-os-log-${Date.now()}.txt`;
       a.click();
       setTimeout(() => URL.revokeObjectURL(a.href), 1000);
       appendLog('로그 파일 생성.');
@@ -126,20 +132,22 @@
     official.className = 'btn secondary official-v86-link';
     official.target = '_blank';
     official.rel = 'noopener noreferrer';
-    official.textContent = '공식 프로필';
+    official.textContent = 'v86 원본 옵션';
     bootBtn.parentElement.append(copy, save, official);
   }
 
   function updatePresetDetail() {
     const preset = selectedPreset();
     const official = document.getElementById('official-v86-link');
-    if (hintEl) hintEl.textContent = `${preset.detail} / RAM ${fmtBytes(preset.memorySize)} / VGA ${fmtBytes(preset.vgaMemorySize)} / 이미지 ${bootUrls(preset.setup).join(', ')}`;
+    const tag = preset.group === 'MAIN' ? '메인 서비스' : preset.group === 'MAIN-FALLBACK' ? '메인 대체 모드' : '호환성 옵션';
+    if (hintEl) hintEl.textContent = `${tag} · ${preset.detail} / RAM ${fmtBytes(preset.memorySize)} / VGA ${fmtBytes(preset.vgaMemorySize)}`;
+    if (modeEl) modeEl.textContent = tag;
     if (official) official.href = officialUrl(preset.officialProfile);
     appendLog(`preset selected id=${preset.id} label=${preset.label}`);
   }
 
   function logEnvironment() {
-    appendLog('[ready] verbose diagnostics enabled.');
+    appendLog('[ready] GORICS Web Linux GUI OS initialized.');
     appendLog(`page=${location.href}`);
     appendLog(`protocol=${location.protocol} secure=${window.isSecureContext} crossOriginIsolated=${window.crossOriginIsolated}`);
     appendLog(`ua=${navigator.userAgent}`);
@@ -330,7 +338,7 @@
     option.textContent = preset.label;
     selectEl.appendChild(option);
   });
-  selectEl.value = 'dsl-linux-gui';
+  selectEl.value = 'gorics-web-linux-main';
   updatePresetDetail();
   logEnvironment();
   selectEl.addEventListener('change', updatePresetDetail);
