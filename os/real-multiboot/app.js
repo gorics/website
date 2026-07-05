@@ -285,7 +285,15 @@
     bootBtn.disabled = true;
     appendLog(`start requested preset=${preset.id} ${preset.label} reason=${reason}`);
     try {
-      if (emulator) stopMachine();
+      if (emulator) {
+        try {
+          if (typeof emulator.destroy === 'function') emulator.destroy();
+          else if (typeof emulator.stop === 'function') emulator.stop();
+          appendLog('previous VM stop/destroy called');
+        } catch (e) { appendLog(`previous VM stop error: ${e.message}`, 'warn'); }
+        emulator = null;
+        serialBuffer = '';
+      }
       clearScreen();
       const runtime = await ensureV86Runtime();
       runDiagnostics(preset).catch((e) => appendLog(`diagnostics failed: ${e.message}`, 'warn'));
