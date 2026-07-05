@@ -34,8 +34,11 @@ jobs:
           shutil.copytree('.', build, ignore=shutil.ignore_patterns('.git', '_site'))
           (build / '.nojekyll').write_text('', encoding='utf-8')
           root = build / 'vendor' / 'v86'
+          imgroot = root / 'images'
           root.mkdir(parents=True, exist_ok=True)
+          imgroot.mkdir(parents=True, exist_ok=True)
           h = ''.join(['https://','co','py','.sh','/v86/'])
+          hi = ''.join(['https://','i.','co','py','.sh','/'])
           files = {
               'libv86.js': h + 'build/libv86.js',
               'v86.wasm': h + 'build/v86.wasm',
@@ -47,22 +50,26 @@ jobs:
               print('fetch', name)
               urllib.request.urlretrieve(url, dst)
               print(name, dst.stat().st_size)
+          bz = 'buildroot-bzimage68.bin'
+          urllib.request.urlretrieve(hi + bz, imgroot / bz)
           repl = {
               h + 'build/libv86.js': '/website/vendor/v86/libv86.js',
               h + 'build/v86.wasm': '/website/vendor/v86/v86.wasm',
               h + 'bios/seabios.bin': '/website/vendor/v86/seabios.bin',
               h + 'bios/vgabios.bin': '/website/vendor/v86/vgabios.bin',
+              hi + bz: '/website/vendor/v86/images/' + bz,
           }
-          for path in [
-              build / 'os' / 'real-multiboot' / 'app.js',
-              build / 'os' / 'real-os' / 'launcher.js',
-              build / 'os' / 'window' / '2' / 'app.js',
-              build / 'os' / 'runtime-real-os-launcher.js',
-          ]:
-              if path.exists():
+          for path in build.rglob('*'):
+              if not path.is_file() or path.suffix.lower() not in {'.html', '.js'}:
+                  continue
+              try:
                   text = path.read_text(encoding='utf-8')
-                  for old, new in repl.items():
-                      text = text.replace(old, new)
+              except UnicodeDecodeError:
+                  continue
+              old_text = text
+              for old, new in repl.items():
+                  text = text.replace(old, new)
+              if text != old_text:
                   path.write_text(text, encoding='utf-8')
                   print('patched', path)
 
