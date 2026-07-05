@@ -194,7 +194,6 @@
   });
 
   async function ensureScript(src) {
-    if (window.V86Starter || window.V86) return;
     if (document.querySelector(`script[data-real-os="${src}"][data-loaded="true"]`)) return;
     await new Promise((resolve, reject) => {
       const s = document.createElement('script');
