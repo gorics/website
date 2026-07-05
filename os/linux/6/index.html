@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Linux 6 - Real Boot</title>
-  <link rel="stylesheet" href="../../real-os/launcher.css" />
+  <title>Linux 6 - Tiny ISO Real Boot</title>
+  <link rel="stylesheet" href="../../real-os/launcher.css?v=20260705-gui2" />
 </head>
 <body>
   <main>
@@ -18,13 +18,15 @@
   </main>
   <script>
     window.REAL_OS_CONFIG = {
-      name: 'Linux 6 (Arch Linux Boot ISO, Real VM)',
-      description: '실제 Arch Linux 부트 ISO 이미지로 부팅합니다.',
-      memory: 256 * 1024 * 1024,
-      boot: { cdrom: { url: 'https://gorics.github.io/website/os/linux/1/linux.iso', async: true } }
-      boot: { cdrom: { url: 'https://copy.sh/v86/images/archlinux_boot.iso', async: true } }
+      name: 'Linux 6 (Tiny Linux ISO, Real VM)',
+      description: 'v86 공식 테스트용 Linux ISO를 CD-ROM으로 부팅합니다.',
+      memory: 128 * 1024 * 1024,
+      vgaMemory: 8 * 1024 * 1024,
+      boot: {
+        cdrom: { url: 'https://i.copy.sh/linux.iso', async: true }
+      }
     };
   </script>
-  <script src="../../real-os/launcher.js"></script>
+  <script src="../../real-os/launcher.js?v=20260705-gui2"></script>
 </body>
 </html>
