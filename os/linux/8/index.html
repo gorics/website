@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Linux 8 - Real Boot</title>
-  <link rel="stylesheet" href="../../real-os/launcher.css" />
+  <title>Linux 8 - Buildroot Serial Real Boot</title>
+  <link rel="stylesheet" href="../../real-os/launcher.css?v=20260705-gui2" />
 </head>
 <body>
   <main>
@@ -18,17 +18,16 @@
   </main>
   <script>
     window.REAL_OS_CONFIG = {
-      name: 'Linux 8 (Buildroot + serial console, Real VM)',
-      description: 'Buildroot 커널/루트FS를 다른 커널 커맨드라인으로 부팅하는 버전입니다.',
+      name: 'Linux 8 (Buildroot Serial Console, Real VM)',
+      description: 'Buildroot 커널을 serial/tty0 콘솔 출력으로 부팅합니다.',
       memory: 192 * 1024 * 1024,
+      vgaMemory: 8 * 1024 * 1024,
       boot: {
-        cdrom: { url: 'https://gorics.github.io/website/os/linux/1/linux.iso', async: true }
-        bzimage: { url: 'https://copy.sh/v86/images/buildroot-bzimage.bin', async: true },
-        initrd: { url: 'https://copy.sh/v86/images/buildroot-rootfs.ext2', async: true },
-        cmdline: 'rw root=/dev/ram0 console=ttyS0 init=/sbin/init'
+        bzimage: { url: 'https://i.copy.sh/buildroot-bzimage68.bin', async: true },
+        cmdline: 'rw root=/dev/ram0 console=ttyS0 console=tty0 init=/sbin/init'
       }
     };
   </script>
-  <script src="../../real-os/launcher.js"></script>
+  <script src="../../real-os/launcher.js?v=20260705-gui2"></script>
 </body>
 </html>
