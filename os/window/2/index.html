@@ -4,21 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Windows Browser VM 2.0</title>
-  <link rel="stylesheet" href="./styles.css" />
-  <script defer src="https://copy.sh/v86/build/libv86.js"></script>
-  <script defer src="./app.js?v=20260705-real1"></script>
+  <link rel="stylesheet" href="./styles.css?v=20260705-log1" />
+  <script defer src="./app.js?v=20260705-log1"></script>
 </head>
 <body>
   <div class="app">
     <section class="hero">
       <div>
         <h1>🪟 Windows Browser VM 2.0</h1>
-        <p class="sub">실제 x86 VM(v86) 기반 부팅. 로컬 이미지가 없으면 공식 v86 Windows 테스트 이미지로 자동 부팅합니다.</p>
+        <p class="sub">v86 detailed diagnostics enabled.</p>
       </div>
       <div class="pill-row">
         <div class="pill">v86</div>
         <div class="pill">WebAssembly</div>
-        <div class="pill">Real OS Boot</div>
+        <div class="pill">Verbose Log</div>
       </div>
     </section>
 
@@ -34,17 +33,13 @@
           <button id="retryBtn" type="button">재시도</button>
         </div>
       </div>
-      <div class="screen-wrap">
-        <div id="screen_container"></div>
-      </div>
+      <div class="screen-wrap"><div id="screen_container"></div></div>
     </section>
 
     <section class="panel log-panel">
-      <div class="log-head"><strong>부팅 로그</strong></div>
+      <div class="log-head"><strong>상세 로그</strong></div>
       <pre id="log"></pre>
     </section>
   </div>
-
-  <script src="../../runtime-real-os-launcher.js?v=20260705-real1"></script>
 </body>
 </html>
