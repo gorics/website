@@ -15,21 +15,21 @@ jobs:
   build-gorics-linux-gui-iso:
     name: Build real Linux GUI ISO
     runs-on: ubuntu-24.04
-    timeout-minutes: 90
+    timeout-minutes: 120
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Install live-build toolchain
+      - name: Build inside Debian live-build container
         run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends live-build xorriso isolinux syslinux-common squashfs-tools debootstrap ca-certificates
-
-      - name: Build Gorics Linux GUI ISO
-        run: |
-          sudo bash os/iso/build-gorics-linux-gui-iso.sh
+          docker run --privileged --rm \
+            -v "$PWD:/work" \
+            -w /work \
+            debian:bookworm \
+            bash -lc 'apt-get update && apt-get install -y --no-install-recommends sudo live-build xorriso isolinux syslinux-common squashfs-tools debootstrap ca-certificates wget && bash os/iso/build-gorics-linux-gui-iso.sh'
+          sudo chown -R "$USER:$USER" out build || true
 
       - name: Show ISO result
         run: |
@@ -56,4 +56,4 @@ jobs:
           git push -f origin "$TAG"
           gh release create "$TAG" out/*.iso out/SHA256SUMS.txt \
             --title "GORICS Linux GUI OS ISO Latest" \
-            --notes "Real Debian-based Linux GUI ISO built from os/iso. Desktop: XFCE. Output: gorics-linux-gui-os-amd64.iso."
+            --notes "Real Debian-based Linux GUI ISO built from os/iso. Output: gorics-linux-gui-os-amd64.iso."
