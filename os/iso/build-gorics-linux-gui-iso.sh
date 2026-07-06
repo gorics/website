@@ -15,6 +15,7 @@ lb config \
   --distribution bookworm \
   --architectures amd64 \
   --archive-areas "main contrib non-free-firmware" \
+  --security false \
   --binary-images iso-hybrid \
   --bootappend-live "boot=live components quiet splash username=user hostname=gorics-os locales=ko_KR.UTF-8 keyboard-layouts=kr timezone=Asia/Seoul" \
   --debian-installer none \
@@ -68,12 +69,12 @@ cat > config/includes.chroot/usr/local/bin/gorics-welcome <<'EOF'
 #!/usr/bin/env bash
 cat <<'MSG'
 GORICS Linux GUI OS
-실제 Linux 기반 GUI ISO로 부팅되었습니다.
+Real Linux based GUI ISO booted.
 Base: Debian Live
 Desktop: XFCE
 Apps: Firefox ESR, Terminal, Thunar, Mousepad, Python3
 MSG
-read -r -p "Enter 키를 누르면 닫습니다... " _ || true
+read -r -p "Press Enter to close... " _ || true
 EOF
 chmod +x config/includes.chroot/usr/local/bin/gorics-welcome
 
@@ -109,7 +110,7 @@ cat >/etc/issue <<'MSG'
 GORICS Linux GUI OS \n \l
 MSG
 cat >/etc/motd <<'MSG'
-GORICS Linux GUI OS - real Debian-based live GUI ISO
+GORICS Linux GUI OS - real Debian based live GUI ISO
 MSG
 EOF
 chmod +x config/hooks/live/0100-gorics-locale.hook.chroot
