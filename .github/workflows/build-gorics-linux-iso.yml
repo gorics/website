@@ -8,7 +8,7 @@ on:
       - 'os/iso/**'
 
 permissions:
-  contents: read
+  contents: write
   actions: read
 
 jobs:
@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install live-build toolchain
         run: |
@@ -43,3 +45,15 @@ jobs:
             out/SHA256SUMS.txt
           if-no-files-found: error
           retention-days: 30
+
+      - name: Publish latest ISO release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: gorics-linux-gui-iso-latest
+        run: |
+          gh release delete "$TAG" -y || true
+          git tag -f "$TAG" "$GITHUB_SHA"
+          git push -f origin "$TAG"
+          gh release create "$TAG" out/*.iso out/SHA256SUMS.txt \
+            --title "GORICS Linux GUI OS ISO Latest" \
+            --notes "Real Debian-based Linux GUI ISO built from os/iso. Desktop: XFCE. Output: gorics-linux-gui-os-amd64.iso."
