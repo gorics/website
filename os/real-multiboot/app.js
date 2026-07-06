@@ -1,360 +1,471 @@
 (() => {
   'use strict';
 
-  const V86_RUNTIME = {
-    name: 'copy.sh v86 runtime',
-    lib: 'https://copy.sh/v86/build/libv86.js',
-    wasm: 'https://copy.sh/v86/build/v86.wasm',
-    bios: 'https://copy.sh/v86/bios/seabios.bin',
-    vga: 'https://copy.sh/v86/bios/vgabios.bin',
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+
+  const bootScreen = $('#boot-screen');
+  const bootLine = $('#boot-line');
+  const launcher = $('#launcher');
+  const launcherToggle = $('#launcher-toggle');
+  const launcherGrid = $('#launcher-grid');
+  const appSearch = $('#app-search');
+  const windowLayer = $('#window-layer');
+  const windowCount = $('#window-count');
+  const clockEl = $('#clock');
+  const networkPill = $('#network-pill');
+  const toastEl = $('#toast');
+
+  const storageKey = (key) => `gorics.gui.os.${key}`;
+  const loadJson = (key, fallback) => {
+    try {
+      const raw = localStorage.getItem(storageKey(key));
+      return raw ? JSON.parse(raw) : fallback;
+    } catch (_) {
+      return fallback;
+    }
   };
+  const saveJson = (key, value) => {
+    try { localStorage.setItem(storageKey(key), JSON.stringify(value)); } catch (_) {}
+  };
+  const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+  const bytes = (text) => new Blob([String(text ?? '')]).size;
+  const fmt = (n) => n < 1024 ? `${n} B` : n < 1024 * 1024 ? `${(n / 1024).toFixed(1)} KB` : `${(n / 1024 / 1024).toFixed(1)} MB`;
 
-  const OFFICIAL_V86_BASE = 'https://copy.sh/v86/';
-
-  const OS_PRESETS = [
-    {
-      id: 'gorics-web-linux-main',
-      group: 'MAIN',
-      label: 'GORICS Web Linux GUI OS (메인 서비스)',
-      detail: '나만의 웹 전용 Linux 기반 GUI OS 서비스입니다. 브라우저 안에서 실제 Linux GUI 게스트를 부팅하고, GORICS OS 서비스 화면을 메인으로 제공합니다.',
-      memorySize: 256 * 1024 * 1024,
-      vgaMemorySize: 16 * 1024 * 1024,
-      officialProfile: 'dsl',
-      fallbackPresetId: 'gorics-safe-linux',
-      setup: { cdrom: { url: 'https://i.copy.sh/dsl-4.11.rc2.iso', size: 52824064, async: true } },
-    },
-    {
-      id: 'gorics-safe-linux',
-      group: 'MAIN-FALLBACK',
-      label: 'GORICS Safe Linux Mode (대체 부팅)',
-      detail: '메인 GUI 이미지가 느리거나 차단될 때 쓰는 GORICS 안전 Linux 모드입니다. 빠른 Linux 커널로 서비스 접근성을 유지합니다.',
-      memorySize: 128 * 1024 * 1024,
-      vgaMemorySize: 8 * 1024 * 1024,
-      officialProfile: 'buildroot',
-      setup: { bzimage: { url: 'https://i.copy.sh/buildroot-bzimage68.bin', size: 10068480, async: false }, cmdline: 'rw root=/dev/ram0 console=ttyS0 console=tty0' },
-    },
-    {
-      id: 'tiny-linux-iso',
-      group: 'COMPAT',
-      label: '호환성 옵션: Tiny v86 Linux ISO',
-      detail: '남의 테스트 이미지입니다. 메인이 아니라 브라우저/v86 호환성 확인용 옵션입니다.',
-      memorySize: 128 * 1024 * 1024,
-      vgaMemorySize: 8 * 1024 * 1024,
-      officialProfile: 'linux',
-      fallbackPresetId: 'gorics-safe-linux',
-      setup: { cdrom: { url: 'https://i.copy.sh/linux4.iso', size: 7731200, async: true } },
-    },
-    {
-      id: 'freedos',
-      group: 'COMPAT',
-      label: '호환성 옵션: FreeDOS 7.22',
-      detail: '남의 테스트 이미지입니다. OS 서비스 메인이 아니라 부팅 호환성 확인용입니다.',
-      memorySize: 64 * 1024 * 1024,
-      vgaMemorySize: 4 * 1024 * 1024,
-      officialProfile: 'freedos',
-      setup: { fda: { url: 'https://i.copy.sh/freedos722.img', size: 737280, async: false } },
-    },
-    {
-      id: 'windows101',
-      group: 'COMPAT',
-      label: '호환성 옵션: Windows 1.01',
-      detail: '남의 테스트 이미지입니다. GORICS OS와 별개로 선택 가능한 검증 옵션입니다.',
-      memorySize: 64 * 1024 * 1024,
-      vgaMemorySize: 4 * 1024 * 1024,
-      officialProfile: 'windows1',
-      setup: { fda: { url: 'https://i.copy.sh/windows101.img', size: 1474560, async: false } },
-    },
-  ];
-
-  const logEl = document.getElementById('log');
-  const selectEl = document.getElementById('os-select');
-  const bootBtn = document.getElementById('boot-btn');
-  const stopBtn = document.getElementById('stop-btn');
-  const fullscreenBtn = document.getElementById('fullscreen-btn');
-  const screenEl = document.getElementById('screen');
-  const hintEl = document.getElementById('preset-detail');
-  const modeEl = document.getElementById('service-mode');
-
-  let emulator = null;
-  let runtimeReady = false;
-  let autoBooted = false;
-  let serialBuffer = '';
-  let screenObserver = null;
-  let bootToken = 0;
-  let fallbackInProgress = false;
-
-  const now = () => new Date().toISOString();
-  const ctor = () => (typeof window.V86Starter === 'function' ? window.V86Starter : (typeof window.V86 === 'function' ? window.V86 : null));
-  const fmtBytes = (n) => !n ? 'unknown' : n < 1024 ? `${n} B` : n < 1048576 ? `${(n / 1024).toFixed(1)} KB` : `${(n / 1048576).toFixed(1)} MB`;
-  const selectedPreset = () => OS_PRESETS.find((item) => item.id === selectEl.value) || OS_PRESETS[0];
-  const cloneSetup = (setup) => JSON.parse(JSON.stringify(setup));
-  const bootUrls = (setup) => Object.values(setup || {}).filter((v) => v && v.url).map((v) => v.url);
-  const safeConfig = (cfg) => JSON.stringify(cfg, (k, v) => k === 'screen_container' ? '[HTMLElement]' : v, 2);
-  const officialUrl = (profile) => `${OFFICIAL_V86_BASE}?profile=${encodeURIComponent(profile)}`;
-
-  function appendLog(message, level = 'info') {
-    const line = `[${now()}] [${level}] ${message}`;
-    if (logEl) {
-      logEl.textContent += `\n${line}`;
-      logEl.scrollTop = logEl.scrollHeight;
-    }
-    try { console[level === 'error' ? 'error' : level === 'warn' ? 'warn' : 'log']('[GORICS OS]', message); } catch (_) {}
-  }
-
-  function installLogButtons() {
-    if (!bootBtn || document.getElementById('copy-log-btn')) return;
-    const copy = document.createElement('button');
-    copy.id = 'copy-log-btn';
-    copy.className = 'secondary';
-    copy.type = 'button';
-    copy.textContent = '로그 복사';
-    copy.onclick = async () => {
-      try { await navigator.clipboard.writeText(logEl.textContent); appendLog('로그 복사 완료.'); }
-      catch (e) { appendLog(`로그 복사 실패: ${e.message}`, 'error'); }
-    };
-
-    const save = document.createElement('button');
-    save.className = 'secondary';
-    save.type = 'button';
-    save.textContent = '로그 파일';
-    save.onclick = () => {
-      const blob = new Blob([logEl.textContent], { type: 'text/plain;charset=utf-8' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `gorics-web-linux-os-log-${Date.now()}.txt`;
-      a.click();
-      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-      appendLog('로그 파일 생성.');
-    };
-
-    const official = document.createElement('a');
-    official.id = 'official-v86-link';
-    official.className = 'btn secondary official-v86-link';
-    official.target = '_blank';
-    official.rel = 'noopener noreferrer';
-    official.textContent = 'v86 원본 옵션';
-    bootBtn.parentElement.append(copy, save, official);
-  }
-
-  function updatePresetDetail() {
-    const preset = selectedPreset();
-    const official = document.getElementById('official-v86-link');
-    const tag = preset.group === 'MAIN' ? '메인 서비스' : preset.group === 'MAIN-FALLBACK' ? '메인 대체 모드' : '호환성 옵션';
-    if (hintEl) hintEl.textContent = `${tag} · ${preset.detail} / RAM ${fmtBytes(preset.memorySize)} / VGA ${fmtBytes(preset.vgaMemorySize)}`;
-    if (modeEl) modeEl.textContent = tag;
-    if (official) official.href = officialUrl(preset.officialProfile);
-    appendLog(`preset selected id=${preset.id} label=${preset.label}`);
-  }
-
-  function logEnvironment() {
-    appendLog('[ready] GORICS Web Linux GUI OS initialized.');
-    appendLog(`page=${location.href}`);
-    appendLog(`protocol=${location.protocol} secure=${window.isSecureContext} crossOriginIsolated=${window.crossOriginIsolated}`);
-    appendLog(`ua=${navigator.userAgent}`);
-    appendLog(`wasm=${typeof WebAssembly !== 'undefined'} cores=${navigator.hardwareConcurrency || 'unknown'} memoryGB=${navigator.deviceMemory || 'unknown'}`);
-    appendLog(`runtime lib=${V86_RUNTIME.lib}`);
-  }
-
-  window.addEventListener('error', (e) => appendLog(`window.error ${e.message || e.error || 'unknown'} at ${e.filename || ''}:${e.lineno || ''}:${e.colno || ''}`, 'error'));
-  window.addEventListener('unhandledrejection', (e) => appendLog(`unhandledrejection ${e.reason && e.reason.message ? e.reason.message : e.reason}`, 'error'));
-
-  async function probe(url, label) {
-    const started = performance.now();
-    appendLog(`probe start ${label}: ${url}`);
-    try {
-      const res = await fetch(url, { method: 'HEAD', cache: 'no-store', mode: 'cors' });
-      appendLog(`probe HEAD ${label}: status=${res.status} ok=${res.ok} type=${res.type} size=${fmtBytes(Number(res.headers.get('content-length') || 0))} time=${Math.round(performance.now() - started)}ms`);
-      if (res.ok) return true;
-    } catch (e) { appendLog(`probe HEAD ${label} failed: ${e.name}: ${e.message}`, 'warn'); }
-    try {
-      const res = await fetch(url, { method: 'GET', cache: 'no-store', mode: 'cors', headers: { Range: 'bytes=0-0' } });
-      const range = res.headers.get('content-range') || '';
-      appendLog(`probe RANGE ${label}: status=${res.status} ok=${res.ok} type=${res.type} range=${range || 'none'} time=${Math.round(performance.now() - started)}ms`);
-      return res.ok || res.status === 206;
-    } catch (e) { appendLog(`probe RANGE ${label} failed: ${e.name}: ${e.message}`, 'warn'); return false; }
-  }
-
-  async function runDiagnostics(preset) {
-    const checks = [
-      ['runtime.js', V86_RUNTIME.lib],
-      ['runtime.wasm', V86_RUNTIME.wasm],
-      ['bios', V86_RUNTIME.bios],
-      ['vga-bios', V86_RUNTIME.vga],
-      ...bootUrls(preset.setup).map((url, i) => [`guest-image-${i}`, url]),
-    ];
-    appendLog(`diagnostics start preset=${preset.id}`);
-    const results = await Promise.all(checks.map(async ([name, url]) => [name, await probe(url, name)]));
-    const failed = results.filter(([, ok]) => !ok).map(([name]) => name);
-    appendLog(`diagnostics end failed=${failed.length ? failed.join(',') : 'none'}`, failed.length ? 'warn' : 'info');
-  }
-
-  const loadScript = (src) => new Promise((resolve, reject) => {
-    if (ctor() && runtimeReady) { appendLog('runtime already loaded'); resolve(); return; }
-    const existing = document.querySelector(`script[data-v86-src="${src}"]`);
-    if (existing && existing.dataset.loaded === 'true') { runtimeReady = true; appendLog('runtime script tag already loaded'); resolve(); return; }
-    const script = existing || document.createElement('script');
-    script.src = src;
-    script.async = true;
-    script.crossOrigin = 'anonymous';
-    script.dataset.v86Src = src;
-    script.onload = () => { script.dataset.loaded = 'true'; runtimeReady = true; appendLog('runtime script onload'); resolve(); };
-    script.onerror = () => reject(new Error(`v86 runtime script failed: ${src}`));
-    if (!existing) { appendLog(`inject runtime script ${src}`); document.head.appendChild(script); }
+  let zIndex = 40;
+  const openWindows = new Map();
+  let files = loadJson('files', {
+    'home/readme.txt': 'GORICS GUI OS 정상 작동.\n\n브라우저, 터미널, 파일, 메모, 계산기, 수능 학습 패널, 실제 VM 링크를 포함합니다.',
+    'study/2027-csat.txt': '선택 과목: 화법과 작문 / 미적분 / 사회문화 / 한국지리\n오늘 목표: 한 과목이라도 첫 문제를 바로 푼다.',
+    'system/about.txt': 'GitHub Pages 위에서 즉시 실행되는 반응형 GUI OS 셸입니다.'
   });
+  let notes = loadJson('notes', '메모 자동 저장 활성화.\n필요한 내용을 바로 적어라.');
 
-  async function ensureV86Runtime() {
-    await loadScript(V86_RUNTIME.lib);
-    appendLog(`constructor check V86Starter=${typeof window.V86Starter} V86=${typeof window.V86}`);
-    if (!ctor()) throw new Error('V86 constructor missing');
-    return V86_RUNTIME;
+  function toast(message) {
+    if (!toastEl) return;
+    toastEl.textContent = message;
+    toastEl.classList.add('show');
+    clearTimeout(toastEl._timer);
+    toastEl._timer = setTimeout(() => toastEl.classList.remove('show'), 1900);
   }
 
-  function clearScreen() {
-    if (screenObserver) { try { screenObserver.disconnect(); } catch (_) {} screenObserver = null; }
-    screenEl.innerHTML = '';
-    screenEl.classList.remove('has-vm');
-  }
-
-  function stopMachine() {
-    bootToken++;
-    fallbackInProgress = false;
-    if (emulator) {
-      try {
-        if (typeof emulator.destroy === 'function') emulator.destroy();
-        else if (typeof emulator.stop === 'function') emulator.stop();
-        appendLog('VM stop/destroy called');
-      } catch (error) { appendLog(`stop error: ${error.message}`, 'error'); }
+  function tickClock() {
+    if (clockEl) {
+      clockEl.textContent = new Intl.DateTimeFormat('ko-KR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }).format(new Date());
     }
-    emulator = null;
-    serialBuffer = '';
-    clearScreen();
-    appendLog('VM state cleared');
+    if (networkPill) networkPill.textContent = navigator.onLine ? '● ONLINE' : '● OFFLINE';
   }
 
-  function watchScreen() {
-    if (screenObserver) screenObserver.disconnect();
-    screenObserver = new MutationObserver(() => {
-      if (screenEl.children.length) screenEl.classList.add('has-vm');
-      appendLog(`screen mutation children=${screenEl.children.length} canvas=${!!screenEl.querySelector('canvas')} text=${screenEl.textContent.trim().slice(0, 80) || 'none'}`);
+  function updateWindowCount() {
+    if (windowCount) windowCount.textContent = String(openWindows.size);
+  }
+
+  function focusWindow(win) {
+    $$('.window').forEach((item) => item.classList.remove('active'));
+    win.classList.add('active');
+    win.style.zIndex = String(++zIndex);
+  }
+
+  function closeWindow(id) {
+    const win = openWindows.get(id);
+    if (!win) return;
+    win.remove();
+    openWindows.delete(id);
+    updateWindowCount();
+  }
+
+  function makeWindow(app, contentNode, options = {}) {
+    const existing = openWindows.get(app.id);
+    if (existing) {
+      existing.classList.remove('minimized');
+      focusWindow(existing);
+      return existing;
+    }
+
+    const win = document.createElement('article');
+    win.className = 'window active';
+    win.dataset.app = app.id;
+    win.style.zIndex = String(++zIndex);
+    const offset = (openWindows.size % 7) * 28;
+    win.style.left = `${Math.min(132 + offset, Math.max(12, innerWidth - 380))}px`;
+    win.style.top = `${Math.min(88 + offset, Math.max(12, innerHeight - 260))}px`;
+    if (options.width) win.style.width = options.width;
+    if (options.height) win.style.height = options.height;
+
+    win.innerHTML = `
+      <div class="window-titlebar">
+        <div class="window-title"><span>${app.icon}</span><b>${esc(app.name)}</b><em>${esc(app.desc || '')}</em></div>
+        <div class="window-controls">
+          <button type="button" data-win="min" title="minimize">—</button>
+          <button type="button" data-win="max" title="maximize">□</button>
+          <button type="button" data-win="close" title="close">×</button>
+        </div>
+      </div>
+      <div class="window-body"></div>
+    `;
+    $('.window-body', win).append(contentNode);
+    windowLayer.appendChild(win);
+    openWindows.set(app.id, win);
+    updateWindowCount();
+    focusWindow(win);
+
+    win.addEventListener('pointerdown', () => focusWindow(win));
+    $('[data-win="close"]', win).addEventListener('click', () => closeWindow(app.id));
+    $('[data-win="min"]', win).addEventListener('click', () => win.classList.add('minimized'));
+    $('[data-win="max"]', win).addEventListener('click', () => {
+      win.classList.toggle('maximized');
+      focusWindow(win);
     });
-    screenObserver.observe(screenEl, { childList: true, subtree: true });
-    setTimeout(() => {
-      const r = screenEl.getBoundingClientRect();
-      appendLog(`screen box ${Math.round(r.width)}x${Math.round(r.height)} children=${screenEl.children.length} canvas=${!!screenEl.querySelector('canvas')}`);
-    }, 1500);
+    enableDrag(win, $('.window-titlebar', win));
+    return win;
   }
 
-  function fallbackFrom(preset, token, reason) {
-    if (fallbackInProgress || !preset.fallbackPresetId) return;
-    const fallback = OS_PRESETS.find((item) => item.id === preset.fallbackPresetId);
-    if (!fallback) return;
-    fallbackInProgress = true;
-    appendLog(`fallback scheduled ${preset.id} -> ${fallback.id} reason=${reason}`, 'warn');
-    setTimeout(() => {
-      if (token === bootToken) bootMachine(fallback, `fallback from ${preset.id}`);
-    }, 1200);
-  }
-
-  function bindLogs(preset, token) {
-    const events = ['emulator-loaded','emulator-ready','emulator-started','emulator-stopped','download-start','download-progress','download-error','screen-set-mode','reset','cpu-event-halt','cpu-event-reset'];
-    events.forEach((name) => {
-      try {
-        emulator.add_listener(name, (ev) => {
-          if (token !== bootToken) return;
-          if (name === 'download-error') {
-            appendLog(`event ${name}: ${ev ? JSON.stringify(ev, (k, v) => k === 'buffer' ? '[buffer]' : v).slice(0, 500) : ''}`, 'error');
-            fallbackFrom(preset, token, 'download-error');
-            return;
-          }
-          appendLog(`event ${name}: ${ev ? JSON.stringify(ev, (k, v) => k === 'buffer' ? '[buffer]' : v).slice(0, 500) : ''}`, name.includes('error') ? 'error' : 'info');
-        });
-      } catch (e) { appendLog(`listener add failed ${name}: ${e.message}`, 'warn'); }
-    });
-
-    try {
-      emulator.add_listener('serial0-output-byte', (byte) => {
-        if (token !== bootToken) return;
-        const ch = String.fromCharCode(byte);
-        serialBuffer += ch;
-        if (serialBuffer.length > 160 || ch === '\n') {
-          appendLog(`[serial0] ${serialBuffer.replace(/\r/g, '').slice(0, 600)}`);
-          serialBuffer = '';
-        }
-      });
-      appendLog('serial0-output-byte listener enabled');
-    } catch (e) { appendLog(`serial listener unavailable: ${e.message}`, 'warn'); }
-
-    appendLog(`listeners attached for ${preset.id}`);
-  }
-
-  async function bootMachine(preset = selectedPreset(), reason = 'manual') {
-    const token = ++bootToken;
-    fallbackInProgress = false;
-    bootBtn.disabled = true;
-    appendLog(`start requested preset=${preset.id} ${preset.label} reason=${reason}`);
-    try {
-      if (emulator) {
-        try {
-          if (typeof emulator.destroy === 'function') emulator.destroy();
-          else if (typeof emulator.stop === 'function') emulator.stop();
-          appendLog('previous VM stop/destroy called');
-        } catch (e) { appendLog(`previous VM stop error: ${e.message}`, 'warn'); }
-        emulator = null;
-        serialBuffer = '';
-      }
-      clearScreen();
-      const runtime = await ensureV86Runtime();
-      runDiagnostics(preset).catch((e) => appendLog(`diagnostics failed: ${e.message}`, 'warn'));
-      const config = {
-        wasm_path: runtime.wasm,
-        bios: { url: runtime.bios },
-        vga_bios: { url: runtime.vga },
-        autostart: true,
-        screen_container: screenEl,
-        memory_size: preset.memorySize,
-        vga_memory_size: preset.vgaMemorySize,
-        disable_speaker: true,
-        ...cloneSetup(preset.setup),
+  function enableDrag(win, handle) {
+    let drag = null;
+    handle.addEventListener('pointerdown', (event) => {
+      if (event.target.closest('button') || win.classList.contains('maximized')) return;
+      drag = {
+        id: event.pointerId,
+        x: event.clientX,
+        y: event.clientY,
+        left: parseFloat(win.style.left || '0'),
+        top: parseFloat(win.style.top || '0')
       };
-      appendLog(`create VM config=${safeConfig(config)}`);
-      watchScreen();
-      emulator = new (ctor())(config);
-      screenEl.classList.add('has-vm');
-      window.goricsEmulator = emulator;
-      bindLogs(preset, token);
-      appendLog('VM constructor returned. Waiting for events and guest screen.');
-    } catch (error) {
-      appendLog(`start failed: ${error && error.stack ? error.stack : error}`, 'error');
-      fallbackFrom(preset, token, 'exception');
-    } finally {
-      if (token === bootToken) bootBtn.disabled = false;
+      handle.setPointerCapture(event.pointerId);
+    });
+    handle.addEventListener('pointermove', (event) => {
+      if (!drag || drag.id !== event.pointerId) return;
+      const left = Math.max(0, Math.min(innerWidth - 80, drag.left + event.clientX - drag.x));
+      const top = Math.max(0, Math.min(innerHeight - 80, drag.top + event.clientY - drag.y));
+      win.style.left = `${left}px`;
+      win.style.top = `${top}px`;
+    });
+    handle.addEventListener('pointerup', () => { drag = null; });
+  }
+
+  function openEditor(path) {
+    const area = document.createElement('div');
+    area.className = 'pane';
+    area.innerHTML = `<textarea class="notes" spellcheck="false"></textarea><div class="note-status"></div>`;
+    const textarea = $('textarea', area);
+    const status = $('.note-status', area);
+    textarea.value = files[path] || '';
+    textarea.addEventListener('input', () => {
+      files[path] = textarea.value;
+      saveJson('files', files);
+      status.textContent = `저장됨 · ${fmt(bytes(textarea.value))}`;
+    });
+    status.textContent = `열림 · ${path}`;
+    makeWindow({ id: `edit:${path}`, icon: '📄', name: path.split('/').pop(), desc: path }, area, { width: 'min(680px, calc(100vw - 24px))' });
+  }
+
+  function openFiles() {
+    const body = document.createElement('div');
+    body.className = 'pane file-layout';
+    body.innerHTML = `
+      <div class="sidebar-list">
+        <button class="on" type="button">Home</button>
+        <button type="button">Study</button>
+        <button type="button">System</button>
+        <button id="new-file" type="button">+ New</button>
+      </div>
+      <div class="file-grid"></div>
+    `;
+    const grid = $('.file-grid', body);
+    const render = () => {
+      grid.innerHTML = '';
+      Object.entries(files).sort(([a], [b]) => a.localeCompare(b)).forEach(([path, value]) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.innerHTML = `<span>📄</span><b>${esc(path.split('/').pop())}</b><small>${esc(path)} · ${fmt(bytes(value))}</small>`;
+        btn.addEventListener('click', () => openEditor(path));
+        grid.appendChild(btn);
+      });
+    };
+    $('#new-file', body).addEventListener('click', () => {
+      const name = prompt('파일 이름', `home/new-${Date.now()}.txt`);
+      if (!name) return;
+      files[name] = '';
+      saveJson('files', files);
+      render();
+      openEditor(name);
+    });
+    render();
+    makeWindow(appMap.get('files'), body, { width: 'min(780px, calc(100vw - 24px))' });
+  }
+
+  function normalizeUrl(url) {
+    const text = String(url || '').trim();
+    if (!text) return 'https://gorics.github.io/website/';
+    if (/^https?:\/\//i.test(text)) return text;
+    if (/^[\w.-]+\.[a-z]{2,}/i.test(text)) return `https://${text}`;
+    return `https://www.google.com/search?q=${encodeURIComponent(text)}`;
+  }
+
+  function openBrowser() {
+    const body = document.createElement('div');
+    body.className = 'pane';
+    body.innerHTML = `
+      <div class="browser-bar">
+        <input value="https://gorics.github.io/website/" aria-label="url" />
+        <button type="button" data-go>GO</button>
+        <button type="button" data-new>↗</button>
+      </div>
+      <iframe class="browser-frame" title="browser" referrerpolicy="no-referrer"></iframe>
+    `;
+    const input = $('input', body);
+    const frame = $('iframe', body);
+    const go = () => {
+      const url = normalizeUrl(input.value);
+      input.value = url;
+      frame.src = url;
+      toast('브라우저 이동');
+    };
+    $('[data-go]', body).addEventListener('click', go);
+    $('[data-new]', body).addEventListener('click', () => open(normalizeUrl(input.value), '_blank', 'noopener'));
+    input.addEventListener('keydown', (event) => { if (event.key === 'Enter') go(); });
+    makeWindow(appMap.get('browser'), body, { width: 'min(900px, calc(100vw - 24px))', height: 'min(650px, calc(100svh - 166px))' });
+    go();
+  }
+
+  function openTerminal() {
+    const body = document.createElement('div');
+    body.className = 'terminal';
+    body.innerHTML = `
+      <div class="terminal-output"></div>
+      <label class="terminal-input"><span class="prompt">gorics@os:~$</span><input autocomplete="off" /></label>
+    `;
+    const out = $('.terminal-output', body);
+    const input = $('input', body);
+    const print = (text = '') => {
+      out.innerHTML += `${esc(text)}\n`;
+      out.scrollTop = out.scrollHeight;
+    };
+    const commands = {
+      help: () => 'help, apps, open [app], files, date, echo [text], storage, theme, clear',
+      apps: () => appList.map((app) => `${app.id.padEnd(8)} ${app.name}`).join('\n'),
+      files: () => Object.keys(files).join('\n'),
+      date: () => new Date().toString(),
+      storage: () => `files=${Object.keys(files).length}, notes=${fmt(bytes(notes))}, windows=${openWindows.size}`,
+      theme: () => {
+        document.body.dataset.theme = document.body.dataset.theme === 'light' ? '' : 'light';
+        return `theme=${document.body.dataset.theme || 'dark'}`;
+      }
+    };
+    const run = (line) => {
+      print(`gorics@os:~$ ${line}`);
+      const [cmd, ...args] = line.trim().split(/\s+/);
+      if (!cmd) return;
+      if (cmd === 'clear') { out.textContent = ''; return; }
+      if (cmd === 'echo') { print(args.join(' ')); return; }
+      if (cmd === 'open') {
+        const target = args[0];
+        const app = appMap.get(target);
+        if (app) { app.open(); print(`opened ${target}`); } else print(`app not found: ${target}`);
+        return;
+      }
+      print(commands[cmd] ? commands[cmd](args) : `unknown command: ${cmd}`);
+    };
+    input.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter') return;
+      const line = input.value;
+      input.value = '';
+      run(line);
+    });
+    makeWindow(appMap.get('terminal'), body, { width: 'min(760px, calc(100vw - 24px))' });
+    print('GORICS Terminal ready. type: help');
+    setTimeout(() => input.focus(), 50);
+  }
+
+  function openNotes() {
+    const body = document.createElement('div');
+    body.className = 'pane';
+    body.innerHTML = `<textarea class="notes" spellcheck="false"></textarea><div class="note-status">자동 저장 대기</div>`;
+    const area = $('textarea', body);
+    const status = $('.note-status', body);
+    area.value = notes;
+    area.addEventListener('input', () => {
+      notes = area.value;
+      saveJson('notes', notes);
+      status.textContent = `자동 저장됨 · ${fmt(bytes(notes))}`;
+    });
+    makeWindow(appMap.get('notes'), body, { width: 'min(680px, calc(100vw - 24px))' });
+  }
+
+  function openCalc() {
+    const body = document.createElement('div');
+    body.className = 'pane';
+    body.innerHTML = `<div class="calc"><input readonly value="0" /><div class="calc-grid"></div></div>`;
+    const display = $('input', body);
+    const grid = $('.calc-grid', body);
+    let expr = '';
+    const keys = ['7','8','9','/','4','5','6','*','1','2','3','-','0','.','=','+','C','(',')','%'];
+    keys.forEach((key) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = key;
+      btn.addEventListener('click', () => {
+        if (key === 'C') expr = '';
+        else if (key === '=') {
+          try {
+            if (!/^[0-9+\-*/().%\s]+$/.test(expr)) throw new Error('bad expression');
+            expr = String(Function(`"use strict"; return (${expr || 0})`)());
+          } catch (_) { expr = 'Error'; }
+        } else {
+          if (expr === 'Error') expr = '';
+          expr += key;
+        }
+        display.value = expr || '0';
+      });
+      grid.appendChild(btn);
+    });
+    makeWindow(appMap.get('calc'), body, { width: '390px', height: '500px' });
+  }
+
+  function openStudy() {
+    const body = document.createElement('div');
+    body.className = 'pane study-board';
+    body.innerHTML = `
+      <h2>2027 수능 대시보드</h2>
+      <p>재수생 기준으로 오늘 할 행동만 남기는 학습 패널.</p>
+      <div class="subject-list">
+        <label><input type="checkbox"><span>화법과 작문</span><small>비문학 1지문 + 화작 세트</small></label>
+        <label><input type="checkbox"><span>미적분</span><small>킬러보다 기본 계산 안정화</small></label>
+        <label><input type="checkbox"><span>사회문화</span><small>도표 2문항 오답 제거</small></label>
+        <label><input type="checkbox"><span>한국지리</span><small>지역·기후·인구 개념 압축</small></label>
+      </div>
+      <button type="button" data-open="notes">오늘 계획을 Notes에 적기</button>
+    `;
+    makeWindow(appMap.get('study'), body, { width: 'min(640px, calc(100vw - 24px))' });
+  }
+
+  function openSystem() {
+    const body = document.createElement('div');
+    body.className = 'pane';
+    body.innerHTML = `
+      <div class="system-grid">
+        <div><b>OS</b><span>GORICS GUI OS custom shell</span></div>
+        <div><b>Runtime</b><span>HTML/CSS/JS · GitHub Pages</span></div>
+        <div><b>Storage</b><span>localStorage · ${Object.keys(files).length} files</span></div>
+        <div><b>Network</b><span>${navigator.onLine ? 'online' : 'offline'}</span></div>
+        <div><b>Viewport</b><span>${innerWidth} × ${innerHeight}</span></div>
+        <div><b>VM</b><span>v86/ISO 옵션은 VM 패널에서 실행</span></div>
+      </div>
+      <div class="settings-row">
+        <button type="button" data-theme>테마 전환</button>
+        <button type="button" data-open="vm">실제 VM 열기</button>
+        <button type="button" data-reset>레이아웃 리셋</button>
+      </div>
+    `;
+    $('[data-theme]', body).addEventListener('click', () => {
+      document.body.dataset.theme = document.body.dataset.theme === 'light' ? '' : 'light';
+      toast(`테마: ${document.body.dataset.theme || 'dark'}`);
+    });
+    $('[data-reset]', body).addEventListener('click', () => {
+      $$('.window').forEach((win, i) => {
+        win.classList.remove('maximized', 'minimized');
+        win.style.left = `${24 + i * 24}px`;
+        win.style.top = `${76 + i * 24}px`;
+      });
+      toast('창 위치 리셋');
+    });
+    makeWindow(appMap.get('system'), body, { width: 'min(720px, calc(100vw - 24px))' });
+  }
+
+  function openVm() {
+    const body = document.createElement('div');
+    body.className = 'pane study-board';
+    body.innerHTML = `
+      <h2>Real Linux / VM Boot</h2>
+      <p>메인은 자체 GUI OS로 즉시 실행하고, 실제 x86 Linux ISO/VM 부팅은 아래에서 분리 실행합니다.</p>
+      <div class="subject-list">
+        <label><span>GORICS WebBoot</span><small>내장 ISO/직접 커널 부팅 페이지</small></label>
+        <label><span>DSL Linux GUI</span><small>공식 v86 GUI 프로필</small></label>
+        <label><span>Safe Buildroot</span><small>가벼운 Linux 부팅 확인</small></label>
+      </div>
+      <div class="settings-row">
+        <button type="button" data-url="../quantum-real/">GORICS WebBoot</button>
+        <button type="button" data-url="https://copy.sh/v86/?profile=dsl">DSL GUI 원본</button>
+        <button type="button" data-url="https://copy.sh/v86/?profile=buildroot">Safe Linux 원본</button>
+      </div>
+    `;
+    $$('[data-url]', body).forEach((btn) => btn.addEventListener('click', () => open(btn.dataset.url, '_blank', 'noopener')));
+    makeWindow(appMap.get('vm'), body, { width: 'min(690px, calc(100vw - 24px))' });
+  }
+
+  const appList = [
+    { id: 'files', icon: '🗂️', name: 'Files', desc: '로컬 파일 관리자', open: openFiles },
+    { id: 'browser', icon: '🌐', name: 'Browser', desc: '웹 탐색 / iframe 브라우저', open: openBrowser },
+    { id: 'terminal', icon: '⌨️', name: 'Terminal', desc: '명령 실행 셸', open: openTerminal },
+    { id: 'notes', icon: '📝', name: 'Notes', desc: '자동 저장 메모', open: openNotes },
+    { id: 'calc', icon: '🧮', name: 'Calculator', desc: '계산기', open: openCalc },
+    { id: 'study', icon: '📚', name: 'Study', desc: '수능 학습 패널', open: openStudy },
+    { id: 'system', icon: '⚙️', name: 'System', desc: '설정 / 상태', open: openSystem },
+    { id: 'vm', icon: '🖥️', name: 'Real VM', desc: 'Linux ISO/v86 부팅 옵션', open: openVm }
+  ];
+  const appMap = new Map(appList.map((app) => [app.id, app]));
+
+  function renderLauncher(filter = '') {
+    if (!launcherGrid) return;
+    const term = filter.trim().toLowerCase();
+    launcherGrid.innerHTML = '';
+    appList
+      .filter((app) => !term || `${app.id} ${app.name} ${app.desc}`.toLowerCase().includes(term))
+      .forEach((app) => {
+        const btn = document.createElement('button');
+        btn.className = 'launcher-app';
+        btn.type = 'button';
+        btn.dataset.open = app.id;
+        btn.innerHTML = `<span>${app.icon}</span><b>${esc(app.name)}</b><small>${esc(app.desc)}</small>`;
+        launcherGrid.appendChild(btn);
+      });
+  }
+
+  function toggleLauncher(force) {
+    if (!launcher) return;
+    launcher.classList.toggle('open', typeof force === 'boolean' ? force : !launcher.classList.contains('open'));
+    if (launcher.classList.contains('open')) {
+      renderLauncher(appSearch ? appSearch.value : '');
+      setTimeout(() => appSearch && appSearch.focus(), 40);
     }
   }
 
-  installLogButtons();
-  OS_PRESETS.forEach((preset) => {
-    const option = document.createElement('option');
-    option.value = preset.id;
-    option.textContent = preset.label;
-    selectEl.appendChild(option);
+  function boot() {
+    const lines = ['kernel shell loading...', 'mounting localStorage...', 'starting window manager...', 'GORICS GUI OS ready'];
+    lines.forEach((line, i) => setTimeout(() => { if (bootLine) bootLine.textContent = line; }, i * 260));
+    setTimeout(() => bootScreen && bootScreen.classList.add('hidden'), 1180);
+    tickClock();
+    setInterval(tickClock, 1000);
+    renderLauncher();
+    toast('GORICS GUI OS 부팅 완료');
+  }
+
+  document.addEventListener('click', (event) => {
+    const opener = event.target.closest('[data-open]');
+    if (!opener) return;
+    const id = opener.dataset.open;
+    if (id === 'launcher') { toggleLauncher(); return; }
+    const app = appMap.get(id);
+    if (app) {
+      app.open();
+      toggleLauncher(false);
+    }
   });
-  selectEl.value = 'gorics-web-linux-main';
-  updatePresetDetail();
-  logEnvironment();
-  selectEl.addEventListener('change', updatePresetDetail);
-  bootBtn.addEventListener('click', () => bootMachine());
-  stopBtn.addEventListener('click', stopMachine);
-  fullscreenBtn.addEventListener('click', async () => {
-    try {
-      const target = screenEl.closest('.screen-wrap') || screenEl;
-      if (!document.fullscreenElement && target.requestFullscreen) { await target.requestFullscreen(); return; }
-      if (document.fullscreenElement && document.exitFullscreen) await document.exitFullscreen();
-    } catch (error) { appendLog(`fullscreen failed: ${error.message}`, 'error'); }
+  document.addEventListener('keydown', (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      toggleLauncher(true);
+    }
+    if (event.key === 'Escape') toggleLauncher(false);
   });
-  window.setTimeout(() => {
-    if (autoBooted || emulator) return;
-    autoBooted = true;
-    appendLog('auto start triggered');
-    bootMachine();
-  }, 600);
+  window.addEventListener('online', tickClock);
+  window.addEventListener('offline', tickClock);
+  if (launcherToggle) launcherToggle.addEventListener('click', () => toggleLauncher());
+  if (appSearch) appSearch.addEventListener('input', () => renderLauncher(appSearch.value));
+
+  boot();
 })();
