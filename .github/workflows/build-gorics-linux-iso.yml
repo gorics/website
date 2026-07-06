@@ -1,0 +1,45 @@
+name: Build Gorics Linux GUI ISO
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/build-gorics-linux-iso.yml'
+      - 'os/iso/**'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  build-gorics-linux-gui-iso:
+    name: Build real Linux GUI ISO
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install live-build toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends live-build xorriso isolinux syslinux-common squashfs-tools debootstrap ca-certificates
+
+      - name: Build Gorics Linux GUI ISO
+        run: |
+          sudo bash os/iso/build-gorics-linux-gui-iso.sh
+
+      - name: Show ISO result
+        run: |
+          ls -lh out/
+          sha256sum out/*.iso | tee out/SHA256SUMS.txt
+
+      - name: Upload ISO artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: gorics-linux-gui-iso
+          path: |
+            out/*.iso
+            out/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 30
