@@ -29,7 +29,7 @@ jobs:
             -v "$PWD:/work" \
             -w /work \
             debian:bookworm \
-            bash -lc 'apt-get update && apt-get install -y --no-install-recommends sudo live-build xorriso isolinux syslinux-common squashfs-tools debootstrap ca-certificates wget && bash os/iso/build-gorics-web-iso.sh'
+            bash -lc 'apt-get update && apt-get install -y --no-install-recommends sudo live-build xorriso isolinux syslinux-common squashfs-tools debootstrap ca-certificates wget xz-utils && bash os/iso/build-gorics-web-iso.sh'
           sudo chown -R "$USER:$USER" out-web build || true
           test -s out-web/gorics-linux-gui-web-amd64.iso
           ls -lh out-web/gorics-linux-gui-web-amd64.iso
