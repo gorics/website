@@ -21,18 +21,24 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Build lightweight GUI ISO
+      - name: Build i386 GUI ISO for browser v86
         id: build
         continue-on-error: true
         run: |
+          sed -i 's/gorics-linux-gui-web-amd64.iso/gorics-linux-gui-web-i386.iso/g' os/iso/build-gorics-web-iso.sh
+          sed -i 's/--architectures amd64/--architectures i386/g' os/iso/build-gorics-web-iso.sh
+          sed -i 's/linux-image-amd64/linux-image-686-pae/g' os/iso/build-gorics-web-iso.sh
+          sed -i 's/GORICS_WEB_GUI/GORICS_WEB_I386/g' os/iso/build-gorics-web-iso.sh
+          grep -q -- '--architectures i386' os/iso/build-gorics-web-iso.sh
+          grep -q 'linux-image-686-pae' os/iso/build-gorics-web-iso.sh
           docker run --privileged --rm \
             -v "$PWD:/work" \
             -w /work \
             debian:bookworm \
             bash -lc 'apt-get update && apt-get install -y --no-install-recommends sudo live-build xorriso isolinux syslinux-common squashfs-tools debootstrap ca-certificates wget xz-utils && bash os/iso/build-gorics-web-iso.sh'
           sudo chown -R "$USER:$USER" out-web build || true
-          test -s out-web/gorics-linux-gui-web-amd64.iso
-          ls -lh out-web/gorics-linux-gui-web-amd64.iso
+          test -s out-web/gorics-linux-gui-web-i386.iso
+          ls -lh out-web/gorics-linux-gui-web-i386.iso
 
       - name: Verify ISO structure and size
         id: verify
@@ -41,7 +47,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y xorriso qemu-system-x86
-          ISO=out-web/gorics-linux-gui-web-amd64.iso
+          ISO=out-web/gorics-linux-gui-web-i386.iso
           SIZE=$(stat -c %s "$ISO")
           echo "ISO_SIZE=$SIZE"
           test "$SIZE" -lt 900000000
@@ -49,21 +55,22 @@ jobs:
           grep -Eiq 'El Torito|Boot record|boot catalog' out-web/el-torito-report.txt
           sha256sum "$ISO" | tee out-web/SHA256SUMS.txt
 
-      - name: Boot ISO in QEMU to graphical target
+      - name: Boot i386 ISO with i686 CPU to graphical target
         id: boot
         if: steps.verify.outcome == 'success'
         continue-on-error: true
         run: |
-          ISO=out-web/gorics-linux-gui-web-amd64.iso
+          ISO=out-web/gorics-linux-gui-web-i386.iso
           rm -f out-web/qemu-serial.log out-web/vmlinuz out-web/initrd.img
           xorriso -osirrox on -indev "$ISO" -extract /live/vmlinuz out-web/vmlinuz
           xorriso -osirrox on -indev "$ISO" -extract /live/initrd.img out-web/initrd.img
           set +e
-          timeout 300s qemu-system-x86_64 \
+          timeout 300s qemu-system-i386 \
             -machine pc \
+            -cpu pentium3 \
             -accel tcg \
-            -m 768 \
-            -smp 2 \
+            -m 512 \
+            -smp 1 \
             -kernel out-web/vmlinuz \
             -initrd out-web/initrd.img \
             -append 'boot=live components live-media=/dev/sr0 username=user hostname=gorics-web systemd.unit=graphical.target console=ttyS0,115200n8' \
@@ -77,6 +84,8 @@ jobs:
           echo "qemu exit=$RC"
           tail -n 300 out-web/qemu-serial.log || true
           grep -q 'GORICS_WEB_GUI_READY' out-web/qemu-serial.log
+          grep -q 'Reached target.*graphical.target' out-web/qemu-serial.log
+          ! grep -q 'requires an x86-64 CPU' out-web/qemu-serial.log
 
       - name: Publish tested web ISO release
         id: publish
@@ -90,12 +99,12 @@ jobs:
           git tag -f "$TAG" "$GITHUB_SHA"
           git push -f origin "$TAG"
           gh release create "$TAG" \
-            out-web/gorics-linux-gui-web-amd64.iso \
+            out-web/gorics-linux-gui-web-i386.iso \
             out-web/SHA256SUMS.txt \
             out-web/el-torito-report.txt \
             out-web/qemu-serial.log \
-            --title "GORICS Linux GUI Web ISO Latest" \
-            --notes "Lightweight real Debian GUI ISO. QEMU graphical-target boot test passed."
+            --title "GORICS Linux GUI Web ISO i386 Latest" \
+            --notes "Debian Bookworm i386 browser ISO. Tested with an i686 QEMU CPU through graphical.target."
 
       - name: Record build result
         if: always()
@@ -110,11 +119,13 @@ jobs:
           from datetime import datetime, timezone
           from pathlib import Path
 
-          iso = Path('out-web/gorics-linux-gui-web-amd64.iso')
+          iso = Path('out-web/gorics-linux-gui-web-i386.iso')
           data = {
               'updated_at': datetime.now(timezone.utc).isoformat(),
               'commit': os.environ.get('GITHUB_SHA'),
               'run_id': os.environ.get('GITHUB_RUN_ID'),
+              'architecture': 'i386',
+              'cpu_test': 'pentium3/i686',
               'build': os.environ.get('BUILD_OUTCOME'),
               'verify': os.environ.get('VERIFY_OUTCOME'),
               'boot': os.environ.get('BOOT_OUTCOME'),
@@ -132,6 +143,7 @@ jobs:
           if serial.exists():
               text = serial.read_text(errors='replace')
               data['gui_ready_marker'] = 'GORICS_WEB_GUI_READY' in text
+              data['x86_64_error'] = 'requires an x86-64 CPU' in text
               data['serial_tail'] = text[-4000:]
           Path('os/iso/web-build-status.json').write_text(
               json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
