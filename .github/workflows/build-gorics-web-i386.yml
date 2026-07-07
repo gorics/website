@@ -1,0 +1,73 @@
+name: Build GORICS Browser i386 ISO
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/build-gorics-web-i386.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-test-publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Prepare i386 builder
+        run: |
+          sed -i 's/gorics-linux-gui-web-amd64.iso/gorics-linux-gui-web-i386.iso/g' os/iso/build-gorics-web-iso.sh
+          sed -i 's/--architectures amd64/--architectures i386/g' os/iso/build-gorics-web-iso.sh
+          sed -i 's/linux-image-amd64/linux-image-686-pae/g' os/iso/build-gorics-web-iso.sh
+          grep -q -- '--architectures i386' os/iso/build-gorics-web-iso.sh
+          grep -q 'linux-image-686-pae' os/iso/build-gorics-web-iso.sh
+
+      - name: Build i386 ISO
+        run: |
+          docker run --privileged --rm \
+            -v "$PWD:/work" -w /work debian:bookworm \
+            bash -lc 'apt-get update && apt-get install -y --no-install-recommends sudo live-build xorriso isolinux syslinux-common squashfs-tools debootstrap ca-certificates wget xz-utils && bash os/iso/build-gorics-web-iso.sh'
+          sudo chown -R "$USER:$USER" out-web build || true
+          test -s out-web/gorics-linux-gui-web-i386.iso
+
+      - name: Verify and boot with i686 PAE CPU
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xorriso qemu-system-x86
+          ISO=out-web/gorics-linux-gui-web-i386.iso
+          test "$(stat -c %s "$ISO")" -lt 900000000
+          xorriso -indev "$ISO" -report_el_torito plain | tee out-web/el-torito-report.txt
+          sha256sum "$ISO" | tee out-web/SHA256SUMS.txt
+          xorriso -osirrox on -indev "$ISO" -extract /live/vmlinuz out-web/vmlinuz
+          xorriso -osirrox on -indev "$ISO" -extract /live/initrd.img out-web/initrd.img
+          set +e
+          timeout 240s qemu-system-i386 \
+            -machine pc -cpu pentium3,+pae -accel tcg -m 512 -smp 1 \
+            -kernel out-web/vmlinuz -initrd out-web/initrd.img \
+            -append 'boot=live components live-media=/dev/sr0 username=user hostname=gorics-web systemd.unit=graphical.target console=ttyS0,115200n8' \
+            -cdrom "$ISO" -nographic -monitor none -no-reboot \
+            >out-web/qemu-serial.log 2>&1
+          set -e
+          tail -n 300 out-web/qemu-serial.log || true
+          grep -q 'GORICS_WEB_GUI_READY' out-web/qemu-serial.log
+          ! grep -q 'requires an x86-64 CPU' out-web/qemu-serial.log
+
+      - name: Publish i386 release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: gorics-linux-gui-web-iso-latest
+        run: |
+          gh release delete "$TAG" -y || true
+          git tag -f "$TAG" "$GITHUB_SHA"
+          git push -f origin "$TAG"
+          gh release create "$TAG" \
+            out-web/gorics-linux-gui-web-i386.iso \
+            out-web/SHA256SUMS.txt \
+            out-web/el-torito-report.txt \
+            out-web/qemu-serial.log \
+            --title 'GORICS Linux GUI Web ISO i386 Latest' \
+            --notes 'i386 browser ISO verified with an i686 PAE CPU.'
