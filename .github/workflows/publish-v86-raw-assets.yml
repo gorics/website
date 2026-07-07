@@ -1,0 +1,66 @@
+name: Publish v86 Raw Assets
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/publish-v86-raw-assets.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download current ISO
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p work/assets
+          gh release download gorics-linux-gui-iso-latest --pattern gorics-linux-gui-os-amd64.iso --dir work
+          ls -lh work/gorics-linux-gui-os-amd64.iso
+
+      - name: Split ISO into raw v86 assets
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          iso = Path('work/gorics-linux-gui-os-amd64.iso')
+          out = Path('work/assets')
+          chunk = 16 * 1024 * 1024
+          size = iso.stat().st_size
+          start = 0
+          count = 0
+          with iso.open('rb') as source:
+              while start < size:
+                  data = source.read(chunk)
+                  if len(data) < chunk:
+                      data += bytes(chunk - len(data))
+                  end = start + chunk
+                  (out / f'{iso.stem}-{start}-{end}{iso.suffix}').write_bytes(data)
+                  start = end
+                  count += 1
+          (out / 'V86-PARTS.txt').write_text(
+              f'iso={iso.name}\nsize={size}\nchunk_size={chunk}\nparts={count}\n',
+              encoding='utf-8'
+          )
+          print('size', size, 'parts', count)
+          PY
+          ls -lh work/assets | head
+
+      - name: Force publish orphan asset branch
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          cd work/assets
+          git init
+          git checkout -b v86-assets
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Publish v86 ISO chunks"
+          git remote add origin "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push --force origin v86-assets
