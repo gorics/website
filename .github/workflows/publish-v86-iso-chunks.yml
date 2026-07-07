@@ -40,14 +40,16 @@ jobs:
                   if len(data) < chunk:
                       data += bytes(chunk - len(data))
                   end = start + chunk
-                  (out / f'{iso.name}-{start}-{end}').write_bytes(data)
+                  target = out / f'{iso.stem}-{start}-{end}{iso.suffix}'
+                  target.write_bytes(data)
                   start = end
                   count += 1
           (out / 'V86-PARTS.txt').write_text(
-              f'iso={iso.name}\nsize={size}\nchunk_size={chunk}\nparts={count}\n'
+              f'iso={iso.name}\nsize={size}\nchunk_size={chunk}\nparts={count}\nformat={iso.stem}-%START%-%END%{iso.suffix}\n'
           )
           print('size', size, 'parts', count)
           PY
+          ls -lh work/chunks | head
 
       - name: Upload chunks to release
         env:
