@@ -1,0 +1,85 @@
+{
+  "generatedAt": "2026-06-22T21:10:20+09:00",
+  "source": "Latest financial public news overlay for GitHub Pages news site; timestamp overlay merged ahead of latest.json and data.json",
+  "page": "financial-timestamp-overlay",
+  "categories": [
+    {"id":"fx-rates","name":"외환·금리","icon":"💱","count":1},
+    {"id":"equity-markets","name":"주식시장","icon":"📈","count":2},
+    {"id":"precious-metals","name":"귀금속","icon":"🥇","count":1},
+    {"id":"energy-markets","name":"에너지시장","icon":"🛢️","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {
+      "id": "fin-20260622-2110-dollar-pound-yen-fed",
+      "category": "fx-rates",
+      "categoryName": "외환·금리",
+      "categoryIcon": "💱",
+      "title": "달러 강세, 엔화 40년 저점권·파운드 정치 리스크 반영",
+      "description": "달러는 연준 긴축 기대와 강한 지표에 지지받았고 엔화는 수십 년 저점권을 맴돌았다. 파운드는 스타머 사임 변수로 일시 약세를 보였다.",
+      "url": "https://www.reuters.com/business/dollar-firms-cracks-emerge-peace-deal-pound-dips-starmer-uncertainty-2026-06-22/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-22",
+      "score": 306,
+      "priority": 306,
+      "tags": ["달러","엔화","파운드","연준","영국정치"]
+    },
+    {
+      "id": "fin-20260622-2110-europe-shares-ecb",
+      "category": "equity-markets",
+      "categoryName": "주식시장",
+      "categoryIcon": "📈",
+      "title": "유럽 증시 보합, 기술주 강세에도 정치·금리 경계",
+      "description": "유럽 증시는 미·이란 협상과 ECB 금리 경계를 소화하며 제한적 움직임을 보였다. 인피니언 등 기술주는 강했지만 방산·건설주는 약세였다.",
+      "url": "https://www.reuters.com/markets/europe/european-shares-muted-investors-weigh-us-iran-talks-2026-06-22/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-22",
+      "score": 286,
+      "priority": 286,
+      "tags": ["유럽증시","STOXX600","ECB","기술주","방산주"]
+    },
+    {
+      "id": "fin-20260622-2110-global-stocks-oil",
+      "category": "equity-markets",
+      "categoryName": "주식시장",
+      "categoryIcon": "📈",
+      "title": "글로벌 증시 혼조, 이란 협상 진전에도 위험선호 제한",
+      "description": "아시아 증시는 강세였지만 유럽과 미국 선물은 약보합권이었다. 투자자들은 이란 평화협상, 영국 총리 교체, 연준 긴축 전망을 동시에 반영했다.",
+      "url": "https://www.reuters.com/business/energy/global-markets-wrapup-1-pix-2026-06-22/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-22",
+      "score": 284,
+      "priority": 284,
+      "tags": ["글로벌증시","아시아증시","미국선물","이란협상","연준"]
+    },
+    {
+      "id": "fin-20260622-2110-gold-rebound",
+      "category": "precious-metals",
+      "categoryName": "귀금속",
+      "categoryIcon": "🥇",
+      "title": "금값 반등, 유가 완화에도 통화정책 불확실성 지속",
+      "description": "금은 3거래일 하락 뒤 저가 매수와 정책 불확실성 속에 상승했다. 미·이란 협상 진전은 유가를 낮췄지만 귀금속 투자 수요는 유지됐다.",
+      "url": "https://www.reuters.com/world/india/gold-rebounds-one-week-low-iran-cites-progress-peace-talks-2026-06-22/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-22",
+      "score": 268,
+      "priority": 268,
+      "tags": ["금","은","플래티넘","연준","안전자산"]
+    },
+    {
+      "id": "fin-20260622-2110-oil-iran-talks",
+      "category": "energy-markets",
+      "categoryName": "에너지시장",
+      "categoryIcon": "🛢️",
+      "title": "유가 하락, 이란 협상 진전이 공급 리스크 프리미엄 축소",
+      "description": "이란 협상 로드맵 기대와 호르무즈 해협 흐름 회복 관측이 브렌트유를 80달러 안팎으로 낮췄다. 다만 휴전 지속성은 여전히 핵심 리스크다.",
+      "url": "https://www.reuters.com/commentary/reuters-open-interest/global-markets-view-usa-2026-06-22/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-22",
+      "score": 264,
+      "priority": 264,
+      "tags": ["유가","브렌트유","호르무즈","이란협상","원유공급"]
+    }
+  ],
+  "byCategory": {"fx-rates":[],"equity-markets":[],"precious-metals":[],"energy-markets":[]}
+}

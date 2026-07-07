@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>vFlat Lite — 사각형 자동 보정</title>
+  <meta name="description" content="종이 사각형을 찾아 바로 자르고 원근 보정(컬러 유지). HEIC/PDF 지원, 브라우저에서만 실행."/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><rect width='128' height='128' rx='24' fill='%2360a5fa'/><path d='M30 84c16-32 52-32 68 0' stroke='%230b0c10' stroke-width='10' fill='none' stroke-linecap='round'/><circle cx='44' cy='48' r='6' fill='%230b0c10'/><circle cx='84' cy='48' r='6' fill='%230b0c10'/></svg>" type="image/svg+xml">
+
+  <!-- 라이브러리 (CDN) -->
+  <script src="https://docs.opencv.org/4.x/opencv.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.min.js"></script>
+  <script>pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.worker.min.js";</script>
+  <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+  <style>
+    :root{ --bg:#0b0c10; --fg:#e5e7eb; --muted:#94a3b8; --card:#111827; --accent:#60a5fa; --danger:#ef4444; --border:#1f2937; }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,Apple SD Gothic Neo,Segoe UI,Roboto,Helvetica,Arial}
+    .container{max-width:1100px;margin:0 auto;padding:16px}
+    header h1{margin:0 0 4px 0}.subtitle{color:var(--muted);margin:0 0 12px 0}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:16px}
+    .dropzone{border:2px dashed var(--border);border-radius:12px;padding:24px;text-align:center;color:var(--muted);cursor:pointer;position:relative}
+    .dropzone.drag{border-color:var(--accent);color:var(--fg)}
+    .dropzone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
+    .controls .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:8px 0}
+    .btn{padding:10px 14px;border:1px solid var(--border);border-radius:10px;background:#0f172a;color:var(--fg);cursor:pointer}
+    .btn.danger{background:var(--danger);border-color:transparent}
+    .status{margin-top:8px;color:var(--muted);font-size:13px}
+    .queue{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+    .item{background:#0f172a;border:1px solid var(--border);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px}
+    .thumb{width:100%;aspect-ratio:3/4;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .thumb img{max-width:100%}
+    .meta{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:6px}
+    .actions{display:flex;gap:8px}
+    .actions .btn{flex:1;text-align:center;padding:8px;border-radius:8px;border:1px solid var(--border);background:#0b1220}
+    .footer{color:var(--muted);font-size:12px;text-align:center;margin-bottom:24px}
+    progress{width:100%; height:10px; border-radius:6px; background:#0b1220}
+  </style>
+</head>
+<body>
+  <header class="container">
+    <h1>vFlat Lite</h1>
+    <p class="subtitle">종이 사각형 자동 인식 → 자르기 + 원근 보정(컬러 유지) • 브라우저에서만 동작</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div id="dropzone" class="dropzone" tabindex="0" aria-label="업로드 영역">
+        <div><strong>이미지(JPG/PNG/HEIC) 또는 PDF</strong>를 끌어놓거나 눌러서 업로드하세요.</div>
+        <input id="fileInput"
+               type="file"
+               accept="image/*,application/pdf,.pdf,.heic,.heif,.jpg,.jpeg,.png"
+               multiple />
+      </div>
+
+      <div class="controls">
+        <div class="row">
+          <button id="downloadZip" class="btn">ZIP 다운로드</button>
+          <button id="resetAll" class="btn danger">초기화</button>
+        </div>
+        <div class="row" style="width:100%;">
+          <progress id="progress" max="100" value="0" aria-label="진행률"></progress>
+        </div>
+        <div id="status" class="status">준비됨</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>작업 목록</h2>
+      <div id="queue" class="queue"></div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <span>서버 전송 없음 · 모든 처리는 브라우저에서 수행</span>
+  </footer>
+
+  <script>
+    // ------- helpers -------
+    const $ = (sel, root=document)=>root.querySelector(sel);
+    const blobToImageBitmap = (blob)=>createImageBitmap(blob);
+    const canvasToBlob = (canvas, type="image/jpeg", quality=0.95)=>new Promise(res=>canvas.toBlob(res, type, quality));
+    const fileToArrayBuffer = (file)=>file.arrayBuffer();
+    const nameWithSuffix = (name, suffix, ext="jpg")=> name.replace(/\.[^.]+$/, "") + suffix + "." + ext;
+    const setStatus = (msg)=>$("#status").textContent = msg;
+    const sleep = (ms)=>new Promise(r=>setTimeout(r,ms));
+
+    async function waitForOpenCV(){
+      return new Promise(res=>{
+        const check=()=>{ (self.cv && cv.Mat) ? res() : setTimeout(check,50); };
+        check();
+      });
+    }
+  </script>
+
+  <!-- ===== Core: Quadrilateral detect → perspective warp (color) ===== -->
+  <script>
+    // 컬러 유지한 채로 문서 사각형 찾아 warp
+    function detectPageQuadAndWarpColor(srcRGBA){
+      const W = srcRGBA.cols, H = srcRGBA.rows;
+      const scale = Math.min(1.0, 900 / Math.max(W, H));
+
+      // 축소본에서 검출
+      let small = new cv.Mat();
+      cv.resize(srcRGBA, small, new cv.Size(Math.round(W*scale), Math.round(H*scale)), 0,0, cv.INTER_AREA);
+
+      // 밝기 채널에서 에지 + 모폴로지
+      let rgb = new cv.Mat(); cv.cvtColor(small, rgb, cv.COLOR_RGBA2RGB);
+      let hsv = new cv.Mat(); cv.cvtColor(rgb, hsv, cv.COLOR_RGB2HSV);
+      let chs = new cv.MatVector(); cv.split(hsv, chs);
+      let V = chs.get(2);
+      let blur = new cv.Mat(); cv.GaussianBlur(V, blur, new cv.Size(5,5), 0);
+      let edges = new cv.Mat(); cv.Canny(blur, edges, 50, 150);
+      let k = cv.Mat.ones(3,3,cv.CV_8U);
+      cv.dilate(edges, edges, k);
+      cv.morphologyEx(edges, edges, cv.MORPH_CLOSE, k);
+
+      // 컨투어 → 사각 근사
+      let contours = new cv.MatVector(), hierarchy = new cv.Mat();
+      cv.findContours(edges, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
+
+      let best=null, bestArea=0;
+      const minArea = 0.18 * (small.cols * small.rows); // 화면의 18% 이상
+      for(let i=0;i<contours.size();i++){
+        let cnt = contours.get(i);
+        let peri = cv.arcLength(cnt, true);
+        let approx = new cv.Mat();
+        cv.approxPolyDP(cnt, approx, 0.02*peri, true);
+
+        if (approx.rows === 4){
+          let area = cv.contourArea(approx);
+          if (area > minArea && area > bestArea){
+            // 직사각형성 체크
+            let hull = new cv.Mat(); cv.convexHull(approx, hull, true, true);
+            let rectness = area / Math.max(1, cv.contourArea(hull));
+            hull.delete();
+            if (rectness >= 0.82){
+              if (best) best.delete();
+              best = approx; bestArea = area;
+            } else approx.delete();
+          } else approx.delete();
+        } else approx.delete();
+        cnt.delete();
+      }
+
+      // 실패 시 원본 반환
+      if (!best){
+        rgb.delete(); hsv.delete(); chs.delete(); V.delete(); blur.delete(); edges.delete(); k.delete(); small.delete(); contours.delete(); hierarchy.delete();
+        return srcRGBA.clone();
+      }
+
+      // 좌표 되올림 + 점 정렬
+      let pts=[];
+      for(let r=0;r<4;r++){
+        pts.push({
+          x: Math.round(best.intPtr(r,0)[0] / scale),
+          y: Math.round(best.intPtr(r,0)[1] / scale)
+        });
+      }
+      best.delete(); rgb.delete(); hsv.delete(); chs.delete(); V.delete(); blur.delete(); edges.delete(); k.delete(); small.delete(); contours.delete(); hierarchy.delete();
+
+      pts.sort((a,b)=>a.y-b.y);
+      const top = pts.slice(0,2).sort((a,b)=>a.x-b.x);
+      const bottom = pts.slice(2).sort((a,b)=>a.x-b.x);
+      const p0=top[0], p1=top[1], p2=bottom[1], p3=bottom[0];
+
+      const widthA = Math.hypot(p2.x-p3.x, p2.y-p3.y);
+      const widthB = Math.hypot(p1.x-p0.x, p1.y-p0.y);
+      const heightA= Math.hypot(p1.x-p2.x, p1.y-p2.y);
+      const heightB= Math.hypot(p0.x-p3.x, p0.y-p3.y);
+      const Wt = Math.max(widthA,widthB);
+      const Ht = Math.max(heightA,heightB);
+
+      // 극단 비율/너무 작은 결과 방지
+      if ((Wt*Ht) < 0.25*(W*H)) return srcRGBA.clone();
+      const ar = Wt/Math.max(1,Ht); if (ar>3.5 || ar<0.25) return srcRGBA.clone();
+
+      let srcTri = cv.matFromArray(4,1,cv.CV_32FC2,[p0.x,p0.y, p1.x,p1.y, p2.x,p2.y, p3.x,p3.y]);
+      let dstTri = cv.matFromArray(4,1,cv.CV_32FC2,[0,0, Wt,0, Wt,Ht, 0,Ht]);
+      let M = cv.getPerspectiveTransform(srcTri, dstTri);
+
+      let out = new cv.Mat();
+      cv.warpPerspective(srcRGBA, out, M, new cv.Size(Math.round(Wt), Math.round(Ht)), cv.INTER_CUBIC, cv.BORDER_REPLICATE);
+
+      srcTri.delete(); dstTri.delete(); M.delete();
+      return out;
+    }
+
+    // Y(명도)만 CLAHE 살짝 (색감 보존)
+    function colorCLAHE(srcRGBA, clip=3.0){
+      let ycrcb = new cv.Mat(); cv.cvtColor(srcRGBA, ycrcb, cv.COLOR_RGBA2YCrCb);
+      let ch = new cv.MatVector(); cv.split(ycrcb, ch);
+      let Y = ch.get(0);
+      let clahe = new cv.CLAHE(clip, new cv.Size(8,8));
+      let Y2 = new cv.Mat(); clahe.apply(Y, Y2);
+      ch.set(0, Y2);
+      cv.merge(ch, ycrcb);
+      let out = new cv.Mat(); cv.cvtColor(ycrcb, out, cv.COLOR_YCrCb2RGBA);
+      ycrcb.delete(); ch.delete(); Y.delete(); Y2.delete();
+      return out;
+    }
+
+    // 최종 파이프라인 (사각형 → warp → 컬러 유지)
+    function processImageBitmap(bitmap){
+      const canvas=document.createElement("canvas");
+      canvas.width=bitmap.width; canvas.height=bitmap.height;
+      const ctx=canvas.getContext("2d"); ctx.drawImage(bitmap,0,0);
+
+      let srcRGBA = cv.imread(canvas);
+      try{
+        let warped = detectPageQuadAndWarpColor(srcRGBA);
+        let out = colorCLAHE(warped, 2.5); // 은은하게
+        cv.imshow(canvas, out);
+        srcRGBA.delete(); warped.delete(); out.delete();
+        return canvas;
+      }catch(e){
+        console.error(e);
+        srcRGBA.delete();
+        throw e;
+      }
+    }
+  </script>
+
+  <!-- ===== App (자동 처리/HEIC/PDF/ZIP) ===== -->
+  <script>
+    const queueEl=$("#queue"), fileInput=$("#fileInput"), dropzone=$("#dropzone");
+    const btnDownloadZip=$("#downloadZip"), btnResetAll=$("#resetAll");
+    const bar=$("#progress");
+    let items=[]; let processing=false;
+
+    async function handleFiles(files){
+      try{
+        setStatus("파일을 읽는 중…");
+        const list = Array.from(files);
+
+        for (const f of list){
+          const name = (f.name || "untitled").toLowerCase();
+          const mime = (f.type || "");
+          const isPdf  = mime === "application/pdf" || name.endsWith(".pdf");
+          const isHeic = name.endsWith(".heic") || name.endsWith(".heif") || mime === "image/heic" || mime === "image/heif";
+          const isImg  = mime.startsWith("image/") || /\.(jpg|jpeg|png|bmp|gif|webp|tif|tiff)$/i.test(name);
+
+          if (isPdf){
+            await enqueuePdf(f);
+          } else if (isHeic){
+            try {
+              const ab  = await f.arrayBuffer();
+              const src = new Blob([ab], { type: "image/heic" });
+              const jpgBlob = await heic2any({ blob: src, toType: "image/jpeg", quality: 0.95 });
+              await enqueueImage(jpgBlob, name.replace(/\.(heic|heif)$/i, ".jpg"));
+            } catch (err){
+              console.error("HEIC 변환 실패:", err);
+              setStatus("HEIC 변환 실패 — PNG로 다시 시도해주세요");
+            }
+          } else if (isImg){
+            await enqueueImage(f, f.name);
+          } else {
+            console.warn("지원하지 않는 형식:", f.name, mime);
+          }
+          await sleep(5);
+        }
+        if (fileInput) fileInput.value = ""; // 같은 파일 재선택 허용
+        setStatus("자동 보정 시작…");
+        autoProcess();
+      }catch(err){
+        console.error(err); setStatus("업로드 중 오류");
+      }
+    }
+
+    async function enqueueImage(blob, name){
+      const url=URL.createObjectURL(blob);
+      const item={ name, originalBlob:blob, processedBlob:null };
+      const el=document.createElement("div");
+      el.className="item";
+      el.innerHTML=`
+        <div class="thumb"><img src="${url}" alt="${name}"></div>
+        <div class="meta"><span>${name}</span><span class="badge">대기</span></div>
+        <div class="actions"><button class="btn doDownload" disabled>다운로드</button></div>`;
+      $(".doDownload",el).addEventListener("click",()=>downloadOne(item));
+      item.el=el; items.push(item); queueEl.append(el);
+    }
+
+    async function enqueuePdf(file){
+      const buf=await fileToArrayBuffer(file);
+      const pdf=await pdfjsLib.getDocument({ data: buf }).promise;
+      for(let p=1;p<=pdf.numPages;p++){
+        setStatus(`PDF 렌더링 (${p}/${pdf.numPages})`);
+        const page=await pdf.getPage(p);
+        const viewport=page.getViewport({ scale: 2.0 });
+        const cvs=document.createElement("canvas");
+        cvs.width=viewport.width; cvs.height=viewport.height;
+        const ctx=cvs.getContext("2d");
+        await page.render({ canvasContext: ctx, viewport }).promise;
+        const blob=await new Promise(res=>cvs.toBlob(res,"image/jpeg",0.95));
+        await enqueueImage(blob, `${file.name.replace(/\.pdf$/i,"")}_p${p}.jpg`);
+        await sleep(10);
+      }
+    }
+
+    async function processOne(item){
+      const el=item.el; const badge=$(".badge",el); const btn=$(".doDownload",el);
+      badge.textContent="보정 중…";
+      await waitForOpenCV();
+      const bitmap=await blobToImageBitmap(item.originalBlob);
+      const canvas=processImageBitmap(bitmap);
+      const outBlob=await canvasToBlob(canvas, "image/jpeg", 0.95);
+      item.processedBlob=outBlob; $(".thumb img", el).src=URL.createObjectURL(outBlob);
+      badge.textContent="완료"; btn.disabled=false;
+    }
+
+    async function autoProcess(){
+      if(processing) return; processing=true;
+      try{
+        let total=items.length, done=0; bar.max=total||1; bar.value=0;
+        for(const it of items){
+          if(!it.processedBlob){ setStatus(`보정 중: ${it.name}`); await processOne(it); }
+          done++; bar.value=done;
+        }
+        setStatus("전체 자동 보정 완료");
+      }catch(err){ console.error(err); setStatus("보정 중 오류 발생"); }
+      finally{ processing=false; }
+    }
+
+    async function downloadOne(item){
+      const blob=item.processedBlob || item.originalBlob;
+      const a=document.createElement("a"); a.href=URL.createObjectURL(blob);
+      a.download=item.processedBlob ? nameWithSuffix(item.name, "_fixed") : item.name;
+      document.body.appendChild(a); a.click(); a.remove();
+    }
+
+    $("#downloadZip").addEventListener("click", async ()=>{
+      const zip=new JSZip(); let count=0;
+      for(const item of items){
+        const blob=item.processedBlob || item.originalBlob;
+        const name=item.processedBlob ? nameWithSuffix(item.name,"_fixed") : item.name;
+        zip.file(name, await blob.arrayBuffer()); count++;
+      }
+      const content=await zip.generateAsync({ type:"blob" });
+      saveAs(content, "vflat-lite-output.zip"); setStatus(`ZIP 다운로드 생성 (${count}개 항목)`);
+    });
+
+    $("#resetAll").addEventListener("click", ()=>{
+      items=[]; $("#queue").innerHTML=""; $("#progress").value=0; $("#progress").max=100; setStatus("초기화됨");
+    });
+
+    // 업로드 트리거
+    $("#dropzone").addEventListener("click", ()=>$("#fileInput").click());
+    $("#fileInput").addEventListener("change", (e)=>handleFiles(e.target.files));
+    $("#dropzone").addEventListener("dragover", (e)=>{ e.preventDefault(); $("#dropzone").classList.add("drag"); });
+    $("#dropzone").addEventListener("dragleave", ()=>$("#dropzone").classList.remove("drag"));
+    $("#dropzone").addEventListener("drop", (e)=>{ e.preventDefault(); $("#dropzone").classList.remove("drag"); if(e.dataTransfer && e.dataTransfer.files) handleFiles(e.dataTransfer.files); });
+
+    setStatus("준비됨");
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-06-30T18:09:46+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎨","count":1}
+  ],
+  "total": 6,
+  "allItems": [
+    {"id":"main-20260630-1809-reuters-global-markets-q2-ai","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"글로벌 증시 6년 만의 강한 2분기…AI 랠리·유가 급락이 동력","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"MSCI 전세계 지수와 미국 기술주가 AI 수요 기대에 강세를 보이며 2분기를 마감했다. 호르무즈 리스크 완화로 유가가 크게 밀리고 달러·엔·금 흐름도 재조정됐다.","score":520,"priority":520,"tags":["글로벌증시","AI랠리","유가","달러","2분기"]},
+    {"id":"main-20260630-1809-reuters-oil-quarterly-loss","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"국제유가, 2020년 이후 최대 분기 낙폭 전망…미·이란 협상 주시","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-falls-investors-focus-potential-iran-us-talks-doha-2026-06-30/","description":"브렌트와 WTI가 6월 들어 약 20% 안팎 하락하며 팬데믹 초기 이후 가장 큰 분기 낙폭을 향하고 있다. 시장은 도하 미·이란 접촉과 호르무즈 운항 리스크를 동시에 본다.","score":512,"priority":512,"tags":["국제유가","브렌트","WTI","미국이란","호르무즈"]},
+    {"id":"main-20260630-1809-reuters-supreme-court-fed-cook","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 연준 쿡 이사 해임 제동…FTC 판결과 권한 경계 갈림","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/us-supreme-court-rejects-trumps-unprecedented-bid-fire-feds-cook-2026-06-29/","description":"대법원이 리사 쿡 연준 이사 해임 시도를 막아 중앙은행 독립성을 방어했다. 동시에 FTC 위원 해임은 인정해 독립기관별 대통령 권한 경계가 달라졌다.","score":498,"priority":498,"tags":["미대법원","연준","리사쿡","FTC","중앙은행독립성"]},
+    {"id":"main-20260630-1809-reuters-openai-broadcom-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"OpenAI-브로드컴 맞춤형 AI칩 공개 여파…AI 인프라 내재화 경쟁 심화","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI가 브로드컴과 설계한 추론용 맞춤형 AI칩을 공개했다. 엔비디아 의존을 낮추고 자체 인프라를 확보하려는 빅테크·AI 기업의 반도체 내재화 흐름이 더 뚜렷해졌다.","score":486,"priority":486,"tags":["OpenAI","Broadcom","AI칩","추론","인프라"]},
+    {"id":"main-20260630-1809-ap-brazil-japan-worldcup","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"브라질, 일본에 추가시간 역전골…월드컵 16강 진출","publishedAt":"2026-06-30","date":"2026-06-30","source":"AP","url":"https://apnews.com/article/d5c025da2efeaf08a6b7c694b8e6534e","description":"가브리엘 마르티넬리가 추가시간 결승골을 넣어 브라질이 일본을 2-1로 꺾었다. 일본은 선제골 후 버텼지만 브라질의 후반 반격을 막지 못했다.","score":470,"priority":470,"tags":["월드컵","브라질","일본","마르티넬리","16강"]},
+    {"id":"main-20260630-1809-ap-bet-awards-gallery","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎨","title":"BET 어워즈 주요 장면 공개…블랙 엔터테인먼트·문화 시상식 조명","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/f1809410e34624bd363ef048684212ee","description":"로스앤젤레스 피콕시어터에서 열린 BET 어워즈의 주요 장면이 공개됐다. 공연·패션·수상 장면을 통해 블랙 엔터테인먼트와 대중문화 흐름을 보여준다.","score":438,"priority":438,"tags":["BET어워즈","엔터테인먼트","문화","시상식","공연"]}
+  ],
+  "byCategory": {"economy": [], "politics": [], "tech": [], "play": [], "culture": []}
+}

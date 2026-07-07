@@ -1,0 +1,2057 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>사회문화 전범위 개념 정리 (2026-01-16 기준)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="progress" aria-hidden="true">
+    <div class="progress__bar" id="progressBar"></div>
+  </div>
+
+  <header class="hero">
+    <div class="hero__content">
+      <p class="hero__eyebrow">/study/society</p>
+      <h1>대한민국 고등학교 사회문화 전범위 전개념 정리</h1>
+      <p class="hero__subtitle">
+        2026년 1월 16일 기준 교육과정에 맞춰 사회문화 전 단원을 빠짐없이 구조화했습니다.
+        개념 → 비교 → 사례 → 핵심 체크 → 연습문제 순으로 구성되어 암기와 이해를 동시에 강화합니다.
+      </p>
+      <div class="hero__meta">
+        <span>학습 방향: 개념 명확화 + 적용 연습</span>
+        <span>권장 학습: 1회독(개념) → 2회독(문제)</span>
+      </div>
+      <div class="hero__cta">
+        <button class="pill is-active" data-filter="all">전체 보기</button>
+        <button class="pill" data-filter="concept">개념만</button>
+        <button class="pill" data-filter="question">문제만</button>
+        <button class="pill" id="toggleAnswers">정답 숨기기/보이기</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="toolbar" aria-label="학습 도구">
+    <div class="toolbar__group">
+      <label class="search">
+        <span>🔍</span>
+        <input type="search" id="searchInput" placeholder="개념, 인물, 키워드를 검색하세요" />
+      </label>
+      <div class="toolbar__stats">
+        <span id="matchCount">전체 0개 항목</span>
+        <span id="timeNow">00:00</span>
+      </div>
+    </div>
+    <div class="toolbar__group">
+      <button class="btn" id="expandAll">전체 펼치기</button>
+      <button class="btn" id="collapseAll">전체 접기</button>
+      <button class="btn" id="themeToggle">테마 전환</button>
+      <button class="btn" id="focusToggle">집중 모드</button>
+      <button class="btn" id="scrollTop">위로</button>
+    </div>
+  </section>
+
+  <section class="dashboard" aria-label="학습 대시보드">
+    <div class="dashboard__card">
+      <h3>학습 대시보드</h3>
+      <p class="dashboard__hint">리스트 항목을 클릭하면 완료로 체크됩니다. 진행률은 자동 저장됩니다.</p>
+      <div class="dashboard__stats">
+        <div>
+          <span class="stat__label">전체 항목</span>
+          <strong id="totalCount">0</strong>
+        </div>
+        <div>
+          <span class="stat__label">완료 항목</span>
+          <strong id="completedCount">0</strong>
+        </div>
+        <div>
+          <span class="stat__label">진행률</span>
+          <strong id="completionRate">0%</strong>
+        </div>
+        <div>
+          <span class="stat__label">학습 XP</span>
+          <strong id="xpPoints">0</strong>
+        </div>
+        <div>
+          <span class="stat__label">연속 정답</span>
+          <strong id="streakCount">0</strong>
+        </div>
+      </div>
+      <div class="dashboard__bar">
+        <div class="dashboard__bar-fill" id="completionBar"></div>
+      </div>
+      <div class="dashboard__actions">
+        <button class="btn" id="randomQuestion">랜덤 문제 뽑기</button>
+        <button class="btn" id="resetProgress">완료 초기화</button>
+      </div>
+    </div>
+    <div class="quiz-card" id="quizCard">
+      <p class="quiz-card__label">오늘의 랜덤 문제</p>
+      <h3 id="quizQuestion">버튼을 눌러 문제를 뽑으세요.</h3>
+      <button class="btn btn--ghost" id="revealQuizAnswer">정답 보기</button>
+      <p class="quiz-card__answer" id="quizAnswer">정답이 여기에 표시됩니다.</p>
+    </div>
+  </section>
+
+  <section class="playground" id="interactive-lab" aria-label="퀴즈 놀이터">
+    <div class="playground__intro">
+      <div>
+        <h2>인터랙티브 퀴즈 놀이터</h2>
+        <p>정답을 맞힐수록 XP가 올라가고, 연속 정답 스택이 쌓입니다. 랜덤 퀴즈, 스피드 챌린지, 빈칸/플래시 카드로 즐겁게 복습하세요.</p>
+      </div>
+      <div class="playground__controls">
+        <button class="btn" id="startPopQuiz">팝퀴즈 시작</button>
+        <button class="btn" id="rouletteMode">모드 룰렛</button>
+        <button class="btn" id="toggleQuizSound">효과음: OFF</button>
+      </div>
+    </div>
+    <div class="playground__grid">
+      <div class="playground__panel">
+        <div class="combo-meter" aria-label="콤보 진행도">
+          <span>콤보 게이지</span>
+          <div class="combo-meter__track">
+            <div class="combo-meter__fill" id="comboFill"></div>
+          </div>
+          <strong id="comboLabel">0 / 10</strong>
+        </div>
+        <div class="tabs" role="tablist" aria-label="퀴즈 모드 선택">
+          <button class="tab is-active" type="button" data-tab="speed" role="tab">스피드 퀴즈</button>
+          <button class="tab" type="button" data-tab="ox" role="tab">OX 챌린지</button>
+          <button class="tab" type="button" data-tab="blank" role="tab">빈칸 퀴즈</button>
+          <button class="tab" type="button" data-tab="flash" role="tab">플래시 카드</button>
+        </div>
+
+        <div class="tab-panel is-active" id="tab-speed" role="tabpanel">
+          <div class="quiz-meta">
+            <span>남은 시간: <strong id="speedTimer">60</strong>s</span>
+            <span>스코어: <strong id="speedScore">0</strong></span>
+          </div>
+          <h3 id="speedQuestion">시작 버튼을 눌러 퀴즈를 진행하세요.</h3>
+          <div class="option-grid" id="speedOptions"></div>
+          <div class="quiz-actions">
+            <button class="btn" id="startSpeedQuiz">시작</button>
+            <button class="btn btn--ghost" id="skipSpeedQuiz">건너뛰기</button>
+          </div>
+          <p class="quiz-feedback" id="speedFeedback">정답을 선택하면 피드백이 표시됩니다.</p>
+        </div>
+
+        <div class="tab-panel" id="tab-ox" role="tabpanel">
+          <div class="quiz-meta">
+            <span>연속 정답: <strong id="oxStreak">0</strong></span>
+            <span>정답률: <strong id="oxAccuracy">0%</strong></span>
+          </div>
+          <h3 id="oxQuestion">OX 챌린지 질문이 여기에 표시됩니다.</h3>
+          <div class="option-grid">
+            <button class="btn btn--success" data-ox="O">O</button>
+            <button class="btn btn--danger" data-ox="X">X</button>
+          </div>
+          <p class="quiz-feedback" id="oxFeedback">O 또는 X를 골라보세요.</p>
+          <button class="btn btn--ghost" id="nextOx">다음 문제</button>
+        </div>
+
+        <div class="tab-panel" id="tab-blank" role="tabpanel">
+          <div class="quiz-meta">
+            <span>누적 점수: <strong id="blankScore">0</strong></span>
+            <span>정답률: <strong id="blankAccuracy">0%</strong></span>
+          </div>
+          <h3 id="blankQuestion">빈칸 문제를 불러오는 중...</h3>
+          <label class="blank-input">
+            <span>정답 입력</span>
+            <input type="text" id="blankAnswer" placeholder="예: 문화 상대주의" />
+          </label>
+          <div class="quiz-actions">
+            <button class="btn" id="checkBlank">채점</button>
+            <button class="btn btn--ghost" id="nextBlank">다음 문제</button>
+          </div>
+          <p class="quiz-feedback" id="blankFeedback">정답을 입력하고 채점하세요.</p>
+        </div>
+
+        <div class="tab-panel" id="tab-flash" role="tabpanel">
+          <div class="flashcard" id="flashcard">
+            <div class="flashcard__front">
+              <span class="flashcard__label">개념 카드</span>
+              <h3 id="flashTerm">개념을 눌러 뒤집기</h3>
+            </div>
+            <div class="flashcard__back">
+              <span class="flashcard__label">설명</span>
+              <p id="flashDefinition">카드를 클릭하면 정리가 표시됩니다.</p>
+            </div>
+          </div>
+          <div class="quiz-actions">
+            <button class="btn" id="prevFlash">이전</button>
+            <button class="btn" id="nextFlash">다음</button>
+            <button class="btn btn--ghost" id="shuffleFlash">셔플</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="playground__side">
+        <div class="side-card">
+          <h3>학습 미션</h3>
+          <ul class="mission-list">
+            <li><span>🎯 오늘 10문제 풀기</span><button class="btn btn--ghost mission-btn" data-mission="10">체크</button></li>
+            <li><span>⚡ 스피드 퀴즈 5연속 정답</span><button class="btn btn--ghost mission-btn" data-mission="streak-5">체크</button></li>
+            <li><span>🧠 플래시 카드 15장 넘기기</span><button class="btn btn--ghost mission-btn" data-mission="flash-15">체크</button></li>
+          </ul>
+          <p class="mission-feedback" id="missionFeedback">미션을 완료하면 배지가 활성화됩니다.</p>
+        </div>
+        <div class="side-card goal-card">
+          <h3>오늘의 목표</h3>
+          <label class="goal-input">
+            <span>목표 문제 수</span>
+            <input type="number" id="goalInput" min="5" max="200" step="5" value="30" />
+          </label>
+          <div class="goal-progress">
+            <div class="goal-progress__fill" id="goalProgress"></div>
+          </div>
+          <p class="goal-meta"><span id="goalStatus">0</span> / <span id="goalTotal">30</span> 문제</p>
+          <button class="btn btn--ghost" id="resetGoal">목표 초기화</button>
+        </div>
+        <div class="side-card timer-card">
+          <h3>스마트 집중 타이머</h3>
+          <p class="timer-display" id="timerDisplay">25:00</p>
+          <div class="quiz-actions">
+            <button class="btn" id="startTimer">시작</button>
+            <button class="btn btn--ghost" id="pauseTimer">일시정지</button>
+            <button class="btn btn--ghost" id="resetTimer">리셋</button>
+          </div>
+          <div class="timer-presets">
+            <button class="btn btn--ghost preset-btn" data-minutes="15">15분</button>
+            <button class="btn btn--ghost preset-btn" data-minutes="25">25분</button>
+            <button class="btn btn--ghost preset-btn" data-minutes="45">45분</button>
+          </div>
+          <p class="timer-hint" id="timerHint">타이머 완료 시 XP 보너스가 지급됩니다.</p>
+        </div>
+        <div class="side-card badges">
+          <h3>획득 배지</h3>
+          <div class="badge-grid">
+            <span class="badge" data-badge="quiz">퀴즈 마스터</span>
+            <span class="badge" data-badge="speed">스피드러너</span>
+            <span class="badge" data-badge="flash">플래시 히어로</span>
+          </div>
+          <p class="badge-hint">배지는 로컬에 저장됩니다.</p>
+        </div>
+        <div class="side-card history-card">
+          <h3>최근 정답 기록</h3>
+          <ol class="history-list" id="historyList">
+            <li>기록이 아직 없습니다.</li>
+          </ol>
+        </div>
+        <div class="side-card note-card">
+          <h3>학습 메모</h3>
+          <textarea id="studyNote" placeholder="중요 개념, 헷갈리는 포인트를 기록하세요."></textarea>
+          <div class="quiz-actions">
+            <button class="btn" id="saveNote">메모 저장</button>
+            <button class="btn btn--ghost" id="clearNote">메모 비우기</button>
+          </div>
+          <p class="note-status" id="noteStatus">자동 저장됩니다.</p>
+        </div>
+        <div class="side-card routine-card">
+          <h3>주간 학습 루틴</h3>
+          <p class="routine-hint">요일을 눌러 학습 완료 체크를 해보세요.</p>
+          <div class="routine-grid" id="routineGrid">
+            <button class="btn btn--ghost routine-btn" data-day="mon">월</button>
+            <button class="btn btn--ghost routine-btn" data-day="tue">화</button>
+            <button class="btn btn--ghost routine-btn" data-day="wed">수</button>
+            <button class="btn btn--ghost routine-btn" data-day="thu">목</button>
+            <button class="btn btn--ghost routine-btn" data-day="fri">금</button>
+            <button class="btn btn--ghost routine-btn" data-day="sat">토</button>
+            <button class="btn btn--ghost routine-btn" data-day="sun">일</button>
+          </div>
+          <p class="routine-status" id="routineStatus">이번 주 체크: 0/7</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pop-quiz" id="popQuiz" aria-live="polite">
+    <div class="pop-quiz__card" role="dialog" aria-modal="true" aria-labelledby="popQuizTitle">
+      <div class="pop-quiz__header">
+        <h3 id="popQuizTitle">팝퀴즈 타임!</h3>
+        <button class="btn btn--ghost" id="closePopQuiz">닫기</button>
+      </div>
+      <p class="pop-quiz__meta">랜덤 문제를 풀고 XP를 획득하세요.</p>
+      <h4 id="popQuizQuestion">문제를 불러오는 중...</h4>
+      <div class="option-grid" id="popQuizOptions"></div>
+      <p class="quiz-feedback" id="popQuizFeedback">정답을 선택해보세요.</p>
+    </div>
+  </section>
+
+  <nav class="toc">
+    <h2>빠른 이동</h2>
+    <ol>
+      <li><a href="#interactive-lab">퀴즈 놀이터</a></li>
+      <li><a href="#unit-1">I. 사회문화 현상의 이해</a></li>
+      <li><a href="#unit-2">II. 연구 방법과 자료 해석</a></li>
+      <li><a href="#unit-3">III. 사회 구조와 사회 제도</a></li>
+      <li><a href="#unit-4">IV. 문화와 일상생활</a></li>
+      <li><a href="#unit-5">V. 일탈과 사회 통제</a></li>
+      <li><a href="#unit-6">VI. 사회 계층과 불평등</a></li>
+      <li><a href="#unit-7">VII. 사회 변동과 사회 문제</a></li>
+      <li><a href="#unit-8">VIII. 현대사회와 공동체</a></li>
+      <li><a href="#concept-map">전범위 개념 체크리스트</a></li>
+      <li><a href="#mega-questions">초대형 문제 은행</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <section id="unit-1" class="unit" data-unit>
+      <details open class="unit__shell">
+        <summary class="unit__header">
+          <div>
+            <h2>I. 사회문화 현상의 이해</h2>
+            <p>사회문화는 인간의 의미 있는 상호작용이 만든 규칙과 상징, 제도, 가치 체계를 다루는 학문이다.</p>
+          </div>
+          <span class="unit__badge">핵심 개념</span>
+        </summary>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>1. 사회문화 현상의 특징</h3>
+          <ul>
+            <li><strong>사회성</strong>: 개인이 아닌 집단적 상호작용에서 발생.</li>
+            <li><strong>역동성</strong>: 시간과 공간에 따라 지속적으로 변화.</li>
+            <li><strong>규범성</strong>: 일정한 규칙(규범, 법, 관습)을 따르는 경향.</li>
+            <li><strong>총체성</strong>: 경제·정치·문화 등 다양한 요소가 얽혀 있음.</li>
+            <li><strong>외재성</strong>: 개인 의지와 무관하게 존재하며 제약.</li>
+          </ul>
+          <div class="checklist">
+            <h4>핵심 체크</h4>
+            <p>사회문화 현상은 자연현상과 달리 <strong>의미·가치가 포함</strong>되며, 관찰자의 관점이 해석에 영향을 준다.</p>
+          </div>
+        </article>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>2. 사회문화 현상 vs 자연 현상</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>사회문화 현상</th>
+                <th>자연 현상</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>의미·가치</td>
+                <td>포함 (주관적 해석 가능)</td>
+                <td>배제 (객관적 사실 중심)</td>
+              </tr>
+              <tr>
+                <td>규칙성</td>
+                <td>상대적으로 약함</td>
+                <td>강함 (법칙성)</td>
+              </tr>
+              <tr>
+                <td>연구 태도</td>
+                <td>이해 + 설명 병행</td>
+                <td>설명 중심</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>3. 사회문화 연구 태도</h3>
+          <ul>
+            <li><strong>객관적 태도</strong>: 가치 중립, 편견 배제.</li>
+            <li><strong>개방적 태도</strong>: 다양한 관점 수용.</li>
+            <li><strong>비판적 태도</strong>: 기존 관념을 의심하고 근거 확인.</li>
+            <li><strong>상대주의</strong>: 문화 상대주의와 가치 판단의 균형.</li>
+          </ul>
+          <div class="example">
+            <h4>사례</h4>
+            <p>어떤 문화의 장례 관습을 평가할 때, 나의 기준이 아닌 그 사회의 역사·가치를 이해하려는 태도가 필요.</p>
+          </div>
+        </article>
+      </details>
+    </section>
+
+    <section id="unit-2" class="unit" data-unit>
+      <details open class="unit__shell">
+        <summary class="unit__header">
+          <div>
+            <h2>II. 연구 방법과 자료 해석</h2>
+            <p>사회문화 연구는 가설 설정 → 자료 수집 → 분석 → 결론의 과정을 따른다.</p>
+          </div>
+          <span class="unit__badge">연구 설계</span>
+        </summary>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>1. 양적 연구와 질적 연구</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>양적 연구</th>
+                <th>질적 연구</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>목적</td>
+                <td>일반화, 법칙 탐구</td>
+                <td>심층 이해, 맥락 파악</td>
+              </tr>
+              <tr>
+                <td>자료</td>
+                <td>수치·통계</td>
+                <td>면담·관찰 기록</td>
+              </tr>
+              <tr>
+                <td>연구자 역할</td>
+                <td>객관적 관찰자</td>
+                <td>참여자 혹은 해석자</td>
+              </tr>
+              <tr>
+                <td>장점</td>
+                <td>객관성, 비교 용이</td>
+                <td>현상 이해 깊이</td>
+              </tr>
+              <tr>
+                <td>한계</td>
+                <td>맥락 무시 위험</td>
+                <td>일반화 어려움</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>2. 사회문화 연구 절차</h3>
+          <ol>
+            <li>문제 인식</li>
+            <li>가설 설정</li>
+            <li>연구 설계(방법·대상·도구)</li>
+            <li>자료 수집</li>
+            <li>자료 분석</li>
+            <li>결론 도출 및 검증</li>
+          </ol>
+          <div class="checklist">
+            <h4>핵심 체크</h4>
+            <p>가설은 <strong>검증 가능</strong>해야 하며, 조사 설계는 <strong>타당도·신뢰도</strong>를 확보해야 한다.</p>
+          </div>
+        </article>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>3. 조사 방법</h3>
+          <ul>
+            <li><strong>실험법</strong>: 변인을 통제하고 인과 관계 확인.</li>
+            <li><strong>설문법</strong>: 많은 대상에게 동일 문항, 일반화 용이.</li>
+            <li><strong>면접법</strong>: 심층 이해, 비용·시간 큼.</li>
+            <li><strong>참여 관찰법</strong>: 현장 몰입, 객관성 약화 가능.</li>
+            <li><strong>내용 분석법</strong>: 문서·미디어 자료에서 패턴 분석.</li>
+            <li><strong>사례 연구법</strong>: 특정 사례 심층 분석.</li>
+          </ul>
+        </article>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>4. 자료의 질과 윤리</h3>
+          <ul>
+            <li><strong>신뢰도</strong>: 측정 결과의 일관성.</li>
+            <li><strong>타당도</strong>: 측정이 의도한 것을 얼마나 정확히 측정하는지.</li>
+            <li><strong>연구 윤리</strong>: 익명성 보장, 참여 동의, 결과 왜곡 금지.</li>
+          </ul>
+          <div class="example">
+            <h4>자료 해석 주의</h4>
+            <p>상관관계는 인과관계가 아니다. 제3의 변인을 확인해야 한다.</p>
+          </div>
+        </article>
+      </details>
+    </section>
+
+    <section id="unit-3" class="unit" data-unit>
+      <details open class="unit__shell">
+        <summary class="unit__header">
+          <div>
+            <h2>III. 사회 구조와 사회 제도</h2>
+            <p>사회 구조는 사회를 구성하는 지위·역할·규범의 체계를 의미한다.</p>
+          </div>
+          <span class="unit__badge">사회 구조</span>
+        </summary>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>1. 지위와 역할</h3>
+          <ul>
+            <li><strong>지위</strong>: 사회 구성원이 차지하는 위치 (부모, 학생 등).</li>
+            <li><strong>역할</strong>: 지위에 따른 기대되는 행동.</li>
+            <li><strong>지위의 종류</strong>: 성취지위(노력), 귀속지위(출생).</li>
+            <li><strong>역할 갈등</strong>: 한 사람이 여러 지위를 가질 때 발생.</li>
+          </ul>
+        </article>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>2. 사회 집단</h3>
+          <ul>
+            <li><strong>1차 집단</strong>: 친밀, 정서적 유대 (가족, 친구).</li>
+            <li><strong>2차 집단</strong>: 목적 중심, 공식적 관계 (회사, 학교).</li>
+            <li><strong>내집단/외집단</strong>: 소속감 기준으로 구분.</li>
+            <li><strong>준거집단</strong>: 가치·행동 기준 제공.</li>
+          </ul>
+        </article>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>3. 사회 제도와 기능</h3>
+          <p>사회 제도는 사회 구성원이 필요를 충족하기 위해 만든 규범·조직 체계이다.</p>
+          <ul>
+            <li><strong>가족</strong>: 사회화, 정서적 안정 제공.</li>
+            <li><strong>교육</strong>: 지식 전달, 사회화, 선발 기능.</li>
+            <li><strong>경제</strong>: 재화 생산·분배.</li>
+            <li><strong>정치</strong>: 권력 배분, 질서 유지.</li>
+            <li><strong>종교</strong>: 가치·의미 제공, 통합 기능.</li>
+          </ul>
+        </article>
+      </details>
+    </section>
+
+    <section id="unit-4" class="unit" data-unit>
+      <details open class="unit__shell">
+        <summary class="unit__header">
+          <div>
+            <h2>IV. 문화와 일상생활</h2>
+            <p>문화는 한 사회의 구성원이 공유하는 생활양식과 의미 체계이다.</p>
+          </div>
+          <span class="unit__badge">문화 이해</span>
+        </summary>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>1. 문화의 속성</h3>
+          <ul>
+            <li><strong>공유성</strong>: 구성원 간 공유.</li>
+            <li><strong>학습성</strong>: 학습을 통해 전승.</li>
+            <li><strong>축적성</strong>: 경험이 누적·발전.</li>
+            <li><strong>변동성</strong>: 외부·내부 요인으로 변화.</li>
+            <li><strong>상징성</strong>: 언어·기호를 통해 의미 전달.</li>
+          </ul>
+        </article>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>2. 문화 유형</h3>
+          <ul>
+            <li><strong>물질문화</strong>: 건축, 기술, 도구.</li>
+            <li><strong>비물질문화</strong>: 가치, 규범, 신념.</li>
+            <li><strong>하위문화</strong>: 주류 문화 내부의 독특한 문화.</li>
+            <li><strong>반문화</strong>: 주류 문화에 저항.</li>
+          </ul>
+        </article>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>3. 문화 변동</h3>
+          <ul>
+            <li><strong>내재적 변동</strong>: 발명, 발견.</li>
+            <li><strong>외재적 변동</strong>: 문화 접촉, 전파.</li>
+            <li><strong>문화 지체</strong>: 물질문화 변화 속도가 비물질문화보다 빠름.</li>
+            <li><strong>문화 융합</strong>: 서로 다른 문화 요소가 결합해 새 문화 형성.</li>
+          </ul>
+        </article>
+      </details>
+    </section>
+
+    <section id="unit-5" class="unit" data-unit>
+      <details open class="unit__shell">
+        <summary class="unit__header">
+          <div>
+            <h2>V. 일탈과 사회 통제</h2>
+            <p>일탈은 사회 규범을 어기는 행동이며, 사회는 통제를 통해 질서를 유지한다.</p>
+          </div>
+          <span class="unit__badge">일탈 이론</span>
+        </summary>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>1. 일탈의 개념과 기준</h3>
+          <ul>
+            <li><strong>상대성</strong>: 시대·문화에 따라 달라짐.</li>
+            <li><strong>규범성</strong>: 규범을 기준으로 판단.</li>
+            <li><strong>제재</strong>: 긍정적/부정적 제재로 규범 준수 유도.</li>
+          </ul>
+        </article>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>2. 일탈 이론</h3>
+          <ul>
+            <li><strong>기능론</strong>: 규범 강화, 사회 통합 촉진.</li>
+            <li><strong>낙인 이론</strong>: 사회의 부정적 평가가 일탈 지속 초래.</li>
+            <li><strong>아노미 이론</strong>: 목표-수단 괴리로 일탈 발생.</li>
+            <li><strong>차별접촉 이론</strong>: 일탈 행동 학습 가능.</li>
+            <li><strong>통제 이론</strong>: 사회적 유대가 약할수록 일탈 증가.</li>
+          </ul>
+        </article>
+      </details>
+    </section>
+
+    <section id="unit-6" class="unit" data-unit>
+      <details open class="unit__shell">
+        <summary class="unit__header">
+          <div>
+            <h2>VI. 사회 계층과 불평등</h2>
+            <p>사회 계층은 경제적·사회적 자원의 분배 차이로 형성된다.</p>
+          </div>
+          <span class="unit__badge">불평등</span>
+        </summary>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>1. 계층화 기준</h3>
+          <ul>
+            <li><strong>소득</strong>: 일정 기간 얻는 돈.</li>
+            <li><strong>재산</strong>: 누적된 경제 자원.</li>
+            <li><strong>직업</strong>: 사회적 위신과 안정성 반영.</li>
+            <li><strong>권력</strong>: 의사결정에 영향력.</li>
+            <li><strong>교육</strong>: 문화 자본의 핵심.</li>
+          </ul>
+        </article>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>2. 계층 구조 유형</h3>
+          <ul>
+            <li><strong>계급제</strong>: 폐쇄적 이동, 세습 중심.</li>
+            <li><strong>신분제</strong>: 법과 관습으로 이동 제한.</li>
+            <li><strong>계층제</strong>: 비교적 개방적 이동.</li>
+          </ul>
+        </article>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>3. 사회 이동</h3>
+          <ul>
+            <li><strong>수직 이동</strong>: 상향/하향 계층 이동.</li>
+            <li><strong>수평 이동</strong>: 지위는 같으나 직업·지역 이동.</li>
+            <li><strong>세대 간 이동</strong>: 부모-자녀 계층 변화.</li>
+            <li><strong>세대 내 이동</strong>: 개인 생애 주기 내 이동.</li>
+          </ul>
+        </article>
+      </details>
+    </section>
+
+    <section id="unit-7" class="unit" data-unit>
+      <details open class="unit__shell">
+        <summary class="unit__header">
+          <div>
+            <h2>VII. 사회 변동과 사회 문제</h2>
+            <p>사회 변동은 사회 구조·문화·제도가 시간에 따라 변하는 과정이다.</p>
+          </div>
+          <span class="unit__badge">사회 변화</span>
+        </summary>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>1. 사회 변동 요인</h3>
+          <ul>
+            <li><strong>기술 혁신</strong>: 정보화, 자동화.</li>
+            <li><strong>인구 변화</strong>: 고령화, 저출산.</li>
+            <li><strong>환경 변화</strong>: 기후 위기, 자원 고갈.</li>
+            <li><strong>문화 접촉</strong>: 세계화, 이주.</li>
+          </ul>
+        </article>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>2. 사회 문제의 특징</h3>
+          <ul>
+            <li><strong>다수성</strong>: 다수에게 부정적 영향.</li>
+            <li><strong>구조성</strong>: 개인 노력만으로 해결 어려움.</li>
+            <li><strong>상호 연관성</strong>: 다른 문제와 연결.</li>
+            <li><strong>가치 갈등</strong>: 해결 방향에 대한 의견 충돌.</li>
+          </ul>
+        </article>
+      </details>
+    </section>
+
+    <section id="unit-8" class="unit" data-unit>
+      <details open class="unit__shell">
+        <summary class="unit__header">
+          <div>
+            <h2>VIII. 현대사회와 공동체</h2>
+            <p>현대사회는 개인화, 다문화화, 디지털화가 동시에 진행된다.</p>
+          </div>
+          <span class="unit__badge">공동체</span>
+        </summary>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>1. 현대사회 변화</h3>
+          <ul>
+            <li><strong>정보화</strong>: 네트워크 기반 사회.</li>
+            <li><strong>세계화</strong>: 경제·문화의 상호의존.</li>
+            <li><strong>다문화 사회</strong>: 문화 다양성 확대.</li>
+            <li><strong>개인화</strong>: 전통적 공동체 약화.</li>
+          </ul>
+        </article>
+
+        <article class="concept-block searchable" data-type="concept">
+          <h3>2. 공동체 회복</h3>
+          <ul>
+            <li><strong>시민 참여</strong>: 지역 문제 해결 참여.</li>
+            <li><strong>사회적 자본</strong>: 신뢰, 네트워크, 규범.</li>
+            <li><strong>복지 제도</strong>: 사회 안전망 구축.</li>
+          </ul>
+        </article>
+      </details>
+    </section>
+
+    <section id="concept-map" class="unit" data-unit>
+      <details open class="unit__shell">
+        <summary class="unit__header">
+          <div>
+            <h2>전범위 개념 체크리스트</h2>
+            <p>수능 대비용으로 사회문화 전 범위를 빠짐없이 점검할 수 있도록 핵심 개념을 촘촘히 나열했습니다.</p>
+          </div>
+          <span class="unit__badge">전개념</span>
+        </summary>
+        <article class="concept-block searchable" data-type="concept">
+          <h3>사회문화 현상 이해</h3>
+          <ul>
+            <li>사회문화 현상의 특징: 사회성, 규범성, 총체성, 외재성, 역동성</li>
+            <li>자연현상과 사회문화 현상의 차이: 의미·가치, 법칙성, 연구 태도</li>
+            <li>문화 상대주의, 문화 사대주의, 보편 윤리의 균형</li>
+            <li>객관적·비판적·개방적 태도</li>
+          </ul>
+        </article>
+        <article class="concept-block searchable" data-type="concept">
+          <h3>연구 방법 전 범위</h3>
+          <ul>
+            <li>연구 절차: 문제 인식 → 가설 설정 → 연구 설계 → 자료 수집 → 분석 → 결론</li>
+            <li>양적 연구 vs 질적 연구: 자료 유형, 목적, 연구자 역할</li>
+            <li>실험법, 조사법, 면접법, 참여 관찰법, 내용 분석법, 사례 연구법</li>
+            <li>타당도·신뢰도·객관성·대표성, 연구 윤리(익명성, 사전 동의)</li>
+            <li>상관관계와 인과관계, 제3의 변인</li>
+          </ul>
+        </article>
+        <article class="concept-block searchable" data-type="concept">
+          <h3>사회 구조와 집단</h3>
+          <ul>
+            <li>지위(귀속/성취), 역할, 역할 갈등, 역할 긴장</li>
+            <li>사회 집단: 1차/2차, 공식/비공식, 내집단/외집단, 준거집단</li>
+            <li>사회 조직: 관료제의 특징(위계, 문서화, 전문화, 규칙), 역기능</li>
+            <li>사회 제도: 가족·교육·경제·정치·종교의 기능</li>
+          </ul>
+        </article>
+        <article class="concept-block searchable" data-type="concept">
+          <h3>문화 전 범위</h3>
+          <ul>
+            <li>문화의 속성: 공유성, 학습성, 축적성, 변동성, 상징성</li>
+            <li>문화 유형: 물질문화, 비물질문화, 하위문화, 반문화</li>
+            <li>문화 변동: 내재적(발명/발견)·외재적(전파/접변)</li>
+            <li>문화 지체, 문화 융합, 문화 동화, 세계화와 지역화</li>
+          </ul>
+        </article>
+        <article class="concept-block searchable" data-type="concept">
+          <h3>일탈과 사회 통제</h3>
+          <ul>
+            <li>일탈의 상대성, 규범, 제재(공식/비공식, 긍정/부정)</li>
+            <li>일탈 이론: 기능론, 낙인 이론, 아노미 이론, 차별접촉 이론, 통제 이론</li>
+            <li>사회 통제 수단: 법, 규범, 교육, 여론, 사회화</li>
+          </ul>
+        </article>
+        <article class="concept-block searchable" data-type="concept">
+          <h3>사회 계층과 불평등</h3>
+          <ul>
+            <li>계층화 기준: 소득, 재산, 직업, 권력, 교육</li>
+            <li>계층 구조 유형: 신분제, 계급제, 계층제</li>
+            <li>사회 이동: 수직/수평, 세대 간/세대 내 이동</li>
+            <li>교육 불평등, 문화 자본, 세대 재생산, 기회 평등</li>
+          </ul>
+        </article>
+        <article class="concept-block searchable" data-type="concept">
+          <h3>사회 변동과 사회 문제</h3>
+          <ul>
+            <li>사회 변동 요인: 기술 혁신, 인구 변화, 환경 변화, 문화 접촉</li>
+            <li>사회 문제의 특징: 다수성, 구조성, 상호 연관성, 가치 갈등</li>
+            <li>사회 문제 해결 과정: 문제 인식 → 원인 분석 → 대안 제시 → 정책 평가</li>
+          </ul>
+        </article>
+        <article class="concept-block searchable" data-type="concept">
+          <h3>현대사회와 공동체</h3>
+          <ul>
+            <li>정보화·세계화·다문화·개인화</li>
+            <li>사회적 자본, 시민 참여, 복지 제도</li>
+            <li>공동체 회복: 신뢰 구축, 네트워크 강화, 참여 민주주의</li>
+          </ul>
+        </article>
+      </details>
+    </section>
+
+    <section id="mega-questions" class="unit" data-unit>
+      <details open class="unit__shell">
+        <summary class="unit__header">
+          <div>
+            <h2>초대형 문제 은행 (개념 암기 + 적용)</h2>
+            <p>문제는 난이도별로 구성되어 있으며, 바로 아래에 정답/해설 힌트를 넣어 복습을 돕는다.</p>
+          </div>
+          <span class="unit__badge">문제 풀이</span>
+        </summary>
+
+        <article class="question-block searchable" data-type="question">
+          <h3>개념 확인 OX (50문항)</h3>
+          <ol>
+            <li>사회문화 현상은 가치 중립적이므로 해석이 동일하다. (X)</li>
+            <li>양적 연구는 일반화에 유리하다. (O)</li>
+            <li>타당도는 측정의 일관성과 관련된다. (X)</li>
+            <li>하위문화는 주류 문화와 완전히 단절된다. (X)</li>
+            <li>문화 지체는 비물질문화가 더 빠르게 변할 때 발생한다. (X)</li>
+            <li>낙인 이론은 사회의 반응이 일탈을 지속시킬 수 있다고 본다. (O)</li>
+            <li>계급제는 사회 이동이 용이한 구조이다. (X)</li>
+            <li>사회 문제는 구조적 원인이 중요하다. (O)</li>
+            <li>세계화는 문화 동질화를 촉진할 수 있다. (O)</li>
+            <li>준거집단은 행동 기준을 제공한다. (O)</li>
+            <li>실험법은 인과관계 파악에 유리하다. (O)</li>
+            <li>문화 상대주의는 모든 문화를 비판 없이 수용해야 한다는 뜻이다. (X)</li>
+            <li>일탈은 시대에 따라 의미가 달라질 수 있다. (O)</li>
+            <li>수평 이동은 계층 수준 자체가 바뀌는 이동이다. (X)</li>
+            <li>사회 변동은 오직 기술 변화에 의해서만 발생한다. (X)</li>
+            <li>문화는 학습을 통해 전승된다. (O)</li>
+            <li>내집단 중심주의는 편견을 강화할 수 있다. (O)</li>
+            <li>사회적 자본은 신뢰와 네트워크를 의미한다. (O)</li>
+            <li>연구 윤리는 결과 왜곡을 허용한다. (X)</li>
+            <li>사회 구조는 지위와 역할의 체계이다. (O)</li>
+            <li>참여관찰법은 객관성이 매우 높다. (X)</li>
+            <li>문화는 축적되며 발전한다. (O)</li>
+            <li>아노미 이론은 목표와 수단 괴리를 강조한다. (O)</li>
+            <li>반문화는 주류 문화의 연장선에 있다. (X)</li>
+            <li>사회 이동은 세대 간 이동과 세대 내 이동으로 나뉜다. (O)</li>
+            <li>세계화는 지역 문화의 다양성을 약화시킬 수 있다. (O)</li>
+            <li>낙인 이론은 일탈의 원인을 개인 내면에서만 찾는다. (X)</li>
+            <li>연구 설계는 조사 방법, 대상, 도구를 포함한다. (O)</li>
+            <li>문화 융합은 새로운 문화 요소가 생기는 과정이다. (O)</li>
+            <li>사회 문제 해결에는 가치 갈등이 없다. (X)</li>
+            <li>가설은 검증 가능해야 한다. (O)</li>
+            <li>사회문화 현상은 총체적이다. (O)</li>
+            <li>면접법은 심층 이해에 유리하다. (O)</li>
+            <li>사회 제도는 사회 구성원의 필요를 충족한다. (O)</li>
+            <li>교육 제도는 선발 기능을 수행한다. (O)</li>
+            <li>사회 이동이 많을수록 계층 구조는 더 개방적이다. (O)</li>
+            <li>문화의 상징성은 언어를 통한 의미 전달과 관련된다. (O)</li>
+            <li>사회 문제는 한 개인만의 문제로 해결된다. (X)</li>
+            <li>사회적 유대가 강할수록 일탈 가능성은 높아진다. (X)</li>
+            <li>내용 분석법은 문서나 미디어를 분석한다. (O)</li>
+            <li>사회 변동은 항상 긍정적 결과만 낳는다. (X)</li>
+            <li>내재적 문화 변동은 발명과 발견을 포함한다. (O)</li>
+            <li>사례 연구는 특정 사례를 깊게 분석한다. (O)</li>
+            <li>객관적 태도는 연구자의 가치 판단을 포함한다. (X)</li>
+            <li>문화 상대주의는 문화 이해에 도움을 준다. (O)</li>
+            <li>경제 제도는 재화의 생산과 분배를 담당한다. (O)</li>
+            <li>정치 제도는 권력 배분과 질서 유지에 기여한다. (O)</li>
+            <li>사회 문제는 상호 연관성을 가진다. (O)</li>
+            <li>일탈 이론 중 통제 이론은 사회적 유대를 강조한다. (O)</li>
+          </ol>
+        </article>
+
+        <article class="question-block searchable" data-type="question">
+          <h3>용어 채우기 (30문항)</h3>
+          <ol>
+            <li>사회문화 연구에서 측정의 일관성은 (신뢰도)이다.</li>
+            <li>사회 구성원이 공유하는 생활양식은 (문화)이다.</li>
+            <li>주류 문화에 저항하는 문화는 (반문화)이다.</li>
+            <li>사회 규범 위반 행동은 (일탈)이다.</li>
+            <li>사회 이동이 제한된 구조는 (계급제/신분제)이다.</li>
+            <li>연구 결과가 의도한 것을 측정하는 정도는 (타당도)이다.</li>
+            <li>타인의 기대에 따른 행동은 (역할)이다.</li>
+            <li>사회의 규칙을 지키도록 만드는 압력은 (사회 통제)이다.</li>
+            <li>다문화 사회에서 문화적 다양성을 인정하는 태도는 (문화 상대주의)이다.</li>
+            <li>여러 요소가 결합해 새로운 문화가 되는 것은 (문화 융합)이다.</li>
+            <li>연구 대상자의 동의 없이 진행되는 조사 행위는 (연구 윤리 위반)이다.</li>
+            <li>사회 구조는 지위와 (역할)로 구성된다.</li>
+            <li>집단 내 유대가 강한 집단은 (1차 집단)이다.</li>
+            <li>일탈 행동을 학습한다는 관점은 (차별접촉 이론)이다.</li>
+            <li>사회적 자본은 신뢰와 (네트워크)를 의미한다.</li>
+            <li>문화가 변화하는 과정은 (문화 변동)이다.</li>
+            <li>현대사회에서 개인의 선택 범위가 확대되는 현상은 (개인화)이다.</li>
+            <li>사회 변동 요인 중 인구 감소 현상은 (저출산)이다.</li>
+            <li>사회 문제 해결 과정에서 나타나는 가치 충돌은 (가치 갈등)이다.</li>
+            <li>한 개인의 생애 내 이동은 (세대 내 이동)이다.</li>
+            <li>개인의 출생과 관계없이 노력으로 얻는 지위는 (성취지위)이다.</li>
+            <li>사회 규범을 강화하는 기능도 일탈이 수행한다는 관점은 (기능론)이다.</li>
+            <li>자연 현상은 사회문화 현상보다 (규칙성)이 강하다.</li>
+            <li>사회 집단에서 행동의 기준을 제공하는 집단은 (준거집단)이다.</li>
+            <li>사회 변동으로 나타나는 문제 중 고령 인구 증가 현상은 (고령화)이다.</li>
+            <li>사회 구성원이 차지하는 위치는 (지위)이다.</li>
+            <li>주류 문화와 다른 독자적 문화를 가진 집단은 (하위문화)이다.</li>
+            <li>사회 문제는 개인 차원보다 (구조적) 요인이 중요하다.</li>
+            <li>세계화로 생기는 문화 동질화 현상은 (문화의 획일화)로 설명된다.</li>
+            <li>사회문화 연구에서 다양한 관점을 수용하는 태도는 (개방적 태도)이다.</li>
+          </ol>
+        </article>
+
+        <article class="question-block searchable" data-type="question">
+          <h3>서술형·사례형 (30문항)</h3>
+          <ol>
+            <li>연구자가 “A 도시의 청소년 일탈 증가 원인은 스마트폰 중독이다”라는 가설을 세웠다. 검증 가능성과 관련해 필요한 추가 요소를 서술하라.</li>
+            <li>문화 상대주의와 보편윤리의 충돌이 발생한 사례를 1가지 제시하고 해결 방향을 제시하라.</li>
+            <li>낙인 이론 관점에서 학교 폭력 가해 학생에 대한 언론 보도의 영향을 분석하라.</li>
+            <li>사회 이동이 활발한 사회에서 나타날 수 있는 긍정적/부정적 효과를 각각 2가지 제시하라.</li>
+            <li>지위와 역할을 이용해 “학생”이라는 지위에서 발생할 수 있는 역할 갈등 사례를 쓰라.</li>
+            <li>문화 지체가 발생하는 과정을 디지털 기술 변화 사례로 설명하라.</li>
+            <li>사회 문제의 구조적 원인을 파악하기 위해 필요한 연구 방법을 2가지 설명하라.</li>
+            <li>다문화 사회에서 내집단 중심주의가 가져올 문제점을 분석하라.</li>
+            <li>세계화가 지역 문화에 미치는 긍정적 영향과 부정적 영향을 비교하라.</li>
+            <li>정보화 사회에서 개인화 현상이 심화되는 이유를 설명하라.</li>
+            <li>계층 구조가 교육 제도와 어떻게 상호 작용하는지 서술하라.</li>
+            <li>사회 통제 방식 중 공식적 통제와 비공식적 통제의 사례를 각각 2가지 제시하라.</li>
+            <li>참여 관찰법을 사용할 때 발생할 수 있는 윤리 문제를 설명하라.</li>
+            <li>사회 문제 해결을 위한 정책 설계에서 가치 갈등을 조정하는 방법을 제시하라.</li>
+            <li>문화 융합이 발생한 한국 사회의 사례를 찾아 설명하라.</li>
+            <li>사회문화 현상의 총체성을 보여주는 사례를 제시하라.</li>
+            <li>사회적 자본이 지역 공동체에 미치는 영향을 분석하라.</li>
+            <li>아노미 이론과 통제 이론의 차이를 비교하여 설명하라.</li>
+            <li>청소년 범죄 증가를 설명할 때 개인 요인과 구조적 요인을 구분해 제시하라.</li>
+            <li>사회 문제로서 청년 실업이 갖는 특징을 사회 문제의 개념으로 분석하라.</li>
+            <li>온라인 커뮤니티가 준거집단으로 기능하는 사례를 설명하라.</li>
+            <li>사회문화 연구에서 양적·질적 방법을 혼합하는 이유를 설명하라.</li>
+            <li>정보화가 불평등 구조에 미치는 영향을 분석하라.</li>
+            <li>사회 변동을 촉진하는 요인 중 인구 변화가 미치는 효과를 설명하라.</li>
+            <li>사회 제도의 기능 중 교육의 선발 기능에 대한 장단점을 비교하라.</li>
+            <li>사회 구성원의 역할 수행 실패가 사회 구조에 미치는 영향을 설명하라.</li>
+            <li>공식적 제재와 비공식적 제재가 동시에 적용되는 사례를 작성하라.</li>
+            <li>다문화 사회에서 문화 갈등을 완화하는 정책을 제안하라.</li>
+            <li>사회문제 해결을 위한 시민 참여의 중요성을 사례와 함께 설명하라.</li>
+            <li>기술 혁신이 사회 변동을 가속화하는 메커니즘을 설명하라.</li>
+          </ol>
+        </article>
+
+        <article class="question-block searchable" data-type="question">
+          <h3>선택형 모의고사 (25문항)</h3>
+          <ol>
+            <li>
+              사회문화 연구 태도에 대한 설명으로 옳은 것은?
+              <ul>
+                <li>① 특정 가치관을 기준으로 다른 문화 평가</li>
+                <li>② 연구자의 주관을 적극 반영</li>
+                <li>③ 자료를 왜곡해 가설을 입증</li>
+                <li>④ 다양한 관점을 수용</li>
+              </ul>
+              <p class="answer">정답: ④</p>
+            </li>
+            <li>
+              양적 연구의 특징으로 적절한 것은?
+              <ul>
+                <li>① 소수 사례 심층 분석</li>
+                <li>② 연구자 참여 강조</li>
+                <li>③ 통계 자료 활용</li>
+                <li>④ 해석 중심</li>
+              </ul>
+              <p class="answer">정답: ③</p>
+            </li>
+            <li>
+              다음 중 문화 지체 사례는?
+              <ul>
+                <li>① 스마트폰 보급 후 개인정보 규제가 늦어짐</li>
+                <li>② 새로운 유행어 등장</li>
+                <li>③ 전통 음식의 재발견</li>
+                <li>④ 지역 축제 확대</li>
+              </ul>
+              <p class="answer">정답: ①</p>
+            </li>
+            <li>
+              낙인 이론의 관점에 부합하는 설명은?
+              <ul>
+                <li>① 일탈은 사회 규범 강화 기능</li>
+                <li>② 사회 반응이 일탈을 지속</li>
+                <li>③ 목표-수단 괴리 설명</li>
+                <li>④ 개인 성향이 원인</li>
+              </ul>
+              <p class="answer">정답: ②</p>
+            </li>
+            <li>
+              사회 이동이 활발한 사회의 특징으로 옳은 것은?
+              <ul>
+                <li>① 귀속 지위 중심</li>
+                <li>② 계층 구조 폐쇄적</li>
+                <li>③ 성취 지위 강조</li>
+                <li>④ 세습 강화</li>
+              </ul>
+              <p class="answer">정답: ③</p>
+            </li>
+            <li>
+              사회 문제의 특징으로 볼 수 없는 것은?
+              <ul>
+                <li>① 다수성</li>
+                <li>② 구조성</li>
+                <li>③ 가치 갈등</li>
+                <li>④ 개인 해결 가능성</li>
+              </ul>
+              <p class="answer">정답: ④</p>
+            </li>
+            <li>
+              다음 중 1차 집단에 해당하는 것은?
+              <ul>
+                <li>① 대기업</li>
+                <li>② 지역 축구 동호회</li>
+                <li>③ 정부 부처</li>
+                <li>④ 의회</li>
+              </ul>
+              <p class="answer">정답: ②</p>
+            </li>
+            <li>
+              사회문화 현상의 특징으로 옳은 것은?
+              <ul>
+                <li>① 규칙성이 자연 현상보다 강함</li>
+                <li>② 의미 해석이 배제됨</li>
+                <li>③ 총체성을 지님</li>
+                <li>④ 연구 태도는 단일</li>
+              </ul>
+              <p class="answer">정답: ③</p>
+            </li>
+            <li>
+              문화 상대주의 태도로 옳은 것은?
+              <ul>
+                <li>① 다른 문화는 야만적</li>
+                <li>② 문화 간 우열 비교</li>
+                <li>③ 문화 차이를 이해하고 존중</li>
+                <li>④ 보편 윤리 무시</li>
+              </ul>
+              <p class="answer">정답: ③</p>
+            </li>
+            <li>
+              사회 제도의 기능으로 옳지 않은 것은?
+              <ul>
+                <li>① 가족: 사회화</li>
+                <li>② 경제: 재화 생산</li>
+                <li>③ 교육: 선발</li>
+                <li>④ 종교: 물질 생산</li>
+              </ul>
+              <p class="answer">정답: ④</p>
+            </li>
+            <li>
+              사회 변동 요인으로 볼 수 없는 것은?
+              <ul>
+                <li>① 기술 혁신</li>
+                <li>② 인구 변화</li>
+                <li>③ 개인 성격</li>
+                <li>④ 문화 접촉</li>
+              </ul>
+              <p class="answer">정답: ③</p>
+            </li>
+            <li>
+              다음 중 사회 통제에 해당하는 것은?
+              <ul>
+                <li>① 개인 취향 존중</li>
+                <li>② 법적 처벌</li>
+                <li>③ 경제 성장</li>
+                <li>④ 기술 발명</li>
+              </ul>
+              <p class="answer">정답: ②</p>
+            </li>
+            <li>
+              사회적 자본의 구성 요소로 적절한 것은?
+              <ul>
+                <li>① 소득</li>
+                <li>② 신뢰</li>
+                <li>③ 교통</li>
+                <li>④ 무역</li>
+              </ul>
+              <p class="answer">정답: ②</p>
+            </li>
+            <li>
+              아노미 이론이 설명하는 상황은?
+              <ul>
+                <li>① 목표와 수단 일치</li>
+                <li>② 목표 달성 수단 부족</li>
+                <li>③ 규범 완전 준수</li>
+                <li>④ 사회 유대 강화</li>
+              </ul>
+              <p class="answer">정답: ②</p>
+            </li>
+            <li>
+              사회 이동의 예로 적절한 것은?
+              <ul>
+                <li>① 학생이 직장인이 됨</li>
+                <li>② 노동자가 기업가가 됨</li>
+                <li>③ 같은 직업 유지</li>
+                <li>④ 동일 계층 유지</li>
+              </ul>
+              <p class="answer">정답: ②</p>
+            </li>
+            <li>
+              다음 중 질적 연구에 해당하는 것은?
+              <ul>
+                <li>① 전국 단위 설문 조사</li>
+                <li>② 심층 면접</li>
+                <li>③ 통계 분석</li>
+                <li>④ 실험 연구</li>
+              </ul>
+              <p class="answer">정답: ②</p>
+            </li>
+            <li>
+              문화 융합의 예로 적절한 것은?
+              <ul>
+                <li>① 외래어 사용 증가</li>
+                <li>② 한복과 현대 패션 결합</li>
+                <li>③ 문화 충돌</li>
+                <li>④ 전통 문화 보존</li>
+              </ul>
+              <p class="answer">정답: ②</p>
+            </li>
+            <li>
+              다음 중 준거집단의 기능으로 옳은 것은?
+              <ul>
+                <li>① 사회 규범 전파</li>
+                <li>② 행동 기준 제공</li>
+                <li>③ 개인 성격 결정</li>
+                <li>④ 자연 현상 설명</li>
+              </ul>
+              <p class="answer">정답: ②</p>
+            </li>
+            <li>
+              사회 문제의 해결 방안으로 가장 적절한 것은?
+              <ul>
+                <li>① 개인 책임만 강조</li>
+                <li>② 구조적 개선 정책 마련</li>
+                <li>③ 문제 은폐</li>
+                <li>④ 단기 임시 조치</li>
+              </ul>
+              <p class="answer">정답: ②</p>
+            </li>
+            <li>
+              다음 중 문화의 학습성을 보여주는 예는?
+              <ul>
+                <li>① 출생 시 자동 습득</li>
+                <li>② 교육과 사회화 과정</li>
+                <li>③ 유전적 특성</li>
+                <li>④ 환경과 무관</li>
+              </ul>
+              <p class="answer">정답: ②</p>
+            </li>
+            <li>
+              사회 통제의 비공식적 수단으로 적절한 것은?
+              <ul>
+                <li>① 법률</li>
+                <li>② 경찰</li>
+                <li>③ 가족의 칭찬</li>
+                <li>④ 법원 판결</li>
+              </ul>
+              <p class="answer">정답: ③</p>
+            </li>
+            <li>
+              다음 중 사회 구조의 구성 요소로 볼 수 없는 것은?
+              <ul>
+                <li>① 지위</li>
+                <li>② 역할</li>
+                <li>③ 규범</li>
+                <li>④ 자연 환경</li>
+              </ul>
+              <p class="answer">정답: ④</p>
+            </li>
+            <li>
+              정보화 사회의 특징으로 옳은 것은?
+              <ul>
+                <li>① 지식의 가치 감소</li>
+                <li>② 네트워크 의존 증가</li>
+                <li>③ 노동 이동 감소</li>
+                <li>④ 지역 고립</li>
+              </ul>
+              <p class="answer">정답: ②</p>
+            </li>
+            <li>
+              사회문화 연구 윤리에 해당하지 않는 것은?
+              <ul>
+                <li>① 익명성 보장</li>
+                <li>② 강제 참여</li>
+                <li>③ 사전 동의</li>
+                <li>④ 결과 왜곡 금지</li>
+              </ul>
+              <p class="answer">정답: ②</p>
+            </li>
+            <li>
+              다음 중 반문화에 해당하는 것은?
+              <ul>
+                <li>① 주류 문화 존중</li>
+                <li>② 주류 가치 부정</li>
+                <li>③ 주류 문화 확산</li>
+                <li>④ 전통 문화 보존</li>
+              </ul>
+              <p class="answer">정답: ②</p>
+            </li>
+          </ol>
+        </article>
+      </details>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Society Study Kit. 자유롭게 복습에 활용하세요.</p>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const matchCount = document.getElementById('matchCount');
+    const timeNow = document.getElementById('timeNow');
+    const filterButtons = document.querySelectorAll('[data-filter]');
+    const blocks = Array.from(document.querySelectorAll('.searchable'));
+    const toggleAnswers = document.getElementById('toggleAnswers');
+    const expandAll = document.getElementById('expandAll');
+    const collapseAll = document.getElementById('collapseAll');
+    const themeToggle = document.getElementById('themeToggle');
+    const focusToggle = document.getElementById('focusToggle');
+    const scrollTopBtn = document.getElementById('scrollTop');
+    const progressBar = document.getElementById('progressBar');
+    const totalCount = document.getElementById('totalCount');
+    const completedCount = document.getElementById('completedCount');
+    const completionRate = document.getElementById('completionRate');
+    const completionBar = document.getElementById('completionBar');
+    const xpPoints = document.getElementById('xpPoints');
+    const streakCount = document.getElementById('streakCount');
+    const randomQuestion = document.getElementById('randomQuestion');
+    const resetProgress = document.getElementById('resetProgress');
+    const quizQuestion = document.getElementById('quizQuestion');
+    const quizAnswer = document.getElementById('quizAnswer');
+    const revealQuizAnswer = document.getElementById('revealQuizAnswer');
+    const comboFill = document.getElementById('comboFill');
+    const comboLabel = document.getElementById('comboLabel');
+
+    const tabButtons = Array.from(document.querySelectorAll('.tab'));
+    const tabPanels = Array.from(document.querySelectorAll('.tab-panel'));
+    const speedTimer = document.getElementById('speedTimer');
+    const speedScore = document.getElementById('speedScore');
+    const speedQuestion = document.getElementById('speedQuestion');
+    const speedOptions = document.getElementById('speedOptions');
+    const speedFeedback = document.getElementById('speedFeedback');
+    const startSpeedQuiz = document.getElementById('startSpeedQuiz');
+    const skipSpeedQuiz = document.getElementById('skipSpeedQuiz');
+    const oxQuestion = document.getElementById('oxQuestion');
+    const oxFeedback = document.getElementById('oxFeedback');
+    const oxStreak = document.getElementById('oxStreak');
+    const oxAccuracy = document.getElementById('oxAccuracy');
+    const nextOx = document.getElementById('nextOx');
+    const blankQuestion = document.getElementById('blankQuestion');
+    const blankAnswer = document.getElementById('blankAnswer');
+    const blankFeedback = document.getElementById('blankFeedback');
+    const blankScore = document.getElementById('blankScore');
+    const blankAccuracy = document.getElementById('blankAccuracy');
+    const checkBlank = document.getElementById('checkBlank');
+    const nextBlank = document.getElementById('nextBlank');
+    const flashcard = document.getElementById('flashcard');
+    const flashTerm = document.getElementById('flashTerm');
+    const flashDefinition = document.getElementById('flashDefinition');
+    const prevFlash = document.getElementById('prevFlash');
+    const nextFlash = document.getElementById('nextFlash');
+    const shuffleFlash = document.getElementById('shuffleFlash');
+    const missionButtons = Array.from(document.querySelectorAll('.mission-btn'));
+    const missionFeedback = document.getElementById('missionFeedback');
+    const badgeNodes = Array.from(document.querySelectorAll('.badge'));
+    const startPopQuiz = document.getElementById('startPopQuiz');
+    const rouletteMode = document.getElementById('rouletteMode');
+    const toggleQuizSound = document.getElementById('toggleQuizSound');
+    const popQuiz = document.getElementById('popQuiz');
+    const closePopQuiz = document.getElementById('closePopQuiz');
+    const popQuizQuestion = document.getElementById('popQuizQuestion');
+    const popQuizOptions = document.getElementById('popQuizOptions');
+    const popQuizFeedback = document.getElementById('popQuizFeedback');
+    const goalInput = document.getElementById('goalInput');
+    const goalProgress = document.getElementById('goalProgress');
+    const goalStatus = document.getElementById('goalStatus');
+    const goalTotal = document.getElementById('goalTotal');
+    const resetGoal = document.getElementById('resetGoal');
+    const timerDisplay = document.getElementById('timerDisplay');
+    const startTimer = document.getElementById('startTimer');
+    const pauseTimer = document.getElementById('pauseTimer');
+    const resetTimer = document.getElementById('resetTimer');
+    const presetButtons = Array.from(document.querySelectorAll('.preset-btn'));
+    const timerHint = document.getElementById('timerHint');
+    const historyList = document.getElementById('historyList');
+    const studyNote = document.getElementById('studyNote');
+    const saveNote = document.getElementById('saveNote');
+    const clearNote = document.getElementById('clearNote');
+    const noteStatus = document.getElementById('noteStatus');
+    const routineButtons = Array.from(document.querySelectorAll('.routine-btn'));
+    const routineStatus = document.getElementById('routineStatus');
+
+    const storageKey = 'society-progress-v2';
+    const themeKey = 'society-theme';
+    const focusKey = 'society-focus';
+    const xpKey = 'society-xp';
+    const streakKey = 'society-streak';
+    const missionKey = 'society-missions';
+    const badgeKey = 'society-badges';
+    const metricsKey = 'society-metrics';
+    const goalKey = 'society-goal';
+    const historyKey = 'society-history';
+    const timerKey = 'society-timer';
+    const noteKey = 'society-note';
+    const routineKey = 'society-routine';
+
+    const doneState = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    const missionState = JSON.parse(localStorage.getItem(missionKey) || '{}');
+    const badgeState = JSON.parse(localStorage.getItem(badgeKey) || '{}');
+    const metricsState = JSON.parse(
+      localStorage.getItem(metricsKey) || '{"totalAnswered":0,"speedStreakMax":0,"flashViewed":0}'
+    );
+
+    let xp = Number(localStorage.getItem(xpKey) || 0);
+    let streak = Number(localStorage.getItem(streakKey) || 0);
+    let speedInterval = null;
+    let speedTimeLeft = 60;
+    let speedScoreValue = 0;
+    let speedStreak = 0;
+    let oxAnswered = 0;
+    let oxCorrect = 0;
+    let blankAnswered = 0;
+    let blankCorrect = 0;
+    let flashIndex = 0;
+    let soundOn = false;
+    let timerInterval = null;
+    let timerMinutes = Number(localStorage.getItem(timerKey) || 25);
+    let timerSeconds = 0;
+    let timerRunning = false;
+    let historyItems = JSON.parse(localStorage.getItem(historyKey) || '[]');
+    const routineState = JSON.parse(localStorage.getItem(routineKey) || '{}');
+
+    const updateTime = () => {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      timeNow.textContent = `${hours}:${minutes}`;
+    };
+
+    const updateMatchCount = (visibleCount) => {
+      matchCount.textContent = `현재 ${visibleCount}개 항목`;
+    };
+
+    const applyFilter = (type) => {
+      blocks.forEach((block) => {
+        const matchesType = type === 'all' || block.dataset.type === type;
+        block.style.display = matchesType ? '' : 'none';
+      });
+      updateMatchCount(blocks.filter((block) => block.style.display !== 'none').length);
+    };
+
+    const applySearch = () => {
+      const query = searchInput.value.trim().toLowerCase();
+      let count = 0;
+      blocks.forEach((block) => {
+        const text = block.textContent.toLowerCase();
+        const matches = text.includes(query);
+        block.style.display = matches ? '' : 'none';
+        if (matches) {
+          count += 1;
+        }
+      });
+      updateMatchCount(count);
+    };
+
+    const updateCompletion = () => {
+      const trackables = Array.from(
+        document.querySelectorAll('.concept-block li, .question-block li')
+      );
+      const doneCount = trackables.filter((item) => item.classList.contains('is-done')).length;
+      const total = trackables.length;
+      totalCount.textContent = total;
+      completedCount.textContent = doneCount;
+      const rate = total > 0 ? Math.round((doneCount / total) * 100) : 0;
+      completionRate.textContent = `${rate}%`;
+      completionBar.style.width = `${rate}%`;
+      localStorage.setItem(storageKey, JSON.stringify(doneState));
+    };
+
+    const updateXp = (points = 0, isCorrect = null) => {
+      xp += points;
+      if (isCorrect === true) {
+        streak += 1;
+      }
+      if (isCorrect === false) {
+        streak = 0;
+      }
+      xpPoints.textContent = xp;
+      streakCount.textContent = streak;
+      comboLabel.textContent = `${streak} / 10`;
+      comboFill.style.width = `${Math.min((streak / 10) * 100, 100)}%`;
+      localStorage.setItem(xpKey, String(xp));
+      localStorage.setItem(streakKey, String(streak));
+    };
+
+    const updateGoal = () => {
+      const target = Number(goalInput.value || 0);
+      goalTotal.textContent = target;
+      goalStatus.textContent = metricsState.totalAnswered;
+      const progress = target > 0 ? Math.min((metricsState.totalAnswered / target) * 100, 100) : 0;
+      goalProgress.style.width = `${progress}%`;
+    };
+
+    const updateMetrics = () => {
+      localStorage.setItem(metricsKey, JSON.stringify(metricsState));
+    };
+
+    const updateHistory = () => {
+      const trimmed = historyItems.slice(-5).reverse();
+      historyList.innerHTML = '';
+      if (trimmed.length === 0) {
+        historyList.innerHTML = '<li>기록이 아직 없습니다.</li>';
+        return;
+      }
+      trimmed.forEach((entry) => {
+        const item = document.createElement('li');
+        item.textContent = `${entry.mode}: ${entry.result} (+${entry.xp} XP)`;
+        historyList.appendChild(item);
+      });
+    };
+
+    const addHistory = (mode, result, xpDelta) => {
+      historyItems.push({
+        mode,
+        result,
+        xp: xpDelta,
+      });
+      historyItems = historyItems.slice(-10);
+      localStorage.setItem(historyKey, JSON.stringify(historyItems));
+      updateHistory();
+    };
+
+    const updateRoutine = () => {
+      let checked = 0;
+      routineButtons.forEach((button) => {
+        const day = button.dataset.day;
+        const isChecked = Boolean(routineState[day]);
+        button.classList.toggle('is-complete', isChecked);
+        if (isChecked) checked += 1;
+      });
+      routineStatus.textContent = `이번 주 체크: ${checked}/7`;
+      localStorage.setItem(routineKey, JSON.stringify(routineState));
+    };
+
+    const playSound = (isCorrect) => {
+      if (!soundOn || typeof window.AudioContext === 'undefined') return;
+      const audioContext = new AudioContext();
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      oscillator.type = 'sine';
+      oscillator.frequency.value = isCorrect ? 640 : 220;
+      gainNode.gain.value = 0.08;
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      oscillator.start();
+      setTimeout(() => {
+        oscillator.stop();
+        audioContext.close();
+      }, 180);
+    };
+
+    const formatTime = (minutes, seconds) => {
+      const mm = String(minutes).padStart(2, '0');
+      const ss = String(seconds).padStart(2, '0');
+      return `${mm}:${ss}`;
+    };
+
+    const renderTimer = () => {
+      timerDisplay.textContent = formatTime(timerMinutes, timerSeconds);
+    };
+
+    const setTimerMinutes = (minutes) => {
+      timerMinutes = minutes;
+      localStorage.setItem(timerKey, String(minutes));
+      renderTimer();
+    };
+
+    const tickTimer = () => {
+      if (!timerRunning) return;
+      if (timerMinutes === 0 && timerSeconds === 0) {
+        timerRunning = false;
+        clearInterval(timerInterval);
+        timerHint.textContent = '완료! +20 XP 보너스 획득';
+        updateXp(20, true);
+        addHistory('타이머', '완료', 20);
+        playSound(true);
+        return;
+      }
+      if (timerSeconds === 0) {
+        timerMinutes = Math.max(timerMinutes - 1, 0);
+        timerSeconds = 59;
+      } else {
+        timerSeconds -= 1;
+      }
+      renderTimer();
+    };
+
+    const trackables = Array.from(
+      document.querySelectorAll('.concept-block li, .question-block li')
+    );
+
+    trackables.forEach((item, index) => {
+      const id = `item-${index}`;
+      item.dataset.trackId = id;
+      if (doneState[id]) {
+        item.classList.add('is-done');
+      }
+      item.addEventListener('click', () => {
+        item.classList.toggle('is-done');
+        doneState[id] = item.classList.contains('is-done');
+        updateCompletion();
+      });
+    });
+
+    resetProgress.addEventListener('click', () => {
+      trackables.forEach((item) => item.classList.remove('is-done'));
+      Object.keys(doneState).forEach((key) => {
+        doneState[key] = false;
+      });
+      updateCompletion();
+    });
+
+    const questionItems = Array.from(document.querySelectorAll('.question-block li'));
+    const questionBank = questionItems.map((item) => {
+      const clone = item.cloneNode(true);
+      clone.querySelectorAll('ul, .answer').forEach((node) => node.remove());
+      const questionText = clone.textContent.trim().replace(/\s+/g, ' ');
+      const answerNode = item.querySelector('.answer');
+      const answerFromNode = answerNode ? answerNode.textContent.trim() : '';
+      const match = questionText.match(/\(([^)]+)\)\s*$/);
+      const extractedAnswer = match ? match[1] : '';
+      return {
+        question: match ? questionText.replace(/\(([^)]+)\)\s*$/, '').trim() : questionText,
+        answer: answerFromNode || extractedAnswer,
+      };
+    }).filter((item) => item.answer);
+
+    const choiceItems = questionItems.filter((item) => item.querySelector('ul') && item.querySelector('.answer'));
+    const answerSymbolMap = { '①': 0, '②': 1, '③': 2, '④': 3, '⑤': 4 };
+    const choiceQuestions = choiceItems.map((item) => {
+      const questionText = item.childNodes[0].textContent.trim();
+      const options = Array.from(item.querySelectorAll('ul li')).map((li) =>
+        li.textContent.trim().replace(/^(\d+\.|[①-⑤])\s*/, '')
+      );
+      const answerNode = item.querySelector('.answer');
+      const match = answerNode.textContent.match(/정답:\s*([①-⑤1-5])/);
+      const answerIndex = match
+        ? answerSymbolMap[match[1]] ?? Number(match[1]) - 1
+        : options.findIndex((option) => answerNode.textContent.includes(option));
+      return {
+        question: questionText.replace(/\s+/g, ' '),
+        options,
+        answerIndex,
+      };
+    });
+
+    const oxQuestions = questionItems
+      .map((item) => {
+        const text = item.textContent.trim().replace(/\s+/g, ' ');
+        const match = text.match(/\((O|X)\)\s*$/);
+        if (!match) return null;
+        return {
+          question: text.replace(/\((O|X)\)\s*$/, '').trim(),
+          answer: match[1],
+        };
+      })
+      .filter(Boolean);
+
+    const blankQuestions = questionItems
+      .map((item) => {
+        const text = item.textContent.trim().replace(/\s+/g, ' ');
+        const match = text.match(/\(([^)]+)\)\s*$/);
+        if (!match || text.includes('정답:')) return null;
+        if (['O', 'X'].includes(match[1])) return null;
+        return {
+          question: text.replace(/\(([^)]+)\)\s*$/, '').trim(),
+          answer: match[1],
+        };
+      })
+      .filter(Boolean);
+
+    const flashcards = [
+      {
+        term: '사회문화 현상의 특징',
+        definition: '사회성·역동성·규범성·총체성·외재성을 가지며 의미/가치가 포함된다.',
+      },
+      {
+        term: '문화 상대주의',
+        definition: '자기 문화 기준 대신 해당 사회의 가치·맥락으로 문화를 이해하려는 태도.',
+      },
+      {
+        term: '사회화',
+        definition: '사회 구성원으로 필요한 가치·규범·기술을 학습하는 과정.',
+      },
+      {
+        term: '문화 지체',
+        definition: '물질문화 변화 속도가 비물질문화보다 빠르게 진행될 때 발생하는 간극.',
+      },
+      {
+        term: '아노미 이론',
+        definition: '사회적 목표와 합법적 수단의 괴리가 커지면 일탈이 증가한다는 관점.',
+      },
+      {
+        term: '사회 이동',
+        definition: '개인 또는 집단이 사회적 지위·계층을 이동하는 현상.',
+      },
+      {
+        term: '사회적 자본',
+        definition: '신뢰·네트워크·규범 등 협력을 가능하게 하는 관계 자원.',
+      },
+      {
+        term: '일탈의 상대성',
+        definition: '일탈의 기준은 시대·문화·집단에 따라 달라진다.',
+      },
+    ];
+
+    const renderFlashcard = () => {
+      const card = flashcards[flashIndex];
+      if (!card) return;
+      flashTerm.textContent = card.term;
+      flashDefinition.textContent = card.definition;
+      flashcard.classList.remove('is-flipped');
+    };
+
+    const renderRandomQuestion = () => {
+      const pick = questionBank[Math.floor(Math.random() * questionBank.length)];
+      if (!pick) {
+        quizQuestion.textContent = '문제를 불러올 수 없습니다.';
+        quizAnswer.textContent = '정답 정보 없음';
+        return;
+      }
+      quizQuestion.textContent = pick.question;
+      quizAnswer.textContent = pick.answer;
+      quizAnswer.classList.remove('is-visible');
+    };
+
+    const renderSpeedQuestion = () => {
+      if (choiceQuestions.length === 0) {
+        speedQuestion.textContent = '선택형 문제 데이터가 없습니다.';
+        speedOptions.innerHTML = '';
+        return;
+      }
+      const pick = choiceQuestions[Math.floor(Math.random() * choiceQuestions.length)];
+      speedQuestion.textContent = pick.question;
+      speedOptions.innerHTML = '';
+      pick.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.className = 'btn btn--option';
+        button.textContent = option;
+        button.addEventListener('click', () => {
+          const isCorrect = index === pick.answerIndex;
+          metricsState.totalAnswered += 1;
+          updateMetrics();
+          if (isCorrect) {
+            speedScoreValue += 10;
+            speedStreak += 1;
+            metricsState.speedStreakMax = Math.max(metricsState.speedStreakMax, speedStreak);
+            speedFeedback.textContent = '정답! +10 XP';
+            updateXp(10, true);
+            addHistory('스피드', '정답', 10);
+            playSound(true);
+          } else {
+            speedFeedback.textContent = `오답! 정답: ${pick.options[pick.answerIndex] ?? '정보 없음'}`;
+            speedStreak = 0;
+            updateXp(0, false);
+            addHistory('스피드', '오답', 0);
+            playSound(false);
+          }
+          speedScore.textContent = speedScoreValue;
+          updateGoal();
+          renderSpeedQuestion();
+        });
+        speedOptions.appendChild(button);
+      });
+    };
+
+    const startSpeed = () => {
+      speedScoreValue = 0;
+      speedStreak = 0;
+      speedTimeLeft = 60;
+      speedScore.textContent = speedScoreValue;
+      speedTimer.textContent = speedTimeLeft;
+      speedFeedback.textContent = '타이머가 시작되었습니다!';
+      clearInterval(speedInterval);
+      speedInterval = setInterval(() => {
+        speedTimeLeft -= 1;
+        speedTimer.textContent = speedTimeLeft;
+        if (speedTimeLeft <= 0) {
+          clearInterval(speedInterval);
+          speedFeedback.textContent = `종료! 총 점수 ${speedScoreValue}`;
+        }
+      }, 1000);
+      renderSpeedQuestion();
+    };
+
+    const renderOxQuestion = () => {
+      if (oxQuestions.length === 0) {
+        oxQuestion.textContent = 'OX 문제 데이터가 없습니다.';
+        return;
+      }
+      const pick = oxQuestions[Math.floor(Math.random() * oxQuestions.length)];
+      oxQuestion.dataset.answer = pick.answer;
+      oxQuestion.textContent = pick.question;
+    };
+
+    const renderBlankQuestion = () => {
+      if (blankQuestions.length === 0) {
+        blankQuestion.textContent = '빈칸 문제 데이터가 없습니다.';
+        return;
+      }
+      const pick = blankQuestions[Math.floor(Math.random() * blankQuestions.length)];
+      blankQuestion.dataset.answer = pick.answer;
+      blankQuestion.textContent = pick.question;
+      blankAnswer.value = '';
+    };
+
+    const updateAccuracy = () => {
+      const oxRate = oxAnswered > 0 ? Math.round((oxCorrect / oxAnswered) * 100) : 0;
+      const blankRate = blankAnswered > 0 ? Math.round((blankCorrect / blankAnswered) * 100) : 0;
+      oxAccuracy.textContent = `${oxRate}%`;
+      blankAccuracy.textContent = `${blankRate}%`;
+      blankScore.textContent = String(blankCorrect * 10);
+      oxStreak.textContent = String(streak);
+    };
+
+    const updateBadges = () => {
+      badgeNodes.forEach((badge) => {
+        badge.classList.toggle('is-earned', Boolean(badgeState[badge.dataset.badge]));
+      });
+      localStorage.setItem(badgeKey, JSON.stringify(badgeState));
+    };
+
+    const awardBadge = (badge) => {
+      badgeState[badge] = true;
+      updateBadges();
+    };
+
+    const updateMissionState = (mission) => {
+      missionState[mission] = true;
+      localStorage.setItem(missionKey, JSON.stringify(missionState));
+    };
+
+    const renderPopQuiz = () => {
+      const pool = [
+        ...choiceQuestions.map((item) => ({
+          type: 'choice',
+          ...item,
+        })),
+        ...oxQuestions.map((item) => ({
+          type: 'ox',
+          options: ['O', 'X'],
+          answerIndex: item.answer === 'O' ? 0 : 1,
+          question: item.question,
+        })),
+      ];
+      const pick = pool[Math.floor(Math.random() * pool.length)];
+      if (!pick) return;
+      popQuizQuestion.textContent = pick.question;
+      popQuizOptions.innerHTML = '';
+      pick.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.className = 'btn btn--option';
+        button.textContent = option;
+        button.addEventListener('click', () => {
+          const isCorrect = index === pick.answerIndex;
+          metricsState.totalAnswered += 1;
+          updateMetrics();
+          if (isCorrect) {
+            popQuizFeedback.textContent = '정답! +12 XP';
+            updateXp(12, true);
+            addHistory('팝퀴즈', '정답', 12);
+            playSound(true);
+          } else {
+            popQuizFeedback.textContent = `오답! 정답: ${pick.options[pick.answerIndex] ?? '정보 없음'}`;
+            updateXp(0, false);
+            addHistory('팝퀴즈', '오답', 0);
+            playSound(false);
+          }
+          updateGoal();
+        });
+        popQuizOptions.appendChild(button);
+      });
+    };
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach((btn) => btn.classList.remove('is-active'));
+        button.classList.add('is-active');
+        searchInput.value = '';
+        applyFilter(button.dataset.filter);
+      });
+    });
+
+    searchInput.addEventListener('input', applySearch);
+
+    toggleAnswers.addEventListener('click', () => {
+      document.body.classList.toggle('show-answers');
+    });
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('theme-dark');
+      localStorage.setItem(themeKey, document.body.classList.contains('theme-dark') ? 'dark' : 'light');
+    });
+
+    focusToggle.addEventListener('click', () => {
+      document.body.classList.toggle('focus-mode');
+      localStorage.setItem(focusKey, document.body.classList.contains('focus-mode') ? 'on' : 'off');
+    });
+
+    expandAll.addEventListener('click', () => {
+      document.querySelectorAll('.unit__shell').forEach((detail) => {
+        detail.open = true;
+      });
+    });
+
+    collapseAll.addEventListener('click', () => {
+      document.querySelectorAll('.unit__shell').forEach((detail) => {
+        detail.open = false;
+      });
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    randomQuestion.addEventListener('click', renderRandomQuestion);
+    revealQuizAnswer.addEventListener('click', () => {
+      quizAnswer.classList.toggle('is-visible');
+    });
+
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        tabButtons.forEach((btn) => btn.classList.remove('is-active'));
+        tabPanels.forEach((panel) => panel.classList.remove('is-active'));
+        button.classList.add('is-active');
+        const target = document.getElementById(`tab-${button.dataset.tab}`);
+        if (target) target.classList.add('is-active');
+      });
+    });
+
+    startSpeedQuiz.addEventListener('click', startSpeed);
+    skipSpeedQuiz.addEventListener('click', renderSpeedQuestion);
+
+    document.querySelectorAll('[data-ox]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const answer = oxQuestion.dataset.answer;
+        const pick = button.dataset.ox;
+        const isCorrect = pick === answer;
+        oxAnswered += 1;
+        metricsState.totalAnswered += 1;
+        updateMetrics();
+        if (isCorrect) {
+          oxCorrect += 1;
+          speedStreak += 1;
+          metricsState.speedStreakMax = Math.max(metricsState.speedStreakMax, speedStreak);
+          oxFeedback.textContent = '정답! OX 연속 정답 상승!';
+          updateXp(6, true);
+          addHistory('OX', '정답', 6);
+          playSound(true);
+        } else {
+          speedStreak = 0;
+          oxFeedback.textContent = `오답! 정답: ${answer}`;
+          updateXp(0, false);
+          addHistory('OX', '오답', 0);
+          playSound(false);
+        }
+        updateAccuracy();
+        updateGoal();
+      });
+    });
+
+    nextOx.addEventListener('click', () => {
+      renderOxQuestion();
+      oxFeedback.textContent = 'O 또는 X를 골라보세요.';
+    });
+
+    checkBlank.addEventListener('click', () => {
+      const answer = blankQuestion.dataset.answer || '';
+      const response = blankAnswer.value.trim();
+      if (!response) {
+        blankFeedback.textContent = '정답을 입력해주세요.';
+        return;
+      }
+      blankAnswered += 1;
+      metricsState.totalAnswered += 1;
+      updateMetrics();
+      if (response === answer) {
+        blankCorrect += 1;
+        speedStreak += 1;
+        metricsState.speedStreakMax = Math.max(metricsState.speedStreakMax, speedStreak);
+        blankFeedback.textContent = '정답입니다! +8 XP';
+        updateXp(8, true);
+        addHistory('빈칸', '정답', 8);
+        playSound(true);
+      } else {
+        speedStreak = 0;
+        blankFeedback.textContent = `오답입니다. 정답: ${answer}`;
+        updateXp(0, false);
+        addHistory('빈칸', '오답', 0);
+        playSound(false);
+      }
+      updateAccuracy();
+      updateGoal();
+    });
+
+    nextBlank.addEventListener('click', () => {
+      renderBlankQuestion();
+      blankFeedback.textContent = '정답을 입력하고 채점하세요.';
+    });
+
+    flashcard.addEventListener('click', () => {
+      flashcard.classList.toggle('is-flipped');
+      metricsState.flashViewed += 1;
+      updateMetrics();
+    });
+
+    prevFlash.addEventListener('click', () => {
+      flashIndex = (flashIndex - 1 + flashcards.length) % flashcards.length;
+      renderFlashcard();
+    });
+
+    nextFlash.addEventListener('click', () => {
+      flashIndex = (flashIndex + 1) % flashcards.length;
+      renderFlashcard();
+    });
+
+    shuffleFlash.addEventListener('click', () => {
+      flashcards.sort(() => Math.random() - 0.5);
+      flashIndex = 0;
+      renderFlashcard();
+    });
+
+    missionButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const mission = button.dataset.mission;
+        let completed = false;
+        if (mission === '10') {
+          completed = metricsState.totalAnswered >= 10;
+          if (completed) awardBadge('quiz');
+        }
+        if (mission === 'streak-5') {
+          completed = metricsState.speedStreakMax >= 5;
+          if (completed) awardBadge('speed');
+        }
+        if (mission === 'flash-15') {
+          completed = metricsState.flashViewed >= 15;
+          if (completed) awardBadge('flash');
+        }
+        if (completed) {
+          button.classList.add('is-complete');
+          missionFeedback.textContent = '미션 완료! 배지가 활성화되었습니다.';
+          updateMissionState(mission);
+        } else {
+          missionFeedback.textContent = '아직 조건을 충족하지 못했습니다.';
+        }
+      });
+    });
+
+    startPopQuiz.addEventListener('click', () => {
+      popQuiz.classList.add('is-active');
+      popQuizFeedback.textContent = '정답을 선택해보세요.';
+      renderPopQuiz();
+    });
+
+    closePopQuiz.addEventListener('click', () => {
+      popQuiz.classList.remove('is-active');
+    });
+
+    rouletteMode.addEventListener('click', () => {
+      const tabs = ['speed', 'ox', 'blank', 'flash'];
+      const pick = tabs[Math.floor(Math.random() * tabs.length)];
+      tabButtons.forEach((btn) => {
+        btn.classList.toggle('is-active', btn.dataset.tab === pick);
+      });
+      tabPanels.forEach((panel) => panel.classList.toggle('is-active', panel.id === `tab-${pick}`));
+      if (pick === 'speed') startSpeed();
+      if (pick === 'ox') renderOxQuestion();
+      if (pick === 'blank') renderBlankQuestion();
+      if (pick === 'flash') renderFlashcard();
+    });
+
+    toggleQuizSound.addEventListener('click', () => {
+      soundOn = !soundOn;
+      toggleQuizSound.textContent = `효과음: ${soundOn ? 'ON' : 'OFF'}`;
+    });
+
+    goalInput.addEventListener('input', () => {
+      updateGoal();
+      localStorage.setItem(goalKey, String(goalInput.value));
+    });
+
+    resetGoal.addEventListener('click', () => {
+      goalInput.value = '30';
+      localStorage.setItem(goalKey, '30');
+      updateGoal();
+    });
+
+    startTimer.addEventListener('click', () => {
+      if (timerRunning) return;
+      timerRunning = true;
+      timerHint.textContent = '집중 시작! 완료 시 XP 보너스.';
+      clearInterval(timerInterval);
+      timerInterval = setInterval(tickTimer, 1000);
+    });
+
+    pauseTimer.addEventListener('click', () => {
+      timerRunning = false;
+      timerHint.textContent = '일시정지 중입니다.';
+    });
+
+    resetTimer.addEventListener('click', () => {
+      timerRunning = false;
+      setTimerMinutes(Number(goalInput.value || 25) || 25);
+      timerSeconds = 0;
+      timerHint.textContent = '타이머가 리셋되었습니다.';
+    });
+
+    presetButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        setTimerMinutes(Number(button.dataset.minutes));
+        timerSeconds = 0;
+        timerHint.textContent = `${button.dataset.minutes}분 타이머가 설정되었습니다.`;
+      });
+    });
+
+    studyNote.addEventListener('input', () => {
+      localStorage.setItem(noteKey, studyNote.value);
+      noteStatus.textContent = '자동 저장됨';
+    });
+
+    saveNote.addEventListener('click', () => {
+      localStorage.setItem(noteKey, studyNote.value);
+      noteStatus.textContent = '메모가 저장되었습니다.';
+    });
+
+    clearNote.addEventListener('click', () => {
+      studyNote.value = '';
+      localStorage.removeItem(noteKey);
+      noteStatus.textContent = '메모가 비워졌습니다.';
+    });
+
+    routineButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const day = button.dataset.day;
+        routineState[day] = !routineState[day];
+        updateRoutine();
+      });
+    });
+
+    let ticking = false;
+    const updateProgress = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          progressBar.style.width = `${progress}%`;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', updateProgress);
+
+    updateTime();
+    updateProgress();
+    updateMatchCount(blocks.length);
+    updateCompletion();
+    updateXp();
+    updateBadges();
+    goalInput.value = localStorage.getItem(goalKey) || '30';
+    updateGoal();
+    updateHistory();
+    updateRoutine();
+    renderRandomQuestion();
+    renderSpeedQuestion();
+    renderOxQuestion();
+    renderBlankQuestion();
+    renderFlashcard();
+    renderTimer();
+    studyNote.value = localStorage.getItem(noteKey) || '';
+    if (localStorage.getItem(themeKey) === 'dark') {
+      document.body.classList.add('theme-dark');
+    }
+    if (localStorage.getItem(focusKey) === 'on') {
+      document.body.classList.add('focus-mode');
+    }
+    missionButtons.forEach((button) => {
+      if (missionState[button.dataset.mission]) {
+        button.classList.add('is-complete');
+      }
+    });
+    setInterval(updateTime, 1000 * 30);
+  </script>
+</body>
+</html>

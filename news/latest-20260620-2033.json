@@ -1,0 +1,83 @@
+{
+  "generatedAt": "2026-06-20T20:33:05+09:00",
+  "source": "Latest public news overlay for 2026-06-20 20:33 KST run; fetched from public Reuters, AP, The Verge sources",
+  "page": "main-latest-overlay-archive",
+  "categories": [
+    {"id": "tech", "name": "기술", "icon": "🤖", "count": 2},
+    {"id": "play", "name": "스포츠·엔터", "icon": "⚽", "count": 2},
+    {"id": "culture", "name": "문화", "icon": "🎭", "count": 1}
+  ],
+  "total": 5,
+  "allItems": [
+    {
+      "id": "latest-20260620-2033-john-jumper-anthropic",
+      "category": "tech",
+      "categoryName": "기술",
+      "categoryIcon": "🤖",
+      "title": "알파폴드 주역 존 점퍼, 구글 딥마인드 떠나 앤스로픽 합류",
+      "publishedAt": "2026-06-19",
+      "source": {"name": "Reuters"},
+      "url": "https://www.reuters.com/technology/us-scientist-john-jumper-leave-google-deepmind-anthropic-2026-06-19/",
+      "description": "노벨상 수상자인 알파폴드 공동 개발자 존 점퍼가 딥마인드를 떠나 앤스로픽으로 이동하며 빅테크와 AI 스타트업 간 인재 경쟁이 더 치열해졌다.",
+      "score": 174,
+      "tags": ["AI", "딥마인드", "앤스로픽", "알파폴드", "인재경쟁"]
+    },
+    {
+      "id": "latest-20260620-2033-nasa-relativity-mars",
+      "category": "tech",
+      "categoryName": "기술",
+      "categoryIcon": "🤖",
+      "title": "NASA, 에릭 슈밋의 Relativity Space를 2028년 화성 임무 발사 파트너로 선정",
+      "publishedAt": "2026-06-20",
+      "source": {"name": "The Verge"},
+      "url": "https://www.theverge.com/science/952988/nasa-relativity-space-eric-schmidt-mars",
+      "description": "NASA가 화성 대기 관측 장비 Aeolus 발사를 Relativity Space에 맡기며 민간 우주 발사 경쟁과 화성 탐사 인프라 구축이 다시 주목받고 있다.",
+      "score": 157,
+      "tags": ["NASA", "Relativity Space", "화성", "우주", "에릭슈밋"]
+    },
+    {
+      "id": "latest-20260620-2033-scotland-fans-boston",
+      "category": "play",
+      "categoryName": "스포츠·엔터",
+      "categoryIcon": "⚽",
+      "title": "스코틀랜드 월드컵 팬들 보스턴 집결, 현지 바 맥주 수급 비상",
+      "publishedAt": "2026-06-20",
+      "source": {"name": "AP"},
+      "url": "https://apnews.com/article/5992eaa47790538882afe8a7270d653e",
+      "description": "월드컵 원정 응원단이 보스턴 일대에 몰리며 지역 술집들이 스코틀랜드 맥주와 현지 라거 수요 급증에 긴급 대응하고 있다.",
+      "score": 143,
+      "tags": ["월드컵", "스코틀랜드", "보스턴", "팬문화", "맥주"]
+    },
+    {
+      "id": "latest-20260620-2033-swimbappe-goldfish",
+      "category": "play",
+      "categoryName": "스포츠·엔터",
+      "categoryIcon": "⚽",
+      "title": "토론토 금붕어 ‘스윔바페’, 월드컵 승부 예측으로 화제",
+      "publishedAt": "2026-06-19",
+      "source": {"name": "Reuters"},
+      "url": "https://www.reuters.com/sports/soccer/goldfish-swimbappes-world-cup-predictions-make-splash-toronto-2026-06-19/",
+      "description": "월드컵 열기 속 토론토의 금붕어 스윔바페가 경기 승부 예측 이벤트로 관중을 모으며 스포츠 팬덤형 로컬 콘텐츠가 확산되고 있다.",
+      "score": 136,
+      "tags": ["월드컵", "토론토", "스윔바페", "팬덤", "축구"]
+    },
+    {
+      "id": "latest-20260620-2033-pont-neuf-cavern",
+      "category": "culture",
+      "categoryName": "문화",
+      "categoryIcon": "🎭",
+      "title": "파리 퐁뇌프 다리, JR의 몰입형 ‘동굴’ 설치미술로 개방",
+      "publishedAt": "2026-06-17",
+      "source": {"name": "AP"},
+      "url": "https://apnews.com/article/596048c395822ca7ee396935a914eaa1",
+      "description": "프랑스 작가 JR이 파리 퐁뇌프를 소리·향·증강현실이 결합된 거대 동굴 설치미술 공간으로 바꿔 6월 28일까지 공개한다.",
+      "score": 132,
+      "tags": ["파리", "퐁뇌프", "JR", "설치미술", "문화"]
+    }
+  ],
+  "byCategory": {
+    "tech": [],
+    "play": [],
+    "culture": []
+  }
+}

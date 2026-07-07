@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <title>2048 퍼즐</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(16px, 5vw, 60px);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+        }
+        .container {
+            background: rgba(12, 32, 66, 0.85);
+            padding: clamp(22px, 5vw, 36px);
+            border-radius: clamp(20px, 4vw, 28px);
+            width: min(100%, 500px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        h1 {
+            margin: 0;
+            font-size: clamp(26px, 5vw, 32px);
+            letter-spacing: 1px;
+        }
+        .signature {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(116, 192, 252, 0.2);
+            color: #9ec5fe;
+            font-weight: 700;
+            font-size: 12px;
+        }
+        .score-board {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .badge {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 10px 16px;
+            text-align: center;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        .board {
+            position: relative;
+            background: rgba(6, 16, 36, 0.8);
+            border-radius: 16px;
+            padding: 12px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .cell {
+            padding-top: 100%;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        .tile {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            font-weight: 700;
+            font-size: 28px;
+            border-radius: 12px;
+            transform: scale(0.9);
+            transition: transform 0.1s ease;
+        }
+        .tile.new {
+            animation: pop 0.2s ease-out;
+        }
+        .tile.merged {
+            animation: merge 0.25s ease-out;
+        }
+        @keyframes pop {
+            from { transform: scale(0.2); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes merge {
+            from { transform: scale(1.2); }
+            to { transform: scale(1); }
+        }
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background: #fbc531;
+            border: none;
+            border-radius: 999px;
+            font-weight: 700;
+            cursor: pointer;
+            color: #273c75;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        button:hover, button:focus-visible {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px rgba(251, 197, 49, 0.35);
+            outline: none;
+        }
+        p {
+            margin-top: 16px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.5;
+            text-align: center;
+        }
+        .hint {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+                <div class="signature">박은성이 만든 게임</div>
+                <h1>2048</h1>
+            </div>
+            <div class="score-board">
+                <div class="badge">점수<br><span id="score">0</span></div>
+                <div class="badge">최고 기록<br><span id="best">0</span></div>
+            </div>
+        </header>
+        <div class="board" id="board" data-gesture-surface></div>
+        <button id="restart">새 게임</button>
+        <p>방향키 · 스와이프 · 탭 · 스크롤로 타일을 이동하세요. 같은 숫자가 만나면 합쳐집니다!</p>
+        <p class="hint">보드를 짧게 탭하면 위치 기준으로 방향이 정해지고, 스와이프하면 해당 방향으로 이동합니다.</p>
+    </div>
+
+    <script>
+        const boardEl = document.getElementById('board');
+        const scoreEl = document.getElementById('score');
+        const bestEl = document.getElementById('best');
+        const restartBtn = document.getElementById('restart');
+        const size = 4;
+        let board, score, bestScore = Number(localStorage.getItem('best-2048')) || 0;
+        bestEl.textContent = bestScore;
+
+        function createBoard() {
+            board = Array.from({ length: size }, () => Array(size).fill(0));
+            score = 0;
+            updateScore();
+            boardEl.innerHTML = '';
+            for (let i = 0; i < size * size; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                boardEl.appendChild(cell);
+            }
+            addRandomTile();
+            addRandomTile();
+            render();
+        }
+
+        function updateScore() {
+            scoreEl.textContent = score;
+            if (score > bestScore) {
+                bestScore = score;
+                localStorage.setItem('best-2048', bestScore);
+                bestEl.textContent = bestScore;
+            }
+        }
+
+        function addRandomTile() {
+            const empty = [];
+            for (let y = 0; y < size; y++) {
+                for (let x = 0; x < size; x++) {
+                    if (board[y][x] === 0) empty.push({ x, y });
+                }
+            }
+            if (!empty.length) return false;
+            const { x, y } = empty[Math.floor(Math.random() * empty.length)];
+            board[y][x] = Math.random() < 0.9 ? 2 : 4;
+            return true;
+        }
+
+        function render() {
+            boardEl.querySelectorAll('.cell').forEach((cell, index) => {
+                cell.innerHTML = '';
+                const x = index % size;
+                const y = Math.floor(index / size);
+                const value = board[y][x];
+                if (value) {
+                    const tile = document.createElement('div');
+                    tile.className = 'tile new tile-' + value;
+                    tile.style.background = getTileColor(value);
+                    tile.style.color = value <= 4 ? '#2f3640' : '#f5f6fa';
+                    tile.textContent = value;
+                    cell.appendChild(tile);
+                    requestAnimationFrame(() => tile.classList.remove('new'));
+                }
+            });
+        }
+
+        function getTileColor(value) {
+            const palette = {
+                2: '#cfe2ff',
+                4: '#9ec5fe',
+                8: '#74c0fc',
+                16: '#4dabf7',
+                32: '#339af0',
+                64: '#1864ab',
+                128: '#ffd43b',
+                256: '#fab005',
+                512: '#f08c00',
+                1024: '#e8590c',
+                2048: '#d9480f'
+            };
+            return palette[value] || '#ad1457';
+        }
+
+        function slide(row) {
+            const filtered = row.filter(v => v !== 0);
+            const merged = [];
+            let skip = false;
+            for (let i = 0; i < filtered.length; i++) {
+                if (skip) {
+                    skip = false;
+                    continue;
+                }
+                if (filtered[i] === filtered[i + 1]) {
+                    const value = filtered[i] * 2;
+                    score += value;
+                    merged.push(value);
+                    skip = true;
+                } else {
+                    merged.push(filtered[i]);
+                }
+            }
+            while (merged.length < size) merged.push(0);
+            return merged;
+        }
+
+        function rowsEqual(a, b) {
+            return a.length === b.length && a.every((v, i) => v === b[i]);
+        }
+
+        function move(direction) {
+            const snapshot = board.map(row => [...row]);
+            if (direction === 'left') {
+                for (let y = 0; y < size; y++) {
+                    board[y] = slide(board[y]);
+                }
+            } else if (direction === 'right') {
+                for (let y = 0; y < size; y++) {
+                    board[y] = slide(board[y].slice().reverse()).reverse();
+                }
+            } else if (direction === 'up') {
+                for (let x = 0; x < size; x++) {
+                    const column = board.map(row => row[x]);
+                    const newColumn = slide(column);
+                    board.forEach((row, y) => row[x] = newColumn[y]);
+                }
+            } else if (direction === 'down') {
+                for (let x = 0; x < size; x++) {
+                    const column = board.map(row => row[x]).reverse();
+                    const newColumn = slide(column).reverse();
+                    board.forEach((row, y) => row[x] = newColumn[y]);
+                }
+            }
+            return !snapshot.every((row, y) => row.every((value, x) => value === board[y][x]));
+        }
+
+        function canMove() {
+            for (let y = 0; y < size; y++) {
+                for (let x = 0; x < size; x++) {
+                    const value = board[y][x];
+                    if (value === 0) return true;
+                    if (x < size - 1 && board[y][x + 1] === value) return true;
+                    if (y < size - 1 && board[y + 1][x] === value) return true;
+                }
+            }
+            return false;
+        }
+
+        function handleMove(direction) {
+            const moved = move(direction);
+            if (!moved) return;
+            updateScore();
+            addRandomTile();
+            render();
+            if (!canMove()) {
+                setTimeout(() => alert('게임 오버! 점수: ' + score), 200);
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            const keyMap = {
+                ArrowLeft: 'left',
+                ArrowRight: 'right',
+                ArrowUp: 'up',
+                ArrowDown: 'down'
+            };
+            if (keyMap[e.key]) {
+                e.preventDefault();
+                handleMove(keyMap[e.key]);
+            }
+        });
+
+        const pointerState = { active: false, startX: 0, startY: 0, pointerId: null };
+        boardEl.style.touchAction = 'none';
+
+        boardEl.addEventListener('pointerdown', (event) => {
+            if (event.button !== undefined && event.button !== 0) return;
+            if (event.pointerType && event.pointerType !== 'mouse') event.preventDefault();
+            pointerState.active = true;
+            pointerState.pointerId = event.pointerId;
+            pointerState.startX = event.clientX;
+            pointerState.startY = event.clientY;
+            boardEl.setPointerCapture?.(event.pointerId);
+        });
+
+        function resolvePointer(event) {
+            if (!pointerState.active) return;
+            if (pointerState.pointerId !== null && event.pointerId !== pointerState.pointerId) return;
+            pointerState.active = false;
+            boardEl.releasePointerCapture?.(event.pointerId);
+            pointerState.pointerId = null;
+
+            const dx = event.clientX - pointerState.startX;
+            const dy = event.clientY - pointerState.startY;
+            const threshold = Math.max(18, Math.min(boardEl.clientWidth, boardEl.clientHeight) * 0.08);
+            let direction = null;
+
+            if (Math.abs(dx) > threshold || Math.abs(dy) > threshold) {
+                direction = Math.abs(dx) > Math.abs(dy)
+                    ? (dx > 0 ? 'right' : 'left')
+                    : (dy > 0 ? 'down' : 'up');
+            } else {
+                const rect = boardEl.getBoundingClientRect();
+                if (!rect.width || !rect.height) return;
+                const localX = event.clientX - rect.left;
+                const localY = event.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                if (Math.abs(localX - centerX) > Math.abs(localY - centerY)) {
+                    direction = localX > centerX ? 'right' : 'left';
+                } else {
+                    direction = localY > centerY ? 'down' : 'up';
+                }
+            }
+
+            if (direction) {
+                handleMove(direction);
+            }
+        }
+
+        boardEl.addEventListener('pointerup', resolvePointer);
+        boardEl.addEventListener('pointercancel', resolvePointer);
+
+        boardEl.addEventListener('wheel', (event) => {
+            event.preventDefault();
+            const absX = Math.abs(event.deltaX);
+            const absY = Math.abs(event.deltaY);
+            const direction = absX > absY
+                ? (event.deltaX > 0 ? 'right' : 'left')
+                : (event.deltaY > 0 ? 'down' : 'up');
+            handleMove(direction);
+        }, { passive: false });
+
+        restartBtn.addEventListener('click', createBoard);
+
+        createBoard();
+    </script>
+    <script src="../global-enhancements.js" defer></script>
+</body>
+</html>

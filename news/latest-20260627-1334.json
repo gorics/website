@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-06-27T13:34:31+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"main-20260627-1334-reuters-openai-broadcom-chip","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"OpenAI, 브로드컴과 자체 AI칩 공개…AI 인프라 비용 경쟁 본격화","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI가 브로드컴과 설계한 추론용 AI칩을 공개하며 엔비디아 의존도와 AI 인프라 비용을 낮추려는 빅테크 자체칩 경쟁이 확대됐다.","score":103,"priority":103,"tags":["OpenAI","브로드컴","AI칩","인프라","엔비디아"]},
+    {"id":"main-20260627-1334-reuters-trump-digital-tax-tariff","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"트럼프, 디지털세 부과국에 100% 관세 위협…미·EU 통상 긴장 재부상","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/us/trump-threatens-100-tariff-any-country-that-imposes-digital-services-tax-2026-06-26/","description":"미국이 빅테크 대상 디지털서비스세를 문제 삼아 고율 관세를 경고하면서 유럽·미국 간 기술세와 무역 갈등이 다시 커졌다.","score":102,"priority":102,"tags":["디지털세","관세","미EU","빅테크","무역"]},
+    {"id":"main-20260627-1334-reuters-ibm-subnanometer-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"IBM, 1나노미터 미만 반도체 기술 공개…AI칩 미세공정 경쟁 가속","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM이 0.7나노급 트랜지스터 구조를 공개하며 AI 연산용 칩의 성능·전력 효율 경쟁이 장기 미세공정 경쟁으로 이어지고 있다.","score":101,"priority":101,"tags":["IBM","반도체","미세공정","AI컴퓨팅","나노스택"]},
+    {"id":"main-20260627-1334-reuters-israel-lebanon-framework","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"이스라엘·레바논, 미국 중재 평화 프레임워크 서명…헤즈볼라 반발 변수","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/middle-east/israel-drops-leaflets-over-south-lebanon-town-ordering-residents-leave-2026-06-26/","description":"양국이 적대 중단을 위한 첫 합의문에 서명했지만 헤즈볼라 무장해제와 이스라엘군 철수 조건을 둘러싼 충돌 위험은 남아 있다.","score":99,"priority":99,"tags":["이스라엘","레바논","헤즈볼라","미국중재","중동"]},
+    {"id":"main-20260627-1334-reuters-eu-digital-tax-response","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"EU, 디지털세 방침 방어…미국 일방 조치엔 대응 경고","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/eu-defends-digital-tax-approach-says-ready-act-if-turmp-takes-measures-2026-06-26/","description":"EU 집행위가 디지털세는 비차별적 과세라고 반박하며 미국의 보복 관세가 현실화되면 신속히 대응하겠다고 밝혔다.","score":97,"priority":97,"tags":["EU","디지털세","미국","관세","통상정책"]},
+    {"id":"main-20260627-1334-reuters-world-cup-piracy-domains","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"미 법무부, 월드컵 불법 스트리밍 도메인 400개 가까이 압수","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/us-seizes-nearly-400-websites-that-were-illegally-streaming-world-cup-doj-says-2026-06-26/","description":"FIFA·방송사와 공조한 미국 당국이 월드컵 실시간 불법 중계망을 단속하며 스포츠 콘텐츠 저작권·사이버보안 이슈가 부각됐다.","score":95,"priority":95,"tags":["월드컵","불법스트리밍","저작권","FIFA","DOJ"]},
+    {"id":"main-20260627-1334-ap-streaming-week-enola-madonna","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"이번 주 스트리밍 신작: ‘에놀라 홈즈 3’·마돈나 신보·‘Elle’ 공개 예정","publishedAt":"2026-06-27","date":"2026-06-27","source":"Associated Press","url":"https://apnews.com/article/587bf83b9098091ee91d9a6d83c0cfcd","description":"AP가 6월 29일~7월 5일 공개되는 영화·TV·음악·게임 주요 신작을 정리하며 여름 스트리밍 경쟁이 본격화됐다.","score":92,"priority":92,"tags":["스트리밍","영화","마돈나","넷플릭스","프라임비디오"]}
+  ],
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "global": [],
+    "politics": [],
+    "play": [],
+    "culture": []
+  }
+}

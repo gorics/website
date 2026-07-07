@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-06-30T01:34:00+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 3,
+  "allItems": [
+    {"id":"main-20260630-0134-reuters-gulf-markets-us-iran","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"걸프 증시 약세, 미·이란 긴장 재점화에 투자심리 위축","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/middle-east/major-gulf-markets-ease-us-iran-tensions-keep-investors-edge-2026-06-29/","description":"미·이란 상호 공격 이후 휴전 불확실성이 남아 사우디·두바이·아부다비·카타르 증시가 약세를 보였다. 유가와 호르무즈 운송 정상화 기대가 중동 리스크 프리미엄의 핵심 변수다.","score":388,"priority":388,"tags":["걸프증시","미국","이란","유가","호르무즈"]},
+    {"id":"main-20260630-0134-reuters-onsemi-synaptics","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"온세미, 시냅틱스 70억달러 인수…피지컬 AI 반도체 확장","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/legal/transactional/onsemi-buy-synaptics-7-billion-all-stock-deal-2026-06-25/","description":"온세미가 시냅틱스를 전액주식 거래로 인수해 자동차·산업용 전력 반도체에 연결 컴퓨팅과 인간-기계 인터페이스 역량을 결합한다. 로봇·휴머노이드 등 피지컬 AI 수요를 겨냥한 대형 딜이다.","score":372,"priority":372,"tags":["Onsemi","Synaptics","M&A","피지컬AI","반도체"]},
+    {"id":"main-20260630-0134-reuters-bet-teyana-taylor","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"테야나 테일러, 2026 BET 어워즈 4관왕","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/teyana-taylor-wins-big-2026-bet-awards-2026-06-29/","description":"테야나 테일러가 올해의 아이콘, 패션 뱅가드, 여우주연상, 비디오 감독상까지 4개 부문을 가져갔다. BET 어워즈는 음악·영화·패션을 아우른 블랙 문화 성과를 조명했다.","score":340,"priority":340,"tags":["BET어워즈","테야나테일러","음악","영화","문화"]}
+  ],
+  "byCategory": {"economy":[],"tech":[],"culture":[]}
+}

@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-06-27T16:09:19+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"main-20260627-1609-reuters-us-equity-outflows","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"미국 주식형 펀드, 기술주 약세에 주간 순유출 전환","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/us-equity-funds-record-weekly-outflows-tech-weakness-weighs-2026-06-26/","description":"AI·기술주 밸류에이션 부담과 금리 우려가 겹치며 미국 주식형 펀드에서 자금이 빠져나갔다.","score":105,"priority":105,"tags":["미국주식","펀드플로우","기술주","금리","위험회피"]},
+    {"id":"main-20260627-1609-reuters-sp500-chips","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"S&P500 약보합 마감…AI 반도체주 급락이 지수 압박","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/wall-st-futures-fall-chip-stocks-resume-slide-after-micron-led-rally-2026-06-26/","description":"AI 투자 수익성 논란과 금리 경계 속에 필라델피아 반도체지수가 크게 밀리며 뉴욕 증시가 약세를 보였다.","score":104,"priority":104,"tags":["S&P500","반도체","AI","나스닥","월가"]},
+    {"id":"main-20260627-1609-reuters-openai-gpt56","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"OpenAI, 미국 정부 사전검토 요청에 GPT-5.6 공개 지연","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/legal/litigation/openai-defers-public-rollout-gpt56-us-seeks-early-access-frontier-ai-models-2026-06-26/","description":"첨단 AI 모델의 사이버·안보 위험 평가를 위해 일부 파트너만 먼저 접근하는 단계적 공개가 추진된다.","score":103,"priority":103,"tags":["OpenAI","GPT-5.6","AI규제","사이버안보","프론티어모델"]},
+    {"id":"main-20260627-1609-ap-venezuela-quake-rescue","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"베네수엘라 쌍둥이 강진 사흘째…생존자 구조 골든타임 임박","publishedAt":"2026-06-27","date":"2026-06-27","source":"AP","url":"https://apnews.com/article/92a3d6c13c0f9af9c1bfb4ff6d041254","description":"대규모 사망·실종 피해 속에 구조 인력과 장비 부족이 이어지며 국제 지원의 속도와 조율이 핵심 과제로 떠올랐다.","score":102,"priority":102,"tags":["베네수엘라","지진","구조","재난","국제지원"]},
+    {"id":"main-20260627-1609-ap-digital-tax-tariff","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"트럼프, 디지털세 부과국에 100% 관세 위협","publishedAt":"2026-06-26","date":"2026-06-26","source":"AP","url":"https://apnews.com/article/d2007fee8ae733a15f240c5f83462c96","description":"미국 빅테크를 겨냥한 디지털서비스세 논쟁이 유럽과의 통상 갈등으로 번지며 정치·시장 변수가 됐다.","score":101,"priority":101,"tags":["트럼프","디지털세","관세","EU","빅테크"]},
+    {"id":"main-20260627-1609-reuters-belgium-worldcup","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"벨기에, 뉴질랜드 5-1 완파…월드컵 조 1위로 32강행","publishedAt":"2026-06-27","date":"2026-06-27","source":"Reuters","url":"https://www.reuters.com/sports/soccer/belgium-beat-new-zealand-5-1-advance-world-cup-knockout-stage-2026-06-27/","description":"트로사르 멀티골과 루카쿠 기록 경신으로 벨기에가 조 1위를 확정했고 뉴질랜드는 탈락했다.","score":97,"priority":97,"tags":["월드컵","벨기에","뉴질랜드","트로사르","루카쿠"]},
+    {"id":"main-20260627-1609-ap-streaming-week","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"이번 주 스트리밍 신작: 에놀라 홈즈·마돈나·‘엘르’ 라인업","publishedAt":"2026-06-27","date":"2026-06-27","source":"AP","url":"https://apnews.com/article/587bf83b9098091ee91d9a6d83c0cfcd","description":"6월 말~7월 초 OTT·음악·게임 신작 공개 일정이 몰리며 여름 콘텐츠 경쟁이 본격화한다.","score":92,"priority":92,"tags":["스트리밍","에놀라홈즈","마돈나","엘르","OTT"]}
+  ]
+}

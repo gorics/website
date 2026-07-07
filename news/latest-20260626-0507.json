@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-06-26T05:07:37+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"main-20260626-0507-reuters-oil-oman-hormuz-supply-worries","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"오만 인근 선박 피격 보도에 유가 2% 반등…호르무즈 공급 리스크 재부각","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-prices-fall-tankers-exit-strait-hormuz-2026-06-25/","description":"오만 인근 화물선 피격과 이란의 항로 경고로 호르무즈 해협 공급 차질 우려가 되살아나며 브렌트와 WTI가 동반 상승했다.","score":100,"priority":100,"tags":["유가","호르무즈","오만","이란","공급리스크"]},
+    {"id":"main-20260626-0507-reuters-europe-shares-record-healthcare-ai","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"유럽 증시 사상 최고 마감…헬스케어 강세와 AI 반도체 기대가 랠리 견인","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-gain-upbeat-micron-forecast-revives-ai-rally-2026-06-25/","description":"STOXX 600이 최고치를 경신했고, 바이엘 급등과 마이크론발 반도체 기대가 유럽 위험자산 선호를 끌어올렸다.","score":97,"priority":97,"tags":["유럽증시","STOXX600","헬스케어","AI반도체","바이엘"]},
+    {"id":"main-20260626-0507-reuters-micron-market-value-ai-infra","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"마이크론, AI 인프라 수요에 메타 시총 추월…메모리 업사이클 기대 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/micron-overtakes-meta-market-value-amid-relentless-ai-infrastructure-demand-2026-06-25/","description":"마이크론 주가가 급등하며 메타를 제치고 테슬라와도 시총 경쟁권에 들어섰고, 220억 달러 공급 약정이 AI 메모리 수요를 확인했다.","score":96,"priority":96,"tags":["마이크론","AI인프라","메모리","시가총액","반도체"]},
+    {"id":"main-20260626-0507-reuters-elal-telaviv-moscow-suspended","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"엘알항공, 우크라이나의 러시아 내 타격 뒤 텔아비브-모스크바 노선 중단","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/middle-east/el-al-suspends-tel-aviv-moscow-flights-after-ukraine-strikes-russia-2026-06-25/","description":"러시아 내 에너지 시설 타격과 항공 안전 리스크가 커지자 이스라엘 엘알항공이 모스크바 운항을 일시 중단하고 재평가에 들어갔다.","score":94,"priority":94,"tags":["엘알항공","러시아","우크라이나","항공안전","모스크바"]},
+    {"id":"main-20260626-0507-reuters-supreme-court-tps-haiti-syria","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 아이티·시리아 TPS 종료 허용…트럼프 이민정책에 힘 실어","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/supreme-court-lets-trump-end-deportation-protections-syrians-haitians-2026-06-25/","description":"대법원이 임시보호지위 종료를 허용하면서 수십만 명의 추방 위험이 커졌고, 행정부의 이민 통제 재량이 확대됐다.","score":95,"priority":95,"tags":["미대법원","TPS","이민정책","아이티","시리아"]},
+    {"id":"main-20260626-0507-ap-world-cup-halfway-drama","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"2026 월드컵 절반 통과…공동 개최 3국 32강 진출과 고득점 흐름 주목","publishedAt":"2026-06-25","date":"2026-06-25","source":"Associated Press","url":"https://apnews.com/article/5379403678cb2eda3ba0da2c04c3e1e0","description":"104경기 중 54경기가 끝난 가운데 미국·멕시코·캐나다가 모두 토너먼트에 올랐고 득점 페이스도 50년 만의 고공행진을 보인다.","score":92,"priority":92,"tags":["월드컵","32강","미국","캐나다","멕시코"]},
+    {"id":"main-20260626-0507-popularmechanics-etruscan-sealed-tomb","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"이탈리아서 2600년 된 에트루리아 밀봉 무덤 추가 발견…약탈 피해 없는 연구 자료 확보","publishedAt":"2026-06-25","date":"2026-06-25","source":"Popular Mechanics","url":"https://www.popularmechanics.com/science/archaeology/a71604969/sealed-ancient-italian-tomb/","description":"산줄리아노 고고학 프로젝트가 두 번째 완전 밀봉 무덤을 확인해 유골·부장품을 통해 에트루리아 장례문화를 정밀 분석할 수 있게 됐다.","score":88,"priority":88,"tags":["고고학","에트루리아","이탈리아","무덤","문화유산"]}
+  ],
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "global": [],
+    "politics": [],
+    "play": [],
+    "culture": []
+  }
+}

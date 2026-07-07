@@ -1,0 +1,141 @@
+{
+  "generatedAt": "2026-06-21T08:09:11+09:00",
+  "source": "Latest public news overlay for GitHub Pages news site; run-specific file loaded before latest.json/data.json",
+  "page": "main-latest-overlay-20260621-0809",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":2},
+    {"id":"culture","name":"문화","icon":"🎭","count":1}
+  ],
+  "total": 9,
+  "allItems": [
+    {
+      "id": "latest-20260621-0809-hormuz-no-toll-trump",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "트럼프, 호르무즈 통항료 부과 부인…미국 부과 가능성만 열어둬",
+      "description": "트럼프 대통령은 이란과의 임시 휴전 기간 호르무즈 해협 통항료가 없다고 밝혔지만, 협상 실패 시 미국이 통항료를 부과할 수 있다는 여지를 남겨 에너지 시장 변동성이 이어졌다.",
+      "url": "https://www.reuters.com/world/middle-east/trump-says-no-toll-strait-hormuz-unless-us-imposes-one-2026-06-20/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-20",
+      "score": 196,
+      "tags": ["호르무즈", "트럼프", "이란", "원유", "통항료"]
+    },
+    {
+      "id": "latest-20260621-0809-us-iran-deal-effect",
+      "category": "global",
+      "categoryName": "국제",
+      "categoryIcon": "🌍",
+      "title": "미·이란 MOU 즉시 발효 주장…호르무즈·핵협상 불확실성은 지속",
+      "description": "파키스탄 총리는 미국과 이란의 전쟁 종식 MOU가 즉시 발효됐다고 밝혔지만, 60일 내 최종 합의와 호르무즈 통항 조건을 둘러싼 불확실성은 남아 있다.",
+      "url": "https://apnews.com/article/a7ab28d9b34edfaa2061a67616f610bc",
+      "source": {"name":"AP"},
+      "publishedAt": "2026-06-18",
+      "score": 184,
+      "tags": ["미국", "이란", "호르무즈", "MOU", "중동"]
+    },
+    {
+      "id": "latest-20260621-0809-ferc-ai-grid-order",
+      "category": "tech",
+      "categoryName": "기술",
+      "categoryIcon": "🤖",
+      "title": "미 FERC, AI 데이터센터 전력망 접속 가속 지시",
+      "description": "미 연방에너지규제위원회가 대형 AI 데이터센터의 전력망 연결을 빠르게 처리하도록 지역 전력망 운영자에게 지시하면서 AI 인프라와 전력 투자 경쟁이 더 치열해졌다.",
+      "url": "https://apnews.com/article/506e3d206871111f15c3c62fc5368be5",
+      "source": {"name":"AP"},
+      "publishedAt": "2026-06-18",
+      "score": 178,
+      "tags": ["AI", "데이터센터", "전력망", "FERC", "인프라"]
+    },
+    {
+      "id": "latest-20260621-0809-israel-hezbollah-ceasefire-renewed",
+      "category": "global",
+      "categoryName": "국제",
+      "categoryIcon": "🌍",
+      "title": "이스라엘·헤즈볼라 휴전 재개…미·이란 협상 변수로 부상",
+      "description": "레바논에서 치명적 충돌 뒤 이스라엘과 헤즈볼라가 다시 휴전에 들어갔지만, 폭력 재발이 미·이란 협상과 중동 안정 프레임을 흔드는 변수로 남았다.",
+      "url": "https://www.theguardian.com/world/2026/jun/19/israel-hezbollah-renew-ceasefire-lebanon-us-iran-agreement",
+      "source": {"name":"The Guardian"},
+      "publishedAt": "2026-06-21",
+      "score": 170,
+      "tags": ["이스라엘", "헤즈볼라", "레바논", "휴전", "이란"]
+    },
+    {
+      "id": "latest-20260621-0809-turkey-world-cup-exit",
+      "category": "play",
+      "categoryName": "스포츠·엔터",
+      "categoryIcon": "⚽",
+      "title": "튀르키예, 월드컵 2경기 무득점 탈락…파라과이전 패배 충격",
+      "description": "튀르키예가 파라과이에 0-1로 패하며 24년 만의 월드컵 복귀를 무득점 조기 탈락으로 마쳤고, 많은 슈팅에도 득점하지 못한 결정력 문제가 부각됐다.",
+      "url": "https://www.reuters.com/sports/soccer/everybodys-crying-tearful-turkey-crash-out-without-goal-2026-06-20/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-20",
+      "score": 153,
+      "tags": ["월드컵", "튀르키예", "파라과이", "축구", "탈락"]
+    },
+    {
+      "id": "latest-20260621-0809-brazil-raphinha-injury",
+      "category": "play",
+      "categoryName": "스포츠·엔터",
+      "categoryIcon": "⚽",
+      "title": "브라질, 하피냐 햄스트링 재부상에도 토너먼트 복귀 기대",
+      "description": "브라질은 아이티전 승리 뒤 하피냐의 오른쪽 햄스트링 부상을 확인했지만, 집중 치료를 통해 대회 후반 복귀 가능성을 열어두고 있다.",
+      "url": "https://www.reuters.com/sports/soccer/brazil-keep-faith-with-injured-raphinha-after-latest-hamstring-setback-2026-06-20/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-20",
+      "score": 148,
+      "tags": ["브라질", "하피냐", "월드컵", "부상", "축구"]
+    },
+    {
+      "id": "latest-20260621-0809-world-cup-ticket-prices",
+      "category": "politics",
+      "categoryName": "정치",
+      "categoryIcon": "🏛️",
+      "title": "멕시코 대통령, 월드컵 고가 티켓 비판…공공 관람 확대 요구",
+      "description": "셰인바움 멕시코 대통령은 월드컵 티켓 가격이 지나치게 높다며 FIFA에 재고를 촉구했고, 무료 거리 응원과 사회적 월드컵 프로그램을 강조했다.",
+      "url": "https://apnews.com/article/74b3d0d08b248d838c846f522ea89807",
+      "source": {"name":"AP"},
+      "publishedAt": "2026-06-16",
+      "score": 146,
+      "tags": ["멕시코", "월드컵", "FIFA", "티켓", "공공관람"]
+    },
+    {
+      "id": "latest-20260621-0809-reuters-product-ai",
+      "category": "tech",
+      "categoryName": "기술",
+      "categoryIcon": "🤖",
+      "title": "로이터, AI 전략 책임자 제인 배럿을 제품 총괄로 임명",
+      "description": "로이터가 AI 전략을 이끈 제인 배럿을 제품 총괄로 임명하며 뉴스룸·고객 서비스 전반의 AI 기반 제품 전환을 강화했다.",
+      "url": "https://www.reuters.com/media-center/jane-barrett-appointed-head-product-reuters-2026-06-16/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-16",
+      "score": 138,
+      "tags": ["로이터", "AI", "뉴스제품", "미디어테크", "제품전략"]
+    },
+    {
+      "id": "latest-20260621-0809-glasgow-international-art",
+      "category": "culture",
+      "categoryName": "문화",
+      "categoryIcon": "🎭",
+      "title": "글래스고 국제미술제, 정치적 현대미술과 지역 커뮤니티 조명",
+      "description": "글래스고 국제미술제는 데이비드 워이나로비치 추모 전시와 지역 공공예술 프로젝트를 통해 예술, 기억, 공동체 회복의 의미를 부각했다.",
+      "url": "https://www.theguardian.com/artanddesign/2026/jun/10/glasgow-international-review-art-david-wojnarowicz",
+      "source": {"name":"The Guardian"},
+      "publishedAt": "2026-06-10",
+      "score": 132,
+      "tags": ["글래스고", "미술제", "현대미술", "커뮤니티", "문화"]
+    }
+  ],
+  "byCategory": {
+    "economy": [],
+    "global": [],
+    "politics": [],
+    "tech": [],
+    "play": [],
+    "culture": []
+  }
+}

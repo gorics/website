@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-06-29T20:35:21+09:00",
+  "source": "gorics-news-automation",
+  "page": "news-archive",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":4},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":3},
+    {"id":"play","name":"스포츠","icon":"⚽","count":2},
+    {"id":"culture","name":"문화","icon":"🎤","count":2}
+  ],
+  "total": 14,
+  "allItems": [
+    {"id":"main-20260629-2035-reuters-china-pmi-poll","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"중국 6월 제조업 PMI, 간신히 확장권 복귀 전망","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-factory-activity-likely-returned-meagre-growth-june-2026-06-29/","description":"로이터 조사에서 중국 6월 공식 제조업 PMI가 50.1로 예상됐다. AI 관련 고기술 수출은 버티지만 내수·부동산 부진이 회복 강도를 제한하고 있다.","score":282,"priority":282,"tags":["중국PMI","제조업","수출","내수","거시경제"]},
+    {"id":"main-20260629-2035-reuters-pboc-overnight-repo","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"중국 인민은행, 첫 오버나이트 역레포로 단기 유동성 공급","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/china-debuts-overnight-reverse-repos-125-sources-say-2026-06-29/","description":"PBOC가 1.25% 오버나이트 역레포를 도입하며 초단기 금리 관리에 나섰다. 중국 채권·위안화 단기금리와 정책 신호 체계에 영향을 줄 수 있다.","score":280,"priority":280,"tags":["PBOC","역레포","중국금리","유동성","채권"]},
+    {"id":"main-20260629-2035-reuters-world-cup-fanzone-shooting","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"캘리포니아 월드컵 팬존 인근 총격, 1명 사망","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/sports/one-killed-shooting-site-california-world-cup-fan-zone-2026-06-29/","description":"월드컵 팬존 행사가 열린 캘리포니아 산호세 엔터테인먼트 구역에서 총격이 발생해 1명이 숨지고 1명이 중상을 입었다. 대형 스포츠 행사 안전 이슈가 부각됐다.","score":266,"priority":266,"tags":["월드컵","팬존","미국","총격","안전"]},
+    {"id":"main-20260629-2035-reuters-balkans-heatwave-wildfires","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"동남유럽 폭염·산불 확산, 보건·전력 부담 커져","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/europe/southeastern-europe-feels-effects-heatwave-wildfires-break-out-2026-06-29/","description":"발칸 등 동남유럽이 장기 폭염 영향권에 들며 산불과 초과 사망 우려가 커졌다. 관광·농업·전력망까지 기후 리스크가 확산되고 있다.","score":264,"priority":264,"tags":["유럽","폭염","산불","기후","보건"]},
+    {"id":"main-20260629-2035-ap-viking-textile-denmark","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎤","title":"덴마크서 대규모 바이킹 시대 직물 생산 유적 발굴","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/","description":"AP는 덴마크에서 거대한 바이킹 시대 직물 생산 현장이 확인됐다고 전했다. 북유럽 고고학과 중세 교역·생활사 연구 자료로 주목된다.","score":240,"priority":240,"tags":["덴마크","바이킹","고고학","문화재","직물"]}
+  ],
+  "byCategory": {}
+}

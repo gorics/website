@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-06-20T21:08:05+09:00",
+  "source": "Latest financial-market overlay for automation run; merged before latest.json and data.json by financial HTML renderer",
+  "page": "financial-latest-overlay-20260620-2108",
+  "categories": [
+    {"id":"geopolitical-risk","name":"지정학·에너지","icon":"🛢️","count":2},
+    {"id":"energy-markets","name":"에너지·원자재","icon":"⛽","count":1}
+  ],
+  "total": 3,
+  "allItems": [
+    {
+      "id": "fin-20260620-2108-lebanon-truce-strikes",
+      "category": "geopolitical-risk",
+      "categoryName": "지정학·에너지",
+      "categoryIcon": "🛢️",
+      "title": "레바논 휴전 직후 공습 재개, 중동 리스크 프리미엄 재상승 가능성",
+      "description": "이스라엘의 레바논 공습으로 휴전 안정성이 흔들리며 호르무즈 정상화와 유가 하락 기대에 단기 변동성 위험이 다시 붙었다.",
+      "url": "https://www.reuters.com/world/middle-east/least-five-killed-israeli-strikes-south-lebanon-despite-ceasefire-2026-06-20/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-20",
+      "score": 186,
+      "tags": ["레바논", "이스라엘", "헤즈볼라", "유가", "중동리스크"]
+    },
+    {
+      "id": "fin-20260620-2108-switzerland-us-iran-talks",
+      "category": "geopolitical-risk",
+      "categoryName": "지정학·에너지",
+      "categoryIcon": "🛢️",
+      "title": "스위스, 미·이란 협상 지속 확인…호르무즈·제재 완화 기대 유지",
+      "description": "스위스가 미·이란 비공개 협상 지속을 확인하면서 원유 물류 정상화와 제재 완화 기대는 유지됐지만 세부 합의는 비공개로 남았다.",
+      "url": "https://www.reuters.com/world/europe/switzerland-says-us-iran-talks-continue-brgenstock-declines-identify-2026-06-20/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-20",
+      "score": 179,
+      "tags": ["미이란협상", "스위스", "호르무즈", "제재", "원유"]
+    },
+    {
+      "id": "fin-20260620-2108-oil-weekly-drop",
+      "category": "energy-markets",
+      "categoryName": "에너지·원자재",
+      "categoryIcon": "⛽",
+      "title": "유가 주간 약 8% 하락, 공급 정상화 기대가 인플레 부담 완화",
+      "description": "이란 협상과 호르무즈 재개 기대가 유가를 끌어내렸지만 실제 선적·보험·정치 리스크는 에너지 시장의 잔존 변수다.",
+      "url": "https://www.thetimes.com/business/economics/article/oil-price-us-iran-peace-talks-89srcvbg7",
+      "source": {"name":"The Times"},
+      "publishedAt": "2026-06-20",
+      "score": 173,
+      "tags": ["유가", "브렌트유", "호르무즈", "에너지", "인플레이션"]
+    }
+  ],
+  "byCategory": {"geopolitical-risk":[],"energy-markets":[]}
+}

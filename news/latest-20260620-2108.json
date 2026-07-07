@@ -1,0 +1,94 @@
+{
+  "generatedAt": "2026-06-20T21:08:05+09:00",
+  "source": "Latest public news overlay for automation run; merged before latest.json and data.json by HTML renderers",
+  "page": "main-latest-overlay-20260620-2108",
+  "categories": [
+    {"id":"global","name":"국제","icon":"🌍","count":2},
+    {"id":"economy","name":"경제·금융","icon":"💹","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎭","count":1}
+  ],
+  "total": 6,
+  "allItems": [
+    {
+      "id": "latest-20260620-2108-lebanon-truce-strikes",
+      "category": "global",
+      "categoryName": "국제",
+      "categoryIcon": "🌍",
+      "title": "레바논 휴전 직후 이스라엘 공습으로 10명 사망, 미·이란 협상 변수 확대",
+      "description": "헤즈볼라와의 휴전 직후 남부 레바논 공습 사망자가 발생하며 중동 긴장 완화와 미·이란 후속 협상 전망이 다시 흔들렸다.",
+      "url": "https://www.reuters.com/world/middle-east/least-five-killed-israeli-strikes-south-lebanon-despite-ceasefire-2026-06-20/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-20",
+      "score": 185,
+      "tags": ["레바논", "이스라엘", "헤즈볼라", "휴전", "미이란협상"]
+    },
+    {
+      "id": "latest-20260620-2108-switzerland-us-iran-talks",
+      "category": "global",
+      "categoryName": "국제",
+      "categoryIcon": "🌍",
+      "title": "스위스, 미·이란 비공개 협상 계속 진행 확인",
+      "description": "스위스 외교부가 뷔르겐슈톡에서 미·이란 간 비공개 논의가 계속되고 있다고 밝혀 중재 채널 유지 여부가 주목된다.",
+      "url": "https://www.reuters.com/world/europe/switzerland-says-us-iran-talks-continue-brgenstock-declines-identify-2026-06-20/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-20",
+      "score": 178,
+      "tags": ["스위스", "미국", "이란", "중재", "외교"]
+    },
+    {
+      "id": "latest-20260620-2108-oil-weekly-drop",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "유가 주간 약 8% 하락, 호르무즈 재개 기대와 이란 협상 진전 반영",
+      "description": "브렌트유가 한 주 동안 큰 폭으로 밀리며 에너지 인플레 우려는 완화됐지만, 협상 지연과 물류 정상화 속도는 여전히 변수다.",
+      "url": "https://www.thetimes.com/business/economics/article/oil-price-us-iran-peace-talks-89srcvbg7",
+      "source": {"name":"The Times"},
+      "publishedAt": "2026-06-20",
+      "score": 172,
+      "tags": ["유가", "브렌트유", "호르무즈", "이란협상", "인플레이션"]
+    },
+    {
+      "id": "latest-20260620-2108-g7-ai-regulation",
+      "category": "tech",
+      "categoryName": "기술",
+      "categoryIcon": "🤖",
+      "title": "마크롱, G7서 미국 첨단 AI 공유와 민주국가 공동 규제 촉구",
+      "description": "프랑스 대통령은 첨단 AI 접근 제한이 동맹국 협력을 약화할 수 있다며 AI 안전·규제 기준을 민주국가가 함께 마련해야 한다고 강조했다.",
+      "url": "https://apnews.com/article/7d783c6de4356962e338b8b8563d48ea",
+      "source": {"name":"AP"},
+      "publishedAt": "2026-06-17",
+      "score": 159,
+      "tags": ["AI", "G7", "마크롱", "규제", "AI안전"]
+    },
+    {
+      "id": "latest-20260620-2108-fifa-hate-speech",
+      "category": "play",
+      "categoryName": "스포츠·엔터",
+      "categoryIcon": "⚽",
+      "title": "FIFA, 월드컵 기간 축구 혐오표현 대응 행사 개최",
+      "description": "FIFA는 애틀랜타에서 선수·정책 담당자·기술 전문가를 모아 온라인 혐오표현 감시와 삭제 체계 강화를 논의했다.",
+      "url": "https://www.reuters.com/sports/soccer/fifa-holds-atlanta-event-tackling-hate-speech-football-2026-06-17/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-17",
+      "score": 144,
+      "tags": ["FIFA", "월드컵", "혐오표현", "소셜미디어", "축구"]
+    },
+    {
+      "id": "latest-20260620-2108-live-music-endurance",
+      "category": "culture",
+      "categoryName": "문화",
+      "categoryIcon": "🎭",
+      "title": "고비용·관람 피로 속 라이브 공연 경험 논쟁 확산",
+      "description": "가디언 칼럼은 비싼 티켓, 음향 문제, 관객 매너와 투어 산업 구조가 현대 공연 문화를 피로하게 만든다고 짚었다.",
+      "url": "https://www.theguardian.com/commentisfree/2026/jun/20/the-hill-i-will-die-on-gig-endurance-test",
+      "source": {"name":"The Guardian"},
+      "publishedAt": "2026-06-20",
+      "score": 132,
+      "tags": ["공연", "라이브음악", "문화산업", "티켓", "관객경험"]
+    }
+  ],
+  "byCategory": {"global":[],"economy":[],"tech":[],"play":[],"culture":[]}
+}

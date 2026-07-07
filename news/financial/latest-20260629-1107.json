@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-29T11:07:30+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":2},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260629-1107-reuters-global-markets-us-iran","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"아시아 증시 혼조·유가 상승, 달러 강세까지 겹친 위험회피 장세","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"미·이란 휴전 불확실성, 유가 반등, AI주 고평가 부담이 동시에 작용하며 아시아 증시가 흔들렸다. 달러 강세와 금 약세는 글로벌 포트폴리오 리밸런싱 변수다.","score":232,"priority":232,"tags":["아시아증시","유가","달러","AI주","위험회피"]},
+    {"id":"fin-20260629-1107-reuters-dollar-jobs-gulf","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"💵","title":"달러, 1년 만의 최고 월간 성과 근접…고용지표·걸프 긴장 주시","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/africa/dollar-poised-best-month-nearly-year-eyes-jobs-data-gulf-tension-2026-06-29/","description":"달러지수가 지정학 리스크와 연준 긴축 경계 속에 월간 강세를 이어가고 있다. 비농업 고용과 ECB 포럼 발언이 환율·채권·원자재 시장의 다음 분기점이다.","score":226,"priority":226,"tags":["달러","고용지표","연준","환율","걸프"]},
+    {"id":"fin-20260629-1107-reuters-korea-ai-chip-drive","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"한국 AI·반도체 투자 드라이브, 삼성·SK·전력 인프라 테마 재부각","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-president-unveil-massive-ai-chip-investment-drive-2026-06-29/","description":"정부가 반도체 허브·AI 데이터센터·로봇 프로젝트를 묶은 대규모 투자 구상을 내놓을 예정이다. HBM·전력·용수·건설주까지 국내 시장 파급 범위가 넓다.","score":222,"priority":222,"tags":["한국","삼성전자","SK하이닉스","AI데이터센터","HBM"]},
+    {"id":"fin-20260629-1107-reuters-openai-broadcom-chip","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧠","title":"OpenAI-Broadcom 자체칩 공개, AI 추론 인프라 공급망 재편 신호","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI의 자체 추론칩은 Nvidia GPU 의존도를 낮추려는 빅테크 흐름을 보여준다. Broadcom·TSMC·메모리 공급망과 AI 서버 투자 사이클에 직접 연결된다.","score":218,"priority":218,"tags":["OpenAI","Broadcom","TSMC","AI추론","Nvidia"]},
+    {"id":"fin-20260629-1107-reuters-aramco-helicopter-ras-tanura","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"아람코 헬기 추락, 라스 타누라 원유 선적 재개 국면의 운영 리스크 부각","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/world/saudi-aramco-helicopter-crash-kills-14-state-new-agency-says-2026-06-28/","description":"사우디 아람코 소유 헬기가 라스 타누라에서 추락해 사망자가 발생했다. 원유 선적 재개와 걸프 긴장 속 에너지 인프라 운영 안정성이 다시 시장 관심사가 됐다.","score":210,"priority":210,"tags":["아람코","라스 타누라","원유","사우디","운영리스크"]}
+  ],
+  "byCategory": {}
+}

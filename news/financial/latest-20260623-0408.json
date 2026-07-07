@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-23T04:08:53+09:00",
+  "source": "Latest financial public news overlay for GitHub Pages news site; finance and market-moving items prioritized; fetched from Reuters/AP public sources",
+  "page": "financial-latest-overlay",
+  "categories": [
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🏗️","count":1},
+    {"id":"energy-policy","name":"에너지 정책","icon":"⛽","count":1},
+    {"id":"fx-rates","name":"외환·금리","icon":"💱","count":1},
+    {"id":"political-risk","name":"정치 리스크","icon":"🏛️","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"fin-20260623-0408-micron-anthropic-ai-memory","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🏗️","title":"마이크론·앤스로픽 공급 계약, AI 메모리 투자 테마 강화","description":"마이크론의 앤스로픽 공급·투자 계약은 AI 모델 훈련·추론 수요가 메모리와 스토리지 밸류체인으로 확산되고 있음을 보여준다.","url":"https://www.reuters.com/business/micron-anthropic-sign-ai-infrastructure-supply-agreement-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22T00:00:00Z","score":292,"tags":["마이크론","앤스로픽","HBM","AI메모리","반도체"]},
+    {"id":"fin-20260623-0408-oil-reserves-global-race","category":"energy-policy","categoryName":"에너지 정책","categoryIcon":"⛽","title":"전략비축유 확대 경쟁, 원유 시장의 구조적 수요 요인으로 부상","description":"호르무즈 차질 이후 여러 국가가 비축유를 늘리려 하면서 저장 수요와 재비축 수요가 동시에 커졌다. 이는 유가의 장기 지지 요인이 될 수 있다.","url":"https://www.reuters.com/commentary/reuters-open-interest/iran-war-triggers-global-race-build-oil-reserves-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22T00:00:00Z","score":286,"tags":["전략비축유","유가","호르무즈","에너지안보","원유"]},
+    {"id":"fin-20260623-0408-dollar-pound-oil-fx","category":"fx-rates","categoryName":"외환·금리","categoryIcon":"💱","title":"달러 강세·파운드 변동성, 중동 협상과 영국 정치 리스크 반영","description":"미·이란 협상 기대가 달러를 지지하고 스타머 사퇴가 파운드 변동성을 키웠다. 유가 하락은 인플레이션 전망과 금리 기대에 영향을 줄 수 있다.","url":"https://www.reuters.com/business/dollar-firms-cracks-emerge-peace-deal-pound-dips-starmer-uncertainty-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22T00:00:00Z","score":282,"tags":["달러","파운드","유가","금리","정치리스크"]},
+    {"id":"fin-20260623-0408-starmer-burnham-uk-assets","category":"political-risk","categoryName":"정치 리스크","categoryIcon":"🏛️","title":"스타머 사퇴 이후 영국 자산, 번엄 체제 정책 신뢰도 주시","description":"영국 총리 교체 국면에서 시장은 새 정부의 재정·국채·파운드 안정화 능력을 평가하고 있다. 정치 리스크가 외환과 채권시장 변수로 남았다.","url":"https://www.reuters.com/","source":{"name":"Reuters"},"publishedAt":"2026-06-22T00:00:00Z","score":276,"tags":["스타머","앤디번엄","영국국채","파운드","정치리스크"]}
+  ],
+  "byCategory": {
+    "ai-infrastructure": [],
+    "energy-policy": [],
+    "fx-rates": [],
+    "political-risk": []
+  }
+}

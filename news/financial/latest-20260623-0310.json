@@ -1,0 +1,87 @@
+{
+  "generatedAt": "2026-06-23T03:10:05+09:00",
+  "source": "Latest financial public news overlay for GitHub Pages news site; finance and market-moving items prioritized; fetched from Reuters/Guardian public sources",
+  "page": "financial-latest-overlay",
+  "categories": [
+    {"id":"equity-markets","name":"주식시장","icon":"📈","count":1},
+    {"id":"fx-rates","name":"외환·금리","icon":"💱","count":1},
+    {"id":"energy-policy","name":"에너지 정책","icon":"⛽","count":1},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🏗️","count":1},
+    {"id":"political-risk","name":"정치 리스크","icon":"🏛️","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {
+      "id":"fin-20260623-0310-sp500-nasdaq-tech-iran",
+      "category":"equity-markets",
+      "categoryName":"주식시장",
+      "categoryIcon":"📈",
+      "title":"S&P500·나스닥 약세, 빅테크 비용 우려와 반도체 강세가 엇갈림",
+      "description":"알파벳·메타 등 대형 기술주는 AI 인프라 비용 우려로 하락했지만 마이크론·샌디스크 등 반도체주는 강세를 보였다. 시장은 미·이란 협상과 PCE 지표를 주시한다.",
+      "url":"https://www.reuters.com/business/wall-st-futures-muted-investors-monitor-us-iran-negotiations-2026-06-22/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-22T00:00:00Z",
+      "score":294,
+      "tags":["S&P500","나스닥","빅테크","반도체","PCE"]
+    },
+    {
+      "id":"fin-20260623-0310-dollar-pound-oil-starmer",
+      "category":"fx-rates",
+      "categoryName":"외환·금리",
+      "categoryIcon":"💱",
+      "title":"달러 소폭 강세·파운드 변동성, 스타머 사퇴와 중동 협상 반영",
+      "description":"미·이란 회담 기대가 달러를 지지했고, 파운드는 스타머 사퇴 발표 뒤 변동성을 키웠다. 유가 하락은 에너지 인플레이션 부담 완화 기대를 더했다.",
+      "url":"https://www.reuters.com/business/dollar-firms-cracks-emerge-peace-deal-pound-dips-starmer-uncertainty-2026-06-22/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-22T00:00:00Z",
+      "score":288,
+      "tags":["달러","파운드","유가","영국정치","중동"]
+    },
+    {
+      "id":"fin-20260623-0310-oil-reserves-global-race",
+      "category":"energy-policy",
+      "categoryName":"에너지 정책",
+      "categoryIcon":"⛽",
+      "title":"이란 전쟁 이후 전략비축유 경쟁 가속, 장기 유가 지지 요인 부상",
+      "description":"호르무즈 차질과 비축유 방출 경험 이후 각국이 전략비축 확대를 추진하고 있다. 신규 저장 수요와 재비축은 원유 가격의 중장기 하방을 제한할 수 있다.",
+      "url":"https://www.reuters.com/commentary/reuters-open-interest/iran-war-triggers-global-race-build-oil-reserves-2026-06-22/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-22T00:00:00Z",
+      "score":280,
+      "tags":["전략비축유","원유","호르무즈","에너지안보","유가"]
+    },
+    {
+      "id":"fin-20260623-0310-chevron-microsoft-ai-power",
+      "category":"ai-infrastructure",
+      "categoryName":"AI 인프라",
+      "categoryIcon":"🏗️",
+      "title":"셰브런·마이크로소프트 전력 계약, AI 데이터센터 투자 테마 확대",
+      "description":"텍사스 AI 데이터센터 전용 전력 프로젝트는 빅테크 AI 수요가 발전·가스·터빈·전력망 투자로 확산되는 흐름을 보여준다.",
+      "url":"https://www.reuters.com/legal/litigation/chevron-signs-power-supply-deal-with-microsoft-texas-data-center-2026-06-22/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-22T00:00:00Z",
+      "score":254,
+      "tags":["AI인프라","데이터센터","전력","셰브런","마이크로소프트"]
+    },
+    {
+      "id":"fin-20260623-0310-starmer-burnham-political-risk",
+      "category":"political-risk",
+      "categoryName":"정치 리스크",
+      "categoryIcon":"🏛️",
+      "title":"스타머 사퇴 이후 번엄 부상, 영국 자산의 정책 불확실성 완화 여부 주목",
+      "description":"영국 노동당 차기 지도부가 번엄 중심으로 정리될 가능성이 커졌다. 시장은 재정·국채·파운드 안정성과 조기 총선 리스크를 함께 평가하고 있다.",
+      "url":"https://www.reuters.com/world/uk/uks-streeting-backs-andy-burnham-replace-starmer-pm-2026-06-22/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-22T00:00:00Z",
+      "score":270,
+      "tags":["스타머","앤디번엄","파운드","영국국채","정치리스크"]
+    }
+  ],
+  "byCategory": {
+    "equity-markets": [],
+    "fx-rates": [],
+    "energy-policy": [],
+    "ai-infrastructure": [],
+    "political-risk": []
+  }
+}

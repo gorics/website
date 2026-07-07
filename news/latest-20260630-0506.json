@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-06-30T05:06:54+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"politics","name":"정치","icon":"🏛️","count":2},
+    {"id":"global","name":"국제","icon":"🌍","count":2},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 6,
+  "allItems": [
+    {"id":"main-20260630-0506-reuters-uk-doctors-pay","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"영국 전공의, 정부 임금·근무조건 제안 수용…장기 파업 종료","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/world-at-work/resident-doctors-england-vote-uk-governments-pay-offer-ending-strikes-2026-06-29/","description":"잉글랜드 전공의들이 정부의 임금·직무 개선안을 찬성하면서 NHS를 흔든 장기 파업이 종료됐다. 2026/27년 3.5% 인상과 2027년까지 평균 6.6% 인상이 핵심이다.","score":398,"priority":398,"tags":["영국","NHS","전공의","파업","임금협상"]},
+    {"id":"main-20260630-0506-reuters-safrica-migrants","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"남아공 반이민 시한 앞두고 이주민 가족 분리 확산","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/africa/south-africas-anti-migrant-deadline-forces-fathers-leave-families-behind-2026-06-29/","description":"남아공에서 비공식 반이민 단체가 제시한 6월 30일 시한을 앞두고 이주민들이 폭력 우려로 떠나며 가족과 생계가 갈라지는 인도주의 문제가 커지고 있다.","score":390,"priority":390,"tags":["남아공","이주민","반이민","더반","인권"]},
+    {"id":"main-20260630-0506-ap-brazil-japan-worldcup","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"브라질, 추가시간 마르티넬리 결승골로 일본에 2-1 승리","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/d5c025da2efeaf08a6b7c694b8e6534e","description":"월드컵 32강에서 브라질이 일본에 선제골을 내줬지만 카세미루 동점골과 마르티넬리의 추가시간 결승골로 16강에 진출했다.","score":386,"priority":386,"tags":["월드컵","브라질","일본","마르티넬리","32강"]},
+    {"id":"main-20260630-0506-reuters-czech-nato-rift","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"체코 대통령·총리, NATO 정상회의 대표단 주도권 놓고 충돌","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/czech-president-prime-minister-clash-over-leadership-both-pack-nato-summit-2026-06-29/","description":"체코 정부가 법원 압박 속에 대통령의 NATO 정상회의 참석은 허용했지만 대표단장 지위는 거부했다. 방위비와 외교 권한을 둘러싼 권력 갈등이 드러났다.","score":382,"priority":382,"tags":["체코","NATO","안보","방위비","유럽정치"]},
+    {"id":"main-20260630-0506-ap-serbia-elections","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"세르비아 부치치, 3~4개월 내 조기 총선 예고","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/b0e56b601bfc438a9adaf1b9c7922e97","description":"부치치 대통령이 수개월 내 조기 총선을 예고하고 대선 전 사임 가능성을 다시 밝혔다. 장기 시위와 권력 재편 속 총리 복귀 시나리오가 거론된다.","score":378,"priority":378,"tags":["세르비아","부치치","조기총선","시위","정치재편"]},
+    {"id":"main-20260630-0506-reuters-bet-teyana-taylor","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"테야나 테일러, 2026 BET 어워즈 4관왕","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/teyana-taylor-wins-big-2026-bet-awards-2026-06-29/","description":"테야나 테일러가 BET 어워즈에서 올해의 아이콘, 패션 뱅가드, 여우주연상, 비디오 감독상을 받으며 음악·영화·패션을 아우른 영향력을 확인했다.","score":360,"priority":360,"tags":["BET어워즈","테야나테일러","음악","엔터테인먼트","문화"]}
+  ],
+  "byCategory": {
+    "politics": [],
+    "global": [],
+    "play": [],
+    "culture": []
+  }
+}

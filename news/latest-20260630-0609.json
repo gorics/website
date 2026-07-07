@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-06-30T06:09:59+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 6,
+  "allItems": [
+    {"id":"main-20260630-0609-guardian-uk-borrowing-burnham","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"영국 장기 국채금리 하락·파운드 상승, 번햄 경제구상에 시장 안도","publishedAt":"2026-06-29","date":"2026-06-29","source":"The Guardian","url":"https://www.theguardian.com/business/live/2026/jun/29/bank-of-england-inflation-warning-ai-stock-markets-oil-burnham-bond-yields-live-news-updates","description":"앤디 번햄의 재정준칙 유지·지역 성장 구상이 나온 뒤 영국 30년물 국채금리가 소폭 하락하고 파운드가 올랐다. 시장은 재정 신뢰와 성장정책의 균형을 주시 중이다.","score":395,"priority":395,"tags":["영국","국채금리","파운드","재정정책","시장심리"]},
+    {"id":"main-20260630-0609-reuters-china-pmi-poll","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"중국 6월 제조업 PMI, 50.1로 미약한 확장 복귀 전망","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-factory-activity-likely-returned-meagre-growth-june-2026-06-29/","description":"로이터 조사에서 중국 공식 PMI가 경기 확장 기준선 50을 가까스로 넘을 것으로 예상됐다. AI 관련 수출은 강하지만 내수·부동산 부진이 회복을 제한한다.","score":392,"priority":392,"tags":["중국PMI","제조업","AI수출","부동산","내수"]},
+    {"id":"main-20260630-0609-verge-openai-codex-hardware","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"OpenAI, Codex 전용 하드웨어 티저 공개…7월 15일 세부 발표 예고","publishedAt":"2026-06-29","date":"2026-06-29","source":"The Verge","url":"https://www.theverge.com/ai-artificial-intelligence/959174/openai-codex-hardware-work-louder","description":"OpenAI가 Work Louder와 함께 Codex 작업을 보조하는 버튼형 하드웨어를 예고했다. 범용 AI 기기와는 별개로 개발자 워크플로 자동화 장치에 가깝다.","score":386,"priority":386,"tags":["OpenAI","Codex","AI하드웨어","WorkLouder","개발도구"]},
+    {"id":"main-20260630-0609-guardian-wimbledon-worldcup-ban","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"윔블던, 선수 라운지까지 월드컵 중계 금지 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"The Guardian","url":"https://www.theguardian.com/sport/2026/jun/29/wimbledon-extends-world-cup-screening-ban-players-lounge-tennis","description":"윔블던이 축구 월드컵과 일정이 겹치는 가운데 경기장과 선수 라운지에서 월드컵 생중계를 틀지 않기로 했다. 테니스 경기 집중도와 관중 소음 관리가 이유다.","score":370,"priority":370,"tags":["윔블던","월드컵","테니스","중계정책","스포츠운영"]},
+    {"id":"main-20260630-0609-ap-naomi-osaka-kimono","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"오사카 나오미, ‘킬빌’ 오렌 이시이풍 흰 기모노로 윔블던 입장","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/daf02cfa72d9381a2a088b6ce5e98225","description":"오사카 나오미가 루시 리우의 영화 캐릭터에서 영감을 받은 흰 기모노 차림으로 윔블던에 등장했다. 경기 승리와 함께 스포츠 패션·문화 코드가 화제가 됐다.","score":348,"priority":348,"tags":["오사카나오미","윔블던","킬빌","스포츠패션","테니스"]},
+    {"id":"main-20260630-0609-sun-infantino-private-jet","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"FIFA 회장 월드컵 기간 전용기 이동 논란, 지속가능성 공약과 충돌","publishedAt":"2026-06-29","date":"2026-06-29","source":"The Scottish Sun","url":"https://www.thescottishsun.co.uk/sport/16472656/gianni-infantino-airmiles-private-jet-world-cup/","description":"잔니 인판티노 FIFA 회장이 월드컵 현장 순회를 위해 전용기를 반복 이용했다는 보도가 나오며 대회 확장과 탄소배출 논란이 다시 커졌다.","score":330,"priority":330,"tags":["FIFA","인판티노","월드컵","전용기","탄소배출"]}
+  ],
+  "byCategory": {"economy":[],"tech":[],"global":[],"play":[],"culture":[]}
+}

@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-25T04:09:07+09:00",
+  "source": "Latest finance-market overlay archive for GitHub Pages financial news page; generated from current public sources; merge ahead of financial/data.json",
+  "page": "financial-latest-archive",
+  "categories": [
+    {"id":"energy","name":"에너지·지정학","icon":"🛢️","count":2},
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1}
+  ],
+  "total": 3,
+  "allItems": [
+    {"id":"financial-20260625-0409-reuters-russia-fuel-shortage-tax-changes","category":"energy","categoryName":"에너지·지정학","categoryIcon":"🛢️","title":"러시아, 정유시설 피격 따른 연료난 대응 세제 변경 승인","description":"러시아 의회가 우크라이나 드론 공격 이후 연료 부족을 완화하기 위한 세제 조정을 승인했다. 정유 차질과 수입 보조 확대가 에너지 시장 변수로 부상했다.","url":"https://www.reuters.com/business/energy/russias-parliament-approves-tax-changes-address-fuel-shortages-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":430,"tags":["러시아","연료난","정유시설","에너지","드론공격"]},
+    {"id":"financial-20260625-0409-ap-ukraine-russia-gas-satellite-strikes","category":"energy","categoryName":"에너지·지정학","categoryIcon":"🛢️","title":"우크라이나 장거리 타격, 러시아 대형 가스처리시설 화재","description":"우크라이나가 러시아 오렌부르크 가스처리시설과 위성통신센터를 타격했다. 에너지 인프라 공격이 러시아 공급망과 전쟁 비용을 동시에 압박하고 있다.","url":"https://apnews.com/article/6076b6666c3312bbf9b4b8d875a52513","source":{"name":"AP"},"publishedAt":"2026-06-24","score":424,"tags":["우크라이나","러시아","가스","에너지인프라","지정학"]},
+    {"id":"financial-20260625-0409-reuters-europe-shares-rheinmetall-slump","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"유럽 증시 보합, 라인메탈 급락·방산주 약세가 지수 압박","description":"유럽 STOXX 600은 미·이란 협상 불확실성과 방산주 약세 속 보합권에 머물렀다. 독일 호위함 계획 취소로 라인메탈이 급락했고 섹터 로테이션이 커졌다.","url":"https://www.reuters.com/business/aerospace-defense/european-shares-muted-investors-assess-us-iran-talks-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":416,"tags":["유럽증시","라인메탈","방산주","독일","STOXX600"]}
+  ],
+  "byCategory": {
+    "energy": [
+      {"id":"financial-20260625-0409-reuters-russia-fuel-shortage-tax-changes","category":"energy","categoryName":"에너지·지정학","categoryIcon":"🛢️","title":"러시아, 정유시설 피격 따른 연료난 대응 세제 변경 승인","description":"러시아 의회가 우크라이나 드론 공격 이후 연료 부족을 완화하기 위한 세제 조정을 승인했다. 정유 차질과 수입 보조 확대가 에너지 시장 변수로 부상했다.","url":"https://www.reuters.com/business/energy/russias-parliament-approves-tax-changes-address-fuel-shortages-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":430,"tags":["러시아","연료난","정유시설","에너지","드론공격"]},
+      {"id":"financial-20260625-0409-ap-ukraine-russia-gas-satellite-strikes","category":"energy","categoryName":"에너지·지정학","categoryIcon":"🛢️","title":"우크라이나 장거리 타격, 러시아 대형 가스처리시설 화재","description":"우크라이나가 러시아 오렌부르크 가스처리시설과 위성통신센터를 타격했다. 에너지 인프라 공격이 러시아 공급망과 전쟁 비용을 동시에 압박하고 있다.","url":"https://apnews.com/article/6076b6666c3312bbf9b4b8d875a52513","source":{"name":"AP"},"publishedAt":"2026-06-24","score":424,"tags":["우크라이나","러시아","가스","에너지인프라","지정학"]}
+    ],
+    "global-markets": [
+      {"id":"financial-20260625-0409-reuters-europe-shares-rheinmetall-slump","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"유럽 증시 보합, 라인메탈 급락·방산주 약세가 지수 압박","description":"유럽 STOXX 600은 미·이란 협상 불확실성과 방산주 약세 속 보합권에 머물렀다. 독일 호위함 계획 취소로 라인메탈이 급락했고 섹터 로테이션이 커졌다.","url":"https://www.reuters.com/business/aerospace-defense/european-shares-muted-investors-assess-us-iran-talks-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":416,"tags":["유럽증시","라인메탈","방산주","독일","STOXX600"]}
+    ]
+  }
+}

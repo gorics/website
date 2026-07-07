@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-06-25T02:08:00+09:00",
+  "source": "Latest financial public news archive overlay for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-archive",
+  "categories": [
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"fin-20260625-0208-reuters-sk-hynix-us-adr","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"SK하이닉스, 미국 ADR 상장으로 최대 294억 달러 조달 추진","description":"SK하이닉스가 AI 메모리 수요와 투자자 관심을 활용해 미국 ADR 상장으로 대규모 자금을 조달하려 한다. 조달금은 생산능력 확대와 첨단 장비 투자에 투입될 전망이다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-raise-up-29-billion-us-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":472,"tags":["SK하이닉스","ADR","HBM","AI메모리","반도체"]},
+    {"id":"fin-20260625-0208-reuters-qualcomm-modular-deal","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"퀄컴, Modular 인수로 AI 소프트웨어·데이터센터 확장 가속","description":"퀄컴의 Modular 인수는 다양한 칩에서 AI 모델을 돌리는 소프트웨어 계층 확보 전략이다. 엔비디아 CUDA 독주에 맞서는 생태계 경쟁과 데이터센터 진출이 핵심이다.","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["퀄컴","Modular","AI인프라","CUDA","데이터센터"]},
+    {"id":"fin-20260625-0208-reuters-europe-shares-iran-rheinmetall","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"유럽 증시 보합, 이란 협상·라인메탈 급락·부동산 M&A가 혼재","description":"유럽 증시는 중동 협상 불확실성과 원자재 약세 속 보합권에 머물렀다. 라인메탈 급락과 세그로 인수 제안 등 업종별 재료가 지수 방향성을 나눴다.","url":"https://www.reuters.com/business/aerospace-defense/european-shares-muted-investors-assess-us-iran-talks-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":446,"tags":["유럽증시","방산주","이란","원자재","M&A"]},
+    {"id":"fin-20260625-0208-reuters-apple-intel-chip-strategy","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"애플-인텔 협력론, 미국 파운드리 회복과 AI칩 병목 해소 기대","description":"애플이 인텔 파운드리를 활용할 가능성은 TSMC 병목과 미국 반도체 제조 부흥 논의와 맞물린다. 실제 생산은 장기 과제지만 공급망 다변화 신호로 해석된다.","url":"https://www.reuters.com/world/china/apple-intel-chip-deal-makes-strategic-sense-production-is-years-away-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":432,"tags":["애플","인텔","파운드리","AI칩","공급망"]}
+  ],
+  "byCategory": {
+    "semiconductors": [
+      {"id":"fin-20260625-0208-reuters-sk-hynix-us-adr","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"SK하이닉스, 미국 ADR 상장으로 최대 294억 달러 조달 추진","description":"SK하이닉스가 AI 메모리 수요와 투자자 관심을 활용해 미국 ADR 상장으로 대규모 자금을 조달하려 한다. 조달금은 생산능력 확대와 첨단 장비 투자에 투입될 전망이다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-raise-up-29-billion-us-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":472,"tags":["SK하이닉스","ADR","HBM","AI메모리","반도체"]},
+      {"id":"fin-20260625-0208-reuters-apple-intel-chip-strategy","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"애플-인텔 협력론, 미국 파운드리 회복과 AI칩 병목 해소 기대","description":"애플이 인텔 파운드리를 활용할 가능성은 TSMC 병목과 미국 반도체 제조 부흥 논의와 맞물린다. 실제 생산은 장기 과제지만 공급망 다변화 신호로 해석된다.","url":"https://www.reuters.com/world/china/apple-intel-chip-deal-makes-strategic-sense-production-is-years-away-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":432,"tags":["애플","인텔","파운드리","AI칩","공급망"]}
+    ],
+    "ai-infrastructure": [
+      {"id":"fin-20260625-0208-reuters-qualcomm-modular-deal","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"퀄컴, Modular 인수로 AI 소프트웨어·데이터센터 확장 가속","description":"퀄컴의 Modular 인수는 다양한 칩에서 AI 모델을 돌리는 소프트웨어 계층 확보 전략이다. 엔비디아 CUDA 독주에 맞서는 생태계 경쟁과 데이터센터 진출이 핵심이다.","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["퀄컴","Modular","AI인프라","CUDA","데이터센터"]}
+    ],
+    "global-markets": [
+      {"id":"fin-20260625-0208-reuters-europe-shares-iran-rheinmetall","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"유럽 증시 보합, 이란 협상·라인메탈 급락·부동산 M&A가 혼재","description":"유럽 증시는 중동 협상 불확실성과 원자재 약세 속 보합권에 머물렀다. 라인메탈 급락과 세그로 인수 제안 등 업종별 재료가 지수 방향성을 나눴다.","url":"https://www.reuters.com/business/aerospace-defense/european-shares-muted-investors-assess-us-iran-talks-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":446,"tags":["유럽증시","방산주","이란","원자재","M&A"]}
+    ]
+  }
+}

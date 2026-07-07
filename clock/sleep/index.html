@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>수면 카운트다운 (한국시간)</title>
+  <style>
+    :root {
+      --bg-1: #020617;
+      --bg-2: #1e1b4b;
+      --card: rgba(15, 23, 42, 0.68);
+      --line: rgba(148, 163, 184, 0.3);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --accent: #22d3ee;
+      --accent-2: #a78bfa;
+      --good: #34d399;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 14px;
+      color: var(--text);
+      font-family: "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, #1d4ed8 0%, transparent 35%),
+        radial-gradient(circle at 85% 20%, #7c3aed 0%, transparent 32%),
+        linear-gradient(160deg, var(--bg-2), var(--bg-1));
+    }
+
+    .card {
+      width: min(100%, 820px);
+      border-radius: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: clamp(16px, 3.8vw, 34px);
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 55px rgba(2, 6, 23, 0.55);
+    }
+
+    .top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(34, 211, 238, 0.45);
+      background: linear-gradient(130deg, rgba(34, 211, 238, 0.22), rgba(167, 139, 250, 0.24));
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 0.9rem;
+      color: #ecfeff;
+    }
+
+    .timezone {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    h1 {
+      margin: 12px 0 8px;
+      font-size: clamp(1.25rem, 4vw, 2rem);
+      line-height: 1.33;
+      letter-spacing: -0.01em;
+    }
+
+    .sleep-hours {
+      margin: 2px 0 14px;
+      font-size: clamp(2.15rem, 10vw, 4.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .sleep-hours small {
+      margin-left: 8px;
+      font-size: 0.32em;
+      letter-spacing: 0;
+      font-weight: 700;
+      color: var(--muted);
+      background: none;
+      -webkit-text-fill-color: var(--muted);
+      vertical-align: middle;
+    }
+
+    .control {
+      margin: 14px 0 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      background: rgba(15, 23, 42, 0.72);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .control p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .selectors {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-self: end;
+    }
+
+    label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    select {
+      width: 92px;
+      background: rgba(2, 6, 23, 0.75);
+      color: var(--text);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.22);
+    }
+
+    .timer {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .unit {
+      border-radius: 15px;
+      padding: 12px 10px;
+      text-align: center;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(15, 23, 42, 0.86);
+    }
+
+    .value {
+      font-size: clamp(1.3rem, 5vw, 2rem);
+      font-weight: 800;
+      line-height: 1;
+      display: block;
+    }
+
+    .unit small {
+      margin-top: 4px;
+      display: block;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .meta {
+      margin: 14px 0 4px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .good {
+      color: var(--good);
+      font-weight: 700;
+    }
+
+    @media (max-width: 620px) {
+      .control {
+        grid-template-columns: 1fr;
+      }
+
+      .selectors {
+        justify-self: start;
+      }
+
+      select {
+        width: 84px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card" aria-live="polite">
+    <div class="top">
+      <div class="badge">😴 몇 시간 잘 수 있을까?</div>
+      <div class="timezone">기준: 한국시간 (KST, UTC+9)</div>
+    </div>
+
+    <h1>지금부터 <strong id="wakeLabel">오전 7:00</strong>까지</h1>
+    <p class="sleep-hours"><span id="exactSleep">0시간 00분</span><small>잘 수 있어요</small></p>
+
+    <section class="control" aria-label="기상 시간 설정">
+      <p>기상 시간 변경 (기본값: <strong>07:00</strong>)<br>원하는 시간으로 바꿔서 바로 확인하세요.</p>
+      <div class="selectors">
+        <div>
+          <label for="hourSelect">시</label>
+          <select id="hourSelect"></select>
+        </div>
+        <div>
+          <label for="minuteSelect">분</label>
+          <select id="minuteSelect"></select>
+        </div>
+      </div>
+    </section>
+
+    <section class="timer" aria-label="남은 시간">
+      <div class="unit"><span class="value" id="hours">00</span><small>시간</small></div>
+      <div class="unit"><span class="value" id="minutes">00</span><small>분</small></div>
+      <div class="unit"><span class="value" id="seconds">00</span><small>초</small></div>
+    </section>
+
+    <p class="meta" id="targetText">다음 목표 시간 계산 중...</p>
+    <p class="meta"><span class="good">TIP</span> 수면 시간 7시간 이상이면 컨디션 회복에 유리해요.</p>
+  </main>
+
+  <script>
+    const HOUR_MS = 60 * 60 * 1000;
+    const MIN_MS = 60 * 1000;
+    const KST_OFFSET_MS = 9 * HOUR_MS;
+
+    const $ = (id) => document.getElementById(id);
+
+    const state = {
+      wakeHour: 7,
+      wakeMinute: 0
+    };
+
+    function loadWakeTime() {
+      const saved = localStorage.getItem('sleepWakeTime');
+      if (!saved) return;
+      const [h, m] = saved.split(':').map(Number);
+      if (Number.isInteger(h) && h >= 0 && h <= 23) state.wakeHour = h;
+      if (Number.isInteger(m) && m >= 0 && m <= 59) state.wakeMinute = m;
+    }
+
+    function saveWakeTime() {
+      localStorage.setItem('sleepWakeTime', `${String(state.wakeHour).padStart(2, '0')}:${String(state.wakeMinute).padStart(2, '0')}`);
+    }
+
+    function buildSelectOptions() {
+      const hourSelect = $('hourSelect');
+      const minuteSelect = $('minuteSelect');
+
+      for (let h = 0; h < 24; h += 1) {
+        const option = document.createElement('option');
+        option.value = String(h);
+        option.textContent = `${String(h).padStart(2, '0')}시`;
+        hourSelect.appendChild(option);
+      }
+
+      for (let m = 0; m < 60; m += 5) {
+        const option = document.createElement('option');
+        option.value = String(m);
+        option.textContent = `${String(m).padStart(2, '0')}분`;
+        minuteSelect.appendChild(option);
+      }
+
+      if (state.wakeMinute % 5 !== 0) {
+        const option = document.createElement('option');
+        option.value = String(state.wakeMinute);
+        option.textContent = `${String(state.wakeMinute).padStart(2, '0')}분`;
+        minuteSelect.appendChild(option);
+      }
+
+      hourSelect.value = String(state.wakeHour);
+      minuteSelect.value = String(state.wakeMinute);
+    }
+
+    function getNextKstWakeDate(now, targetHour, targetMinute) {
+      const nowKst = new Date(now.getTime() + KST_OFFSET_MS);
+      const y = nowKst.getUTCFullYear();
+      const m = nowKst.getUTCMonth();
+      const d = nowKst.getUTCDate();
+
+      const currentMinutes = nowKst.getUTCHours() * 60 + nowKst.getUTCMinutes();
+      const targetMinutes = targetHour * 60 + targetMinute;
+      const dateOffset = currentMinutes >= targetMinutes ? 1 : 0;
+
+      const targetKstMs = Date.UTC(y, m, d + dateOffset, targetHour, targetMinute, 0, 0);
+      return new Date(targetKstMs - KST_OFFSET_MS);
+    }
+
+    function formatKoreanWakeLabel(hour24, minute) {
+      const period = hour24 < 12 ? '오전' : '오후';
+      const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
+      return `${period} ${hour12}:${String(minute).padStart(2, '0')}`;
+    }
+
+    function formatTargetText(dateObj) {
+      return new Intl.DateTimeFormat('ko-KR', {
+        timeZone: 'Asia/Seoul',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        weekday: 'short',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      }).format(dateObj) + ' 기상 예정';
+    }
+
+    function pad(n) {
+      return String(n).padStart(2, '0');
+    }
+
+    function render() {
+      const now = new Date();
+      const target = getNextKstWakeDate(now, state.wakeHour, state.wakeMinute);
+      let diff = Math.max(0, target.getTime() - now.getTime());
+
+      const hours = Math.floor(diff / HOUR_MS);
+      diff -= hours * HOUR_MS;
+      const minutes = Math.floor(diff / MIN_MS);
+      diff -= minutes * MIN_MS;
+      const seconds = Math.floor(diff / 1000);
+
+      $('wakeLabel').textContent = formatKoreanWakeLabel(state.wakeHour, state.wakeMinute);
+      $('exactSleep').textContent = `${hours}시간 ${pad(minutes)}분`;
+      $('hours').textContent = pad(hours);
+      $('minutes').textContent = pad(minutes);
+      $('seconds').textContent = pad(seconds);
+      $('targetText').textContent = formatTargetText(target);
+    }
+
+    function bindEvents() {
+      $('hourSelect').addEventListener('change', (e) => {
+        state.wakeHour = Number(e.target.value);
+        saveWakeTime();
+        render();
+      });
+
+      $('minuteSelect').addEventListener('change', (e) => {
+        state.wakeMinute = Number(e.target.value);
+        saveWakeTime();
+        render();
+      });
+    }
+
+    loadWakeTime();
+    buildSelectOptions();
+    bindEvents();
+    render();
+    setInterval(render, 1000);
+  </script>
+</body>
+</html>

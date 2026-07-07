@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-06-24T22:07:00+09:00",
+  "source": "Latest financial public news archive overlay; finance and market-moving items prioritized",
+  "page": "financial-latest-archive",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":2},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"sustainable-finance","name":"지속가능금융","icon":"🌱","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"fin-20260624-2207-reuters-wall-st-tech-rebound-micron","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"미 증시 선물 반등, 마이크론 실적이 AI 랠리 심리 시험대","description":"미국 지수 선물이 기술주 반등으로 상승했다. 마이크론 실적은 반도체·AI 인프라 투자 심리가 과열인지 지속 가능한지 가늠할 핵심 이벤트다.","url":"https://www.reuters.com/business/sp-500-nasdaq-futures-tick-up-tech-shares-stabilize-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":448,"tags":["미국증시","마이크론","AI","반도체","나스닥"]},
+    {"id":"fin-20260624-2207-reuters-qualcomm-modular-ai-software","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"퀄컴의 Modular 인수, AI 소프트웨어 스택 경쟁을 M&A로 확대","description":"퀄컴은 약 40억 달러 규모의 주식 거래로 Modular를 인수해 여러 칩에서 AI 모델을 돌리는 소프트웨어 역량을 강화한다. 데이터센터 AI 생태계 경쟁이 심화된다.","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":452,"tags":["퀄컴","Modular","AI소프트웨어","데이터센터","M&A"]},
+    {"id":"fin-20260624-2207-reuters-dbs-energy-transition-finance","category":"sustainable-finance","categoryName":"지속가능금융","categoryIcon":"🌱","title":"DBS, 아시아 에너지 전환 차량에 2억1000만 달러 선순위 대출","description":"싱가포르 DBS의 ETAFCo 금융 제공은 아시아 에너지 전환 프로젝트에 민간 금융을 연결하는 사례다. 인프라·탈탄소 투자 시장의 자금 흐름을 보여준다.","url":"https://www.reuters.com/world/asia-pacific/singapores-dbs-provides-210-million-financing-asia-energy-transition-vehicle-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":410,"tags":["DBS","FAST-P","에너지전환","지속가능금융","아시아"]},
+    {"id":"fin-20260624-2207-reuters-sp500-target-7800","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"Barclays·Stifel, 강한 실적 전망에 S&P 500 목표치 7800으로 상향","description":"두 증권사가 기업 실적과 AI 투자 가시성을 근거로 S&P 500 연말 목표를 올렸다. 다만 인플레이션과 추가 금리 인상 가능성은 상승장의 위험 요인으로 남았다.","url":"https://www.reuters.com/business/barclays-stifel-lift-sp-500-target-7800-strong-earnings-outlook-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":426,"tags":["S&P500","Barclays","Stifel","실적","AI투자"]}
+  ],
+  "byCategory": {
+    "global-markets": [
+      {"id":"fin-20260624-2207-reuters-wall-st-tech-rebound-micron","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"미 증시 선물 반등, 마이크론 실적이 AI 랠리 심리 시험대","description":"미국 지수 선물이 기술주 반등으로 상승했다. 마이크론 실적은 반도체·AI 인프라 투자 심리가 과열인지 지속 가능한지 가늠할 핵심 이벤트다.","url":"https://www.reuters.com/business/sp-500-nasdaq-futures-tick-up-tech-shares-stabilize-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":448,"tags":["미국증시","마이크론","AI","반도체","나스닥"]},
+      {"id":"fin-20260624-2207-reuters-sp500-target-7800","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"Barclays·Stifel, 강한 실적 전망에 S&P 500 목표치 7800으로 상향","description":"두 증권사가 기업 실적과 AI 투자 가시성을 근거로 S&P 500 연말 목표를 올렸다. 다만 인플레이션과 추가 금리 인상 가능성은 상승장의 위험 요인으로 남았다.","url":"https://www.reuters.com/business/barclays-stifel-lift-sp-500-target-7800-strong-earnings-outlook-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":426,"tags":["S&P500","Barclays","Stifel","실적","AI투자"]}
+    ],
+    "ai-infrastructure": [
+      {"id":"fin-20260624-2207-reuters-qualcomm-modular-ai-software","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"퀄컴의 Modular 인수, AI 소프트웨어 스택 경쟁을 M&A로 확대","description":"퀄컴은 약 40억 달러 규모의 주식 거래로 Modular를 인수해 여러 칩에서 AI 모델을 돌리는 소프트웨어 역량을 강화한다. 데이터센터 AI 생태계 경쟁이 심화된다.","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":452,"tags":["퀄컴","Modular","AI소프트웨어","데이터센터","M&A"]}
+    ],
+    "sustainable-finance": [
+      {"id":"fin-20260624-2207-reuters-dbs-energy-transition-finance","category":"sustainable-finance","categoryName":"지속가능금융","categoryIcon":"🌱","title":"DBS, 아시아 에너지 전환 차량에 2억1000만 달러 선순위 대출","description":"싱가포르 DBS의 ETAFCo 금융 제공은 아시아 에너지 전환 프로젝트에 민간 금융을 연결하는 사례다. 인프라·탈탄소 투자 시장의 자금 흐름을 보여준다.","url":"https://www.reuters.com/world/asia-pacific/singapores-dbs-provides-210-million-financing-asia-energy-transition-vehicle-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":410,"tags":["DBS","FAST-P","에너지전환","지속가능금융","아시아"]}
+    ]
+  }
+}

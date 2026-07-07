@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-06-24T14:07:18+09:00",
+  "source": "Latest public news archive overlay for GitHub Pages news site; generated from current public sources; merge ahead of latest.json and data.json",
+  "page": "main-latest-archive-overlay",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"latest-20260624-1407-reuters-europe-morning-bid-chips","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"유럽 개장 전 시장, 반도체 과열 포지션·아시아 변동성 경계","description":"로이터 모닝비드는 한국·대만 반도체 변동성과 ‘가장 붐비는 거래’로 꼽힌 칩 섹터를 핵심 리스크로 지목했다. 달러 강세와 금리 인상 베팅도 유럽 시장 부담 요인이다.","url":"https://www.reuters.com/world/china/global-markets-view-europe-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":434,"tags":["반도체","유럽증시","아시아증시","달러","AI"]},
+    {"id":"latest-20260624-1407-reuters-europe-stoxx-tech-fed","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"유럽 증시 하락, 기술주 매도·연준 인상 베팅이 STOXX 600 압박","description":"STOXX 600이 기술주 급락과 미국 금리 인상 우려로 하락했다. 인피니언·ST마이크로 등 반도체주 약세가 AI 투자 부담 재평가와 맞물렸다.","url":"https://www.reuters.com/markets/europe/european-shares-set-open-lower-fed-rate-hike-bets-tech-weakness-weigh-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":424,"tags":["유럽증시","STOXX600","기술주","반도체","연준"]},
+    {"id":"latest-20260624-1407-reuters-micron-anthropic-supply","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"마이크론·앤스로픽, AI 인프라용 메모리·스토리지 공급 협약","description":"마이크론이 앤스로픽에 메모리와 스토리지 제품을 공급하고 최신 투자 라운드에도 참여했다. AI 모델 훈련·서비스 비용에서 메모리 병목이 핵심 인프라 변수로 떠올랐다.","url":"https://www.reuters.com/business/micron-anthropic-sign-ai-infrastructure-supply-agreement-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":412,"tags":["마이크론","앤스로픽","AI인프라","메모리","스토리지"]},
+    {"id":"latest-20260624-1407-ap-senate-war-powers-iran","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"미 상원, 이란전 전쟁권한 결의 첫 승인…트럼프 중동정책에 초당적 경고","description":"미 상원이 이란 관련 무단 군사행동을 막는 전쟁권한 결의를 50대 48로 승인했다. 법적 실효성은 제한적이지만 공화당 일부 이탈까지 나온 정치적 경고로 평가된다.","url":"https://apnews.com/article/7462a9a561103f531d995aac91f9fc96","source":{"name":"AP"},"publishedAt":"2026-06-23","score":402,"tags":["미국정치","이란","전쟁권한","상원","트럼프"]}
+  ]
+}

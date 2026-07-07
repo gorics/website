@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-06-25T04:09:07+09:00",
+  "source": "Latest public news overlay archive for GitHub Pages news site; generated from current public sources; merge ahead of data.json",
+  "page": "main-latest-archive",
+  "categories": [
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":2},
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1}
+  ],
+  "total": 6,
+  "allItems": [
+    {"id":"latest-20260625-0409-ap-trump-citizenship-vote-blocked","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"미 연방법원, 트럼프 ‘투표 시 시민권 증명’ 명령 영구 차단","description":"연방법원이 투표 등록 때 시민권 증명 서류를 요구한 트럼프 행정명령을 주·의회 권한 침해로 보고 막았다. 선거법 개편을 둘러싼 행정부와 사법부 충돌이 커졌다.","url":"https://apnews.com/article/463cb685670cb9eda7e23b685f8d4c8d","source":{"name":"AP"},"publishedAt":"2026-06-24","score":430,"tags":["미국정치","선거법","시민권증명","트럼프","법원"]},
+    {"id":"latest-20260625-0409-ap-ukraine-russia-gas-satellite-strikes","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"우크라이나, 러시아 대형 가스처리시설·위성센터 타격","description":"우크라이나가 러시아 오렌부르크 가스처리시설과 위성통신센터들을 야간 공습했다. 장거리 타격전이 에너지·군사 인프라로 확대되며 전쟁 비용이 커지고 있다.","url":"https://apnews.com/article/6076b6666c3312bbf9b4b8d875a52513","source":{"name":"AP"},"publishedAt":"2026-06-24","score":424,"tags":["우크라이나","러시아","가스","위성통신","전쟁"]},
+    {"id":"latest-20260625-0409-ap-us-iran-nuclear-inspections-dispute","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"미·이란, 핵사찰 범위 공개 충돌…잠정 합의 이행 불확실성 확대","description":"IAEA가 이란 농축시설 사찰 필요성을 강조하자 이란은 최종 합의와 제재 해제가 먼저라고 맞섰다. 60일 협상 창구가 열렸지만 핵 검증 조건이 핵심 쟁점으로 떠올랐다.","url":"https://apnews.com/article/875ee115cacd1f5923052b70f2be4124","source":{"name":"AP"},"publishedAt":"2026-06-24","score":416,"tags":["이란","핵사찰","IAEA","미국외교","중동"]},
+    {"id":"latest-20260625-0409-reuters-russia-fuel-shortage-tax-changes","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"러시아, 정유시설 피격 따른 연료난 대응 세제 변경 승인","description":"러시아 의회가 우크라이나 드론 공격 이후 연료 부족을 완화하기 위한 세제 조정을 승인했다. 저품질 혼합유 허용, 수입 보조, 정유 현대화 유예가 포함됐다.","url":"https://www.reuters.com/business/energy/russias-parliament-approves-tax-changes-address-fuel-shortages-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":418,"tags":["러시아","연료난","정유시설","에너지","세제"]},
+    {"id":"latest-20260625-0409-reuters-europe-shares-rheinmetall-slump","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"유럽 증시 보합, 라인메탈 급락·방산주 약세가 지수 압박","description":"미·이란 협상 불확실성 속 유럽 STOXX 600은 보합권에 머물렀다. 독일 F126 호위함 계획 취소 여파로 라인메탈이 급락하고 방산·원자재 섹터가 약세를 보였다.","url":"https://www.reuters.com/business/aerospace-defense/european-shares-muted-investors-assess-us-iran-talks-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":410,"tags":["유럽증시","라인메탈","방산","독일","중동리스크"]},
+    {"id":"latest-20260625-0409-reuters-infantino-worldcup-hydration-commercial","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"인판티노, 월드컵 의무 수분휴식 ‘상업 목적 아냐’ 반박","description":"FIFA 인판티노 회장이 2026 월드컵 의무 수분휴식은 폭염 대응을 위한 경기 운영 조치라고 설명했다. 경기 흐름과 광고 효과를 둘러싼 논란은 계속되고 있다.","url":"https://www.reuters.com/sports/soccer/infantino-says-world-cup-hydration-breaks-purely-sporting-not-commercial-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":370,"tags":["월드컵","FIFA","수분휴식","폭염","축구"]}
+  ],
+  "byCategory": {
+    "politics": [
+      {"id":"latest-20260625-0409-ap-trump-citizenship-vote-blocked","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"미 연방법원, 트럼프 ‘투표 시 시민권 증명’ 명령 영구 차단","description":"연방법원이 투표 등록 때 시민권 증명 서류를 요구한 트럼프 행정명령을 주·의회 권한 침해로 보고 막았다. 선거법 개편을 둘러싼 행정부와 사법부 충돌이 커졌다.","url":"https://apnews.com/article/463cb685670cb9eda7e23b685f8d4c8d","source":{"name":"AP"},"publishedAt":"2026-06-24","score":430,"tags":["미국정치","선거법","시민권증명","트럼프","법원"]}
+    ],
+    "global": [
+      {"id":"latest-20260625-0409-ap-ukraine-russia-gas-satellite-strikes","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"우크라이나, 러시아 대형 가스처리시설·위성센터 타격","description":"우크라이나가 러시아 오렌부르크 가스처리시설과 위성통신센터들을 야간 공습했다. 장거리 타격전이 에너지·군사 인프라로 확대되며 전쟁 비용이 커지고 있다.","url":"https://apnews.com/article/6076b6666c3312bbf9b4b8d875a52513","source":{"name":"AP"},"publishedAt":"2026-06-24","score":424,"tags":["우크라이나","러시아","가스","위성통신","전쟁"]},
+      {"id":"latest-20260625-0409-ap-us-iran-nuclear-inspections-dispute","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"미·이란, 핵사찰 범위 공개 충돌…잠정 합의 이행 불확실성 확대","description":"IAEA가 이란 농축시설 사찰 필요성을 강조하자 이란은 최종 합의와 제재 해제가 먼저라고 맞섰다. 60일 협상 창구가 열렸지만 핵 검증 조건이 핵심 쟁점으로 떠올랐다.","url":"https://apnews.com/article/875ee115cacd1f5923052b70f2be4124","source":{"name":"AP"},"publishedAt":"2026-06-24","score":416,"tags":["이란","핵사찰","IAEA","미국외교","중동"]}
+    ],
+    "economy": [
+      {"id":"latest-20260625-0409-reuters-russia-fuel-shortage-tax-changes","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"러시아, 정유시설 피격 따른 연료난 대응 세제 변경 승인","description":"러시아 의회가 우크라이나 드론 공격 이후 연료 부족을 완화하기 위한 세제 조정을 승인했다. 저품질 혼합유 허용, 수입 보조, 정유 현대화 유예가 포함됐다.","url":"https://www.reuters.com/business/energy/russias-parliament-approves-tax-changes-address-fuel-shortages-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":418,"tags":["러시아","연료난","정유시설","에너지","세제"]},
+      {"id":"latest-20260625-0409-reuters-europe-shares-rheinmetall-slump","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"유럽 증시 보합, 라인메탈 급락·방산주 약세가 지수 압박","description":"미·이란 협상 불확실성 속 유럽 STOXX 600은 보합권에 머물렀다. 독일 F126 호위함 계획 취소 여파로 라인메탈이 급락하고 방산·원자재 섹터가 약세를 보였다.","url":"https://www.reuters.com/business/aerospace-defense/european-shares-muted-investors-assess-us-iran-talks-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":410,"tags":["유럽증시","라인메탈","방산","독일","중동리스크"]}
+    ],
+    "play": [
+      {"id":"latest-20260625-0409-reuters-infantino-worldcup-hydration-commercial","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"인판티노, 월드컵 의무 수분휴식 ‘상업 목적 아냐’ 반박","description":"FIFA 인판티노 회장이 2026 월드컵 의무 수분휴식은 폭염 대응을 위한 경기 운영 조치라고 설명했다. 경기 흐름과 광고 효과를 둘러싼 논란은 계속되고 있다.","url":"https://www.reuters.com/sports/soccer/infantino-says-world-cup-hydration-breaks-purely-sporting-not-commercial-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":370,"tags":["월드컵","FIFA","수분휴식","폭염","축구"]}
+    ]
+  }
+}

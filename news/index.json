@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-06-30T20:07:10+09:00",
+  "source": "compatibility copy of 20260630-2007 overlay; canonical base data.json remains preserved",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎨","count":1}
+  ],
+  "total": 6,
+  "allItems": [
+    {"id":"main-20260630-2007-reuters-global-markets","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"글로벌 증시, AI 랠리 타고 2020년 이후 최강 2분기…달러·엔·금 동반 변동","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"MSCI 전세계 지수가 AI 관련주 강세와 금리 전망 변화 속에 2분기 큰 폭 상승했다. 달러 강세, 엔 약세, 금 가격 조정이 함께 나타나 자산배분 변동성이 커졌다.","score":560,"priority":560,"tags":["글로벌증시","AI랠리","달러","엔화","금"]},
+    {"id":"main-20260630-2007-reuters-china-pmi-ai","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"중국 제조업 PMI 확장 복귀…AI 관련 수출이 경기 하방을 일부 상쇄","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/chinas-factory-activity-expands-june-high-tech-exports-2026-06-30/","description":"중국 6월 제조업 PMI가 50.3으로 올라 확장 국면에 재진입했다. 칩·컴퓨터 등 AI 관련 고부가 수출이 부동산 침체와 소비 부진을 일부 완충하는 흐름이다.","score":545,"priority":545,"tags":["중국PMI","AI수출","제조업","반도체","경기"]},
+    {"id":"main-20260630-2007-reuters-scotus-campaign-spending","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 정당-후보 조율 지출 제한 판단 임박…중간선거 자금 판도 변수","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/legal/government/us-supreme-court-decide-republican-challenge-campaign-spending-curbs-2026-06-30/","description":"공화당 측이 정당과 후보 간 조율 지출 상한을 표현의 자유 침해라며 다투는 사건이 최종 판단을 앞뒀다. 판결은 2026년 중간선거 자금 전략에 직접 영향을 줄 수 있다.","score":530,"priority":530,"tags":["미대법원","선거자금","중간선거","정치자금","표현의자유"]},
+    {"id":"main-20260630-2007-ap-venezuela-deportees-missing","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"미국서 추방된 베네수엘라인 100명 이상, 강진 직후 실종 보고","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/783140c04b418de2308f548402ace9af","description":"미국에서 베네수엘라로 추방된 146명 중 상당수가 라과이라 호텔에 머물던 중 규모 7급 강진을 겪었고, 100명 이상이 실종된 것으로 전해졌다. 재난과 이민정책 논란이 겹쳤다.","score":520,"priority":520,"tags":["베네수엘라","지진","추방","실종","인도주의"]},
+    {"id":"main-20260630-2007-ap-pll-investment","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"프리미어 라크로스 리그, 1억달러 투자 유치…LA올림픽 앞두고 확장 가속","publishedAt":"2026-06-30","date":"2026-06-30","source":"AP","url":"https://apnews.com/article/cc470d320c1fcf34fe1f8b2fae96b0ef","description":"PLL이 라크로스 역사상 최대 규모인 1억달러 조달에 성공했다. ESPN, 조 차이, 롭 맥, 글렌 파월 등이 참여하며 2028 LA올림픽 복귀를 앞둔 성장 기대가 커졌다.","score":500,"priority":500,"tags":["라크로스","PLL","스포츠투자","LA올림픽","ESPN"]},
+    {"id":"main-20260630-2007-ap-bet-awards","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎨","title":"BET 어워즈, 로린 힐·테야나 테일러 조명…AI 시대 창작자 보호 메시지도 부각","publishedAt":"2026-06-28","date":"2026-06-28","source":"AP","url":"https://apnews.com/article/9e0dfdf0079cd8550ba4d2430e97ace3","description":"2026 BET 어워즈에서 로린 힐이 리빙 레전드 아이콘상을 받았고, 테야나 테일러와 실비아 론도 주요 영예를 안았다. 음악 산업의 AI·창작자 보상 이슈도 함께 언급됐다.","score":480,"priority":480,"tags":["BET어워즈","로린힐","테야나테일러","음악","AI창작권"]}
+  ],
+  "byCategory": {"economy":[],"tech":[],"politics":[],"global":[],"play":[],"culture":[]}
+}

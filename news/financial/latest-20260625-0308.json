@@ -1,0 +1,74 @@
+{
+  "generatedAt": "2026-06-25T03:08:52+09:00",
+  "source": "Latest finance and market overlay for GitHub Pages financial news; generated from current public sources; merge ahead of data.json",
+  "page": "financial-latest-overlay-archive",
+  "categories": ["ai-infra", "markets", "semiconductors"],
+  "total": 4,
+  "allItems": [
+    {
+      "id": "financial-20260625-0308-sk-hynix-us-adr",
+      "category": "semiconductors",
+      "categoryName": "반도체",
+      "category_ko": "반도체",
+      "categoryIcon": "🧠",
+      "title": "SK하이닉스, AI 수요 속 최대 294억달러 미국 ADR 상장 추진",
+      "publishedAt": "2026-06-24T00:00:00Z",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/",
+      "description": "SK하이닉스가 AI 메모리 투자 재원 확보와 미국 투자자 접근 확대를 위해 대규모 ADR 상장을 추진한다.",
+      "score": 96,
+      "priority": 96,
+      "tags": ["AI", "반도체", "SK하이닉스", "ADR", "자본시장"]
+    },
+    {
+      "id": "financial-20260625-0308-openai-broadcom-chip",
+      "category": "ai-infra",
+      "categoryName": "AI 인프라",
+      "category_ko": "AI 인프라",
+      "categoryIcon": "🏗️",
+      "title": "OpenAI, 브로드컴과 설계한 자체 AI 칩 공개",
+      "publishedAt": "2026-06-24T13:01:00Z",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/",
+      "description": "OpenAI가 AI 인프라 확장을 위해 브로드컴과 공동 설계한 맞춤형 칩을 공개하며 자체 컴퓨팅 역량 강화에 나섰다.",
+      "score": 94,
+      "priority": 94,
+      "tags": ["OpenAI", "Broadcom", "AI칩", "인프라", "반도체"]
+    },
+    {
+      "id": "financial-20260625-0308-qualcomm-modular",
+      "category": "ai-infra",
+      "categoryName": "AI 인프라",
+      "category_ko": "AI 인프라",
+      "categoryIcon": "🏗️",
+      "title": "퀄컴, AI 소프트웨어 스타트업 Modular 40억달러 인수 추진",
+      "publishedAt": "2026-06-24T12:07:00Z",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/",
+      "description": "퀄컴이 AI 소프트웨어 역량 강화를 위해 Modular 인수를 추진하면서 칩·소프트웨어 결합 경쟁이 더 치열해지고 있다.",
+      "score": 90,
+      "priority": 90,
+      "tags": ["Qualcomm", "Modular", "AI", "M&A", "반도체"]
+    },
+    {
+      "id": "financial-20260625-0308-markets-ai-selloff",
+      "category": "markets",
+      "categoryName": "글로벌시장",
+      "category_ko": "글로벌시장",
+      "categoryIcon": "📉",
+      "title": "AI 투자 부담 우려에 반도체주 급락, 월가 주요 지수 하락",
+      "publishedAt": "2026-06-23T00:00:00Z",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/nasdaq-futures-fall-2-tech-worries-fed-hike-bets-2026-06-23/",
+      "description": "부채 기반 AI 지출과 연준 긴축 우려가 겹치며 필라델피아 반도체 지수가 급락하고 나스닥·S&P500이 밀렸다.",
+      "score": 89,
+      "priority": 89,
+      "tags": ["미국증시", "반도체", "AI투자", "나스닥", "연준"]
+    }
+  ],
+  "byCategory": {
+    "semiconductors": [],
+    "ai-infra": [],
+    "markets": []
+  }
+}

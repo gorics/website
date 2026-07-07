@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-06-30T00:35:21+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":2},
+    {"id":"media-deals","name":"미디어딜","icon":"🎬","count":1},
+    {"id":"monetary-policy","name":"통화정책","icon":"🏦","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260630-0035-reuters-wallst-comcast","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"월가 상승, 중동 긴장 완화와 컴캐스트 분사가 위험자산 지지","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-lead-wall-st-higher-middle-east-tensions-ease-2026-06-29/","description":"미·이란 공격 중단과 도하 협상 기대가 지수 상승을 이끌었다. 컴캐스트 급등, 나스닥 강세, 향후 고용지표와 금리 경로가 단기 시장 변수다.","score":388,"priority":388,"tags":["월가","나스닥","컴캐스트","중동","고용지표"]},
+    {"id":"fin-20260630-0035-reuters-comcast-spinoff","category":"media-deals","categoryName":"미디어딜","category_ko":"미디어딜","categoryIcon":"🎬","title":"컴캐스트 NBC유니버설·스카이 분사, 미디어 M&A 재점화 가능성","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/comcast-spin-off-nbcuniversal-sky-into-separate-companies-2026-06-29/","description":"브로드밴드와 콘텐츠 사업 분리는 통신·미디어 융합 모델의 후퇴를 뜻한다. NBCU가 독립하면 스트리밍·스튜디오 자산의 추가 인수합병 가능성이 커진다.","score":376,"priority":376,"tags":["컴캐스트","NBCUniversal","Sky","M&A","스트리밍"]},
+    {"id":"fin-20260630-0035-reuters-europe-shares","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"유럽 증시 보합, 기술주·반도체주가 중동 리스크를 방어","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-steady-tech-gains-offset-middle-east-ceasefire-caution-2026-06-29/","description":"STOXX600은 기술주 강세로 보합권을 유지했다. 반도체주 상승, AI 관련 인수 제안, ECB 신트라 회의와 유가가 유럽 리스크프리미엄을 좌우하고 있다.","score":364,"priority":364,"tags":["STOXX600","유럽증시","기술주","반도체","ECB"]},
+    {"id":"fin-20260630-0035-reuters-fed-cook","category":"monetary-policy","categoryName":"통화정책","category_ko":"통화정책","categoryIcon":"🏦","title":"미 대법원, 연준 이사 해임 시도 기각…Fed 독립성 방어","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/us-supreme-court-rejects-trumps-unprecedented-bid-fire-feds-cook-2026-06-29/","description":"리사 쿡 이사 해임 시도에 제동이 걸리며 통화정책 독립성 우려가 일부 완화됐다. 금리 기대와 달러·채권시장에 직접 영향을 줄 수 있는 판결이다.","score":358,"priority":358,"tags":["연준","리사쿡","대법원","금리","중앙은행독립성"]},
+    {"id":"fin-20260630-0035-reuters-korea-megaprojects","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"한국 반도체·AI 메가프로젝트, HBM·데이터센터 투자 사이클 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/media-telecom/key-facts-south-koreas-three-chip-ai-mega-projects-2026-06-29/","description":"삼성·SK의 신규 팹, AI 데이터센터, 로봇 클러스터 계획은 메모리·전력·장비 수요의 장기 변수가 됐다. 시장은 성장성과 과잉투자 리스크를 동시에 본다.","score":352,"priority":352,"tags":["삼성전자","SK하이닉스","HBM","AI데이터센터","반도체"]}
+  ],
+  "byCategory": {"global-markets":[],"media-deals":[],"monetary-policy":[],"semiconductors":[]}
+}

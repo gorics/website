@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-06-24T17:31:51+09:00",
+  "source": "Latest financial public news archive overlay for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-archive-overlay",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":2},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"event-security","name":"이벤트·보안","icon":"🛡️","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"fin-20260624-1731-reuters-chip-stocks-plunge","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"미국 반도체주 급락, AI 랠리 과열 경계 속 변동성 확대","description":"나스닥과 반도체지수가 AI 인프라 비용·금리 우려에 밀렸다. 마이크론·퀄컴·마벨 급락은 반도체 쏠림 거래와 밸류에이션 재평가를 드러냈다.","url":"https://www.reuters.com/business/media-telecom/nasdaq-100-set-shed-over-1-trillion-tech-selloff-deepens-spacex-slides-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["반도체","나스닥","AI랠리","마이크론","기술주"]},
+    {"id":"fin-20260624-1731-reuters-europe-morning-bid-chips","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"유럽 장전 시장, 반도체 crowded trade와 강달러 부담 주시","description":"마이크론 실적 발표를 앞두고 반도체 포지셔닝, 달러 강세, 일본 외환정책 논의가 유럽 장전 시장의 핵심 변수로 제시됐다.","url":"https://www.reuters.com/world/china/global-markets-view-europe-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":438,"tags":["유럽증시","반도체","달러","마이크론","포지셔닝"]},
+    {"id":"fin-20260624-1731-reuters-micron-anthropic-supply","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"마이크론·앤스로픽 AI 인프라 공급 협약, HBM·스토리지 수요 재부각","description":"마이크론이 앤스로픽에 메모리·스토리지 제품을 공급하고 투자 라운드에도 참여한다. AI 모델 학습·추론에서 메모리 병목과 인프라 확보 경쟁이 시장 변수로 떠올랐다.","url":"https://www.reuters.com/business/micron-anthropic-sign-ai-infrastructure-supply-agreement-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":426,"tags":["마이크론","앤스로픽","HBM","AI인프라","메모리"]},
+    {"id":"fin-20260624-1731-reuters-worldcup-drones-security","category":"event-security","categoryName":"이벤트·보안","categoryIcon":"🛡️","title":"월드컵 드론 300대 이상 압수, 대형 이벤트 보안·보험 리스크 부각","description":"미 당국이 경기장 주변 불법 드론을 대거 압수했다. 벌금과 형사처벌, 안티드론 체계 투입은 월드컵 같은 대형 이벤트의 운영·보험·보안 비용 이슈를 키운다.","url":"https://www.reuters.com/sports/soccer/us-agencies-have-seized-more-than-300-drones-near-world-cup-sites-tsa-says-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":372,"tags":["월드컵","드론","보안","보험","이벤트리스크"]}
+  ],
+  "byCategory": {
+    "global-markets": [],
+    "ai-infrastructure": [],
+    "event-security": []
+  }
+}

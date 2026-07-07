@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-24T11:10:00+09:00",
+  "source": "Latest public news archive overlay for GitHub Pages news site; generated from current public sources; loaded before latest.json and data.json",
+  "page": "main-latest-archive-overlay",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1}
+  ],
+  "total": 3,
+  "allItems": [
+    {"id":"latest-20260624-1110-reuters-asia-stocks-tech-volatility","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"아시아 증시 변동성 확대, 기술주 매도 후 한국 반등·일본 약세 혼재","description":"글로벌 기술·반도체 매도 이후 아시아 증시가 흔들렸다. 한국 증시는 전일 급락 뒤 반등했지만 일본 닛케이는 약세를 보였고, 시장은 AI 투자 부담과 연준 긴축 가능성을 계속 주시했다.","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":446,"tags":["아시아증시","기술주","반도체","연준","변동성"]},
+    {"id":"latest-20260624-1110-reuters-sp500-target-earnings","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"바클레이스·스티펄, S&P 500 목표 7,800으로 상향…강한 이익 전망 반영","description":"바클레이스와 스티펄이 기업 이익 전망을 근거로 S&P 500 연말 목표치를 7,800으로 높였다. 다만 인플레이션과 추가 금리 인상, AI 투자 지속성이 상승 시나리오의 핵심 변수로 남았다.","url":"https://www.reuters.com/business/barclays-stifel-lift-sp-500-target-7800-strong-earnings-outlook-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":424,"tags":["S&P500","바클레이스","스티펄","기업이익","AI투자"]},
+    {"id":"latest-20260624-1110-reuters-ipsos-iran-war-poll","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"미국 여론, 이란전 비용 회의론 우세…트럼프 지지율 34%로 저점권","description":"로이터/입소스 조사에서 미국인의 24%만 이란전이 비용을 치를 가치가 있었다고 답했다. 트럼프 대통령 지지율은 34%로 2기 최저권에 머물러 중동 정책과 물가 불만이 정치 부담으로 부상했다.","url":"https://www.reuters.com/world/middle-east/few-us-say-iran-war-was-worth-it-trump-approval-ties-lowest-term-reutersipsos-2026-06-23/","source":{"name":"Reuters/Ipsos"},"publishedAt":"2026-06-23","score":398,"tags":["미국정치","이란전","여론조사","트럼프","중동"]}
+  ],
+  "byCategory": {
+    "economy": [
+      {"id":"latest-20260624-1110-reuters-asia-stocks-tech-volatility","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"아시아 증시 변동성 확대, 기술주 매도 후 한국 반등·일본 약세 혼재","description":"글로벌 기술·반도체 매도 이후 아시아 증시가 흔들렸다. 한국 증시는 전일 급락 뒤 반등했지만 일본 닛케이는 약세를 보였고, 시장은 AI 투자 부담과 연준 긴축 가능성을 계속 주시했다.","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":446,"tags":["아시아증시","기술주","반도체","연준","변동성"]},
+      {"id":"latest-20260624-1110-reuters-sp500-target-earnings","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"바클레이스·스티펄, S&P 500 목표 7,800으로 상향…강한 이익 전망 반영","description":"바클레이스와 스티펄이 기업 이익 전망을 근거로 S&P 500 연말 목표치를 7,800으로 높였다. 다만 인플레이션과 추가 금리 인상, AI 투자 지속성이 상승 시나리오의 핵심 변수로 남았다.","url":"https://www.reuters.com/business/barclays-stifel-lift-sp-500-target-7800-strong-earnings-outlook-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":424,"tags":["S&P500","바클레이스","스티펄","기업이익","AI투자"]}
+    ],
+    "politics": [
+      {"id":"latest-20260624-1110-reuters-ipsos-iran-war-poll","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"미국 여론, 이란전 비용 회의론 우세…트럼프 지지율 34%로 저점권","description":"로이터/입소스 조사에서 미국인의 24%만 이란전이 비용을 치를 가치가 있었다고 답했다. 트럼프 대통령 지지율은 34%로 2기 최저권에 머물러 중동 정책과 물가 불만이 정치 부담으로 부상했다.","url":"https://www.reuters.com/world/middle-east/few-us-say-iran-war-was-worth-it-trump-approval-ties-lowest-term-reutersipsos-2026-06-23/","source":{"name":"Reuters/Ipsos"},"publishedAt":"2026-06-23","score":398,"tags":["미국정치","이란전","여론조사","트럼프","중동"]}
+    ]
+  }
+}

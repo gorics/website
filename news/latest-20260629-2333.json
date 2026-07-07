@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-06-29T23:33:46+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":2},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎤","count":1}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"main-20260629-2333-reuters-global-markets","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"미국 선물 상승·유가 안정, 중동 충돌 완화가 위험자산 반등 견인","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"미·이란 긴장 완화와 외교 재개 기대가 커지며 미국 주가지수 선물이 상승했고 유가는 진정됐다. 다만 AI 투자 과열과 금리 부담은 여전히 시장 변수로 남았다.","score":372,"priority":372,"tags":["글로벌시장","유가","미국선물","중동","AI투자"]},
+    {"id":"main-20260629-2333-reuters-korea-chip-drive","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"한국, 삼성·SK하이닉스 앞세워 5760억달러 AI·반도체 투자 드라이브","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-president-unveil-massive-ai-chip-investment-drive-2026-06-29/","description":"정부가 반도체·AI·데이터센터를 축으로 대규모 산업 전략을 발표했다. 삼성전자와 SK하이닉스의 신규 팹 투자, HBM 지원, 지역 균형 발전이 핵심이다.","score":368,"priority":368,"tags":["한국","삼성전자","SK하이닉스","AI칩","반도체"]},
+    {"id":"main-20260629-2333-ap-scotus-fed-cook","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 독립기관장 해임권 확대…연준 쿡 이사는 일단 직 유지","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/7b7676e5a066f8df41077a0920b9f334","description":"대법원이 대통령의 독립기관장 해임 권한을 넓히는 결정을 내렸다. 다만 금리 결정 독립성이 큰 연준에는 예외를 인정해 리사 쿡 이사는 당분간 직을 유지한다.","score":356,"priority":356,"tags":["미대법원","연준","리사쿡","행정권","독립기관"]},
+    {"id":"main-20260629-2333-ap-mail-ballots","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 선거일 뒤 도착 우편투표도 주별 집계 허용","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/5f24f718ea92a33838485ce6302e079e","description":"대법원이 선거일 소인이 찍힌 우편투표를 도착 시한 이후에도 집계할 수 있다는 주 법률을 인정했다. 2026년 중간선거 전 우편투표 규칙의 불확실성이 줄었다.","score":346,"priority":346,"tags":["미대법원","우편투표","선거법","중간선거","미국정치"]},
+    {"id":"main-20260629-2333-ap-trump-iran-qatar","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"트럼프 ‘이란이 회동 원해’ 발언에 테헤란 부인…카타르 외교전 혼선","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/39107f657c717e480171dba89798d889","description":"트럼프가 이란 측의 카타르 회동 요청을 주장했지만 이란은 일정이 없다고 부인했다. 휴전·자산 동결 해제·유가 흐름이 함께 얽힌 중동 변수다.","score":338,"priority":338,"tags":["미국","이란","카타르","중동외교","유가"]},
+    {"id":"main-20260629-2333-reuters-korea-exports","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"한국 6월 수출, 반도체 호황에 50년 만의 최고 증가율 전망","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korea-exports-set-grow-strongest-pace-nearly-5-decades-2026-06-29/","description":"로이터 설문에서 한국 6월 수출 증가율이 1978년 이후 최고 수준으로 예상됐다. AI 투자 붐에 따른 반도체 수출 급증이 무역흑자와 증시 심리의 핵심이다.","score":334,"priority":334,"tags":["한국수출","반도체","AI","무역흑자","거시경제"]},
+    {"id":"main-20260629-2333-reuters-canada-worldcup","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"캐나다, 추가시간 결승골로 월드컵 첫 16강 진출","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/sports/soccer/canada-score-late-winner-advance-last-16-world-cup-2026-06-28/","description":"스테픈 에우스타키우의 92분 결승골로 캐나다가 남아공을 1-0으로 꺾고 사상 첫 월드컵 16강에 올랐다. 개최국 서사와 토너먼트 대진이 동시에 달아올랐다.","score":326,"priority":326,"tags":["월드컵","캐나다","남아공","16강","축구"]},
+    {"id":"main-20260629-2333-ap-bet-awards","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎤","title":"BET 어워즈, 드러스키 최연소 진행자로 흑인 엔터 문화 조명","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/f1809410e34624bd363ef048684212ee","description":"로스앤젤레스에서 열린 BET 어워즈가 음악·스포츠·패션 장면을 한데 모았다. 31세 드러스키가 최연소 진행자로 나서 올해 대중문화 장면을 압축했다.","score":306,"priority":306,"tags":["BET어워즈","드러스키","음악","엔터테인먼트","문화"]}
+  ],
+  "byCategory": {"economy": [], "tech": [], "politics": [], "global": [], "play": [], "culture": []}
+}

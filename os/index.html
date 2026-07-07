@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>GORICS Linux GUI OS ISO</title>
+<style>
+:root{color-scheme:dark;--bg:#050816;--panel:#0f172a;--line:#263044;--text:#eef2ff;--muted:#aab7d4;--green:#22c55e;--blue:#2563eb;--red:#ef4444}*{box-sizing:border-box}body{margin:0;min-height:100svh;background:radial-gradient(circle at top left,rgba(34,197,94,.24),transparent 34vw),radial-gradient(circle at top right,rgba(37,99,235,.26),transparent 38vw),var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:18px}.wrap{max-width:1120px;margin:auto}.hero,.card{border:1px solid var(--line);background:rgba(15,23,42,.88);box-shadow:0 24px 80px rgba(0,0,0,.28)}.hero{padding:28px;border-radius:28px}.badge{display:inline-flex;padding:7px 11px;border-radius:999px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);color:#bbf7d0;font-size:12px;font-weight:1000;letter-spacing:.08em}h1{margin:14px 0 10px;font-size:clamp(2rem,7vw,5rem);line-height:.96;letter-spacing:-.07em}.desc{max-width:820px;color:#c5cee0;line-height:1.6;margin:0}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 16px;border-radius:15px;text-decoration:none;color:white;font-weight:1000;background:linear-gradient(135deg,var(--green),var(--blue))}.btn.sub{background:#334155}.btn.red{background:var(--red)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:14px}.card{display:block;padding:18px;border-radius:20px;color:white;text-decoration:none}.card b{display:block;font-size:1.1rem}.card span,.card p{display:block;margin-top:8px;color:var(--muted);line-height:1.55}.main-card{grid-column:1/-1;background:linear-gradient(135deg,rgba(34,197,94,.22),rgba(37,99,235,.2)),rgba(15,23,42,.9)}code{padding:2px 6px;border-radius:8px;background:#020617;color:#bbf7d0}@media(max-width:620px){body{padding:10px}.hero{padding:18px;border-radius:20px}.actions{display:grid}.btn{width:100%}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <span class="badge">REAL LINUX GUI ISO</span>
+    <h1>GORICS Linux GUI OS</h1>
+    <p class="desc">OS 탭의 메인은 이제 웹 흉내 GUI가 아니라 GitHub Actions에서 빌드되는 실제 Debian 기반 Linux GUI ISO입니다. XFCE 데스크톱, Linux 커널, Firefox ESR, 터미널, 파일 관리자, Python3, 한글 폰트/로케일을 포함합니다.</p>
+    <div class="actions">
+      <a class="btn" href="https://github.com/gorics/website/actions/workflows/build-gorics-linux-iso.yml">🚀 ISO 빌드 액션 열기</a>
+      <a class="btn sub" href="iso/">📁 ISO 빌드 소스</a>
+      <a class="btn sub" href="../">← 메인 포털</a>
+    </div>
+  </section>
+  <section class="grid">
+    <article class="card main-card"><b>산출물</b><span><code>gorics-linux-gui-os-amd64.iso</code> + <code>SHA256SUMS.txt</code>를 Actions artifact로 생성합니다.</span></article>
+    <article class="card"><b>기반</b><span>Debian Live Build / amd64 / iso-hybrid / XFCE GUI</span></article>
+    <article class="card"><b>포함 앱</b><span>Firefox ESR, XFCE Terminal, Thunar, Mousepad, Python3, htop, neofetch</span></article>
+    <article class="card"><b>입력</b><span>일반 PC/VM 부팅 기준 키보드·마우스·터치패드 입력은 Linux/XFCE 레벨에서 처리됩니다.</span></article>
+    <article class="card"><b>웹 구동</b><span>ISO artifact가 만들어진 뒤 v86용 공개 URL로 배치하면 브라우저 부팅 엔트리에 연결할 수 있습니다.</span></article>
+  </section>
+</main>
+</body>
+</html>

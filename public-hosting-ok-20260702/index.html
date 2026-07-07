@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Public Site</title>
+  <style>
+    :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f6f8fb; color: #141820; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+    main { width: min(720px, 100%); border: 1px solid #dfe5ee; border-radius: 8px; background: #fff; padding: 28px; }
+    .status { display: inline-flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 999px; background: #e8f7ef; color: #11623d; font-weight: 700; font-size: 14px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: #16a34a; box-shadow: 0 0 0 5px rgba(22, 163, 74, .14); }
+    h1 { margin: 18px 0 8px; font-size: clamp(28px, 5vw, 44px); line-height: 1.1; letter-spacing: 0; }
+    p { margin: 0; color: #4b5563; line-height: 1.65; font-size: 16px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 24px; }
+    .item { border: 1px solid #e5eaf1; border-radius: 8px; padding: 14px; background: #fbfcfe; }
+    .item strong { display: block; margin-bottom: 4px; }
+    .item span { color: #657080; font-size: 13px; }
+    @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } main { padding: 22px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="status"><span class="dot"></span> Public hosting online</div>
+    <h1>공개 사이트 정상 작동</h1>
+    <p>개인정보 없이 배포된 정적 페이지입니다. 외부 브라우저에서 접속 가능한 공인 HTTPS 주소로 제공됩니다.</p>
+    <section class="grid" aria-label="deployment checks">
+      <div class="item"><strong>HTTPS</strong><span>enabled</span></div>
+      <div class="item"><strong>Privacy</strong><span>sanitized</span></div>
+      <div class="item"><strong>Status</strong><span>live</span></div>
+    </section>
+  </main>
+</body>
+</html>

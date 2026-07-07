@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-06-24T22:07:00+09:00",
+  "source": "Latest public news archive overlay; merge before latest.json and data.json",
+  "page": "main-latest-archive",
+  "categories": [
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":2}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"latest-20260624-2207-reuters-qualcomm-modular-ai-software","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"퀄컴, AI 소프트웨어 스타트업 Modular 40억 달러 인수","description":"퀄컴이 AI 모델을 여러 칩 아키텍처에서 돌릴 수 있게 하는 Modular를 주식 거래로 인수한다. 엔비디아 CUDA 의존도를 낮추려는 AI 소프트웨어 경쟁이 본격화됐다.","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":452,"tags":["퀄컴","Modular","AI","M&A","CUDA"]},
+    {"id":"latest-20260624-2207-reuters-wall-st-tech-rebound-micron","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"미 증시 선물, 기술주 반등·마이크론 실적 대기 속 상승","description":"이틀간 조정 뒤 기술주가 반등하며 미국 주요 지수 선물이 상승했다. 투자자들은 AI 인프라 수요의 지속성을 가늠할 마이크론 실적에 주목하고 있다.","url":"https://www.reuters.com/business/sp-500-nasdaq-futures-tick-up-tech-shares-stabilize-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":448,"tags":["미국증시","기술주","마이크론","AI","나스닥"]},
+    {"id":"latest-20260624-2207-reuters-dbs-asia-energy-transition","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"DBS, 아시아 에너지 전환 투자기구에 2억1000만 달러 금융 제공","description":"싱가포르 DBS가 FAST-P 산하 ETAFCo에 선순위 부채 금융을 제공한다. 아시아 청정에너지 전환 프로젝트 자금 조달 흐름을 보여주는 사례다.","url":"https://www.reuters.com/world/asia-pacific/singapores-dbs-provides-210-million-financing-asia-energy-transition-vehicle-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":410,"tags":["DBS","에너지전환","아시아","지속가능금융","인프라"]},
+    {"id":"latest-20260624-2207-reuters-worldcup-hydration-infantino","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"인판티노, 월드컵 수분 휴식은 상업 아닌 경기 운영 목적이라고 해명","description":"FIFA 회장이 월드컵 전 경기의 의무 수분 휴식은 더위와 형평성을 고려한 조치라고 밝혔다. 광고 시간 확대 논란과 경기 흐름 훼손 비판은 계속되고 있다.","url":"https://www.reuters.com/sports/soccer/infantino-says-world-cup-hydration-breaks-purely-sporting-not-commercial-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":386,"tags":["월드컵","FIFA","수분휴식","인판티노","축구"]},
+    {"id":"latest-20260624-2207-reuters-mexico-city-alcohol-ban-worldcup","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"멕시코시티, 월드컵 멕시코전 앞두고 일부 지역 주류 판매 제한","description":"멕시코시티가 멕시코-체코전 전후 혼잡 지역의 편의점·식료품점 주류 판매를 일시 제한한다. 대규모 거리 응원 뒤 쓰레기·공공 음주 관리가 쟁점이 됐다.","url":"https://www.reuters.com/sports/soccer/mexico-city-bans-alcohol-sales-ahead-mexico-czech-republic-match-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":374,"tags":["월드컵","멕시코시티","주류판매","거리응원","치안"]}
+  ],
+  "byCategory": {
+    "tech": [
+      {"id":"latest-20260624-2207-reuters-qualcomm-modular-ai-software","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"퀄컴, AI 소프트웨어 스타트업 Modular 40억 달러 인수","description":"퀄컴이 AI 모델을 여러 칩 아키텍처에서 돌릴 수 있게 하는 Modular를 주식 거래로 인수한다. 엔비디아 CUDA 의존도를 낮추려는 AI 소프트웨어 경쟁이 본격화됐다.","url":"https://www.reuters.com/business/qualcomm-buy-ai-startup-modular-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":452,"tags":["퀄컴","Modular","AI","M&A","CUDA"]}
+    ],
+    "economy": [
+      {"id":"latest-20260624-2207-reuters-wall-st-tech-rebound-micron","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"미 증시 선물, 기술주 반등·마이크론 실적 대기 속 상승","description":"이틀간 조정 뒤 기술주가 반등하며 미국 주요 지수 선물이 상승했다. 투자자들은 AI 인프라 수요의 지속성을 가늠할 마이크론 실적에 주목하고 있다.","url":"https://www.reuters.com/business/sp-500-nasdaq-futures-tick-up-tech-shares-stabilize-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":448,"tags":["미국증시","기술주","마이크론","AI","나스닥"]},
+      {"id":"latest-20260624-2207-reuters-dbs-asia-energy-transition","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"DBS, 아시아 에너지 전환 투자기구에 2억1000만 달러 금융 제공","description":"싱가포르 DBS가 FAST-P 산하 ETAFCo에 선순위 부채 금융을 제공한다. 아시아 청정에너지 전환 프로젝트 자금 조달 흐름을 보여주는 사례다.","url":"https://www.reuters.com/world/asia-pacific/singapores-dbs-provides-210-million-financing-asia-energy-transition-vehicle-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":410,"tags":["DBS","에너지전환","아시아","지속가능금융","인프라"]}
+    ],
+    "play": [
+      {"id":"latest-20260624-2207-reuters-worldcup-hydration-infantino","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"인판티노, 월드컵 수분 휴식은 상업 아닌 경기 운영 목적이라고 해명","description":"FIFA 회장이 월드컵 전 경기의 의무 수분 휴식은 더위와 형평성을 고려한 조치라고 밝혔다. 광고 시간 확대 논란과 경기 흐름 훼손 비판은 계속되고 있다.","url":"https://www.reuters.com/sports/soccer/infantino-says-world-cup-hydration-breaks-purely-sporting-not-commercial-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":386,"tags":["월드컵","FIFA","수분휴식","인판티노","축구"]},
+      {"id":"latest-20260624-2207-reuters-mexico-city-alcohol-ban-worldcup","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"멕시코시티, 월드컵 멕시코전 앞두고 일부 지역 주류 판매 제한","description":"멕시코시티가 멕시코-체코전 전후 혼잡 지역의 편의점·식료품점 주류 판매를 일시 제한한다. 대규모 거리 응원 뒤 쓰레기·공공 음주 관리가 쟁점이 됐다.","url":"https://www.reuters.com/sports/soccer/mexico-city-bans-alcohol-sales-ahead-mexico-czech-republic-match-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":374,"tags":["월드컵","멕시코시티","주류판매","거리응원","치안"]}
+    ]
+  }
+}

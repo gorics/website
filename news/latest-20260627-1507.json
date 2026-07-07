@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-06-27T15:07:58+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"main-20260627-1507-ap-us-strikes-iran","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"미국, 호르무즈 화물선 드론 공격 대응해 이란 공습","publishedAt":"2026-06-27","date":"2026-06-27","source":"AP","url":"https://apnews.com/article/iran-us-israel-war-hormuz-strait-june-26-2026-8c1a77eb82d25f00de814958114c7296","description":"호르무즈 해협 화물선 드론 공격 뒤 미국이 이란을 타격하면서 중동 휴전·해상 운송 리스크가 다시 커졌다.","score":105,"priority":105,"tags":["미국","이란","호르무즈","중동","안보"]},
+    {"id":"main-20260627-1507-reuters-barclays-brent","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"바클레이즈, 브렌트유 2026·2027 전망 하향","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/energy/barclays-cuts-brent-price-forecasts-2026-2027-2026-06-26/","description":"호르무즈 통항 흐름 개선과 공급 우려 완화로 바클레이즈가 브렌트유 평균 전망치를 낮췄다.","score":103,"priority":103,"tags":["브렌트유","바클레이즈","원유","호르무즈","에너지"]},
+    {"id":"main-20260627-1507-reuters-venezuela-oil-quake","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"베네수엘라 강진 뒤 산유량은 유지…항만·전력 차질 지속","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/energy/power-outage-slows-operations-key-port-plants-after-earthquakes-venezuela-2026-06-26/","description":"대형 지진에도 원유 생산은 유지됐지만 정전과 항만 운영 차질이 구호·정제시설 재가동을 지연시키고 있다.","score":101,"priority":101,"tags":["베네수엘라","지진","원유","전력","항만"]},
+    {"id":"main-20260627-1507-reuters-ibm-sub-1nm-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"IBM, 1나노 미만 AI 칩 기술 공개","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM이 0.7나노급 트랜지스터 구조를 공개하며 AI 반도체 성능·전력 효율 경쟁의 새 이정표를 제시했다.","score":100,"priority":100,"tags":["IBM","반도체","AI칩","나노스택","첨단공정"]},
+    {"id":"main-20260627-1507-reuters-venezuela-quake-politics","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"베네수엘라 지진, 델시 로드리게스 지도부의 정치 시험대로 부상","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/world/americas/earthquake-shifts-political-ground-venezuelan-leader-delcy-rodriguez-2026-06-26/","description":"대규모 인명 피해와 국제 원조 수용 문제가 베네수엘라 권력 구도와 대미 관계의 새 변수로 떠올랐다.","score":97,"priority":97,"tags":["베네수엘라","델시로드리게스","재난정치","미국원조","라틴아메리카"]},
+    {"id":"main-20260627-1507-reuters-spain-uruguay-worldcup","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"스페인, 우루과이 1-0 제압…월드컵 조 1위로 토너먼트행","publishedAt":"2026-06-27","date":"2026-06-27","source":"Reuters","url":"https://www.reuters.com/sports/soccer/spain-seal-group-h-knock-out-uruguay-with-1-0-win-2026-06-27/","description":"바에나의 결승골로 스페인이 조 1위를 확정했고, 우루과이는 무승 탈락으로 대회를 마쳤다.","score":96,"priority":96,"tags":["월드컵","스페인","우루과이","바에나","32강"]},
+    {"id":"main-20260627-1507-ap-what-to-stream","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"이번 주 스트리밍 신작: ‘에놀라 홈즈 3’·마돈나·‘엘르’ 공개 예정","publishedAt":"2026-06-27","date":"2026-06-27","source":"AP","url":"https://apnews.com/article/587bf83b9098091ee91d9a6d83c0cfcd","description":"6월 말~7월 초 주요 스트리밍 라인업에 넷플릭스 영화, 마돈나 신보, ‘금발이 너무해’ 프리퀄 등이 포함됐다.","score":91,"priority":91,"tags":["스트리밍","에놀라홈즈","마돈나","엘르","문화"]}
+  ],
+  "byCategory": {
+    "economy": [], "tech": [], "global": [], "politics": [], "play": [], "culture": []
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-06-25T19:08:03+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":0},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
+    {"id":"fx-rates","name":"금리·환율","icon":"💱","count":0}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"fin-20260625-1908-oil-hormuz-supply","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"유가 하락 지속, 호르무즈 통항 회복과 중동 공급 증가가 압박","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-prices-fall-tankers-exit-strait-hormuz-2026-06-25/","description":"브렌트와 WTI가 동반 하락했다. 해상 물동량 회복과 이란 수출 기대가 에너지 인플레이션 부담을 낮추는 재료다.","score":98,"priority":98,"tags":["유가","호르무즈","브렌트","WTI","에너지"]},
+    {"id":"fin-20260625-1908-korea-chip-rally","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"한국 반도체주 랠리, AI 메모리 공급계약과 미국 상장 기대 반영","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"마이크론 실적과 SK하이닉스 미국 상장 계획이 HBM·메모리 체인의 투자심리를 강화했다.","score":96,"priority":96,"tags":["반도체","SK하이닉스","삼성전자","마이크론","HBM"]},
+    {"id":"fin-20260625-1908-europe-ai-rally","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"유럽 증시 상승, AI 랠리와 유가 안정이 위험선호 개선","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-gain-upbeat-micron-forecast-revives-ai-rally-2026-06-25/","description":"STOXX 600이 상승했고 반도체·장비주가 주도했다. 유가 하락은 금리·인플레 부담 완화 신호로 해석됐다.","score":94,"priority":94,"tags":["유럽증시","AI랠리","STOXX600","ASML","유가"]},
+    {"id":"fin-20260625-1908-ukraine-russia-energy-risk","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"우크라이나 선제타격 방침, 러시아 에너지 인프라 리스크 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/ukraine-conduct-preemptive-attacks-facilities-russia-uses-war-zelenskiy-says-2026-06-25/","description":"러시아 정유·전력 시설을 겨냥한 공격 가능성이 커지며 연료 공급과 지정학 프리미엄 변동성이 재부각됐다.","score":90,"priority":90,"tags":["러시아","우크라이나","정유시설","지정학","에너지리스크"]}
+  ],
+  "byCategory": {"global-markets": [],"semiconductors": [],"ai-infrastructure": [],"energy-geopolitics": [],"fx-rates": []}
+}

@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-30T19:07:44+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"macro","name":"거시경제","icon":"📊","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"fin-20260630-1907-reuters-china-pmi-ai","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"📊","title":"중국 제조업 확장 복귀…AI 수출 의존 경기 회복 신호","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/chinas-factory-activity-expands-june-high-tech-exports-2026-06-30/","description":"중국 PMI가 50선을 넘으며 확장으로 돌아섰다. AI 관련 수출이 제조업을 지탱하지만 내수·고용·공장도 가격 약세는 정책 완화 기대를 남긴다.","score":536,"priority":536,"tags":["중국","PMI","AI수출","거시경제","부양책"]},
+    {"id":"fin-20260630-1907-ft-mag7-semiconductor-rotation","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"AI 플랫폼주 약세, 반도체·메모리 공급망으로 자금 회전","publishedAt":"2026-06-30","date":"2026-06-30","source":"Financial Times","url":"https://www.ft.com/content/b90bdfcb-d773-42f7-bb5f-52dbd28b2174","description":"매그니피센트7이 대규모 시총 손실을 겪는 동안 필라델피아 반도체 지수와 메모리·스토리지 종목이 강세를 보였다. AI 투자 수혜의 중심이 서비스에서 하드웨어로 이동했다.","score":528,"priority":528,"tags":["AI","반도체","메모리","월가","기술주순환"]},
+    {"id":"fin-20260630-1907-reuters-gulf-oil-doha","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"도하 협상 불확실성에 걸프 증시·브렌트유 약세","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/middle-east/major-gulf-markets-subdued-amid-uncertainty-over-doha-talks-2026-06-30/","description":"미·이란 접촉 여부가 엇갈리며 걸프 증시가 방향성을 잃었다. 사우디 아람코와 주요 은행주가 눌렸고 브렌트유는 중동 리스크 재평가 속 하락했다.","score":512,"priority":512,"tags":["브렌트유","걸프증시","도하","미국이란","지정학"]},
+    {"id":"fin-20260630-1907-reuters-global-stocks-dollar-gold","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"🌐","title":"글로벌 주식 강세 속 달러·금·엔 급변…분기 말 리밸런싱 변수 확대","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"전세계 주식이 강한 2분기를 보인 반면 달러·금·엔은 큰 폭으로 재가격화됐다. AI 랠리와 금리 기대 변화가 분기 말 포지션 조정의 핵심 변수다.","score":506,"priority":506,"tags":["글로벌시장","달러","금","엔화","리밸런싱"]}
+  ],
+  "byCategory": {
+    "macro": [],
+    "semiconductors": [],
+    "energy-geopolitics": [],
+    "global-markets": []
+  }
+}

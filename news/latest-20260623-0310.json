@@ -1,0 +1,115 @@
+{
+  "generatedAt": "2026-06-23T03:10:05+09:00",
+  "source": "Latest public news overlay for GitHub Pages news site; fetched from Reuters/AP/Guardian public sources; overlay merges ahead of latest.json and data.json",
+  "page": "main-latest-overlay",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎭","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {
+      "id":"latest-20260623-0310-reuters-sp500-nasdaq-tech-iran",
+      "category":"economy",
+      "categoryName":"경제·금융",
+      "categoryIcon":"💹",
+      "title":"S&P500·나스닥 하락, 빅테크 약세와 미·이란 협상 주시",
+      "description":"알파벳 등 대형 기술주 하락으로 S&P500과 나스닥이 밀렸지만 반도체주는 강세를 보였다. 투자자들은 미·이란 협상과 PCE 물가를 함께 주시하고 있다.",
+      "url":"https://www.reuters.com/business/wall-st-futures-muted-investors-monitor-us-iran-negotiations-2026-06-22/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-22T00:00:00Z",
+      "score":294,
+      "tags":["S&P500","나스닥","빅테크","반도체","미이란협상"]
+    },
+    {
+      "id":"latest-20260623-0310-reuters-dollar-pound-oil",
+      "category":"economy",
+      "categoryName":"경제·금융",
+      "categoryIcon":"💹",
+      "title":"달러 강세·파운드 변동성, 스타머 사퇴와 미·이란 회담 반영",
+      "description":"달러는 미·이란 회담 기대 속 소폭 강세를 보였고 파운드는 스타머 사퇴 발표 이후 출렁였다. 유가는 협상 진전 기대에 하락 압력을 받았다.",
+      "url":"https://www.reuters.com/business/dollar-firms-cracks-emerge-peace-deal-pound-dips-starmer-uncertainty-2026-06-22/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-22T00:00:00Z",
+      "score":288,
+      "tags":["달러","파운드","유가","스타머","외환"]
+    },
+    {
+      "id":"latest-20260623-0310-reuters-streeting-burnham-starmer",
+      "category":"politics",
+      "categoryName":"정치",
+      "categoryIcon":"🏛️",
+      "title":"스트리팅, 번엄 지지 선언…스타머 이후 영국 총리 구도 윤곽",
+      "description":"웨스 스트리팅이 앤디 번엄 지지를 선언하며 노동당 차기 지도부 구도가 번엄 중심으로 기울었다. 7월 후보 등록과 9월 전환 일정이 핵심이다.",
+      "url":"https://www.reuters.com/world/uk/uks-streeting-backs-andy-burnham-replace-starmer-pm-2026-06-22/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-22T00:00:00Z",
+      "score":270,
+      "tags":["영국정치","스타머","앤디번엄","노동당","총리교체"]
+    },
+    {
+      "id":"latest-20260623-0310-guardian-us-iran-talks-foundation",
+      "category":"global",
+      "categoryName":"국제",
+      "categoryIcon":"🌍",
+      "title":"밴스 “미·이란 회담, 최종 합의의 좋은 기반 마련”",
+      "description":"스위스에서 열린 미·이란 회담이 중동 전쟁 종식과 핵·제재 문제 조율의 초기 기반을 마련했다는 평가가 나왔다. 호르무즈와 레바논 긴장은 여전히 변수다.",
+      "url":"https://www.theguardian.com/world/live/2026/jun/22/middle-east-crisis-iran-us-peace-talks-switzerland-strait-of-hormuz-latest-news-updates",
+      "source":{"name":"The Guardian"},
+      "publishedAt":"2026-06-22T00:00:00Z",
+      "score":266,
+      "tags":["미이란회담","스위스","중동","호르무즈","제재"]
+    },
+    {
+      "id":"latest-20260623-0310-reuters-chevron-microsoft-ai-power",
+      "category":"tech",
+      "categoryName":"기술",
+      "categoryIcon":"🤖",
+      "title":"셰브런·마이크로소프트, 텍사스 AI 데이터센터 전력 계약",
+      "description":"셰브런은 마이크로소프트 텍사스 데이터센터에 장기 전력을 공급하는 대형 가스발전 프로젝트를 추진한다. AI 인프라 경쟁이 전력·에너지 투자로 확장되고 있다.",
+      "url":"https://www.reuters.com/legal/litigation/chevron-signs-power-supply-deal-with-microsoft-texas-data-center-2026-06-22/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-22T00:00:00Z",
+      "score":254,
+      "tags":["AI데이터센터","마이크로소프트","셰브런","전력","인프라"]
+    },
+    {
+      "id":"latest-20260623-0310-reuters-messi-worldcup-record",
+      "category":"play",
+      "categoryName":"스포츠·엔터",
+      "categoryIcon":"⚽",
+      "title":"메시, 월드컵 남자 통산 17호골로 최다 득점 신기록",
+      "description":"리오넬 메시가 2026 월드컵 오스트리아전에서 통산 17번째 골을 넣어 남자 월드컵 최다 득점 기록을 경신했다. 아르헨티나의 토너먼트 진출 경쟁도 탄력을 받았다.",
+      "url":"https://www.reuters.com/sports/soccer/messi-breaks-mens-world-cup-scoring-record-with-17th-goal-2026-06-22/",
+      "source":{"name":"Reuters"},
+      "publishedAt":"2026-06-22T00:00:00Z",
+      "score":248,
+      "tags":["월드컵","메시","아르헨티나","최다득점","축구"]
+    },
+    {
+      "id":"latest-20260623-0310-ap-streaming-paul-simon-avatar-starfox",
+      "category":"culture",
+      "categoryName":"문화",
+      "categoryIcon":"🎭",
+      "title":"이번 주 스트리밍: 폴 사이먼 공연·아바타 시즌2·스타폭스 리메이크",
+      "description":"AP는 이번 주 주요 스트리밍·음악·게임 신작으로 폴 사이먼 콘서트, 넷플릭스 아바타 시즌2, 닌텐도 스타폭스 리메이크 등을 꼽았다.",
+      "url":"https://apnews.com/article/747e2bc5c5f6435952fed15fe574ebcd",
+      "source":{"name":"AP"},
+      "publishedAt":"2026-06-20T00:00:00Z",
+      "score":210,
+      "tags":["스트리밍","폴사이먼","아바타","스타폭스","문화"]
+    }
+  ],
+  "byCategory": {
+    "economy": [],
+    "politics": [],
+    "global": [],
+    "tech": [],
+    "play": [],
+    "culture": []
+  }
+}

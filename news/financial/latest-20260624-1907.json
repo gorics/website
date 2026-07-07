@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-24T19:07:30+09:00",
+  "source": "Latest financial public news overlay archive for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-archive",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":2}
+  ],
+  "total": 2,
+  "allItems": [
+    {"id":"fin-20260624-1907-reuters-us-futures-tech-stabilize","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"미 증시 선물 반등, 기술주 급락 뒤 안정 시도","description":"나스닥100에서 1조달러 이상 시가총액이 증발한 뒤 S&P500·나스닥 선물이 소폭 반등했다. 마이크론 실적과 연준 물가 지표가 다음 시장 변수다.","url":"https://www.reuters.com/business/sp-500-nasdaq-futures-tick-up-tech-shares-stabilize-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":452,"tags":["미국증시","나스닥","기술주","마이크론","연준"]},
+    {"id":"fin-20260624-1907-reuters-europe-shares-rheinmetall","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"유럽 증시 보합, 라인메탈 급락·기술주 반등이 맞물려","description":"STOXX 600은 미·이란 협상과 방산주 약세를 소화하며 보합권에 머물렀다. 라인메탈 급락과 부동산·기술주 반등이 지수 흐름을 갈랐다.","url":"https://www.reuters.com/business/aerospace-defense/european-shares-muted-investors-assess-us-iran-talks-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":438,"tags":["유럽증시","STOXX600","라인메탈","방산","미이란"]}
+  ],
+  "byCategory": {
+    "global-markets": [
+      {"id":"fin-20260624-1907-reuters-us-futures-tech-stabilize","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"미 증시 선물 반등, 기술주 급락 뒤 안정 시도","description":"나스닥100에서 1조달러 이상 시가총액이 증발한 뒤 S&P500·나스닥 선물이 소폭 반등했다. 마이크론 실적과 연준 물가 지표가 다음 시장 변수다.","url":"https://www.reuters.com/business/sp-500-nasdaq-futures-tick-up-tech-shares-stabilize-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":452,"tags":["미국증시","나스닥","기술주","마이크론","연준"]},
+      {"id":"fin-20260624-1907-reuters-europe-shares-rheinmetall","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"유럽 증시 보합, 라인메탈 급락·기술주 반등이 맞물려","description":"STOXX 600은 미·이란 협상과 방산주 약세를 소화하며 보합권에 머물렀다. 라인메탈 급락과 부동산·기술주 반등이 지수 흐름을 갈랐다.","url":"https://www.reuters.com/business/aerospace-defense/european-shares-muted-investors-assess-us-iran-talks-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":438,"tags":["유럽증시","STOXX600","라인메탈","방산","미이란"]}
+    ]
+  }
+}

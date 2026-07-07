@@ -1,0 +1,72 @@
+{
+  "generatedAt": "2026-06-22T20:07:06+09:00",
+  "source": "Latest financial public news overlay for GitHub Pages news site; timestamp overlay merged ahead of latest.json and data.json",
+  "page": "financial-timestamp-overlay",
+  "categories": [
+    {"id":"energy-markets","name":"에너지시장","icon":"🛢️","count":1},
+    {"id":"fx-rates","name":"외환·금리","icon":"💱","count":1},
+    {"id":"precious-metals","name":"귀금속","icon":"🥇","count":1},
+    {"id":"equity-markets","name":"주식시장","icon":"📈","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {
+      "id": "fin-20260622-2007-oil-falls-iran-talks",
+      "category": "energy-markets",
+      "categoryName": "에너지시장",
+      "categoryIcon": "🛢️",
+      "title": "유가, 미·이란 회담 진전으로 공급 리스크 완화",
+      "description": "미·이란 회담 진전과 이란 원유 흐름 재개 기대가 공급 리스크 프리미엄을 낮추며 국제유가를 끌어내렸다.",
+      "url": "https://www.reuters.com/business/energy/brent-oil-rises-more-than-1bbl-after-bumpy-start-us-iran-peace-talks-2026-06-21/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-22",
+      "score": 292,
+      "tags": ["유가","브렌트유","WTI","미이란협상","원유공급"]
+    },
+    {
+      "id": "fin-20260622-2007-dollar-yen-fed",
+      "category": "fx-rates",
+      "categoryName": "외환·금리",
+      "categoryIcon": "💱",
+      "title": "달러 강세·엔화 약세, 연준 긴축 전망이 외환시장 압박",
+      "description": "달러지수는 고점권을 유지했고 엔화는 40년 저점 부근까지 밀렸다. 연준의 매파적 금리 전망과 지정학 변수 완화가 동시에 반영됐다.",
+      "url": "https://www.reuters.com/business/dollar-firms-cracks-emerge-peace-deal-pound-dips-starmer-uncertainty-2026-06-22/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-22",
+      "score": 276,
+      "tags": ["달러","엔화","연준","금리","외환시장"]
+    },
+    {
+      "id": "fin-20260622-2007-gold-rebound-iran-talks",
+      "category": "precious-metals",
+      "categoryName": "귀금속",
+      "categoryIcon": "🥇",
+      "title": "금값, 3거래일 하락 뒤 반등…유가 하락과 안전자산 수요 교차",
+      "description": "미·이란 회담 진전으로 유가가 낮아졌지만 금은 저가 매수와 통화정책 불확실성 속에 반등했다. 은·플래티넘 등도 동반 상승했다.",
+      "url": "https://www.reuters.com/world/india/gold-rebounds-one-week-low-iran-cites-progress-peace-talks-2026-06-22/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-22",
+      "score": 262,
+      "tags": ["금","귀금속","유가","연준","안전자산"]
+    },
+    {
+      "id": "fin-20260622-2007-india-shares-reliance-it",
+      "category": "equity-markets",
+      "categoryName": "주식시장",
+      "categoryIcon": "📈",
+      "title": "인도 증시 상승, 릴라이언스·IT 반등과 유가 하락이 투자심리 개선",
+      "description": "니프티와 센섹스가 동반 상승했다. 릴라이언스 성장 기대, IT주 반등, 브렌트유 80달러 하회가 외국인 자금과 위험선호를 지지했다.",
+      "url": "https://www.reuters.com/world/india/indian-shares-set-rise-us-iran-talks-progress-oil-eases-2026-06-22/",
+      "source": {"name":"Reuters"},
+      "publishedAt": "2026-06-22",
+      "score": 248,
+      "tags": ["인도증시","릴라이언스","IT주","외국인자금","유가"]
+    }
+  ],
+  "byCategory": {
+    "energy-markets": [],
+    "fx-rates": [],
+    "precious-metals": [],
+    "equity-markets": []
+  }
+}

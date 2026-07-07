@@ -1,0 +1,75 @@
+{
+  "generatedAt": "2026-06-24T20:08:56+09:00",
+  "source": "Latest financial public news archive overlay; finance and market-moving items prioritized",
+  "page": "financial-latest-archive",
+  "categories": ["에너지·지정학", "금속·금리", "AI 반도체", "글로벌시장"],
+  "total": 4,
+  "allItems": [
+    {
+      "id": "finance-20260624-2008-energy-brent-hormuz",
+      "category": "energy",
+      "categoryName": "에너지·지정학",
+      "category_ko": "에너지·지정학",
+      "categoryIcon": "🛢️",
+      "title": "브렌트유, 호르무즈 정상화 기대에 4개월 저점권",
+      "publishedAt": "2026-06-24T01:17:12Z",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/energy/oil-prices-extend-decline-expectations-smoother-crude-flows-via-hormuz-2026-06-24/",
+      "description": "중동 원유 수송 차질 완화와 이란 원유 공급 재개 기대가 유가 하락 압력으로 작용했다.",
+      "score": 95,
+      "priority": 95,
+      "tags": ["Brent", "WTI", "Hormuz", "Iran", "oil"]
+    },
+    {
+      "id": "finance-20260624-2008-metals-gold-dollar-fed",
+      "category": "metals-rates",
+      "categoryName": "금속·금리",
+      "category_ko": "금속·금리",
+      "categoryIcon": "🥇",
+      "title": "금, 강달러·연준 인상 전망에 2주 저점",
+      "publishedAt": "2026-06-24T01:23:36Z",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/india/gold-slips-fed-rate-hike-expectations-buoy-dollar-2026-06-24/",
+      "description": "미 달러 강세와 추가 금리 인상 베팅이 금 ETF 수요와 현물 가격을 눌렀다.",
+      "score": 92,
+      "priority": 92,
+      "tags": ["gold", "dollar", "Fed", "rates", "PCE"]
+    },
+    {
+      "id": "finance-20260624-2008-ai-chip-nvidia-china",
+      "category": "ai-semiconductors",
+      "categoryName": "AI 반도체",
+      "category_ko": "AI 반도체",
+      "categoryIcon": "🧠",
+      "title": "엔비디아 금수 AI칩 중국 암시장 가격 급등 보도",
+      "publishedAt": "2026-06-24T00:26:01Z",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/asia-pacific/nvidias-banned-ai-chips-double-price-chinas-black-market-ft-reports-2026-06-24/",
+      "description": "수출통제와 공급 부족이 AI 칩 가격 프리미엄을 키우며 반도체 공급망 리스크를 부각했다.",
+      "score": 90,
+      "priority": 90,
+      "tags": ["Nvidia", "AI chips", "China", "export controls"]
+    },
+    {
+      "id": "finance-20260624-2008-global-dollar-tech-recovery",
+      "category": "global-markets",
+      "categoryName": "글로벌시장",
+      "category_ko": "글로벌시장",
+      "categoryIcon": "🌐",
+      "title": "기술주 안정에도 평화협상 불확실성에 달러 강세 지속",
+      "publishedAt": "2026-06-24",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/china/global-markets-global-markets-2026-06-24/",
+      "description": "기술주가 일부 회복했지만 미·이란 협상 불확실성과 금리 전망이 달러 수요를 유지했다.",
+      "score": 89,
+      "priority": 89,
+      "tags": ["global markets", "dollar", "tech stocks", "Iran", "Micron"]
+    }
+  ],
+  "byCategory": {
+    "energy": [],
+    "metals-rates": [],
+    "ai-semiconductors": [],
+    "global-markets": []
+  }
+}

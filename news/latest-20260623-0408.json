@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-06-23T04:08:53+09:00",
+  "source": "Latest public news overlay for GitHub Pages news site; fetched from Reuters/AP/ESPN public sources; overlay merges ahead of latest.json and data.json",
+  "page": "main-latest-overlay",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎭","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"latest-20260623-0408-reuters-micron-anthropic-ai-infra","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"마이크론·앤스로픽, AI 인프라 공급 계약 체결","description":"마이크론이 앤스로픽에 메모리·스토리지 제품을 공급하고 투자에도 참여한다. AI 모델 학습·운영 비용 경쟁이 고성능 메모리 수요로 이어지는 흐름이다.","url":"https://www.reuters.com/business/micron-anthropic-sign-ai-infrastructure-supply-agreement-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22T00:00:00Z","score":292,"tags":["마이크론","앤스로픽","AI인프라","HBM","메모리"]},
+    {"id":"latest-20260623-0408-reuters-oil-reserves-hormuz","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"이란 전쟁 이후 전략비축유 확대 경쟁, 유가 장기 변수로 부상","description":"호르무즈 차질 이후 각국이 전략비축유 확충을 서두르고 있다. 신규 저장 수요와 재비축이 원유 가격의 중장기 하방을 제한할 수 있다.","url":"https://www.reuters.com/commentary/reuters-open-interest/iran-war-triggers-global-race-build-oil-reserves-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22T00:00:00Z","score":286,"tags":["전략비축유","원유","호르무즈","에너지안보","유가"]},
+    {"id":"latest-20260623-0408-reuters-dollar-pound-starmer-iran","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"달러 소폭 강세·파운드 변동성, 미·이란 회담과 스타머 사퇴 반영","description":"미·이란 회담 기대가 달러를 지지했고 파운드는 스타머 사퇴 발표 뒤 출렁였다. 유가 하락은 에너지 인플레이션 부담 완화 기대를 더했다.","url":"https://www.reuters.com/business/dollar-firms-cracks-emerge-peace-deal-pound-dips-starmer-uncertainty-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22T00:00:00Z","score":282,"tags":["달러","파운드","스타머","유가","외환"]},
+    {"id":"latest-20260623-0408-reuters-starmer-resigns-burnham","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"스타머 사퇴로 영국 정권 이양 국면, 번엄 차기 총리 가능성 부상","description":"키어 스타머 영국 총리가 사퇴를 밝히며 노동당 지도부 재편이 본격화됐다. 시장과 외교 파트너들은 번엄 중심의 새 정부 구성을 주시하고 있다.","url":"https://www.reuters.com/","source":{"name":"Reuters"},"publishedAt":"2026-06-22T00:00:00Z","score":276,"tags":["영국정치","스타머","앤디번엄","노동당","정권이양"]},
+    {"id":"latest-20260623-0408-ap-us-iran-talks-new-phase","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"미·이란 협상 새 국면, 핵 사찰·제재 완화 쟁점 부상","description":"스위스 회담 이후 미국은 이란 핵 사찰 허용 가능성을 언급했지만 테헤란의 공식 반응은 아직 제한적이다. 중동 긴장 완화 여부가 국제 유가와 외교의 핵심 변수다.","url":"https://apnews.com/","source":{"name":"AP"},"publishedAt":"2026-06-22T00:00:00Z","score":268,"tags":["미이란회담","핵사찰","중동","제재","외교"]},
+    {"id":"latest-20260623-0408-espn-egypt-salah-worldcup-win","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"살라, 이집트 월드컵 첫 승 견인","description":"ESPN 주요 헤드라인에서 살라가 이집트의 월드컵 첫 승을 이끈 경기 소식이 부각됐다. 조별리그 판도와 스타 선수 영향력이 다시 주목받고 있다.","url":"https://www.espn.com/","source":{"name":"ESPN"},"publishedAt":"2026-06-22T00:00:00Z","score":224,"tags":["월드컵","살라","이집트","축구","스포츠"]},
+    {"id":"latest-20260623-0408-ap-streaming-culture-week","category":"culture","categoryName":"문화","categoryIcon":"🎭","title":"이번 주 문화·스트리밍 신작, 공연·드라마·게임 라인업 주목","description":"AP는 음악 공연, 드라마 시즌, 게임 리메이크 등 이번 주 주요 스트리밍·문화 콘텐츠를 정리했다. 여름 시즌 플랫폼 경쟁이 본격화되는 흐름이다.","url":"https://apnews.com/article/747e2bc5c5f6435952fed15fe574ebcd","source":{"name":"AP"},"publishedAt":"2026-06-20T00:00:00Z","score":210,"tags":["스트리밍","문화","공연","게임","콘텐츠"]}
+  ],
+  "byCategory": {
+    "economy": [],
+    "politics": [],
+    "global": [],
+    "tech": [],
+    "play": [],
+    "culture": []
+  }
+}

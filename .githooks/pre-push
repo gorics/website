@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+branch="$(git rev-parse --abbrev-ref HEAD)"
+# main/master에서는 스킵
+[[ "$branch" == "main" || "$branch" == "master" ]] && exit 0
+
+# main 최신 반영 + 메인 기준 자동 병합
+git fetch origin main
+git merge -s recursive -X theirs --no-edit origin/main || true
+
+# 남은 충돌이 있으면 모두 main 버전으로 강제
+if git diff --name-only --diff-filter=U | grep -q .; then
+  git diff --name-only --diff-filter=U | xargs -I{} git checkout --theirs "{}"
+  git add -A
+fi
+
+# 변경이 있으면 커밋 (푸시는 훅 밖에서 1회만 진행)
+if ! git diff --cached --quiet || ! git diff --quiet; then
+  git add -A
+  git commit -m "chore(pre-push): auto-merge main (-X theirs) before push"
+fi
+exit 0

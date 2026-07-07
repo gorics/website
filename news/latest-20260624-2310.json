@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-06-24T23:10:24+09:00",
+  "source": "Latest public news overlay archive for GitHub Pages news site; generated from current Reuters/AP public sources; merge ahead of latest.json and data.json",
+  "page": "main-latest-overlay-archive",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":3},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"latest-20260624-2310-reuters-global-markets-tech-dollar","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"글로벌 증시, 기술주 반등에도 달러 강세·유가 약세로 불안정","description":"AI 밸류에이션 우려 뒤 기술주가 일부 회복했지만 달러는 지정학 리스크와 금리 인상 기대에 강세를 보였다. 유가는 호르무즈 해협 물류 완화 기대 속 하락했다.","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":454,"tags":["글로벌시장","달러","유가","기술주","AI밸류에이션"]},
+    {"id":"latest-20260624-2310-reuters-gold-below-4000","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"금값, 달러 강세·매파 Fed 신호에 온스당 4,000달러 밑으로 하락","description":"현물 금이 강달러와 금리 인상 베팅 확대로 2025년 11월 이후 처음 4,000달러 선을 밑돌았다. 비수익 자산인 금에 대한 단기 투자심리가 약해졌다.","url":"https://www.reuters.com/world/india/gold-falls-below-4000oz-strong-dollar-hawkish-fed-signals-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":446,"tags":["금","달러","Fed","금리","귀금속"]},
+    {"id":"latest-20260624-2310-reuters-india-shares-oil-rbi","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"인도 증시, 유가 하락·RBI 금리 우려 완화에 은행주 중심 상승","description":"브렌트유 하락과 인도중앙은행의 금리 인상 우려 완화 발언이 은행주 매수세를 자극했다. 에너지 수입국 증시에 유가 안정이 긍정적으로 작용했다.","url":"https://www.reuters.com/world/india/indian-shares-likely-open-muted-us-rate-hike-bets-offset-oil-relief-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":428,"tags":["인도증시","RBI","유가","은행주","신흥시장"]},
+    {"id":"latest-20260624-2310-reuters-ioc-neutrality-russia","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"IOC, 올림픽 헌장 중립성 개정 논의…러시아 복귀 논란 재점화","description":"IOC가 스포츠의 정치적 중립성을 강화하는 헌장 개정을 검토한다. 비판론은 이 조치가 러시아의 국제 스포츠 복귀 명분이 될 수 있다고 본다.","url":"https://www.reuters.com/sports/ioc-consider-olympic-charter-neutrality-changes-with-russia-focus-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":392,"tags":["IOC","올림픽","러시아","스포츠정치","중립성"]},
+    {"id":"latest-20260624-2310-ap-song-of-summer-2026","category":"culture","categoryName":"문화","categoryIcon":"🎬","title":"AP, 2026년 ‘여름 노래’ 후보 제시…알고리즘 시대 취향 분산 반영","description":"AP가 2026년 여름을 대표할 음악 후보들을 장르와 분위기별로 정리했다. 단일 히트곡보다 플랫폼 알고리즘과 세분화된 청취 취향이 대중음악 흐름을 좌우한다는 분석이다.","url":"https://apnews.com/article/0d2c000ccce4ea35a74baa3e6cc34090","source":{"name":"AP"},"publishedAt":"2026-06-24","score":360,"tags":["팝음악","여름노래","AP","문화","알고리즘"]}
+  ],
+  "byCategory": {
+    "economy": [
+      {"id":"latest-20260624-2310-reuters-global-markets-tech-dollar","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"글로벌 증시, 기술주 반등에도 달러 강세·유가 약세로 불안정","description":"AI 밸류에이션 우려 뒤 기술주가 일부 회복했지만 달러는 지정학 리스크와 금리 인상 기대에 강세를 보였다. 유가는 호르무즈 해협 물류 완화 기대 속 하락했다.","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":454,"tags":["글로벌시장","달러","유가","기술주","AI밸류에이션"]},
+      {"id":"latest-20260624-2310-reuters-gold-below-4000","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"금값, 달러 강세·매파 Fed 신호에 온스당 4,000달러 밑으로 하락","description":"현물 금이 강달러와 금리 인상 베팅 확대로 2025년 11월 이후 처음 4,000달러 선을 밑돌았다. 비수익 자산인 금에 대한 단기 투자심리가 약해졌다.","url":"https://www.reuters.com/world/india/gold-falls-below-4000oz-strong-dollar-hawkish-fed-signals-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":446,"tags":["금","달러","Fed","금리","귀금속"]},
+      {"id":"latest-20260624-2310-reuters-india-shares-oil-rbi","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"인도 증시, 유가 하락·RBI 금리 우려 완화에 은행주 중심 상승","description":"브렌트유 하락과 인도중앙은행의 금리 인상 우려 완화 발언이 은행주 매수세를 자극했다. 에너지 수입국 증시에 유가 안정이 긍정적으로 작용했다.","url":"https://www.reuters.com/world/india/indian-shares-likely-open-muted-us-rate-hike-bets-offset-oil-relief-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":428,"tags":["인도증시","RBI","유가","은행주","신흥시장"]}
+    ],
+    "play": [
+      {"id":"latest-20260624-2310-reuters-ioc-neutrality-russia","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"IOC, 올림픽 헌장 중립성 개정 논의…러시아 복귀 논란 재점화","description":"IOC가 스포츠의 정치적 중립성을 강화하는 헌장 개정을 검토한다. 비판론은 이 조치가 러시아의 국제 스포츠 복귀 명분이 될 수 있다고 본다.","url":"https://www.reuters.com/sports/ioc-consider-olympic-charter-neutrality-changes-with-russia-focus-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":392,"tags":["IOC","올림픽","러시아","스포츠정치","중립성"]}
+    ],
+    "culture": [
+      {"id":"latest-20260624-2310-ap-song-of-summer-2026","category":"culture","categoryName":"문화","categoryIcon":"🎬","title":"AP, 2026년 ‘여름 노래’ 후보 제시…알고리즘 시대 취향 분산 반영","description":"AP가 2026년 여름을 대표할 음악 후보들을 장르와 분위기별로 정리했다. 단일 히트곡보다 플랫폼 알고리즘과 세분화된 청취 취향이 대중음악 흐름을 좌우한다는 분석이다.","url":"https://apnews.com/article/0d2c000ccce4ea35a74baa3e6cc34090","source":{"name":"AP"},"publishedAt":"2026-06-24","score":360,"tags":["팝음악","여름노래","AP","문화","알고리즘"]}
+    ]
+  }
+}

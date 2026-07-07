@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-06-26T07:09:53+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":2},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":0},
+    {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":1},
+    {"id":"trade-fx","name":"무역·환율","icon":"💱","count":0}
+  ],
+  "total": 6,
+  "allItems": [
+    {"id":"fin-20260626-0709-reuters-gold-pce-dollar-yields","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"PCE 확인 후 금 반등·달러 약세…금리 민감 자산에 완화 신호","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/gold-extends-losses-fed-tightening-outlook-dollar-strength-2026-06-25/","description":"미국 물가 지표가 예상에 부합하면서 달러와 수익률이 내려가고 금이 반등해, 연준 경로에 대한 시장 기대가 다시 조정됐다.","score":97,"priority":97,"tags":["금","PCE","달러","수익률","연준"]},
+    {"id":"fin-20260626-0709-ap-wall-street-micron-apple","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"미 증시 혼조…마이크론 랠리와 애플 약세가 기술주 방향성 갈라","publishedAt":"2026-06-25","date":"2026-06-25","source":"Associated Press","url":"https://apnews.com/article/119e56cb6b1fc041b46af9bb778bdf07","description":"마이크론 실적 호재가 AI 반도체 심리를 살렸지만 애플 하락과 대형주 부담이 겹치며 주요 지수는 혼조세를 보였다.","score":95,"priority":95,"tags":["S&P500","나스닥","마이크론","애플","AI랠리"]},
+    {"id":"fin-20260626-0709-reuters-micron-ai-memory-contracts","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"마이크론·삼성·SK하이닉스, AI 장기계약으로 메모리 가격 변동성 완화 시도","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/legal/transactional/micron-joins-rivals-pitching-ai-deals-cure-memorys-boom-bust-cycle-2026-06-25/","description":"AI 고객의 장기 구매 약정은 메모리 기업에 매출 가시성을 주지만, AI 수요 둔화 시 재협상 리스크도 남아 있다.","score":98,"priority":98,"tags":["마이크론","삼성전자","SK하이닉스","HBM","장기계약"]},
+    {"id":"fin-20260626-0709-reuters-global-chip-stocks-micron-rally","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"마이크론 호실적에 글로벌 반도체주 동반 상승…AI 메모리 공급부족 기대 지속","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"마이크론 실적과 고객 약정이 AI 메모리 수요 신뢰를 키우며 한국·미국·유럽 반도체주 전반에 매수세를 불러왔다.","score":97,"priority":97,"tags":["반도체주","마이크론","AI메모리","KOSPI","ASML"]},
+    {"id":"fin-20260626-0709-barrons-qualcomm-meta-microsoft-customer","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"퀄컴, 메타·마이크로소프트 데이터센터 고객 공개 후 주가 급등","publishedAt":"2026-06-25","date":"2026-06-25","source":"Barron's","url":"https://www.barrons.com/articles/qualcomm-stock-price-meta-microsoft-b8a1e776","description":"퀄컴은 메타와 마이크로소프트를 AI 데이터센터 칩 고객으로 제시하며 스마트폰 의존도를 낮추는 비모바일 매출 목표를 강화했다.","score":94,"priority":94,"tags":["퀄컴","메타","마이크로소프트","데이터센터","AI칩"]},
+    {"id":"fin-20260626-0709-wsj-treasury-yields-dollar-pce","category":"rates-policy","categoryName":"금리·정책","category_ko":"금리·정책","categoryIcon":"🏦","title":"미 지표 후 국채금리·달러 하락…PCE와 내구재가 연준 경로 재평가 유도","publishedAt":"2026-06-25","date":"2026-06-25","source":"Wall Street Journal","url":"https://www.wsj.com/finance/currencies/asian-currencies-consolidate-may-be-weighed-by-fed-rate-hike-expectations-dc5fed8c","description":"PCE와 내구재 주문 지표가 엇갈리며 10년물 금리와 달러지수가 낮아졌고, 시장은 추가 긴축 가능성을 다시 가격에 반영했다.","score":92,"priority":92,"tags":["국채금리","달러","PCE","내구재","연준"]}
+  ],
+  "byCategory": {
+    "global-markets": [],
+    "semiconductors": [],
+    "ai-infrastructure": [],
+    "energy-geopolitics": [],
+    "rates-policy": [],
+    "trade-fx": []
+  }
+}

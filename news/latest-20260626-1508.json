@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-06-26T15:08:40+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":5},
+    {"id":"tech","name":"기술","icon":"🤖","count":4},
+    {"id":"global","name":"국제","icon":"🌍","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":3},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":3},
+    {"id":"culture","name":"문화","icon":"🎬","count":3}
+  ],
+  "total": 20,
+  "allItems": [
+    {"id":"main-20260626-1508-ap-asian-shares-ai-profit-taking","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"아시아 증시 급락…AI 랠리 차익실현과 고평가 부담 동시 부각","publishedAt":"2026-06-26","date":"2026-06-26","source":"Associated Press","url":"https://apnews.com/article/e356760ec69cab916e53a9804336b845","description":"일본 닛케이와 한국 코스피가 큰 폭으로 밀리며 AI 데이터센터 투자 열풍 뒤의 밸류에이션 부담과 유가 하락, 물가 변수까지 시장을 흔들었다.","score":100,"priority":100,"tags":["아시아증시","AI랠리","차익실현","코스피","유가"]},
+    {"id":"main-20260626-1508-reuters-micron-market-value-ai","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"마이크론, AI 인프라 수요에 메타·테슬라급 시총으로 급부상","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/micron-overtakes-meta-market-value-amid-relentless-ai-infrastructure-demand-2026-06-25/","description":"AI 서버용 메모리 확보 경쟁과 대규모 선주문이 마이크론 주가를 밀어올리며 메모리 반도체가 빅테크 시가총액 판도를 흔드는 변수로 떠올랐다.","score":99,"priority":99,"tags":["마이크론","AI인프라","메모리","시가총액","반도체"]},
+    {"id":"main-20260626-1508-reuters-openai-broadcom-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"오픈AI, 브로드컴과 자체 AI 칩 공개…엔비디아 의존 축소 시동","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"오픈AI가 추론용 맞춤형 칩 ‘Jalapeño’를 공개하면서 대형 AI 기업들의 자체 반도체 확보 경쟁과 공급망 다변화가 더 빨라지고 있다.","score":98,"priority":98,"tags":["오픈AI","브로드컴","AI칩","추론","엔비디아"]},
+    {"id":"main-20260626-1508-ap-iran-world-cup-travel","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미국, 이란 월드컵 대표팀 입국 제한 일부 완화…스포츠 외교 변수 부상","publishedAt":"2026-06-24","date":"2026-06-24","source":"Associated Press","url":"https://apnews.com/article/20af86f0da8c29dd088ecdf4d2313b2e","description":"미국이 이란 대표팀의 조기 입국을 일부 허용하면서 전쟁·비자·FIFA 규정이 얽힌 월드컵 운영 리스크가 다시 부각됐다.","score":96,"priority":96,"tags":["미국","이란","월드컵","비자","스포츠외교"]},
+    {"id":"main-20260626-1508-ap-messi-world-cup-record","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"메시, 월드컵 통산 최다골 신기록…아르헨티나 토너먼트 진출","publishedAt":"2026-06-22","date":"2026-06-22","source":"Associated Press","url":"https://apnews.com/article/3ad605618a23e1d71fc539d8c596e33e","description":"리오넬 메시가 오스트리아전 멀티골로 월드컵 통산 18골에 도달해 기록을 새로 쓰고, 디펜딩 챔피언 아르헨티나의 32강행을 이끌었다.","score":94,"priority":94,"tags":["메시","월드컵","아르헨티나","최다골","축구"]},
+    {"id":"main-20260626-1508-guardian-wimbledon-bbc-rights","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"윔블던, BBC 무료 중계 2033년까지 연장…스포츠 접근성 논쟁 재점화","publishedAt":"2026-06-25","date":"2026-06-25","source":"The Guardian","url":"https://www.theguardian.com/sport/2026/jun/25/wimbledon-free-to-air-2033-bbc-television-tennis","description":"BBC가 윔블던 중계권을 연장하며 대형 스포츠 이벤트의 무료 보편 접근권과 유료 플랫폼 확산 사이의 균형 문제가 다시 주목받고 있다.","score":92,"priority":92,"tags":["윔블던","BBC","중계권","테니스","스포츠문화"]}
+  ],
+  "byCategory": {"economy":[],"tech":[],"global":[],"politics":[],"play":[],"culture":[]}
+}

@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-06-24T23:10:24+09:00",
+  "source": "Latest financial public news archive overlay; finance and market-moving items prioritized",
+  "page": "financial-latest-archive",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1},
+    {"id":"metals-rates","name":"금속·금리","icon":"🥇","count":1},
+    {"id":"emerging-markets","name":"신흥시장","icon":"📈","count":1}
+  ],
+  "total": 3,
+  "allItems": [
+    {"id":"fin-20260624-2310-reuters-global-markets-tech-dollar","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"글로벌 증시 안정 시도, 달러는 지정학·금리 프리미엄에 1년 고점권","description":"기술주가 일부 회복했지만 AI 밸류에이션 우려와 미·이란 리스크가 남아 달러 강세가 이어졌다. 유가 약세와 채권금리 움직임이 위험자산 방향을 좌우하고 있다.","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":454,"tags":["글로벌시장","달러","유가","기술주","지정학"]},
+    {"id":"fin-20260624-2310-reuters-gold-below-4000","category":"metals-rates","categoryName":"금속·금리","categoryIcon":"🥇","title":"금, 달러 강세와 금리 인상 베팅에 4,000달러선 이탈","description":"금값이 2025년 11월 이후 처음 온스당 4,000달러 아래로 떨어졌다. 시장은 Fed의 매파 신호와 강달러를 반영하며 귀금속 전반을 재가격화했다.","url":"https://www.reuters.com/world/india/gold-falls-below-4000oz-strong-dollar-hawkish-fed-signals-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":446,"tags":["금","귀금속","Fed","달러","금리"]},
+    {"id":"fin-20260624-2310-reuters-india-shares-oil-rbi","category":"emerging-markets","categoryName":"신흥시장","categoryIcon":"📈","title":"인도 증시, 저유가·RBI 발언에 은행주 중심 강세","description":"유가 하락이 인도 경제와 기업 이익 전망을 개선했고, RBI가 금리 인상 논의를 이르다고 밝히며 은행주와 지수 상승을 이끌었다.","url":"https://www.reuters.com/world/india/indian-shares-likely-open-muted-us-rate-hike-bets-offset-oil-relief-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":428,"tags":["인도증시","은행주","RBI","유가","신흥시장"]}
+  ],
+  "byCategory": {
+    "global-markets": [
+      {"id":"fin-20260624-2310-reuters-global-markets-tech-dollar","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"글로벌 증시 안정 시도, 달러는 지정학·금리 프리미엄에 1년 고점권","description":"기술주가 일부 회복했지만 AI 밸류에이션 우려와 미·이란 리스크가 남아 달러 강세가 이어졌다. 유가 약세와 채권금리 움직임이 위험자산 방향을 좌우하고 있다.","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":454,"tags":["글로벌시장","달러","유가","기술주","지정학"]}
+    ],
+    "metals-rates": [
+      {"id":"fin-20260624-2310-reuters-gold-below-4000","category":"metals-rates","categoryName":"금속·금리","categoryIcon":"🥇","title":"금, 달러 강세와 금리 인상 베팅에 4,000달러선 이탈","description":"금값이 2025년 11월 이후 처음 온스당 4,000달러 아래로 떨어졌다. 시장은 Fed의 매파 신호와 강달러를 반영하며 귀금속 전반을 재가격화했다.","url":"https://www.reuters.com/world/india/gold-falls-below-4000oz-strong-dollar-hawkish-fed-signals-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":446,"tags":["금","귀금속","Fed","달러","금리"]}
+    ],
+    "emerging-markets": [
+      {"id":"fin-20260624-2310-reuters-india-shares-oil-rbi","category":"emerging-markets","categoryName":"신흥시장","categoryIcon":"📈","title":"인도 증시, 저유가·RBI 발언에 은행주 중심 강세","description":"유가 하락이 인도 경제와 기업 이익 전망을 개선했고, RBI가 금리 인상 논의를 이르다고 밝히며 은행주와 지수 상승을 이끌었다.","url":"https://www.reuters.com/world/india/indian-shares-likely-open-muted-us-rate-hike-bets-offset-oil-relief-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":428,"tags":["인도증시","은행주","RBI","유가","신흥시장"]}
+    ]
+  }
+}

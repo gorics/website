@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-06-25T12:08:45+09:00",
+  "source": "Latest public news overlay archive; merge ahead of latest.json and data.json",
+  "page": "main-latest-overlay-archive",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":1},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1}
+  ],
+  "total": 3,
+  "allItems": [
+    {"id":"latest-20260625-1208-reuters-nasdaq-sp-tech-fall","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"기술주 약세에 나스닥·S&P500 하락, 유가 하락은 여행주 지지","description":"AI·기술주 밸류에이션 부담과 연준 추가 인상 우려로 나스닥과 S&P500이 밀렸다. 반면 유가 급락은 항공·여행주를 끌어올리며 업종별 온도차를 키웠다.","url":"https://www.reuters.com/business/sp-500-nasdaq-futures-tick-up-tech-shares-stabilize-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-25","score":462,"tags":["나스닥","S&P500","기술주","연준","유가"]},
+    {"id":"latest-20260625-1208-reuters-ai-wall-street-ambivalence","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"월가, AI 투자 붐 두고 혁신과 거품 사이 판단 유보","description":"AI 데이터센터·맞춤형 칩 지출이 급증하면서 월가의 평가가 엇갈린다. 수요는 강하지만 빅테크의 차입 기반 투자와 수익화 속도에 대한 의문도 커졌다.","url":"https://www.reuters.com/technology/artificial-intelligence/artificial-intelligencer-wall-street-cant-decide-what-think-about-ai-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-25","score":448,"tags":["AI","월가","데이터센터","빅테크","투자"]},
+    {"id":"latest-20260625-1208-reuters-brazil-scotland-world-cup","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"비니시우스 멀티골, 브라질 월드컵 32강 진출 확정","description":"브라질이 스코틀랜드를 3-0으로 꺾고 조 1위로 토너먼트 진출을 확정했다. 비니시우스 주니오르의 두 골과 네이마르 복귀가 경기의 핵심 장면이었다.","url":"https://www.reuters.com/sports/soccer/vinicius-fires-brazil-into-world-cup-knockouts-with-3-0-win-over-scotland-2026-06-25/","source":{"name":"Reuters"},"publishedAt":"2026-06-25","score":430,"tags":["월드컵","브라질","비니시우스","스코틀랜드","네이마르"]}
+  ],
+  "byCategory": {"economy": [], "tech": [], "play": []}
+}

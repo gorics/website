@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-06-27T15:07:58+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2}
+  ],
+  "total": 6,
+  "allItems": [
+    {"id":"fin-20260627-1507-ap-us-iran-hormuz","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"미국의 이란 공습으로 호르무즈 리스크 재점화","publishedAt":"2026-06-27","date":"2026-06-27","source":"AP","url":"https://apnews.com/article/iran-us-israel-war-hormuz-strait-june-26-2026-8c1a77eb82d25f00de814958114c7296","description":"화물선 드론 공격 대응 공습으로 에너지 운송과 중동 위험 프리미엄이 다시 시장 변수로 부상했다.","score":105,"priority":105,"tags":["호르무즈","이란","미국","원유","지정학"]},
+    {"id":"fin-20260627-1507-reuters-barclays-brent","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"바클레이즈, 브렌트유 전망 하향…공급 우려 완화 반영","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/energy/barclays-cuts-brent-price-forecasts-2026-2027-2026-06-26/","description":"브렌트유 평균 전망이 낮아지며 중동 리스크와 실제 물동량 사이의 가격 괴리가 주목받고 있다.","score":103,"priority":103,"tags":["브렌트유","바클레이즈","유가","호르무즈","에너지"]},
+    {"id":"fin-20260627-1507-reuters-venezuela-oil-output","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"베네수엘라 지진에도 산유량 유지…전력·항만 병목은 지속","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/energy/power-outage-slows-operations-key-port-plants-after-earthquakes-venezuela-2026-06-26/","description":"원유 공급 자체는 유지됐지만 전력 복구와 항만 운영 차질이 에너지·인프라 리스크로 남았다.","score":101,"priority":101,"tags":["베네수엘라","원유","지진","전력망","항만"]},
+    {"id":"fin-20260627-1507-reuters-ibm-sub-1nm-chip","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"IBM 1나노 미만 칩 기술, AI 반도체 공정 경쟁 자극","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"0.7나노급 트랜지스터 공개로 TSMC·인텔·삼성 등 첨단공정 경쟁과 AI칩 투자 기대가 재부각됐다.","score":100,"priority":100,"tags":["IBM","반도체","AI칩","첨단공정","나노스택"]},
+    {"id":"fin-20260627-1507-reuters-onsemi-synaptics","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"온세미, 시냅틱스 70억달러 인수…피지컬 AI 확장","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/legal/transactional/onsemi-buy-synaptics-7-billion-all-stock-deal-2026-06-25/","description":"자동차·산업용 반도체와 휴먼머신 인터페이스 결합으로 로봇·엣지 AI 시장 선점을 노린다.","score":98,"priority":98,"tags":["온세미","시냅틱스","M&A","피지컬AI","엣지AI"]},
+    {"id":"fin-20260627-1507-reuters-micron-anthropic","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"마이크론-앤스로픽 AI 인프라 공급 계약, HBM 수요 기대 강화","publishedAt":"2026-06-22","date":"2026-06-22","source":"Reuters","url":"https://www.reuters.com/business/micron-anthropic-sign-ai-infrastructure-supply-agreement-2026-06-22/","description":"AI 모델 학습·추론 병목이 메모리와 스토리지로 이동하면서 고대역폭 메모리 공급 경쟁이 더 치열해지고 있다.","score":96,"priority":96,"tags":["마이크론","앤스로픽","HBM","AI인프라","메모리"]}
+  ]
+}

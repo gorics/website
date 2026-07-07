@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-06-29T15:08:00+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"monetary-policy","name":"통화정책","icon":"🏦","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
+    {"id":"ai-infra","name":"AI인프라","icon":"🤖","count":1},
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260629-1508-reuters-pboc-overnight-repo","category":"monetary-policy","categoryName":"통화정책","category_ko":"통화정책","categoryIcon":"🏦","title":"PBOC 익일물 역레포 첫 가동, 중국 단기금리 체계 전환 신호","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/china-debuts-overnight-reverse-repos-125-sources-say-2026-06-29/","description":"중국이 3천억위안 규모 익일물 역레포를 1.25%로 공급하며 단기자금 시장 통제력을 높였다. 채권·은행 유동성, 위안화 금리곡선, 정책금리 신호 체계에 직접 영향을 줄 이슈다.","score":252,"priority":252,"tags":["PBOC","역레포","중국금리","유동성","채권시장"]},
+    {"id":"fin-20260629-1508-reuters-korea-exports-semiconductors","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"한국 수출 61% 증가 전망, AI 메모리 수요가 무역흑자 확대 견인","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korea-exports-set-grow-strongest-pace-nearly-5-decades-2026-06-29/","description":"반도체 수출이 6월 초 20일 기준 188% 넘게 뛰며 전체 수출의 핵심 동력이 됐다. 삼성전자·SK하이닉스 중심 HBM·메모리 사이클과 원화·무역수지 전망에 우호적 재료다.","score":248,"priority":248,"tags":["한국수출","반도체","HBM","무역흑자","SK하이닉스"]},
+    {"id":"fin-20260629-1508-ap-nvidia-china-chip-share","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"엔비디아 중국 AI칩 판매 정체, 화웨이 점유율 확대가 밸류체인 재편 압박","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/1ae6228c4928ddbb43f984e9b38f49dd","description":"중국 내 AI칩 수요가 화웨이 등 현지 공급망으로 이동하며 엔비디아의 중국 노출 리스크가 커졌다. 미국 수출규제, 중국 국산화 정책, 데이터센터 투자 지형을 함께 봐야 한다.","score":240,"priority":240,"tags":["엔비디아","화웨이","AI칩","중국반도체","수출통제"]},
+    {"id":"fin-20260629-1508-reuters-momenta-hk-ipo","category":"ai-infra","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🤖","title":"Momenta 홍콩 IPO, 자율주행 AI·로보택시 투자심리 시험대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/autos-transportation/chinas-momenta-seeks-up-751-million-hong-kong-ipo-boost-autonomous-driving-rd-2026-06-29/","description":"Momenta가 최대 7.5억달러 조달을 추진하며 AI 자율주행과 로보택시 상용화 자금을 확보한다. 홍콩 기술 IPO 회복, 중국 AI 모빌리티 밸류에이션의 바로미터가 될 수 있다.","score":232,"priority":232,"tags":["Momenta","홍콩IPO","자율주행","로보택시","AI인프라"]},
+    {"id":"fin-20260629-1508-reuters-india-shares-us-iran","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"인도 증시, 미·이란 대화 기대에 보합…유가·IT주 부담은 지속","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/india/indian-shares-likely-open-steady-us-iran-talks-ease-escalation-fears-2026-06-29/","description":"미·이란 대화 재개 기대가 지정학 리스크를 완화했지만 브렌트유 반등과 IT주 약세가 인도 증시 상승폭을 제한했다. 신흥국 위험자산은 에너지 가격과 달러 흐름에 민감한 구간이다.","score":224,"priority":224,"tags":["인도증시","유가","미이란","신흥시장","IT주"]}
+  ],
+  "byCategory": {}
+}

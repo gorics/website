@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <title>세포 성장 실험 (Nebulous)</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+            background: radial-gradient(circle at center, #1a2a6c 0%, #16213e 45%, #0f172a 100%);
+            color: #e0f2ff;
+        }
+        header {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(13, 26, 45, 0.75);
+            padding: 12px 24px;
+            border-radius: 22px;
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 18px;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            width: min(92vw, 640px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        header strong {
+            font-size: clamp(16px, 4vw, 20px);
+        }
+        .signature {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(34, 211, 238, 0.18);
+            color: #67e8f9;
+            font-weight: 700;
+            font-size: 12px;
+        }
+        #game {
+            display: block;
+        }
+        .hint {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: rgba(224, 242, 255, 0.75);
+            background: rgba(15, 23, 42, 0.65);
+            padding: 10px 16px;
+            border-radius: 999px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="signature">박은성이 만든 게임</div>
+        <strong>세포 성장 실험</strong>
+        <span>크기: <span id="size">10</span></span>
+        <span>흡수한 입자: <span id="score">0</span></span>
+        <span>위험 세포: <span id="danger">0</span> / <span id="danger-total">0</span></span>
+    </header>
+    <canvas id="game"></canvas>
+    <div class="hint">마우스를 움직여 세포를 조종하고 작은 입자를 흡수하세요. 큰 세포를 피하세요!</div>
+
+    <script>
+        const canvas = document.getElementById('game');
+        const ctx = canvas.getContext('2d');
+        const sizeEl = document.getElementById('size');
+        const scoreEl = document.getElementById('score');
+        const dangerEl = document.getElementById('danger');
+        const dangerTotalEl = document.getElementById('danger-total');
+
+        const WORLD_SIZE = 2800;
+        const pelletCount = 250;
+        const enemyCount = 8;
+        const pellets = [];
+        const enemies = [];
+        const colors = ['#22d3ee', '#fb7185', '#a855f7', '#34d399', '#fbbf24'];
+
+        const player = {
+            x: WORLD_SIZE / 2,
+            y: WORLD_SIZE / 2,
+            radius: 24,
+            speed: 2.2,
+            mass: 24
+        };
+        let score = 0;
+        let pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        function spawnPellets() {
+            pellets.length = 0;
+            for (let i = 0; i < pelletCount; i++) {
+                pellets.push({
+                    x: Math.random() * WORLD_SIZE,
+                    y: Math.random() * WORLD_SIZE,
+                    radius: 6,
+                    color: colors[Math.floor(Math.random() * colors.length)]
+                });
+            }
+        }
+
+        function spawnEnemies() {
+            enemies.length = 0;
+            for (let i = 0; i < enemyCount; i++) {
+                const radius = 20 + Math.random() * 120;
+                enemies.push({
+                    x: Math.random() * WORLD_SIZE,
+                    y: Math.random() * WORLD_SIZE,
+                    radius,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speed: Math.max(0.4, 2.4 - radius / 80),
+                    angle: Math.random() * Math.PI * 2
+                });
+            }
+            dangerTotalEl.textContent = enemyCount;
+        }
+
+        function movePlayer() {
+            const targetX = pointer.x - canvas.width / 2;
+            const targetY = pointer.y - canvas.height / 2;
+            const len = Math.hypot(targetX, targetY);
+            const maxSpeed = Math.max(1.2, 4 - player.radius / 30);
+            if (len > 5) {
+                const vx = (targetX / len) * maxSpeed;
+                const vy = (targetY / len) * maxSpeed;
+                player.x += vx;
+                player.y += vy;
+            }
+            player.x = Math.max(player.radius, Math.min(WORLD_SIZE - player.radius, player.x));
+            player.y = Math.max(player.radius, Math.min(WORLD_SIZE - player.radius, player.y));
+        }
+
+        function moveEnemies() {
+            let dangerous = 0;
+            enemies.forEach(enemy => {
+                enemy.angle += (Math.random() - 0.5) * 0.2;
+                enemy.x += Math.cos(enemy.angle) * enemy.speed;
+                enemy.y += Math.sin(enemy.angle) * enemy.speed;
+                enemy.x = (enemy.x + WORLD_SIZE) % WORLD_SIZE;
+                enemy.y = (enemy.y + WORLD_SIZE) % WORLD_SIZE;
+                const dist = Math.hypot(enemy.x - player.x, enemy.y - player.y);
+                if (enemy.radius > player.radius * 1.15 && dist < 480) {
+                    enemy.angle = Math.atan2(player.y - enemy.y, player.x - enemy.x);
+                    dangerous++;
+                } else if (enemy.radius < player.radius && dist < 420) {
+                    enemy.angle = Math.atan2(enemy.y - player.y, enemy.x - player.x);
+                }
+            });
+            dangerEl.textContent = dangerous;
+        }
+
+        function handleCollisions() {
+            for (let i = pellets.length - 1; i >= 0; i--) {
+                const pellet = pellets[i];
+                if (Math.hypot(pellet.x - player.x, pellet.y - player.y) < player.radius) {
+                    pellets.splice(i, 1);
+                    score++;
+                    player.radius = Math.min(player.radius + 0.3, 180);
+                    updateHUD();
+                }
+            }
+            for (let i = enemies.length - 1; i >= 0; i--) {
+                const enemy = enemies[i];
+                const dist = Math.hypot(enemy.x - player.x, enemy.y - player.y);
+                if (dist < player.radius) {
+                    if (enemy.radius < player.radius * 0.85) {
+                        player.radius += enemy.radius * 0.2;
+                        enemies.splice(i, 1);
+                        score += Math.floor(enemy.radius);
+                        updateHUD();
+                    } else {
+                        alert('더 큰 세포에 흡수당했습니다! 점수: ' + score);
+                        resetGame();
+                        return;
+                    }
+                }
+            }
+            if (pellets.length < pelletCount) {
+                spawnPellets();
+            }
+            if (enemies.length < enemyCount) {
+                spawnEnemies();
+            }
+        }
+
+        function drawWorld() {
+            ctx.save();
+            const offsetX = canvas.width / 2 - player.x;
+            const offsetY = canvas.height / 2 - player.y;
+            ctx.translate(offsetX, offsetY);
+
+            const gridSize = 120;
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.15)';
+            ctx.lineWidth = 1;
+            for (let x = 0; x <= WORLD_SIZE; x += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, WORLD_SIZE);
+                ctx.stroke();
+            }
+            for (let y = 0; y <= WORLD_SIZE; y += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(WORLD_SIZE, y);
+                ctx.stroke();
+            }
+
+            pellets.forEach(pellet => {
+                ctx.fillStyle = pellet.color;
+                ctx.beginPath();
+                ctx.arc(pellet.x, pellet.y, pellet.radius, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            enemies.forEach(enemy => {
+                const gradient = ctx.createRadialGradient(enemy.x, enemy.y, enemy.radius * 0.3, enemy.x, enemy.y, enemy.radius);
+                gradient.addColorStop(0, enemy.color);
+                gradient.addColorStop(1, 'rgba(15, 23, 42, 0.8)');
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(enemy.x, enemy.y, enemy.radius, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            const gradient = ctx.createRadialGradient(player.x, player.y, player.radius * 0.4, player.x, player.y, player.radius);
+            gradient.addColorStop(0, '#38bdf8');
+            gradient.addColorStop(1, '#0ea5e9');
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(player.x, player.y, player.radius, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.restore();
+        }
+
+        function updateHUD() {
+            sizeEl.textContent = Math.round(player.radius);
+            scoreEl.textContent = score;
+        }
+
+        function resetGame() {
+            player.x = WORLD_SIZE / 2;
+            player.y = WORLD_SIZE / 2;
+            player.radius = 24;
+            score = 0;
+            spawnPellets();
+            spawnEnemies();
+            updateHUD();
+        }
+
+        canvas.addEventListener('mousemove', (e) => {
+            pointer = { x: e.clientX, y: e.clientY };
+        });
+
+        canvas.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            pointer = { x: touch.clientX, y: touch.clientY };
+            e.preventDefault();
+        }, { passive: false });
+        canvas.style.touchAction = 'none';
+
+        function loop() {
+            movePlayer();
+            moveEnemies();
+            handleCollisions();
+            drawWorld();
+            requestAnimationFrame(loop);
+        }
+
+        resetGame();
+        updateHUD();
+        loop();
+    </script>
+    <script src="../global-enhancements.js" defer></script>
+</body>
+</html>

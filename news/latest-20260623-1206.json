@@ -1,0 +1,70 @@
+{
+  "generatedAt": "2026-06-23T12:06:44+09:00",
+  "source": "Latest public news overlay for GitHub Pages news site; generated from current public sources; merge ahead of data.json",
+  "page": "main-latest-overlay",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {
+      "id": "latest-20260623-1206-reuters-asia-fed-oil",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "아시아 증시 약세, 연준 인상 재가격·유가 반등이 시장 압박",
+      "publishedAt": "2026-06-23",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/world/asia-pacific/global-markets-global-markets-2026-06-23/",
+      "description": "아시아 증시가 약세를 보이고 유가는 반등했다. 미·이란 완화 기대에도 연준 금리 인상 재가격이 위험자산 심리를 압박했다.",
+      "score": 305,
+      "tags": ["아시아증시","연준","유가","금리","글로벌시장"]
+    },
+    {
+      "id": "latest-20260623-1206-reuters-oil-hormuz",
+      "category": "economy",
+      "categoryName": "경제·금융",
+      "categoryIcon": "💹",
+      "title": "유가, 급락 뒤 소폭 반등…호르무즈 원유 흐름 회복 여부 주시",
+      "publishedAt": "2026-06-23",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/business/energy/oil-gains-after-selloff-awaits-progress-strait-hormuz-flows-2026-06-23/",
+      "description": "브렌트와 WTI가 전일 급락 뒤 소폭 반등했다. 시장은 미·이란 협상 진전과 호르무즈 해협 원유 운송 정상화 여부를 확인 중이다.",
+      "score": 298,
+      "tags": ["유가","호르무즈","원유","미이란협상","에너지"]
+    },
+    {
+      "id": "latest-20260623-1206-ap-uk-starmer-resignation",
+      "category": "politics",
+      "categoryName": "정치",
+      "categoryIcon": "🏛️",
+      "title": "스타머 영국 총리 사퇴 후 후임 경쟁 본격화",
+      "publishedAt": "2026-06-22",
+      "source": {"name":"AP"},
+      "url": "https://apnews.com/article/cd99394cbae6ccbf0e1354e73054ce0d",
+      "description": "키어 스타머 총리가 노동당 대표직 사퇴를 발표하고 후임 선출 때까지 과도 총리로 남는다. 영국 정치와 시장은 후임 경쟁을 주시하고 있다.",
+      "score": 270,
+      "tags": ["영국","스타머","노동당","후임경쟁","정치"]
+    },
+    {
+      "id": "latest-20260623-1206-ap-jaguar-brazil-scotland",
+      "category": "play",
+      "categoryName": "스포츠·엔터",
+      "categoryIcon": "⚽",
+      "title": "브라질 흑표범 ‘월드컵 예언’, 브라질의 스코틀랜드전 승리 점쳐",
+      "publishedAt": "2026-06-22",
+      "source": {"name":"AP"},
+      "url": "https://apnews.com/article/b9edbfe4f3e289a7512c4bc6cbb15c51",
+      "description": "리우 동물원의 흑표범 포치가 브라질-스코틀랜드전을 앞두고 브라질 승리를 택했다. 월드컵 팬덤과 이벤트성 스포츠 콘텐츠가 주목받았다.",
+      "score": 215,
+      "tags": ["월드컵","브라질","스코틀랜드","흑표범","스포츠문화"]
+    }
+  ],
+  "byCategory": {
+    "economy": [],
+    "politics": [],
+    "play": []
+  }
+}

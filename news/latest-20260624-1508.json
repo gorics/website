@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-24T15:08:47+09:00",
+  "source": "Latest public news overlay archive for GitHub Pages news site; generated from current public sources; merge ahead of latest.json and data.json",
+  "page": "main-latest-overlay-archive",
+  "categories": [
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":2}
+  ],
+  "total": 3,
+  "allItems": [
+    {"id":"latest-20260624-1508-reuters-rubio-middle-east-iran","category":"global","categoryName":"국제","categoryIcon":"🌍","title":"루비오, 중동 순방 본격화…걸프 동맹국 이란 합의 우려 달래기","description":"루비오 미 국무장관이 아부다비를 시작으로 걸프 순방에 나섰다. 이란 합의의 3천억 달러 기금, 미사일·대리세력 미해결 문제를 둘러싼 동맹국 불안을 설명하는 일정이다.","url":"https://www.reuters.com/world/middle-east/rubio-kicks-off-middle-east-trip-allies-seek-answers-iran-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":414,"tags":["루비오","이란","걸프","미국외교","중동"]},
+    {"id":"latest-20260624-1508-reuters-colombia-worldcup-last32","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"콜롬비아, DR콩고 1-0 제압…월드컵 32강 조기 확정","description":"콜롬비아가 다니엘 무뇨스의 결승골로 DR콩고를 꺾고 조별리그 한 경기를 남긴 채 32강 진출을 확정했다. DR콩고는 우즈베키스탄전 결과가 생존 변수다.","url":"https://www.reuters.com/sports/soccer/munoz-sends-colombia-into-world-cup-last-32-with-win-over-dr-congo-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":388,"tags":["월드컵","콜롬비아","DR콩고","무뇨스","축구"]},
+    {"id":"latest-20260624-1508-reuters-worldcup-drone-seizures","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"미 당국, 월드컵 경기장 인근 드론 300대 이상 압수","description":"미 교통안전청은 월드컵 개막 이후 경기장 주변 비행금지구역에서 드론 300대 이상을 압수했다고 밝혔다. 대형 스포츠 행사 보안과 무인기 대응이 핵심 변수로 떠올랐다.","url":"https://www.reuters.com/sports/soccer/us-agencies-have-seized-more-than-300-drones-near-world-cup-sites-tsa-says-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":374,"tags":["월드컵","드론","보안","TSA","미국"]}
+  ],
+  "byCategory": {
+    "global": ["latest-20260624-1508-reuters-rubio-middle-east-iran"],
+    "play": ["latest-20260624-1508-reuters-colombia-worldcup-last32", "latest-20260624-1508-reuters-worldcup-drone-seizures"]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-06-29T18:34:50+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1},
+    {"id":"ai-infrastructure","name":"AI인프라","icon":"🤖","count":1},
+    {"id":"macro","name":"거시경제","icon":"🌏","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"policy","name":"정책·규제","icon":"🏛️","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260629-1834-reuters-asia-markets-korea-ai-chip","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"아시아 시장 혼조, 한국 AI·반도체 투자 기대가 하방 지지","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/asian-markets-mixed-choppy-trade-ai-doubts-iran-tensions-cloud-outlook-2026-06-29/","description":"AI 밸류에이션 부담과 중동 휴전 불확실성 속에서도 한국의 반도체·AI 대형 투자 계획이 KOSPI 낙폭을 줄이고 대만 기술주에도 심리를 보탰다.","score":286,"priority":286,"tags":["아시아증시","한국","AI투자","반도체","위험자산"]},
+    {"id":"fin-20260629-1834-reuters-baidu-kunlunxin-ipo","category":"ai-infrastructure","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🤖","title":"쿤룬신 500억달러 IPO 추진, AI칩 밸류에이션 과열 논쟁","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/breakingviews/baidu-chip-ipo-channels-extreme-ai-frenzy-2026-06-29/","description":"바이두 AI칩 자회사의 공격적 가치평가 추진은 중국 AI 가속기 수요를 보여주는 동시에 AI 인프라 투자 사이클의 거품 가능성을 키우는 재료다.","score":282,"priority":282,"tags":["AI칩","IPO","중국","바이두","밸류에이션"]},
+    {"id":"fin-20260629-1834-reuters-china-pmi-june","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🌏","title":"중국 제조업 PMI 50.1 전망, 미약한 확장 신호","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-factory-activity-likely-returned-meagre-growth-june-2026-06-29/","description":"중국 제조업 지표가 간신히 확장권에 복귀할 것으로 예상되지만 부동산 침체와 소비 약세가 경기 회복을 제약하고 있어 원자재·아시아 수출주에 변수다.","score":276,"priority":276,"tags":["중국","PMI","제조업","거시경제","원자재"]},
+    {"id":"fin-20260629-1834-guardian-ai-chipmaker-rally","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"AI 반도체주 상반기 급등, 하드웨어 쏠림 심화","publishedAt":"2026-06-29","date":"2026-06-29","source":"The Guardian","url":"https://www.theguardian.com/business/2026/jun/29/shares-in-chipmakers-underpinning-ai-boom-surge-in-first-half-of-2026","description":"AI 서버와 메모리 수요가 삼성전자·SK하이닉스·마이크론 등 반도체주 랠리를 이끌었다. 소프트웨어주 대비 하드웨어 선호가 강해졌지만 차익실현 신호도 나타난다.","score":268,"priority":268,"tags":["반도체","AI붐","SK하이닉스","삼성전자","메모리"]},
+    {"id":"fin-20260629-1834-reuters-tps-immigration-policy","category":"policy","categoryName":"정책·규제","category_ko":"정책·규제","categoryIcon":"🏛️","title":"미 TPS 종료 판결, 노동·이민정책 불확실성 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/supreme-court-lets-trump-end-deportation-protections-syrians-haitians-2026-06-25/","description":"아이티·시리아 출신 이민자 보호 종료를 허용한 미 대법원 결정은 노동공급과 서비스업·지역경제, 행정부 재량 범위에 대한 정책 리스크를 키웠다.","score":248,"priority":248,"tags":["이민정책","미국대법원","노동시장","TPS","정책리스크"]}
+  ],
+  "byCategory": {}
+}

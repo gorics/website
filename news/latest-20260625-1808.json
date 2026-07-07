@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-06-25T18:08:07+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎧","count":1}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"main-20260625-1808-reuters-nasdaq-chip-futures","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"나스닥 선물 2% 급등, 마이크론·퀄컴 전망이 AI 반도체 랠리 재점화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-jump-2-micron-qualcomm-forecasts-relieve-investors-2026-06-25/","description":"마이크론과 퀄컴의 강한 전망이 AI 반도체 수요 불안을 완화하며 나스닥100 선물과 글로벌 기술주 심리를 끌어올렸다.","score":99,"priority":99,"tags":["나스닥","마이크론","퀄컴","AI반도체","기술주"]},
+    {"id":"main-20260625-1808-reuters-ai-chip-rally","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"마이크론·퀄컴 전망에 AI칩 시가총액 4000억달러 랠리","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/micron-qualcomm-forecasts-ignite-400-billion-ai-chip-stock-rally-2026-06-24/","description":"AI 인프라 투자와 데이터센터 수요 전망이 반도체주 전반을 밀어올렸다. 고평가 논쟁 속에서도 AI칩 모멘텀이 재확인됐다.","score":98,"priority":98,"tags":["AI칩","반도체","마이크론","퀄컴","데이터센터"]},
+    {"id":"main-20260625-1808-reuters-openai-broadcom-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🧠","title":"OpenAI, 브로드컴과 자체 AI칩 공개","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI가 브로드컴과 설계한 자체 추론용 AI칩을 공개했다. 엔비디아 의존도와 AI 컴퓨팅 공급망 경쟁이 핵심 쟁점으로 떠올랐다.","score":96,"priority":96,"tags":["OpenAI","Broadcom","AI칩","추론","인프라"]},
+    {"id":"main-20260625-1808-reuters-russia-oil-exports","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"🛢️","title":"러시아, 정유 차질 속 서부항 원유 수출 사상 최대 전망","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/russia-set-export-record-oil-volumes-western-ports-june-sources-say-2026-06-24/","description":"우크라이나 드론 공격으로 정유시설이 멈추자 러시아가 원유를 수출로 돌리고 있다. 유가와 정제마진, 연료난을 동시에 흔드는 변수다.","score":94,"priority":94,"tags":["러시아","원유수출","정유시설","유가","우크라이나"]},
+    {"id":"main-20260625-1808-reuters-ukraine-preemptive-strikes","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"젤렌스키, 러시아 전쟁 시설 선제타격 확대 지시","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/ukraine-conduct-preemptive-attacks-facilities-russia-uses-war-zelenskiy-says-2026-06-25/","description":"우크라이나가 러시아 전쟁 지원 시설을 선제적으로 타격하겠다고 밝혔다. 에너지 인프라 공격과 연료난이 전쟁 양상을 바꾸고 있다.","score":91,"priority":91,"tags":["우크라이나","러시아","젤렌스키","에너지시설","전쟁"]},
+    {"id":"main-20260625-1808-ap-voter-citizenship-order","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"⚖️","title":"미 연방법원, 유권자 시민권 증명 행정명령 대부분 영구 차단","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/358912bcb6c7223b3d2d36465156fde9","description":"보스턴 연방법원이 트럼프의 유권자 시민권 증명 요구를 위헌적 권한 침해로 판단했다. 선거 규칙을 둘러싼 법적 충돌이 이어진다.","score":88,"priority":88,"tags":["미국정치","투표권","시민권증명","트럼프","연방법원"]},
+    {"id":"main-20260625-1808-reuters-morocco-haiti-worldcup","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"모로코, 아이티에 4-2 역전승…월드컵 32강 진출","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/sports/soccer/morocco-earn-comeback-win-over-haiti-reach-last-32-group-runners-up-2026-06-25/","description":"모로코가 아이티를 상대로 후반 역전승을 거두고 조 2위로 32강에 올랐다. 월드컵 토너먼트 대진 경쟁이 본격화됐다.","score":83,"priority":83,"tags":["월드컵","모로코","아이티","32강","축구"]},
+    {"id":"main-20260625-1808-ap-paris-heat-rooftops","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🏛️","title":"파리 지붕 밑 주거, 폭염 속 ‘열 포획’ 문제로 부상","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/2232fd983a14d9415a0108e3827e83ea","description":"유럽 폭염 속 파리의 아연 지붕 아래 주거 공간이 건강 위험으로 떠올랐다. 도시 미관 보존과 기후 적응의 충돌이 커지고 있다.","score":77,"priority":77,"tags":["파리","폭염","도시문화","기후적응","주거"]}
+  ],
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "global": [],
+    "politics": [],
+    "play": [],
+    "culture": []
+  }
+}

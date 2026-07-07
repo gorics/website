@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-06-30T16:31:58+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":2},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎨","count":1}
+  ],
+  "total": 6,
+  "allItems": [
+    {"id":"main-20260630-1631-reuters-asian-markets-q2","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"아시아 증시 기록적 분기 마감…달러 강세·금 약세 동반","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"일본·한국·대만 증시가 반도체 강세에 힘입어 분기 기준 큰 폭으로 올랐다. 동시에 달러 강세, 엔화 약세, 금 가격 하락이 겹치며 글로벌 자금 재배치가 이어졌다.","score":505,"priority":505,"tags":["아시아증시","코스피","니케이","달러","금"]},
+    {"id":"main-20260630-1631-reuters-oil-iran-us-talks","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"유가, 미·이란 도하 회동 기대에 하락…전쟁 전 수준 근접","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-falls-investors-focus-potential-iran-us-talks-doha-2026-06-30/","description":"브렌트와 WTI가 미·이란 대화 가능성과 공급 정상화 기대를 반영해 하락했다. 호르무즈 긴장은 남아 있지만 시장은 단기 공급 충격 완화 쪽에 무게를 뒀다.","score":492,"priority":492,"tags":["유가","브렌트","WTI","이란","호르무즈"]},
+    {"id":"main-20260630-1631-ap-supreme-court-fed-cook","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 독립기관 해임권 확대…연준은 예외로 보호","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/7b7676e5a066f8df41077a0920b9f334","description":"대법원이 대통령의 독립기관장 해임 권한을 넓히면서도 연준 이사 해임은 제한했다. 행정부 권한과 중앙은행 독립성의 경계가 핵심 정치·시장 이슈가 됐다.","score":486,"priority":486,"tags":["미국대법원","연준","대통령권한","독립기관","Lisa Cook"]},
+    {"id":"main-20260630-1631-ap-mail-ballots","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 선거일 소인 우편투표 사후 도착분 집계 허용","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/5f24f718ea92a33838485ce6302e079e","description":"대법원이 선거일 소인이 찍힌 우편투표가 늦게 도착해도 주 법에 따라 집계할 수 있다고 판단했다. 중간선거를 앞두고 주별 선거관리 규칙 안정성이 유지됐다.","score":471,"priority":471,"tags":["우편투표","대법원","미국선거","중간선거","선거법"]},
+    {"id":"main-20260630-1631-ap-brazil-japan-world-cup","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"브라질, 일본에 2-1 극적 역전승…마르티넬리 추가시간 결승골","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/d5c025da2efeaf08a6b7c694b8e6534e","description":"브라질이 일본에 선제골을 내줬지만 카세미루 동점골과 마르티넬리의 추가시간 결승골로 16강 진출을 확정했다. 일본은 또 한 번 토너먼트 승리 문턱에서 멈췄다.","score":463,"priority":463,"tags":["월드컵","브라질","일본","마르티넬리","16강"]},
+    {"id":"main-20260630-1631-ap-streaming-week","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎨","title":"이번 주 스트리밍 신작: ‘에놀라 홈즈 3’·마돈나 신보·‘엘’ 공개","publishedAt":"2026-06-27","date":"2026-06-27","source":"AP","url":"https://apnews.com/article/587bf83b9098091ee91d9a6d83c0cfcd","description":"AP가 6월 29일 주간 주요 스트리밍·음악·게임 공개작을 정리했다. 넷플릭스 ‘에놀라 홈즈 3’, 마돈나 신보, ‘금발이 너무해’ 프리퀄 ‘엘’ 등이 포함됐다.","score":431,"priority":431,"tags":["스트리밍","넷플릭스","마돈나","프라임비디오","게임"]}
+  ],
+  "byCategory": {"economy": [], "politics": [], "play": [], "culture": []}
+}

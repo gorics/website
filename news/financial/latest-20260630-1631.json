@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-06-30T16:31:58+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":2},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
+    {"id":"macro","name":"거시경제","icon":"🏦","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"fin-20260630-1631-reuters-asian-markets-q2","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"아시아 증시 기록적 분기, 반도체 랠리와 달러 강세가 동시 진행","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-30/","description":"한국·일본·대만 증시가 반도체 중심으로 강세를 보이며 분기 기록을 경신했다. 반면 달러 강세와 엔화 약세, 금 가격 하락은 환율·원자재 리스크를 키웠다.","score":505,"priority":505,"tags":["아시아증시","반도체","달러","엔화","금"]},
+    {"id":"fin-20260630-1631-reuters-oil-iran-us-talks","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"유가, 미·이란 대화 기대에 하락…호르무즈 리스크 프리미엄 축소","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-falls-investors-focus-potential-iran-us-talks-doha-2026-06-30/","description":"브렌트와 WTI가 전쟁 전 수준에 가까워지며 지정학 프리미엄이 빠졌다. 다만 호르무즈 항행 규칙 재설정 가능성은 에너지 운송 리스크로 남았다.","score":492,"priority":492,"tags":["유가","호르무즈","이란","브렌트","WTI"]},
+    {"id":"fin-20260630-1631-reuters-ecb-oil-retreat","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🏦","title":"유가 급락에 ECB 추가 인상 압박 완화…인플레 지표가 관건","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/energy/surprisingly-quick-oil-price-retreat-eases-urgency-ecb-act-sources-say-2026-06-30/","description":"에너지 가격이 예상보다 빠르게 내려가며 ECB의 7월 추가 금리 인상 압박이 낮아졌다. 시장은 6월 물가와 7월 회의 전후 커뮤니케이션에 주목한다.","score":478,"priority":478,"tags":["ECB","유가","금리","인플레이션","유로존"]},
+    {"id":"fin-20260630-1631-reuters-us-leverage-costs","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"미 증시 랠리의 차입 비용 상승…레버리지 포지션 부담 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/legal/transactional/borrowed-money-fueling-us-stock-rally-is-getting-more-expensive-2026-06-29/","description":"미국 주식 랠리를 뒷받침한 레버리지 투자 비용이 높아지고 있다. AI·반도체 쏠림이 강한 상황에서 자금 조달비 상승은 조정 위험을 키우는 변수다.","score":466,"priority":466,"tags":["미국증시","레버리지","AI주","반도체","자금조달"]}
+  ],
+  "byCategory": {"global-markets": [], "energy-geopolitics": [], "macro": []}
+}

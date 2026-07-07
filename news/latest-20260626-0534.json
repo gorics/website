@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-06-26T05:34:58+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"main-20260626-0534-reuters-global-chip-stocks-micron-ai-rally","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"마이크론 호실적에 글로벌 칩주 동반 상승…AI 메모리 공급부족 기대 재점화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"마이크론의 강한 실적과 수요 전망이 SK하이닉스·삼성전자·ASML 등 글로벌 반도체주 랠리로 번지며 AI 인프라 투자 기대를 다시 키웠다.","score":100,"priority":100,"tags":["마이크론","AI메모리","반도체","SK하이닉스","ASML"]},
+    {"id":"main-20260626-0534-reuters-markets-dollar-oil-gold-risk","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"달러 1년 고점·유가 4개월 저점권…중동 항로 재개와 안전자산 선호가 시장 흔들어","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-24/","description":"증시는 밸류에이션 부담에 밀렸고 달러는 강세를 보였으며, 호르무즈 통항 재개 기대와 금 약세가 원자재·환율 변동성을 키웠다.","score":96,"priority":96,"tags":["달러","유가","금","호르무즈","글로벌시장"]},
+    {"id":"main-20260626-0534-reuters-ibm-sub-1nm-ai-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"IBM, 0.7나노급 AI 칩 기술 공개…수직 적층 트랜지스터로 전력효율 경쟁 가속","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM이 1나노 미만 트랜지스터 기술을 공개하며 AI 칩 성능·전력효율 개선 가능성을 제시했고, 향후 삼성·라피더스 등 파운드리 협력도 주목된다.","score":95,"priority":95,"tags":["IBM","0.7나노","AI칩","반도체공정","전력효율"]},
+    {"id":"main-20260626-0534-reuters-elal-moscow-ukraine-strikes","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"우크라이나의 러시아 내 타격 뒤 엘알항공 모스크바 노선 중단…민항 리스크 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/middle-east/el-al-suspends-tel-aviv-moscow-flights-after-ukraine-strikes-russia-2026-06-25/","description":"러시아 내 에너지 시설과 항공 안전 우려가 커지자 이스라엘 엘알항공이 텔아비브-모스크바 운항을 중단하며 전쟁 리스크가 민간 항공으로 번졌다.","score":94,"priority":94,"tags":["우크라이나","러시아","엘알항공","모스크바","항공안전"]},
+    {"id":"main-20260626-0534-reuters-johnson-trump-voter-id-housing-standoff","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"존슨 하원의장, 트럼프와 의회 갈등 진화 시도…주택법안·유권자 ID가 쟁점","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/legal/government/house-speaker-johnson-meet-trump-hopes-defusing-political-crisis-over-voter-id-2026-06-25/","description":"트럼프가 유권자 ID 법안을 우선 요구하며 초당적 주택법안 서명을 미루자, 공화당 지도부가 중간선거를 앞둔 입법 교착을 풀기 위해 조율에 나섰다.","score":95,"priority":95,"tags":["트럼프","마이크존슨","주택법안","유권자ID","미국정치"]},
+    {"id":"main-20260626-0534-reuters-austrian-gp-heat-hazard","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"F1 오스트리아 GP에 시즌 첫 폭염 위험 선언…냉각 장비 의무 장착 규정 발동","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/sports/formula1/heat-hazard-declared-austrian-gp-weekend-2026-06-25/","description":"스필버그 레드불링 주말 기온이 31도를 넘을 것으로 예보되며 FIA가 폭염 위험을 선언했고, 팀들은 드라이버 냉각 시스템을 장착해야 한다.","score":91,"priority":91,"tags":["F1","오스트리아GP","폭염","냉각조끼","FIA"]},
+    {"id":"main-20260626-0534-ap-viking-textile-site-denmark","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"덴마크서 대형 바이킹 직물 생산지 발견…약탈자 아닌 조직적 생산사회 단서","publishedAt":"2026-06-24","date":"2026-06-24","source":"Associated Press","url":"https://apnews.com/article/54f9b57b5485aa602591185ff3b911cd","description":"오르후스 인근 10만㎡ 규모 유적에서 80개 이상 작업장과 방추·직조추가 확인돼 바이킹 시대의 대규모 섬유 생산과 교역 체계를 보여준다.","score":88,"priority":88,"tags":["바이킹","덴마크","고고학","직물","문화유산"]}
+  ],
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "global": [],
+    "politics": [],
+    "play": [],
+    "culture": []
+  }
+}

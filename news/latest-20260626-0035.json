@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-06-26T00:35:07+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":3},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"main-20260626-0035-reuters-global-chip-stocks-micron-ai","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"마이크론 실적 서프라이즈에 글로벌 반도체주 급등, AI 랠리 재점화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"마이크론의 강한 실적과 전망이 AI 메모리 수요 기대를 키우며 SK하이닉스·삼성전자 등 글로벌 반도체주를 끌어올렸다.","score":99,"priority":99,"tags":["마이크론","AI랠리","반도체","SK하이닉스","삼성전자"]},
+    {"id":"main-20260626-0035-reuters-global-markets-tech-stocks-micron","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"기술주 반등에도 대형주 부담 지속, 달러는 1년 고점권","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/","description":"마이크론·퀄컴 전망이 AI 거래를 되살렸지만 일부 대형 기술주 약세와 달러 강세가 글로벌 증시의 단기 변동성을 키웠다.","score":96,"priority":96,"tags":["글로벌증시","기술주","달러","퀄컴","AI거래"]},
+    {"id":"main-20260626-0035-reuters-korea-wild-stock-ride-ai","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"한국 증시 AI 쏠림 심화, 레버리지 개인투자와 대형 반도체 집중이 변수","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/markets/econ-world/south-koreas-wild-stock-ride-2026-06-25/","description":"KOSPI 급등락은 삼성전자·SK하이닉스 중심의 AI 기대와 개인 레버리지 확대가 결합된 구조적 변동성으로 분석된다.","score":94,"priority":94,"tags":["KOSPI","개인투자","레버리지","AI버블","한국증시"]},
+    {"id":"main-20260626-0035-reuters-apple-vk-app-store","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"러시아, VK 앱 삭제 놓고 애플에 설명 요구…플랫폼 제재 갈등 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/europe/kremlin-demands-explanation-apple-after-russian-apps-removed-app-store-2026-06-25/","description":"애플이 러시아 VK 관련 앱을 앱스토어에서 삭제하자 크렘린이 설명을 요구하며 서방 플랫폼과 러시아 디지털 통제 갈등이 다시 부각됐다.","score":93,"priority":93,"tags":["애플","VK","앱스토어","러시아","플랫폼규제"]},
+    {"id":"main-20260626-0035-ap-scotus-metering-asylum-policy","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 국경 망명 신청 제한 정책 부활 길 열어","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/d36d0092617c7115780c06de38e2000f","description":"미 대법원은 하루 망명 신청자 수를 제한하는 ‘metering’ 정책을 다시 추진할 수 있게 해 이민·국경정책 논쟁을 키웠다.","score":92,"priority":92,"tags":["미대법원","망명","국경정책","이민","metering"]},
+    {"id":"main-20260626-0035-reuters-ukraine-risk-insurance-fund","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"미 DFC·세계은행 MIGA, 우크라이나 투자용 정치위험 보험 추진","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/us-dfc-world-banks-miga-set-up-political-risk-insurance-ukraine-fund-2026-06-25/","description":"미국 개발금융공사와 세계은행 산하 MIGA가 우크라이나 재건 투자 유치를 위해 정치위험 보험 장치를 마련하기로 했다.","score":90,"priority":90,"tags":["우크라이나","세계은행","DFC","MIGA","재건투자"]},
+    {"id":"main-20260626-0035-ap-world-cup-us-group-decisions","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"월드컵 미국, 조 1위 확정 뒤 터키전 로테이션 고민","publishedAt":"2026-06-25","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/447f8fc813a635f3520208141b0112eb","description":"미국은 1930년 이후 처음으로 월드컵 2연승을 거둔 뒤 조 1위를 확정했고, 터키전에서 주전 휴식과 경고 관리를 저울질한다.","score":88,"priority":88,"tags":["월드컵","미국대표팀","터키전","포체티노","조별리그"]},
+    {"id":"main-20260626-0035-guardian-entertainment-week-toy-story-bear","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"토이 스토리 5·더 베어 등 주간 엔터테인먼트 신작 라인업 주목","publishedAt":"2026-06-20","date":"2026-06-20","source":"The Guardian","url":"https://www.theguardian.com/culture/2026/jun/20/entertainment-guide-week-ahead-toy-story-the-bear-brassed-off-graham-coxon-cinema-theatre-art-music","description":"영화·스트리밍·게임·음악 신작이 동시에 공개되며 여름 문화 소비와 프랜차이즈 콘텐츠 경쟁이 본격화하고 있다.","score":82,"priority":82,"tags":["토이스토리5","더베어","문화콘텐츠","게임","음악"]}
+  ],
+  "byCategory": {"economy":[],"tech":[],"global":[],"politics":[],"play":[],"culture":[]}
+}

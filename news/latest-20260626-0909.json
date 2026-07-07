@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-06-26T09:09:53+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"main-20260626-0909-reuters-world-stocks-chip-rally-dollar","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"글로벌 증시, 반도체 랠리에 상승…달러는 1년 고점 부근에서 안정","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/","description":"마이크론과 퀄컴 전망이 AI 반도체 심리를 되살리며 세계 증시를 밀어 올렸지만, 고평가 부담과 연준 긴축 경계는 변동성을 남겼다.","score":98,"priority":98,"tags":["글로벌증시","반도체","달러","마이크론","연준"]},
+    {"id":"main-20260626-0909-reuters-gulf-markets-oil-fed","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"걸프 증시, 유가 약세와 미 금리 인상 베팅에 동반 하락","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/middle-east/most-gulf-markets-ease-weaker-oil-fed-rate-hike-bets-2026-06-25/","description":"유가가 전쟁 이전 수준으로 내려가고 미국 금리 인상 가능성이 커지며 두바이·아부다비·사우디 등 주요 걸프 증시가 약세를 보였다.","score":96,"priority":96,"tags":["걸프증시","유가","연준","두바이","사우디"]},
+    {"id":"main-20260626-0909-reuters-ai-chip-rally-400b","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"마이크론·퀄컴 전망에 AI 반도체주 시총 4천억달러 랠리","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/business/micron-qualcomm-forecasts-ignite-400-billion-ai-chip-stock-rally-2026-06-24/","description":"AI 메모리와 데이터센터 수요 전망이 개선되며 마이크론·퀄컴을 중심으로 반도체주 전반에 대규모 매수세가 유입됐다.","score":97,"priority":97,"tags":["AI반도체","마이크론","퀄컴","데이터센터","시총"]},
+    {"id":"main-20260626-0909-guardian-europe-heatwave-records","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"유럽 폭염 확산…영국 6월 최고기온·프랑스 원전 출력 제한","publishedAt":"2026-06-25","date":"2026-06-25","source":"The Guardian","url":"https://www.theguardian.com/world/live/2026/jun/25/europe-heatwave-uk-italy-france-record-temperature-latest-news-updates","description":"영국·프랑스·이탈리아 등에서 기록적 폭염과 사망자가 이어지고 학교 폐쇄, 원전 출력 제한, 병원 비상 대응이 확대됐다.","score":95,"priority":95,"tags":["유럽폭염","기후","영국","프랑스","원전"]},
+    {"id":"main-20260626-0909-ap-uk-starmer-resignation","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"영국 스타머 총리 사임 의사…후임 선출 전까지 과도 체제 유지","publishedAt":"2026-06-22","date":"2026-06-22","source":"Associated Press","url":"https://apnews.com/article/cd99394cbae6ccbf0e1354e73054ce0d","description":"키어 스타머가 노동당 대표직 사임을 밝히면서 후임 경쟁이 본격화되고, 영국 정국은 브렉시트 10주년을 앞두고 재편 국면에 들어갔다.","score":94,"priority":94,"tags":["영국정치","스타머","노동당","번햄","브렉시트"]},
+    {"id":"main-20260626-0909-guardian-wimbledon-bbc-2033","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"윔블던, BBC와 새 중계권 계약…2033년까지 무료 지상파 유지","publishedAt":"2026-06-25","date":"2026-06-25","source":"The Guardian","url":"https://www.theguardian.com/sport/2026/jun/25/wimbledon-free-to-air-2033-bbc-television-tennis","description":"올잉글랜드클럽과 BBC의 연장 계약으로 윔블던은 최소 2033년까지 영국 무료 지상파 중계를 유지하게 됐다.","score":91,"priority":91,"tags":["윔블던","BBC","테니스","중계권","스포츠미디어"]},
+    {"id":"main-20260626-0909-ap-worldcup-opening-ceremonies","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"북미 월드컵 개막식 3개국 동시 연출…문화 다양성과 통합 메시지 강조","publishedAt":"2026-06-04","date":"2026-06-04","source":"Associated Press","url":"https://apnews.com/article/0dd9cf253252861914d876a9e7521faa","description":"미국·캐나다·멕시코의 2026 월드컵 개막 행사가 각국 문화 모티프와 글로벌 아티스트 공연으로 공동 개최의 상징성을 부각한다.","score":87,"priority":87,"tags":["월드컵","개막식","문화행사","북미","공연"]}
+  ],
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "global": [],
+    "politics": [],
+    "play": [],
+    "culture": []
+  }
+}

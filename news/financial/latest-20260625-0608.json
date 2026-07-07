@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-06-25T06:08:33+09:00",
+  "source": "Latest financial public news overlay archive for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-overlay",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":2},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1}
+  ],
+  "total": 4,
+  "allItems": [
+    {"id":"fin-20260625-0608-reuters-sk-hynix-us-adr-listing","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"SK하이닉스, 최대 294억달러 美 ADR 상장 추진","description":"AI용 HBM 수요를 등에 업은 SK하이닉스가 나스닥 ADR 상장으로 대규모 자금 조달을 추진한다. 미국 투자자 기반 확대와 메모리 밸류에이션 재평가가 핵심이다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":466,"tags":["SK하이닉스","ADR","HBM","반도체","AI"]},
+    {"id":"fin-20260625-0608-reuters-openai-broadcom-jalapeno","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"OpenAI 자체 AI칩 공개, 브로드컴·TSMC 공급망 주목","description":"OpenAI가 브로드컴과 개발한 자체 AI 추론칩을 공개하면서 AI 인프라 투자의 수직계열화가 가속됐다. 엔비디아 의존도와 HBM 공급망이 시장 변수다.","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":468,"tags":["OpenAI","브로드컴","TSMC","AI인프라","HBM"]},
+    {"id":"fin-20260625-0608-reuters-qualcomm-meta-microsoft-ai-chips","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"퀄컴 AI칩, 마이크로소프트·메타 채택으로 데이터센터 경쟁 확대","description":"퀄컴이 데이터센터 AI칩 고객으로 마이크로소프트와 메타를 확보했다. 스마트폰 중심 사업에서 AI 인프라 매출로 확장하려는 전략이 부각됐다.","url":"https://www.reuters.com/business/retail-consumer/qualcomm-bets-ai-chips-break-smartphone-reliance-faces-crowded-race-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":460,"tags":["퀄컴","메타","마이크로소프트","데이터센터","AI칩"]},
+    {"id":"fin-20260625-0608-reuters-european-shares-iran-rheinmetall","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"유럽 증시 보합, 이란 협상·방산주 급락이 위험심리 제한","description":"유럽 주식시장은 이란 관련 불확실성과 Rheinmetall 급락 속 보합권에 머물렀다. 방산·에너지·광산 업종 흐름이 지수 방향성을 제약했다.","url":"https://www.reuters.com/business/aerospace-defense/european-shares-muted-investors-assess-us-iran-talks-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":430,"tags":["유럽증시","이란","Rheinmetall","방산","위험심리"]}
+  ],
+  "byCategory": {
+    "semiconductors": [
+      {"id":"fin-20260625-0608-reuters-sk-hynix-us-adr-listing","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"SK하이닉스, 최대 294억달러 美 ADR 상장 추진","description":"AI용 HBM 수요를 등에 업은 SK하이닉스가 나스닥 ADR 상장으로 대규모 자금 조달을 추진한다. 미국 투자자 기반 확대와 메모리 밸류에이션 재평가가 핵심이다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":466,"tags":["SK하이닉스","ADR","HBM","반도체","AI"]}
+    ],
+    "ai-infrastructure": [
+      {"id":"fin-20260625-0608-reuters-openai-broadcom-jalapeno","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"OpenAI 자체 AI칩 공개, 브로드컴·TSMC 공급망 주목","description":"OpenAI가 브로드컴과 개발한 자체 AI 추론칩을 공개하면서 AI 인프라 투자의 수직계열화가 가속됐다. 엔비디아 의존도와 HBM 공급망이 시장 변수다.","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":468,"tags":["OpenAI","브로드컴","TSMC","AI인프라","HBM"]},
+      {"id":"fin-20260625-0608-reuters-qualcomm-meta-microsoft-ai-chips","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"퀄컴 AI칩, 마이크로소프트·메타 채택으로 데이터센터 경쟁 확대","description":"퀄컴이 데이터센터 AI칩 고객으로 마이크로소프트와 메타를 확보했다. 스마트폰 중심 사업에서 AI 인프라 매출로 확장하려는 전략이 부각됐다.","url":"https://www.reuters.com/business/retail-consumer/qualcomm-bets-ai-chips-break-smartphone-reliance-faces-crowded-race-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":460,"tags":["퀄컴","메타","마이크로소프트","데이터센터","AI칩"]}
+    ],
+    "global-markets": [
+      {"id":"fin-20260625-0608-reuters-european-shares-iran-rheinmetall","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"유럽 증시 보합, 이란 협상·방산주 급락이 위험심리 제한","description":"유럽 주식시장은 이란 관련 불확실성과 Rheinmetall 급락 속 보합권에 머물렀다. 방산·에너지·광산 업종 흐름이 지수 방향성을 제약했다.","url":"https://www.reuters.com/business/aerospace-defense/european-shares-muted-investors-assess-us-iran-talks-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":430,"tags":["유럽증시","이란","Rheinmetall","방산","위험심리"]}
+    ]
+  }
+}

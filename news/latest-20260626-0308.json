@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-06-26T03:08:59+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"main-20260626-0308-reuters-europe-shares-record-healthcare-ai","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"유럽 증시 사상 최고 마감, 헬스케어·AI 반도체 기대가 랠리 견인","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/markets/europe/european-shares-gain-upbeat-micron-forecast-revives-ai-rally-2026-06-25/","description":"STOXX 600이 사상 최고로 마감했고, 바이엘 급등과 마이크론발 AI 반도체 기대가 유럽 위험자산 선호를 강화했다.","score":100,"priority":100,"tags":["유럽증시","STOXX600","바이엘","마이크론","AI랠리"]},
+    {"id":"main-20260626-0308-reuters-nasdaq-megacaps-chip-outlook","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"나스닥 하락, 반도체 호재에도 빅테크 약세와 금리 부담이 압박","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-jump-2-micron-qualcomm-forecasts-relieve-investors-2026-06-25/","description":"마이크론·퀄컴 호재로 반도체주는 강했지만 애플 등 대형 기술주 약세와 인플레이션·금리 우려가 나스닥을 끌어내렸다.","score":98,"priority":98,"tags":["나스닥","애플","마이크론","퀄컴","금리"]},
+    {"id":"main-20260626-0308-reuters-openai-broadcom-jalapeno-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"OpenAI, 브로드컴과 자체 AI 칩 ‘Jalapeño’ 공개…엔비디아 의존 완화 시도","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI가 추론 작업에 맞춘 자체 칩을 공개하며 데이터센터 비용과 공급망 통제력을 개선하려는 빅테크 ASIC 경쟁에 합류했다.","score":97,"priority":97,"tags":["OpenAI","브로드컴","AI칩","Jalapeño","데이터센터"]},
+    {"id":"main-20260626-0308-guardian-europe-record-heatwave","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"유럽 폭염 확산, 영국 6월 최고기온·프랑스 원전 출력 제한 등 피해 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"The Guardian","url":"https://www.theguardian.com/world/live/2026/jun/25/europe-heatwave-uk-italy-france-record-temperature-latest-news-updates","description":"영국·프랑스·이탈리아 등에서 기록적 폭염이 이어지며 학교 폐쇄, 응급 대응 증가, 원전 냉각수 문제까지 번지고 있다.","score":95,"priority":95,"tags":["유럽폭염","기후","영국","프랑스","원전"]},
+    {"id":"main-20260626-0308-guardian-us-supreme-court-immigration-rulings","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 이민·총기·농약 소송 쟁점서 트럼프 행정부에 잇단 승리","publishedAt":"2026-06-25","date":"2026-06-25","source":"The Guardian","url":"https://www.theguardian.com/us-news/live/2026/jun/25/trump-housing-bill-senate-regulations-supreme-court-latest-news-updates","description":"대법원이 임시보호지위 종료와 국경 망명 제한 등 주요 쟁점에서 행정부 손을 들어주며 미국 이민·규제 정책 변화가 빨라졌다.","score":94,"priority":94,"tags":["미대법원","트럼프","이민정책","총기","규제"]},
+    {"id":"main-20260626-0308-talksport-world-cup-iran-egypt-pride-match","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"FIFA, 이란의 프라이드 행사 제한 요구 거부…이집트전 앞두고 논란 지속","publishedAt":"2026-06-25","date":"2026-06-25","source":"talkSPORT","url":"https://talksport.com/football/world-cup/4363390/iran-egypt-seattle-pride-match-fifa-deny-request/","description":"월드컵 조 1위 결정전이 열리는 시애틀에서 LGBTQ+ 관련 행사를 둘러싼 이란·이집트 측 반발과 FIFA의 포용 원칙이 충돌했다.","score":91,"priority":91,"tags":["월드컵","이란","이집트","FIFA","프라이드"]},
+    {"id":"main-20260626-0308-guardian-week-culture-guide-toy-story-bear","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"이번 주 문화 일정, ‘토이 스토리 5’·‘더 베어’ 등 영화·공연·스트리밍 신작 주목","publishedAt":"2026-06-20","date":"2026-06-20","source":"The Guardian","url":"https://www.theguardian.com/culture/2026/jun/20/entertainment-guide-week-ahead-toy-story-the-bear-brassed-off-graham-coxon-cinema-theatre-art-music","description":"극장 개봉작부터 전시, 공연, 스트리밍 신작까지 여름 문화 소비를 이끌 주요 콘텐츠가 한 주 일정으로 정리됐다.","score":86,"priority":86,"tags":["문화","영화","스트리밍","공연","토이스토리5"]}
+  ],
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "global": [],
+    "politics": [],
+    "play": [],
+    "culture": []
+  }
+}

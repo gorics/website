@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-06-20T23:07:08+09:00",
+  "source": "Latest financial public news overlay for automation run; prior overlay files are preserved and loaded before base data",
+  "page": "financial-latest-overlay",
+  "categories": [
+    {"id":"equities-ai","name":"증시·AI","icon":"📈","count":1},
+    {"id":"financial-regulation","name":"금융규제","icon":"⚖️","count":1},
+    {"id":"geopolitical-risk","name":"지정학·에너지","icon":"🛢️","count":1}
+  ],
+  "total": 3,
+  "allItems": [
+    {"id":"fin-20260620-2307-wall-st-chip-iran","category":"equities-ai","categoryName":"증시·AI","categoryIcon":"📈","title":"월가, 반도체 강세와 이란 리스크 완화 기대에 상승","description":"미 증시는 반도체주 강세와 미·이란 긴장 완화 기대가 겹치며 상승했다. AI 칩 랠리와 유가 안정 기대가 시장 심리를 지지했다.","url":"https://www.reuters.com/business/wall-st-futures-bounce-back-us-iran-deal-optimism-balances-hawkish-fed-intel-up-2026-06-18/","source":{"name":"Reuters"},"publishedAt":"2026-06-18","score":179,"tags":["월가","반도체","AI","이란","유가"]},
+    {"id":"fin-20260620-2307-cfpb-appeals-court","category":"financial-regulation","categoryName":"금융규제","categoryIcon":"⚖️","title":"CFPB 감원 제동, 미국 소비자금융 규제 축소 시도에 법원 견제","description":"항소법원이 CFPB 대규모 감축을 막으면서 은행·핀테크 규제 완화 기대와 소비자보호 정책의 불확실성이 동시에 커졌다.","url":"https://www.reuters.com/legal/litigation/us-appeals-court-blocks-trump-admin-enacting-new-plans-slash-consumer-watchdog-2026-06-19/","source":{"name":"Reuters"},"publishedAt":"2026-06-19","score":176,"tags":["CFPB","금융규제","소비자보호","미국법원"]},
+    {"id":"fin-20260620-2307-oil-demand-stability","category":"geopolitical-risk","categoryName":"지정학·에너지","categoryIcon":"🛢️","title":"이란 원유·중국 수요 둔화가 유가 급등을 제한","description":"중동 리스크에도 이란산 원유 공급과 중국 수입 둔화가 유가 급등을 억제했다는 분석이 나왔다. 호르무즈와 중국 수요가 단기 에너지 가격 변수다.","url":"https://nypost.com/2026/06/19/business/why-oil-isnt-spiking-iran-ships-20-million-barrels-while-china-slashes-imports/","source":{"name":"New York Post"},"publishedAt":"2026-06-19","score":154,"tags":["유가","이란","중국수요","호르무즈","원유"]}
+  ],
+  "byCategory": {
+    "equities-ai": [],
+    "financial-regulation": [],
+    "geopolitical-risk": []
+  }
+}

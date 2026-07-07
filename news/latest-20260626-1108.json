@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-26T11:08:42+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"main-20260626-1108-reuters-gold-dollar-fed-weekly-loss","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"금값, 달러 강세·연준 긴축 베팅에 4주 연속 하락권","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/business/gold-poised-fourth-weekly-loss-hawkish-fed-bets-buoy-dollar-2026-06-26/","description":"미 인플레이션과 금리 인상 가능성이 다시 부각되며 달러가 강세를 보였고, 비수익 자산인 금은 주간 기준 4주 연속 약세 흐름을 보였다.","score":99,"priority":99,"tags":["금","달러","연준","인플레이션","안전자산"]},
+    {"id":"main-20260626-1108-reuters-samsung-korea-investment-chip-plants","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"삼성그룹, 10년간 6480억달러 국내 투자 보도…반도체·AI 데이터센터 초점","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/samsung-invest-1000-trillion-won-south-korea-media-report-says-2026-06-25/","description":"삼성이 지방 반도체 공장과 AI 데이터센터, 배터리·디스플레이 투자를 포함한 초대형 국내 투자 계획을 발표할 것이라는 보도가 나왔다.","score":98,"priority":98,"tags":["삼성","반도체","AI데이터센터","국내투자","SK하이닉스"]},
+    {"id":"main-20260626-1108-reuters-ibm-sub-one-nm-chip-tech","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"IBM 0.7나노 칩 기술, AI 연산용 초미세 공정 경쟁 재점화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM이 1나노 미만 트랜지스터 구조를 공개하면서 차세대 AI 칩의 성능·전력 효율 경쟁과 파운드리 협력 구도가 다시 주목받고 있다.","score":97,"priority":97,"tags":["IBM","0.7나노","AI칩","반도체공정","나노스택"]},
+    {"id":"main-20260626-1108-reuters-paris-heatwave-alcohol-ban","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"파리, 폭염 대응 위해 공공장소 음주 금지…유럽 보건 리스크 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/paris-sets-up-ban-drinking-alcohol-public-deal-with-heatwave-2026-06-25/","description":"프랑스와 유럽 전역의 고온이 이어지자 파리는 야외 음주와 주류 판매를 제한해 탈수·응급 위험을 낮추려는 긴급 조치에 나섰다.","score":96,"priority":96,"tags":["파리","폭염","기후","보건","유럽"]},
+    {"id":"main-20260626-1108-reuters-supreme-court-tps-haiti-syria","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"미 대법원, 아이티·시리아 TPS 종료 허용…이민정책 행정부 재량 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/supreme-court-lets-trump-end-deportation-protections-syrians-haitians-2026-06-25/","description":"연방대법원이 트럼프 행정부의 임시보호지위 종료를 허용하면서 수십만 명의 체류 안정성과 미국 이민정책 방향이 다시 쟁점화됐다.","score":95,"priority":95,"tags":["미국대법원","TPS","이민정책","아이티","시리아"]},
+    {"id":"main-20260626-1108-reuters-netherlands-tunisia-worldcup","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"네덜란드, 튀니지 3-1 제압…월드컵 조 1위로 32강 진출","publishedAt":"2026-06-26","date":"2026-06-26","source":"Reuters","url":"https://www.reuters.com/sports/soccer/dutch-ease-past-tunisia-3-1-finish-top-group-f-2026-06-26/","description":"네덜란드는 초반 연속 득점과 안정적인 경기 운영으로 튀니지를 꺾고 조 1위를 확정했으며, 토너먼트에서 모로코와 맞붙게 됐다.","score":93,"priority":93,"tags":["월드컵","네덜란드","튀니지","축구","32강"]},
+    {"id":"main-20260626-1108-ap-viking-textile-denmark","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"덴마크서 대형 바이킹 직물 생산 유적 공개…북유럽 생활문화 조명","publishedAt":"2026-06-26","date":"2026-06-26","source":"Associated Press","url":"https://apnews.com/","description":"덴마크에서 확인된 대규모 바이킹 직물 생산 흔적이 당시 교역·의복·노동 체계를 보여주는 문화사 자료로 주목받고 있다.","score":90,"priority":90,"tags":["바이킹","덴마크","고고학","직물","문화유산"]}
+  ],
+  "byCategory": {"economy":[],"tech":[],"global":[],"politics":[],"play":[],"culture":[]}
+}

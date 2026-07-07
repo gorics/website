@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-06-24T11:10:00+09:00",
+  "source": "Latest financial public news archive overlay; finance and market-moving items prioritized; loaded before latest.json and data.json",
+  "page": "financial-latest-archive-overlay",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1},
+    {"id":"equity-strategy","name":"주식전략","icon":"📈","count":1}
+  ],
+  "total": 2,
+  "allItems": [
+    {"id":"fin-20260624-1110-reuters-asia-stocks-tech-volatility","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"아시아 증시 변동성 확대, 기술주 매도 후 한국 반등·일본 약세 혼재","description":"글로벌 기술·반도체 매도 이후 아시아 증시가 흔들렸다. 한국 증시는 전일 급락 뒤 반등했지만 일본 닛케이는 약세를 보였고, 시장은 AI 투자 부담과 연준 긴축 가능성을 계속 주시했다.","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":446,"tags":["아시아증시","기술주","반도체","연준","변동성"]},
+    {"id":"fin-20260624-1110-reuters-sp500-target-earnings","category":"equity-strategy","categoryName":"주식전략","categoryIcon":"📈","title":"바클레이스·스티펄, S&P 500 목표 7,800으로 상향…강한 이익 전망 반영","description":"바클레이스와 스티펄이 기업 이익 전망을 근거로 S&P 500 연말 목표치를 7,800으로 높였다. 다만 인플레이션과 추가 금리 인상, AI 투자 지속성이 상승 시나리오의 핵심 변수로 남았다.","url":"https://www.reuters.com/business/barclays-stifel-lift-sp-500-target-7800-strong-earnings-outlook-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":424,"tags":["S&P500","바클레이스","스티펄","기업이익","AI투자"]}
+  ],
+  "byCategory": {
+    "global-markets": [
+      {"id":"fin-20260624-1110-reuters-asia-stocks-tech-volatility","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"아시아 증시 변동성 확대, 기술주 매도 후 한국 반등·일본 약세 혼재","description":"글로벌 기술·반도체 매도 이후 아시아 증시가 흔들렸다. 한국 증시는 전일 급락 뒤 반등했지만 일본 닛케이는 약세를 보였고, 시장은 AI 투자 부담과 연준 긴축 가능성을 계속 주시했다.","url":"https://www.reuters.com/world/china/global-markets-global-markets-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":446,"tags":["아시아증시","기술주","반도체","연준","변동성"]}
+    ],
+    "equity-strategy": [
+      {"id":"fin-20260624-1110-reuters-sp500-target-earnings","category":"equity-strategy","categoryName":"주식전략","categoryIcon":"📈","title":"바클레이스·스티펄, S&P 500 목표 7,800으로 상향…강한 이익 전망 반영","description":"바클레이스와 스티펄이 기업 이익 전망을 근거로 S&P 500 연말 목표치를 7,800으로 높였다. 다만 인플레이션과 추가 금리 인상, AI 투자 지속성이 상승 시나리오의 핵심 변수로 남았다.","url":"https://www.reuters.com/business/barclays-stifel-lift-sp-500-target-7800-strong-earnings-outlook-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":424,"tags":["S&P500","바클레이스","스티펄","기업이익","AI투자"]}
+    ]
+  }
+}

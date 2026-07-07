@@ -1,0 +1,55 @@
+{
+  "generatedAt": "2026-06-20T22:08:58+09:00",
+  "source": "Latest financial public news overlay for automation run; existing financial news preserved in prior overlays and data.json",
+  "page": "financial-latest-overlay-20260620-2208",
+  "categories": [
+    {"id": "geopolitical-risk", "name": "지정학·에너지", "icon": "🛢️", "count": 2},
+    {"id": "equities-ai", "name": "증시·AI", "icon": "📈", "count": 1}
+  ],
+  "total": 3,
+  "allItems": [
+    {
+      "id": "fin-20260620-2208-reuters-lebanon-strikes-16",
+      "category": "geopolitical-risk",
+      "categoryName": "지정학·에너지",
+      "categoryIcon": "🛢️",
+      "title": "레바논 휴전 직후 사망자 발생, 중동 리스크 프리미엄 재상승 가능성",
+      "description": "이스라엘 공습과 헤즈볼라 발사체 공방으로 휴전 안정성이 흔들리며 유가·운임·보험료에 다시 리스크 프리미엄이 붙을 수 있다.",
+      "url": "https://www.reuters.com/world/middle-east/least-five-killed-israeli-strikes-south-lebanon-despite-ceasefire-2026-06-20/",
+      "source": {"name": "Reuters"},
+      "publishedAt": "2026-06-20",
+      "score": 188,
+      "tags": ["레바논", "이스라엘", "유가", "호르무즈", "지정학"]
+    },
+    {
+      "id": "fin-20260620-2208-ap-us-iran-deal-risk",
+      "category": "geopolitical-risk",
+      "categoryName": "지정학·에너지",
+      "categoryIcon": "🛢️",
+      "title": "미·이란 합의 위협받자 에너지 공급 정상화 기대도 시험대",
+      "description": "레바논 교전 지속으로 미·이란 임시 합의와 호르무즈 재개 흐름이 흔들릴 경우 원유·LNG 시장 변동성이 커질 수 있다.",
+      "url": "https://apnews.com/article/6e23fb5f37e23427dbfc2bc80c59bda8",
+      "source": {"name": "AP"},
+      "publishedAt": "2026-06-20",
+      "score": 176,
+      "tags": ["미이란합의", "호르무즈", "원유", "LNG", "시장리스크"]
+    },
+    {
+      "id": "fin-20260620-2208-meta-crusoe-ai-infra",
+      "category": "equities-ai",
+      "categoryName": "증시·AI",
+      "categoryIcon": "📈",
+      "title": "메타 AI 컴퓨팅 계약 보도, 데이터센터·전력·반도체 투자 테마 지속",
+      "description": "메타의 크루소 계약 보도는 AI 인프라 투자가 대형 기술주의 자본지출과 데이터센터 공급망을 계속 움직이는 변수임을 보여준다.",
+      "url": "https://www.reuters.com/business/meta-signs-new-ai-computing-deals-with-data-center-firm-crusoe-bloomberg-news-2026-06-18/",
+      "source": {"name": "Reuters"},
+      "publishedAt": "2026-06-18",
+      "score": 152,
+      "tags": ["메타", "AI", "데이터센터", "반도체", "전력"]
+    }
+  ],
+  "byCategory": {
+    "geopolitical-risk": [],
+    "equities-ai": []
+  }
+}

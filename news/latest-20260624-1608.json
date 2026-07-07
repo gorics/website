@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-06-24T16:08:33+09:00",
+  "source": "Latest public news archive overlay for GitHub Pages news site; generated from current public sources; merge ahead of latest.json and data.json",
+  "page": "main-latest-archive-overlay",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":2},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"latest-20260624-1608-reuters-gold-fed-dollar","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"금값 2주 저점, 달러 강세·연준 인상 베팅이 압박","description":"달러가 1년 고점권으로 오르고 연준 금리 인상 전망이 커지면서 금 현물이 약세를 보였다. 고금리 환경에서는 무이자 자산인 금의 투자 매력이 낮아진다는 점이 부각됐다.","url":"https://www.reuters.com/world/india/gold-slips-fed-rate-hike-expectations-buoy-dollar-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":430,"tags":["금","달러","연준","금리","안전자산"]},
+    {"id":"latest-20260624-1608-ap-iran-worldcup-travel","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"미국, 이란 월드컵 대표팀 이동 제한 추가 완화","description":"미국이 이란 대표팀의 다음 경기 전 시애틀 조기 입국을 허용했다. 중동 긴장과 비자·안보 논란이 월드컵 운영과 외교 현안으로 이어지고 있다.","url":"https://apnews.com/article/20af86f0da8c29dd088ecdf4d2313b2e","source":{"name":"AP"},"publishedAt":"2026-06-24","score":382,"tags":["미국","이란","월드컵","비자","스포츠외교"]},
+    {"id":"latest-20260624-1608-ap-messi-mania-argentina","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"메시 득점 기록 후 아르헨티나 전역서 ‘메시 열풍’ 확산","description":"월드컵 최다 득점 기록을 세운 메시를 기리는 대형 조형물과 팬 벽화가 아르헨티나 곳곳에서 주목받고 있다. 국가적 축구 열기와 문화적 상징성이 함께 커졌다.","url":"https://apnews.com/article/cad9c7aeea718b4b1515630095df541f","source":{"name":"AP"},"publishedAt":"2026-06-24","score":374,"tags":["메시","아르헨티나","월드컵","축구문화","팬덤"]},
+    {"id":"latest-20260624-1608-ap-jordan-worldcup-stampede","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"요르단 월드컵 단체 관람 압사 사고, 1명 사망·8명 부상","description":"암만 하셰미트 광장 월드컵 단체 관람 행사에서 군중 밀집 사고가 발생해 1명이 숨지고 8명이 다쳤다. 대형 스포츠 응원 행사 안전 관리가 쟁점으로 떠올랐다.","url":"https://apnews.com/article/e0a3b6bec7f8b98d6d692dd6d764fa7d","source":{"name":"AP"},"publishedAt":"2026-06-24","score":366,"tags":["요르단","월드컵","군중안전","압사","응원행사"]},
+    {"id":"latest-20260624-1608-ap-mexico-fans-priced-out","category":"culture","categoryName":"문화","categoryIcon":"🎬","title":"월드컵 고가 티켓에 멕시코 팬들 거리 응원 문화 확산","description":"높은 월드컵 티켓 가격으로 경기장 입장이 어려운 멕시코 팬들이 거리·광장·상점에서 자체 응원 문화를 만들고 있다. 대형 스포츠 이벤트의 접근성과 지역 문화가 쟁점이다.","url":"https://apnews.com/article/d7f859a752c08b37e30e19df7089faca","source":{"name":"AP"},"publishedAt":"2026-06-24","score":352,"tags":["멕시코","월드컵","티켓가격","거리응원","문화"]}
+  ],
+  "byCategory": {
+    "economy": ["latest-20260624-1608-reuters-gold-fed-dollar"],
+    "politics": ["latest-20260624-1608-ap-iran-worldcup-travel"],
+    "play": ["latest-20260624-1608-ap-messi-mania-argentina", "latest-20260624-1608-ap-jordan-worldcup-stampede"],
+    "culture": ["latest-20260624-1608-ap-mexico-fans-priced-out"]
+  }
+}

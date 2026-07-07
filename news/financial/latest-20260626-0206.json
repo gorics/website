@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-06-26T02:06:45+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":2},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":0},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2},
+    {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":0},
+    {"id":"trade-fx","name":"무역·환율","icon":"💱","count":0}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260626-0206-oil-oman-hormuz-supply-worries","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"오만 인근 선박 피격에 원유시장 공급 불안 재점화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/oil-prices-fall-tankers-exit-strait-hormuz-2026-06-25/","description":"호르무즈 통항 정상화 기대가 커진 직후 오만 인근 선박 피격이 발생하며 브렌트와 WTI가 반등했고 중동 해상 리스크가 다시 가격에 반영됐다.","score":99,"priority":99,"tags":["유가","호르무즈","오만","해상안보","브렌트"]},
+    {"id":"fin-20260626-0206-iraq-opec-quota-exit-warning","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"이라크 OPEC 쿼터 상향 요구, 산유국 공급정책 변수로 부상","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/energy/iraq-consider-all-options-if-opec-quota-is-not-raised-has-weighed-exit-sources-2026-06-25/","description":"이라크가 생산 쿼터 확대를 압박하며 OPEC 탈퇴 가능성까지 검토한 것으로 알려져 2027년 산유량 재조정 협상에 변동성이 커졌다.","score":96,"priority":96,"tags":["OPEC","이라크","산유량","원유공급","쿼터"]},
+    {"id":"fin-20260626-0206-ibm-subnanometer-ai-chip","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"IBM 0.7나노 칩 기술 공개, 차세대 AI 반도체 공정 경쟁 가속","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM의 1나노 미만 적층 트랜지스터 기술은 AI 칩 성능·전력 효율 개선 기대를 키우며 첨단 공정 투자 경쟁의 새 촉매로 평가된다.","score":98,"priority":98,"tags":["IBM","AI반도체","0.7나노","첨단공정","SRAM"]},
+    {"id":"fin-20260626-0206-imf-energy-commodity-normalization-after-iran-deal","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"IMF, 이란 합의 후 에너지·원자재 하락에도 정상화는 단계적 전망","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/markets/asia/imf-says-energy-commodity-prices-fall-after-iran-deal-will-take-time-normalize-2026-06-25/","description":"IMF는 중동 긴장 완화로 에너지·원자재 가격이 내려갔지만 물류 시차와 불확실성 탓에 시장 정상화에는 시간이 필요하다고 평가했다.","score":94,"priority":94,"tags":["IMF","원자재","이란합의","글로벌시장","에너지"]},
+    {"id":"fin-20260626-0206-india-stocks-oil-slide-winning-streak","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"유가 하락에 인도 증시 3주 연속 상승, 항공·금융주가 지수 지지","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/india/indian-shares-set-rise-after-oil-slips-pre-iran-war-levels-2026-06-25/","description":"브렌트 하락과 RBI 정책 기대가 인도 증시를 지지하며 Nifty와 Sensex가 7개월 만의 최장 주간 상승 흐름을 이어갔다.","score":91,"priority":91,"tags":["인도증시","유가하락","Sensex","Nifty","항공주"]}
+  ],
+  "byCategory": {
+    "global-markets": [],
+    "semiconductors": [],
+    "ai-infrastructure": [],
+    "energy-geopolitics": [],
+    "rates-policy": [],
+    "trade-fx": []
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-06-24T17:31:51+09:00",
+  "source": "Latest public news archive overlay for GitHub Pages news site; generated from current public Reuters/AP sources; merge ahead of latest.json and data.json",
+  "page": "main-latest-archive-overlay",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":3},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":2},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 8,
+  "allItems": [
+    {"id":"latest-20260624-1731-reuters-chip-stocks-plunge","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"미국 반도체주 급락, AI 랠리 과열 경계 속 저가매수로 낙폭 제한","description":"나스닥과 반도체지수가 AI 인프라 비용·금리 우려에 밀렸다. 마이크론·퀄컴·마벨 등이 급락했지만 일부 저가매수가 유입돼 기술주 변동성 확대가 핵심 이슈로 남았다.","url":"https://www.reuters.com/business/media-telecom/nasdaq-100-set-shed-over-1-trillion-tech-selloff-deepens-spacex-slides-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["반도체","나스닥","AI랠리","마이크론","기술주"]},
+    {"id":"latest-20260624-1731-reuters-europe-morning-bid-chips","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"유럽 장전 시장, 반도체 쏠림 거래와 강달러 부담 주시","description":"로이터 유럽 모닝비드는 반도체가 가장 crowded trade로 지목된 상황에서 마이크론 실적과 달러 강세, 일본 외환정책 논의가 투자심리의 핵심 변수라고 짚었다.","url":"https://www.reuters.com/world/china/global-markets-view-europe-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":438,"tags":["유럽증시","반도체","달러","마이크론","포지셔닝"]},
+    {"id":"latest-20260624-1731-reuters-micron-anthropic-supply","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"마이크론·앤스로픽, AI 인프라 메모리 공급 협약 체결","description":"마이크론이 앤스로픽에 메모리·스토리지 제품을 공급하고 최신 투자 라운드에도 참여한다. AI 모델 학습·추론 비용을 좌우하는 고대역폭 메모리 확보 경쟁이 부각됐다.","url":"https://www.reuters.com/business/micron-anthropic-sign-ai-infrastructure-supply-agreement-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-22","score":426,"tags":["마이크론","앤스로픽","AI인프라","메모리","Claude"]},
+    {"id":"latest-20260624-1731-ap-senate-war-powers-iran","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"미 상원, 이란전 전쟁권한 결의 첫 승인…트럼프 중동정책 견제","description":"미 상원이 트럼프 대통령의 이란 관련 군사행동을 제한하려는 전쟁권한 결의를 승인했다. 법적 구속력 논란과 별개로 공화당 일부 이탈까지 나온 상징적 견제다.","url":"https://apnews.com/article/7462a9a561103f531d995aac91f9fc96","source":{"name":"AP"},"publishedAt":"2026-06-23","score":406,"tags":["미국정치","이란","전쟁권한","상원","트럼프"]},
+    {"id":"latest-20260624-1731-reuters-colombia-worldcup-last32","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"콜롬비아, DR콩고 꺾고 월드컵 32강 진출 확정","description":"다니엘 무뇨스의 후반 결승골로 콜롬비아가 DR콩고를 1-0으로 이기고 조별리그 한 경기를 남겨둔 채 32강 진출을 확정했다.","url":"https://www.reuters.com/sports/soccer/munoz-sends-colombia-into-world-cup-last-32-with-win-over-dr-congo-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":386,"tags":["월드컵","콜롬비아","DR콩고","무뇨스","축구"]},
+    {"id":"latest-20260624-1731-reuters-worldcup-turnout-record","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"월드컵 관중, 가격·여행 우려에도 매진 행진…미국식 대형 이벤트 수요 확인","description":"로이터는 2026 월드컵이 44경기 누적 285만명 이상을 기록하며 역대 관중 기록 경신 가능성을 보인다고 전했다. 고가 티켓에도 대형 이벤트 소비가 강했다.","url":"https://www.reuters.com/sports/soccer/world-cup-turnout-defies-concerns-americans-flock-spectacle-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":374,"tags":["월드컵","관중","티켓","미국","스포츠비즈니스"]},
+    {"id":"latest-20260624-1731-ap-messi-mania-argentina","category":"culture","categoryName":"문화","categoryIcon":"🎬","title":"메시 열풍, 아르헨티나 전역 확산…대형 조형물·팬 벽화 등장","description":"AP는 월드컵 득점 기록을 세운 메시를 향한 아르헨티나의 팬덤이 조형물과 대형 벽화로 확산되고 있다고 전했다. 스포츠 스타가 국민적 문화 상징으로 재부상했다.","url":"https://apnews.com/article/cad9c7aeea718b4b1515630095df541f","source":{"name":"AP"},"publishedAt":"2026-06-24","score":348,"tags":["메시","아르헨티나","월드컵","팬문화","벽화"]},
+    {"id":"latest-20260624-1731-reuters-worldcup-drones-security","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"월드컵 경기장 주변 드론 300대 이상 압수…대형 이벤트 보안 비용 부각","description":"미 당국이 월드컵 개최 이후 경기장 주변 불법 드론 300대 이상을 압수했다. 항공 제한구역과 벌금·형사처벌 가능성이 커지며 대형 스포츠 이벤트 보안 리스크가 부각됐다.","url":"https://www.reuters.com/sports/soccer/us-agencies-have-seized-more-than-300-drones-near-world-cup-sites-tsa-says-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":372,"tags":["월드컵","드론","보안","이벤트리스크","TSA"]}
+  ],
+  "byCategory": {
+    "economy": [],
+    "tech": [],
+    "politics": [],
+    "play": [],
+    "culture": []
+  }
+}

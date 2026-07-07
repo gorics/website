@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-06-30T04:07:14+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": [
+    {"id":"economy","name":"경제","icon":"📈","count":3},
+    {"id":"tech","name":"기술","icon":"🤖","count":1},
+    {"id":"global","name":"국제","icon":"🌍","count":1},
+    {"id":"play","name":"스포츠","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"main-20260630-0407-reuters-hormuz-rebalancing","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"호르무즈 재개방 뒤 원유 수출 급증, 시장 재균형 혼선","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/commentary/reuters-open-interest/hormuz-oil-exodus-sets-stage-chaotic-rebalancing-act-2026-06-29/","description":"호르무즈 해협 재개방 이후 걸프 지역 원유 수출이 몰리며 물류 병목과 단기 공급 과잉 가능성이 커졌다. 유가는 안정됐지만 선박·저장·이란 공급 재개가 새 변수다.","score":416,"priority":416,"tags":["호르무즈","원유","유가","중동","해상운송"]},
+    {"id":"main-20260630-0407-reuters-sovereign-energy","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"국부펀드·중앙은행 29조달러 자금, 에너지 자산으로 이동","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/business/finance/sovereign-investors-with-29-trillion-pivot-energy-assets-flag-dollar-fears-2026-06-28/","description":"Invesco 조사에서 국부펀드와 중앙은행이 에너지 안보·전환 인프라 비중을 늘리고 달러 장기 지위 약화를 우려하는 흐름이 확인됐다.","score":408,"priority":408,"tags":["국부펀드","중앙은행","에너지인프라","달러","금"]},
+    {"id":"main-20260630-0407-reuters-guinea-gold-refining","category":"global","categoryName":"국제","category_ko":"국제","categoryIcon":"🌍","title":"기니, 서아프리카 금 정제 허브 추진…원광 수출 금지 이후 부가가치 확보","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/africa/guinea-plans-regional-gold-refining-hub-west-african-race-intensifies-2026-06-29/","description":"기니가 원광 금 수출 금지와 3000만달러 규모 정제소 가동을 바탕으로 서아프리카 금 정제 허브를 노린다. 자원 민족주의와 공급망 현지화 흐름이 강화되고 있다.","score":392,"priority":392,"tags":["기니","금","서아프리카","자원정책","정제소"]},
+    {"id":"main-20260630-0407-reuters-worldcup-lighter-whistle","category":"play","categoryName":"스포츠","category_ko":"스포츠","categoryIcon":"⚽","title":"월드컵 ‘가벼운 휘슬’ 기조, 경기 속도와 강도 끌어올려","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/sports/soccer/world-cups-lighter-whistle-helps-fuel-faster-fiercer-tournament-2026-06-28/","description":"FIFA가 사소한 접촉을 덜 불도록 유도하면서 조별리그 경기 흐름이 빨라지고 득점도 늘었다. 다만 고강도 주행과 부상 부담도 함께 커지고 있다.","score":372,"priority":372,"tags":["월드컵","FIFA","심판","경기속도","부상"]},
+    {"id":"main-20260630-0407-ap-bet-awards-lauryn-hill","category":"culture","categoryName":"문화","category_ko":"문화","categoryIcon":"🎬","title":"BET 어워즈, 로린 힐 헌정·자넷 잭슨 깜짝 등장으로 세대별 아이콘 조명","publishedAt":"2026-06-29","date":"2026-06-29","source":"AP","url":"https://apnews.com/article/9e0dfdf0079cd8550ba4d2430e97ace3","description":"2026 BET 어워즈에서 로린 힐이 리빙 레전드 아이콘으로 헌정됐고, 자넷 잭슨은 테야나 테일러에게 아이콘상을 수여했다. 블랙 음악·문화 유산을 집중 조명했다.","score":352,"priority":352,"tags":["BET어워즈","로린힐","자넷잭슨","음악","문화"]},
+    {"id":"main-20260630-0407-verge-openai-codex-hardware","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"OpenAI, Codex용 물리 단축키 하드웨어 예고","publishedAt":"2026-06-29","date":"2026-06-29","source":"The Verge","url":"https://www.theverge.com/ai-artificial-intelligence/959174/openai-codex-hardware-work-louder","description":"OpenAI가 Work Louder와 함께 Codex 작업 흐름을 위한 버튼형 하드웨어를 예고했다. AI 코딩 도구가 소프트웨어를 넘어 전용 입력장치 생태계로 확장되는 신호다.","score":366,"priority":366,"tags":["OpenAI","Codex","AI코딩","하드웨어","WorkLouder"]},
+    {"id":"main-20260630-0407-reuters-gold-slips-fed","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"금값 하락, 중동발 인플레와 연준 인상 베팅이 안전자산 압박","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/india/gold-slips-fresh-us-iran-strikes-boost-oil-fed-rate-hike-bets-weigh-2026-06-29/","description":"미·이란 긴장으로 유가와 인플레 우려가 커지자 시장은 연준 인상 가능성을 다시 반영했다. 달러 강세까지 겹치며 금 가격은 약세를 보였다.","score":384,"priority":384,"tags":["금","달러","연준","유가","인플레이션"]}
+  ],
+  "byCategory": {"economy":[],"tech":[],"global":[],"play":[],"culture":[]}
+}

@@ -1,0 +1,100 @@
+{
+  "generatedAt": "2026-06-27T06:07:00+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id": "global-markets", "name": "글로벌시장", "icon": "📈", "count": 2},
+    {"id": "semiconductors", "name": "반도체", "icon": "💾", "count": 1},
+    {"id": "ai-infrastructure", "name": "AI 인프라", "icon": "🤖", "count": 1},
+    {"id": "trade-fx", "name": "무역·환율", "icon": "💱", "count": 1}
+  ],
+  "total": 5,
+  "allItems": [
+    {
+      "id": "fin-20260627-0607-reuters-sp500-chips-moderna",
+      "category": "global-markets",
+      "categoryName": "글로벌시장",
+      "category_ko": "글로벌시장",
+      "categoryIcon": "📈",
+      "title": "S&P500 약보합…AI 반도체 매도와 금리 경계가 위험자산 압박",
+      "publishedAt": "2026-06-26",
+      "date": "2026-06-26",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/wall-st-futures-fall-chip-stocks-resume-slide-after-micron-led-rally-2026-06-26/",
+      "description": "SOX 지수 급락과 AI 인프라 수익성 논쟁이 기술주를 흔들었고, 모더나 급등과 애플 반등이 지수 하락폭을 제한했다.",
+      "score": 100,
+      "priority": 100,
+      "tags": ["S&P500", "SOX", "AI주식", "금리", "모더나"]
+    },
+    {
+      "id": "fin-20260627-0607-reuters-global-markets-h2-risks",
+      "category": "global-markets",
+      "categoryName": "글로벌시장",
+      "category_ko": "글로벌시장",
+      "categoryIcon": "📈",
+      "title": "하반기 글로벌 시장, 고용·연준·AI 밸류에이션·정치 리스크 동시 점검",
+      "publishedAt": "2026-06-26",
+      "date": "2026-06-26",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/take-five/global-markets-themes-graphic-2026-06-26/",
+      "description": "미 고용보고서와 연준 신호, AI 주가 과열, 영국 정치 변화, 아시아 반도체 흐름이 2026년 하반기 자산가격의 핵심 변수로 부상했다.",
+      "score": 98,
+      "priority": 98,
+      "tags": ["고용", "연준", "AI밸류에이션", "영국정치", "글로벌증시"]
+    },
+    {
+      "id": "fin-20260627-0607-reuters-kioxia-ai-selloff",
+      "category": "semiconductors",
+      "categoryName": "반도체",
+      "category_ko": "반도체",
+      "categoryIcon": "💾",
+      "title": "키옥시아 12% 급락…오픈AI IPO 지연설에 AI 관련주 매도 확산",
+      "publishedAt": "2026-06-26",
+      "date": "2026-06-26",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/autos-transportation/kioxia-shares-slump-12-ai-related-stocks-fall-2026-06-26/",
+      "description": "AI 수요 기대를 타고 급등했던 메모리주가 오픈AI 상장 지연 우려와 차익실현 압력에 흔들리며 반도체 변동성이 커졌다.",
+      "score": 97,
+      "priority": 97,
+      "tags": ["키옥시아", "메모리", "오픈AI", "AI주식", "반도체"]
+    },
+    {
+      "id": "fin-20260627-0607-reuters-malaysia-ai-chip-seizure",
+      "category": "ai-infrastructure",
+      "categoryName": "AI 인프라",
+      "category_ko": "AI 인프라",
+      "categoryIcon": "🤖",
+      "title": "말레이시아 AI 칩 압수…첨단 반도체 우회수출 리스크 재부각",
+      "publishedAt": "2026-06-26",
+      "date": "2026-06-26",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/asia-pacific/malaysia-customs-seizes-ai-chips-worth-13-mln-kuala-lumpur-airport-2026-06-26/",
+      "description": "고성능 AI 서버 72대가 허위 신고로 적발되며 데이터센터 칩 공급망의 규제·컴플라이언스 비용이 시장 변수로 떠올랐다.",
+      "score": 96,
+      "priority": 96,
+      "tags": ["AI칩", "수출통제", "말레이시아", "데이터센터", "컴플라이언스"]
+    },
+    {
+      "id": "fin-20260627-0607-reuters-chipflation-apple-dollar",
+      "category": "trade-fx",
+      "categoryName": "무역·환율",
+      "category_ko": "무역·환율",
+      "categoryIcon": "💱",
+      "title": "칩플레이션·달러 강세 동시 부각…애플 가격 인상과 아시아 증시 조정",
+      "publishedAt": "2026-06-26",
+      "date": "2026-06-26",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/china/global-markets-view-europe-2026-06-26/",
+      "description": "AI 데이터센터 수요가 메모리 가격과 소비재 가격으로 전이되며 달러 강세, 엔화 약세, 아시아 기술주 조정을 함께 자극했다.",
+      "score": 95,
+      "priority": 95,
+      "tags": ["칩플레이션", "달러", "애플", "엔화", "아시아증시"]
+    }
+  ],
+  "byCategory": {
+    "global-markets": [],
+    "semiconductors": [],
+    "ai-infrastructure": [],
+    "trade-fx": []
+  }
+}

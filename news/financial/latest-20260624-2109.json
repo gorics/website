@@ -1,0 +1,12 @@
+{
+  "generatedAt": "2026-06-24T21:09:03+09:00",
+  "source": "Latest financial public news overlay archive for GitHub Pages news site; finance and market-moving items prioritized; loaded ahead of latest.json and data.json",
+  "page": "financial-latest-overlay-archive",
+  "categories": [
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1}
+  ],
+  "total": 1,
+  "allItems": [
+    {"id":"fin-20260624-2109-reuters-chip-stocks-plunge","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"반도체주 급락, 저가 매수에도 기술주 조정 압력 지속","description":"AI 투자비 부담과 금리 인상 베팅이 겹치며 반도체주가 급락했다. 일부 저가 매수로 낙폭은 제한됐지만 기술주 밸류에이션 경계가 이어졌다.","url":"https://www.reuters.com/business/media-telecom/nasdaq-100-set-shed-over-1-trillion-tech-selloff-deepens-spacex-slides-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":452,"tags":["반도체","기술주","나스닥","AI투자","위험자산"]}
+  ]
+}

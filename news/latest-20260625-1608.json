@@ -1,0 +1,138 @@
+{
+  "generatedAt": "2026-06-25T16:08:27+09:00",
+  "source": "gorics-news-automation",
+  "page": "news",
+  "categories": ["economy", "tech", "politics", "play"],
+  "total": 7,
+  "allItems": [
+    {
+      "id": "main-20260625-1608-ai-chip-rally",
+      "category": "economy",
+      "categoryName": "경제",
+      "category_ko": "경제",
+      "categoryIcon": "💹",
+      "title": "마이크론·퀄컴 전망에 AI 반도체 랠리 재점화",
+      "publishedAt": "2026-06-25T02:28:36Z",
+      "date": "2026-06-25",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/",
+      "description": "마이크론 실적과 퀄컴 데이터센터 매출 전망이 AI 수요 우려를 완화하며 아시아 증시와 반도체주를 끌어올렸다.",
+      "score": 96,
+      "priority": 96,
+      "tags": ["AI", "반도체", "증시", "마이크론", "퀄컴"]
+    },
+    {
+      "id": "main-20260625-1608-korea-chip-shares",
+      "category": "economy",
+      "categoryName": "경제",
+      "category_ko": "경제",
+      "categoryIcon": "📈",
+      "title": "한국 반도체주, 마이크론 호실적·SK하이닉스 미국 상장 계획에 급등",
+      "publishedAt": "2026-06-25T01:00:01Z",
+      "date": "2026-06-25",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/",
+      "description": "SK하이닉스와 삼성전자가 AI 메모리 수요 기대와 미국 ADR 상장 가능성에 힘입어 큰 폭으로 상승했다.",
+      "score": 95,
+      "priority": 95,
+      "tags": ["SK하이닉스", "삼성전자", "ADR", "HBM", "KOSPI"]
+    },
+    {
+      "id": "main-20260625-1608-openai-broadcom-chip",
+      "category": "tech",
+      "categoryName": "기술",
+      "category_ko": "기술",
+      "categoryIcon": "🤖",
+      "title": "OpenAI, 브로드컴과 설계한 자체 AI 칩 공개",
+      "publishedAt": "2026-06-24T00:00:00Z",
+      "date": "2026-06-24",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/",
+      "description": "OpenAI가 추론용 자체 칩을 공개하며 엔비디아 의존도를 낮추고 AI 인프라 확보 경쟁에 직접 뛰어들었다.",
+      "score": 94,
+      "priority": 94,
+      "tags": ["OpenAI", "Broadcom", "AI칩", "TSMC", "인프라"]
+    },
+    {
+      "id": "main-20260625-1608-lingyi-hk-ipo",
+      "category": "tech",
+      "categoryName": "기술",
+      "category_ko": "기술",
+      "categoryIcon": "🏭",
+      "title": "애플 공급사 링이아이테크, AI 수요 겨냥 홍콩 IPO 가격 확정",
+      "publishedAt": "2026-06-24T00:00:00Z",
+      "date": "2026-06-24",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/asia-pacific/apple-supplier-lingyi-itech-prices-106-billion-hong-kong-ipo-tap-ai-demand-2026-06-24/",
+      "description": "링이아이테크가 약 10.6억 달러 규모 홍콩 상장에 나서며 AI 서버·휴머노이드·광통신 생산 확장 자금을 마련한다.",
+      "score": 86,
+      "priority": 86,
+      "tags": ["IPO", "홍콩", "애플공급망", "AI서버"]
+    },
+    {
+      "id": "main-20260625-1608-trump-america250",
+      "category": "politics",
+      "categoryName": "정치",
+      "category_ko": "정치",
+      "categoryIcon": "🏛️",
+      "title": "트럼프, 내셔널몰에서 America 250 킥오프 집회",
+      "publishedAt": "2026-06-25T00:00:00Z",
+      "date": "2026-06-25",
+      "source": "AP",
+      "url": "https://apnews.com/article/463cb685670cb9eda7e23b685f8d4c8d",
+      "description": "트럼프 대통령이 미국 건국 250주년 행사를 시작하며 국정 성과와 애국 행사를 강조했고, 투표 시민권 증명 판결 등 정치 쟁점도 이어졌다.",
+      "score": 84,
+      "priority": 84,
+      "tags": ["미국정치", "America250", "트럼프"]
+    },
+    {
+      "id": "main-20260625-1608-south-africa-korea-worldcup",
+      "category": "play",
+      "categoryName": "스포츠·엔터",
+      "category_ko": "스포츠·엔터",
+      "categoryIcon": "⚽",
+      "title": "남아공, 한국 꺾고 사상 첫 월드컵 토너먼트 진출",
+      "publishedAt": "2026-06-25T00:00:00Z",
+      "date": "2026-06-25",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/sports/soccer/south-africa-beat-south-korea-reach-world-cup-knockout-stage-first-time-2026-06-25/",
+      "description": "남아공이 한국을 1-0으로 이기고 처음으로 월드컵 32강에 올랐으며, 한국은 3위 와일드카드 가능성에 기대야 한다.",
+      "score": 82,
+      "priority": 82,
+      "tags": ["월드컵", "한국", "남아공", "축구"]
+    },
+    {
+      "id": "main-20260625-1608-brazil-knockout",
+      "category": "play",
+      "categoryName": "스포츠·엔터",
+      "category_ko": "스포츠·엔터",
+      "categoryIcon": "🏆",
+      "title": "브라질, 스코틀랜드 3-0 완파하고 월드컵 토너먼트 진출",
+      "publishedAt": "2026-06-25T00:00:00Z",
+      "date": "2026-06-25",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/sports/soccer/vinicius-fires-brazil-into-world-cup-knockouts-with-3-0-win-over-scotland-2026-06-25/",
+      "description": "비니시우스의 멀티골과 네이마르 복귀 속에 브라질이 조 1위로 32강 진출을 확정했다.",
+      "score": 78,
+      "priority": 78,
+      "tags": ["월드컵", "브라질", "비니시우스", "네이마르"]
+    }
+  ],
+  "byCategory": {
+    "economy": [
+      {"id":"main-20260625-1608-ai-chip-rally","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"💹","title":"마이크론·퀄컴 전망에 AI 반도체 랠리 재점화","publishedAt":"2026-06-25T02:28:36Z","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-2026-06-25/","description":"마이크론 실적과 퀄컴 데이터센터 매출 전망이 AI 수요 우려를 완화하며 아시아 증시와 반도체주를 끌어올렸다.","score":96,"priority":96,"tags":["AI","반도체","증시","마이크론","퀄컴"]},
+      {"id":"main-20260625-1608-korea-chip-shares","category":"economy","categoryName":"경제","category_ko":"경제","categoryIcon":"📈","title":"한국 반도체주, 마이크론 호실적·SK하이닉스 미국 상장 계획에 급등","publishedAt":"2026-06-25T01:00:01Z","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-chip-shares-rally-after-microns-upbeat-earnings-2026-06-25/","description":"SK하이닉스와 삼성전자가 AI 메모리 수요 기대와 미국 ADR 상장 가능성에 힘입어 큰 폭으로 상승했다.","score":95,"priority":95,"tags":["SK하이닉스","삼성전자","ADR","HBM","KOSPI"]}
+    ],
+    "tech": [
+      {"id":"main-20260625-1608-openai-broadcom-chip","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🤖","title":"OpenAI, 브로드컴과 설계한 자체 AI 칩 공개","publishedAt":"2026-06-24T00:00:00Z","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","description":"OpenAI가 추론용 자체 칩을 공개하며 엔비디아 의존도를 낮추고 AI 인프라 확보 경쟁에 직접 뛰어들었다.","score":94,"priority":94,"tags":["OpenAI","Broadcom","AI칩","TSMC","인프라"]},
+      {"id":"main-20260625-1608-lingyi-hk-ipo","category":"tech","categoryName":"기술","category_ko":"기술","categoryIcon":"🏭","title":"애플 공급사 링이아이테크, AI 수요 겨냥 홍콩 IPO 가격 확정","publishedAt":"2026-06-24T00:00:00Z","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/apple-supplier-lingyi-itech-prices-106-billion-hong-kong-ipo-tap-ai-demand-2026-06-24/","description":"링이아이테크가 약 10.6억 달러 규모 홍콩 상장에 나서며 AI 서버·휴머노이드·광통신 생산 확장 자금을 마련한다.","score":86,"priority":86,"tags":["IPO","홍콩","애플공급망","AI서버"]}
+    ],
+    "politics": [
+      {"id":"main-20260625-1608-trump-america250","category":"politics","categoryName":"정치","category_ko":"정치","categoryIcon":"🏛️","title":"트럼프, 내셔널몰에서 America 250 킥오프 집회","publishedAt":"2026-06-25T00:00:00Z","date":"2026-06-25","source":"AP","url":"https://apnews.com/article/463cb685670cb9eda7e23b685f8d4c8d","description":"트럼프 대통령이 미국 건국 250주년 행사를 시작하며 국정 성과와 애국 행사를 강조했고, 투표 시민권 증명 판결 등 정치 쟁점도 이어졌다.","score":84,"priority":84,"tags":["미국정치","America250","트럼프"]}
+    ],
+    "play": [
+      {"id":"main-20260625-1608-south-africa-korea-worldcup","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"⚽","title":"남아공, 한국 꺾고 사상 첫 월드컵 토너먼트 진출","publishedAt":"2026-06-25T00:00:00Z","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/sports/soccer/south-africa-beat-south-korea-reach-world-cup-knockout-stage-first-time-2026-06-25/","description":"남아공이 한국을 1-0으로 이기고 처음으로 월드컵 32강에 올랐으며, 한국은 3위 와일드카드 가능성에 기대야 한다.","score":82,"priority":82,"tags":["월드컵","한국","남아공","축구"]},
+      {"id":"main-20260625-1608-brazil-knockout","category":"play","categoryName":"스포츠·엔터","category_ko":"스포츠·엔터","categoryIcon":"🏆","title":"브라질, 스코틀랜드 3-0 완파하고 월드컵 토너먼트 진출","publishedAt":"2026-06-25T00:00:00Z","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/sports/soccer/vinicius-fires-brazil-into-world-cup-knockouts-with-3-0-win-over-scotland-2026-06-25/","description":"비니시우스의 멀티골과 네이마르 복귀 속에 브라질이 조 1위로 32강 진출을 확정했다.","score":78,"priority":78,"tags":["월드컵","브라질","비니시우스","네이마르"]}
+    ]
+  }
+}

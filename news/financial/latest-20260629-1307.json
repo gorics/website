@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-06-29T13:07:00+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
+    {"id":"ai-infra","name":"AI인프라","icon":"🧠","count":1}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260629-1307-reuters-asia-markets-mideast-rates","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"아시아 시장 혼조, 중동 리스크·미 금리 인상 베팅이 위험자산 압박","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"호르무즈 긴장과 미국 금리 인상 가능성이 맞물리며 아시아 증시가 방향성을 찾지 못했다. 유가는 지지됐고 달러는 강세를 유지해 글로벌 자금 흐름을 흔들었다.","score":246,"priority":246,"tags":["아시아증시","달러","유가","연준","중동"]},
+    {"id":"fin-20260629-1307-ap-iran-bahrain-kuwait","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"이란의 바레인·쿠웨이트 공격, 호르무즈 협상과 에너지 프리미엄 재점화","publishedAt":"2026-06-28","date":"2026-06-28","source":"AP","url":"https://apnews.com/article/1132d316545db2cddb3928b6e7840f51","description":"걸프 내 미군 주둔국을 겨냥한 이란 공격으로 호르무즈 우회 항로와 제재·핵 협상 불확실성이 커졌다. 원유·LNG 운송 리스크 프리미엄이 다시 시장 변수로 떠올랐다.","score":242,"priority":242,"tags":["이란","호르무즈","원유","LNG","걸프"]},
+    {"id":"fin-20260629-1307-reuters-korea-ai-chip-drive","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"한국 AI·반도체 메가 프로젝트, 삼성·SK 투자와 전력 인프라가 핵심 변수","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-president-unveil-massive-ai-chip-investment-drive-2026-06-29/","description":"정부의 대규모 AI·칩 투자 드라이브는 메모리·HBM 공급망과 지역 인프라 투자 기대를 동시에 자극했다. 다만 고급 인력, 전력·용수 확보가 실행 리스크다.","score":236,"priority":236,"tags":["반도체","HBM","삼성전자","SK하이닉스","AI데이터센터"]},
+    {"id":"fin-20260629-1307-reuters-baidu-kunlunxin-ipo","category":"ai-infra","categoryName":"AI인프라","category_ko":"AI인프라","categoryIcon":"🧠","title":"바이두 쿤룬신 500억달러 IPO 추진 보도, 중국 AI칩 자립 테마 강화","publishedAt":"2026-06-28","date":"2026-06-28","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/baidus-ai-chip-unit-kunlunxin-targets-50-billion-hong-kong-ipo-information-2026-06-28/","description":"쿤룬신의 홍콩 상장 추진은 중국 AI칩 국산화와 빅테크 자체 인프라 투자 흐름을 보여준다. 미국 규제 속 중국 반도체 자금 조달 심리가 시험대에 올랐다.","score":229,"priority":229,"tags":["바이두","AI칩","홍콩IPO","중국","데이터센터"]},
+    {"id":"fin-20260629-1307-reuters-ai-chip-stock-rally","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"마이크론·퀄컴 전망 이후 AI 반도체 랠리, 밸류에이션 경계와 공존","publishedAt":"2026-06-24","date":"2026-06-24","source":"Reuters","url":"https://www.reuters.com/business/micron-qualcomm-forecasts-ignite-400-billion-ai-chip-stock-rally-2026-06-24/","description":"마이크론과 퀄컴의 강한 전망이 AI 반도체주 시가총액을 크게 끌어올렸다. 동시에 데이터센터 투자 회수 기간과 과열 밸류에이션 우려가 시장 변동성을 키우고 있다.","score":220,"priority":220,"tags":["마이크론","퀄컴","AI반도체","데이터센터","주식시장"]}
+  ],
+  "byCategory": {}
+}

@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-29T15:33:00+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":2},
+    {"id":"macro","name":"거시경제","icon":"🌏","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":2}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260629-1533-reuters-asian-markets-ai-iran","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"아시아 증시 혼조, AI 밸류에이션 의구심과 미·이란 긴장이 리스크 자극","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/asian-markets-mixed-choppy-trade-ai-doubts-iran-tensions-cloud-outlook-2026-06-29/","description":"코스피 약세와 신흥아시아 지수 정체가 이어지며 AI 랠리 피로감이 확인됐다. 지정학 불안, 달러 강세, 유가 흐름이 단기 위험자산 가격의 핵심 변수다.","score":254,"priority":254,"tags":["아시아증시","AI랠리","코스피","이란","달러"]},
+    {"id":"fin-20260629-1533-reuters-global-markets-wrap","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"글로벌 시장, 중동 리스크·금리인상 베팅에 방향성 혼조","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/global-markets-wrapup-1-pix-2026-06-29/","description":"미·이란 긴장 완화 기대에도 아시아 주식은 약했고, 연준 금리인상 가능성과 달러 강세가 금·신흥시장에 부담을 줬다. AI 과열 논쟁도 기술주 변동성을 키우고 있다.","score":248,"priority":248,"tags":["글로벌시장","금리","달러","유가","AI"]},
+    {"id":"fin-20260629-1533-reuters-china-pmi-macro","category":"macro","categoryName":"거시경제","category_ko":"거시경제","categoryIcon":"🌏","title":"중국 제조업 PMI 소폭 확장 전망, 고기술 수출과 내수 둔화가 엇갈림","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/china/chinas-factory-activity-likely-returned-meagre-growth-june-2026-06-29/","description":"6월 PMI 예상치 50.1은 경기 회복이 매우 약하다는 신호다. AI 관련 수출은 강하지만 부동산·소비 부진이 원자재, 위안화, 중국 주식 밸류에이션을 제한할 수 있다.","score":238,"priority":238,"tags":["중국PMI","거시경제","위안화","부동산","수출"]},
+    {"id":"fin-20260629-1533-reuters-korea-ai-chip-drive","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"한국 AI·반도체 투자 드라이브, 메모리·데이터센터 사이클 강화 재료","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/south-korean-president-unveil-massive-ai-chip-investment-drive-2026-06-29/","description":"국가 주도 대형 프로젝트가 삼성전자·SK하이닉스 중심의 AI 메모리 투자 사이클을 뒷받침한다. 전력·데이터센터·지역 클러스터가 장기 공급능력의 핵심 변수로 부상했다.","score":244,"priority":244,"tags":["한국반도체","AI투자","데이터센터","삼성전자","SK하이닉스"]},
+    {"id":"fin-20260629-1533-reuters-samsung-sk-fabs","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"삼성·SK 신규 팹 투자, HBM 공급망과 장기 CAPEX 기대 확대","publishedAt":"2026-06-29","date":"2026-06-29","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/samsung-electronics-sk-hynix-invest-two-new-fabrication-sites-south-korea-2026-06-29/","description":"각각 두 곳의 신규 팹 건설 계획은 AI 메모리 수요 대응과 제조 기반 확대를 겨냥한다. 장비·소재·전력 인프라 전반으로 투자 파급효과가 예상된다.","score":242,"priority":242,"tags":["반도체팹","HBM","CAPEX","장비","소재"]}
+  ],
+  "byCategory": {}
+}

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow">
+<meta name="description" content="GORICS.CLOUD 공개 게시판. 게시물과 댓글은 누구나 열람할 수 있고, 작성은 승인 회원제로 운영됩니다.">
+<link rel="stylesheet" href="../news/portal.css?v=20260620">
+<style>
+.board-hero{padding-bottom:24px}.board-grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px}.board-toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin:16px 0}.board-tabs{display:flex;gap:8px;overflow:auto;white-space:nowrap}.board-tab{border:1px solid #d7dde3;background:#fff;border-radius:999px;padding:9px 12px;font-weight:950;color:#46515d;cursor:pointer}.board-tab.active{background:var(--green);border-color:var(--green);color:#fff}.board-search{display:flex;gap:8px;min-width:min(100%,360px)}.board-search input{width:100%;border:1px solid #d7dde3;background:#fff;border-radius:999px;padding:10px 13px;font-weight:850;outline:0}.post-list{display:grid;gap:12px}.post{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:16px;cursor:pointer}.post:hover{border-color:var(--green);background:linear-gradient(180deg,#fff,#fbfffd)}.post.open{border-color:var(--green);box-shadow:0 18px 44px rgba(3,199,90,.12)}.post-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.post h2{margin:8px 0 8px;font-size:1.18rem;letter-spacing:-.04em;line-height:1.38}.post-body{margin:0;color:var(--muted);line-height:1.7;white-space:pre-wrap}.post-foot{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;color:#87919c;font-size:.84rem;font-weight:800}.pill{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 8px;background:#f1f5f9;color:#43505d;font-size:.76rem;font-weight:950}.comments{display:none;margin-top:14px;border-top:1px solid var(--line);padding-top:12px}.post.open .comments{display:grid;gap:8px}.comment{border:1px solid var(--line);border-radius:14px;background:#fbfcfd;padding:11px}.comment p{margin:6px 0 0;color:#52606e;line-height:1.62;white-space:pre-wrap}.empty{border:1px dashed #cbd5df;border-radius:18px;background:#fff;padding:24px;text-align:center;color:var(--muted);font-weight:850}.policy-card{position:sticky;top:74px}.policy-list{display:grid;gap:8px;margin-top:12px}.policy-list div{border:1px solid var(--line);border-radius:12px;background:#fbfcfd;padding:10px}.policy-list b{display:block;margin-bottom:4px}.policy-list span{color:var(--muted);font-size:.9rem;line-height:1.5}.write-box{margin-top:12px;border:1px solid #d8efe2;background:#f3fff8;border-radius:14px;padding:12px;color:#315f45;line-height:1.55;font-weight:800}.errorbox{border:1px solid #ffd2d2;background:#fff7f7;color:#9f1239;border-radius:16px;padding:14px;line-height:1.6;font-weight:850}@media(max-width:900px){.board-grid{grid-template-columns:1fr}.policy-card{position:static}.board-search{width:100%}}@media(max-width:560px){.board-toolbar{display:grid}.board-search{display:grid}.post-head{display:block}}
+</style>
+<title>GORICS 게시판</title>
+</head>
+<body>
+<a class="skip" href="#board">본문으로 이동</a>
+<header class="top"><nav class="wrap nav"><a class="brand" href="../"><span class="mark">G</span><span>GORICS BOARD</span></a><div class="links"><a href="../">홈</a><a href="../news/">뉴스</a><a href="../study/">스터디</a><a href="../game/">게임</a><a href="../os/">OS</a><a href="../pdf/">PDF</a><a href="../clock/">시계</a><a class="on" href="./">게시판</a><a href="../find/">디렉터리</a></div></nav></header>
+<section class="hero board-hero"><div class="wrap"><div class="kicker">PUBLIC BOARD</div><div class="head"><h1>GORICS<br>게시판</h1><p class="desc">게시물과 댓글은 누구나 볼 수 있습니다. 작성 기능은 승인된 회원 중심으로 운영됩니다.</p></div><div class="quick"><span>공개 열람 · 승인 회원제</span><span><a class="btn" href="data.json">📦 데이터</a> <a class="btn" href="../find/">🧭 디렉터리</a> <a class="btn" href="../">🏠 메인</a></span></div></div></section>
+<main id="board" class="wrap board-grid">
+  <section>
+    <div class="board-toolbar">
+      <div class="board-tabs" id="tabs"><button class="board-tab active" data-cat="all">전체</button></div>
+      <div class="board-search"><input id="q" type="search" placeholder="게시글·댓글 검색"><button class="btn" id="refresh" type="button">새로고침</button></div>
+    </div>
+    <div id="status" class="notice">게시판 데이터를 불러오는 중입니다.</div>
+    <div id="posts" class="post-list"></div>
+  </section>
+  <aside>
+    <section class="side policy-card">
+      <h3>운영 규칙</h3>
+      <p>정적 공개 게시판입니다. 데이터는 <b>board/data.json</b>에 저장됩니다.</p>
+      <div class="policy-list">
+        <div><b>👀 열람</b><span>가입 여부와 관계없이 누구나 게시물과 댓글을 볼 수 있습니다.</span></div>
+        <div><b>🔐 작성</b><span>게시물·댓글 작성은 승인된 회원만 허용하는 운영 정책입니다.</span></div>
+      </div>
+      <div class="write-box">현재 화면은 공개 열람용입니다. 작성 UI는 승인 회원 운영 방식이 정해진 뒤 붙이면 됩니다.</div>
+    </section>
+  </aside>
+</main>
+<script>
+const state={data:null,cat:'all',q:''};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const fmt=s=>{try{return new Intl.DateTimeFormat('ko-KR',{dateStyle:'medium',timeStyle:'short'}).format(new Date(s))}catch{return s||''}};
+const catName=id=>state.data?.categories?.find(c=>c.id===id)?.name||id;
+const catIcon=id=>state.data?.categories?.find(c=>c.id===id)?.icon||'💬';
+function buildTabs(){
+  const tabs=$('#tabs');
+  tabs.innerHTML='<button class="board-tab active" data-cat="all">전체</button>'+(state.data.categories||[]).map(c=>`<button class="board-tab" data-cat="${esc(c.id)}">${esc(c.icon)} ${esc(c.name)}</button>`).join('');
+  tabs.addEventListener('click',e=>{const b=e.target.closest('button[data-cat]');if(!b)return;state.cat=b.dataset.cat;document.querySelectorAll('.board-tab').forEach(x=>x.classList.toggle('active',x===b));render();});
+}
+function postMatches(p){
+  if(state.cat!=='all'&&p.category!==state.cat)return false;
+  const q=state.q.trim().toLowerCase();
+  if(!q)return true;
+  const comments=(p.comments||[]).map(c=>c.body).join(' ');
+  return [p.title,p.body,p.author,(p.tags||[]).join(' '),comments].join(' ').toLowerCase().includes(q);
+}
+function render(){
+  const posts=(state.data.posts||[]).filter(p=>p.status==='published').filter(postMatches).sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+  $('#status').innerHTML=`공개 게시물 <b>${posts.length}</b>개 · 공개 열람 · 승인 회원제`;
+  $('#posts').innerHTML=posts.length?posts.map(p=>{
+    const comments=(p.comments||[]).filter(c=>c.status==='published');
+    return `<article class="post" data-id="${esc(p.id)}"><div class="post-head"><div><span class="pill">${esc(catIcon(p.category))} ${esc(catName(p.category))}</span></div><span class="pill">💬 ${comments.length}</span></div><h2>${esc(p.title)}</h2><p class="post-body">${esc(p.body)}</p><div class="post-foot"><span>${esc(p.author||'운영팀')}</span><span>${fmt(p.createdAt)}</span>${(p.tags||[]).map(t=>`<span>#${esc(t)}</span>`).join('')}</div><div class="comments">${comments.length?comments.map(c=>`<div class="comment"><span class="pill">${esc(c.author||'운영팀')} · ${fmt(c.createdAt)}</span><p>${esc(c.body)}</p></div>`).join(''):'<div class="empty">댓글이 아직 없습니다.</div>'}</div></article>`;
+  }).join(''):'<div class="empty">게시물이 아직 없습니다.</div>';
+  document.querySelectorAll('.post').forEach(card=>card.addEventListener('click',()=>card.classList.toggle('open')));
+}
+async function load(){
+  try{
+    const res=await fetch('data.json?ts='+Date.now(),{cache:'no-store'});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    state.data=await res.json();
+    buildTabs();render();
+  }catch(e){
+    $('#status').className='errorbox';
+    $('#status').textContent='게시판 데이터를 불러오지 못했습니다: '+e.message;
+    $('#posts').innerHTML='';
+  }
+}
+$('#q').addEventListener('input',e=>{state.q=e.target.value;render();});
+$('#refresh').addEventListener('click',load);
+load();
+</script>
+</body>
+</html>

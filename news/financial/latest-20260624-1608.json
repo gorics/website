@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-06-24T16:08:33+09:00",
+  "source": "Latest financial public news archive overlay for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-archive-overlay",
+  "categories": [
+    {"id":"metals-rates","name":"금속·금리","icon":"🥇","count":1}
+  ],
+  "total": 1,
+  "allItems": [
+    {"id":"fin-20260624-1608-reuters-gold-fed-dollar","category":"metals-rates","categoryName":"금속·금리","categoryIcon":"🥇","title":"금값 2주 저점, 달러 강세·연준 인상 베팅이 압박","description":"달러 강세와 연준 추가 금리 인상 기대가 금 가격을 낮췄다. 투자자들은 이번 주 미국 PCE 물가를 다음 통화정책 단서로 주시하고 있다.","url":"https://www.reuters.com/world/india/gold-slips-fed-rate-hike-expectations-buoy-dollar-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":430,"tags":["금","달러","연준","금리","PCE"]}
+  ],
+  "byCategory": {
+    "metals-rates": ["fin-20260624-1608-reuters-gold-fed-dollar"]
+  }
+}

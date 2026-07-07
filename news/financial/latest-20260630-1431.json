@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-06-30T14:31:40+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📊","count":2},
+    {"id":"semiconductors","name":"반도체","icon":"🧩","count":1}
+  ],
+  "total": 3,
+  "allItems": [
+    {"id":"fin-20260630-1431-reuters-wall-st-record-tech","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"월가 상승 마감, 다우 사상 최고 종가와 기술주 반등","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-lead-wall-st-higher-middle-east-tensions-ease-2026-06-29/","description":"중동 긴장 완화와 기술주 반등이 미국 증시를 밀어 올렸다. 분기말 수급과 위험자산 선호 회복이 함께 작용했다.","score":478,"priority":478,"tags":["미국증시","다우","기술주","위험자산","중동"]},
+    {"id":"fin-20260630-1431-reuters-nexchip-hk-ipo","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"🧩","title":"넥스칩 홍콩 IPO, 중국 반도체 자금조달 열기 지속","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/world/asia-pacific/chinas-nexchip-semiconductor-seeks-up-8903-million-hong-kong-share-sale-2026-06-29/","description":"넥스칩의 최대 8.9억 달러 홍콩 상장 추진은 중국 반도체 기업들의 자본시장 활용이 이어지고 있음을 보여준다. AI 생산능력과 22나노 플랫폼 투자가 핵심 사용처다.","score":466,"priority":466,"tags":["중국반도체","홍콩IPO","넥스칩","AI","파운드리"]},
+    {"id":"fin-20260630-1431-reuters-europe-equity-targets","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📊","title":"JP모건, 유럽 증시 목표치 상향…비미국 자산 로테이션 주목","publishedAt":"2026-06-30","date":"2026-06-30","source":"Reuters","url":"https://www.reuters.com/business/europe-could-be-compelling-story-jp-morgan-says-lifts-equity-index-targets-2026-06-29/","description":"JP모건은 유럽 기업이익 개선과 유가·금리 안정, 지정학 리스크 완화를 근거로 유럽 주식 목표치를 높였다. 미국 기술주 집중 이후 대체 투자처 논리가 강화됐다.","score":459,"priority":459,"tags":["유럽증시","JP모건","STOXX600","자산배분","로테이션"]}
+  ],
+  "byCategory": {"global-markets": [], "semiconductors": []}
+}

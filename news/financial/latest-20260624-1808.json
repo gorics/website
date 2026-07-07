@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-06-24T18:08:24+09:00",
+  "source": "Latest financial public news overlay archive for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-overlay-archive",
+  "categories": [
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"global-markets","name":"글로벌시장","icon":"🌐","count":1}
+  ],
+  "total": 3,
+  "allItems": [
+    {"id":"fin-20260624-1808-reuters-sk-hynix-adr","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"SK하이닉스, 나스닥 ADR로 최대 294억달러 조달 추진","description":"SK하이닉스가 나스닥 ADR 발행으로 최대 294억달러를 조달해 용인 팹, 청주 첨단패키징, EUV 장비 투자에 투입할 계획이다. AI 메모리 공급 확대 기대가 시장 핵심 변수다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":462,"tags":["SK하이닉스","ADR","나스닥","HBM","반도체투자"]},
+    {"id":"fin-20260624-1808-reuters-qualcomm-bytedance-chip","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"퀄컴, 바이트댄스 맞춤형 칩 설계 서비스 논의","description":"퀄컴이 바이트댄스와 맞춤형 칩 설계 서비스 제공을 논의하고 있다. AI·데이터센터용 ASIC 수요와 미중 반도체 규제 사이의 상업 기회가 부각됐다.","url":"https://www.reuters.com/world/china/qualcomm-talks-provide-custom-chip-design-services-bytedance-sources-say-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":430,"tags":["퀄컴","바이트댄스","ASIC","AI칩","데이터센터"]},
+    {"id":"fin-20260624-1808-ap-asian-stocks-tech-selloff","category":"global-markets","categoryName":"글로벌시장","categoryIcon":"🌐","title":"아시아 증시 혼조, 빅테크 매도 이후 반도체 변동성 지속","description":"미국 빅테크 매도 이후 아시아 증시가 혼조세를 보였다. 한국 반등에도 일본·대만 약세가 이어지며 반도체와 AI 투자 부담이 위험자산 가격을 흔들고 있다.","url":"https://apnews.com/article/b631564d3b359644eda586b047c9bcf0","source":{"name":"AP"},"publishedAt":"2026-06-24","score":424,"tags":["아시아증시","빅테크","반도체","AI","위험자산"]}
+  ]
+}

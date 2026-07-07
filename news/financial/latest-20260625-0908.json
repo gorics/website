@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-25T09:08:16+09:00",
+  "source": "Latest financial public news overlay archive for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-overlay-archive",
+  "categories": [
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":2},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":2}
+  ],
+  "total": 5,
+  "allItems": [
+    {"id":"fin-20260625-0908-reuters-ai-chip-rally","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"마이크론·퀄컴 전망, AI칩주 시총 4천억달러 증가 촉발","description":"마이크론의 강한 실적 전망과 퀄컴의 데이터센터 매출 목표가 AI 반도체 랠리를 재점화했다. 메모리와 데이터센터 칩 수요가 투자심리의 핵심이다.","url":"https://www.reuters.com/business/micron-qualcomm-forecasts-ignite-400-billion-ai-chip-stock-rally-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":468,"tags":["마이크론","퀄컴","AI칩","데이터센터","반도체주"]},
+    {"id":"fin-20260625-0908-reuters-sk-hynix-us-listing","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"SK하이닉스, 최대 294억달러 미국 상장 추진으로 AI 투자 수요 흡수","description":"SK하이닉스의 미국 ADR 상장 계획은 HBM과 AI 서버 수요 확대를 배경으로 한다. 글로벌 기관자금 접근성과 반도체 밸류에이션 재평가가 관전 포인트다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":460,"tags":["SK하이닉스","ADR","HBM","AI서버","반도체"]},
+    {"id":"fin-20260625-0908-reuters-moscow-refinery-offline","category":"energy-geopolitics","categoryName":"에너지·지정학","categoryIcon":"🛢️","title":"모스크바 정유공장 장기 중단 가능성, 러시아 연료시장 압박","description":"우크라이나 드론 공격을 받은 모스크바 정유공장이 연내 재가동이 어려울 수 있다는 전망이 나왔다. 디젤 수출 제한과 연료 수입 논의가 에너지 시장 변수다.","url":"https://www.reuters.com/business/energy/moscow-oil-refinery-hit-by-drone-attacks-is-unlikely-resume-production-this-year-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":454,"tags":["러시아","정유","디젤","우크라이나","에너지"]},
+    {"id":"fin-20260625-0908-reuters-russia-fuel-tax","category":"energy-geopolitics","categoryName":"에너지·지정학","categoryIcon":"🛢️","title":"러시아, 연료난 완화용 세제 변경 승인","description":"러시아 의회가 연료 부족 대응을 위해 정유 현대화 일정과 수입 보조, 혼합연료 기준을 조정했다. 정유시설 타격이 국내 물가와 공급망 리스크로 번지고 있다.","url":"https://www.reuters.com/business/energy/russias-parliament-approves-tax-changes-address-fuel-shortages-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":438,"tags":["러시아","연료난","세제","수입보조","공급망"]},
+    {"id":"fin-20260625-0908-ap-un-ai-energy-transparency","category":"ai-infrastructure","categoryName":"AI 인프라","categoryIcon":"🤖","title":"AI 전력 사용 투명성, 데이터센터 투자 리스크로 부상","description":"유엔이 AI 기업의 환경 영향 공개와 청정에너지 사용 확대를 촉구하면서 데이터센터 전력 조달과 기후 규제가 투자 의제로 떠올랐다.","url":"https://apnews.com/article/cdba9edbe2081aec15b115d043b5f75c","source":{"name":"AP"},"publishedAt":"2026-06-24","score":382,"tags":["AI전력","데이터센터","유엔","기후규제","인프라"]}
+  ],
+  "byCategory": {"ai-infrastructure": [],"semiconductors": [],"energy-geopolitics": []}
+}

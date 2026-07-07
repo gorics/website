@@ -1,0 +1,78 @@
+{
+  "generatedAt": "2026-06-22T17:08:51+09:00",
+  "source": "automation-public-news",
+  "page": "news/financial",
+  "categories": {
+    "economy": 2,
+    "stocks": 1,
+    "energy": 1
+  },
+  "total": 4,
+  "allItems": [
+    {
+      "id": "20260622-1708-fin-oil-us-iran-talks",
+      "category": "economy",
+      "categoryName": "경제",
+      "category_ko": "경제",
+      "categoryIcon": "💹",
+      "title": "유가, 미·이란 스위스 협상 진전 뒤 하락",
+      "publishedAt": "2026-06-22",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/energy/brent-oil-rises-more-than-1bbl-after-bumpy-start-us-iran-peace-talks-2026-06-21/",
+      "description": "스위스 협상 뒤 이란 원유 수출 면제 가능성이 부각되며 공급 불안이 완화돼 브렌트유가 80달러 아래로 밀렸다.",
+      "score": 98,
+      "priority": 98,
+      "tags": ["oil", "Iran", "markets", "energy"]
+    },
+    {
+      "id": "20260622-1708-fin-europe-stocks-iran",
+      "category": "economy",
+      "categoryName": "경제",
+      "category_ko": "경제",
+      "categoryIcon": "💹",
+      "title": "유럽 증시, 미·이란 협상 평가 속 보합권 출발",
+      "publishedAt": "2026-06-22",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/markets/europe/european-shares-muted-investors-weigh-us-iran-talks-2026-06-22/",
+      "description": "STOXX 600은 소폭 상승에 그쳤고, 기술주는 강했지만 유가 하락과 중동 협상 변수로 투자 심리는 신중했다.",
+      "score": 92,
+      "priority": 92,
+      "tags": ["Europe stocks", "STOXX 600", "Iran", "oil"]
+    },
+    {
+      "id": "20260622-1708-fin-india-shares-reliance-jio",
+      "category": "stocks",
+      "categoryName": "주식시장",
+      "category_ko": "주식시장",
+      "categoryIcon": "📈",
+      "title": "인도 증시, 중동 긴장 완화와 지오 IPO 기대에 상승",
+      "publishedAt": "2026-06-22",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/india/indian-shares-set-rise-us-iran-talks-progress-oil-eases-2026-06-22/",
+      "description": "Nifty 50과 Sensex가 상승했고, 릴라이언스는 지오 플랫폼 IPO 기대와 AI·신에너지 계획으로 강세를 보였다.",
+      "score": 90,
+      "priority": 90,
+      "tags": ["India stocks", "Reliance", "Jio IPO", "markets"]
+    },
+    {
+      "id": "20260622-1708-fin-spr-oil-reserves",
+      "category": "energy",
+      "categoryName": "에너지",
+      "category_ko": "에너지",
+      "categoryIcon": "🛢️",
+      "title": "이란 전쟁 이후 각국 전략비축유 확대 경쟁 부상",
+      "publishedAt": "2026-06-22",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/commentary/reuters-open-interest/iran-war-triggers-global-race-build-oil-reserves-2026-06-22/",
+      "description": "호르무즈 위기와 비축유 방출 경험 이후 각국이 전략비축유 확충에 나서며 중장기 원유 수요 지지 요인으로 떠올랐다.",
+      "score": 89,
+      "priority": 89,
+      "tags": ["SPR", "oil reserves", "energy security", "Iran"]
+    }
+  ],
+  "byCategory": {
+    "economy": [],
+    "stocks": [],
+    "energy": []
+  }
+}

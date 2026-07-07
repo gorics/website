@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-19T09:08:25+09:00",
+  "source": "Latest financial public news run overlay",
+  "page": "financial-run-overlay",
+  "categories": [
+    {"id":"market","name":"증시·시장","icon":"📈","count":1},
+    {"id":"company","name":"기업·산업","icon":"🏭","count":1}
+  ],
+  "total": 2,
+  "allItems": [
+    {
+      "id": "fin-20260619-russia-petrol-price-probe",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "러시아 당국, 모스크바 휘발유 19% 인상 조사",
+      "publishedAt": "2026-06-18",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/business/energy/russian-regulator-demands-explanation-after-one-moscow-petrol-retailer-hikes-2026-06-18/",
+      "description": "러시아 반독점 당국이 드론 공격 이후 특정 주유업체의 급격한 휘발유 가격 인상 경위를 조사하고 있다.",
+      "score": 99,
+      "tags": ["러시아", "휘발유", "에너지", "물가"]
+    },
+    {
+      "id": "fin-20260619-accenture-iran-ai-slump",
+      "category": "company",
+      "categoryName": "기업·산업",
+      "categoryIcon": "🏭",
+      "title": "액센추어, 이란 전쟁 여파·AI 불확실성에 주가 급락",
+      "publishedAt": "2026-06-18",
+      "source": {"name":"Reuters"},
+      "url": "https://www.reuters.com/legal/transactional/accenture-take-majority-stake-acquire-cybersecurity-firms-418-billion-deal-2026-06-18/",
+      "description": "중동 매출 타격과 IT 컨설팅 수요 둔화가 겹치며 액센추어 주가가 17% 넘게 급락했고 동종 업종에도 부담이 번졌다.",
+      "score": 101,
+      "tags": ["Accenture", "AI", "컨설팅", "실적"]
+    }
+  ],
+  "byCategory": {
+    "market": [],
+    "company": []
+  }
+}

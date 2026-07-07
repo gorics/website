@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-06-24T13:09:24+09:00",
+  "source": "Latest financial public news archive overlay for GitHub Pages news site; finance and market-moving items prioritized",
+  "page": "financial-latest-archive-overlay",
+  "categories": [
+    {"id":"precious-metals","name":"귀금속","icon":"🥇","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":1}
+  ],
+  "total": 2,
+  "allItems": [
+    {"id":"fin-20260624-1309-reuters-gold-fed-dollar","category":"precious-metals","categoryName":"귀금속","categoryIcon":"🥇","title":"금값 2주 저점, 강달러·연준 인상 베팅이 귀금속 압박","description":"달러가 1년여 고점으로 오르고 연준 추가 금리 인상 기대가 커지며 금 가격이 약 2주 만의 저점으로 밀렸다. 이란 협상 불확실성에도 금리·달러 요인이 우세했다.","url":"https://www.reuters.com/world/india/gold-slips-fed-rate-hike-expectations-buoy-dollar-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":440,"tags":["금","달러","연준","금리","귀금속"]},
+    {"id":"fin-20260624-1309-reuters-china-supercomputer","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"중국, 자체칩 슈퍼컴퓨터로 TOP500 1위 복귀…AI·수출통제 변수 부각","description":"중국 LineShine 슈퍼컴퓨터가 TOP500 1위에 오르며 국산칩 자립 신호를 냈다. 다만 AI 워크로드 최적화 한계와 미·중 반도체 통제의 실효성이 함께 투자 변수로 부상했다.","url":"https://www.reuters.com/world/china/china-beats-us-with-worlds-fastest-supercomputer-race-not-geared-ai-work-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":426,"tags":["중국","슈퍼컴퓨터","국산칩","수출통제","AI"]}
+  ],
+  "byCategory": {
+    "precious-metals": [{"id":"fin-20260624-1309-reuters-gold-fed-dollar","category":"precious-metals","categoryName":"귀금속","categoryIcon":"🥇","title":"금값 2주 저점, 강달러·연준 인상 베팅이 귀금속 압박","description":"달러가 1년여 고점으로 오르고 연준 추가 금리 인상 기대가 커지며 금 가격이 약 2주 만의 저점으로 밀렸다. 이란 협상 불확실성에도 금리·달러 요인이 우세했다.","url":"https://www.reuters.com/world/india/gold-slips-fed-rate-hike-expectations-buoy-dollar-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":440,"tags":["금","달러","연준","금리","귀금속"]}],
+    "semiconductors": [{"id":"fin-20260624-1309-reuters-china-supercomputer","category":"semiconductors","categoryName":"반도체","categoryIcon":"💾","title":"중국, 자체칩 슈퍼컴퓨터로 TOP500 1위 복귀…AI·수출통제 변수 부각","description":"중국 LineShine 슈퍼컴퓨터가 TOP500 1위에 오르며 국산칩 자립 신호를 냈다. 다만 AI 워크로드 최적화 한계와 미·중 반도체 통제의 실효성이 함께 투자 변수로 부상했다.","url":"https://www.reuters.com/world/china/china-beats-us-with-worlds-fastest-supercomputer-race-not-geared-ai-work-2026-06-23/","source":{"name":"Reuters"},"publishedAt":"2026-06-23","score":426,"tags":["중국","슈퍼컴퓨터","국산칩","수출통제","AI"]}]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-06-26T10:07:39+09:00",
+  "source": "gorics-news-automation",
+  "page": "financial",
+  "categories": [
+    {"id":"global-markets","name":"글로벌시장","icon":"📈","count":1},
+    {"id":"semiconductors","name":"반도체","icon":"💾","count":2},
+    {"id":"ai-infrastructure","name":"AI 인프라","icon":"🤖","count":1},
+    {"id":"energy-geopolitics","name":"에너지·지정학","icon":"🛢️","count":1},
+    {"id":"rates-policy","name":"금리·정책","icon":"🏦","count":1},
+    {"id":"trade-fx","name":"무역·환율","icon":"💱","count":0}
+  ],
+  "total": 6,
+  "allItems": [
+    {"id":"fin-20260626-1007-reuters-onsemi-synaptics-physical-ai","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"온세미, 시냅틱스 70억달러 인수…엣지·피지컬 AI 반도체 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/legal/transactional/onsemi-buy-synaptics-7-billion-all-stock-deal-2026-06-25/","description":"온세미는 시냅틱스의 연결 컴퓨팅·휴먼 인터페이스 기술을 흡수해 자동차·산업·로보틱스 AI 시장을 노리는 포트폴리오를 강화한다.","score":99,"priority":99,"tags":["온세미","시냅틱스","M&A","엣지AI","자동차반도체"]},
+    {"id":"fin-20260626-1007-reuters-ibm-sub-one-nm-chip","category":"semiconductors","categoryName":"반도체","category_ko":"반도체","categoryIcon":"💾","title":"IBM 0.7나노 기술 공개…차세대 AI 칩 제조 경쟁 재점화","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/ibm-unveils-tech-chip-smaller-than-1-nanometer-ai-computing-push-2026-06-25/","description":"IBM의 나노스택 구조 발표는 고성능·저전력 AI 칩 로드맵에 영향을 줄 수 있으며, 삼성·라피더스 등 잠재 파트너십도 시장 관심사다.","score":98,"priority":98,"tags":["IBM","0.7나노","AI칩","공정기술","삼성"]},
+    {"id":"fin-20260626-1007-reuters-micron-market-value-ai-infra","category":"ai-infrastructure","categoryName":"AI 인프라","category_ko":"AI 인프라","categoryIcon":"🤖","title":"마이크론, AI 인프라 메모리 수요로 시총 도약…HBM 공급난 부각","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/micron-overtakes-meta-market-value-amid-relentless-ai-infrastructure-demand-2026-06-25/","description":"AI 서버 투자 확대가 고대역폭 메모리 가격과 실적 전망을 밀어 올리며 마이크론의 시장가치 재평가를 이끌었다.","score":98,"priority":98,"tags":["마이크론","HBM","AI서버","DRAM","데이터센터"]},
+    {"id":"fin-20260626-1007-reuters-nasdaq-micron-qualcomm-futures","category":"global-markets","categoryName":"글로벌시장","category_ko":"글로벌시장","categoryIcon":"📈","title":"미 증시, 반도체 호재에도 대형 기술주·금리 부담에 변동성 확대","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/business/nasdaq-futures-jump-2-micron-qualcomm-forecasts-relieve-investors-2026-06-25/","description":"마이크론·퀄컴발 안도 랠리가 반도체주를 끌어올렸지만, 애플 등 대형주의 약세와 금리 전망이 지수 방향성을 제한했다.","score":96,"priority":96,"tags":["나스닥","반도체","마이크론","퀄컴","금리"]},
+    {"id":"fin-20260626-1007-reuters-gulf-oil-fed-markets","category":"energy-geopolitics","categoryName":"에너지·지정학","category_ko":"에너지·지정학","categoryIcon":"🛢️","title":"걸프 증시, 유가 약세와 미 금리 경계로 하락 압력 지속","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/middle-east/most-gulf-markets-ease-weaker-oil-fed-rate-hike-bets-2026-06-25/","description":"중동 리스크 프리미엄이 일부 빠지며 유가가 약세를 보였고, 달러 연동 통화권인 걸프 증시는 미 금리 전망에 민감하게 반응했다.","score":95,"priority":95,"tags":["걸프증시","유가","연준","호르무즈","사우디"]},
+    {"id":"fin-20260626-1007-reuters-us-supreme-court-asylum-policy","category":"rates-policy","categoryName":"금리·정책","category_ko":"금리·정책","categoryIcon":"🏦","title":"미 대법원 이민 판결, 노동시장·정책 불확실성 변수로 부상","publishedAt":"2026-06-25","date":"2026-06-25","source":"Reuters","url":"https://www.reuters.com/world/us-supreme-court-sides-with-trump-asylum-processing-case-2026-06-25/","description":"망명 처리 제한과 TPS 판결은 노동 공급과 주별 서비스업 비용, 정책 리스크 프리미엄에 간접 영향을 줄 수 있어 시장도 후속 조치를 주시한다.","score":90,"priority":90,"tags":["미국정책","이민","노동시장","대법원","리스크"]}
+  ],
+  "byCategory": {"global-markets":[],"semiconductors":[],"ai-infrastructure":[],"energy-geopolitics":[],"rates-policy":[],"trade-fx":[]}
+}

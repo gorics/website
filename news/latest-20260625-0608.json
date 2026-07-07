@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-06-25T06:08:33+09:00",
+  "source": "Latest public news overlay archive for GitHub Pages news site; generated from current public sources; merge ahead of latest.json and data.json",
+  "page": "main-latest-overlay",
+  "categories": [
+    {"id":"economy","name":"경제·금융","icon":"💹","count":2},
+    {"id":"tech","name":"기술","icon":"🤖","count":2},
+    {"id":"politics","name":"정치","icon":"🏛️","count":1},
+    {"id":"play","name":"스포츠·엔터","icon":"⚽","count":1},
+    {"id":"culture","name":"문화","icon":"🎬","count":1}
+  ],
+  "total": 7,
+  "allItems": [
+    {"id":"latest-20260625-0608-reuters-openai-broadcom-jalapeno","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"OpenAI, 브로드컴과 자체 AI칩 ‘Jalapeño’ 공개","description":"OpenAI가 브로드컴과 공동 개발한 첫 자체 AI 추론칩을 공개했다. 엔비디아 의존도를 낮추고 대규모 AI 인프라를 직접 통제하려는 전략이 더 뚜렷해졌다.","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":468,"tags":["OpenAI","브로드컴","AI칩","추론","반도체"]},
+    {"id":"latest-20260625-0608-reuters-qualcomm-meta-microsoft-ai-chips","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"퀄컴, 마이크로소프트·메타에 AI 데이터센터 칩 공급","description":"퀄컴이 새 AI 데이터센터 칩을 마이크로소프트와 메타가 채택한다고 밝혔다. 스마트폰 의존도를 낮추고 엔비디아 중심 시장에 진입하려는 움직임이다.","url":"https://www.reuters.com/business/retail-consumer/qualcomm-bets-ai-chips-break-smartphone-reliance-faces-crowded-race-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":460,"tags":["퀄컴","마이크로소프트","메타","AI칩","데이터센터"]},
+    {"id":"latest-20260625-0608-reuters-sk-hynix-us-adr-listing","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"SK하이닉스, AI 수요 속 최대 294억달러 美 ADR 상장 추진","description":"SK하이닉스가 나스닥 ADR 상장으로 최대 294억달러 조달을 추진한다. HBM 수요 확대와 미국 투자자 접근성 강화가 반도체 밸류에이션 재평가로 이어질 수 있다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":466,"tags":["SK하이닉스","ADR","HBM","AI반도체","나스닥"]},
+    {"id":"latest-20260625-0608-reuters-european-shares-iran-rheinmetall","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"유럽 증시 보합, 이란 불확실성과 방산주 급락이 시장 압박","description":"유럽 증시는 미·이란 협상 불확실성 속 보합권에 머물렀고, 독일 해군 사업 취소 여파로 Rheinmetall이 급락했다. 에너지·광산 약세도 부담이 됐다.","url":"https://www.reuters.com/business/aerospace-defense/european-shares-muted-investors-assess-us-iran-talks-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":430,"tags":["유럽증시","이란","방산주","Rheinmetall","에너지"]},
+    {"id":"latest-20260625-0608-reuters-starmer-resigns","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"스타머 영국 총리 사임 발표, 노동당 후임 절차 돌입","description":"키어 스타머 영국 총리가 사임을 발표하며 영국 정치의 불확실성이 커졌다. 노동당은 새 대표와 총리 선출 절차를 준비하게 됐다.","url":"https://www.reuters.com/world/uk-politics-live-starmer-expected-announce-he-will-resign-prime-minister-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":424,"tags":["영국정치","스타머","노동당","총리","정권운영"]},
+    {"id":"latest-20260625-0608-ap-mbappe-world-cup-goals","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"음바페, 월드컵 통산 16골…역대 2위권 진입","description":"킬리안 음바페가 이라크전 멀티골로 월드컵 통산 16골을 기록했다. 프랑스 대표팀 최다골 기록도 경신하며 토너먼트 흥행의 핵심 선수로 부상했다.","url":"https://apnews.com/article/25ad24ae8ea2c502b7053144735457d9","source":{"name":"AP"},"publishedAt":"2026-06-22","score":392,"tags":["월드컵","음바페","프랑스","득점기록","축구"]},
+    {"id":"latest-20260625-0608-ap-song-of-summer-fragmentation","category":"culture","categoryName":"문화","categoryIcon":"🎬","title":"AP, 2026 여름 대표곡 후보 분석…알고리즘 시대 취향 분산","description":"AP는 2026년 여름 대표곡 후보를 정리하며 국가별·플랫폼별 음악 소비가 더 세분화됐다고 분석했다. 컨트리팝, K팝, 월드컵곡이 동시에 주목받는다.","url":"https://apnews.com/article/0d2c000ccce4ea35a74baa3e6cc34090","source":{"name":"AP"},"publishedAt":"2026-06-24","score":348,"tags":["음악","여름노래","AP","K팝","월드컵곡"]}
+  ],
+  "byCategory": {
+    "tech": [
+      {"id":"latest-20260625-0608-reuters-openai-broadcom-jalapeno","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"OpenAI, 브로드컴과 자체 AI칩 ‘Jalapeño’ 공개","description":"OpenAI가 브로드컴과 공동 개발한 첫 자체 AI 추론칩을 공개했다. 엔비디아 의존도를 낮추고 대규모 AI 인프라를 직접 통제하려는 전략이 더 뚜렷해졌다.","url":"https://www.reuters.com/world/asia-pacific/openai-unveils-custom-chip-it-designed-with-broadcom-boost-its-ai-infrastructure-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":468,"tags":["OpenAI","브로드컴","AI칩","추론","반도체"]},
+      {"id":"latest-20260625-0608-reuters-qualcomm-meta-microsoft-ai-chips","category":"tech","categoryName":"기술","categoryIcon":"🤖","title":"퀄컴, 마이크로소프트·메타에 AI 데이터센터 칩 공급","description":"퀄컴이 새 AI 데이터센터 칩을 마이크로소프트와 메타가 채택한다고 밝혔다. 스마트폰 의존도를 낮추고 엔비디아 중심 시장에 진입하려는 움직임이다.","url":"https://www.reuters.com/business/retail-consumer/qualcomm-bets-ai-chips-break-smartphone-reliance-faces-crowded-race-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":460,"tags":["퀄컴","마이크로소프트","메타","AI칩","데이터센터"]}
+    ],
+    "economy": [
+      {"id":"latest-20260625-0608-reuters-sk-hynix-us-adr-listing","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"SK하이닉스, AI 수요 속 최대 294억달러 美 ADR 상장 추진","description":"SK하이닉스가 나스닥 ADR 상장으로 최대 294억달러 조달을 추진한다. HBM 수요 확대와 미국 투자자 접근성 강화가 반도체 밸류에이션 재평가로 이어질 수 있다.","url":"https://www.reuters.com/world/asia-pacific/south-koreas-sk-hynix-says-raise-29-bln-us-adr-listing-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":466,"tags":["SK하이닉스","ADR","HBM","AI반도체","나스닥"]},
+      {"id":"latest-20260625-0608-reuters-european-shares-iran-rheinmetall","category":"economy","categoryName":"경제·금융","categoryIcon":"💹","title":"유럽 증시 보합, 이란 불확실성과 방산주 급락이 시장 압박","description":"유럽 증시는 미·이란 협상 불확실성 속 보합권에 머물렀고, 독일 해군 사업 취소 여파로 Rheinmetall이 급락했다. 에너지·광산 약세도 부담이 됐다.","url":"https://www.reuters.com/business/aerospace-defense/european-shares-muted-investors-assess-us-iran-talks-2026-06-24/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":430,"tags":["유럽증시","이란","방산주","Rheinmetall","에너지"]}
+    ],
+    "politics": [
+      {"id":"latest-20260625-0608-reuters-starmer-resigns","category":"politics","categoryName":"정치","categoryIcon":"🏛️","title":"스타머 영국 총리 사임 발표, 노동당 후임 절차 돌입","description":"키어 스타머 영국 총리가 사임을 발표하며 영국 정치의 불확실성이 커졌다. 노동당은 새 대표와 총리 선출 절차를 준비하게 됐다.","url":"https://www.reuters.com/world/uk-politics-live-starmer-expected-announce-he-will-resign-prime-minister-2026-06-22/","source":{"name":"Reuters"},"publishedAt":"2026-06-24","score":424,"tags":["영국정치","스타머","노동당","총리","정권운영"]}
+    ],
+    "play": [
+      {"id":"latest-20260625-0608-ap-mbappe-world-cup-goals","category":"play","categoryName":"스포츠·엔터","categoryIcon":"⚽","title":"음바페, 월드컵 통산 16골…역대 2위권 진입","description":"킬리안 음바페가 이라크전 멀티골로 월드컵 통산 16골을 기록했다. 프랑스 대표팀 최다골 기록도 경신하며 토너먼트 흥행의 핵심 선수로 부상했다.","url":"https://apnews.com/article/25ad24ae8ea2c502b7053144735457d9","source":{"name":"AP"},"publishedAt":"2026-06-22","score":392,"tags":["월드컵","음바페","프랑스","득점기록","축구"]}
+    ],
+    "culture": [
+      {"id":"latest-20260625-0608-ap-song-of-summer-fragmentation","category":"culture","categoryName":"문화","categoryIcon":"🎬","title":"AP, 2026 여름 대표곡 후보 분석…알고리즘 시대 취향 분산","description":"AP는 2026년 여름 대표곡 후보를 정리하며 국가별·플랫폼별 음악 소비가 더 세분화됐다고 분석했다. 컨트리팝, K팝, 월드컵곡이 동시에 주목받는다.","url":"https://apnews.com/article/0d2c000ccce4ea35a74baa3e6cc34090","source":{"name":"AP"},"publishedAt":"2026-06-24","score":348,"tags":["음악","여름노래","AP","K팝","월드컵곡"]}
+    ]
+  }
+}
