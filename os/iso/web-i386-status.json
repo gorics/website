@@ -1,1 +1,15 @@
-{"state":"running","architecture":"i386","cpu":"i686+pae","run_id":"28863703459","commit":"e2b57fb99a86310728931febe00edb40d676231d"}
+{
+  "state": "success",
+  "architecture": "i386",
+  "cpu": "i686+pae",
+  "run_id": "28863703459",
+  "job_id": "85608357578",
+  "commit": "e2b57fb99a86310728931febe00edb40d676231d",
+  "build": "success",
+  "qemu_gui_boot": "success",
+  "release_publish": "success",
+  "release_tag": "gorics-linux-gui-web-iso-latest",
+  "asset": "gorics-linux-gui-web-i386.iso",
+  "gui_ready": true,
+  "x86_64_error": false
+}
