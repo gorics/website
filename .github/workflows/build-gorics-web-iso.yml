@@ -55,23 +55,27 @@ jobs:
         continue-on-error: true
         run: |
           ISO=out-web/gorics-linux-gui-web-amd64.iso
-          rm -f out-web/qemu-serial.log
+          rm -f out-web/qemu-serial.log out-web/vmlinuz out-web/initrd.img
+          xorriso -osirrox on -indev "$ISO" -extract /live/vmlinuz out-web/vmlinuz
+          xorriso -osirrox on -indev "$ISO" -extract /live/initrd.img out-web/initrd.img
           set +e
-          timeout 240s qemu-system-x86_64 \
+          timeout 300s qemu-system-x86_64 \
             -machine pc \
             -accel tcg \
             -m 768 \
             -smp 2 \
-            -boot d \
+            -kernel out-web/vmlinuz \
+            -initrd out-web/initrd.img \
+            -append 'boot=live components live-media=/dev/sr0 username=user hostname=gorics-web systemd.unit=graphical.target console=ttyS0,115200n8' \
             -cdrom "$ISO" \
-            -display none \
-            -serial file:out-web/qemu-serial.log \
+            -nographic \
             -monitor none \
-            -no-reboot
+            -no-reboot \
+            >out-web/qemu-serial.log 2>&1
           RC=$?
           set -e
           echo "qemu exit=$RC"
-          tail -n 200 out-web/qemu-serial.log || true
+          tail -n 300 out-web/qemu-serial.log || true
           grep -q 'GORICS_WEB_GUI_READY' out-web/qemu-serial.log
 
       - name: Publish tested web ISO release
