@@ -31,7 +31,7 @@ lb config \
 
 mkdir -p \
   config/package-lists \
-  config/includes.chroot/etc/lightdm/lightdm.conf.d \
+  config/includes.chroot/etc/X11 \
   config/includes.chroot/etc/skel/.config/openbox \
   config/includes.chroot/etc/skel/Desktop \
   config/includes.chroot/etc/profile.d \
@@ -46,14 +46,14 @@ live-config
 live-config-systemd
 systemd-sysv
 xserver-xorg-core
+xserver-xorg-legacy
 xserver-xorg-video-vesa
 xserver-xorg-video-fbdev
 xserver-xorg-input-libinput
 x11-xserver-utils
+xinit
 openbox
 tint2
-lightdm
-lightdm-gtk-greeter
 pcmanfm
 lxterminal
 netsurf-gtk
@@ -70,16 +70,14 @@ sudo
 python3-minimal
 PKGS
 
-cat > config/includes.chroot/etc/lightdm/lightdm.conf.d/50-gorics.conf <<'EOF'
-[Seat:*]
-autologin-user=user
-autologin-user-timeout=0
-user-session=openbox
-session-wrapper=/etc/X11/Xsession
+cat > config/includes.chroot/etc/X11/Xwrapper.config <<'EOF'
+allowed_users=anybody
+needs_root_rights=yes
 EOF
 
 cat > config/includes.chroot/etc/skel/.config/openbox/autostart <<'EOF'
 xset s off -dpms &
+xsetroot -solid '#182033' &
 pcmanfm --desktop --profile LXDE &
 tint2 &
 nm-applet &
@@ -89,6 +87,24 @@ cat > config/includes.chroot/etc/profile.d/gorics-web.sh <<'EOF'
 export GORICS_OS=1
 export GORICS_OS_NAME="GORICS Linux GUI Web OS"
 EOF
+
+cat > config/includes.chroot/usr/local/bin/gorics-session <<'EOF'
+#!/bin/sh
+set -eu
+export HOME=/home/user
+export USER=user
+export LOGNAME=user
+export DISPLAY=:0
+export XDG_CURRENT_DESKTOP=OPENBOX
+export DESKTOP_SESSION=openbox
+xset s off -dpms || true
+xsetroot -solid '#182033' || true
+pcmanfm --desktop --profile LXDE &
+tint2 &
+nm-applet &
+exec openbox-session
+EOF
+chmod +x config/includes.chroot/usr/local/bin/gorics-session
 
 cat > config/includes.chroot/usr/local/bin/gorics-welcome <<'EOF'
 #!/usr/bin/env bash
@@ -122,19 +138,55 @@ Terminal=false
 EOF
 chmod +x config/includes.chroot/etc/skel/Desktop/WEB-BROWSER.desktop
 
-cat > config/includes.chroot/etc/systemd/system/gorics-web-ready.service <<'EOF'
+cat > config/includes.chroot/etc/systemd/system/gorics-x.service <<'EOF'
 [Unit]
-Description=GORICS browser GUI readiness marker
-After=graphical.target lightdm.service
+Description=GORICS direct Xorg and Openbox desktop
+After=live-config.service systemd-user-sessions.service dbus.service
+Wants=systemd-user-sessions.service dbus.service
+Before=graphical.target
 
 [Service]
-Type=oneshot
-ExecStart=/bin/sh -c 'printf "GORICS_WEB_GUI_READY\\n" > /dev/ttyS0'
+Type=simple
+User=user
+Group=user
+PAMName=login
+Environment=HOME=/home/user
+Environment=USER=user
+Environment=LOGNAME=user
+Environment=DISPLAY=:0
+Environment=XDG_RUNTIME_DIR=/run/gorics-x
+RuntimeDirectory=gorics-x
+RuntimeDirectoryMode=0700
+TTYPath=/dev/tty7
+StandardInput=tty-force
+TTYReset=yes
+TTYVHangup=yes
+TTYVTDisallocate=yes
+ExecStart=/usr/bin/xinit /usr/local/bin/gorics-session -- /usr/lib/xorg/Xorg :0 vt7 -keeptty -nolisten tcp
+Restart=on-failure
+RestartSec=3
+TimeoutStartSec=0
 
 [Install]
 WantedBy=graphical.target
 EOF
-ln -s ../gorics-web-ready.service config/includes.chroot/etc/systemd/system/graphical.target.wants/gorics-web-ready.service
+ln -sf ../gorics-x.service config/includes.chroot/etc/systemd/system/graphical.target.wants/gorics-x.service
+
+cat > config/includes.chroot/etc/systemd/system/gorics-web-ready.service <<'EOF'
+[Unit]
+Description=GORICS real Openbox readiness marker
+After=gorics-x.service
+Requires=gorics-x.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'i=0; while [ "$i" -lt 240 ]; do if pgrep -x openbox >/dev/null; then printf "GORICS_WEB_GUI_READY\n" > /dev/ttyS0; exit 0; fi; i=$((i+1)); sleep 1; done; printf "GORICS_WEB_GUI_FAILED\n" > /dev/ttyS0; systemctl --no-pager status gorics-x.service > /dev/ttyS0 2>&1 || true; exit 1'
+
+[Install]
+WantedBy=graphical.target
+EOF
+ln -sf ../gorics-web-ready.service config/includes.chroot/etc/systemd/system/graphical.target.wants/gorics-web-ready.service
+ln -sf /lib/systemd/system/graphical.target config/includes.chroot/etc/systemd/system/default.target
 
 cat > config/hooks/live/0900-gorics-web-cleanup.hook.chroot <<'EOF'
 #!/usr/bin/env bash
@@ -145,6 +197,9 @@ MSG
 cat >/etc/motd <<'MSG'
 GORICS Linux GUI Web OS - real Debian live GUI
 MSG
+systemctl mask lightdm.service display-manager.service 2>/dev/null || true
+systemctl mask e2scrub_reap.service e2scrub_all.service NetworkManager-wait-online.service 2>/dev/null || true
+systemctl mask apt-daily.service apt-daily-upgrade.service apt-daily.timer apt-daily-upgrade.timer 2>/dev/null || true
 rm -rf /usr/share/doc/* /usr/share/man/* /usr/share/info/*
 find /usr/share/locale -mindepth 1 -maxdepth 1 \
   ! -name 'en' ! -name 'en_US' ! -name 'C' \
