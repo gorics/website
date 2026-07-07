@@ -1,0 +1,56 @@
+name: Publish v86 ISO Chunks
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/publish-v86-iso-chunks.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download current ISO
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p work/chunks
+          gh release download gorics-linux-gui-iso-latest --pattern gorics-linux-gui-os-amd64.iso --dir work
+          ls -lh work/gorics-linux-gui-os-amd64.iso
+
+      - name: Create 16 MiB v86 chunks
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          iso = Path('work/gorics-linux-gui-os-amd64.iso')
+          out = Path('work/chunks')
+          chunk = 16 * 1024 * 1024
+          size = iso.stat().st_size
+          start = 0
+          count = 0
+          with iso.open('rb') as source:
+              while start < size:
+                  data = source.read(chunk)
+                  if len(data) < chunk:
+                      data += bytes(chunk - len(data))
+                  end = start + chunk
+                  (out / f'{iso.name}-{start}-{end}').write_bytes(data)
+                  start = end
+                  count += 1
+          (out / 'V86-PARTS.txt').write_text(
+              f'iso={iso.name}\nsize={size}\nchunk_size={chunk}\nparts={count}\n'
+          )
+          print('size', size, 'parts', count)
+          PY
+
+      - name: Upload chunks to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload gorics-linux-gui-iso-latest work/chunks/* --clobber
