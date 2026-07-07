@@ -31,9 +31,10 @@ lb config \
 
 mkdir -p \
   config/package-lists \
-  config/includes.chroot/etc/X11 \
   config/includes.chroot/etc/skel/.config/openbox \
   config/includes.chroot/etc/skel/Desktop \
+  config/includes.chroot/root/.config/openbox \
+  config/includes.chroot/root/Desktop \
   config/includes.chroot/etc/profile.d \
   config/includes.chroot/etc/systemd/system/graphical.target.wants \
   config/includes.chroot/usr/local/bin \
@@ -46,12 +47,10 @@ live-config
 live-config-systemd
 systemd-sysv
 xserver-xorg-core
-xserver-xorg-legacy
 xserver-xorg-video-vesa
 xserver-xorg-video-fbdev
 xserver-xorg-input-libinput
 x11-xserver-utils
-xinit
 openbox
 tint2
 pcmanfm
@@ -61,6 +60,7 @@ network-manager
 network-manager-gnome
 dbus-x11
 policykit-1
+procps
 fonts-dejavu-core
 mousepad
 ca-certificates
@@ -70,11 +70,6 @@ sudo
 python3-minimal
 PKGS
 
-cat > config/includes.chroot/etc/X11/Xwrapper.config <<'EOF'
-allowed_users=anybody
-needs_root_rights=yes
-EOF
-
 cat > config/includes.chroot/etc/skel/.config/openbox/autostart <<'EOF'
 xset s off -dpms &
 xsetroot -solid '#182033' &
@@ -82,6 +77,7 @@ pcmanfm --desktop --profile LXDE &
 tint2 &
 nm-applet &
 EOF
+cp config/includes.chroot/etc/skel/.config/openbox/autostart config/includes.chroot/root/.config/openbox/autostart
 
 cat > config/includes.chroot/etc/profile.d/gorics-web.sh <<'EOF'
 export GORICS_OS=1
@@ -91,10 +87,11 @@ EOF
 cat > config/includes.chroot/usr/local/bin/gorics-session <<'EOF'
 #!/bin/sh
 set -eu
-export HOME=/home/user
-export USER=user
-export LOGNAME=user
+export HOME=/root
+export USER=root
+export LOGNAME=root
 export DISPLAY=:0
+export XDG_RUNTIME_DIR=/run/gorics-x
 export XDG_CURRENT_DESKTOP=OPENBOX
 export DESKTOP_SESSION=openbox
 xset s off -dpms || true
@@ -105,6 +102,50 @@ nm-applet &
 exec openbox-session
 EOF
 chmod +x config/includes.chroot/usr/local/bin/gorics-session
+
+cat > config/includes.chroot/usr/local/bin/gorics-start-gui <<'EOF'
+#!/bin/sh
+set -eu
+export HOME=/root
+export USER=root
+export LOGNAME=root
+export DISPLAY=:0
+export XDG_RUNTIME_DIR=/run/gorics-x
+mkdir -p /run/gorics-x /tmp/.X11-unix
+chmod 700 /run/gorics-x
+chmod 1777 /tmp/.X11-unix
+rm -f /tmp/.X0-lock /tmp/.X11-unix/X0 /var/log/gorics-xorg.log
+/usr/lib/xorg/Xorg :0 vt7 -noreset -nolisten tcp > /var/log/gorics-xorg.log 2>&1 &
+xorg_pid=$!
+cleanup() {
+  kill "$xorg_pid" 2>/dev/null || true
+  wait "$xorg_pid" 2>/dev/null || true
+}
+trap cleanup EXIT INT TERM
+ready=0
+i=0
+while [ "$i" -lt 120 ]; do
+  if ! kill -0 "$xorg_pid" 2>/dev/null; then
+    printf 'GORICS_XORG_FAILED\n' > /dev/ttyS0
+    cat /var/log/gorics-xorg.log > /dev/ttyS0 2>&1 || true
+    exit 1
+  fi
+  if DISPLAY=:0 xset q >/dev/null 2>&1; then
+    ready=1
+    break
+  fi
+  i=$((i+1))
+  sleep 1
+done
+if [ "$ready" != 1 ]; then
+  printf 'GORICS_XORG_TIMEOUT\n' > /dev/ttyS0
+  cat /var/log/gorics-xorg.log > /dev/ttyS0 2>&1 || true
+  exit 1
+fi
+printf 'GORICS_XORG_READY\n' > /dev/ttyS0
+dbus-run-session -- /usr/local/bin/gorics-session
+EOF
+chmod +x config/includes.chroot/usr/local/bin/gorics-start-gui
 
 cat > config/includes.chroot/usr/local/bin/gorics-welcome <<'EOF'
 #!/usr/bin/env bash
@@ -127,6 +168,7 @@ Icon=computer
 Terminal=false
 EOF
 chmod +x config/includes.chroot/etc/skel/Desktop/GORICS-WELCOME.desktop
+cp config/includes.chroot/etc/skel/Desktop/GORICS-WELCOME.desktop config/includes.chroot/root/Desktop/GORICS-WELCOME.desktop
 
 cat > config/includes.chroot/etc/skel/Desktop/WEB-BROWSER.desktop <<'EOF'
 [Desktop Entry]
@@ -137,32 +179,18 @@ Icon=web-browser
 Terminal=false
 EOF
 chmod +x config/includes.chroot/etc/skel/Desktop/WEB-BROWSER.desktop
+cp config/includes.chroot/etc/skel/Desktop/WEB-BROWSER.desktop config/includes.chroot/root/Desktop/WEB-BROWSER.desktop
 
 cat > config/includes.chroot/etc/systemd/system/gorics-x.service <<'EOF'
 [Unit]
 Description=GORICS direct Xorg and Openbox desktop
-After=live-config.service systemd-user-sessions.service dbus.service
-Wants=systemd-user-sessions.service dbus.service
+After=live-config.service dbus.service
+Wants=dbus.service
 Before=graphical.target
 
 [Service]
 Type=simple
-User=user
-Group=user
-PAMName=login
-Environment=HOME=/home/user
-Environment=USER=user
-Environment=LOGNAME=user
-Environment=DISPLAY=:0
-Environment=XDG_RUNTIME_DIR=/run/gorics-x
-RuntimeDirectory=gorics-x
-RuntimeDirectoryMode=0700
-TTYPath=/dev/tty7
-StandardInput=tty-force
-TTYReset=yes
-TTYVHangup=yes
-TTYVTDisallocate=yes
-ExecStart=/usr/bin/xinit /usr/local/bin/gorics-session -- /usr/lib/xorg/Xorg :0 vt7 -keeptty -nolisten tcp
+ExecStart=/usr/local/bin/gorics-start-gui
 Restart=on-failure
 RestartSec=3
 TimeoutStartSec=0
@@ -180,7 +208,7 @@ Requires=gorics-x.service
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'i=0; while [ "$i" -lt 240 ]; do if pgrep -x openbox >/dev/null; then printf "GORICS_WEB_GUI_READY\n" > /dev/ttyS0; exit 0; fi; i=$((i+1)); sleep 1; done; printf "GORICS_WEB_GUI_FAILED\n" > /dev/ttyS0; systemctl --no-pager status gorics-x.service > /dev/ttyS0 2>&1 || true; exit 1'
+ExecStart=/bin/sh -c 'i=0; while [ "$i" -lt 280 ]; do if pgrep -x openbox >/dev/null; then printf "GORICS_WEB_GUI_READY\n" > /dev/ttyS0; exit 0; fi; i=$((i+1)); sleep 1; done; printf "GORICS_WEB_GUI_FAILED\n" > /dev/ttyS0; systemctl --no-pager status gorics-x.service > /dev/ttyS0 2>&1 || true; cat /var/log/gorics-xorg.log > /dev/ttyS0 2>&1 || true; exit 1'
 
 [Install]
 WantedBy=graphical.target
