@@ -176,3 +176,5 @@ jobs:
           test "$VERIFY_OUTCOME" = success
           test "$BOOT_OUTCOME" = success
           test "$PUBLISH_OUTCOME" = success
+
+# trigger: 20260707-i386-v86
