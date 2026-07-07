@@ -32,7 +32,7 @@ jobs:
 
       - name: Record direct deployment start
         run: |
-          printf '{"state":"running","run_id":"%s","commit":"%s","page_version":"l"}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" > os/iso/direct-pages-status.json
+          printf '{"state":"running","run_id":"%s","commit":"%s","page_version":"m"}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" > os/iso/direct-pages-status.json
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add os/iso/direct-pages-status.json
@@ -78,10 +78,12 @@ jobs:
       - name: Configure direct i386 kernel boot
         run: |
           python3 os/real-multiboot/prepare-direct-deploy.py _site
+          sed -i 's/?v=l/?v=m/g; s/page. l/page. m/g' _site/os/real-multiboot/index.html
           node --check _site/os/real-multiboot/app.js
           grep -q 'bzimage: { url: kernelUrl }' _site/os/real-multiboot/app.js
           grep -q 'systemd.unit=graphical.target' _site/os/real-multiboot/app.js
-          grep -q 'app.js?v=l' _site/os/real-multiboot/index.html
+          grep -q 'app.js?v=m' _site/os/real-multiboot/index.html
+          grep -q 'gorics-linux-gui-web-i386.iso' _site/os/real-multiboot/app.js
           test -s _site/os/real-multiboot/assets/vmlinuz
           test -s _site/os/real-multiboot/assets/initrd.img
           test "$(du -sb _site | cut -f1)" -lt 1000000000
@@ -102,7 +104,7 @@ jobs:
       - name: Record direct deployment success
         run: |
           BASE_RUN='${{ steps.base.outputs.run_id }}'
-          printf '{"state":"success","run_id":"%s","base_pages_run_id":"%s","commit":"%s","page_version":"l","direct_boot":true}\n' "$GITHUB_RUN_ID" "$BASE_RUN" "$GITHUB_SHA" > os/iso/direct-pages-status.json
+          printf '{"state":"success","run_id":"%s","base_pages_run_id":"%s","commit":"%s","page_version":"m","direct_boot":true,"desktop":"direct-xorg-openbox"}\n' "$GITHUB_RUN_ID" "$BASE_RUN" "$GITHUB_SHA" > os/iso/direct-pages-status.json
           git add os/iso/direct-pages-status.json
           git commit -m "Record direct Pages deployment success [skip ci]"
           git clean -fd _site download || true
