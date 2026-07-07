@@ -92,14 +92,14 @@ jobs:
           mkdir -p "$DEST"
           gh release download gorics-linux-gui-web-iso-latest \
             --repo "$GITHUB_REPOSITORY" \
-            --pattern gorics-linux-gui-web-amd64.iso \
+            --pattern gorics-linux-gui-web-i386.iso \
             --dir "$DEST"
           python3 - <<'PY'
           import hashlib, json
           from pathlib import Path
-          iso = Path('_site/os/real-multiboot/assets/gorics-linux-gui-web-amd64.iso')
+          iso = Path('_site/os/real-multiboot/assets/gorics-linux-gui-web-i386.iso')
           if not iso.is_file():
-              raise SystemExit('tested web ISO missing')
+              raise SystemExit('tested i386 web ISO missing')
           size = iso.stat().st_size
           if size >= 900_000_000:
               raise SystemExit(f'web ISO too large for Pages: {size}')
@@ -109,15 +109,20 @@ jobs:
                   h.update(block)
           meta = {
               'name': iso.name,
+              'architecture': 'i386',
               'size': size,
               'sha256': h.hexdigest(),
-              'source': 'tested-release',
+              'source': 'i686-qemu-tested-release',
           }
           iso.with_name('iso-meta.json').write_text(
               json.dumps(meta, indent=2) + '\n', encoding='utf-8'
           )
           print(meta)
           PY
+          sed -i 's/gorics-linux-gui-web-amd64.iso/gorics-linux-gui-web-i386.iso/g' _site/os/real-multiboot/app.js
+          sed -i 's/?v=i/?v=k/g; s/page. i/page. k/g' _site/os/real-multiboot/index.html
+          grep -q 'gorics-linux-gui-web-i386.iso' _site/os/real-multiboot/app.js
+          grep -q 'app.js?v=k' _site/os/real-multiboot/index.html
           test "$(du -sb _site | cut -f1)" -lt 1000000000
           du -sh _site "$DEST"/*
 
