@@ -1,1 +1,339 @@
-(()=>{'use strict';const $=s=>document.querySelector(s),logBox=$('#log'),screen=$('#screen'),boot=$('#boot-btn'),stop=$('#stop-btn'),full=$('#fullscreen-btn'),urlBox=$('#iso-url');const iso=new URL('./assets/gorics-linux-gui-web-amd64.iso',location.href).href,metaUrl=new URL('./assets/iso-meta.json',location.href).href,runtime='/website/vendor/v86/libv86.js',wasm='/website/vendor/v86/v86.wasm',bios='/website/vendor/v86/seabios.bin',vga='/website/vendor/v86/vgabios.bin';let vm=null,state='idle',bootToken=0,watchdog=null;if(urlBox)urlBox.textContent=iso;function log(t){if(logBox){logBox.textContent+='\n['+new Date().toISOString()+'] '+t;logBox.scrollTop=logBox.scrollHeight}console.log('[GORICS ISO]',t)}function focus(){try{screen&&screen.focus({preventScroll:true})}catch{screen&&screen.focus()}}function Ctor(){return window.V86||globalThis.V86||window.V86Starter||globalThis.V86Starter}function setState(next){state=next;if(boot){boot.disabled=next!=='idle';boot.textContent=next==='idle'?'ISO 실행':next==='loading'?'ISO 검증 중':next==='starting'?'부팅 준비 중':'실행 중'}}function loadRuntime(){return new Promise((ok,bad)=>{if(Ctor())return ok(Ctor());const s=document.createElement('script');s.src=runtime;s.async=false;s.onload=()=>setTimeout(()=>Ctor()?ok(Ctor()):bad(new Error('v86 constructor missing')),60);s.onerror=()=>bad(new Error('runtime load failed '+runtime));document.head.appendChild(s)})}async function clearOldWorkers(){try{const regs=await navigator.serviceWorker?.getRegistrations?.()||[];for(const r of regs)if(r.scope.includes('/os/real-multiboot/'))await r.unregister();if(regs.length)log('obsolete ISO service workers removed')}catch(e){log('service worker cleanup skipped '+e.message)}}function ascii(a,o,n){return String.fromCharCode(...a.slice(o,o+n))}async function getMeta(){log('loading QEMU-tested ISO metadata');const r=await fetch(metaUrl,{cache:'no-store'});if(!r.ok)throw new Error('ISO metadata HTTP '+r.status);const m=await r.json();if(m.name!=='gorics-linux-gui-web-amd64.iso')throw new Error('unexpected ISO name '+m.name);if(!Number.isFinite(m.size)||m.size<=0||m.size>=900000000)throw new Error('invalid ISO size '+m.size);log('ISO size='+m.size+' sha256='+String(m.sha256).slice(0,16)+'...');return{url:iso,size:m.size}}async function probe(meta){log('probing same-origin ISO range and boot records');const r=await fetch(meta.url,{cache:'no-store',headers:{Range:'bytes=32768-36863'}});if(r.status!==206)throw new Error('ISO range expected HTTP 206, got '+r.status);const a=new Uint8Array(await r.arrayBuffer());if(a.length!==4096)throw new Error('ISO range size '+a.length);const p=ascii(a,1,5),b=ascii(a,2049,5),sys=ascii(a,2055,32).replace(/\0/g,'').trim();if(p!=='CD001')throw new Error('ISO9660 descriptor missing');if(b!=='CD001'||!sys.includes('EL TORITO'))throw new Error('El Torito boot record missing');log('ISO range HTTP 206 bytes=4096');log('ISO9660 and El Torito verified')}function prepare(){screen.innerHTML='<div style="white-space:pre;font:14px monospace;line-height:14px"></div><canvas style="display:none"></canvas>'}function progress(d){if(!d||typeof d!=='object')return'';const l=Number(d.loaded)||0,t=Number(d.total)||0,p=t>0?Math.floor(l*100/t)+'%':'loading';return' '+(d.file_name||'file')+' '+p+' ('+l+'/'+t+')'}async function run(){if(!screen||!boot||state!=='idle')return;const token=++bootToken;setState('loading');focus();try{await clearOldWorkers();const[Emu,meta]=await Promise.all([loadRuntime(),getMeta()]);await probe(meta);if(token!==bootToken)return;log('runtime loaded '+runtime);prepare();setState('starting');vm=new Emu({wasm_path:wasm,bios:{url:bios},vga_bios:{url:vga},screen_container:screen,autostart:true,memory_size:512*1024*1024,vga_memory_size:32*1024*1024,disable_speaker:true,boot_order:0x123,cdrom:{url:meta.url,async:true,size:meta.size,fixed_chunk_size:2*1024*1024}});window.goricsRealLinuxIso=vm;vm.add_listener('download-progress',d=>log('download-progress'+progress(d)));vm.add_listener('download-error',d=>{log('download-error '+JSON.stringify(d).slice(0,400));setState('idle')});vm.add_listener('emulator-loaded',()=>log('emulator-loaded'));vm.add_listener('emulator-ready',()=>log('emulator-ready'));vm.add_listener('emulator-started',()=>{clearTimeout(watchdog);setState('running');log('emulator-started')});vm.add_listener('emulator-stopped',()=>log('emulator-stopped'));vm.add_listener('screen-set-size',d=>log('screen-set-size '+JSON.stringify(d)));log('v86 started with QEMU-tested same-origin GORICS ISO');watchdog=setTimeout(()=>{if(state==='starting')log('still loading tested ISO')},30000)}catch(e){log('ERROR '+(e&&e.message?e.message:e));log('userAgent '+navigator.userAgent);setState('idle')}}function halt(){bootToken++;clearTimeout(watchdog);try{vm&&vm.destroy&&vm.destroy()}catch(e){log('stop error '+e.message)}vm=null;if(screen)screen.innerHTML='';setState('idle');log('stopped')}async function toggleFullscreen(){const wrap=screen.closest('.screen-wrap')||screen;try{if(document.fullscreenElement){await document.exitFullscreen();return}if(wrap.requestFullscreen){await wrap.requestFullscreen();focus();return}}catch(e){log('native fullscreen unavailable '+e.message)}const on=!document.body.classList.contains('ios-fullscreen');document.body.classList.toggle('ios-fullscreen',on);full.textContent=on?'전체화면 종료':'전체화면';window.scrollTo(0,0);focus();log(on?'iOS fullscreen fallback enabled':'iOS fullscreen fallback disabled')}boot&&boot.addEventListener('click',run);stop&&stop.addEventListener('click',halt);screen&&screen.addEventListener('pointerdown',focus);screen&&screen.addEventListener('touchstart',focus,{passive:true});full&&full.addEventListener('click',toggleFullscreen);document.addEventListener('fullscreenchange',()=>{if(full)full.textContent=document.fullscreenElement?'전체화면 종료':'전체화면';focus()});setState('idle');log('ready: QEMU-tested same-origin ISO loader installed');})();
+(() => {
+  'use strict';
+
+  const $ = (selector) => document.querySelector(selector);
+  const logBox = $('#log');
+  const screen = $('#screen');
+  const boot = $('#boot-btn');
+  const stop = $('#stop-btn');
+  const full = $('#fullscreen-btn');
+  const urlBox = $('#iso-url');
+
+  const iso = new URL('./assets/gorics-linux-gui-web-amd64.iso', location.href).href;
+  const metaUrl = new URL('./assets/iso-meta.json', location.href).href;
+  const runtime = '/website/vendor/v86/libv86.js';
+  const wasm = '/website/vendor/v86/v86.wasm';
+  const bios = '/website/vendor/v86/seabios.bin';
+  const vga = '/website/vendor/v86/vgabios.bin';
+
+  let vm = null;
+  let state = 'idle';
+  let bootToken = 0;
+  let watchdog = null;
+  let inputLogged = false;
+  let touchActive = false;
+
+  const actions = $('.actions');
+  const keyboardButton = document.createElement('button');
+  keyboardButton.id = 'keyboard-btn';
+  keyboardButton.type = 'button';
+  keyboardButton.className = 'secondary';
+  keyboardButton.textContent = 'Keyboard';
+  if (actions && !$('#keyboard-btn')) {
+    actions.insertBefore(keyboardButton, stop || full || null);
+  }
+
+  const phoneKeyboard = document.createElement('input');
+  phoneKeyboard.id = 'phone-keyboard';
+  phoneKeyboard.className = 'phone_keyboard';
+  phoneKeyboard.type = 'text';
+  phoneKeyboard.autocomplete = 'off';
+  phoneKeyboard.autocapitalize = 'off';
+  phoneKeyboard.autocorrect = 'off';
+  phoneKeyboard.spellcheck = false;
+  phoneKeyboard.setAttribute('aria-label', 'Virtual keyboard input');
+  document.body.appendChild(phoneKeyboard);
+
+  if (urlBox) urlBox.textContent = iso;
+
+  function log(text) {
+    if (logBox) {
+      logBox.textContent += `\n[${new Date().toISOString()}] ${text}`;
+      logBox.scrollTop = logBox.scrollHeight;
+    }
+    console.log('[GORICS ISO]', text);
+  }
+
+  function focusScreen() {
+    try {
+      screen?.focus({ preventScroll: true });
+    } catch {
+      screen?.focus();
+    }
+  }
+
+  function enableInputDevices() {
+    if (!vm) return;
+    try {
+      vm.keyboard_set_enabled?.(true);
+      vm.mouse_set_enabled?.(true);
+      if (!inputLogged) {
+        inputLogged = true;
+        log('keyboard and pointer input enabled');
+      }
+    } catch (error) {
+      log(`input enable warning ${error.message}`);
+    }
+  }
+
+  function openVirtualKeyboard() {
+    enableInputDevices();
+    phoneKeyboard.value = '';
+    try {
+      phoneKeyboard.focus({ preventScroll: true });
+    } catch {
+      phoneKeyboard.focus();
+    }
+    phoneKeyboard.click();
+    log('virtual keyboard requested');
+  }
+
+  function constructor() {
+    return window.V86 || globalThis.V86 || window.V86Starter || globalThis.V86Starter;
+  }
+
+  function setState(next) {
+    state = next;
+    if (boot) {
+      boot.disabled = next !== 'idle';
+      boot.textContent = next === 'idle' ? 'Run ISO' : next === 'loading' ? 'Checking ISO' : next === 'starting' ? 'Starting' : 'Running';
+    }
+    keyboardButton.disabled = next !== 'running';
+  }
+
+  function loadRuntime() {
+    return new Promise((resolve, reject) => {
+      if (constructor()) return resolve(constructor());
+      const script = document.createElement('script');
+      script.src = runtime;
+      script.async = false;
+      script.onload = () => setTimeout(() => constructor() ? resolve(constructor()) : reject(new Error('v86 constructor missing')), 60);
+      script.onerror = () => reject(new Error(`runtime load failed ${runtime}`));
+      document.head.appendChild(script);
+    });
+  }
+
+  async function clearOldWorkers() {
+    try {
+      const registrations = await navigator.serviceWorker?.getRegistrations?.() || [];
+      for (const registration of registrations) {
+        if (registration.scope.includes('/os/real-multiboot/')) await registration.unregister();
+      }
+      if (registrations.length) log('obsolete ISO service workers removed');
+    } catch (error) {
+      log(`service worker cleanup skipped ${error.message}`);
+    }
+  }
+
+  function ascii(array, offset, length) {
+    return String.fromCharCode(...array.slice(offset, offset + length));
+  }
+
+  async function getMeta() {
+    log('loading QEMU-tested ISO metadata');
+    const response = await fetch(metaUrl, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`ISO metadata HTTP ${response.status}`);
+    const meta = await response.json();
+    if (meta.name !== 'gorics-linux-gui-web-amd64.iso') throw new Error(`unexpected ISO name ${meta.name}`);
+    if (!Number.isFinite(meta.size) || meta.size <= 0 || meta.size >= 900000000) throw new Error(`invalid ISO size ${meta.size}`);
+    log(`ISO size=${meta.size} sha256=${String(meta.sha256).slice(0, 16)}...`);
+    return { url: iso, size: meta.size };
+  }
+
+  async function probe(meta) {
+    log('probing same-origin ISO range and boot records');
+    const response = await fetch(meta.url, {
+      cache: 'no-store',
+      headers: { Range: 'bytes=32768-36863' },
+    });
+    if (response.status !== 206) throw new Error(`ISO range expected HTTP 206, got ${response.status}`);
+    const data = new Uint8Array(await response.arrayBuffer());
+    if (data.length !== 4096) throw new Error(`ISO range size ${data.length}`);
+    const primary = ascii(data, 1, 5);
+    const bootRecord = ascii(data, 2049, 5);
+    const bootSystem = ascii(data, 2055, 32).replace(/\0/g, '').trim();
+    if (primary !== 'CD001') throw new Error('ISO9660 descriptor missing');
+    if (bootRecord !== 'CD001' || !bootSystem.includes('EL TORITO')) throw new Error('El Torito boot record missing');
+    log('ISO range HTTP 206 bytes=4096');
+    log('ISO9660 and El Torito verified');
+  }
+
+  function prepareScreen() {
+    screen.innerHTML = '<div style="white-space:pre;font:14px monospace;line-height:14px"></div><canvas style="display:none"></canvas>';
+    screen.classList.add('active');
+  }
+
+  function progress(data) {
+    if (!data || typeof data !== 'object') return '';
+    const loaded = Number(data.loaded) || 0;
+    const total = Number(data.total) || 0;
+    const percent = total > 0 ? `${Math.floor(loaded * 100 / total)}%` : 'loading';
+    return ` ${data.file_name || 'file'} ${percent} (${loaded}/${total})`;
+  }
+
+  async function run() {
+    if (!screen || !boot || state !== 'idle') return;
+    const token = ++bootToken;
+    setState('loading');
+    focusScreen();
+    try {
+      await clearOldWorkers();
+      const [Emulator, meta] = await Promise.all([loadRuntime(), getMeta()]);
+      await probe(meta);
+      if (token !== bootToken) return;
+      log(`runtime loaded ${runtime}`);
+      prepareScreen();
+      setState('starting');
+      vm = new Emulator({
+        wasm_path: wasm,
+        bios: { url: bios },
+        vga_bios: { url: vga },
+        screen_container: screen,
+        autostart: true,
+        memory_size: 512 * 1024 * 1024,
+        vga_memory_size: 32 * 1024 * 1024,
+        disable_speaker: true,
+        boot_order: 0x123,
+        cdrom: {
+          url: meta.url,
+          async: true,
+          size: meta.size,
+          fixed_chunk_size: 2 * 1024 * 1024,
+        },
+      });
+      window.goricsRealLinuxIso = vm;
+      vm.add_listener('download-progress', (data) => log(`download-progress${progress(data)}`));
+      vm.add_listener('download-error', (data) => {
+        log(`download-error ${JSON.stringify(data).slice(0, 400)}`);
+        setState('idle');
+      });
+      vm.add_listener('emulator-loaded', () => log('emulator-loaded'));
+      vm.add_listener('emulator-ready', () => {
+        enableInputDevices();
+        log('emulator-ready');
+      });
+      vm.add_listener('emulator-started', () => {
+        clearTimeout(watchdog);
+        setState('running');
+        enableInputDevices();
+        focusScreen();
+        log('emulator-started');
+      });
+      vm.add_listener('emulator-stopped', () => log('emulator-stopped'));
+      vm.add_listener('screen-set-size', (data) => log(`screen-set-size ${JSON.stringify(data)}`));
+      log('v86 started with keyboard, mouse and touch bridge');
+      watchdog = setTimeout(() => {
+        if (state === 'starting') log('still loading tested ISO');
+      }, 30000);
+    } catch (error) {
+      log(`ERROR ${error?.message || error}`);
+      log(`userAgent ${navigator.userAgent}`);
+      setState('idle');
+    }
+  }
+
+  function halt() {
+    bootToken++;
+    clearTimeout(watchdog);
+    try {
+      vm?.destroy?.();
+    } catch (error) {
+      log(`stop error ${error.message}`);
+    }
+    vm = null;
+    inputLogged = false;
+    screen?.classList.remove('active');
+    if (screen) screen.innerHTML = '';
+    setState('idle');
+    log('stopped');
+  }
+
+  function dispatchTouchMouse(type, touch) {
+    if (!touch || !screen) return;
+    const target = document.elementFromPoint(touch.clientX, touch.clientY);
+    const receiver = target && screen.contains(target) ? target : screen;
+    const event = new MouseEvent(type, {
+      bubbles: true,
+      cancelable: true,
+      view: window,
+      clientX: touch.clientX,
+      clientY: touch.clientY,
+      screenX: touch.screenX,
+      screenY: touch.screenY,
+      button: 0,
+      buttons: type === 'mousedown' ? 1 : 0,
+    });
+    try {
+      Object.defineProperty(event, 'which', { value: 1 });
+    } catch {}
+    receiver.dispatchEvent(event);
+  }
+
+  function onTouchStart(event) {
+    if (state !== 'running' || !event.changedTouches?.length) return;
+    event.preventDefault();
+    touchActive = true;
+    enableInputDevices();
+    focusScreen();
+    dispatchTouchMouse('mousedown', event.changedTouches[event.changedTouches.length - 1]);
+  }
+
+  function onTouchMove(event) {
+    if (!touchActive || state !== 'running') return;
+    event.preventDefault();
+  }
+
+  function onTouchEnd(event) {
+    if (!touchActive || !event.changedTouches?.length) return;
+    event.preventDefault();
+    dispatchTouchMouse('mouseup', event.changedTouches[event.changedTouches.length - 1]);
+    touchActive = false;
+    focusScreen();
+  }
+
+  async function toggleFullscreen() {
+    const wrapper = screen.closest('.screen-wrap') || screen;
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+        return;
+      }
+      if (wrapper.requestFullscreen) {
+        await wrapper.requestFullscreen();
+        focusScreen();
+        return;
+      }
+    } catch (error) {
+      log(`native fullscreen unavailable ${error.message}`);
+    }
+    const enabled = !document.body.classList.contains('ios-fullscreen');
+    document.body.classList.toggle('ios-fullscreen', enabled);
+    full.textContent = enabled ? 'Exit Fullscreen' : 'Fullscreen';
+    window.scrollTo(0, 0);
+    focusScreen();
+    log(enabled ? 'iOS fullscreen fallback enabled' : 'iOS fullscreen fallback disabled');
+  }
+
+  boot?.addEventListener('click', run);
+  stop?.addEventListener('click', halt);
+  keyboardButton.addEventListener('click', openVirtualKeyboard);
+  phoneKeyboard.addEventListener('input', () => setTimeout(() => { phoneKeyboard.value = ''; }, 0));
+  phoneKeyboard.addEventListener('blur', focusScreen);
+  screen?.addEventListener('pointerdown', () => {
+    enableInputDevices();
+    focusScreen();
+  });
+  screen?.addEventListener('touchstart', onTouchStart, { passive: false });
+  screen?.addEventListener('touchmove', onTouchMove, { passive: false });
+  screen?.addEventListener('touchend', onTouchEnd, { passive: false });
+  screen?.addEventListener('touchcancel', onTouchEnd, { passive: false });
+  full?.addEventListener('click', toggleFullscreen);
+  document.addEventListener('fullscreenchange', () => {
+    if (full) full.textContent = document.fullscreenElement ? 'Exit Fullscreen' : 'Fullscreen';
+    focusScreen();
+  });
+  window.addEventListener('keydown', enableInputDevices, true);
+
+  setState('idle');
+  log('ready: keyboard, touch and pointer bridge installed');
+})();
