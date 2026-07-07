@@ -1,0 +1,60 @@
+name: Deploy GORICS i386 Now
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/deploy-gorics-i386-now.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  dispatch-watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Record orchestrator start
+        run: |
+          printf '{"state":"dispatching","orchestrator_run_id":"%s","asset":"gorics-linux-gui-web-i386.iso"}\n' "$GITHUB_RUN_ID" > os/iso/pages-deploy-status.json
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add os/iso/pages-deploy-status.json
+          git commit -m "Record Pages orchestrator start [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Dispatch Pages workflow
+        id: pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run static.yml --ref main
+          RUN_ID=''
+          for attempt in $(seq 1 12); do
+            sleep 5
+            RUN_ID=$(gh run list --workflow static.yml --event workflow_dispatch --limit 1 --json databaseId --jq '.[0].databaseId // empty')
+            test -n "$RUN_ID" && break
+          done
+          test -n "$RUN_ID"
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+          echo "Pages run: $RUN_ID"
+          gh run watch "$RUN_ID" --exit-status --interval 10
+
+      - name: Record deployment result
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PAGES_RUN_ID: ${{ steps.pages.outputs.run_id }}
+          PAGES_OUTCOME: ${{ steps.pages.outcome }}
+        run: |
+          printf '{"state":"%s","orchestrator_run_id":"%s","pages_run_id":"%s","asset":"gorics-linux-gui-web-i386.iso","page_version":"k"}\n' "$PAGES_OUTCOME" "$GITHUB_RUN_ID" "$PAGES_RUN_ID" > os/iso/pages-deploy-status.json
+          git add os/iso/pages-deploy-status.json
+          git commit -m "Record Pages deployment result [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          test "$PAGES_OUTCOME" = success
