@@ -9,6 +9,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: gorics-browser-i386
+  cancel-in-progress: true
+
 jobs:
   build-test-publish:
     runs-on: ubuntu-24.04
@@ -17,6 +21,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Record start
+        run: |
+          mkdir -p os/iso
+          printf '{"state":"running","architecture":"i386","cpu":"i686+pae","run_id":"%s","commit":"%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" > os/iso/web-i386-status.json
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add os/iso/web-i386-status.json
+          git commit -m "Record i386 ISO build start [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
 
       - name: Prepare i386 builder
         run: |
@@ -44,16 +59,27 @@ jobs:
           sha256sum "$ISO" | tee out-web/SHA256SUMS.txt
           xorriso -osirrox on -indev "$ISO" -extract /live/vmlinuz out-web/vmlinuz
           xorriso -osirrox on -indev "$ISO" -extract /live/initrd.img out-web/initrd.img
-          set +e
-          timeout 240s qemu-system-i386 \
+          qemu-system-i386 \
             -machine pc -cpu pentium3,+pae -accel tcg -m 512 -smp 1 \
             -kernel out-web/vmlinuz -initrd out-web/initrd.img \
             -append 'boot=live components live-media=/dev/sr0 username=user hostname=gorics-web systemd.unit=graphical.target console=ttyS0,115200n8' \
             -cdrom "$ISO" -nographic -monitor none -no-reboot \
-            >out-web/qemu-serial.log 2>&1
-          set -e
+            >out-web/qemu-serial.log 2>&1 &
+          QEMU_PID=$!
+          READY=0
+          for second in $(seq 1 240); do
+            if grep -q 'GORICS_WEB_GUI_READY' out-web/qemu-serial.log 2>/dev/null; then
+              READY=1
+              echo "GUI ready after ${second}s"
+              break
+            fi
+            kill -0 "$QEMU_PID" 2>/dev/null || break
+            sleep 1
+          done
+          kill "$QEMU_PID" 2>/dev/null || true
+          wait "$QEMU_PID" 2>/dev/null || true
           tail -n 300 out-web/qemu-serial.log || true
-          grep -q 'GORICS_WEB_GUI_READY' out-web/qemu-serial.log
+          test "$READY" = 1
           ! grep -q 'requires an x86-64 CPU' out-web/qemu-serial.log
 
       - name: Publish i386 release
@@ -71,3 +97,13 @@ jobs:
             out-web/qemu-serial.log \
             --title 'GORICS Linux GUI Web ISO i386 Latest' \
             --notes 'i386 browser ISO verified with an i686 PAE CPU.'
+
+      - name: Record success
+        run: |
+          SIZE=$(stat -c %s out-web/gorics-linux-gui-web-i386.iso)
+          SHA=$(cut -d' ' -f1 out-web/SHA256SUMS.txt)
+          printf '{"state":"success","architecture":"i386","cpu":"i686+pae","run_id":"%s","commit":"%s","size":%s,"sha256":"%s","gui_ready":true,"x86_64_error":false}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" "$SIZE" "$SHA" > os/iso/web-i386-status.json
+          git add os/iso/web-i386-status.json
+          git commit -m "Record i386 ISO success [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
