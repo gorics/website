@@ -46,6 +46,7 @@ jobs:
           parts = Path('out/v86-parts')
           parts.mkdir(parents=True, exist_ok=True)
           size = iso.stat().st_size
+          count = 0
           with iso.open('rb') as src:
               start = 0
               while start < size:
@@ -53,17 +54,18 @@ jobs:
                   if len(data) < chunk_size:
                       data += bytes(chunk_size - len(data))
                   end = start + chunk_size
-                  target = parts / f'{iso.name}-{start}-{end}'
+                  target = parts / f'{iso.stem}-{start}-{end}{iso.suffix}'
                   target.write_bytes(data)
                   start = end
+                  count += 1
           (parts / 'V86-PARTS.txt').write_text(
-              f'iso={iso.name}\nsize={size}\nchunk_size={chunk_size}\nparts={(size + chunk_size - 1) // chunk_size}\n',
+              f'iso={iso.name}\nsize={size}\nchunk_size={chunk_size}\nparts={count}\n',
               encoding='utf-8'
           )
           print((parts / 'V86-PARTS.txt').read_text())
           PY
           ls -lh out/v86-parts | head
-          echo "chunk count: $(find out/v86-parts -type f -name '*.iso-*' | wc -l)"
+          echo "chunk count: $(find out/v86-parts -type f | wc -l)"
 
       - name: Upload ISO artifact
         uses: actions/upload-artifact@v4
@@ -86,4 +88,4 @@ jobs:
           git push -f origin "$TAG"
           gh release create "$TAG" out/*.iso out/SHA256SUMS.txt out/v86-parts/* \
             --title "GORICS Linux GUI OS ISO Latest" \
-            --notes "Real Debian-based Linux GUI ISO plus 16 MiB v86 web-loading chunks. Output: gorics-linux-gui-os-amd64.iso."
+            --notes "Real Debian-based Linux GUI ISO with v86 web-loading chunks."
