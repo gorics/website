@@ -1,10 +1,14 @@
 {
-  "updated_at": "2026-07-07T06:44:32.515171+00:00",
-  "commit": "082c11cc2370ca59ee904f6ac362fbe8895e8a44",
-  "run_id": "28846813750",
-  "build": "failure",
-  "verify": "skipped",
-  "boot": "skipped",
+  "updated_at": "2026-07-07T09:34:17.234313+00:00",
+  "commit": "5f784107b9275d0a4ad69a24e23649656010e4aa",
+  "run_id": "28855746042",
+  "build": "success",
+  "verify": "success",
+  "boot": "failure",
   "publish": "skipped",
-  "iso_exists": false
+  "iso_exists": true,
+  "iso_size": 383778816,
+  "sha256": "5bdeef8afabccd04236caefa8899eb8cbc8f56853316c6eaf7c8c6b4cfa02faa",
+  "gui_ready_marker": false,
+  "serial_tail": ""
 }
