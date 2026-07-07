@@ -1,0 +1,101 @@
+name: Build GORICS Direct Openbox i386 ISO
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/build-gorics-openbox-i386.yml'
+      - 'os/iso/build-gorics-web-iso.sh'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gorics-openbox-i386
+  cancel-in-progress: true
+
+jobs:
+  build-test-publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Record start
+        run: |
+          printf '{"state":"running","desktop":"direct-xorg-openbox","run_id":"%s","commit":"%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" > os/iso/openbox-i386-status.json
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add os/iso/openbox-i386-status.json
+          git commit -m 'Record Openbox ISO build start [skip ci]'
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Prepare i386 source
+        run: |
+          sed -i 's/gorics-linux-gui-web-amd64.iso/gorics-linux-gui-web-i386.iso/g' os/iso/build-gorics-web-iso.sh
+          sed -i 's/--architectures amd64/--architectures i386/g' os/iso/build-gorics-web-iso.sh
+          sed -i 's/linux-image-amd64/linux-image-686-pae/g' os/iso/build-gorics-web-iso.sh
+          grep -q 'gorics-x.service' os/iso/build-gorics-web-iso.sh
+          grep -q 'pgrep -x openbox' os/iso/build-gorics-web-iso.sh
+
+      - name: Build ISO
+        run: |
+          docker run --privileged --rm -v "$PWD:/work" -w /work debian:bookworm \
+            bash -lc 'apt-get update && apt-get install -y --no-install-recommends sudo live-build xorriso isolinux syslinux-common squashfs-tools debootstrap ca-certificates wget xz-utils && bash os/iso/build-gorics-web-iso.sh'
+          sudo chown -R "$USER:$USER" out-web build || true
+          test -s out-web/gorics-linux-gui-web-i386.iso
+
+      - name: Verify actual Openbox process
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xorriso qemu-system-x86
+          ISO=out-web/gorics-linux-gui-web-i386.iso
+          xorriso -indev "$ISO" -report_el_torito plain | tee out-web/el-torito-report.txt
+          sha256sum "$ISO" | tee out-web/SHA256SUMS.txt
+          xorriso -osirrox on -indev "$ISO" -extract /live/vmlinuz out-web/vmlinuz
+          xorriso -osirrox on -indev "$ISO" -extract /live/initrd.img out-web/initrd.img
+          qemu-system-i386 -machine pc -cpu pentium3,+pae -accel tcg -m 512 -smp 1 \
+            -kernel out-web/vmlinuz -initrd out-web/initrd.img \
+            -append 'boot=live components live-media=/dev/sr0 username=user hostname=gorics-web systemd.unit=graphical.target console=ttyS0,115200n8' \
+            -cdrom "$ISO" -nographic -monitor none -no-reboot >out-web/qemu-serial.log 2>&1 &
+          PID=$!
+          READY=0
+          for second in $(seq 1 300); do
+            grep -q 'GORICS_WEB_GUI_READY' out-web/qemu-serial.log 2>/dev/null && READY=1 && break
+            grep -q 'GORICS_WEB_GUI_FAILED' out-web/qemu-serial.log 2>/dev/null && break
+            kill -0 "$PID" 2>/dev/null || break
+            sleep 1
+          done
+          kill "$PID" 2>/dev/null || true
+          wait "$PID" 2>/dev/null || true
+          tail -n 400 out-web/qemu-serial.log
+          test "$READY" = 1
+          ! grep -q 'GORICS_WEB_GUI_FAILED' out-web/qemu-serial.log
+          ! grep -q 'Starting lightdm.service' out-web/qemu-serial.log
+          ! grep -q 'requires an x86-64 CPU' out-web/qemu-serial.log
+
+      - name: Publish verified ISO
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: gorics-linux-gui-web-iso-latest
+        run: |
+          gh release delete "$TAG" -y || true
+          git tag -f "$TAG" "$GITHUB_SHA"
+          git push -f origin "$TAG"
+          gh release create "$TAG" out-web/gorics-linux-gui-web-i386.iso out-web/SHA256SUMS.txt out-web/el-torito-report.txt out-web/qemu-serial.log \
+            --title 'GORICS Direct Openbox i386 ISO' \
+            --notes 'Verified only after the Openbox process starts; LightDM is not used.'
+
+      - name: Record success
+        run: |
+          SIZE=$(stat -c %s out-web/gorics-linux-gui-web-i386.iso)
+          SHA=$(cut -d' ' -f1 out-web/SHA256SUMS.txt)
+          printf '{"state":"success","desktop":"direct-xorg-openbox","run_id":"%s","commit":"%s","size":%s,"sha256":"%s","openbox_ready":true,"lightdm":false}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" "$SIZE" "$SHA" > os/iso/openbox-i386-status.json
+          git restore os/iso/build-gorics-web-iso.sh
+          git add os/iso/openbox-i386-status.json
+          git commit -m 'Record Openbox ISO success [skip ci]'
+          git pull --rebase origin main
+          git push origin HEAD:main
