@@ -15,7 +15,7 @@ jobs:
   build-gorics-linux-gui-iso:
     name: Build real Linux GUI ISO
     runs-on: ubuntu-24.04
-    timeout-minutes: 120
+    timeout-minutes: 180
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,6 +36,35 @@ jobs:
           ls -lh out/
           sha256sum out/*.iso | tee out/SHA256SUMS.txt
 
+      - name: Split ISO for v86 web loading
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          chunk_size = 16 * 1024 * 1024
+          iso = next(Path('out').glob('*.iso'))
+          parts = Path('out/v86-parts')
+          parts.mkdir(parents=True, exist_ok=True)
+          size = iso.stat().st_size
+          with iso.open('rb') as src:
+              start = 0
+              while start < size:
+                  data = src.read(chunk_size)
+                  if len(data) < chunk_size:
+                      data += bytes(chunk_size - len(data))
+                  end = start + chunk_size
+                  target = parts / f'{iso.name}-{start}-{end}'
+                  target.write_bytes(data)
+                  start = end
+          (parts / 'V86-PARTS.txt').write_text(
+              f'iso={iso.name}\nsize={size}\nchunk_size={chunk_size}\nparts={(size + chunk_size - 1) // chunk_size}\n',
+              encoding='utf-8'
+          )
+          print((parts / 'V86-PARTS.txt').read_text())
+          PY
+          ls -lh out/v86-parts | head
+          echo "chunk count: $(find out/v86-parts -type f -name '*.iso-*' | wc -l)"
+
       - name: Upload ISO artifact
         uses: actions/upload-artifact@v4
         with:
@@ -43,6 +72,7 @@ jobs:
           path: |
             out/*.iso
             out/SHA256SUMS.txt
+            out/v86-parts/V86-PARTS.txt
           if-no-files-found: error
           retention-days: 30
 
@@ -54,6 +84,6 @@ jobs:
           gh release delete "$TAG" -y || true
           git tag -f "$TAG" "$GITHUB_SHA"
           git push -f origin "$TAG"
-          gh release create "$TAG" out/*.iso out/SHA256SUMS.txt \
+          gh release create "$TAG" out/*.iso out/SHA256SUMS.txt out/v86-parts/* \
             --title "GORICS Linux GUI OS ISO Latest" \
-            --notes "Real Debian-based Linux GUI ISO built from os/iso. Output: gorics-linux-gui-os-amd64.iso."
+            --notes "Real Debian-based Linux GUI ISO plus 16 MiB v86 web-loading chunks. Output: gorics-linux-gui-os-amd64.iso."
