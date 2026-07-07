@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -84,18 +84,47 @@ jobs:
                   path.write_text(text, encoding='utf-8')
                   print('patched', path)
 
-      - name: Publish gh-pages branch
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./_site
-          force_orphan: true
+      - name: Add tested browser ISO to site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          DEST=_site/os/real-multiboot/assets
+          mkdir -p "$DEST"
+          gh release download gorics-linux-gui-web-iso-latest \
+            --repo "$GITHUB_REPOSITORY" \
+            --pattern gorics-linux-gui-web-amd64.iso \
+            --dir "$DEST"
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          iso = Path('_site/os/real-multiboot/assets/gorics-linux-gui-web-amd64.iso')
+          if not iso.is_file():
+              raise SystemExit('tested web ISO missing')
+          size = iso.stat().st_size
+          if size >= 900_000_000:
+              raise SystemExit(f'web ISO too large for Pages: {size}')
+          h = hashlib.sha256()
+          with iso.open('rb') as f:
+              for block in iter(lambda: f.read(1024 * 1024), b''):
+                  h.update(block)
+          meta = {
+              'name': iso.name,
+              'size': size,
+              'sha256': h.hexdigest(),
+              'source': 'tested-release',
+          }
+          iso.with_name('iso-meta.json').write_text(
+              json.dumps(meta, indent=2) + '\n', encoding='utf-8'
+          )
+          print(meta)
+          PY
+          test "$(du -sb _site | cut -f1)" -lt 1000000000
+          du -sh _site "$DEST"/*
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: '_site'
