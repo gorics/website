@@ -1,0 +1,88 @@
+name: Deploy GORICS Direct Kernel Page
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/deploy-gorics-direct-kernel.yml'
+      - 'os/real-multiboot/prepare-direct-deploy.py'
+
+permissions:
+  contents: read
+  actions: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: gorics-direct-pages
+  cancel-in-progress: true
+
+jobs:
+  patch-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Wait for base Pages build
+        id: base
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          RUN_ID=''
+          for attempt in $(seq 1 60); do
+            RUN_ID=$(gh run list \
+              --repo "$GITHUB_REPOSITORY" \
+              --workflow static.yml \
+              --commit "$GITHUB_SHA" \
+              --limit 1 \
+              --json databaseId \
+              --jq '.[0].databaseId // empty')
+            test -n "$RUN_ID" && break
+            sleep 5
+          done
+          test -n "$RUN_ID"
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+          gh run watch "$RUN_ID" --repo "$GITHUB_REPOSITORY" --exit-status --interval 10
+
+      - name: Download base Pages artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ steps.base.outputs.run_id }}
+        run: |
+          mkdir -p download _site
+          gh run download "$RUN_ID" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name github-pages \
+            --dir download
+          test -s download/artifact.tar
+          tar -xf download/artifact.tar -C _site
+          test -s _site/os/real-multiboot/assets/gorics-linux-gui-web-i386.iso
+
+      - name: Configure direct i386 kernel boot
+        run: |
+          python3 os/real-multiboot/prepare-direct-deploy.py _site
+          node --check _site/os/real-multiboot/app.js
+          grep -q 'bzimage: { url: kernelUrl }' _site/os/real-multiboot/app.js
+          grep -q 'systemd.unit=graphical.target' _site/os/real-multiboot/app.js
+          grep -q 'app.js?v=l' _site/os/real-multiboot/index.html
+          test -s _site/os/real-multiboot/assets/vmlinuz
+          test -s _site/os/real-multiboot/assets/initrd.img
+          test "$(du -sb _site | cut -f1)" -lt 1000000000
+          du -sh _site/os/real-multiboot/assets/*
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload direct Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy direct Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
