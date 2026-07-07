@@ -1,0 +1,162 @@
+name: Build and Test GORICS Web ISO
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/build-gorics-web-iso.yml'
+      - 'os/iso/build-gorics-web-iso.sh'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  build-test-publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build lightweight GUI ISO
+        id: build
+        continue-on-error: true
+        run: |
+          docker run --privileged --rm \
+            -v "$PWD:/work" \
+            -w /work \
+            debian:bookworm \
+            bash -lc 'apt-get update && apt-get install -y --no-install-recommends sudo live-build xorriso isolinux syslinux-common squashfs-tools debootstrap ca-certificates wget && bash os/iso/build-gorics-web-iso.sh'
+          sudo chown -R "$USER:$USER" out-web build || true
+          test -s out-web/gorics-linux-gui-web-amd64.iso
+          ls -lh out-web/gorics-linux-gui-web-amd64.iso
+
+      - name: Verify ISO structure and size
+        id: verify
+        if: steps.build.outcome == 'success'
+        continue-on-error: true
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xorriso qemu-system-x86
+          ISO=out-web/gorics-linux-gui-web-amd64.iso
+          SIZE=$(stat -c %s "$ISO")
+          echo "ISO_SIZE=$SIZE"
+          test "$SIZE" -lt 900000000
+          xorriso -indev "$ISO" -report_el_torito plain | tee out-web/el-torito-report.txt
+          grep -Eiq 'El Torito|Boot record|boot catalog' out-web/el-torito-report.txt
+          sha256sum "$ISO" | tee out-web/SHA256SUMS.txt
+
+      - name: Boot ISO in QEMU to graphical target
+        id: boot
+        if: steps.verify.outcome == 'success'
+        continue-on-error: true
+        run: |
+          ISO=out-web/gorics-linux-gui-web-amd64.iso
+          rm -f out-web/qemu-serial.log
+          set +e
+          timeout 240s qemu-system-x86_64 \
+            -machine pc \
+            -accel tcg \
+            -m 768 \
+            -smp 2 \
+            -boot d \
+            -cdrom "$ISO" \
+            -display none \
+            -serial file:out-web/qemu-serial.log \
+            -monitor none \
+            -no-reboot
+          RC=$?
+          set -e
+          echo "qemu exit=$RC"
+          tail -n 200 out-web/qemu-serial.log || true
+          grep -q 'GORICS_WEB_GUI_READY' out-web/qemu-serial.log
+
+      - name: Publish tested web ISO release
+        id: publish
+        if: steps.boot.outcome == 'success'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: gorics-linux-gui-web-iso-latest
+        run: |
+          gh release delete "$TAG" -y || true
+          git tag -f "$TAG" "$GITHUB_SHA"
+          git push -f origin "$TAG"
+          gh release create "$TAG" \
+            out-web/gorics-linux-gui-web-amd64.iso \
+            out-web/SHA256SUMS.txt \
+            out-web/el-torito-report.txt \
+            out-web/qemu-serial.log \
+            --title "GORICS Linux GUI Web ISO Latest" \
+            --notes "Lightweight real Debian GUI ISO. QEMU graphical-target boot test passed."
+
+      - name: Record build result
+        if: always()
+        env:
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+          VERIFY_OUTCOME: ${{ steps.verify.outcome }}
+          BOOT_OUTCOME: ${{ steps.boot.outcome }}
+          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          iso = Path('out-web/gorics-linux-gui-web-amd64.iso')
+          data = {
+              'updated_at': datetime.now(timezone.utc).isoformat(),
+              'commit': os.environ.get('GITHUB_SHA'),
+              'run_id': os.environ.get('GITHUB_RUN_ID'),
+              'build': os.environ.get('BUILD_OUTCOME'),
+              'verify': os.environ.get('VERIFY_OUTCOME'),
+              'boot': os.environ.get('BOOT_OUTCOME'),
+              'publish': os.environ.get('PUBLISH_OUTCOME'),
+              'iso_exists': iso.exists(),
+          }
+          if iso.exists():
+              data['iso_size'] = iso.stat().st_size
+              h = hashlib.sha256()
+              with iso.open('rb') as f:
+                  for block in iter(lambda: f.read(1024 * 1024), b''):
+                      h.update(block)
+              data['sha256'] = h.hexdigest()
+          serial = Path('out-web/qemu-serial.log')
+          if serial.exists():
+              text = serial.read_text(errors='replace')
+              data['gui_ready_marker'] = 'GORICS_WEB_GUI_READY' in text
+              data['serial_tail'] = text[-4000:]
+          Path('os/iso/web-build-status.json').write_text(
+              json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
+          )
+          print(json.dumps(data, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Commit build status
+        if: always()
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add os/iso/web-build-status.json
+          git commit -m "Update web ISO build status [skip ci]" || exit 0
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
+
+      - name: Require complete success
+        if: always()
+        env:
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+          VERIFY_OUTCOME: ${{ steps.verify.outcome }}
+          BOOT_OUTCOME: ${{ steps.boot.outcome }}
+          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
+        run: |
+          test "$BUILD_OUTCOME" = success
+          test "$VERIFY_OUTCOME" = success
+          test "$BOOT_OUTCOME" = success
+          test "$PUBLISH_OUTCOME" = success
