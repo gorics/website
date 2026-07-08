@@ -1,0 +1,104 @@
+name: Track Real Multiboot Workflows
+
+on:
+  workflow_run:
+    workflows:
+      - Deploy static content to Pages
+      - Verify Unified Real Multiboot
+    types:
+      - completed
+
+permissions:
+  contents: write
+
+concurrency:
+  group: track-real-multiboot-workflows
+  cancel-in-progress: false
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Write workflow result
+        env:
+          WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+          WORKFLOW_ID: ${{ github.event.workflow_run.id }}
+          RUN_NUMBER: ${{ github.event.workflow_run.run_number }}
+          RUN_ATTEMPT: ${{ github.event.workflow_run.run_attempt }}
+          CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+          STATUS: ${{ github.event.workflow_run.status }}
+          EVENT_NAME: ${{ github.event.workflow_run.event }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+          RUN_URL: ${{ github.event.workflow_run.html_url }}
+          CREATED_AT: ${{ github.event.workflow_run.created_at }}
+          UPDATED_AT: ${{ github.event.workflow_run.updated_at }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          workflow = os.environ['WORKFLOW_NAME']
+          if workflow == 'Deploy static content to Pages':
+              target = Path('os/iso/atomic-pages-status.json')
+          elif workflow == 'Verify Unified Real Multiboot':
+              target = Path('os/iso/atomic-browser-status.json')
+          else:
+              raise SystemExit(f'unexpected workflow: {workflow}')
+
+          target.parent.mkdir(parents=True, exist_ok=True)
+          payload = {
+              'workflow': workflow,
+              'workflow_run_id': int(os.environ['WORKFLOW_ID']),
+              'run_number': int(os.environ['RUN_NUMBER']),
+              'run_attempt': int(os.environ['RUN_ATTEMPT']),
+              'status': os.environ['STATUS'],
+              'conclusion': os.environ['CONCLUSION'],
+              'event': os.environ['EVENT_NAME'],
+              'head_sha': os.environ['HEAD_SHA'],
+              'head_branch': os.environ['HEAD_BRANCH'],
+              'run_url': os.environ['RUN_URL'],
+              'created_at': os.environ['CREATED_AT'],
+              'updated_at': os.environ['UPDATED_AT'],
+              'recorded_at': datetime.now(timezone.utc).isoformat(),
+          }
+          target.write_text(json.dumps(payload, indent=2) + '\n', encoding='utf-8')
+          print(target)
+          print(json.dumps(payload, indent=2))
+          PY
+
+      - name: Commit result without triggering deployment loops
+        run: |
+          set -euo pipefail
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          status_file='os/iso/atomic-pages-status.json'
+          if test "${{ github.event.workflow_run.name }}" = 'Verify Unified Real Multiboot'; then
+            status_file='os/iso/atomic-browser-status.json'
+          fi
+          cp "$status_file" /tmp/real-multiboot-status.json
+          for attempt in $(seq 1 12); do
+            git reset --hard
+            git clean -fd
+            git fetch origin main
+            git checkout -B main origin/main
+            mkdir -p "$(dirname "$status_file")"
+            cp /tmp/real-multiboot-status.json "$status_file"
+            git add "$status_file"
+            git commit -m "Record ${{ github.event.workflow_run.name }} result [skip ci]" || exit 0
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 2))
+          done
+          exit 1
