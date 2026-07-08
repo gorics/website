@@ -33,13 +33,16 @@ jobs:
           git pull --rebase origin main
           git push origin HEAD:main
 
-      - name: Prepare i386 source
+      - name: Prepare clean i386 source
         run: |
           sed -i 's/gorics-linux-gui-web-amd64.iso/gorics-linux-gui-web-i386.iso/g' os/iso/build-gorics-web-iso.sh
           sed -i 's/--architectures amd64/--architectures i386/g' os/iso/build-gorics-web-iso.sh
           sed -i 's/linux-image-amd64/linux-image-686-pae/g' os/iso/build-gorics-web-iso.sh
+          sed -i 's/systemctl mask e2scrub_reap.service e2scrub_all.service NetworkManager-wait-online.service/systemctl mask e2scrub_reap.service e2scrub_reap.timer e2scrub_all.service e2scrub_all.timer NetworkManager-wait-online.service/' os/iso/build-gorics-web-iso.sh
+          sed -i '/systemctl mask e2scrub_reap.service/a rm -f /etc/systemd/system/timers.target.wants/e2scrub_all.timer /etc/systemd/system/multi-user.target.wants/e2scrub_reap.service 2>/dev/null || true' os/iso/build-gorics-web-iso.sh
           grep -q 'gorics-x.service' os/iso/build-gorics-web-iso.sh
           grep -q 'pgrep -x openbox' os/iso/build-gorics-web-iso.sh
+          grep -q 'e2scrub_all.timer' os/iso/build-gorics-web-iso.sh
 
       - name: Build ISO
         run: |
@@ -48,7 +51,7 @@ jobs:
           sudo chown -R "$USER:$USER" out-web build || true
           test -s out-web/gorics-linux-gui-web-i386.iso
 
-      - name: Verify actual Openbox process
+      - name: Verify actual Openbox process and clean boot
         run: |
           sudo apt-get update
           sudo apt-get install -y xorriso qemu-system-x86
@@ -63,19 +66,23 @@ jobs:
             -cdrom "$ISO" -nographic -monitor none -no-reboot >out-web/qemu-serial.log 2>&1 &
           PID=$!
           READY=0
-          for second in $(seq 1 300); do
+          for second in $(seq 1 420); do
             grep -q 'GORICS_WEB_GUI_READY' out-web/qemu-serial.log 2>/dev/null && READY=1 && break
             grep -q 'GORICS_WEB_GUI_FAILED' out-web/qemu-serial.log 2>/dev/null && break
             kill -0 "$PID" 2>/dev/null || break
             sleep 1
           done
+          sleep 8
           kill "$PID" 2>/dev/null || true
           wait "$PID" 2>/dev/null || true
-          tail -n 400 out-web/qemu-serial.log
+          tail -n 500 out-web/qemu-serial.log
           test "$READY" = 1
+          grep -q 'GORICS_XORG_READY' out-web/qemu-serial.log
+          grep -q 'GORICS_WEB_GUI_READY' out-web/qemu-serial.log
           ! grep -q 'GORICS_WEB_GUI_FAILED' out-web/qemu-serial.log
           ! grep -q 'Starting lightdm.service' out-web/qemu-serial.log
           ! grep -q 'requires an x86-64 CPU' out-web/qemu-serial.log
+          ! grep -Eqi 'FAILED.*e2scrub|Failed to start .*e2scrub|e2scrub_all.*failed' out-web/qemu-serial.log
 
       - name: Publish verified ISO
         env:
@@ -87,15 +94,15 @@ jobs:
           git push -f origin "$TAG"
           gh release create "$TAG" out-web/gorics-linux-gui-web-i386.iso out-web/SHA256SUMS.txt out-web/el-torito-report.txt out-web/qemu-serial.log \
             --title 'GORICS Direct Openbox i386 ISO' \
-            --notes 'Verified only after the Openbox process starts; LightDM is not used.'
+            --notes 'Verified after Xorg, Openbox, Tint2, PCManFM and xterm are all ready. e2scrub boot failures are prohibited.'
 
       - name: Record success
         run: |
           SIZE=$(stat -c %s out-web/gorics-linux-gui-web-i386.iso)
           SHA=$(cut -d' ' -f1 out-web/SHA256SUMS.txt)
-          printf '{"state":"success","desktop":"direct-xorg-openbox","run_id":"%s","commit":"%s","size":%s,"sha256":"%s","openbox_ready":true,"lightdm":false}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" "$SIZE" "$SHA" > os/iso/openbox-i386-status.json
+          printf '{"state":"success","desktop":"direct-xorg-openbox","run_id":"%s","commit":"%s","size":%s,"sha256":"%s","openbox_ready":true,"lightdm":false,"e2scrub_clean":true}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" "$SIZE" "$SHA" > os/iso/openbox-i386-status.json
           git restore os/iso/build-gorics-web-iso.sh
           git add os/iso/openbox-i386-status.json
-          git commit -m 'Record Openbox ISO success [skip ci]'
+          git commit -m 'Record clean Openbox ISO success [skip ci]'
           git pull --rebase origin main
           git push origin HEAD:main
