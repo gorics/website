@@ -33,7 +33,7 @@ jobs:
         run: |
           set -euo pipefail
           BASE='https://gorics.github.io/website/os/real-multiboot'
-          CHUNK='https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386-r12.iso-0-16777216'
+          CHUNK='https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386-r12-0-16777216.iso'
           ready=0
           for attempt in $(seq 1 150); do
             stamp="${GITHUB_RUN_ID}-${attempt}-$(date +%s)"
