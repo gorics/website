@@ -1,0 +1,75 @@
+name: Fix Pages Release Fallback
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/fix-pages-release-fallback.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fix-pages-release-fallback
+  cancel-in-progress: false
+
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add release-independent direct-boot fallback
+        run: |
+          set -euo pipefail
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for attempt in $(seq 1 12); do
+            git reset --hard
+            git clean -fd
+            git fetch origin main
+            git checkout -B main origin/main
+            python3 - <<'PY'
+          from pathlib import Path
+          path = Path('.github/workflows/static.yml')
+          text = path.read_text(encoding='utf-8')
+          old = '''          gh release download gorics-linux-gui-web-iso-latest \\
+            --repo "$GITHUB_REPOSITORY" \\
+            --pattern gorics-linux-gui-web-i386.iso \\
+            --dir _site/os/real-multiboot/assets
+
+          python3 os/real-multiboot/prepare-direct-deploy.py _site
+'''
+          new = '''          if gh release download gorics-linux-gui-web-iso-latest \\
+            --repo "$GITHUB_REPOSITORY" \\
+            --pattern gorics-linux-gui-web-i386.iso \\
+            --dir _site/os/real-multiboot/assets; then
+            echo 'full ISO release found; refreshing extracted direct-boot files'
+            python3 os/real-multiboot/prepare-direct-deploy.py _site
+          else
+            echo 'full ISO release unavailable; using repository direct-boot files and CDN ISO chunks'
+            test -s _site/os/real-multiboot/assets/vmlinuz
+            test -s _site/os/real-multiboot/assets/initrd.img
+            test -s _site/os/real-multiboot/assets/iso-meta.json
+            grep -q 'bzimage: { url: kernelUrl }' _site/os/real-multiboot/app.js
+            grep -q 'systemd.unit=graphical.target' _site/os/real-multiboot/app.js
+          fi
+'''
+          if old in text:
+              text = text.replace(old, new, 1)
+          elif new not in text:
+              raise SystemExit('release download block not found')
+          path.write_text(text, encoding='utf-8')
+          PY
+            grep -q 'full ISO release unavailable' .github/workflows/static.yml
+            grep -A2 '^concurrency:' .github/workflows/static.yml | grep -q 'cancel-in-progress: false'
+            git add .github/workflows/static.yml
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'fix(pages): fall back to verified direct-boot assets'
+            git push origin HEAD:main && exit 0
+            sleep $((attempt * 2))
+          done
+          exit 1
