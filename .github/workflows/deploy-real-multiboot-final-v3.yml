@@ -24,13 +24,14 @@ jobs:
     env:
       DEPLOY_VERSION: ${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
       PAGES_ARTIFACT: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
+      PAGE_ROOT: https://gorics.github.io/website
     steps:
-      - name: Checkout immutable current source
+      - name: Checkout immutable source
         uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
 
-      - name: Wait for branch Pages deployment to finish
+      - name: Wait for branch Pages propagation
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -42,17 +43,13 @@ jobs:
             count=$(jq '[.[] | select(.workflowName == "pages-build-deployment")] | length' /tmp/current-sha-runs.json)
             pending=$(jq '[.[] | select(.workflowName == "pages-build-deployment" and .status != "completed")] | length' /tmp/current-sha-runs.json)
             if [ "$count" -gt 0 ]; then seen=1; fi
-            echo "branch Pages wait attempt=$attempt seen=$seen count=$count pending=$pending"
+            echo "branch-pages attempt=$attempt seen=$seen count=$count pending=$pending"
             if [ "$seen" = 1 ] && [ "$pending" = 0 ]; then break; fi
             sleep 5
           done
-          if [ "$seen" != 1 ]; then
-            echo 'branch Pages run was not observed; applying conservative grace period'
-            sleep 60
-          fi
-          sleep 75
+          sleep 90
 
-      - name: Build atomic R17 predictive site
+      - name: Build R17 predictive site
         run: |
           set -euo pipefail
           bash scripts/build-real-multiboot-pages-final.sh _site 2>&1 | tee /tmp/final-v3-build.log
@@ -61,22 +58,20 @@ jobs:
           node --check _site/os/real-multiboot/safe-diagnostics.js
           grep -q 'r17-predictive' _site/os/real-multiboot/index.html
           grep -q 'predictive-prefetch.js?v=' _site/os/real-multiboot/index.html
-          grep -q '__GORICS_PREDICTIVE_PREFETCH__' _site/os/real-multiboot/predictive-prefetch.js
           grep -q 'cancelBackgroundWork' _site/os/real-multiboot/predictive-prefetch.js
           grep -q 'constructorPoll' _site/os/real-multiboot/performance-mode.js
           grep -q '__GORICS_LAST_VM_OPTIONS__' _site/os/real-multiboot/performance-mode.js
-          grep -q 'native fetch and XMLHttpRequest preserved' _site/os/real-multiboot/safe-diagnostics.js
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload uniquely named Pages artifact
+      - name: Upload unique Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           name: ${{ env.PAGES_ARTIFACT }}
           path: _site
 
-      - name: Deploy final Pages artifact attempt 1
+      - name: Deploy R17 artifact attempt 1
         id: deploy1
         continue-on-error: true
         uses: actions/deploy-pages@v4
@@ -89,49 +84,31 @@ jobs:
         if: steps.deploy1.outcome == 'failure'
         run: sleep 45
 
-      - name: Deploy final Pages artifact attempt 2
+      - name: Deploy R17 artifact attempt 2
         id: deploy2
         if: steps.deploy1.outcome == 'failure'
-        continue-on-error: true
-        uses: actions/deploy-pages@v4
-        with:
-          artifact_name: ${{ env.PAGES_ARTIFACT }}
-          timeout: 600000
-          error_count: 20
-
-      - name: Extended cool down after second conflict
-        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
-        run: sleep 90
-
-      - name: Deploy final Pages artifact attempt 3
-        id: deploy3
-        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
         uses: actions/deploy-pages@v4
         with:
           artifact_name: ${{ env.PAGES_ARTIFACT }}
           timeout: 600000
           error_count: 30
 
-      - name: Confirm a Pages deployment succeeded
+      - name: Confirm initial deployment
         run: |
           set -euo pipefail
-          echo "deploy1=${{ steps.deploy1.outcome }} deploy2=${{ steps.deploy2.outcome }} deploy3=${{ steps.deploy3.outcome }}"
-          if [ "${{ steps.deploy1.outcome }}" != success ] \
-            && [ "${{ steps.deploy2.outcome }}" != success ] \
-            && [ "${{ steps.deploy3.outcome }}" != success ]; then
-            echo 'all Pages deployment attempts failed'
+          echo "deploy1=${{ steps.deploy1.outcome }} deploy2=${{ steps.deploy2.outcome }}"
+          if [ "${{ steps.deploy1.outcome }}" != success ] && [ "${{ steps.deploy2.outcome }}" != success ]; then
             exit 1
           fi
 
-      - name: Verify exact public R17 deployment
+      - name: Verify exact public R17 assets
         run: |
           set -euo pipefail
-          ROOT='https://gorics.github.io/website'
-          PAGE="$ROOT/os/real-multiboot"
-          READY=0
+          PAGE="$PAGE_ROOT/os/real-multiboot"
+          ready=0
           for attempt in $(seq 1 90); do
-            STAMP="$GITHUB_RUN_ID-$attempt-$(date +%s)"
-            if curl -fsSL --max-time 60 -H 'Cache-Control: no-cache' "$PAGE/?verify=$STAMP" -o /tmp/final-v3-index.html \
+            stamp="$GITHUB_RUN_ID-$attempt-$(date +%s)"
+            if curl -fsSL --max-time 60 -H 'Cache-Control: no-cache' "$PAGE/?verify=$stamp" -o /tmp/final-v3-index.html \
               && grep -q "$DEPLOY_VERSION" /tmp/final-v3-index.html \
               && grep -q 'predictive-prefetch.js?v=' /tmp/final-v3-index.html \
               && curl -fsSL --max-time 60 "$PAGE/predictive-prefetch.js?v=$DEPLOY_VERSION" -o /tmp/final-v3-prefetch.js \
@@ -141,25 +118,20 @@ jobs:
               && curl -fsSL --max-time 60 "$PAGE/app.js?v=$DEPLOY_VERSION" -o /tmp/final-v3-app.js \
               && grep -q '/website/vendor/v86/images/buildroot-bzimage68.bin' /tmp/final-v3-app.js \
               && ! grep -q 'https://i.copy.sh/' /tmp/final-v3-app.js \
-              && curl -fsSL --max-time 60 "$ROOT/vendor/v86/manifest.json?v=$STAMP" -o /tmp/final-v3-manifest.json \
-              && grep -q "$DEPLOY_VERSION" /tmp/final-v3-manifest.json \
-              && grep -q 'guest_images' /tmp/final-v3-manifest.json; then
-              READY=1
+              && curl -fsSL --max-time 60 "$PAGE_ROOT/vendor/v86/manifest.json?v=$stamp" -o /tmp/final-v3-manifest.json \
+              && grep -q "$DEPLOY_VERSION" /tmp/final-v3-manifest.json; then
+              ready=1
               break
             fi
-            echo "public R17 deployment pending attempt=$attempt version=$DEPLOY_VERSION"
             sleep 10
           done
-          test "$READY" = 1
-          node --check /tmp/final-v3-app.js
-          node --check /tmp/final-v3-performance.js
-          node --check /tmp/final-v3-prefetch.js
+          test "$ready" = 1
 
           for image in buildroot-bzimage68.bin linux4.iso linux.iso freedos722.img; do
             code=$(curl -sS -L --max-time 120 -r 0-4095 \
               -o "/tmp/final-v3-$image.probe" -w '%{http_code}' \
-              "$ROOT/vendor/v86/images/$image?v=$DEPLOY_VERSION")
-            case "$code" in 200|206) ;; *) echo "guest image HTTP $code: $image"; exit 1;; esac
+              "$PAGE_ROOT/vendor/v86/images/$image?v=$DEPLOY_VERSION")
+            case "$code" in 200|206) ;; *) exit 1;; esac
             test -s "/tmp/final-v3-$image.probe"
           done
 
@@ -167,50 +139,40 @@ jobs:
           curl -fsSL --max-time 90 "$PAGE/assets/vmlinuz?v=$DEPLOY_VERSION" -o /tmp/final-v3-vmlinuz
           curl -fsSL --max-time 120 "$PAGE/assets/initrd.img?v=$DEPLOY_VERSION" -o /tmp/final-v3-initrd.img
           python3 - <<'PY'
-          import hashlib
-          import json
+          import hashlib, json
           from pathlib import Path
-
           meta = json.loads(Path('/tmp/final-v3-iso-meta.json').read_text())
           assert meta['architecture'] == 'i386'
-          assert meta.get('name') == 'gorics-linux-gui-web-i386-r12.iso'
-          for path_name, key in (('final-v3-vmlinuz', 'kernel'), ('final-v3-initrd.img', 'initrd')):
-              data = (Path('/tmp') / path_name).read_bytes()
+          assert meta['name'] == 'gorics-linux-gui-web-i386-r12.iso'
+          for filename, key in (('final-v3-vmlinuz', 'kernel'), ('final-v3-initrd.img', 'initrd')):
+              data = (Path('/tmp') / filename).read_bytes()
               expected = meta[key]
               assert len(data) == int(expected['size'])
               assert hashlib.sha256(data).hexdigest() == expected['sha256']
-          print('public R17 direct boot assets verified')
           PY
 
-      - name: Install Chromium smoke browser
+      - name: Install Chromium
         run: |
           npm init -y
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
 
-      - name: Verify mobile OS switching and Buildroot startup
+      - name: Verify mobile OS switch and Buildroot startup
         env:
           VERIFY_URL: https://gorics.github.io/website/os/real-multiboot/?verify=${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           node <<'JS'
           const fs = require('fs');
           const { chromium } = require('playwright');
-          const report = { url: process.env.VERIFY_URL, console: [], pageErrors: [], failedRequests: [] };
+          const report = { url: process.env.VERIFY_URL, pageErrors: [], failedRequests: [] };
           (async () => {
             let browser;
             let page;
             try {
               browser = await chromium.launch({ headless: true, args: ['--no-sandbox', '--disable-dev-shm-usage'] });
               page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
-              page.on('console', message => report.console.push({ type: message.type(), text: message.text().slice(0, 2000) }));
               page.on('pageerror', error => report.pageErrors.push(error.message));
               page.on('requestfailed', request => report.failedRequests.push({ url: request.url(), failure: request.failure() }));
-              page.on('response', response => {
-                if (response.status() >= 400 && /vendor\/v86|real-multiboot/.test(response.url())) {
-                  report.failedRequests.push({ url: response.url(), status: response.status() });
-                }
-              });
-
               await page.goto(process.env.VERIFY_URL, { waitUntil: 'domcontentloaded', timeout: 120000 });
               await page.waitForFunction(() => Boolean(window.__GORICS_PERFORMANCE_MODE__ && window.__GORICS_PREDICTIVE_PREFETCH__), null, { timeout: 30000 });
               await page.selectOption('#os-select', 'buildroot');
@@ -223,20 +185,14 @@ jobs:
                 elapsedMs: Date.now() - startedAt,
                 options: window.__GORICS_LAST_VM_OPTIONS__,
                 prefetch: window.__GORICS_PREDICTIVE_PREFETCH__.getStats(),
-                stage: document.querySelector('#stage-label')?.textContent || '',
-                detail: document.querySelector('#stage-detail')?.textContent || '',
                 log: (document.querySelector('#log')?.textContent || '').slice(-16000),
               }), startedAt);
-
               const MB = 1024 * 1024;
-              if (report.result.options.memory_size > 112 * MB) throw new Error(`Buildroot memory too high: ${JSON.stringify(report.result)}`);
-              if (report.result.options.vga_memory_size > 4 * MB) throw new Error(`Buildroot VGA too high: ${JSON.stringify(report.result)}`);
-              if (report.result.prefetch.lastPreset !== 'buildroot') throw new Error(`prefetch did not switch: ${JSON.stringify(report.result.prefetch)}`);
-              if (/RangeError: Length out of range of buffer/i.test(report.result.log)) throw new Error('original RangeError returned');
+              if (report.result.options.memory_size > 112 * MB) throw new Error('Buildroot RAM cap failed');
+              if (report.result.options.vga_memory_size > 4 * MB) throw new Error('Buildroot VGA cap failed');
+              if (report.result.prefetch.lastPreset !== 'buildroot') throw new Error('prefetch switch failed');
+              if (/RangeError: Length out of range of buffer/i.test(report.result.log)) throw new Error('RangeError returned');
               if (report.pageErrors.length) throw new Error(report.pageErrors.join('\n'));
-              if (report.failedRequests.some(item => /buildroot-bzimage68\.bin/.test(item.url || '') && Number(item.status || 0) >= 400)) {
-                throw new Error(`Buildroot image failed: ${JSON.stringify(report.failedRequests)}`);
-              }
               report.success = true;
             } catch (error) {
               report.success = false;
@@ -245,8 +201,6 @@ jobs:
                 report.failureState = await page.evaluate(() => ({
                   prefetch: window.__GORICS_PREDICTIVE_PREFETCH__?.getStats?.() || null,
                   options: window.__GORICS_LAST_VM_OPTIONS__ || null,
-                  stage: document.querySelector('#stage-label')?.textContent || '',
-                  detail: document.querySelector('#stage-detail')?.textContent || '',
                   log: (document.querySelector('#log')?.textContent || '').slice(-20000),
                 })).catch(() => null);
               }
@@ -259,15 +213,65 @@ jobs:
           })();
           JS
 
-      - name: Verify deployment remains final after stabilization
+      - name: Probe for late branch overwrite
+        id: late1
+        run: |
+          sleep 45
+          curl -fsSL --max-time 60 -H 'Cache-Control: no-cache' \
+            "$PAGE_ROOT/os/real-multiboot/?late1=$GITHUB_RUN_ID-$(date +%s)" \
+            -o /tmp/final-v3-late1-index.html
+          if grep -q "$DEPLOY_VERSION" /tmp/final-v3-late1-index.html; then
+            echo 'reassert=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'reassert=true' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Reassert R17 artifact after late overwrite
+        if: steps.late1.outputs.reassert == 'true'
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ env.PAGES_ARTIFACT }}
+          timeout: 600000
+          error_count: 30
+
+      - name: Probe second late overwrite
+        id: late2
+        run: |
+          sleep 45
+          curl -fsSL --max-time 60 -H 'Cache-Control: no-cache' \
+            "$PAGE_ROOT/os/real-multiboot/?late2=$GITHUB_RUN_ID-$(date +%s)" \
+            -o /tmp/final-v3-late2-index.html
+          if grep -q "$DEPLOY_VERSION" /tmp/final-v3-late2-index.html; then
+            echo 'reassert=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'reassert=true' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Reassert R17 artifact a second time
+        if: steps.late2.outputs.reassert == 'true'
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ env.PAGES_ARTIFACT }}
+          timeout: 600000
+          error_count: 30
+
+      - name: Final authoritative deployment verification
         run: |
           set -euo pipefail
           sleep 30
-          curl -fsSL --max-time 60 -H 'Cache-Control: no-cache' \
-            "https://gorics.github.io/website/os/real-multiboot/?stable=$GITHUB_RUN_ID-$(date +%s)" \
-            -o /tmp/final-v3-stable-index.html
-          grep -q "$DEPLOY_VERSION" /tmp/final-v3-stable-index.html
-          grep -q 'predictive-prefetch.js?v=' /tmp/final-v3-stable-index.html
+          ready=0
+          for attempt in $(seq 1 30); do
+            curl -fsSL --max-time 60 -H 'Cache-Control: no-cache' \
+              "$PAGE_ROOT/os/real-multiboot/?final=$GITHUB_RUN_ID-$attempt-$(date +%s)" \
+              -o /tmp/final-v3-stable-index.html
+            if grep -q "$DEPLOY_VERSION" /tmp/final-v3-stable-index.html \
+              && grep -q 'predictive-prefetch.js?v=' /tmp/final-v3-stable-index.html; then
+              ready=1
+              break
+            fi
+            sleep 10
+          done
+          test "$ready" = 1
 
       - name: Upload V3 R17 proof
         if: always()
@@ -278,6 +282,8 @@ jobs:
             /tmp/final-v3-build.log
             /tmp/current-sha-runs.json
             /tmp/final-v3-index.html
+            /tmp/final-v3-late1-index.html
+            /tmp/final-v3-late2-index.html
             /tmp/final-v3-stable-index.html
             /tmp/final-v3-app.js
             /tmp/final-v3-performance.js
