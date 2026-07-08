@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/diagnose-and-apply-visible-desktop.yml'
       - 'scripts/patch_gorics_visible_desktop.py'
+      - 'scripts/patch_gorics_visible_desktop_v2.py'
 
 permissions:
   contents: write
@@ -30,7 +31,7 @@ jobs:
         continue-on-error: true
         run: |
           set +e
-          python3 scripts/patch_gorics_visible_desktop.py > /tmp/visible-patch.log 2>&1
+          python3 scripts/patch_gorics_visible_desktop_v2.py > /tmp/visible-patch.log 2>&1
           code=$?
           set -e
           cat /tmp/visible-patch.log
