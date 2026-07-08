@@ -35,3 +35,5 @@ jobs:
           git add os/iso/all-workflow-runs.json
           git commit -m 'Record all workflow runs [skip ci]' || exit 0
           git push origin HEAD:main
+
+# trigger after registration
