@@ -1,0 +1,65 @@
+name: Record Final Multiboot Runs
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/record-final-multiboot-runs.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: record-final-multiboot-runs
+  cancel-in-progress: true
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Query workflow runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run list --repo "$GITHUB_REPOSITORY" --workflow 'Verify Final All Multiboot Presets' --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/final-runs.json
+          gh run list --repo "$GITHUB_REPOSITORY" --workflow 'Deploy static content to Pages' --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/pages-runs.json
+          python3 - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          payload = {
+              'recorded_at': datetime.now(timezone.utc).isoformat(),
+              'final_verifier_runs': json.loads(Path('/tmp/final-runs.json').read_text()),
+              'pages_runs': json.loads(Path('/tmp/pages-runs.json').read_text()),
+          }
+          Path('/tmp/final-multiboot-runs.json').write_text(json.dumps(payload, indent=2) + '\n')
+          print(json.dumps(payload, indent=2))
+          PY
+
+      - name: Publish status
+        run: |
+          set -euo pipefail
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          cp /tmp/final-multiboot-runs.json /tmp/status.json
+          for attempt in $(seq 1 12); do
+            git reset --hard
+            git clean -fd
+            git fetch origin main
+            git checkout -B main origin/main
+            mkdir -p os/iso
+            cp /tmp/status.json os/iso/final-multiboot-workflow-runs.json
+            git add os/iso/final-multiboot-workflow-runs.json
+            git commit -m 'Record final multiboot workflow runs [skip ci]' || exit 0
+            git push origin HEAD:main && exit 0
+            sleep $((attempt * 2))
+          done
+          exit 1
