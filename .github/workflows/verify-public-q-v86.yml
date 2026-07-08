@@ -1,0 +1,183 @@
+name: Verify Public q v86 Boot
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/verify-public-q-v86.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: verify-public-q-v86
+  cancel-in-progress: true
+
+jobs:
+  browser-boot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Playwright Chromium
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install --no-save playwright@1.57.0
+          npx playwright install --with-deps chromium
+
+      - name: Boot public i386 Openbox in v86
+        env:
+          TARGET_URL: https://gorics.github.io/website/os/real-multiboot/?v=q-browser-${{ github.run_id }}
+        run: |
+          mkdir -p browser-proof
+          cat > /tmp/verify-public-v86.mjs <<'JS'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
+
+          const target = process.env.TARGET_URL;
+          const startedAt = Date.now();
+          const result = {
+            run_id: process.env.GITHUB_RUN_ID,
+            target,
+            started_at: new Date().toISOString(),
+            success: false,
+            gui_ready: false,
+            xorg_ready: false,
+            emulator_started: false,
+            screen_sizes: [],
+            console: [],
+            page_errors: [],
+            log_tail: '',
+          };
+
+          const browser = await chromium.launch({
+            headless: true,
+            args: [
+              '--disable-dev-shm-usage',
+              '--no-sandbox',
+              '--disable-background-timer-throttling',
+              '--disable-renderer-backgrounding',
+              '--disable-backgrounding-occluded-windows',
+              '--js-flags=--max-old-space-size=2048',
+            ],
+          });
+          const context = await browser.newContext({
+            viewport: { width: 1440, height: 1000 },
+            deviceScaleFactor: 1,
+          });
+          const page = await context.newPage();
+          page.setDefaultTimeout(120_000);
+          page.on('console', (message) => {
+            const text = `${message.type()}: ${message.text()}`;
+            result.console.push(text);
+            if (result.console.length > 1000) result.console.shift();
+            console.log('[browser]', text);
+          });
+          page.on('pageerror', (error) => {
+            result.page_errors.push(String(error));
+            console.error('[pageerror]', error);
+          });
+          page.on('requestfailed', (request) => {
+            const text = `${request.url()} :: ${request.failure()?.errorText || 'failed'}`;
+            result.console.push(`requestfailed: ${text}`);
+            console.error('[requestfailed]', text);
+          });
+
+          try {
+            const response = await page.goto(target, { waitUntil: 'domcontentloaded', timeout: 120_000 });
+            result.page_http = response?.status() || null;
+            await page.waitForSelector('#boot-btn', { timeout: 60_000 });
+            const initial = await page.locator('#log').innerText();
+            if (!initial.includes('page. q')) throw new Error(`unexpected public version: ${initial}`);
+            await page.screenshot({ path: 'browser-proof/00-page-q.png', fullPage: true });
+            await page.click('#boot-btn');
+
+            let lastScreenshot = 0;
+            let previousLog = '';
+            const deadline = Date.now() + 16 * 60_000;
+            while (Date.now() < deadline) {
+              await page.waitForTimeout(5000);
+              const log = await page.locator('#log').innerText().catch(() => '');
+              result.log_tail = log.slice(-20_000);
+              if (log !== previousLog) {
+                console.log('--- LOG TAIL ---\n' + log.slice(-4000));
+                previousLog = log;
+              }
+              if (log.includes('emulator-started')) result.emulator_started = true;
+              if (log.includes('GORICS_XORG_READY')) result.xorg_ready = true;
+              if (log.includes('GORICS_WEB_GUI_READY')) {
+                result.gui_ready = true;
+                result.success = true;
+                break;
+              }
+              if (/ERROR |download-error|GORICS_WEB_GUI_FAILED|GORICS_XORG_FAILED|GORICS_XORG_TIMEOUT/.test(log)) {
+                throw new Error('fatal marker in browser log');
+              }
+              const matches = [...log.matchAll(/screen-set-size\s+(\[[^\n]+\])/g)].map((m) => m[1]);
+              result.screen_sizes = [...new Set(matches)].slice(-20);
+              const elapsed = Date.now() - startedAt;
+              if (elapsed - lastScreenshot >= 120_000) {
+                lastScreenshot = elapsed;
+                await page.screenshot({ path: `browser-proof/progress-${Math.floor(elapsed / 1000)}s.png`, fullPage: true });
+              }
+            }
+            if (!result.gui_ready) throw new Error('GORICS_WEB_GUI_READY timeout');
+            await page.waitForTimeout(20_000);
+            await page.screenshot({ path: 'browser-proof/99-openbox-ready.png', fullPage: true });
+            const canvas = page.locator('#screen canvas');
+            if (await canvas.count()) {
+              await canvas.screenshot({ path: 'browser-proof/99-screen-canvas.png' }).catch(() => {});
+            }
+          } catch (error) {
+            result.error = String(error?.stack || error);
+            await page.screenshot({ path: 'browser-proof/99-failure.png', fullPage: true }).catch(() => {});
+          } finally {
+            result.finished_at = new Date().toISOString();
+            result.duration_seconds = Math.round((Date.now() - startedAt) / 1000);
+            fs.writeFileSync('browser-proof/result.json', JSON.stringify(result, null, 2) + '\n');
+            fs.writeFileSync('browser-proof/log.txt', result.log_tail || '');
+            console.log(JSON.stringify(result, null, 2));
+            await browser.close();
+          }
+          if (!result.success) process.exit(1);
+          JS
+          node /tmp/verify-public-v86.mjs
+
+      - name: Upload browser proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gorics-public-q-v86-proof
+          path: browser-proof/
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Record browser verification
+        if: always()
+        run: |
+          if test ! -s browser-proof/result.json; then
+            printf '{"success":false,"error":"browser result missing","run_id":"%s"}\n' "$GITHUB_RUN_ID" > browser-proof-result.json
+          else
+            cp browser-proof/result.json browser-proof-result.json
+          fi
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          cp browser-proof-result.json os/iso/public-q-browser-result.json
+          git add os/iso/public-q-browser-result.json
+          git commit -m 'Record public q Chromium v86 boot result [skip ci]' || true
+          git push origin HEAD:main
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          result=json.loads(Path('os/iso/public-q-browser-result.json').read_text())
+          assert result.get('success') is True
+          assert result.get('gui_ready') is True
+          assert result.get('xorg_ready') is True
+          assert result.get('emulator_started') is True
+          PY
