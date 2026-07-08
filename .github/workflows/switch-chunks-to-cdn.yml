@@ -1,0 +1,250 @@
+name: Switch ISO Chunks to CDN
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/switch-chunks-to-cdn.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: switch-iso-chunks-to-cdn
+  cancel-in-progress: true
+
+jobs:
+  switch-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Publish s loader with CDN selection and Raw fallback
+        run: |
+          python3 - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          roots = """  const partsRoots = [
+            'https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/',
+            'https://cdn.statically.io/gh/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/',
+            'https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/',
+          ];
+          let partsRoot = partsRoots[0];
+          let isoBase = partsRoot + assetName;"""
+
+          verifier = """  async function verifyParts(meta) {
+            let lastError = new Error('no ISO chunk CDN attempted');
+            for (const candidateRoot of partsRoots) {
+              const candidateBase = candidateRoot + assetName;
+              const lastStart = (meta.parts - 1) * chunkSize;
+              const firstPart = `${candidateBase}-0-${chunkSize}.iso`;
+              const lastPart = `${candidateBase}-${lastStart}-${lastStart + chunkSize}.iso`;
+              try {
+                log(`probing ISO CDN ${new URL(candidateRoot).hostname}`);
+                const firstResponse = await fetch(`${firstPart}?v=s-${Date.now()}`, {
+                  cache: 'no-store',
+                  headers: { Range: 'bytes=32768-36863' },
+                });
+                if (firstResponse.status !== 206 && firstResponse.status !== 200) {
+                  throw new Error(`first chunk HTTP ${firstResponse.status}`);
+                }
+                let firstBytes = new Uint8Array(await firstResponse.arrayBuffer());
+                if (firstResponse.status === 200 && firstBytes.length >= 36864) {
+                  firstBytes = firstBytes.slice(32768, 36864);
+                }
+                if (firstBytes.length !== 4096) throw new Error(`first chunk probe size ${firstBytes.length}`);
+                if (ascii(firstBytes, 1, 5) !== 'CD001') throw new Error('ISO9660 descriptor missing');
+                if (ascii(firstBytes, 2049, 5) !== 'CD001' || !ascii(firstBytes, 2055, 32).includes('EL TORITO')) {
+                  throw new Error('El Torito record missing');
+                }
+
+                const lastResponse = await fetch(`${lastPart}?v=s-${Date.now()}`, {
+                  cache: 'no-store',
+                  headers: { Range: 'bytes=0-15' },
+                });
+                if (lastResponse.status !== 206 && lastResponse.status !== 200) {
+                  throw new Error(`last chunk HTTP ${lastResponse.status}`);
+                }
+                const lastBytes = new Uint8Array(await lastResponse.arrayBuffer());
+                if (lastBytes.length < 16) throw new Error(`last chunk probe size ${lastBytes.length}`);
+
+                partsRoot = candidateRoot;
+                isoBase = candidateBase;
+                if (urlBox) urlBox.textContent = `${isoBase} (CDN chunked)`;
+                log(`ISO CDN selected ${new URL(candidateRoot).hostname}; first HTTP ${firstResponse.status}; last HTTP ${lastResponse.status}`);
+                log('ISO9660 and El Torito verified');
+                return;
+              } catch (error) {
+                lastError = error;
+                log(`ISO CDN failed ${new URL(candidateRoot).hostname}: ${error.message}`);
+              }
+            }
+            throw lastError;
+          }
+
+"""
+
+          for filename in ('os/real-multiboot/app.js', 'os/real-multiboot/app-legacy-chunked.js'):
+              path = Path(filename)
+              text = path.read_text(encoding='utf-8')
+              text, count = re.subn(
+                  r"  const partsRoot = '[^']+';\n  const isoBase = partsRoot \+ assetName;",
+                  roots,
+                  text,
+                  count=1,
+              )
+              if count != 1 and 'const partsRoots = [' not in text:
+                  raise SystemExit(f'parts root patch failed: {filename}')
+
+              start = text.find('  async function verifyFirstPart() {')
+              end = text.find('  async function verifyBootFiles() {')
+              if start < 0 or end < 0 or end <= start:
+                  raise SystemExit(f'verifier function markers missing: {filename}')
+              text = text[:start] + verifier + text[end:]
+              text = text.replace('await Promise.all([verifyFirstPart(), verifyBootFiles()]);', 'await verifyParts(meta);\n      await verifyBootFiles();')
+              text = text.replace('?v=q', '?v=s')
+              text = text.replace('legacy Pages same-origin chunks', 'resilient CDN chunks')
+              if 'await verifyParts(meta);' not in text or 'cdn.jsdelivr.net' not in text or 'use_parts: true' not in text:
+                  raise SystemExit(f'CDN loader patch incomplete: {filename}')
+              path.write_text(text, encoding='utf-8')
+
+          index = Path('os/real-multiboot/index.html')
+          html = index.read_text(encoding='utf-8')
+          html = re.sub(r'(?<=styles\.css\?v=)[A-Za-z0-9._-]+', 's', html)
+          html = re.sub(r'(?<=app\.js\?v=)[A-Za-z0-9._-]+', 's', html)
+          html = re.sub(r'(?<=ISO page\. )[A-Za-z0-9._-]+', 's', html)
+          index.write_text(html, encoding='utf-8')
+
+          meta_path = Path('os/real-multiboot/assets/iso-meta.json')
+          meta = json.loads(meta_path.read_text(encoding='utf-8'))
+          meta['page_version'] = 's'
+          meta['chunk_source'] = 'jsdelivr-statically-raw-fallback'
+          meta['chunk_base_urls'] = [
+              'https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/',
+              'https://cdn.statically.io/gh/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/',
+              'https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/',
+          ]
+          meta_path.write_text(json.dumps(meta, indent=2) + '\n', encoding='utf-8')
+
+          deployment_path = Path('os/real-multiboot/assets/deployment.json')
+          deployment = json.loads(deployment_path.read_text(encoding='utf-8'))
+          deployment['version'] = 's'
+          deployment['mode'] = 'legacy-pages-resilient-cdn-chunks'
+          deployment_path.write_text(json.dumps(deployment, indent=2) + '\n', encoding='utf-8')
+
+          workflow = Path('.github/workflows/verify-q-gui-final.yml')
+          check = workflow.read_text(encoding='utf-8')
+          check = check.replace('app.js?v=q', 'app.js?v=s')
+          check = check.replace('ISO page. q', 'ISO page. s')
+          check = check.replace("assert m['page_version']=='q'", "assert m['page_version']=='s'")
+          check = check.replace("version:'q'", "version:'s'")
+          check = check.replace("version: 'q'", "version: 's'")
+          check = check.replace("log.includes('ISO page. q')", "log.includes('ISO page. s')")
+          check = check.replace('fixed q deployment', 'fixed s deployment')
+          check = check.replace('public q Linux GUI', 'public s Linux GUI')
+          check = check.replace('?final-q=', '?final-s=')
+          workflow.write_text(check, encoding='utf-8')
+          PY
+
+          node --check os/real-multiboot/app.js
+          node --check os/real-multiboot/app-legacy-chunked.js
+          grep -q 'cdn.jsdelivr.net' os/real-multiboot/app.js
+          grep -q 'cdn.statically.io' os/real-multiboot/app.js
+          grep -q 'app.js?v=s' os/real-multiboot/index.html
+          grep -q 'ISO page. s' os/real-multiboot/index.html
+
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add os/real-multiboot .github/workflows/verify-q-gui-final.yml
+          git commit -m 'Use resilient CDN fallback for v86 ISO chunks'
+          git push origin HEAD:main
+
+      - name: Verify jsDelivr first and last chunks
+        run: |
+          ROOT='https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts'
+          FIRST="$ROOT/gorics-linux-gui-web-i386.iso-0-16777216.iso"
+          LAST="$ROOT/gorics-linux-gui-web-i386.iso-335544320-352321536.iso"
+          READY=0
+          for attempt in $(seq 1 60); do
+            FIRST_CODE=$(curl -sS -L --max-time 120 -r 32768-36863 -o /tmp/first.bin -w '%{http_code}' "$FIRST?v=$GITHUB_RUN_ID-$attempt")
+            LAST_CODE=$(curl -sS -L --max-time 120 -r 0-15 -o /tmp/last.bin -w '%{http_code}' "$LAST?v=$GITHUB_RUN_ID-$attempt")
+            FIRST_SIZE=$(stat -c %s /tmp/first.bin 2>/dev/null || echo 0)
+            LAST_SIZE=$(stat -c %s /tmp/last.bin 2>/dev/null || echo 0)
+            if { test "$FIRST_CODE" = 206 || test "$FIRST_CODE" = 200; } \
+              && { test "$LAST_CODE" = 206 || test "$LAST_CODE" = 200; } \
+              && test "$FIRST_SIZE" -ge 4096 && test "$LAST_SIZE" -ge 16; then
+              READY=1
+              break
+            fi
+            echo "jsDelivr chunks not ready attempt=$attempt first=$FIRST_CODE/$FIRST_SIZE last=$LAST_CODE/$LAST_SIZE"
+            sleep 5
+          done
+          test "$READY" = 1
+          python3 - <<'PY'
+          from pathlib import Path
+          data = Path('/tmp/first.bin').read_bytes()
+          if len(data) >= 36864:
+              data = data[32768:36864]
+          assert len(data) == 4096
+          assert data[1:6] == b'CD001'
+          assert data[2049:2054] == b'CD001'
+          assert b'EL TORITO' in data[2055:2087]
+          print('jsDelivr first and last chunks verified')
+          PY
+
+      - name: Wait for public s loader
+        run: |
+          PAGE='https://gorics.github.io/website/os/real-multiboot'
+          READY=0
+          for attempt in $(seq 1 120); do
+            stamp="$GITHUB_RUN_ID-$attempt-$(date +%s)"
+            if curl -fsSL --max-time 60 "$PAGE/?cdn-s=$stamp" -o /tmp/index.html \
+              && grep -q 'app.js?v=s' /tmp/index.html \
+              && grep -q 'ISO page. s' /tmp/index.html \
+              && curl -fsSL --max-time 60 "$PAGE/app.js?cdn-s=$stamp" -o /tmp/app.js \
+              && grep -q 'cdn.jsdelivr.net' /tmp/app.js \
+              && grep -q 'await verifyParts(meta)' /tmp/app.js; then
+              READY=1
+              break
+            fi
+            echo "public s loader not ready attempt=$attempt"
+            sleep 10
+          done
+          test "$READY" = 1
+
+      - name: Dispatch final s GUI verifier
+        id: verifier
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BEFORE=$(gh run list --workflow verify-q-gui-final.yml --limit 1 --json databaseId --jq '.[0].databaseId // 0')
+          gh workflow run verify-q-gui-final.yml --ref main
+          RUN_ID=''
+          for attempt in $(seq 1 30); do
+            sleep 4
+            CANDIDATE=$(gh run list --workflow verify-q-gui-final.yml --event workflow_dispatch --limit 1 --json databaseId --jq '.[0].databaseId // 0')
+            if test "$CANDIDATE" != 0 && test "$CANDIDATE" != "$BEFORE"; then
+              RUN_ID="$CANDIDATE"
+              break
+            fi
+          done
+          test -n "$RUN_ID"
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+          echo "final s GUI verifier run=$RUN_ID"
+
+      - name: Record s verifier run
+        env:
+          FINAL_RUN_ID: ${{ steps.verifier.outputs.run_id }}
+        run: |
+          git fetch origin main
+          git checkout -B main origin/main
+          printf '{"state":"dispatched","version":"s","primary":"jsDelivr","fallbacks":["statically","raw-github"],"final_run_id":"%s"}\n' "$FINAL_RUN_ID" > os/iso/cdn-chunk-fix.json
+          git add os/iso/cdn-chunk-fix.json
+          git commit -m 'Record resilient CDN chunk verifier [skip ci]' || true
+          git push origin HEAD:main
