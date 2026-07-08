@@ -83,7 +83,16 @@ jobs:
           code=$(curl -sS --max-time 60 -r 32768-36863 -o /tmp/final-v2-iso-probe.bin -w '%{http_code}' \
             'https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-0-16777216')
           test "$code" = 206
-          python3 scripts/verify_iso_boot_chunk.py /tmp/final-v2-iso-probe.bin
+          test "$(stat -c %s /tmp/final-v2-iso-probe.bin)" = 4096
+          python3 - <<'PY'
+          from pathlib import Path
+          data = Path('/tmp/final-v2-iso-probe.bin').read_bytes()
+          assert len(data) == 4096
+          assert data[1:6] == b'CD001'
+          assert data[2049:2054] == b'CD001'
+          assert b'EL TORITO' in data[2055:2087]
+          print('ISO9660 and El Torito verified from 4 KiB range response')
+          PY
 
       - name: Install Chromium and WebKit
         run: |
