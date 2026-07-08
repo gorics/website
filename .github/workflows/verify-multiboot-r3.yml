@@ -1,4 +1,4 @@
-name: Verify Multiboot R3 Chunks
+name: Verify Multiboot R4 Chunks
 
 on:
   workflow_dispatch:
@@ -14,13 +14,13 @@ permissions:
   contents: write
 
 concurrency:
-  group: verify-multiboot-r3-chunks
-  cancel-in-progress: true
+  group: verify-multiboot-r4-chunks
+  cancel-in-progress: false
 
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
         with:
@@ -35,91 +35,123 @@ jobs:
           node --check os/real-multiboot/chunk-compat.js
           node --check os/real-multiboot/app.js
 
-      - name: Verify deployed page and ISO descriptors
+      - name: Verify deployed r4 page and ISO descriptors
         run: |
-          mkdir -p /tmp/multiboot-r3
-          cat > /tmp/verify-r3.mjs <<'JS'
+          mkdir -p /tmp/multiboot-r4
+          cat > /tmp/verify-r4.mjs <<'JS'
           import fs from 'node:fs';
 
-          const page = 'https://gorics.github.io/website/os/real-multiboot/';
-          const roots = [
-            'https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/',
-            'https://fastly.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/',
-            'https://gcore.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/',
-            'https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/',
-          ];
-          const name = 'gorics-linux-gui-web-i386.iso-0-16777216';
-          const result = { success: false, page, checked_at: new Date().toISOString(), sources: [] };
+          const output = '/tmp/multiboot-r4/result.json';
+          const result = {
+            success: false,
+            state: 'starting',
+            run_id: process.env.GITHUB_RUN_ID,
+            checked_at: new Date().toISOString(),
+            sources: [],
+          };
+          const save = () => fs.writeFileSync(output, JSON.stringify(result, null, 2) + '\n');
           const ascii = (bytes, start, length) => String.fromCharCode(...bytes.slice(start, start + length));
+          const descriptorValid = bytes => bytes.length >= 4096
+            && ascii(bytes, 1, 5) === 'CD001'
+            && ascii(bytes, 2049, 5) === 'CD001'
+            && ascii(bytes, 2055, 32).includes('EL TORITO');
 
-          let html = '';
-          for (let attempt = 1; attempt <= 36; attempt += 1) {
-            const response = await fetch(`${page}?r3-proof=${Date.now()}-${attempt}`, { cache: 'no-store' });
-            html = await response.text();
-            if (response.ok && html.includes('20260708-r3') && html.includes('chunk-compat.js?v=20260708-r3')) break;
-            if (attempt === 36) throw new Error(`GitHub Pages did not publish r3; last HTTP ${response.status}`);
-            await new Promise(resolve => setTimeout(resolve, 5000));
-          }
-          result.page_r3 = true;
+          try {
+            const page = 'https://gorics.github.io/website/os/real-multiboot/';
+            result.page = page;
+            result.state = 'waiting-for-pages-r4';
+            save();
 
-          let verified = null;
-          for (const root of roots) {
-            const url = `${root}${name}?proof=${Date.now()}`;
-            const entry = { host: new URL(root).hostname, url };
-            try {
-              const response = await fetch(url, {
-                cache: 'no-store',
-                headers: { Range: 'bytes=32768-36863' },
-              });
-              const body = new Uint8Array(await response.arrayBuffer());
-              let selected;
-              if (response.status === 206 && body.length === 4096) selected = body;
-              else if (response.status === 200 && body.length >= 36864) selected = body.slice(32768, 36864);
-              else if (body.length === 4096) selected = body;
-              else throw new Error(`range mismatch status=${response.status} bytes=${body.length}`);
-
-              entry.status = response.status;
-              entry.bytes = body.length;
-              entry.content_range = response.headers.get('content-range');
-              entry.iso9660 = ascii(selected, 1, 5) === 'CD001';
-              entry.boot_record = ascii(selected, 2049, 5) === 'CD001';
-              entry.el_torito = ascii(selected, 2055, 32).includes('EL TORITO');
-              entry.success = entry.iso9660 && entry.boot_record && entry.el_torito;
-              if (entry.success && !verified) verified = entry.host;
-            } catch (error) {
-              entry.success = false;
-              entry.error = String(error?.stack || error);
+            let published = false;
+            for (let attempt = 1; attempt <= 60; attempt += 1) {
+              const response = await fetch(`${page}?r4-proof=${Date.now()}-${attempt}`, { cache: 'no-store' });
+              const html = await response.text();
+              if (response.ok && html.includes('20260708-r4') && html.includes('chunk-compat.js?v=20260708-r4')) {
+                published = true;
+                result.page_http = response.status;
+                break;
+              }
+              await new Promise(resolve => setTimeout(resolve, 5000));
             }
-            result.sources.push(entry);
-          }
+            if (!published) throw new Error('GitHub Pages did not publish the r4 index marker');
 
-          if (!verified) throw new Error(`No source supplied a valid ISO9660 + El Torito descriptor: ${JSON.stringify(result.sources)}`);
-          result.success = true;
-          result.verified_source = verified;
-          result.completed_at = new Date().toISOString();
-          fs.writeFileSync('/tmp/multiboot-r3/result.json', JSON.stringify(result, null, 2) + '\n');
-          console.log(JSON.stringify(result, null, 2));
+            result.state = 'checking-iso-sources';
+            save();
+            const roots = [
+              'https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/',
+              'https://fastly.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/',
+              'https://gcore.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/',
+              'https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/',
+            ];
+            const filename = 'gorics-linux-gui-web-i386.iso-0-16777216';
+            let verifiedSource = null;
+
+            for (const root of roots) {
+              const entry = { host: new URL(root).hostname };
+              try {
+                const response = await fetch(`${root}${filename}?proof=${Date.now()}`, {
+                  cache: 'no-store',
+                  headers: { Range: 'bytes=32768-36863' },
+                });
+                const body = new Uint8Array(await response.arrayBuffer());
+                let selected = null;
+                if (response.status === 206 && body.length === 4096) selected = body;
+                else if (response.status === 200 && body.length >= 36864) selected = body.slice(32768, 36864);
+                else if (body.length === 4096) selected = body;
+                else throw new Error(`range mismatch status=${response.status} bytes=${body.length}`);
+
+                entry.status = response.status;
+                entry.body_bytes = body.length;
+                entry.content_range = response.headers.get('content-range');
+                entry.iso9660 = ascii(selected, 1, 5) === 'CD001';
+                entry.boot_record = ascii(selected, 2049, 5) === 'CD001';
+                entry.el_torito = ascii(selected, 2055, 32).includes('EL TORITO');
+                entry.success = descriptorValid(selected);
+                if (entry.success && !verifiedSource) verifiedSource = entry.host;
+              } catch (error) {
+                entry.success = false;
+                entry.error = String(error?.stack || error);
+              }
+              result.sources.push(entry);
+              save();
+            }
+
+            if (!verifiedSource) throw new Error('No CDN source returned a valid ISO9660 and El Torito descriptor');
+            result.success = true;
+            result.state = 'completed';
+            result.verified_source = verifiedSource;
+            result.completed_at = new Date().toISOString();
+            save();
+          } catch (error) {
+            result.success = false;
+            result.state = 'failed';
+            result.error = String(error?.stack || error);
+            result.completed_at = new Date().toISOString();
+            save();
+            console.error(result.error);
+            process.exitCode = 1;
+          }
           JS
-          node /tmp/verify-r3.mjs
+          node /tmp/verify-r4.mjs
 
       - name: Record verification result
         if: always()
         run: |
           set -euo pipefail
-          if test ! -s /tmp/multiboot-r3/result.json; then
-            mkdir -p /tmp/multiboot-r3
-            printf '{"success":false,"state":"verification-failed","run_id":"%s","checked_at":"%s"}\n' "$GITHUB_RUN_ID" "$(date -u +%FT%TZ)" > /tmp/multiboot-r3/result.json
+          if test ! -s /tmp/multiboot-r4/result.json; then
+            mkdir -p /tmp/multiboot-r4
+            printf '{"success":false,"state":"workflow-failed-before-result","run_id":"%s","checked_at":"%s"}\n' "$GITHUB_RUN_ID" "$(date -u +%FT%TZ)" > /tmp/multiboot-r4/result.json
           fi
-          cp /tmp/multiboot-r3/result.json /tmp/multiboot-r3-result.json
+          cp /tmp/multiboot-r4/result.json /tmp/multiboot-r4-result.json
           git config user.name github-actions
           git config user.email github-actions@github.com
-          for attempt in $(seq 1 8); do
+          for attempt in $(seq 1 10); do
             git fetch origin main
             git checkout -B main origin/main
             mkdir -p os/iso
-            cp /tmp/multiboot-r3-result.json os/iso/multiboot-r3-result.json
-            git add os/iso/multiboot-r3-result.json
-            git commit -m 'Record multiboot r3 chunk verification [skip ci]' || exit 0
+            cp /tmp/multiboot-r4-result.json os/iso/multiboot-r4-result.json
+            git add os/iso/multiboot-r4-result.json
+            git commit -m 'Record multiboot r4 chunk verification [skip ci]' || exit 0
             if git push origin HEAD:main; then exit 0; fi
             sleep $((attempt * 2))
           done
@@ -129,6 +161,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: multiboot-r3-${{ github.run_id }}
-          path: /tmp/multiboot-r3/
+          name: multiboot-r4-${{ github.run_id }}
+          path: /tmp/multiboot-r4/
           if-no-files-found: warn
