@@ -23,11 +23,11 @@ jobs:
         run: |
           set +e
           gh api "repos/$GITHUB_REPOSITORY/pages" > /tmp/before.json 2>/tmp/before.err
-          before_rc=$?
+          echo $? > /tmp/before.rc
           gh api --method PUT "repos/$GITHUB_REPOSITORY/pages" -H 'Accept: application/vnd.github+json' -f build_type=workflow > /tmp/put.out 2>/tmp/put.err
-          put_rc=$?
+          echo $? > /tmp/put.rc
           gh api "repos/$GITHUB_REPOSITORY/pages" > /tmp/after.json 2>/tmp/after.err
-          after_rc=$?
+          echo $? > /tmp/after.rc
           set -e
           python3 - <<'PY'
           import json
@@ -38,10 +38,13 @@ jobs:
           def parse(path):
               try: return json.loads(text(path))
               except Exception: return None
+          def number(path):
+              try: return int(text(path).strip())
+              except Exception: return None
           result={
-              'before_rc': int('${before_rc}'),
-              'put_rc': int('${put_rc}'),
-              'after_rc': int('${after_rc}'),
+              'before_rc': number('/tmp/before.rc'),
+              'put_rc': number('/tmp/put.rc'),
+              'after_rc': number('/tmp/after.rc'),
               'before': parse('/tmp/before.json'),
               'put_stdout': text('/tmp/put.out'),
               'put_stderr': text('/tmp/put.err'),
