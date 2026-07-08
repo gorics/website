@@ -157,6 +157,7 @@
 
   function prepareScreen() {
     screen.innerHTML = '<div style="white-space:pre;font:14px monospace;line-height:14px"></div><canvas style="display:none"></canvas>';
+    screen.classList.add('active');
   }
 
   function enableInput() {
@@ -260,7 +261,7 @@
     vm = null;
     serial = '';
     inputLogged = false;
-    if (screen) screen.innerHTML = '';
+    if (screen) { screen.innerHTML = ''; screen.classList.remove('active'); }
     setState('idle');
     log('stopped');
   }
