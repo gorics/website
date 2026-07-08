@@ -1,27 +1,35 @@
 {
   "success": false,
-  "state": "process-exited-without-result",
-  "run_id": "28910882140",
+  "state": "failed",
+  "run_id": "28911306527",
   "architecture": "i386",
   "desktop": "openbox-tint2-pcmanfm-xterm",
-  "browser_exit_code": 1,
-  "browser_log_tail": [
-    "node:internal/modules/package_json_reader:314",
-    "  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);",
-    "        ^",
-    "",
-    "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'playwright' imported from /tmp/verify.mjs",
-    "    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)",
-    "    at packageResolve (node:internal/modules/esm/resolve:768:81)",
-    "    at moduleResolve (node:internal/modules/esm/resolve:855:18)",
-    "    at defaultResolve (node:internal/modules/esm/resolve:985:11)",
-    "    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)",
-    "    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)",
-    "    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)",
-    "    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {",
-    "  code: 'ERR_MODULE_NOT_FOUND'",
-    "}",
-    "",
-    "Node.js v22.23.1"
-  ]
+  "boot_mode": "direct-kernel-initrd-plus-iso",
+  "url": "https://gorics.github.io/website/os/real-multiboot/?v3=28911306527-1",
+  "started_at": "2026-07-08T01:47:24.486Z",
+  "console": [
+    "log: [GORICS ISO] ready: keyboard, touch and pointer bridge installed",
+    "log: [GORICS ISO] loading QEMU-tested ISO metadata",
+    "error: Failed to load resource: the server responded with a status of 404 ()",
+    "log: [GORICS ISO] ERROR ISO metadata HTTP 404",
+    "log: [GORICS ISO] userAgent Mozilla/5.0 (Linux; Android 15; GORICSVerifierV3) AppleWebKit/537.36 Chrome/149 Mobile Safari/537.36",
+    "error: Failed to load resource: the server responded with a status of 404 ()"
+  ],
+  "failed_requests": [
+    {
+      "url": "https://gorics.github.io/website/vendor/v86/libv86.js?v=n",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "updated_at": "2026-07-08T01:51:24.949Z",
+  "page_url": "https://gorics.github.io/website/os/real-multiboot/?v3=28911306527-1",
+  "error": "page.waitForFunction: Timeout 240000ms exceeded.\n    at /home/runner/work/website/website/verify-v3.mjs:53:14",
+  "log_tail": [
+    "[ready] GORICS Linux GUI ISO page. k",
+    "[2026-07-08T01:47:24.801Z] ready: keyboard, touch and pointer bridge installed",
+    "[2026-07-08T01:47:24.906Z] loading QEMU-tested ISO metadata",
+    "[2026-07-08T01:47:24.931Z] ERROR ISO metadata HTTP 404",
+    "[2026-07-08T01:47:24.932Z] userAgent Mozilla/5.0 (Linux; Android 15; GORICSVerifierV3) AppleWebKit/537.36 Chrome/149 Mobile Safari/537.36"
+  ],
+  "completed_at": "2026-07-08T01:51:24.949Z"
 }
