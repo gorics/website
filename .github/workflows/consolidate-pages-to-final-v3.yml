@@ -1,0 +1,70 @@
+name: Consolidate Pages To Final V3
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/consolidate-pages-to-final-v3.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  consolidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Disable legacy Pages deployers
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for workflow in \
+            static.yml \
+            deploy-real-multiboot-final.yml \
+            deploy-real-multiboot-final-v2.yml \
+            deploy-final-multiboot-stable.yml; do
+            echo "disable legacy workflow: $workflow"
+            gh workflow disable "$workflow" --repo "$GITHUB_REPOSITORY" || true
+          done
+
+      - name: Cancel queued or active legacy deploy runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run list --repo "$GITHUB_REPOSITORY" --limit 100 \
+            --json databaseId,workflowName,status,conclusion,url \
+            > /tmp/all-runs.json
+          python3 - <<'PY' > /tmp/legacy-run-ids.txt
+          import json
+          from pathlib import Path
+
+          legacy = {
+              'Deploy static content to Pages',
+              'Deploy And Verify Real Multiboot Final',
+              'Deploy And Verify Real Multiboot Final V2',
+              'Deploy Final Multiboot Stable',
+          }
+          for run in json.loads(Path('/tmp/all-runs.json').read_text()):
+              if run.get('workflowName') in legacy and run.get('status') in {'queued', 'in_progress', 'waiting', 'pending', 'requested'}:
+                  print(run['databaseId'])
+          PY
+          while read -r run_id; do
+            test -n "$run_id" || continue
+            echo "cancel legacy Pages run: $run_id"
+            gh run cancel "$run_id" --repo "$GITHUB_REPOSITORY" || true
+          done < /tmp/legacy-run-ids.txt
+
+      - name: Dispatch sole final V3 deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow enable deploy-real-multiboot-final-v3.yml --repo "$GITHUB_REPOSITORY"
+          gh workflow run deploy-real-multiboot-final-v3.yml --repo "$GITHUB_REPOSITORY" --ref main
+          echo 'Final V3 is now the sole Pages deployment workflow.'
