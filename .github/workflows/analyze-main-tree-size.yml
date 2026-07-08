@@ -1,0 +1,65 @@
+name: Analyze Main Tree Size
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/analyze-main-tree-size.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Calculate recursive tree sizes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/git/trees/main?recursive=1" > /tmp/tree.json
+          python3 - <<'PY'
+          import json
+          from collections import defaultdict
+          from pathlib import Path
+
+          payload=json.loads(Path('/tmp/tree.json').read_text())
+          entries=[]
+          by_top=defaultdict(int)
+          by_two=defaultdict(int)
+          total=0
+          for item in payload.get('tree',[]):
+              if item.get('type')!='blob':
+                  continue
+              size=int(item.get('size') or 0)
+              path=item['path']
+              total+=size
+              parts=path.split('/')
+              by_top[parts[0]]+=size
+              by_two['/'.join(parts[:2])]+=size
+              entries.append({'path':path,'size':size,'sha':item.get('sha')})
+          entries.sort(key=lambda x:x['size'],reverse=True)
+          result={
+              'truncated':payload.get('truncated'),
+              'total_bytes':total,
+              'total_mib':round(total/1024/1024,2),
+              'file_count':len(entries),
+              'top_level':sorted(({'path':k,'size':v,'mib':round(v/1024/1024,2)} for k,v in by_top.items()),key=lambda x:x['size'],reverse=True),
+              'two_level':sorted(({'path':k,'size':v,'mib':round(v/1024/1024,2)} for k,v in by_two.items()),key=lambda x:x['size'],reverse=True)[:100],
+              'largest_files':entries[:200],
+          }
+          Path('os/iso/main-tree-size.json').write_text(json.dumps(result,indent=2)+"\n")
+          print(json.dumps(result,indent=2))
+          PY
+      - name: Commit report
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          git add os/iso/main-tree-size.json
+          git commit -m 'Record main tree size analysis [skip ci]' || true
+          git push origin HEAD:main
