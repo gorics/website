@@ -77,15 +77,18 @@ jobs:
           parts_dir = Path('os/real-multiboot/assets/v86-parts')
           chunk_size = 16 * 1024 * 1024
           size = iso.stat().st_size
+
           digest = hashlib.sha256()
           with iso.open('rb') as source:
               for block in iter(lambda: source.read(1024 * 1024), b''):
                   digest.update(block)
           sha = digest.hexdigest()
 
+          parts_dir.mkdir(parents=True, exist_ok=True)
           for old in parts_dir.iterdir():
               if old.is_file():
                   old.unlink()
+
           count = 0
           start = 0
           with iso.open('rb') as source:
@@ -94,13 +97,13 @@ jobs:
                   if len(data) < chunk_size:
                       data += bytes(chunk_size - len(data))
                   end = start + chunk_size
-                  target = parts_dir / f'{iso.name}-{start}-{end}'
-                  target.write_bytes(data)
+                  (parts_dir / f'{iso.name}-{start}-{end}').write_bytes(data)
                   count += 1
                   start = end
 
           kernel = Path('os/real-multiboot/assets/vmlinuz')
           initrd = Path('os/real-multiboot/assets/initrd.img')
+
           def file_sha(path):
               h = hashlib.sha256()
               with path.open('rb') as stream:
@@ -168,11 +171,11 @@ jobs:
           du -sh os/real-multiboot/assets/v86-parts vendor/v86
           ls -lh os/real-multiboot/assets/vmlinuz os/real-multiboot/assets/initrd.img
 
-      - name: Commit all Legacy Pages assets atomically
+      - name: Preserve generated assets
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add \
+          rm -rf /tmp/gorics-generated-tree
+          mkdir -p /tmp/gorics-generated-tree
+          tar -cf /tmp/gorics-generated-tree/assets.tar \
             .nojekyll \
             vendor/v86 \
             os/real-multiboot/app.js \
@@ -180,12 +183,38 @@ jobs:
             os/real-multiboot/index.html \
             os/real-multiboot/assets \
             os/iso/legacy-assets-status.json
-          git commit -m 'Publish complete chunked i386 OS for Legacy Pages'
-          for attempt in 1 2 3 4 5; do
-            git pull --rebase origin main && git push origin HEAD:main && exit 0
-            git rebase --abort 2>/dev/null || true
-            sleep $((attempt * 10))
+          test -s /tmp/gorics-generated-tree/assets.tar
+          ls -lh /tmp/gorics-generated-tree/assets.tar
+
+      - name: Commit generated assets on latest main with retry
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          PATHS=(
+            .nojekyll
+            vendor/v86
+            os/real-multiboot/app.js
+            os/real-multiboot/app-legacy-chunked.js
+            os/real-multiboot/index.html
+            os/real-multiboot/assets
+            os/iso/legacy-assets-status.json
+          )
+          for attempt in $(seq 1 12); do
+            echo "publish attempt $attempt"
+            git fetch origin main
+            git reset --hard origin/main
+            git clean -fdx
+            tar -xf /tmp/gorics-generated-tree/assets.tar -C .
+            git add "${PATHS[@]}"
+            git commit -m 'Publish complete chunked i386 OS for Legacy Pages'
+            if git push origin HEAD:main; then
+              echo 'Legacy Pages assets pushed successfully.'
+              exit 0
+            fi
+            echo 'main moved during push; rebuilding commit on latest main'
+            sleep $((attempt * 5))
           done
+          echo 'unable to publish after 12 compare-and-swap attempts' >&2
           exit 1
 
       - name: Verify Legacy Pages build and every public asset
