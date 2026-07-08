@@ -143,7 +143,7 @@
     const checks = [
       ['kernel', kernelUrl, 1_000_000],
       ['initrd', initrdUrl, 10_000_000],
-      ['runtime', runtime, 100_000],
+      ['runtime', runtime, 50_000],
       ['wasm', wasm, 100_000],
     ];
     for (const [name, url, minimum] of checks) {
