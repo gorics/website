@@ -37,4 +37,4 @@ jobs:
           git commit -m 'Record final V3 workflow runs [skip ci]' || true
           git push origin HEAD:main
 
-# refresh: same-origin guest boot verification
+# refresh: after legacy Pages consolidation
