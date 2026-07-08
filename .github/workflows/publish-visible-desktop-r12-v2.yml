@@ -6,6 +6,9 @@ on:
     workflows:
       - Build GORICS Direct Openbox i386 ISO
     types: [completed]
+  push:
+    paths:
+      - '.github/workflows/publish-visible-desktop-r12-v2.yml'
 
 permissions:
   contents: write
@@ -17,7 +20,7 @@ concurrency:
 
 jobs:
   publish:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     steps:
@@ -38,14 +41,23 @@ jobs:
           mkdir -p /tmp/gorics-r12/release /tmp/gorics-r12/bundle
           if test -z "${SOURCE_RUN_ID:-}"; then
             SOURCE_RUN_ID=$(gh run list --repo "$GITHUB_REPOSITORY" \
-              --workflow build-gorics-openbox-i386.yml \
-              --status success --limit 1 --json databaseId --jq '.[0].databaseId')
+              --workflow build-gorics-openbox-i386.yml --limit 10 \
+              --json databaseId,status,conclusion \
+              --jq '[.[] | select(.status == "in_progress" or .conclusion == "success")][0].databaseId')
           fi
           test -n "$SOURCE_RUN_ID"
+          echo "publisher source build run: $SOURCE_RUN_ID"
           ARTIFACT="gorics-visible-i386-${SOURCE_RUN_ID}"
-          if ! gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" \
-            --name "$ARTIFACT" --dir /tmp/gorics-r12/release; then
-            echo "artifact download failed; trying convenience release" >&2
+          for attempt in $(seq 1 20); do
+            if gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" \
+              --name "$ARTIFACT" --dir /tmp/gorics-r12/release; then
+              break
+            fi
+            rm -rf /tmp/gorics-r12/release/*
+            sleep 10
+          done
+          if ! find /tmp/gorics-r12/release -type f -name gorics-linux-gui-web-i386.iso | grep -q .; then
+            echo "artifact download unavailable; trying convenience release" >&2
             gh release download gorics-linux-gui-web-iso-latest \
               --repo "$GITHUB_REPOSITORY" \
               --pattern gorics-linux-gui-web-i386.iso \
