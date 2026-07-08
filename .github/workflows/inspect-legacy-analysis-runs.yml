@@ -1,0 +1,41 @@
+name: Inspect Legacy Analysis Runs
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/inspect-legacy-analysis-runs.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Capture run status
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          workflows=['publish-legacy-os-assets.yml','check-legacy-public-assets.yml','analyze-main-tree-size.yml','inspect-legacy-pages-build.yml']
+          result={}
+          for workflow in workflows:
+              p=subprocess.run(['gh','run','list','--workflow',workflow,'--limit','10','--json','databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url'],text=True,capture_output=True)
+              result[workflow]={'rc':p.returncode,'stderr':p.stderr,'runs':json.loads(p.stdout or '[]')}
+          Path('os/iso/legacy-analysis-runs.json').write_text(json.dumps(result,indent=2)+"\n")
+          print(json.dumps(result,indent=2))
+          PY
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          git add os/iso/legacy-analysis-runs.json
+          git commit -m 'Record Legacy analysis run status [skip ci]' || true
+          git push origin HEAD:main
