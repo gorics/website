@@ -15,7 +15,7 @@ permissions:
   actions: write
 
 concurrency:
-  group: publish-visible-desktop-r12-v2
+  group: publish-visible-desktop-r12-final-20260708
   cancel-in-progress: false
 
 jobs:
