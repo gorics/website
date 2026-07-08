@@ -20,6 +20,15 @@ function assertNoMismatch(log) {
   }
 }
 
+function assertNetworkReady(log) {
+  const required = ['GORICS_NETWORK_LINK_READY', 'GORICS_DNS_READY', 'GORICS_INTERNET_READY'];
+  const missing = required.filter(marker => !log.includes(marker));
+  const failed = /GORICS_NETWORK_LINK_FAILED|GORICS_DNS_FAILED|GORICS_INTERNET_DEGRADED/i.test(log);
+  if (failed || missing.length) {
+    throw new Error(`GORICS browser VM network incomplete missing=${missing.join(',')} failed=${failed}\n${log.slice(-30000)}`);
+  }
+}
+
 async function capture(page, name) {
   const state = await page.evaluate(() => {
     const log = document.querySelector('#log')?.textContent || '';
@@ -38,6 +47,9 @@ async function capture(page, name) {
       canvasHeight: canvas?.height || 0,
       canvasDisplay: canvas ? getComputedStyle(canvas).display : 'missing',
       textLength: text?.textContent?.length || 0,
+      networkLinkReady: log.includes('GORICS_NETWORK_LINK_READY'),
+      dnsReady: log.includes('GORICS_DNS_READY'),
+      internetReady: log.includes('GORICS_INTERNET_READY'),
       log,
     };
   });
@@ -87,6 +99,16 @@ async function boot(page, preset, timeout, requireCompleted) {
   }
 }
 
+async function waitForGoricsNetwork(page) {
+  await page.waitForFunction(() => {
+    const log = document.querySelector('#log')?.textContent || '';
+    return log.includes('GORICS_INTERNET_READY')
+      || /GORICS_NETWORK_LINK_FAILED|GORICS_DNS_FAILED|GORICS_INTERNET_DEGRADED|ERROR preset=/i.test(log);
+  }, null, { timeout: 240000 });
+  const log = await page.locator('#log').textContent() || '';
+  assertNetworkReady(log);
+}
+
 async function runChromium() {
   const browserResult = { success: false, consoleLines: [], failedRequests: [], buildroot: null, gorics: null, failure: null };
   const browser = await chromium.launch({ headless: true, args: ['--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu'] });
@@ -111,14 +133,16 @@ async function runChromium() {
     await page.click('#stop-btn');
     await page.waitForFunction(() => document.querySelector('#progress-percent')?.textContent === '0%', null, { timeout: 120000 });
 
-    console.log('Chromium: booting GORICS R12 GUI');
+    console.log('Chromium: booting GORICS terminal+network GUI');
     await boot(page, 'gorics', 1100000, true);
+    await waitForGoricsNetwork(page);
     const gorics = await capture(page, 'final-gorics-chromium');
     assertNoMismatch(gorics.log);
+    assertNetworkReady(gorics.log);
     if (!gorics.screenActive || gorics.progress !== '100%' || !gorics.overlayHidden || gorics.canvasWidth < 640 || gorics.canvasHeight < 480 || gorics.canvasDisplay === 'none') {
-      throw new Error(`GORICS GUI incomplete: ${JSON.stringify({ ...gorics, log: gorics.log.slice(-16000) })}`);
+      throw new Error(`GORICS GUI incomplete: ${JSON.stringify({ ...gorics, log: gorics.log.slice(-30000) })}`);
     }
-    browserResult.gorics = { ...gorics, log: gorics.log.slice(-16000) };
+    browserResult.gorics = { ...gorics, log: gorics.log.slice(-30000) };
     browserResult.success = true;
     return browserResult;
   } catch (error) {
@@ -141,7 +165,7 @@ async function runWebKit() {
   page.on('requestfailed', req => browserResult.failedRequests.push({ url: req.url(), error: req.failure()?.errorText || 'unknown' }));
   try {
     await page.goto(`${url}&browser=webkit`, { waitUntil: 'domcontentloaded', timeout: 120000 });
-    console.log('WebKit iPhone: starting GORICS R12 VM');
+    console.log('WebKit iPhone: starting GORICS terminal+network VM');
     await boot(page, 'gorics', 700000, false);
     await page.waitForTimeout(10000);
     const gorics = await capture(page, 'final-gorics-webkit');
