@@ -38,3 +38,5 @@ jobs:
           git add os/iso/automatic-pages-runs.json
           git commit -m 'Record automatic Pages workflow runs [skip ci]' || true
           git push origin HEAD:main
+
+# one-shot final inspection after q migration and automatic Actions deploy shutdown
