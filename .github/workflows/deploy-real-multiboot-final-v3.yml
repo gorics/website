@@ -36,7 +36,7 @@ jobs:
         with:
           ref: ${{ github.sha }}
 
-      - name: Build atomic low-lag site
+      - name: Build atomic R16 ultra site
         run: |
           set -o pipefail
           bash scripts/build-real-multiboot-pages-final.sh _site 2>&1 | tee /tmp/final-v3-build.log
@@ -44,9 +44,11 @@ jobs:
           node --check _site/os/real-multiboot/safe-diagnostics.js
           grep -q 'performance-mode.css?v=' _site/os/real-multiboot/index.html
           grep -q 'performance-mode.js?v=' _site/os/real-multiboot/index.html
-          grep -q 'low-lag-batched-log' _site/os/real-multiboot/index.html
+          grep -q 'r16-preflight-cache' _site/os/real-multiboot/index.html
           grep -q 'maxCharacters' _site/os/real-multiboot/performance-mode.js
           grep -q 'memoryCap' _site/os/real-multiboot/performance-mode.js
+          grep -q 'isoProbeWarm' _site/os/real-multiboot/performance-mode.js
+          grep -q '__GORICS_LAST_VM_OPTIONS__' _site/os/real-multiboot/performance-mode.js
           grep -q 'native fetch and XMLHttpRequest preserved' _site/os/real-multiboot/safe-diagnostics.js
 
       - name: Configure Pages
@@ -61,7 +63,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Verify exact public low-lag deployment
+      - name: Verify exact public R16 deployment
         run: |
           set -euo pipefail
           ROOT='https://gorics.github.io/website'
@@ -71,12 +73,11 @@ jobs:
             STAMP="$GITHUB_RUN_ID-$attempt-$(date +%s)"
             if curl -fsSL --max-time 60 -H 'Cache-Control: no-cache' "$PAGE/?verify=$STAMP" -o /tmp/final-v3-index.html \
               && grep -q "$DEPLOY_VERSION" /tmp/final-v3-index.html \
-              && grep -q 'performance-mode.css?v=' /tmp/final-v3-index.html \
-              && grep -q 'performance-mode.js?v=' /tmp/final-v3-index.html \
-              && grep -q 'low-lag-batched-log' /tmp/final-v3-index.html \
+              && grep -q 'r16-preflight-cache' /tmp/final-v3-index.html \
+              && grep -q 'rel="preload"' /tmp/final-v3-index.html \
               && curl -fsSL --max-time 60 "$PAGE/performance-mode.js?v=$DEPLOY_VERSION" -o /tmp/final-v3-performance.js \
-              && grep -q 'maxCharacters' /tmp/final-v3-performance.js \
-              && grep -q 'memoryCap' /tmp/final-v3-performance.js \
+              && grep -q 'isoProbeWarm' /tmp/final-v3-performance.js \
+              && grep -q '__GORICS_LAST_VM_OPTIONS__' /tmp/final-v3-performance.js \
               && curl -fsSL --max-time 60 "$PAGE/app.js?v=$DEPLOY_VERSION" -o /tmp/final-v3-app.js \
               && grep -q '/website/vendor/v86/images/buildroot-bzimage68.bin' /tmp/final-v3-app.js \
               && ! grep -q 'https://i.copy.sh/' /tmp/final-v3-app.js \
@@ -86,7 +87,7 @@ jobs:
               READY=1
               break
             fi
-            echo "public V3 performance deployment pending attempt=$attempt version=$DEPLOY_VERSION"
+            echo "public R16 deployment pending attempt=$attempt version=$DEPLOY_VERSION"
             sleep 10
           done
           test "$READY" = 1
@@ -118,7 +119,7 @@ jobs:
               expected = meta[key]
               assert len(data) == int(expected['size'])
               assert hashlib.sha256(data).hexdigest() == expected['sha256']
-          print('public low-lag R12 assets verified')
+          print('public R16 assets verified')
           PY
 
       - name: Install Chromium smoke browser
@@ -127,11 +128,12 @@ jobs:
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
 
-      - name: Verify low-lag page initialization
+      - name: Verify mobile R16 VM startup and memory limits
         env:
           VERIFY_URL: https://gorics.github.io/website/os/real-multiboot/?verify=${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           node <<'JS'
+          const fs = require('fs');
           const { chromium } = require('playwright');
           (async () => {
             const browser = await chromium.launch({ headless: true, args: ['--no-sandbox', '--disable-dev-shm-usage'] });
@@ -140,27 +142,49 @@ jobs:
             page.on('pageerror', error => errors.push(error.message));
             await page.goto(process.env.VERIFY_URL, { waitUntil: 'domcontentloaded', timeout: 120000 });
             await page.waitForFunction(() => Boolean(window.__GORICS_PERFORMANCE_MODE__), null, { timeout: 30000 });
-            const state = await page.evaluate(() => ({
+            const initial = await page.evaluate(() => ({
               build: document.querySelector('meta[name="gorics-build"]')?.content,
-              performance: window.__GORICS_PERFORMANCE_MODE__,
+              performance: {
+                ...window.__GORICS_PERFORMANCE_MODE__,
+                cachedPreflights: window.__GORICS_PERFORMANCE_MODE__.cachedPreflights(),
+              },
               diagnostics: Boolean(window.__GORICS_SAFE_DIAGNOSTICS__),
               atomic: Boolean(window.__GORICS_ATOMIC_ASSETS__),
               localMedia: Boolean(window.__GORICS_LOCAL_MEDIA_ROUTER__),
-              logLength: document.querySelector('#log')?.textContent.length || 0,
             }));
-            console.log(state);
-            if (!state.performance?.isCompact || !state.diagnostics || !state.atomic || !state.localMedia) throw new Error(JSON.stringify(state));
+            if (!initial.performance.isCompact || !initial.performance.preflightCache || !initial.performance.isoProbeWarm) throw new Error(JSON.stringify(initial));
+            if (!initial.diagnostics || !initial.atomic || !initial.localMedia) throw new Error(JSON.stringify(initial));
+
+            await page.selectOption('#os-select', 'buildroot');
+            const startedAt = Date.now();
+            await page.click('#boot-btn');
+            await page.waitForFunction(() => Boolean(window.goricsRealMultiboot && window.__GORICS_LAST_VM_OPTIONS__), null, { timeout: 180000 });
+            await page.waitForFunction(() => /emulator-started/.test(document.querySelector('#log')?.textContent || ''), null, { timeout: 180000 });
+            const result = await page.evaluate((startedAt) => ({
+              elapsedMs: Date.now() - startedAt,
+              options: window.__GORICS_LAST_VM_OPTIONS__,
+              performance: {
+                profile: window.__GORICS_PERFORMANCE_MODE__.profile,
+                cachedPreflights: window.__GORICS_PERFORMANCE_MODE__.cachedPreflights(),
+              },
+              log: (document.querySelector('#log')?.textContent || '').slice(-12000),
+            }), startedAt);
+            const MB = 1024 * 1024;
+            if (result.options.memory_size > 112 * MB) throw new Error(`Buildroot memory too high: ${JSON.stringify(result)}`);
+            if (result.options.vga_memory_size > 4 * MB) throw new Error(`Buildroot VGA too high: ${JSON.stringify(result)}`);
+            if (/RangeError: Length out of range of buffer/i.test(result.log)) throw new Error('original RangeError returned');
             if (errors.length) throw new Error(errors.join('\n'));
+            fs.writeFileSync('/tmp/final-v3-performance-result.json', JSON.stringify({ initial, result }, null, 2));
             await page.screenshot({ path: '/tmp/final-v3-performance-mobile.png', fullPage: true });
             await browser.close();
-          })();
+          })().catch(error => { console.error(error); process.exit(1); });
           JS
 
-      - name: Upload V3 performance proof
+      - name: Upload V3 R16 proof
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: final-real-multiboot-performance-${{ github.run_id }}
+          name: final-real-multiboot-r16-${{ github.run_id }}
           path: |
             /tmp/final-v3-build.log
             /tmp/final-v3-index.html
@@ -168,6 +192,7 @@ jobs:
             /tmp/final-v3-performance.js
             /tmp/final-v3-manifest.json
             /tmp/final-v3-iso-meta.json
+            /tmp/final-v3-performance-result.json
             /tmp/final-v3-performance-mobile.png
           if-no-files-found: warn
 
@@ -198,7 +223,7 @@ jobs:
             'run_id': int(os.environ['RUN_ID']),
             'head_sha': os.environ['HEAD_SHA'],
             'deploy_version': f"{os.environ['HEAD_SHA']}-{os.environ['RUN_ID']}-1",
-            'performance_mode': 'r15-batched-log-mobile-memory-cap',
+            'performance_mode': 'r16-ultra-preflight-cache-adaptive-memory',
             'run_url': os.environ['RUN_URL'],
             'recorded_at': datetime.now(timezone.utc).isoformat(),
           }
@@ -214,7 +239,7 @@ jobs:
             mkdir -p os/iso
             cp /tmp/final-v3-status.json os/iso/final-atomic-multiboot-v3-status.json
             git add os/iso/final-atomic-multiboot-v3-status.json
-            git commit -m 'Record final multiboot performance result [skip ci]' || exit 0
+            git commit -m 'Record final multiboot R16 result [skip ci]' || exit 0
             git push origin HEAD:main && exit 0
             sleep $((attempt * 2))
           done
