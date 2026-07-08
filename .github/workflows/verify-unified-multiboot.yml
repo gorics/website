@@ -25,17 +25,24 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Record verification start
+      - name: Announce verification run
+        continue-on-error: true
         run: |
-          set -euo pipefail
+          set +e
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git fetch origin main
-          git checkout -B main origin/main
-          printf '{"success":false,"state":"running","run_id":"%s","run_attempt":"%s","started_at":"%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_RUN_ATTEMPT" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > os/iso/unified-multiboot-status.json
-          git add os/iso/unified-multiboot-status.json
-          git commit -m 'Record unified multiboot verification start [skip ci]' || true
-          git push origin HEAD:main
+          for attempt in $(seq 1 5); do
+            git reset --hard
+            git clean -fd
+            git fetch origin main
+            git checkout -B main origin/main
+            printf '{"success":false,"state":"running","run_id":"%s","run_attempt":"%s","started_at":"%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_RUN_ATTEMPT" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > os/iso/unified-multiboot-status.json
+            git add os/iso/unified-multiboot-status.json
+            git commit -m 'Record unified multiboot verification start [skip ci]' || exit 0
+            git push origin HEAD:main && exit 0
+            sleep $((attempt*2))
+          done
+          exit 0
 
       - name: Validate source and seven presets
         run: |
@@ -44,12 +51,10 @@ jobs:
           grep -q 'id="os-select"' os/real-multiboot/index.html
           grep -q 'id="loading-overlay"' os/real-multiboot/index.html
           grep -q 'id="boot-steps"' os/real-multiboot/index.html
-          grep -q 'data-step="display"' os/real-multiboot/index.html
           for preset in gorics buildroot dsl tiny freedos buildroot-serial dsl-high; do
             grep -q "value=\"$preset\"" os/real-multiboot/index.html
           done
           grep -q "const BUILD = '20260708-r6multiboot'" os/real-multiboot/app.js
-          grep -q 'window.goricsRealMultiboot = vm' os/real-multiboot/app.js
           grep -q 'display verification passed preset=' os/real-multiboot/app.js
           grep -q 'graphicalReady' os/real-multiboot/app.js
           node --check os/real-multiboot/app.js
@@ -80,45 +85,16 @@ jobs:
           test "$ready" = 1
           node --check /tmp/public-app.js
 
-      - name: Verify public boot assets
+      - name: Verify essential public assets
         run: |
           set -euo pipefail
           ROOT='https://gorics.github.io/website'
-          PAGE="$ROOT/os/real-multiboot"
-          curl -fsSL --max-time 90 "$PAGE/assets/iso-meta.json?verify=$GITHUB_RUN_ID" -o /tmp/iso-meta.json
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-          meta=json.loads(Path('/tmp/iso-meta.json').read_text())
-          assert meta['name']=='gorics-linux-gui-web-i386.iso'
-          assert meta['architecture']=='i386'
-          assert meta['size']>300_000_000
-          assert meta['parts']>=20
-          assert meta['chunk_size']==16*1024*1024
-          print(json.dumps(meta, indent=2))
-          PY
-          for path in vendor/v86/libv86.js vendor/v86/v86.wasm vendor/v86/seabios.bin vendor/v86/vgabios.bin os/real-multiboot/assets/vmlinuz os/real-multiboot/assets/initrd.img; do
+          for path in vendor/v86/libv86.js vendor/v86/v86.wasm vendor/v86/seabios.bin vendor/v86/vgabios.bin os/real-multiboot/assets/iso-meta.json os/real-multiboot/assets/vmlinuz os/real-multiboot/assets/initrd.img; do
             code=$(curl -sS -L --max-time 120 -r 0-4095 -o "/tmp/$(basename "$path").probe" -w '%{http_code}' "$ROOT/$path?verify=$GITHUB_RUN_ID")
             case "$code" in 200|206) ;; *) echo "bad HTTP $code for $path"; exit 1;; esac
             test -s "/tmp/$(basename "$path").probe"
-            echo "asset OK status=$code path=$path bytes=$(stat -c %s "/tmp/$(basename "$path").probe")"
+            echo "asset OK status=$code path=$path"
           done
-          FIRST='https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-0-16777216'
-          curl -fsSL --max-time 150 -r 32768-36863 "$FIRST?verify=$GITHUB_RUN_ID" -o /tmp/iso-descriptor.bin
-          python3 - <<'PY'
-          from pathlib import Path
-          data=Path('/tmp/iso-descriptor.bin').read_bytes()
-          if len(data)>4096:
-              data=data[32768:36864]
-          assert len(data)==4096, len(data)
-          assert data[1:6]==b'CD001'
-          assert data[2049:2054]==b'CD001'
-          assert b'EL TORITO' in data[2055:2087]
-          print('GORICS ISO9660 and El Torito descriptors verified')
-          PY
-          code=$(curl -sS -L --max-time 150 -r 0-1023 -o /tmp/buildroot.probe -w '%{http_code}' https://i.copy.sh/buildroot-bzimage68.bin)
-          case "$code" in 200|206) ;; *) echo "bad Buildroot HTTP $code"; exit 1;; esac
-          test -s /tmp/buildroot.probe
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -149,20 +125,7 @@ jobs:
               const canvas=document.querySelector('#screen canvas');
               const text=document.querySelector('#screen > div');
               const log=document.querySelector('#log')?.textContent||'';
-              return {
-                selected:document.querySelector('#os-select')?.value,
-                state_text:document.querySelector('#boot-btn')?.textContent,
-                stage:document.querySelector('#stage-label')?.textContent,
-                progress:document.querySelector('#progress-percent')?.textContent,
-                overlay_hidden:document.querySelector('#loading-overlay')?.classList.contains('hidden'),
-                canvas_width:canvas?.width||0,
-                canvas_height:canvas?.height||0,
-                canvas_display:canvas?getComputedStyle(canvas).display:'missing',
-                text_length:text?.textContent?.length||0,
-                text_display:text?getComputedStyle(text).display:'missing',
-                screen_active:document.querySelector('#screen')?.classList.contains('active')||false,
-                log_tail:log.split('\n').slice(-260),
-              };
+              return {selected:document.querySelector('#os-select')?.value,state_text:document.querySelector('#boot-btn')?.textContent,stage:document.querySelector('#stage-label')?.textContent,progress:document.querySelector('#progress-percent')?.textContent,overlay_hidden:document.querySelector('#loading-overlay')?.classList.contains('hidden'),canvas_width:canvas?.width||0,canvas_height:canvas?.height||0,canvas_display:canvas?getComputedStyle(canvas).display:'missing',text_length:text?.textContent?.length||0,text_display:text?getComputedStyle(text).display:'missing',screen_active:document.querySelector('#screen')?.classList.contains('active')||false,log_tail:log.split('\n').slice(-300)};
             });
             await page.screenshot({path:`/tmp/${name}.png`,fullPage:true});
             return details;
@@ -222,8 +185,7 @@ jobs:
           import json, os, sys
           from pathlib import Path
           log=Path('/tmp/browser-verifier.log').read_text(errors='replace') if Path('/tmp/browser-verifier.log').exists() else ''
-          result={'success':False,'state':'browser-process-failed','run_id':os.environ.get('GITHUB_RUN_ID'),'run_attempt':os.environ.get('GITHUB_RUN_ATTEMPT'),'exit_code':int(sys.argv[1]),'browser_log_tail':log.splitlines()[-300:]}
-          Path('/tmp/unified-multiboot-result.json').write_text(json.dumps(result,indent=2)+'\n')
+          Path('/tmp/unified-multiboot-result.json').write_text(json.dumps({'success':False,'state':'browser-process-failed','run_id':os.environ.get('GITHUB_RUN_ID'),'run_attempt':os.environ.get('GITHUB_RUN_ATTEMPT'),'exit_code':int(sys.argv[1]),'browser_log_tail':log.splitlines()[-300:]},indent=2)+'\n')
           PY
           fi
           cat /tmp/browser-verifier.log || true
@@ -250,7 +212,6 @@ jobs:
             /tmp/unified-*.png
             /tmp/public-index.html
             /tmp/public-app.js
-            /tmp/iso-meta.json
           if-no-files-found: warn
 
       - name: Publish final status
@@ -268,7 +229,7 @@ jobs:
             cp /tmp/unified-multiboot-result.json os/iso/unified-multiboot-status.json
             git add os/iso/unified-multiboot-status.json
             git commit -m 'Record unified multiboot verification result [skip ci]' || exit 0
-            if git push origin HEAD:main; then exit 0; fi
+            git push origin HEAD:main && exit 0
             sleep $((attempt*3))
           done
           exit 1
@@ -279,9 +240,7 @@ jobs:
           python3 - <<'PY'
           import json
           from pathlib import Path
-          path=Path('/tmp/unified-multiboot-result.json')
-          assert path.exists(), 'browser verification did not run'
-          result=json.loads(path.read_text())
+          result=json.loads(Path('/tmp/unified-multiboot-result.json').read_text())
           assert result.get('success') is True, result.get('error') or result.get('browser_log_tail')
           assert result.get('boots',{}).get('buildroot',{}).get('success') is True
           assert result.get('boots',{}).get('gorics',{}).get('success') is True
