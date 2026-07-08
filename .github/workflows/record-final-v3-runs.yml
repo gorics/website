@@ -37,4 +37,4 @@ jobs:
           git commit -m 'Record final V3 workflow runs [skip ci]' || true
           git push origin HEAD:main
 
-# refresh: r15 low-lag deployment
+# refresh: r15 throttled mobile deployment
