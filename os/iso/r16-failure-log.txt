@@ -1,0 +1,59 @@
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	﻿2026-07-08T08:36:23.4682409Z ##[group]Run node <<'JS'
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4682750Z ^[[36;1mnode <<'JS'^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4682977Z ^[[36;1mconst fs = require('fs');^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4683291Z ^[[36;1mconst { chromium } = require('playwright');^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4683610Z ^[[36;1m(async () => {^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4684095Z ^[[36;1m  const browser = await chromium.launch({ headless: true, args: ['--no-sandbox', '--disable-dev-shm-usage'] });^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4685335Z ^[[36;1m  const page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4685873Z ^[[36;1m  const errors = [];^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4686208Z ^[[36;1m  page.on('pageerror', error => errors.push(error.message));^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4686757Z ^[[36;1m  await page.goto(process.env.VERIFY_URL, { waitUntil: 'domcontentloaded', timeout: 120000 });^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4687454Z ^[[36;1m  await page.waitForFunction(() => Boolean(window.__GORICS_PERFORMANCE_MODE__), null, { timeout: 30000 });^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4688048Z ^[[36;1m  const initial = await page.evaluate(() => ({^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4688478Z ^[[36;1m    build: document.querySelector('meta[name="gorics-build"]')?.content,^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4688879Z ^[[36;1m    performance: {^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4689173Z ^[[36;1m      ...window.__GORICS_PERFORMANCE_MODE__,^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4689624Z ^[[36;1m      cachedPreflights: window.__GORICS_PERFORMANCE_MODE__.cachedPreflights(),^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4690031Z ^[[36;1m    },^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4690328Z ^[[36;1m    diagnostics: Boolean(window.__GORICS_SAFE_DIAGNOSTICS__),^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4690753Z ^[[36;1m    atomic: Boolean(window.__GORICS_ATOMIC_ASSETS__),^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4691159Z ^[[36;1m    localMedia: Boolean(window.__GORICS_LOCAL_MEDIA_ROUTER__),^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4691505Z ^[[36;1m  }));^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4692144Z ^[[36;1m  if (!initial.performance.isCompact || !initial.performance.preflightCache || !initial.performance.isoProbeWarm) throw new Error(JSON.stringify(initial));^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4693132Z ^[[36;1m  if (!initial.diagnostics || !initial.atomic || !initial.localMedia) throw new Error(JSON.stringify(initial));^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4693643Z ^[[36;1m^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4693905Z ^[[36;1m  await page.selectOption('#os-select', 'buildroot');^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4694255Z ^[[36;1m  const startedAt = Date.now();^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4694542Z ^[[36;1m  await page.click('#boot-btn');^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4695887Z ^[[36;1m  await page.waitForFunction(() => Boolean(window.goricsRealMultiboot && window.__GORICS_LAST_VM_OPTIONS__), null, { timeout: 180000 });^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4696884Z ^[[36;1m  await page.waitForFunction(() => /emulator-started/.test(document.querySelector('#log')?.textContent || ''), null, { timeout: 180000 });^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4697570Z ^[[36;1m  const result = await page.evaluate((startedAt) => ({^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4697958Z ^[[36;1m    elapsedMs: Date.now() - startedAt,^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4698306Z ^[[36;1m    options: window.__GORICS_LAST_VM_OPTIONS__,^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4698624Z ^[[36;1m    performance: {^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4698951Z ^[[36;1m      profile: window.__GORICS_PERFORMANCE_MODE__.profile,^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4699440Z ^[[36;1m      cachedPreflights: window.__GORICS_PERFORMANCE_MODE__.cachedPreflights(),^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4699844Z ^[[36;1m    },^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4700167Z ^[[36;1m    log: (document.querySelector('#log')?.textContent || '').slice(-12000),^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4700558Z ^[[36;1m  }), startedAt);^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4700794Z ^[[36;1m  const MB = 1024 * 1024;^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4701308Z ^[[36;1m  if (result.options.memory_size > 112 * MB) throw new Error(`Buildroot memory too high: ${JSON.stringify(result)}`);^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4702076Z ^[[36;1m  if (result.options.vga_memory_size > 4 * MB) throw new Error(`Buildroot VGA too high: ${JSON.stringify(result)}`);^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4703047Z ^[[36;1m  if (/RangeError: Length out of range of buffer/i.test(result.log)) throw new Error('original RangeError returned');^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4703810Z ^[[36;1m  if (errors.length) throw new Error(errors.join('\n'));^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4704412Z ^[[36;1m  fs.writeFileSync('/tmp/final-v3-performance-result.json', JSON.stringify({ initial, result }, null, 2));^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4705397Z ^[[36;1m  await page.screenshot({ path: '/tmp/final-v3-performance-mobile.png', fullPage: true });^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4705929Z ^[[36;1m  await browser.close();^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4706377Z ^[[36;1m})().catch(error => { console.error(error); process.exit(1); });^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4706730Z ^[[36;1mJS^[[0m
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4738175Z shell: /usr/bin/bash -e {0}
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4738438Z env:
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4738750Z   DEPLOY_VERSION: 8ed4074b975e26bca06579204548a4be32328de2-28929087281-1
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4739139Z   GITHUB_PAGES: true
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4739686Z   VERIFY_URL: https://gorics.github.io/website/os/real-multiboot/?verify=8ed4074b975e26bca06579204548a4be32328de2-28929087281-1
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:36:23.4740278Z ##[endgroup]
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:39:24.5812945Z page.waitForFunction: Timeout 180000ms exceeded.
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:39:24.5813583Z     at [stdin]:27:14 {
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:39:24.5813978Z   name: 'TimeoutError'
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:39:24.5814360Z }
+deploy-and-verify	Verify mobile R16 VM startup and memory limits	2026-07-08T08:39:24.5979384Z ##[error]Process completed with exit code 1.
