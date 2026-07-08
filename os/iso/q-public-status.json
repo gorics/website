@@ -1,0 +1,46 @@
+{
+  "run_id": "28912754914",
+  "pages_status": "built",
+  "latest_build_status": "built",
+  "latest_build_commit": "3b9870d1e1ee933a9b21e3ba315235853bdb6227",
+  "checks": {
+    "pages_build_legacy": true,
+    "index_q": true,
+    "app_external_chunked_i386": true,
+    "meta_q": true,
+    "runtime": true,
+    "wasm": true,
+    "kernel": true,
+    "initrd": true,
+    "chunk_http": true,
+    "chunk_cors": true,
+    "chunk_iso": true
+  },
+  "success": true,
+  "codes": {
+    "index": "200",
+    "app": "200",
+    "meta": "200",
+    "deployment": "200",
+    "runtime": "200",
+    "wasm": "200",
+    "bios": "200",
+    "vga": "200",
+    "kernel": "200",
+    "initrd": "200",
+    "chunk": "206"
+  },
+  "sizes": {
+    "index": 872,
+    "app": 12739,
+    "meta": 886,
+    "deployment": 421,
+    "runtime": 353762,
+    "wasm": 1418156,
+    "bios": 131072,
+    "vga": 36352,
+    "kernel": 5756864,
+    "initrd": 30724198,
+    "chunk": 4096
+  }
+}
