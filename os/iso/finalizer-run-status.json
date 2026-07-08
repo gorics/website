@@ -1,23 +1,33 @@
 {
   "latest": {
     "conclusion": "",
-    "createdAt": "2026-07-08T01:37:53Z",
-    "databaseId": 28911161149,
+    "createdAt": "2026-07-08T01:44:33Z",
+    "databaseId": 28911421403,
     "event": "push",
-    "headSha": "7a1461b49ee410bb486546ef5d93b2f88fc0e061",
+    "headSha": "cc5f4b404e8178527b4af83fc11c37a4ad5c0c29",
     "status": "in_progress",
-    "updatedAt": "2026-07-08T01:37:56Z",
-    "url": "https://github.com/gorics/website/actions/runs/28911161149"
+    "updatedAt": "2026-07-08T01:44:54Z",
+    "url": "https://github.com/gorics/website/actions/runs/28911421403"
   },
   "runs": [
     {
       "conclusion": "",
+      "createdAt": "2026-07-08T01:44:33Z",
+      "databaseId": 28911421403,
+      "event": "push",
+      "headSha": "cc5f4b404e8178527b4af83fc11c37a4ad5c0c29",
+      "status": "in_progress",
+      "updatedAt": "2026-07-08T01:44:54Z",
+      "url": "https://github.com/gorics/website/actions/runs/28911421403"
+    },
+    {
+      "conclusion": "cancelled",
       "createdAt": "2026-07-08T01:37:53Z",
       "databaseId": 28911161149,
       "event": "push",
       "headSha": "7a1461b49ee410bb486546ef5d93b2f88fc0e061",
-      "status": "in_progress",
-      "updatedAt": "2026-07-08T01:37:56Z",
+      "status": "completed",
+      "updatedAt": "2026-07-08T01:44:50Z",
       "url": "https://github.com/gorics/website/actions/runs/28911161149"
     }
   ],
@@ -28,7 +38,7 @@
     "event": "workflow_dispatch",
     "headSha": "5a512a3b2de2efdd73847ed68c61ccb66b6973e5",
     "status": "in_progress",
-    "updatedAt": "2026-07-08T01:38:51Z",
+    "updatedAt": "2026-07-08T01:45:31Z",
     "url": "https://github.com/gorics/website/actions/runs/28911193274"
   },
   "static_runs": [
@@ -39,7 +49,7 @@
       "event": "workflow_dispatch",
       "headSha": "5a512a3b2de2efdd73847ed68c61ccb66b6973e5",
       "status": "in_progress",
-      "updatedAt": "2026-07-08T01:38:51Z",
+      "updatedAt": "2026-07-08T01:45:31Z",
       "url": "https://github.com/gorics/website/actions/runs/28911193274"
     },
     {
