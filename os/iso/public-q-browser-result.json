@@ -1,1 +1,40 @@
-{"success":false,"error":"browser result missing","run_id":"28912917591"}
+{
+  "run_id": "28913107917",
+  "target": "https://gorics.github.io/website/os/real-multiboot/?v=q-browser-28913107917",
+  "started_at": "2026-07-08T02:29:59.436Z",
+  "success": false,
+  "gui_ready": false,
+  "xorg_ready": false,
+  "emulator_started": false,
+  "graphical_canvas": false,
+  "screen_sizes": [],
+  "console": [
+    "log: [GORICS ISO] ready: legacy Pages chunked i386 Openbox loader installed",
+    "log: [GORICS ISO] loading legacy Pages chunk metadata",
+    "log: [GORICS ISO] ISO size=339738624 parts=21 sha256=4572344448515c06...",
+    "log: [GORICS ISO] probing first CORS-enabled os-assets ISO chunk gorics-linux-gui-web-i386.iso-0-16777216",
+    "log: [GORICS ISO] kernel available size=5731413",
+    "log: [GORICS ISO] ISO chunk probe HTTP 206; ISO9660 and El Torito verified",
+    "log: [GORICS ISO] initrd available size=30551742",
+    "log: [GORICS ISO] ERROR runtime too small 93547",
+    "log: [GORICS ISO] userAgent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/143.0.7499.4 Safari/537.36"
+  ],
+  "page_errors": [],
+  "failed_requests": [
+    "https://gorics.github.io/website/os/real-multiboot/assets/vmlinuz?v=q :: net::ERR_ABORTED",
+    "https://gorics.github.io/website/os/real-multiboot/assets/initrd.img?v=q :: net::ERR_ABORTED",
+    "https://gorics.github.io/website/vendor/v86/libv86.js?v=q :: net::ERR_ABORTED"
+  ],
+  "log_tail": "[ready] GORICS Linux GUI ISO page. q\n[2026-07-08T02:29:59.792Z] ready: legacy Pages chunked i386 Openbox loader installed\n[2026-07-08T02:30:00.015Z] loading legacy Pages chunk metadata\n[2026-07-08T02:30:00.042Z] ISO size=339738624 parts=21 sha256=4572344448515c06...\n[2026-07-08T02:30:00.133Z] probing first CORS-enabled os-assets ISO chunk gorics-linux-gui-web-i386.iso-0-16777216\n[2026-07-08T02:30:00.329Z] kernel available size=5731413\n[2026-07-08T02:30:00.359Z] ISO chunk probe HTTP 206; ISO9660 and El Torito verified\n[2026-07-08T02:30:01.287Z] initrd available size=30551742\n[2026-07-08T02:30:01.298Z] ERROR runtime too small 93547\n[2026-07-08T02:30:01.298Z] userAgent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/143.0.7499.4 Safari/537.36",
+  "page_http": 200,
+  "canvas": {
+    "canvas_width": 0,
+    "canvas_height": 0,
+    "canvas_display": "missing",
+    "text_display": "missing",
+    "screen_active": false
+  },
+  "error": "Error: fatal marker in browser log\n    at file:///home/runner/work/website/website/scripts/verify-public-q-v86.mjs:108:13",
+  "finished_at": "2026-07-08T02:30:05.088Z",
+  "duration_seconds": 6
+}
