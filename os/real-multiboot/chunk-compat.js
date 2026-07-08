@@ -1,8 +1,12 @@
 (() => {
   'use strict';
 
-  const rawRoot = 'https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/';
-  const cdnRoot = 'https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/';
+  const roots = [
+    'https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/',
+    'https://fastly.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/',
+    'https://gcore.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/',
+    'https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/',
+  ];
   const stem = 'gorics-linux-gui-web-i386';
   const publishedBase = `${stem}.iso`;
   const originalOpen = XMLHttpRequest.prototype.open;
@@ -20,6 +24,10 @@
     console.log('[GORICS CHUNK]', message);
   }
 
+  function ascii(bytes, start, length) {
+    return String.fromCharCode(...bytes.slice(start, start + length));
+  }
+
   function parseAsset(url) {
     let parsed;
     try {
@@ -28,10 +36,7 @@
       return null;
     }
 
-    const href = parsed.href;
-    let sourceRoot = null;
-    if (href.startsWith(rawRoot)) sourceRoot = rawRoot;
-    if (href.startsWith(cdnRoot)) sourceRoot = cdnRoot;
+    const sourceRoot = roots.find((root) => parsed.href.startsWith(root));
     if (!sourceRoot) return null;
 
     const filename = decodeURIComponent(parsed.pathname.split('/').pop() || '');
@@ -45,9 +50,10 @@
       const match = filename.match(pattern);
       if (!match) continue;
       return {
-        start: match[1],
-        end: match[2],
+        start: Number(match[1]),
+        end: Number(match[2]),
         search: parsed.search,
+        sourceRoot,
         publishedName: `${publishedBase}-${match[1]}-${match[2]}`,
       };
     }
@@ -59,20 +65,68 @@
     return `${root}${asset.publishedName}${asset.search || ''}`;
   }
 
+  function orderedRoots(asset) {
+    return [asset.sourceRoot, ...roots.filter((root) => root !== asset.sourceRoot)];
+  }
+
   function primaryUrl(url) {
     const asset = parseAsset(url);
     if (!asset) return url;
-    const target = assetUrl(asset, cdnRoot);
+    const target = assetUrl(asset, asset.sourceRoot);
     rewrites += 1;
-    if (rewrites <= 12 || asset.start === '335544320') {
-      pageLog(`ISO chunk routed to CDN ${asset.publishedName}`);
+    if (rewrites <= 16 || asset.start === 335544320) {
+      pageLog(`ISO chunk filename normalized ${new URL(asset.sourceRoot).hostname} ${asset.publishedName}`);
     }
     return target;
   }
 
-  function fallbackUrl(url) {
-    const asset = parseAsset(url);
-    return asset ? assetUrl(asset, rawRoot) : url;
+  function parseRange(init, input) {
+    let value = null;
+    try {
+      const headers = input instanceof Request ? input.headers : new Headers(init?.headers || {});
+      value = headers.get('range');
+    } catch {}
+    const match = /^bytes=(\d+)-(\d+)$/.exec(value || '');
+    if (!match) return null;
+    const start = Number(match[1]);
+    const end = Number(match[2]);
+    if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end) || end < start) return null;
+    return { start, end, length: end - start + 1 };
+  }
+
+  async function normalizeRangeResponse(response, range, asset) {
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    let selected;
+
+    if (response.status === 206 && bytes.length === range.length) {
+      selected = bytes;
+    } else if (response.status === 200 && bytes.length >= range.end + 1) {
+      selected = bytes.slice(range.start, range.end + 1);
+    } else if (bytes.length === range.length) {
+      selected = bytes;
+    } else {
+      throw new Error(`range body mismatch status=${response.status} bytes=${bytes.length} expected=${range.length}`);
+    }
+
+    if (range.start === 32768 && range.end >= 36863) {
+      if (selected.length < 4096 || ascii(selected, 1, 5) !== 'CD001') {
+        throw new Error('ISO9660 descriptor missing after normalized range');
+      }
+      if (ascii(selected, 2049, 5) !== 'CD001' || !ascii(selected, 2055, 32).includes('EL TORITO')) {
+        throw new Error('El Torito descriptor missing after normalized range');
+      }
+      pageLog(`ISO9660 and El Torito verified from ${new URL(asset.sourceRoot).hostname}`);
+    }
+
+    const headers = new Headers(response.headers);
+    headers.set('content-length', String(selected.length));
+    headers.set('content-range', `bytes ${range.start}-${range.end}/*`);
+    headers.set('accept-ranges', 'bytes');
+    return new Response(selected, {
+      status: 206,
+      statusText: 'Partial Content',
+      headers,
+    });
   }
 
   if (!XMLHttpRequest.prototype.__goricsChunkCompat) {
@@ -96,31 +150,47 @@
       writable: false,
     });
 
+    Object.defineProperty(globalThis, '__goricsOriginalFetch', {
+      value: originalFetch,
+      configurable: false,
+      enumerable: false,
+      writable: false,
+    });
+
     globalThis.fetch = async function(input, init) {
       const originalUrl = input instanceof Request ? input.url : String(input);
       const asset = parseAsset(originalUrl);
       if (!asset) return originalFetch(input, init);
 
-      const primary = assetUrl(asset, cdnRoot);
-      const fallback = assetUrl(asset, rawRoot);
-      const requestInit = input instanceof Request ? undefined : init;
-      const primaryInput = input instanceof Request ? new Request(primary, input) : primary;
+      const range = parseRange(init, input);
+      let lastError = null;
 
-      try {
-        const response = await originalFetch(primaryInput, requestInit);
-        if (response.ok || (response.status >= 200 && response.status < 400)) return response;
-        if (response.status !== 429 && response.status < 500) return response;
-        fallbacks += 1;
-        pageLog(`CDN chunk HTTP ${response.status}; raw fallback ${asset.publishedName}`);
-      } catch (error) {
-        fallbacks += 1;
-        pageLog(`CDN chunk fetch failed; raw fallback ${asset.publishedName}: ${error?.message || error}`);
+      for (const root of orderedRoots(asset)) {
+        const target = assetUrl(asset, root);
+        const targetInput = input instanceof Request ? new Request(target, input) : target;
+        const requestInit = input instanceof Request ? undefined : init;
+        try {
+          const response = await originalFetch(targetInput, requestInit);
+          if (!response.ok && response.status !== 206) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+          if (!range) return response;
+          const normalized = await normalizeRangeResponse(response, range, { ...asset, sourceRoot: root });
+          if (root !== asset.sourceRoot) {
+            fallbacks += 1;
+            pageLog(`ISO chunk fallback selected ${new URL(root).hostname} ${asset.publishedName}`);
+          }
+          return normalized;
+        } catch (error) {
+          lastError = error;
+          fallbacks += 1;
+          pageLog(`ISO chunk source rejected ${new URL(root).hostname} ${asset.publishedName}: ${error?.message || error}`);
+        }
       }
 
-      const fallbackInput = input instanceof Request ? new Request(fallback, input) : fallback;
-      return originalFetch(fallbackInput, requestInit);
+      throw lastError || new Error(`all ISO chunk sources failed for ${asset.publishedName}`);
     };
   }
 
-  pageLog('ISO chunk CDN router installed (jsDelivr primary, raw GitHub fallback)');
+  pageLog('ISO chunk router r3 installed (range normalization + verified multi-CDN failover)');
 })();
