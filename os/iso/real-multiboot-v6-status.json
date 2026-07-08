@@ -1,9 +1,9 @@
 {
   "success": false,
   "state": "failed",
-  "run_id": "28919693072",
+  "run_id": "28919831592",
   "run_attempt": "1",
-  "url": "https://gorics.github.io/website/os/real-multiboot/?v6=28919693072-1",
+  "url": "https://gorics.github.io/website/os/real-multiboot/?v6=28919831592-1",
   "architecture": "i386",
   "desktop": "openbox-tint2-pcmanfm-xterm",
   "checks": {
@@ -32,7 +32,7 @@
   },
   "console": [],
   "failed_requests": [],
-  "started_at": "2026-07-08T05:26:08.073Z",
+  "started_at": "2026-07-08T05:29:54.807Z",
   "meta": {
     "name": "gorics-linux-gui-web-i386-r12.iso",
     "source_release_name": "gorics-linux-gui-web-i386.iso",
@@ -62,9 +62,9 @@
       "sha256": "734231e47f35972af4f60c52d5f86f1d96b878e67573c784e60927d6b324d2f4"
     },
     "release": "r12-visible-desktop",
-    "page_version": "a54f374d442f1611165fb7eaaf4e6848bc33027f-28919622947-1",
+    "page_version": "188673578d23af5e70b8e088323f543b255b8892-28919737997-1",
     "deployment": "atomic-v86-native-xhr-final-repository-assets"
   },
   "error": "Error: public preflight failed checks: index_version, index_responsive, app_i386, meta_identity, meta_desktop, iso_range, iso9660, el_torito\n    at requireChecks (file:///home/runner/work/website/website/verify-real-multiboot-v6.mjs:31:28)\n    at file:///home/runner/work/website/website/verify-real-multiboot-v6.mjs:74:3\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)",
-  "completed_at": "2026-07-08T05:26:08.878Z"
+  "completed_at": "2026-07-08T05:29:55.675Z"
 }
