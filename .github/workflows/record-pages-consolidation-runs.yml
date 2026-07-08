@@ -1,0 +1,74 @@
+name: Record Pages Consolidation Runs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/record-pages-consolidation-runs.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Capture consolidation and V3 state
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run list --repo "$GITHUB_REPOSITORY" \
+            --workflow consolidate-pages-to-final-v3.yml --limit 10 \
+            --json databaseId,status,conclusion,createdAt,updatedAt,headSha,url,event \
+            > /tmp/consolidation-runs.json
+          gh run list --repo "$GITHUB_REPOSITORY" \
+            --workflow deploy-real-multiboot-final-v3.yml --limit 10 \
+            --json databaseId,status,conclusion,createdAt,updatedAt,headSha,url,event \
+            > /tmp/v3-runs.json
+          gh workflow list --repo "$GITHUB_REPOSITORY" --all --json name,path,state \
+            > /tmp/workflows.json
+          python3 - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          watched = {
+              '.github/workflows/static.yml',
+              '.github/workflows/deploy-real-multiboot-final.yml',
+              '.github/workflows/deploy-real-multiboot-final-v2.yml',
+              '.github/workflows/deploy-final-multiboot-stable.yml',
+              '.github/workflows/deploy-real-multiboot-final-v3.yml',
+              '.github/workflows/consolidate-pages-to-final-v3.yml',
+          }
+          workflows = json.loads(Path('/tmp/workflows.json').read_text())
+          payload = {
+              'recorded_at': datetime.now(timezone.utc).isoformat(),
+              'consolidation_runs': json.loads(Path('/tmp/consolidation-runs.json').read_text()),
+              'v3_runs': json.loads(Path('/tmp/v3-runs.json').read_text()),
+              'workflows': [item for item in workflows if item.get('path') in watched],
+          }
+          Path('/tmp/pages-run-monitor.json').write_text(json.dumps(payload, indent=2) + '\n')
+          print(json.dumps(payload, indent=2))
+          PY
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for attempt in $(seq 1 20); do
+            git reset --hard
+            git clean -fd
+            git fetch origin main
+            git checkout -B main origin/main
+            mkdir -p os/iso
+            cp /tmp/pages-run-monitor.json os/iso/pages-run-monitor.json
+            git add os/iso/pages-run-monitor.json
+            git commit -m 'Record Pages consolidation and V3 runs [skip ci]' || exit 0
+            git push origin HEAD:main && exit 0
+            sleep $((attempt * 2))
+          done
+          exit 1
