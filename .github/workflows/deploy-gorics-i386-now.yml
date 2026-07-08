@@ -1,4 +1,4 @@
-name: Deploy GORICS i386 Now
+name: Deploy GORICS Multiboot Now
 
 on:
   workflow_dispatch:
@@ -13,6 +13,7 @@ permissions:
 jobs:
   dispatch-watch:
     runs-on: ubuntu-latest
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
         with:
@@ -20,11 +21,11 @@ jobs:
 
       - name: Record orchestrator start
         run: |
-          printf '{"state":"dispatching","orchestrator_run_id":"%s","asset":"gorics-linux-gui-web-i386.iso","page_version":"n"}\n' "$GITHUB_RUN_ID" > os/iso/pages-deploy-status.json
+          printf '{"state":"dispatching","orchestrator_run_id":"%s","page_version":"20260708r1","loader":"release-chunks"}\n' "$GITHUB_RUN_ID" > os/iso/pages-deploy-status.json
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add os/iso/pages-deploy-status.json
-          git commit -m "Record Pages n deployment start [skip ci]"
+          git commit -m "Record resilient Pages deployment start [skip ci]"
           git pull --rebase origin main
           git push origin HEAD:main
 
@@ -33,12 +34,16 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          BEFORE_ID=$(gh run list --workflow static.yml --limit 1 --json databaseId --jq '.[0].databaseId // 0')
           gh workflow run static.yml --ref main
           RUN_ID=''
-          for attempt in $(seq 1 18); do
+          for attempt in $(seq 1 24); do
             sleep 5
-            RUN_ID=$(gh run list --workflow static.yml --event workflow_dispatch --limit 1 --json databaseId,createdAt --jq '.[0].databaseId // empty')
-            test -n "$RUN_ID" && break
+            CANDIDATE=$(gh run list --workflow static.yml --event workflow_dispatch --limit 1 --json databaseId --jq '.[0].databaseId // 0')
+            if test "$CANDIDATE" != "0" && test "$CANDIDATE" != "$BEFORE_ID"; then
+              RUN_ID="$CANDIDATE"
+              break
+            fi
           done
           test -n "$RUN_ID"
           echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
@@ -51,9 +56,9 @@ jobs:
           PAGES_RUN_ID: ${{ steps.pages.outputs.run_id }}
           PAGES_OUTCOME: ${{ steps.pages.outcome }}
         run: |
-          printf '{"state":"%s","orchestrator_run_id":"%s","pages_run_id":"%s","asset":"gorics-linux-gui-web-i386.iso","page_version":"n","public_self_test":true}\n' "$PAGES_OUTCOME" "$GITHUB_RUN_ID" "$PAGES_RUN_ID" > os/iso/pages-deploy-status.json
+          printf '{"state":"%s","orchestrator_run_id":"%s","pages_run_id":"%s","page_version":"20260708r1","loader":"release-chunks","public_self_test":true}\n' "$PAGES_OUTCOME" "$GITHUB_RUN_ID" "$PAGES_RUN_ID" > os/iso/pages-deploy-status.json
           git add os/iso/pages-deploy-status.json
-          git commit -m "Record Pages n deployment result [skip ci]"
+          git commit -m "Record resilient Pages deployment result [skip ci]"
           git pull --rebase origin main
           git push origin HEAD:main
           test "$PAGES_OUTCOME" = success
