@@ -15,7 +15,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages-i386-openbox-final
+  group: pages-visibility-safe-r15
   cancel-in-progress: false
 
 jobs:
@@ -164,10 +164,12 @@ jobs:
           node --check _site/os/real-multiboot/asset-versioning.js
           node --check _site/os/real-multiboot/safe-diagnostics.js
           node --check _site/os/real-multiboot/local-media-router.js
+          node --check _site/os/real-multiboot/visibility-timeout-guard.js
           grep -q 'bzimage: { url: kernelUrl }' _site/os/real-multiboot/app.js
           grep -q 'systemd.unit=graphical.target' _site/os/real-multiboot/app.js
           grep -q 'asset-versioning.js?v=' _site/os/real-multiboot/index.html
           grep -q 'safe-diagnostics.js?v=' _site/os/real-multiboot/index.html
+          grep -q 'visibility-timeout-guard.js?v=' _site/os/real-multiboot/index.html
           grep -q 'gorics-build' _site/os/real-multiboot/index.html
           ! grep -q 'src="./diagnostics.js' _site/os/real-multiboot/index.html
           ! grep -q 'chunk-router-v4.js' _site/os/real-multiboot/index.html
@@ -218,6 +220,7 @@ jobs:
             if curl -fsSL --max-time 45 -H 'Cache-Control: no-cache' "$PAGE/?verify=$stamp" -o /tmp/index.html \
               && grep -q 'asset-versioning.js?v=' /tmp/index.html \
               && grep -q 'safe-diagnostics.js?v=' /tmp/index.html \
+              && grep -q 'visibility-timeout-guard.js?v=' /tmp/index.html \
               && grep -q 'gorics-build' /tmp/index.html \
               && ! grep -q 'chunk-router-v4.js' /tmp/index.html \
               && curl -fsSL --max-time 45 "$ROOT/vendor/v86/manifest.json?v=$stamp" -o /tmp/manifest.json \
