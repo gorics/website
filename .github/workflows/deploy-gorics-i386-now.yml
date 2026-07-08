@@ -59,3 +59,5 @@ jobs:
           git commit -m "Record resilient Pages deployment result [skip ci]" || true
           git push origin HEAD:main
           test "$PAGES_OUTCOME" = success
+
+# final trigger: service-worker bootstrap + non-cancelling Pages validation
