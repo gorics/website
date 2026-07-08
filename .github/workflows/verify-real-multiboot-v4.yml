@@ -1,0 +1,258 @@
+name: Verify Real Multiboot V4
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/verify-real-multiboot-v4.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: verify-real-multiboot-v4
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Verify final deployment and boot GUI
+        id: browser
+        continue-on-error: true
+        env:
+          BASE_URL: https://gorics.github.io/website/os/real-multiboot/
+        run: |
+          cat > verify-v4.mjs <<'JS'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
+
+          const output = '/tmp/real-multiboot-verification.json';
+          const result = {
+            success: false,
+            state: 'starting',
+            run_id: process.env.GITHUB_RUN_ID,
+            architecture: 'i386',
+            desktop: 'openbox-tint2-pcmanfm-xterm',
+            boot_mode: 'direct-kernel-initrd-plus-iso',
+            base_url: process.env.BASE_URL,
+            started_at: new Date().toISOString(),
+            edge_attempts: [],
+            console: [],
+            failed_requests: [],
+          };
+          const save = (state, extra = {}) => {
+            Object.assign(result, extra, { state, updated_at: new Date().toISOString() });
+            fs.writeFileSync(output, JSON.stringify(result, null, 2) + '\n');
+          };
+          const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+          save('starting');
+
+          let browser;
+          let page;
+          try {
+            browser = await chromium.launch({
+              headless: true,
+              args: ['--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu'],
+            });
+            const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+            page = await context.newPage();
+            page.setDefaultTimeout(120000);
+            page.on('console', message => {
+              result.console.push(`${message.type()}: ${message.text()}`);
+              if (result.console.length > 500) result.console.shift();
+            });
+            page.on('pageerror', error => result.console.push(`pageerror: ${error.message}`));
+            page.on('requestfailed', request => result.failed_requests.push({
+              url: request.url(),
+              error: request.failure()?.errorText || 'unknown',
+            }));
+            page.on('crash', () => save('page-crashed'));
+
+            save('waiting-for-cdn-edge');
+            let ready = false;
+            for (let attempt = 1; attempt <= 72; attempt += 1) {
+              const url = new URL(process.env.BASE_URL);
+              url.searchParams.set('v4', `${process.env.GITHUB_RUN_ID}-${attempt}-${Date.now()}`);
+              let probe = { attempt, url: url.href, ready: false };
+              try {
+                await page.goto(url.href, { waitUntil: 'domcontentloaded', timeout: 90000 });
+                probe = await page.evaluate(async ({ attempt, url }) => {
+                  const log = document.querySelector('#log')?.textContent || '';
+                  const script = [...document.scripts].map(item => item.src).find(src => src.includes('/app.js')) || '';
+                  let meta = null;
+                  let metaStatus = 0;
+                  try {
+                    const response = await fetch(`./assets/iso-meta.json?v4=${Date.now()}`, { cache: 'no-store' });
+                    metaStatus = response.status;
+                    if (response.ok) meta = await response.json();
+                  } catch {}
+                  const ready = log.includes('ISO page. n')
+                    && script.includes('app.js?v=n')
+                    && metaStatus === 200
+                    && meta?.name === 'gorics-linux-gui-web-i386.iso'
+                    && meta?.architecture === 'i386'
+                    && meta?.direct_boot === true
+                    && meta?.complete_ui_verified === true
+                    && Number(meta?.kernel?.size) > 1000000
+                    && Number(meta?.initrd?.size) > 10000000;
+                  return {
+                    attempt,
+                    url,
+                    ready,
+                    page_log: log.split('\n').slice(0, 3),
+                    script,
+                    meta_status: metaStatus,
+                    meta_name: meta?.name || null,
+                    meta_desktop: meta?.desktop || null,
+                  };
+                }, { attempt, url: url.href });
+              } catch (error) {
+                probe.error = error?.message || String(error);
+              }
+              result.edge_attempts.push(probe);
+              if (result.edge_attempts.length > 100) result.edge_attempts.shift();
+              save('waiting-for-cdn-edge', { last_edge_probe: probe });
+              if (probe.ready) {
+                ready = true;
+                result.verified_url = url.href;
+                break;
+              }
+              await sleep(10000);
+            }
+            if (!ready) throw new Error('final version n did not reach Chromium CDN edge');
+
+            save('loader-ready');
+            await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('ready: keyboard, touch and pointer bridge installed'));
+            await page.click('#boot-btn');
+            save('boot-clicked');
+            await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('ISO9660 and El Torito verified'), null, { timeout: 300000 });
+            save('iso-verified');
+            await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('runtime loaded'), null, { timeout: 300000 });
+            save('runtime-loaded');
+            await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('emulator-started'), null, { timeout: 600000 });
+            save('emulator-started');
+            await page.waitForFunction(() => {
+              const canvas = document.querySelector('#screen canvas');
+              const text = document.querySelector('#screen > div');
+              return canvas
+                && canvas.width >= 640
+                && canvas.height >= 480
+                && getComputedStyle(canvas).display !== 'none'
+                && (!text || getComputedStyle(text).display === 'none');
+            }, null, { timeout: 900000 });
+            save('graphical-canvas-visible');
+            await page.waitForTimeout(20000);
+
+            const details = await page.evaluate(() => {
+              const canvas = document.querySelector('#screen canvas');
+              const text = document.querySelector('#screen > div');
+              const log = document.querySelector('#log')?.textContent || '';
+              const keyboard = document.querySelector('#keyboard-btn');
+              return {
+                canvas_width: canvas?.width || 0,
+                canvas_height: canvas?.height || 0,
+                canvas_display: canvas ? getComputedStyle(canvas).display : 'missing',
+                text_display: text ? getComputedStyle(text).display : 'missing',
+                screen_active: document.querySelector('#screen')?.classList.contains('active') || false,
+                boot_button_text: document.querySelector('#boot-btn')?.textContent || '',
+                keyboard_button_present: Boolean(keyboard),
+                keyboard_button_disabled: keyboard?.disabled ?? null,
+                emulator_object_present: Boolean(window.goricsRealLinuxIso),
+                log_tail: log.split('\n').slice(-220),
+              };
+            });
+            await page.screenshot({ path: '/tmp/real-multiboot-proof.png', fullPage: true });
+            const success = details.screen_active
+              && details.canvas_width >= 640
+              && details.canvas_height >= 480
+              && details.canvas_display !== 'none'
+              && details.text_display === 'none'
+              && details.keyboard_button_present
+              && details.keyboard_button_disabled === false
+              && details.emulator_object_present;
+            save('completed', { ...details, success, completed_at: new Date().toISOString() });
+          } catch (error) {
+            let details = {};
+            try {
+              details = await page?.evaluate(() => {
+                const canvas = document.querySelector('#screen canvas');
+                const text = document.querySelector('#screen > div');
+                const log = document.querySelector('#log')?.textContent || '';
+                return {
+                  canvas_width: canvas?.width || 0,
+                  canvas_height: canvas?.height || 0,
+                  canvas_display: canvas ? getComputedStyle(canvas).display : 'missing',
+                  text_display: text ? getComputedStyle(text).display : 'missing',
+                  page_url: location.href,
+                  log_tail: log.split('\n').slice(-260),
+                };
+              }) || {};
+              await page?.screenshot({ path: '/tmp/real-multiboot-proof.png', fullPage: true });
+            } catch {}
+            save('failed', {
+              ...details,
+              success: false,
+              error: error?.stack || String(error),
+              completed_at: new Date().toISOString(),
+            });
+          } finally {
+            await browser?.close().catch(() => {});
+          }
+          if (!result.success) process.exit(1);
+          JS
+          node --check verify-v4.mjs
+          set -o pipefail
+          timeout --signal=TERM --kill-after=30s 25m node verify-v4.mjs 2>&1 | tee /tmp/browser-v4.log
+
+      - name: Upload V4 proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-multiboot-v4-proof-${{ github.run_id }}
+          path: |
+            /tmp/real-multiboot-verification.json
+            /tmp/real-multiboot-proof.png
+            /tmp/browser-v4.log
+          if-no-files-found: warn
+
+      - name: Record V4 result
+        if: always()
+        run: |
+          if test ! -s /tmp/real-multiboot-verification.json; then
+            printf '{"success":false,"state":"no-result","run_id":"%s"}\n' "$GITHUB_RUN_ID" > /tmp/real-multiboot-verification.json
+          fi
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          cp /tmp/real-multiboot-verification.json os/iso/real-multiboot-status.json
+          git add os/iso/real-multiboot-status.json
+          git commit -m 'Record V4 multiboot verification result [skip ci]' || true
+          git push origin HEAD:main
+
+      - name: Require V4 success
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r = json.loads(Path('/tmp/real-multiboot-verification.json').read_text())
+          print(json.dumps(r, indent=2))
+          if not r.get('success'):
+              raise SystemExit('V4 browser verification failed')
+          PY
