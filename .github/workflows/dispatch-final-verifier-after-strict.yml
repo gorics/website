@@ -1,0 +1,50 @@
+name: Dispatch Final Verifier After Strict Readiness
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/dispatch-final-verifier-after-strict.yml'
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: dispatch-final-verifier-after-strict
+  cancel-in-progress: true
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - name: Wait for strict public app
+        run: |
+          set -euo pipefail
+          URL='https://gorics.github.io/website/os/real-multiboot/app.js'
+          ready=0
+          for attempt in $(seq 1 180); do
+            stamp="$GITHUB_RUN_ID-$attempt-$(date +%s)"
+            if curl -fsSL --max-time 60 -H 'Cache-Control: no-cache' "$URL?strict=$stamp" -o /tmp/public-strict-app.js \
+              && grep -q 'readiness=strict' /tmp/public-strict-app.js \
+              && grep -q "presetKey === 'dsl'" /tmp/public-strict-app.js \
+              && grep -q 'Welcome to Buildroot' /tmp/public-strict-app.js \
+              && grep -q 'Welcome to FreeDOS' /tmp/public-strict-app.js; then
+              ready=1
+              echo "strict readiness deployment detected attempt=$attempt"
+              break
+            fi
+            echo "waiting for strict readiness deployment attempt=$attempt"
+            sleep 10
+          done
+          test "$ready" = 1
+          node --check /tmp/public-strict-app.js
+
+      - name: Dispatch seven-preset verifier
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run verify-final-all-multiboot-presets.yml --repo "$GITHUB_REPOSITORY" --ref main
+          echo 'Final seven-preset verifier dispatched after strict deployment.'
