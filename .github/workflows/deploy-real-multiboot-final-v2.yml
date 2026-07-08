@@ -1,6 +1,7 @@
 name: Deploy And Verify Real Multiboot Final V2
 
 on:
+  workflow_dispatch: {}
   push:
     branches: [main]
     paths:
@@ -56,6 +57,8 @@ jobs:
               && grep -q 'asset-versioning.js?v=' /tmp/final-v2-index.html \
               && grep -q 'safe-diagnostics.js?v=' /tmp/final-v2-index.html \
               && ! grep -q 'chunk-router-v4.js' /tmp/final-v2-index.html \
+              && curl -fsSL --max-time 60 "$PAGE/assets/iso-meta.json?v=$stamp" -o /tmp/final-v2-iso-meta.json \
+              && grep -q "$DEPLOY_VERSION" /tmp/final-v2-iso-meta.json \
               && curl -fsSL --max-time 60 "$ROOT/vendor/v86/manifest.json?v=$stamp" -o /tmp/final-v2-manifest.json \
               && grep -q "$DEPLOY_VERSION" /tmp/final-v2-manifest.json \
               && curl -fsSL --max-time 60 "$ROOT/vendor/v86/libv86.js?v=$DEPLOY_VERSION" -o /tmp/final-v2-libv86.js \
@@ -69,8 +72,6 @@ jobs:
             sleep 10
           done
           test "$ready" = 1
-          test "$(stat -c %s /tmp/final-v2-vmlinuz)" = 5756864
-          test "$(stat -c %s /tmp/final-v2-initrd.img)" = 30724198
           node --check /tmp/final-v2-libv86.js
           node <<'JS'
           const fs = require('node:fs');
@@ -80,8 +81,30 @@ jobs:
           if (!exports.some(entry => entry.name === 'memory' && entry.kind === 'memory')) throw new Error('v86 memory export missing');
           console.log('public v86 JS/WASM pair parsed', bytes.length);
           JS
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          meta = json.loads(Path('/tmp/final-v2-iso-meta.json').read_text())
+          assert meta['architecture'] == 'i386'
+          assert meta['direct_boot'] is True
+          assert meta['chunked'] is True
+          assert int(meta['chunk_size']) == 16 * 1024 * 1024
+          for filename, key in (('final-v2-vmlinuz', 'kernel'), ('final-v2-initrd.img', 'initrd')):
+              path = Path('/tmp') / filename
+              data = path.read_bytes()
+              expected = meta[key]
+              assert len(data) == int(expected['size']), (filename, len(data), expected)
+              assert hashlib.sha256(data).hexdigest() == expected['sha256'], filename
+          asset = Path(meta['name'])
+          first = meta.get('first_chunk') or f'{asset.stem}-0-{meta["chunk_size"]}{asset.suffix}'
+          Path('/tmp/final-v2-first-chunk-name.txt').write_text(first)
+          print('kernel/initrd hashes match public metadata; first chunk', first)
+          PY
+          FIRST_CHUNK=$(cat /tmp/final-v2-first-chunk-name.txt)
           code=$(curl -sS --max-time 60 -r 32768-36863 -o /tmp/final-v2-iso-probe.bin -w '%{http_code}' \
-            'https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-0-16777216')
+            "https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/$FIRST_CHUNK")
           test "$code" = 206
           test "$(stat -c %s /tmp/final-v2-iso-probe.bin)" = 4096
           python3 - <<'PY'
@@ -91,7 +114,7 @@ jobs:
           assert data[1:6] == b'CD001'
           assert data[2049:2054] == b'CD001'
           assert b'EL TORITO' in data[2055:2087]
-          print('ISO9660 and El Torito verified from 4 KiB range response')
+          print('ISO9660 and El Torito verified from metadata-selected 4 KiB range response')
           PY
 
       - name: Install Chromium and WebKit
@@ -117,6 +140,7 @@ jobs:
             /tmp/final-*.png
             /tmp/final-v2-index.html
             /tmp/final-v2-manifest.json
+            /tmp/final-v2-iso-meta.json
             /tmp/final-v2-iso-probe.bin
           if-no-files-found: warn
 
