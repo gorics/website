@@ -12,7 +12,7 @@
 
   const assetName = 'gorics-linux-gui-web-i386.iso';
   const chunkSize = 16 * 1024 * 1024;
-  const partsRoot = new URL('./assets/v86-parts/', location.href).href;
+  const partsRoot = 'https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/';
   const isoBase = partsRoot + assetName;
   const metaUrl = new URL('./assets/iso-meta.json', location.href).href;
   const kernelUrl = new URL('./assets/vmlinuz', location.href).href;
@@ -48,7 +48,7 @@
   phoneKeyboard.setAttribute('aria-label', 'Virtual keyboard input');
   document.body.appendChild(phoneKeyboard);
 
-  if (urlBox) urlBox.textContent = `${isoBase} (chunked)`;
+  if (urlBox) urlBox.textContent = `${isoBase} (external chunked)`;
 
   function log(text) {
     const line = `[${new Date().toISOString()}] ${text}`;
@@ -81,7 +81,7 @@
     return new Promise((resolve, reject) => {
       if (constructor()) return resolve(constructor());
       const script = document.createElement('script');
-      script.src = `${runtime}?v=p`;
+      script.src = `${runtime}?v=q`;
       script.async = false;
       script.onload = () => setTimeout(() => constructor() ? resolve(constructor()) : reject(new Error('v86 constructor missing')), 60);
       script.onerror = () => reject(new Error(`runtime load failed ${runtime}`));
@@ -106,7 +106,7 @@
 
   async function loadMetadata() {
     log('loading legacy Pages chunk metadata');
-    const response = await fetch(`${metaUrl}?v=p`, { cache: 'no-store' });
+    const response = await fetch(`${metaUrl}?v=q`, { cache: 'no-store' });
     if (!response.ok) throw new Error(`ISO metadata HTTP ${response.status}`);
     const meta = await response.json();
     if (meta.name !== assetName) throw new Error(`unexpected ISO ${meta.name}`);
@@ -123,8 +123,8 @@
 
   async function verifyFirstPart() {
     const firstPart = `${isoBase}-0-${chunkSize}`;
-    log(`probing first same-origin ISO chunk ${firstPart.split('/').pop()}`);
-    const response = await fetch(`${firstPart}?v=p`, {
+    log(`probing first CORS-enabled os-assets ISO chunk ${firstPart.split('/').pop()}`);
+    const response = await fetch(`${firstPart}?v=q`, {
       cache: 'no-store',
       headers: { Range: 'bytes=32768-36863' },
     });
@@ -147,7 +147,7 @@
       ['wasm', wasm, 100_000],
     ];
     for (const [name, url, minimum] of checks) {
-      const response = await fetch(`${url}?v=p`, { method: 'HEAD', cache: 'no-store' });
+      const response = await fetch(`${url}?v=q`, { method: 'HEAD', cache: 'no-store' });
       if (!response.ok) throw new Error(`${name} HTTP ${response.status}`);
       const length = Number(response.headers.get('content-length')) || 0;
       if (length && length < minimum) throw new Error(`${name} too small ${length}`);
