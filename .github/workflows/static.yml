@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'os/real-multiboot/**'
+      - 'os/real-multiboot/deployment-r12-v86-atomic.txt'
       - '.github/workflows/static.yml'
   workflow_dispatch:
 
