@@ -111,7 +111,7 @@ jobs:
                   'index_n': b'app.js?v=n' in bodies['index'] and b'ISO page. n' in bodies['index'],
                   'app_i386': b'gorics-linux-gui-web-i386.iso' in bodies['app'],
                   'app_direct': b'bzimage' in bodies['app'] and b'initrd' in bodies['app'] and b'systemd.unit=graphical.target' in bodies['app'],
-                  'meta_openbox': b'direct-xorg-openbox' in bodies['meta'],
+                  'meta_openbox': b'openbox-tint2-pcmanfm-xterm' in bodies['meta'],
                   'runtime': codes['runtime'] == '200' and len(bodies['runtime']) > 100000,
                   'kernel': codes['kernel'] == '200' and len(bodies['kernel']) > 1000000,
                   'initrd': codes['initrd'] == '200' and len(bodies['initrd']) > 10000000,
