@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -120,10 +121,8 @@ def patch_loader(app: Path) -> None:
 
 def patch_index(index: Path) -> None:
     text = index.read_text(encoding="utf-8")
-    for old in ("?v=i", "?v=k", "?v=20260707h"):
-        text = text.replace(old, "?v=l")
-    for old in ("page. i", "page. k", "page. v20260707h"):
-        text = text.replace(old, "page. l")
+    text = re.sub(r"([?&]v=)[A-Za-z0-9._-]+", r"\1l", text)
+    text = re.sub(r"(ISO page\. )[A-Za-z0-9._-]+", r"\1l", text)
     if "app.js?v=l" not in text:
         raise RuntimeError("index cache version patch failed")
     index.write_text(text, encoding="utf-8")
