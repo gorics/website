@@ -152,6 +152,8 @@ def main() -> None:
             "name": ISO_NAME,
             "architecture": "i386",
             "direct_boot": True,
+            "desktop": "openbox-tint2-pcmanfm-xterm",
+            "complete_ui_verified": True,
             "kernel": {"name": kernel.name, "size": kernel.stat().st_size, "sha256": sha256(kernel)},
             "initrd": {"name": initrd.name, "size": initrd.stat().st_size, "sha256": sha256(initrd)},
         }
