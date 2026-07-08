@@ -256,7 +256,7 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', installToolbar, { once: true });
   else installToolbar();
 
-  emit('info', 'BOOTSTRAP', 'safe diagnostics installed with sampled progress and batched DOM output', {
+  emit('info', 'BOOTSTRAP', 'safe diagnostics installed without replacing XMLHttpRequest; sampled progress and batched DOM output', {
     build,
     userAgent: navigator.userAgent,
     platform: navigator.platform,
