@@ -2,23 +2,100 @@
   "relevant": [
     {
       "conclusion": "",
+      "createdAt": "2026-07-08T02:21:01Z",
+      "databaseId": 28912802944,
+      "event": "push",
+      "headSha": "87b4b3c74c4c088cbc820f303c0ed74517b31e4c",
+      "status": "in_progress",
+      "updatedAt": "2026-07-08T02:21:04Z",
+      "url": "https://github.com/gorics/website/actions/runs/28912802944",
+      "workflowName": "Find Automatic Pages Runs"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-07-08T02:21:00Z",
+      "databaseId": 28912802648,
+      "event": "dynamic",
+      "headSha": "87b4b3c74c4c088cbc820f303c0ed74517b31e4c",
+      "status": "completed",
+      "updatedAt": "2026-07-08T02:21:28Z",
+      "url": "https://github.com/gorics/website/actions/runs/28912802648",
+      "workflowName": "pages-build-deployment"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-07-08T02:20:31Z",
+      "databaseId": 28912784113,
+      "event": "dynamic",
+      "headSha": "2c1344b2482640213148f2f3757732a0e2e6376b",
+      "status": "completed",
+      "updatedAt": "2026-07-08T02:20:58Z",
+      "url": "https://github.com/gorics/website/actions/runs/28912784113",
+      "workflowName": "pages-build-deployment"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-07-08T02:19:46Z",
+      "databaseId": 28912754594,
+      "event": "dynamic",
+      "headSha": "3b9870d1e1ee933a9b21e3ba315235853bdb6227",
+      "status": "completed",
+      "updatedAt": "2026-07-08T02:20:11Z",
+      "url": "https://github.com/gorics/website/actions/runs/28912754594",
+      "workflowName": "pages-build-deployment"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-07-08T02:18:26Z",
+      "databaseId": 28912705910,
+      "event": "dynamic",
+      "headSha": "7e195d5d2c85458b2872fa3966a1884e809f8cae",
+      "status": "completed",
+      "updatedAt": "2026-07-08T02:18:51Z",
+      "url": "https://github.com/gorics/website/actions/runs/28912705910",
+      "workflowName": "pages-build-deployment"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-07-08T02:16:35Z",
+      "databaseId": 28912639148,
+      "event": "dynamic",
+      "headSha": "40a7b0ffdacdb0d699f01ec75958c083a3782d69",
+      "status": "completed",
+      "updatedAt": "2026-07-08T02:17:07Z",
+      "url": "https://github.com/gorics/website/actions/runs/28912639148",
+      "workflowName": "pages-build-deployment"
+    },
+    {
+      "conclusion": "cancelled",
+      "createdAt": "2026-07-08T02:16:26Z",
+      "databaseId": 28912633833,
+      "event": "dynamic",
+      "headSha": "5a213e3124604a2622f9a7ef326dfb704111a7cd",
+      "status": "completed",
+      "updatedAt": "2026-07-08T02:16:40Z",
+      "url": "https://github.com/gorics/website/actions/runs/28912633833",
+      "workflowName": "pages-build-deployment"
+    },
+    {
+      "conclusion": "cancelled",
       "createdAt": "2026-07-08T02:15:56Z",
       "databaseId": 28912614717,
       "event": "dynamic",
       "headSha": "80a6729e361ac23da13c40c2a37e2fb3ba083d81",
-      "status": "in_progress",
-      "updatedAt": "2026-07-08T02:16:04Z",
+      "status": "completed",
+      "updatedAt": "2026-07-08T02:16:29Z",
       "url": "https://github.com/gorics/website/actions/runs/28912614717",
       "workflowName": "pages-build-deployment"
     },
     {
-      "conclusion": "",
+      "conclusion": "success",
       "createdAt": "2026-07-08T02:15:44Z",
       "databaseId": 28912607352,
       "event": "push",
       "headSha": "e29c891f363868773dc6127329bb6bc442fff7e0",
-      "status": "in_progress",
-      "updatedAt": "2026-07-08T02:15:47Z",
+      "status": "completed",
+      "updatedAt": "2026-07-08T02:16:28Z",
       "url": "https://github.com/gorics/website/actions/runs/28912607352",
       "workflowName": "Find Automatic Pages Runs"
     },
@@ -1186,72 +1263,6 @@
       "status": "completed",
       "updatedAt": "2026-07-08T01:24:38Z",
       "url": "https://github.com/gorics/website/actions/runs/28910635943",
-      "workflowName": "pages-build-deployment"
-    },
-    {
-      "conclusion": "success",
-      "createdAt": "2026-07-08T01:23:50Z",
-      "databaseId": 28910617764,
-      "event": "dynamic",
-      "headSha": "c9c728ceecc6001f718814a3124d80dfeb8c4b53",
-      "status": "completed",
-      "updatedAt": "2026-07-08T01:24:10Z",
-      "url": "https://github.com/gorics/website/actions/runs/28910617764",
-      "workflowName": "pages-build-deployment"
-    },
-    {
-      "conclusion": "cancelled",
-      "createdAt": "2026-07-08T01:23:48Z",
-      "databaseId": 28910616463,
-      "event": "dynamic",
-      "headSha": "0fa25d65e9b38b6927ee34825281b2552560c9df",
-      "status": "completed",
-      "updatedAt": "2026-07-08T01:23:52Z",
-      "url": "https://github.com/gorics/website/actions/runs/28910616463",
-      "workflowName": "pages-build-deployment"
-    },
-    {
-      "conclusion": "success",
-      "createdAt": "2026-07-08T01:23:18Z",
-      "databaseId": 28910598276,
-      "event": "dynamic",
-      "headSha": "b55c9964b5c3be21081a8015a2d028d85ff201e7",
-      "status": "completed",
-      "updatedAt": "2026-07-08T01:23:47Z",
-      "url": "https://github.com/gorics/website/actions/runs/28910598276",
-      "workflowName": "pages-build-deployment"
-    },
-    {
-      "conclusion": "success",
-      "createdAt": "2026-07-08T01:22:07Z",
-      "databaseId": 28910551886,
-      "event": "dynamic",
-      "headSha": "853195a4bd2ac9e35c61f688299dc19531f295ed",
-      "status": "completed",
-      "updatedAt": "2026-07-08T01:22:29Z",
-      "url": "https://github.com/gorics/website/actions/runs/28910551886",
-      "workflowName": "pages-build-deployment"
-    },
-    {
-      "conclusion": "failure",
-      "createdAt": "2026-07-08T01:16:06Z",
-      "databaseId": 28910326914,
-      "event": "workflow_dispatch",
-      "headSha": "3195bad971530aa8804b97a657210922551a5c7b",
-      "status": "completed",
-      "updatedAt": "2026-07-08T01:27:08Z",
-      "url": "https://github.com/gorics/website/actions/runs/28910326914",
-      "workflowName": "Deploy static content to Pages"
-    },
-    {
-      "conclusion": "success",
-      "createdAt": "2026-07-08T01:16:05Z",
-      "databaseId": 28910326390,
-      "event": "dynamic",
-      "headSha": "744ee0f604cd48ea0ed7d845419a899a62fcdd49",
-      "status": "completed",
-      "updatedAt": "2026-07-08T01:16:29Z",
-      "url": "https://github.com/gorics/website/actions/runs/28910326390",
       "workflowName": "pages-build-deployment"
     }
   ],
