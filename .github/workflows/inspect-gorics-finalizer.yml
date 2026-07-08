@@ -17,13 +17,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Record finalizer static V3 and Pages switch runs
+      - name: Record finalizer static V3 V4 and Pages switch runs
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh run list --workflow finalize-gorics-pages.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/finalizer.json
           gh run list --workflow static.yml --limit 20 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/static.json
           gh run list --workflow verify-real-multiboot-v3.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/v3.json
+          gh run list --workflow verify-real-multiboot-v4.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/v4.json
           gh run list --workflow switch-pages-to-actions.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/switch.json
           python3 - <<'PY'
           import json
@@ -31,6 +32,7 @@ jobs:
           finalizer = json.loads(Path('/tmp/finalizer.json').read_text())
           static = json.loads(Path('/tmp/static.json').read_text())
           v3 = json.loads(Path('/tmp/v3.json').read_text())
+          v4 = json.loads(Path('/tmp/v4.json').read_text())
           switch = json.loads(Path('/tmp/switch.json').read_text())
           result = {
               'latest': finalizer[0] if finalizer else None,
@@ -39,6 +41,8 @@ jobs:
               'static_runs': static,
               'latest_v3': v3[0] if v3 else None,
               'v3_runs': v3,
+              'latest_v4': v4[0] if v4 else None,
+              'v4_runs': v4,
               'latest_switch': switch[0] if switch else None,
               'switch_runs': switch,
           }
@@ -50,7 +54,7 @@ jobs:
           git fetch origin main
           git checkout -B main origin/main
           git add os/iso/finalizer-run-status.json
-          git commit -m 'Record Pages switch run status [skip ci]' || true
+          git commit -m 'Record Pages switch and V4 run status [skip ci]' || true
           git push origin HEAD:main
 
-# refreshed with Pages build type switch status
+# final inspector: workflow-only Pages and V4 GUI verification
