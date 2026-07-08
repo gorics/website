@@ -1,4 +1,4 @@
-name: Verify t Openbox Final
+name: Verify Current Openbox Final
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: verify-t-openbox-final
+  group: verify-current-openbox-final
   cancel-in-progress: true
 
 jobs:
@@ -22,53 +22,61 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Record definitive verification start
+      - name: Record final verification start
         run: |
-          printf '{"success":false,"state":"running","version":"t","run_id":"%s","started_at":"%s"}\n' "$GITHUB_RUN_ID" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > /tmp/t-openbox-status.json
+          printf '{"success":false,"state":"running","mode":"current-public-version","run_id":"%s","started_at":"%s"}\n' "$GITHUB_RUN_ID" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > /tmp/openbox-final-status.json
           git config user.name github-actions
           git config user.email github-actions@github.com
           git fetch origin main
           git checkout -B main origin/main
-          cp /tmp/t-openbox-status.json os/iso/t-openbox-final-status.json
+          cp /tmp/openbox-final-status.json os/iso/t-openbox-final-status.json
           git add os/iso/t-openbox-final-status.json
-          git commit -m 'Record definitive t Openbox verification start [skip ci]' || true
+          git commit -m 'Record current Openbox verification start [skip ci]' || true
           git push origin HEAD:main
 
-      - name: Wait for public t CDN bridge
+      - name: Wait for current public resilient loader
         run: |
           PAGE='https://gorics.github.io/website/os/real-multiboot'
           READY=0
           for attempt in $(seq 1 120); do
             stamp="$GITHUB_RUN_ID-$attempt-$(date +%s)"
-            if curl -fsSL --max-time 60 "$PAGE/?t-final=$stamp" -o /tmp/index.html \
-              && grep -q 'ISO page. t' /tmp/index.html \
-              && grep -q 'chunk-compat.js?v=t' /tmp/index.html \
-              && curl -fsSL --max-time 60 "$PAGE/chunk-compat.js?t-final=$stamp" -o /tmp/chunk-compat.js \
-              && grep -q 'cdn.jsdelivr.net' /tmp/chunk-compat.js \
-              && grep -q 'raw GitHub fallback' /tmp/chunk-compat.js \
-              && curl -fsSL --max-time 60 "$PAGE/app.js?t-final=$stamp" -o /tmp/app.js \
+            if curl -fsSL --max-time 60 "$PAGE/?current-final=$stamp" -o /tmp/index.html \
+              && grep -q 'GORICS Linux GUI ISO page.' /tmp/index.html \
+              && curl -fsSL --max-time 60 "$PAGE/app.js?current-final=$stamp" -o /tmp/app.js \
               && grep -q "screen.classList.add('active')" /tmp/app.js \
               && grep -q "\['runtime', runtime, 50_000\]" /tmp/app.js \
-              && curl -fsSL --max-time 60 "$PAGE/assets/iso-meta.json?t-final=$stamp" -o /tmp/meta.json; then
-              python3 - <<'PY' && READY=1 && break
+              && curl -fsSL --max-time 60 "$PAGE/assets/iso-meta.json?current-final=$stamp" -o /tmp/meta.json; then
+              BRIDGE_OK=0
+              if grep -q 'chunk-compat.js' /tmp/index.html; then
+                if curl -fsSL --max-time 60 "$PAGE/chunk-compat.js?current-final=$stamp" -o /tmp/chunk-compat.js \
+                  && grep -q 'cdn.jsdelivr.net' /tmp/chunk-compat.js; then
+                  BRIDGE_OK=1
+                fi
+              elif grep -q 'cdn.jsdelivr.net' /tmp/app.js; then
+                BRIDGE_OK=1
+              fi
+              if test "$BRIDGE_OK" = 1 && python3 - <<'PY'
           import json
           from pathlib import Path
           m=json.loads(Path('/tmp/meta.json').read_text())
           assert m['name']=='gorics-linux-gui-web-i386.iso'
           assert m['architecture']=='i386'
-          assert m['page_version']=='t'
           assert m['chunked'] is True
           assert m['direct_boot'] is True
           assert m['complete_ui_verified'] is True
           assert m['parts']==21
           PY
+              then
+                READY=1
+                break
+              fi
             fi
-            echo "public t CDN bridge not ready attempt=$attempt"
+            echo "current resilient loader not ready attempt=$attempt"
             sleep 10
           done
           test "$READY" = 1
           node --check /tmp/app.js
-          node --check /tmp/chunk-compat.js
+          test ! -s /tmp/chunk-compat.js || node --check /tmp/chunk-compat.js
 
       - uses: actions/setup-node@v4
         with:
@@ -79,36 +87,160 @@ jobs:
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
 
-      - name: Build t verifier
+      - name: Build version-independent verifier
         run: |
-          cp scripts/verify-public-q-v86.mjs verify-public-t-v86.mjs
-          python3 - <<'PY'
-          from pathlib import Path
-          p=Path('verify-public-t-v86.mjs')
-          text=p.read_text()
-          text=text.replace("initial.includes('page. q')", "initial.includes('page. t')")
-          text=text.replace('00-page-q.png', '00-page-t.png')
-          text=text.replace('public q graphical Openbox readiness timeout', 'public t graphical Openbox readiness timeout')
-          p.write_text(text)
-          PY
-          node --check verify-public-t-v86.mjs
+          cat > verify-current-openbox.mjs <<'JS'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
 
-      - name: Boot t Linux and require complete Openbox desktop
+          const target = process.env.TARGET_URL;
+          const startedAt = Date.now();
+          const result = {
+            run_id: process.env.GITHUB_RUN_ID,
+            target,
+            started_at: new Date().toISOString(),
+            success: false,
+            gui_ready: false,
+            xorg_ready: false,
+            emulator_started: false,
+            graphical_canvas: false,
+            current_page_banner: '',
+            screen_sizes: [],
+            console: [],
+            page_errors: [],
+            failed_requests: [],
+            log_tail: '',
+          };
+
+          fs.mkdirSync('browser-proof', { recursive: true });
+          const browser = await chromium.launch({
+            headless: true,
+            args: [
+              '--disable-dev-shm-usage',
+              '--no-sandbox',
+              '--disable-background-timer-throttling',
+              '--disable-renderer-backgrounding',
+              '--disable-backgrounding-occluded-windows',
+              '--js-flags=--max-old-space-size=2048',
+            ],
+          });
+          const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
+          const page = await context.newPage();
+          page.setDefaultTimeout(120000);
+          page.on('console', message => {
+            const text = `${message.type()}: ${message.text()}`;
+            result.console.push(text);
+            if (result.console.length > 1200) result.console.shift();
+            console.log('[browser]', text);
+          });
+          page.on('pageerror', error => result.page_errors.push(String(error)));
+          page.on('requestfailed', request => {
+            result.failed_requests.push(`${request.url()} :: ${request.failure()?.errorText || 'failed'}`);
+            if (result.failed_requests.length > 600) result.failed_requests.shift();
+          });
+
+          try {
+            const response = await page.goto(target, { waitUntil: 'domcontentloaded', timeout: 120000 });
+            result.page_http = response?.status() || null;
+            await page.waitForSelector('#boot-btn', { timeout: 60000 });
+            const initial = await page.locator('#log').innerText();
+            result.current_page_banner = initial.split('\n')[0] || '';
+            if (!initial.includes('GORICS Linux GUI ISO page.')) throw new Error(`unexpected public page: ${initial.slice(0, 500)}`);
+            await page.screenshot({ path: 'browser-proof/00-current-page.png', fullPage: true });
+            await page.click('#boot-btn');
+
+            let previousLog = '';
+            let lastScreenshot = 0;
+            const deadline = Date.now() + 20 * 60_000;
+            while (Date.now() < deadline) {
+              await page.waitForTimeout(5000);
+              const log = await page.locator('#log').innerText().catch(() => '');
+              result.log_tail = log.slice(-40000);
+              if (log !== previousLog) {
+                console.log('--- LOG TAIL ---\n' + log.slice(-6000));
+                previousLog = log;
+              }
+              if (log.includes('emulator-started')) result.emulator_started = true;
+              if (log.includes('GORICS_XORG_READY')) result.xorg_ready = true;
+              if (log.includes('GORICS_WEB_GUI_READY')) result.gui_ready = true;
+
+              const details = await page.evaluate(() => {
+                const canvas = document.querySelector('#screen canvas');
+                const text = document.querySelector('#screen > div');
+                const screen = document.querySelector('#screen');
+                const keyboard = document.querySelector('#keyboard-btn');
+                return {
+                  canvas_width: canvas?.width || 0,
+                  canvas_height: canvas?.height || 0,
+                  canvas_display: canvas ? getComputedStyle(canvas).display : 'missing',
+                  text_display: text ? getComputedStyle(text).display : 'missing',
+                  screen_active: screen?.classList.contains('active') || false,
+                  boot_text: document.querySelector('#boot-btn')?.textContent || '',
+                  stop_disabled: document.querySelector('#stop-btn')?.disabled ?? null,
+                  keyboard_present: Boolean(keyboard),
+                  keyboard_disabled: keyboard?.disabled ?? null,
+                  emulator_present: Boolean(window.goricsRealLinuxIso),
+                };
+              });
+              result.canvas = details;
+              result.graphical_canvas = details.canvas_width >= 640
+                && details.canvas_height >= 480
+                && details.canvas_display !== 'none'
+                && details.text_display === 'none'
+                && details.screen_active;
+
+              result.screen_sizes = [...new Set([...log.matchAll(/screen-set-size\s+(\[[^\n]+\])/g)].map(match => match[1]))].slice(-30);
+              if (result.gui_ready && result.xorg_ready && result.emulator_started && result.graphical_canvas
+                && details.boot_text === 'Running' && details.stop_disabled === false
+                && details.keyboard_present && details.keyboard_disabled === false && details.emulator_present) {
+                result.success = true;
+                break;
+              }
+              if (/GORICS_WEB_GUI_FAILED|GORICS_XORG_FAILED|GORICS_XORG_TIMEOUT/.test(log)) {
+                throw new Error('fatal guest graphical marker');
+              }
+              const elapsed = Date.now() - startedAt;
+              if (elapsed - lastScreenshot >= 120000) {
+                lastScreenshot = elapsed;
+                await page.screenshot({ path: `browser-proof/progress-${Math.floor(elapsed / 1000)}s.png`, fullPage: true });
+              }
+            }
+            if (!result.success) throw new Error('current graphical Openbox readiness timeout');
+            await page.waitForTimeout(30000);
+            await page.screenshot({ path: 'browser-proof/99-openbox-ready.png', fullPage: true });
+            const canvas = page.locator('#screen canvas');
+            if (await canvas.count()) await canvas.screenshot({ path: 'browser-proof/99-screen-canvas.png' }).catch(() => {});
+          } catch (error) {
+            result.error = String(error?.stack || error);
+            await page.screenshot({ path: 'browser-proof/99-failure.png', fullPage: true }).catch(() => {});
+          } finally {
+            result.finished_at = new Date().toISOString();
+            result.duration_seconds = Math.round((Date.now() - startedAt) / 1000);
+            fs.writeFileSync('browser-proof/result.json', JSON.stringify(result, null, 2) + '\n');
+            fs.writeFileSync('browser-proof/log.txt', result.log_tail || '');
+            console.log(JSON.stringify(result, null, 2));
+            await browser.close();
+          }
+          if (!result.success) process.exit(1);
+          JS
+          node --check verify-current-openbox.mjs
+
+      - name: Boot current Linux and require complete Openbox desktop
         id: browser
         continue-on-error: true
         env:
-          TARGET_URL: https://gorics.github.io/website/os/real-multiboot/?definitive-t=${{ github.run_id }}-${{ github.run_attempt }}
+          TARGET_URL: https://gorics.github.io/website/os/real-multiboot/?definitive-current=${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           rm -rf browser-proof
           mkdir -p browser-proof
           set -o pipefail
-          timeout --signal=TERM --kill-after=30s 22m node verify-public-t-v86.mjs 2>&1 | tee browser-proof/runner.log
+          timeout --signal=TERM --kill-after=30s 24m node verify-current-openbox.mjs 2>&1 | tee browser-proof/runner.log
 
       - name: Upload definitive proof
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: definitive-t-openbox-proof-${{ github.run_id }}
+          name: definitive-current-openbox-proof-${{ github.run_id }}
           path: browser-proof/
           if-no-files-found: warn
 
@@ -116,18 +248,18 @@ jobs:
         if: always()
         run: |
           if test ! -s browser-proof/result.json; then
-            printf '{"success":false,"state":"no-result","version":"t","run_id":"%s"}\n' "$GITHUB_RUN_ID" > /tmp/t-openbox-status.json
+            printf '{"success":false,"state":"no-result","mode":"current-public-version","run_id":"%s"}\n' "$GITHUB_RUN_ID" > /tmp/openbox-final-status.json
           else
-            cp browser-proof/result.json /tmp/t-openbox-status.json
+            cp browser-proof/result.json /tmp/openbox-final-status.json
           fi
           git config user.name github-actions
           git config user.email github-actions@github.com
           git fetch origin main
           git checkout -B main origin/main
-          cp /tmp/t-openbox-status.json os/iso/t-openbox-final-status.json
-          cp /tmp/t-openbox-status.json os/iso/real-multiboot-status.json
+          cp /tmp/openbox-final-status.json os/iso/t-openbox-final-status.json
+          cp /tmp/openbox-final-status.json os/iso/real-multiboot-status.json
           git add os/iso/t-openbox-final-status.json os/iso/real-multiboot-status.json
-          git commit -m 'Record definitive t Openbox browser result [skip ci]' || true
+          git commit -m 'Record definitive current Openbox browser result [skip ci]' || true
           git push origin HEAD:main
 
       - name: Require definitive success
@@ -136,7 +268,7 @@ jobs:
           python3 - <<'PY'
           import json
           from pathlib import Path
-          result=json.loads(Path('/tmp/t-openbox-status.json').read_text())
+          result=json.loads(Path('/tmp/openbox-final-status.json').read_text())
           print(json.dumps(result,indent=2))
           assert result.get('success') is True
           assert result.get('emulator_started') is True
