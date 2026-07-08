@@ -88,3 +88,14 @@ jobs:
           git commit -m "chore(multiboot): record Pages ${STATUS} [skip ci]" || true
           git push origin HEAD:main
           test "$STATUS" = deployed
+
+      - name: Dispatch graphical V5 boot verification
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'verify-real-multiboot-v5.yml',
+              ref: 'main'
+            });
