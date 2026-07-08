@@ -1,0 +1,314 @@
+name: Verify Real Multiboot V8 Overlay Completion
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/verify-real-multiboot-v8.yml'
+      - 'os/real-multiboot/app.js'
+      - 'os/real-multiboot/index.html'
+      - 'os/real-multiboot/styles.css'
+      - 'os/real-multiboot/responsive-overrides.css'
+      - 'os/real-multiboot/device-compat.css'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: verify-real-multiboot-v8-overlay
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Wait for repaired public deployment
+        run: |
+          set -euo pipefail
+          BASE='https://gorics.github.io/website/os/real-multiboot'
+          ready=0
+          for attempt in $(seq 1 120); do
+            stamp="${GITHUB_RUN_ID}-${attempt}-$(date +%s)"
+            if curl -fsSL --max-time 60 "$BASE/app.js?v8=$stamp" -o /tmp/v8-app.js \
+              && grep -q "20260708-r8-overlay-complete" /tmp/v8-app.js \
+              && grep -q "completeDisplay" /tmp/v8-app.js \
+              && grep -q "display completion trigger" /tmp/v8-app.js \
+              && curl -fsSL --max-time 60 "$BASE/?v8=$stamp" -o /tmp/v8-index.html \
+              && grep -q 'GORICS Real Multiboot' /tmp/v8-index.html; then
+              ready=1
+              echo "repaired deployment observed on attempt $attempt"
+              break
+            fi
+            echo "waiting for repaired deployment attempt=$attempt"
+            sleep 10
+          done
+          test "$ready" = 1
+          node --check /tmp/v8-app.js
+
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Verify responsive layout and unobscured desktop
+        id: browser
+        continue-on-error: true
+        env:
+          TARGET_URL: https://gorics.github.io/website/os/real-multiboot/?v8-proof=${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          cat > verify-real-multiboot-v8.mjs <<'JS'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
+
+          const target = process.env.TARGET_URL;
+          const proof = '/tmp/real-multiboot-v8-proof';
+          const startedAt = Date.now();
+          fs.mkdirSync(proof, { recursive: true });
+          const result = {
+            version: 'v8',
+            run_id: process.env.GITHUB_RUN_ID,
+            target,
+            started_at: new Date().toISOString(),
+            success: false,
+            responsive: {},
+            emulator_started: false,
+            xorg_ready: false,
+            gui_ready: false,
+            graphical_canvas: false,
+            overlay_hidden: false,
+            controls_ready: false,
+            completion_logged: false,
+            console: [],
+            page_errors: [],
+            failed_requests: [],
+            log_tail: '',
+          };
+
+          const browser = await chromium.launch({
+            headless: true,
+            args: [
+              '--no-sandbox',
+              '--disable-dev-shm-usage',
+              '--disable-background-timer-throttling',
+              '--disable-renderer-backgrounding',
+              '--disable-backgrounding-occluded-windows',
+              '--js-flags=--max-old-space-size=2048',
+            ],
+          });
+          const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1 });
+          const page = await context.newPage();
+          page.setDefaultTimeout(120000);
+          page.on('console', message => {
+            const line = `${message.type()}: ${message.text()}`;
+            result.console.push(line);
+            if (result.console.length > 1600) result.console.shift();
+            console.log('[browser]', line);
+          });
+          page.on('pageerror', error => result.page_errors.push(String(error)));
+          page.on('requestfailed', request => {
+            result.failed_requests.push(`${request.url()} :: ${request.failure()?.errorText || 'failed'}`);
+            if (result.failed_requests.length > 700) result.failed_requests.shift();
+          });
+
+          try {
+            for (const width of [320, 375, 768, 1024, 1440]) {
+              await page.setViewportSize({ width, height: width < 600 ? 844 : 1000 });
+              await page.goto(`${target}&layout=${width}`, { waitUntil: 'domcontentloaded', timeout: 120000 });
+              await page.waitForSelector('#boot-btn:not([disabled])');
+              const layout = await page.evaluate(() => {
+                const box = selector => {
+                  const node = document.querySelector(selector);
+                  if (!node) return null;
+                  const rect = node.getBoundingClientRect();
+                  return { left: rect.left, right: rect.right, width: rect.width };
+                };
+                return {
+                  viewport: innerWidth,
+                  scroll_width: document.documentElement.scrollWidth,
+                  app: box('.iso-app'),
+                  panel: box('.control-panel'),
+                  screen: box('#screen-wrap'),
+                  boot_visible: Boolean(document.querySelector('#boot-btn')?.offsetParent),
+                };
+              });
+              layout.pass = layout.boot_visible
+                && layout.scroll_width <= layout.viewport + 2
+                && layout.app?.left >= -1
+                && layout.app?.right <= layout.viewport + 1
+                && layout.panel?.right <= layout.viewport + 1
+                && layout.screen?.right <= layout.viewport + 1;
+              result.responsive[String(width)] = layout;
+              await page.screenshot({ path: `${proof}/layout-${width}.png`, fullPage: true });
+              if (!layout.pass) throw new Error(`responsive failure ${width}: ${JSON.stringify(layout)}`);
+            }
+
+            await page.setViewportSize({ width: 1440, height: 1000 });
+            await page.goto(`${target}&boot=1`, { waitUntil: 'domcontentloaded', timeout: 120000 });
+            await page.waitForSelector('#boot-btn:not([disabled])');
+            await page.screenshot({ path: `${proof}/00-before-boot.png`, fullPage: true });
+            await page.click('#boot-btn');
+
+            let lastScreenshot = 0;
+            const deadline = Date.now() + 20 * 60_000;
+            while (Date.now() < deadline) {
+              await page.waitForTimeout(3000);
+              const log = await page.locator('#log').innerText().catch(() => '');
+              result.log_tail = log.slice(-50000);
+              result.emulator_started ||= log.includes('emulator-started');
+              result.xorg_ready ||= log.includes('GORICS_XORG_READY');
+              result.gui_ready ||= log.includes('GORICS_WEB_GUI_READY');
+              result.completion_logged ||= log.includes('display completion trigger=') && log.includes('display ready preset=gorics');
+
+              const ui = await page.evaluate(() => {
+                const canvas = document.querySelector('#screen canvas');
+                const text = document.querySelector('#screen > div');
+                const overlay = document.querySelector('#loading-overlay');
+                const overlayStyle = overlay ? getComputedStyle(overlay) : null;
+                const progress = document.querySelector('#progress-percent')?.textContent || '';
+                const overlayProgress = document.querySelector('#overlay-percent')?.textContent || '';
+                const stage = document.querySelector('#stage-label')?.textContent || '';
+                return {
+                  canvas_width: canvas?.width || 0,
+                  canvas_height: canvas?.height || 0,
+                  canvas_display: canvas ? getComputedStyle(canvas).display : 'missing',
+                  text_display: text ? getComputedStyle(text).display : 'missing',
+                  screen_active: document.querySelector('#screen')?.classList.contains('active') || false,
+                  overlay_class_hidden: overlay?.classList.contains('hidden') || false,
+                  overlay_aria_hidden: overlay?.getAttribute('aria-hidden') === 'true',
+                  overlay_visibility: overlayStyle?.visibility || 'missing',
+                  overlay_opacity: Number(overlayStyle?.opacity ?? 1),
+                  overlay_pointer_events: overlayStyle?.pointerEvents || 'missing',
+                  progress,
+                  overlay_progress: overlayProgress,
+                  stage,
+                  boot_text: document.querySelector('#boot-btn')?.textContent?.trim() || '',
+                  boot_disabled: document.querySelector('#boot-btn')?.disabled ?? true,
+                  keyboard_disabled: document.querySelector('#keyboard-btn')?.disabled ?? true,
+                  stop_disabled: document.querySelector('#stop-btn')?.disabled ?? true,
+                  select_disabled: document.querySelector('#os-select')?.disabled ?? false,
+                };
+              });
+              result.ui = ui;
+              result.graphical_canvas = ui.canvas_width >= 640
+                && ui.canvas_height >= 480
+                && ui.canvas_display !== 'none'
+                && ui.text_display === 'none'
+                && ui.screen_active;
+              result.overlay_hidden = ui.overlay_class_hidden
+                && ui.overlay_aria_hidden
+                && ui.overlay_visibility === 'hidden'
+                && ui.overlay_opacity <= 0.01
+                && ui.overlay_pointer_events === 'none';
+              result.controls_ready = ui.progress === '100%'
+                && ui.overlay_progress === '100%'
+                && ui.stage.includes('화면 출력 완료')
+                && ui.boot_text === '실행 중'
+                && !ui.boot_disabled
+                && !ui.keyboard_disabled
+                && !ui.stop_disabled
+                && ui.select_disabled;
+
+              if (result.emulator_started && result.xorg_ready && result.gui_ready
+                  && result.graphical_canvas && result.overlay_hidden
+                  && result.controls_ready && result.completion_logged) {
+                result.success = true;
+                break;
+              }
+              if (/ERROR preset=|GORICS_WEB_GUI_FAILED|GORICS_XORG_FAILED|GORICS_XORG_TIMEOUT/.test(log)) {
+                throw new Error('fatal marker in browser log');
+              }
+              const elapsed = Date.now() - startedAt;
+              if (elapsed - lastScreenshot >= 120000) {
+                lastScreenshot = elapsed;
+                await page.screenshot({ path: `${proof}/progress-${Math.floor(elapsed / 1000)}s.png`, fullPage: true });
+              }
+            }
+            if (!result.success) throw new Error(`unobscured desktop completion timeout: ${JSON.stringify(result.ui)}`);
+            await page.waitForTimeout(3000);
+            await page.screenshot({ path: `${proof}/99-desktop-unobscured.png`, fullPage: true });
+            const canvas = page.locator('#screen canvas');
+            if (await canvas.count()) await canvas.screenshot({ path: `${proof}/99-screen-canvas.png` });
+          } catch (error) {
+            result.error = String(error?.stack || error);
+            await page.screenshot({ path: `${proof}/99-failure.png`, fullPage: true }).catch(() => {});
+          } finally {
+            result.finished_at = new Date().toISOString();
+            result.duration_seconds = Math.round((Date.now() - startedAt) / 1000);
+            fs.writeFileSync(`${proof}/result.json`, JSON.stringify(result, null, 2) + '\n');
+            fs.writeFileSync(`${proof}/log.txt`, result.log_tail || '');
+            console.log(JSON.stringify(result, null, 2));
+            await browser.close();
+          }
+          if (!result.success) process.exit(1);
+          JS
+          node --check verify-real-multiboot-v8.mjs
+          rm -rf /tmp/real-multiboot-v8-proof
+          mkdir -p /tmp/real-multiboot-v8-proof
+          set -o pipefail
+          timeout --signal=TERM --kill-after=30s 25m node ./verify-real-multiboot-v8.mjs 2>&1 | tee /tmp/real-multiboot-v8-proof/runner.log
+
+      - name: Upload V8 proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-multiboot-v8-proof-${{ github.run_id }}
+          path: /tmp/real-multiboot-v8-proof/
+          if-no-files-found: warn
+
+      - name: Record V8 result
+        if: always()
+        run: |
+          if test -s /tmp/real-multiboot-v8-proof/result.json; then
+            cp /tmp/real-multiboot-v8-proof/result.json /tmp/v8-status.json
+          else
+            printf '{"success":false,"state":"no-result","version":"v8","run_id":"%s"}\n' "$GITHUB_RUN_ID" > /tmp/v8-status.json
+          fi
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          p=Path('/tmp/v8-status.json')
+          d=json.loads(p.read_text())
+          d['job_status']=os.environ.get('JOB_STATUS','${{ job.status }}')
+          d['workflow_sha']=os.environ.get('GITHUB_SHA')
+          p.write_text(json.dumps(d, indent=2)+'\n')
+          PY
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for attempt in $(seq 1 15); do
+            git fetch origin main
+            git checkout -B main origin/main
+            cp /tmp/v8-status.json os/iso/real-multiboot-v8-status.json
+            git add os/iso/real-multiboot-v8-status.json
+            git commit -m 'Record real multiboot V8 result [skip ci]' || break
+            if git push origin HEAD:main; then break; fi
+            sleep $((attempt*3))
+          done
+
+      - name: Require V8 success
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('/tmp/v8-status.json').read_text())
+          print(json.dumps(d, indent=2))
+          assert d.get('success') is True
+          assert d.get('emulator_started') is True
+          assert d.get('xorg_ready') is True
+          assert d.get('gui_ready') is True
+          assert d.get('graphical_canvas') is True
+          assert d.get('overlay_hidden') is True
+          assert d.get('controls_ready') is True
+          assert d.get('completion_logged') is True
+          assert all(v.get('pass') for v in d.get('responsive', {}).values())
+          PY
