@@ -19,29 +19,33 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Probe Legacy Pages assets
+      - name: Probe q loader and external chunks
         env:
+          GH_TOKEN: ${{ github.token }}
           STAMP: ${{ github.run_id }}
         run: |
+          gh api "repos/$GITHUB_REPOSITORY/pages" > /tmp/pages.json
+          gh api "repos/$GITHUB_REPOSITORY/pages/builds/latest" > /tmp/latest-build.json || true
           python3 - <<'PY'
           import json, os, subprocess
           from pathlib import Path
 
           base = 'https://gorics.github.io/website'
           page = base + '/os/real-multiboot'
+          raw = 'https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts'
           stamp = os.environ['STAMP']
           urls = {
-              'index': page + '/?p=' + stamp,
-              'app': page + '/app.js?p=' + stamp,
-              'meta': page + '/assets/iso-meta.json?p=' + stamp,
-              'deployment': page + '/assets/deployment.json?p=' + stamp,
-              'runtime': base + '/vendor/v86/libv86.js?p=' + stamp,
-              'wasm': base + '/vendor/v86/v86.wasm?p=' + stamp,
-              'bios': base + '/vendor/v86/seabios.bin?p=' + stamp,
-              'vga': base + '/vendor/v86/vgabios.bin?p=' + stamp,
-              'kernel': page + '/assets/vmlinuz?p=' + stamp,
-              'initrd': page + '/assets/initrd.img?p=' + stamp,
-              'chunk': page + '/assets/v86-parts/gorics-linux-gui-web-i386.iso-0-16777216?p=' + stamp,
+              'index': page + '/?q=' + stamp,
+              'app': page + '/app.js?q=' + stamp,
+              'meta': page + '/assets/iso-meta.json?q=' + stamp,
+              'deployment': page + '/assets/deployment.json?q=' + stamp,
+              'runtime': base + '/vendor/v86/libv86.js?q=' + stamp,
+              'wasm': base + '/vendor/v86/v86.wasm?q=' + stamp,
+              'bios': base + '/vendor/v86/seabios.bin?q=' + stamp,
+              'vga': base + '/vendor/v86/vgabios.bin?q=' + stamp,
+              'kernel': page + '/assets/vmlinuz?q=' + stamp,
+              'initrd': page + '/assets/initrd.img?q=' + stamp,
+              'chunk': raw + '/gorics-linux-gui-web-i386.iso-0-16777216?q=' + stamp,
           }
 
           def request(name, url, byte_range=False):
@@ -63,11 +67,16 @@ jobs:
                   'code': code,
                   'size': len(data),
                   'error': error,
-                  'headers': headers.read_text(errors='replace')[-3000:] if headers.exists() else '',
+                  'headers': headers.read_text(errors='replace')[-4000:] if headers.exists() else '',
                   'text_prefix': text,
               }, data
 
-          result = {'run_id': stamp, 'targets': {}}
+          result = {
+              'run_id': stamp,
+              'pages': json.loads(Path('/tmp/pages.json').read_text()),
+              'latest_build': json.loads(Path('/tmp/latest-build.json').read_text()) if Path('/tmp/latest-build.json').stat().st_size else None,
+              'targets': {},
+          }
           bodies = {}
           for name, url in urls.items():
               info, data = request(name, url, name == 'chunk')
@@ -77,15 +86,18 @@ jobs:
           chunk = bodies['chunk']
           if len(chunk) > 4096:
               chunk = chunk[32768:36864]
+          chunk_headers = result['targets']['chunk']['headers'].lower()
           checks = {
-              'index_p': b'app.js?v=p' in bodies['index'] and b'ISO page. p' in bodies['index'],
-              'app_chunked_i386': b'use_parts: true' in bodies['app'] and b'gorics-linux-gui-web-i386.iso' in bodies['app'],
-              'meta_legacy': b'legacy_pages' in bodies['meta'] and b'direct-xorg-openbox' in bodies['meta'],
+              'pages_build_legacy': result['pages'].get('build_type') == 'legacy',
+              'index_q': b'app.js?v=q' in bodies['index'] and b'ISO page. q' in bodies['index'],
+              'app_external_chunked_i386': b'use_parts: true' in bodies['app'] and b'gorics-linux-gui-web-i386.iso' in bodies['app'] and b'raw.githubusercontent.com/gorics/website/os-assets' in bodies['app'],
+              'meta_q': b'chunk_source' in bodies['meta'] and b'raw-github-os-assets-branch' in bodies['meta'],
               'runtime': result['targets']['runtime']['code'] == '200' and len(bodies['runtime']) > 100000,
               'wasm': result['targets']['wasm']['code'] == '200' and len(bodies['wasm']) > 100000,
               'kernel': result['targets']['kernel']['code'] == '200' and len(bodies['kernel']) > 1000000,
               'initrd': result['targets']['initrd']['code'] == '200' and len(bodies['initrd']) > 10000000,
               'chunk_http': result['targets']['chunk']['code'] in ('200', '206'),
+              'chunk_cors': 'access-control-allow-origin: *' in chunk_headers,
               'chunk_iso': len(chunk) == 4096 and chunk[1:6] == b'CD001' and chunk[2049:2054] == b'CD001' and b'EL TORITO' in chunk[2055:2087],
           }
           result['checks'] = checks
@@ -102,5 +114,5 @@ jobs:
           git fetch origin main
           git checkout -B main origin/main
           git add os/iso/legacy-public-probe.json
-          git commit -m 'Record Legacy Pages public asset probe [skip ci]' || true
+          git commit -m 'Record q loader and os-assets public probe [skip ci]' || true
           git push origin HEAD:main
