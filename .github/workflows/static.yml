@@ -14,7 +14,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -89,6 +89,7 @@ jobs:
             stamp="$GITHUB_RUN_ID-$attempt"
             if curl -fsSL --max-time 30 "$BASE/?v=$stamp" -o /tmp/index.html \
               && grep -q '20260708r1' /tmp/index.html \
+              && grep -q 'service worker control confirmed' /tmp/index.html \
               && curl -fsSL --max-time 30 "$BASE/app.js?v=$stamp" -o /tmp/app.js \
               && grep -q 'resilient release-chunk boot loader' /tmp/app.js \
               && curl -fsSL --max-time 30 "$BASE/sw.js?v=$stamp" -o /tmp/sw.js \
