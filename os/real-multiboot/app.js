@@ -1,7 +1,6 @@
 (() => {
   'use strict';
 
-  const VERSION = 'n';
   const $ = (selector) => document.querySelector(selector);
   const logBox = $('#log');
   const screen = $('#screen');
@@ -9,45 +8,27 @@
   const stop = $('#stop-btn');
   const full = $('#fullscreen-btn');
   const urlBox = $('#iso-url');
+  const actions = $('.actions');
 
-  const iso = new URL('./assets/gorics-linux-gui-web-amd64.iso', location.href).href;
+  const assetName = 'gorics-linux-gui-web-i386.iso';
+  const chunkSize = 16 * 1024 * 1024;
+  const partsRoot = new URL('./assets/v86-parts/', location.href).href;
+  const isoBase = partsRoot + assetName;
   const metaUrl = new URL('./assets/iso-meta.json', location.href).href;
-  const RELEASE_API = 'https://api.github.com/repos/gorics/website/releases/tags/gorics-linux-gui-web-iso-latest';
-  const RELEASE_ISO_NAME = 'gorics-linux-gui-web-i386.iso';
-
-  const runtimeCandidates = [
-    {
-      label: 'same-origin',
-      lib: '/website/vendor/v86/libv86.js',
-      wasm: '/website/vendor/v86/v86.wasm',
-      bios: '/website/vendor/v86/seabios.bin',
-      vga: '/website/vendor/v86/vgabios.bin',
-    },
-    {
-      label: 'jsDelivr mirror',
-      lib: 'https://cdn.jsdelivr.net/gh/cloudgamingrage/copysh-v86-precompiled@main/build/libv86.js',
-      wasm: 'https://cdn.jsdelivr.net/gh/cloudgamingrage/copysh-v86-precompiled@main/build/v86.wasm',
-      bios: 'https://cdn.jsdelivr.net/gh/cloudgamingrage/copysh-v86-precompiled@main/bios/seabios.bin',
-      vga: 'https://cdn.jsdelivr.net/gh/cloudgamingrage/copysh-v86-precompiled@main/bios/vgabios.bin',
-    },
-    {
-      label: 'GitHub raw mirror',
-      lib: 'https://raw.githubusercontent.com/cloudgamingrage/copysh-v86-precompiled/main/build/libv86.js',
-      wasm: 'https://raw.githubusercontent.com/cloudgamingrage/copysh-v86-precompiled/main/build/v86.wasm',
-      bios: 'https://raw.githubusercontent.com/cloudgamingrage/copysh-v86-precompiled/main/bios/seabios.bin',
-      vga: 'https://raw.githubusercontent.com/cloudgamingrage/copysh-v86-precompiled/main/bios/vgabios.bin',
-    },
-  ];
+  const kernelUrl = new URL('./assets/vmlinuz', location.href).href;
+  const initrdUrl = new URL('./assets/initrd.img', location.href).href;
+  const runtime = '/website/vendor/v86/libv86.js';
+  const wasm = '/website/vendor/v86/v86.wasm';
+  const bios = '/website/vendor/v86/seabios.bin';
+  const vga = '/website/vendor/v86/vgabios.bin';
 
   let vm = null;
   let state = 'idle';
-  let bootToken = 0;
-  let watchdog = null;
+  let token = 0;
+  let serial = '';
   let inputLogged = false;
-  let touchActive = false;
   let lastTouch = null;
 
-  const actions = $('.actions');
   const keyboardButton = document.createElement('button');
   keyboardButton.id = 'keyboard-btn';
   keyboardButton.type = 'button';
@@ -67,45 +48,15 @@
   phoneKeyboard.setAttribute('aria-label', 'Virtual keyboard input');
   document.body.appendChild(phoneKeyboard);
 
-  if (urlBox) urlBox.textContent = `${iso} · release fallback: ${RELEASE_ISO_NAME}`;
+  if (urlBox) urlBox.textContent = `${isoBase} (chunked)`;
 
   function log(text) {
+    const line = `[${new Date().toISOString()}] ${text}`;
     if (logBox) {
-      logBox.textContent += `\n[${new Date().toISOString()}] ${text}`;
+      logBox.textContent += `\n${line}`;
       logBox.scrollTop = logBox.scrollHeight;
     }
     console.log('[GORICS ISO]', text);
-  }
-
-  function focusScreen() {
-    try { screen?.focus({ preventScroll: true }); } catch { screen?.focus(); }
-  }
-
-  function enableInputDevices() {
-    if (!vm) return;
-    try {
-      vm.keyboard_set_enabled?.(true);
-      vm.mouse_set_enabled?.(true);
-      if (!inputLogged) {
-        inputLogged = true;
-        log('keyboard and pointer input enabled');
-      }
-    } catch (error) {
-      log(`input enable warning ${error.message}`);
-    }
-  }
-
-  function openVirtualKeyboard() {
-    if (state !== 'running') return;
-    enableInputDevices();
-    phoneKeyboard.value = '';
-    try { phoneKeyboard.focus({ preventScroll: true }); } catch { phoneKeyboard.focus(); }
-    phoneKeyboard.click();
-    log('virtual keyboard requested');
-  }
-
-  function emulatorConstructor() {
-    return window.V86 || globalThis.V86 || window.V86Starter || globalThis.V86Starter;
   }
 
   function setState(next) {
@@ -118,35 +69,24 @@
     keyboardButton.disabled = next !== 'running';
   }
 
-  function loadScript(url) {
-    return new Promise((resolve, reject) => {
-      const script = document.createElement('script');
-      script.src = `${url}${url.includes('?') ? '&' : '?'}v=${VERSION}`;
-      script.async = false;
-      script.onload = () => setTimeout(() => emulatorConstructor() ? resolve() : reject(new Error('v86 constructor missing')), 80);
-      script.onerror = () => reject(new Error(`runtime load failed ${url}`));
-      document.head.appendChild(script);
-    });
+  function focusScreen() {
+    try { screen?.focus({ preventScroll: true }); } catch { screen?.focus(); }
   }
 
-  async function loadRuntime() {
-    const existing = emulatorConstructor();
-    if (existing) return { Emulator: existing, resources: runtimeCandidates[0] };
-    let lastError;
-    for (const resources of runtimeCandidates) {
-      try {
-        log(`loading v86 runtime from ${resources.label}`);
-        await loadScript(resources.lib);
-        const Emulator = emulatorConstructor();
-        if (!Emulator) throw new Error('v86 constructor missing');
-        log(`runtime source selected: ${resources.label}`);
-        return { Emulator, resources };
-      } catch (error) {
-        lastError = error;
-        log(`runtime candidate failed: ${resources.label} · ${error.message}`);
-      }
-    }
-    throw lastError || new Error('all v86 runtime candidates failed');
+  function constructor() {
+    return window.V86 || globalThis.V86 || window.V86Starter || globalThis.V86Starter;
+  }
+
+  function loadRuntime() {
+    return new Promise((resolve, reject) => {
+      if (constructor()) return resolve(constructor());
+      const script = document.createElement('script');
+      script.src = `${runtime}?v=p`;
+      script.async = false;
+      script.onload = () => setTimeout(() => constructor() ? resolve(constructor()) : reject(new Error('v86 constructor missing')), 60);
+      script.onerror = () => reject(new Error(`runtime load failed ${runtime}`));
+      document.head.appendChild(script);
+    });
   }
 
   async function clearOldWorkers() {
@@ -155,299 +95,241 @@
       for (const registration of registrations) {
         if (registration.scope.includes('/os/real-multiboot/')) await registration.unregister();
       }
-      const cacheNames = await globalThis.caches?.keys?.() || [];
-      await Promise.all(cacheNames.filter((name) => name.startsWith('gorics-v86-')).map((name) => caches.delete(name)));
-      if (registrations.length || cacheNames.length) log('obsolete ISO workers and caches removed');
+      const names = await globalThis.caches?.keys?.() || [];
+      for (const name of names) {
+        if (/gorics|v86|iso/i.test(name)) await globalThis.caches.delete(name);
+      }
     } catch (error) {
-      log(`service worker cleanup skipped ${error.message}`);
+      log(`old worker cleanup skipped ${error.message}`);
     }
   }
 
-  function ascii(array, offset, length) {
-    return String.fromCharCode(...array.slice(offset, offset + length));
-  }
-
-  function validateMeta(meta, expectedNames) {
-    if (!meta || !expectedNames.includes(meta.name)) throw new Error(`unexpected ISO name ${meta?.name || 'missing'}`);
-    if (!Number.isFinite(meta.size) || meta.size <= 0 || meta.size >= 900000000) throw new Error(`invalid ISO size ${meta.size}`);
-  }
-
-  async function getLocalMeta() {
-    const response = await fetch(`${metaUrl}?v=${Date.now()}`, { cache: 'no-store' });
+  async function loadMetadata() {
+    log('loading legacy Pages chunk metadata');
+    const response = await fetch(`${metaUrl}?v=p`, { cache: 'no-store' });
     if (!response.ok) throw new Error(`ISO metadata HTTP ${response.status}`);
     const meta = await response.json();
-    validateMeta(meta, ['gorics-linux-gui-web-amd64.iso', RELEASE_ISO_NAME]);
-    return {
-      url: iso,
-      size: meta.size,
-      sha256: meta.sha256,
-      architecture: meta.architecture,
-      desktop: meta.desktop,
-      source: 'same-origin deployment',
-    };
+    if (meta.name !== assetName) throw new Error(`unexpected ISO ${meta.name}`);
+    if (meta.architecture !== 'i386') throw new Error(`unexpected architecture ${meta.architecture}`);
+    if (!Number.isFinite(meta.size) || meta.size <= 0) throw new Error(`invalid ISO size ${meta.size}`);
+    if (meta.chunk_size !== chunkSize) throw new Error(`invalid chunk size ${meta.chunk_size}`);
+    log(`ISO size=${meta.size} parts=${meta.parts} sha256=${String(meta.sha256).slice(0, 16)}...`);
+    return meta;
   }
 
-  async function getReleaseMeta() {
-    const response = await fetch(`${RELEASE_API}?v=${Date.now()}`, {
-      cache: 'no-store',
-      headers: { Accept: 'application/vnd.github+json' },
-    });
-    if (!response.ok) throw new Error(`release metadata HTTP ${response.status}`);
-    const release = await response.json();
-    const asset = (release.assets || []).find((item) => item.name === RELEASE_ISO_NAME);
-    if (!asset) throw new Error(`release asset missing ${RELEASE_ISO_NAME}`);
-    const meta = { name: asset.name, size: Number(asset.size) };
-    validateMeta(meta, [RELEASE_ISO_NAME]);
-    return {
-      url: asset.browser_download_url,
-      size: meta.size,
-      sha256: null,
-      architecture: 'i386',
-      desktop: 'openbox-tint2-pcmanfm-xterm',
-      source: 'GitHub Release fallback',
-    };
+  function ascii(bytes, start, length) {
+    return String.fromCharCode(...bytes.slice(start, start + length));
   }
 
-  async function getMeta() {
-    log('loading QEMU-tested ISO metadata');
-    try {
-      const meta = await getLocalMeta();
-      log(`ISO metadata source=${meta.source}`);
-      return meta;
-    } catch (localError) {
-      log(`same-origin ISO unavailable: ${localError.message}`);
-      const meta = await getReleaseMeta();
-      log(`ISO metadata source=${meta.source}`);
-      return meta;
-    }
-  }
-
-  async function probe(meta) {
-    log(`probing ISO range and boot records from ${meta.source}`);
-    const response = await fetch(meta.url, {
+  async function verifyFirstPart() {
+    const firstPart = `${isoBase}-0-${chunkSize}`;
+    log(`probing first same-origin ISO chunk ${firstPart.split('/').pop()}`);
+    const response = await fetch(`${firstPart}?v=p`, {
       cache: 'no-store',
       headers: { Range: 'bytes=32768-36863' },
     });
-    if (response.status !== 206) throw new Error(`ISO range expected HTTP 206, got ${response.status}`);
-    const data = new Uint8Array(await response.arrayBuffer());
-    if (data.length !== 4096) throw new Error(`ISO range size ${data.length}`);
-    const primary = ascii(data, 1, 5);
-    const bootRecord = ascii(data, 2049, 5);
-    const bootSystem = ascii(data, 2055, 32).replace(/\0/g, '').trim();
-    if (primary !== 'CD001') throw new Error('ISO9660 descriptor missing');
-    if (bootRecord !== 'CD001' || !bootSystem.includes('EL TORITO')) throw new Error('El Torito boot record missing');
-    log('ISO range HTTP 206 bytes=4096');
-    log('ISO9660 and El Torito verified');
+    let bytes = new Uint8Array(await response.arrayBuffer());
+    if (response.status === 200 && bytes.length >= 36864) bytes = bytes.slice(32768, 36864);
+    if (response.status !== 206 && response.status !== 200) throw new Error(`ISO chunk HTTP ${response.status}`);
+    if (bytes.length !== 4096) throw new Error(`ISO probe size ${bytes.length}`);
+    if (ascii(bytes, 1, 5) !== 'CD001') throw new Error('ISO9660 descriptor missing');
+    if (ascii(bytes, 2049, 5) !== 'CD001' || !ascii(bytes, 2055, 32).includes('EL TORITO')) {
+      throw new Error('El Torito record missing');
+    }
+    log(`ISO chunk probe HTTP ${response.status}; ISO9660 and El Torito verified`);
+  }
+
+  async function verifyBootFiles() {
+    const checks = [
+      ['kernel', kernelUrl, 1_000_000],
+      ['initrd', initrdUrl, 10_000_000],
+      ['runtime', runtime, 100_000],
+      ['wasm', wasm, 100_000],
+    ];
+    for (const [name, url, minimum] of checks) {
+      const response = await fetch(`${url}?v=p`, { method: 'HEAD', cache: 'no-store' });
+      if (!response.ok) throw new Error(`${name} HTTP ${response.status}`);
+      const length = Number(response.headers.get('content-length')) || 0;
+      if (length && length < minimum) throw new Error(`${name} too small ${length}`);
+      log(`${name} available${length ? ` size=${length}` : ''}`);
+    }
   }
 
   function prepareScreen() {
-    if (!screen) throw new Error('screen container missing');
     screen.innerHTML = '<div style="white-space:pre;font:14px monospace;line-height:14px"></div><canvas style="display:none"></canvas>';
-    screen.classList.add('active');
+  }
+
+  function enableInput() {
+    if (!vm) return;
+    try {
+      vm.keyboard_set_enabled?.(true);
+      vm.mouse_set_enabled?.(true);
+      if (!inputLogged) {
+        inputLogged = true;
+        log('keyboard and pointer input enabled');
+      }
+    } catch (error) {
+      log(`input warning ${error.message}`);
+    }
+  }
+
+  function openKeyboard() {
+    if (state !== 'running') return;
+    enableInput();
+    phoneKeyboard.value = '';
+    try { phoneKeyboard.focus({ preventScroll: true }); } catch { phoneKeyboard.focus(); }
+    phoneKeyboard.click();
+    log('virtual keyboard requested');
+  }
+
+  function serialByte(byte) {
+    const character = String.fromCharCode(byte);
+    if (character === '\n' || character === '\r') {
+      const line = serial.trim();
+      serial = '';
+      if (line && /(GORICS_|Linux version|graphical|openbox|failed|error)/i.test(line)) log(`serial ${line.slice(0, 260)}`);
+    } else if (serial.length < 1000) {
+      serial += character;
+    }
   }
 
   function progress(data) {
-    if (!data || typeof data !== 'object') return '';
-    const loaded = Number(data.loaded) || 0;
-    const total = Number(data.total) || 0;
+    const loaded = Number(data?.loaded) || 0;
+    const total = Number(data?.total) || 0;
     const percent = total > 0 ? `${Math.floor(loaded * 100 / total)}%` : 'loading';
-    return ` ${data.file_name || 'file'} ${percent} (${loaded}/${total})`;
+    return `${data?.file_name || 'file'} ${percent} (${loaded}/${total})`;
   }
 
   async function run() {
     if (!screen || !boot || state !== 'idle') return;
-    const token = ++bootToken;
+    const runToken = ++token;
     setState('loading');
     focusScreen();
     try {
       await clearOldWorkers();
-      const [{ Emulator, resources }, meta] = await Promise.all([loadRuntime(), getMeta()]);
-      await probe(meta);
-      if (token !== bootToken) return;
-      log(`ISO size=${meta.size} sha256=${String(meta.sha256 || 'release').slice(0, 16)} architecture=${meta.architecture || 'unknown'} desktop=${meta.desktop || 'unknown'}`);
-      log(`runtime loaded ${resources.lib}`);
+      const [Emulator, meta] = await Promise.all([loadRuntime(), loadMetadata()]);
+      await Promise.all([verifyFirstPart(), verifyBootFiles()]);
+      if (runToken !== token) return;
       prepareScreen();
       setState('starting');
-
-      const mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-      const memoryMiB = mobile ? 384 : 512;
-      const vgaMiB = mobile ? 16 : 32;
-      log(`VM profile memory=${memoryMiB}MiB vga=${vgaMiB}MiB mobile=${mobile}`);
-
       vm = new Emulator({
-        wasm_path: resources.wasm,
-        bios: { url: resources.bios },
-        vga_bios: { url: resources.vga },
+        wasm_path: wasm,
+        bios: { url: bios },
+        vga_bios: { url: vga },
         screen_container: screen,
         autostart: true,
-        memory_size: memoryMiB * 1024 * 1024,
-        vga_memory_size: vgaMiB * 1024 * 1024,
+        memory_size: 384 * 1024 * 1024,
+        vga_memory_size: 32 * 1024 * 1024,
         disable_speaker: true,
-        boot_order: 0x123,
+        bzimage: { url: kernelUrl },
+        initrd: { url: initrdUrl },
+        cmdline: 'boot=live components live-media=/dev/sr0 username=user hostname=gorics-web systemd.unit=graphical.target console=tty0 console=ttyS0,115200n8',
         cdrom: {
-          url: meta.url,
+          url: isoBase,
           async: true,
           size: meta.size,
-          fixed_chunk_size: 2 * 1024 * 1024,
+          use_parts: true,
+          fixed_chunk_size: chunkSize,
         },
       });
       window.goricsRealLinuxIso = vm;
-      vm.add_listener('download-progress', (data) => log(`download-progress${progress(data)}`));
-      vm.add_listener('download-error', (data) => {
-        log(`download-error ${JSON.stringify(data).slice(0, 500)}`);
-        setState('idle');
-      });
+      vm.add_listener('download-progress', (data) => log(`download-progress ${progress(data)}`));
+      vm.add_listener('download-error', (data) => log(`download-error ${JSON.stringify(data).slice(0, 400)}`));
       vm.add_listener('emulator-loaded', () => log('emulator-loaded'));
-      vm.add_listener('emulator-ready', () => {
-        enableInputDevices();
-        log('emulator-ready');
-      });
+      vm.add_listener('emulator-ready', () => log('emulator-ready'));
       vm.add_listener('emulator-started', () => {
-        clearTimeout(watchdog);
         setState('running');
-        enableInputDevices();
+        enableInput();
         focusScreen();
         log('emulator-started');
       });
       vm.add_listener('emulator-stopped', () => log('emulator-stopped'));
       vm.add_listener('screen-set-size', (data) => log(`screen-set-size ${JSON.stringify(data)}`));
-      log('v86 started with keyboard, mouse and touch bridge');
-      watchdog = setTimeout(() => {
-        if (state === 'starting') log('still loading tested ISO');
-      }, 30000);
+      try { vm.add_listener('serial0-output-byte', serialByte); } catch {}
+      log('v86 started with legacy Pages same-origin chunks and direct i386 Openbox boot');
     } catch (error) {
       log(`ERROR ${error?.message || error}`);
       log(`userAgent ${navigator.userAgent}`);
-      try { vm?.destroy?.(); } catch {}
-      vm = null;
       setState('idle');
     }
   }
 
   function halt() {
-    bootToken++;
-    clearTimeout(watchdog);
+    token += 1;
     try { vm?.destroy?.(); } catch (error) { log(`stop error ${error.message}`); }
     vm = null;
+    serial = '';
     inputLogged = false;
-    touchActive = false;
-    lastTouch = null;
-    screen?.classList.remove('active');
     if (screen) screen.innerHTML = '';
     setState('idle');
     log('stopped');
   }
 
-  function dispatchTouchMouse(type, touch, buttons) {
-    if (!touch || !screen) return;
-    const target = document.elementFromPoint(touch.clientX, touch.clientY);
-    const receiver = target && screen.contains(target) ? target : screen;
-    const event = new MouseEvent(type, {
-      bubbles: true,
-      cancelable: true,
-      view: window,
-      clientX: touch.clientX,
-      clientY: touch.clientY,
-      screenX: touch.screenX,
-      screenY: touch.screenY,
-      button: 0,
-      buttons,
-    });
-    try { Object.defineProperty(event, 'which', { value: 1 }); } catch {}
-    receiver.dispatchEvent(event);
-  }
-
-  function onTouchStart(event) {
-    if (state !== 'running' || !event.changedTouches?.length) return;
-    event.preventDefault();
-    const touch = event.changedTouches[event.changedTouches.length - 1];
-    touchActive = true;
-    lastTouch = touch;
-    enableInputDevices();
-    focusScreen();
-    dispatchTouchMouse('mousemove', touch, 0);
-    dispatchTouchMouse('mousedown', touch, 1);
-  }
-
-  function onTouchMove(event) {
-    if (!touchActive || state !== 'running' || !event.changedTouches?.length) return;
-    event.preventDefault();
-    const touch = event.changedTouches[event.changedTouches.length - 1];
-    lastTouch = touch;
-    dispatchTouchMouse('mousemove', touch, 1);
-  }
-
-  function onTouchEnd(event) {
-    if (!touchActive) return;
-    event.preventDefault();
-    const touch = event.changedTouches?.[event.changedTouches.length - 1] || lastTouch;
-    dispatchTouchMouse('mouseup', touch, 0);
-    touchActive = false;
-    lastTouch = null;
-    focusScreen();
-  }
-
   async function toggleFullscreen() {
-    const wrapper = screen?.closest('.screen-wrap') || screen;
-    if (!wrapper) return;
+    const target = screen.closest('.screen-wrap') || screen;
     try {
       if (document.fullscreenElement) {
         await document.exitFullscreen();
         return;
       }
-      if (wrapper.requestFullscreen) {
-        await wrapper.requestFullscreen();
+      if (target.requestFullscreen) {
+        await target.requestFullscreen();
         focusScreen();
         return;
       }
     } catch (error) {
       log(`native fullscreen unavailable ${error.message}`);
     }
-    const enabled = !document.body.classList.contains('ios-fullscreen');
-    document.body.classList.toggle('ios-fullscreen', enabled);
-    if (full) full.textContent = enabled ? 'Exit Fullscreen' : 'Fullscreen';
+    const active = !document.body.classList.contains('ios-fullscreen');
+    document.body.classList.toggle('ios-fullscreen', active);
+    if (full) full.textContent = active ? 'Exit Fullscreen' : 'Fullscreen';
     window.scrollTo(0, 0);
     focusScreen();
-    log(enabled ? 'iOS fullscreen fallback enabled' : 'iOS fullscreen fallback disabled');
+    log(active ? 'iOS fullscreen fallback enabled' : 'iOS fullscreen fallback disabled');
   }
 
-  function sendScancode(make, release = make | 0x80) {
-    vm?.keyboard_send_scancodes?.([make, release]);
-  }
-
-  boot?.addEventListener('click', run);
-  stop?.addEventListener('click', halt);
-  keyboardButton.addEventListener('click', openVirtualKeyboard);
   phoneKeyboard.addEventListener('input', () => {
-    const text = phoneKeyboard.value;
-    if (text) vm?.keyboard_send_text?.(text);
+    if (!vm || !phoneKeyboard.value) return;
+    vm.keyboard_send_text?.(phoneKeyboard.value);
     phoneKeyboard.value = '';
   });
   phoneKeyboard.addEventListener('keydown', (event) => {
-    const keys = { Backspace: 0x0e, Enter: 0x1c, Tab: 0x0f, Escape: 0x01, ArrowUp: 0x48, ArrowDown: 0x50, ArrowLeft: 0x4b, ArrowRight: 0x4d };
-    const code = keys[event.key];
-    if (code) {
-      sendScancode(code);
+    if (!vm) return;
+    if (event.key === 'Enter') {
+      vm.keyboard_send_text?.('\n');
+      event.preventDefault();
+    }
+    if (event.key === 'Backspace') {
+      vm.keyboard_send_scancodes?.([0x0e, 0x8e]);
       event.preventDefault();
     }
   });
-  screen?.addEventListener('pointerdown', () => {
-    enableInputDevices();
+
+  screen?.addEventListener('pointerdown', () => { enableInput(); focusScreen(); });
+  screen?.addEventListener('touchstart', (event) => {
+    enableInput();
+    const touch = event.touches[0];
+    if (touch) lastTouch = { x: touch.clientX, y: touch.clientY };
     focusScreen();
-  });
-  screen?.addEventListener('touchstart', onTouchStart, { passive: false });
-  screen?.addEventListener('touchmove', onTouchMove, { passive: false });
-  screen?.addEventListener('touchend', onTouchEnd, { passive: false });
-  screen?.addEventListener('touchcancel', onTouchEnd, { passive: false });
+  }, { passive: true });
+  screen?.addEventListener('touchmove', (event) => {
+    if (!vm || !lastTouch) return;
+    const touch = event.touches[0];
+    if (!touch) return;
+    vm.mouse_send_delta?.(touch.clientX - lastTouch.x, touch.clientY - lastTouch.y);
+    lastTouch = { x: touch.clientX, y: touch.clientY };
+  }, { passive: true });
+  screen?.addEventListener('touchend', () => { lastTouch = null; }, { passive: true });
+
+  boot?.addEventListener('click', run);
+  stop?.addEventListener('click', halt);
   full?.addEventListener('click', toggleFullscreen);
+  keyboardButton.addEventListener('click', openKeyboard);
   document.addEventListener('fullscreenchange', () => {
     if (full) full.textContent = document.fullscreenElement ? 'Exit Fullscreen' : 'Fullscreen';
     focusScreen();
   });
-  window.addEventListener('keydown', enableInputDevices, true);
-  window.addEventListener('focus', enableInputDevices);
 
   setState('idle');
-  log('ready: keyboard, touch and pointer bridge installed');
-  log('source-safe loader: same-origin assets with GitHub Release and CDN fallback');
+  log('ready: legacy Pages chunked i386 Openbox loader installed');
 })();

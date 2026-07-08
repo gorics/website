@@ -1,0 +1,27 @@
+{
+  "state": "prepared",
+  "run_id": "28912211791",
+  "name": "gorics-linux-gui-web-i386.iso",
+  "architecture": "i386",
+  "desktop": "direct-xorg-openbox",
+  "openbox_verified": true,
+  "lightdm": false,
+  "direct_boot": true,
+  "legacy_pages": true,
+  "chunked": true,
+  "chunk_size": 16777216,
+  "parts": 21,
+  "size": 339738624,
+  "sha256": "4572344448515c06bf62f8a5b5df5f3ba0af7080221c83feaa342467b1cee150",
+  "kernel": {
+    "name": "vmlinuz",
+    "size": 5756864,
+    "sha256": "42c6c8331c4eb0effbd8f75351af8e5fd5198507f8c4f7711194bd8907f6eacc"
+  },
+  "initrd": {
+    "name": "initrd.img",
+    "size": 30724198,
+    "sha256": "9a5c0673d394432afa0f0a874744ec41356831159e5f4c57c438ed2e80f45647"
+  },
+  "page_version": "p"
+}
