@@ -8,7 +8,7 @@ on:
       - '.github/workflows/verify-os-main-r4x.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: verify-os-main-r4x
@@ -20,6 +20,8 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Validate source integration
         run: |
@@ -82,3 +84,40 @@ jobs:
         run: |
           set -euo pipefail
           curl -fsSI --max-time 60 'https://gorics.github.io/website/os/real-multiboot/' | grep -E 'HTTP/[0-9.]+ (200|304)'
+
+      - name: Record verification result
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          status=os.environ.get('JOB_STATUS','unknown')
+          result={
+            'success': status == 'success',
+            'state': 'completed' if status == 'success' else 'failed',
+            'page': 'https://gorics.github.io/website/os/',
+            'main_runtime': 'https://gorics.github.io/website/os/real-multiboot/',
+            'version': 'r4x',
+            'job_status': status,
+            'run_id': os.environ.get('GITHUB_RUN_ID'),
+            'workflow_sha': os.environ.get('GITHUB_SHA'),
+            'verified_at': datetime.now(timezone.utc).isoformat(),
+          }
+          Path('/tmp/os-main-status.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+          PY
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for attempt in $(seq 1 12); do
+            git fetch origin main
+            git checkout -B main origin/main
+            cp /tmp/os-main-status.json os/iso/os-main-r4x-status.json
+            git add os/iso/os-main-r4x-status.json
+            git commit -m 'Record OS main r4x integration verification [skip ci]' || exit 0
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt*3))
+          done
+          exit 1
