@@ -9,10 +9,11 @@
   const slowNetwork = /(^|-)2g$|slow-2g/i.test(String(connection.effectiveType || ''));
   const compact = matchMedia('(max-width: 900px)').matches || navigator.maxTouchPoints > 0;
   const maxConcurrent = compact ? 2 : 4;
-  const controller = new AbortController();
   const active = new Map();
   const finished = new Map();
-  const queue = [];
+  let queue = [];
+  let backgroundController = new AbortController();
+  const urgentController = new AbortController();
   let running = 0;
   let scheduledSelection = 0;
   let bytesWarmed = 0;
@@ -45,6 +46,7 @@
     queued: 0,
     completed: 0,
     failed: 0,
+    cancelled: 0,
     bytesWarmed: 0,
     active: 0,
     lastPreset: 'gorics',
@@ -57,14 +59,14 @@
     return absolute.href;
   }
 
-  async function consume(url, priority) {
-    const response = await fetch(url, {
+  async function consume(job) {
+    const response = await fetch(job.url, {
       cache: 'force-cache',
       credentials: 'same-origin',
-      priority,
-      signal: controller.signal,
+      priority: job.priority,
+      signal: job.urgent ? urgentController.signal : backgroundController.signal,
     });
-    if (!response.ok) throw new Error(`${new URL(url).pathname} HTTP ${response.status}`);
+    if (!response.ok) throw new Error(`${new URL(job.url).pathname} HTTP ${response.status}`);
     const buffer = await response.arrayBuffer();
     bytesWarmed += buffer.byteLength;
     stats.bytesWarmed = bytesWarmed;
@@ -77,15 +79,17 @@
       if (finished.has(job.url) || active.has(job.url)) continue;
       running += 1;
       stats.active = running;
-      const promise = consume(job.url, job.priority)
+      const promise = consume(job)
         .then((size) => {
-          finished.set(job.url, { size, at: performance.now() });
+          finished.set(job.url, { size, at: performance.now(), urgent: job.urgent });
           stats.completed += 1;
           return size;
         })
         .catch((error) => {
-          if (error?.name !== 'AbortError') {
-            finished.set(job.url, { error: String(error), at: performance.now() });
+          if (error?.name === 'AbortError') {
+            stats.cancelled += 1;
+          } else {
+            finished.set(job.url, { error: String(error), at: performance.now(), urgent: job.urgent });
             stats.failed += 1;
           }
           return 0;
@@ -96,7 +100,7 @@
           stats.active = running;
           pump();
         });
-      active.set(job.url, promise);
+      active.set(job.url, { promise, urgent: job.urgent });
     }
   }
 
@@ -105,18 +109,30 @@
     for (const rawUrl of urls) {
       const url = normalizedUrl(rawUrl);
       if (finished.has(url) || active.has(url) || queue.some((item) => item.url === url)) continue;
-      queue.push({ url, priority: urgent ? 'high' : 'low' });
+      queue.push({ url, priority: urgent ? 'high' : 'low', urgent });
       stats.queued += 1;
     }
-    if (urgent) queue.sort((a, b) => (a.priority === 'high' ? -1 : 1) - (b.priority === 'high' ? -1 : 1));
+    if (urgent) queue.sort((a, b) => Number(b.urgent) - Number(a.urgent));
     pump();
+  }
+
+  function cancelBackgroundWork() {
+    if (!active.size && !queue.some((item) => !item.urgent)) return;
+    backgroundController.abort();
+    backgroundController = new AbortController();
+    queue = queue.filter((item) => item.urgent);
   }
 
   function warmPreset(key, urgent = false) {
     const preset = presetAssets[key] ? key : 'gorics';
     stats.lastPreset = preset;
-    enqueue(runtimeAssets, urgent);
-    enqueue(presetAssets[preset], urgent);
+    const assets = [...runtimeAssets, ...presetAssets[preset]];
+    if (!urgent) {
+      enqueue(assets, false);
+      return;
+    }
+    cancelBackgroundWork();
+    setTimeout(() => enqueue(assets, true), 0);
   }
 
   function schedulePresetWarm(key) {
@@ -131,7 +147,10 @@
   bootButton?.addEventListener('pointerenter', () => warmPreset(select?.value || 'gorics', true), { passive: true });
   bootButton?.addEventListener('pointerdown', () => warmPreset(select?.value || 'gorics', true), { passive: true });
   bootButton?.addEventListener('touchstart', () => warmPreset(select?.value || 'gorics', true), { passive: true });
-  window.addEventListener('pagehide', () => controller.abort(), { once: true });
+  window.addEventListener('pagehide', () => {
+    backgroundController.abort();
+    urgentController.abort();
+  }, { once: true });
 
   const initialWarm = () => {
     enqueue(runtimeAssets, false);
