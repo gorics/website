@@ -1,0 +1,76 @@
+{
+  "publish-legacy-os-assets.yml": {
+    "rc": 0,
+    "stderr": "",
+    "runs": [
+      {
+        "conclusion": "failure",
+        "createdAt": "2026-07-08T02:05:13Z",
+        "databaseId": 28912211791,
+        "event": "push",
+        "headSha": "330c8d548409587e316b29001ad346337d8ff2f0",
+        "status": "completed",
+        "updatedAt": "2026-07-08T02:07:07Z",
+        "url": "https://github.com/gorics/website/actions/runs/28912211791"
+      },
+      {
+        "conclusion": "failure",
+        "createdAt": "2026-07-08T01:57:10Z",
+        "databaseId": 28911894869,
+        "event": "push",
+        "headSha": "1754102613a949eb3804b149c451865f40712f43",
+        "status": "completed",
+        "updatedAt": "2026-07-08T02:02:06Z",
+        "url": "https://github.com/gorics/website/actions/runs/28911894869"
+      }
+    ]
+  },
+  "check-legacy-public-assets.yml": {
+    "rc": 0,
+    "stderr": "",
+    "runs": [
+      {
+        "conclusion": "success",
+        "createdAt": "2026-07-08T02:09:30Z",
+        "databaseId": 28912373043,
+        "event": "push",
+        "headSha": "391306d95dca2c2dcfec898b5a2115e306246809",
+        "status": "completed",
+        "updatedAt": "2026-07-08T02:10:08Z",
+        "url": "https://github.com/gorics/website/actions/runs/28912373043"
+      }
+    ]
+  },
+  "analyze-main-tree-size.yml": {
+    "rc": 0,
+    "stderr": "",
+    "runs": [
+      {
+        "conclusion": "failure",
+        "createdAt": "2026-07-08T02:12:48Z",
+        "databaseId": 28912495025,
+        "event": "push",
+        "headSha": "da968e7c752b6e47e96cad071b112246327e6b23",
+        "status": "completed",
+        "updatedAt": "2026-07-08T02:13:31Z",
+        "url": "https://github.com/gorics/website/actions/runs/28912495025"
+      }
+    ]
+  },
+  "inspect-legacy-pages-build.yml": {
+    "rc": 0,
+    "stderr": "",
+    "runs": [
+      {
+        "conclusion": "failure",
+        "createdAt": "2026-07-08T02:10:52Z",
+        "databaseId": 28912423660,
+        "event": "push",
+        "headSha": "d5f142c18d3fa058b1e0ca4433210aaae0d26424",
+        "status": "completed",
+        "updatedAt": "2026-07-08T02:11:32Z",
+        "url": "https://github.com/gorics/website/actions/runs/28912423660"
+      }
+    ]
+  }
+}
