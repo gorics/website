@@ -43,14 +43,7 @@ jobs:
               && curl -fsSL --max-time 60 "$BASE/assets/iso-meta.json?v10=$stamp" -o /tmp/v10-meta.json \
               && grep -q 'GORICS_VISIBLE_WINDOW_READY' /tmp/v10-meta.json \
               && curl -fsSL --retry 2 --retry-all-errors --max-time 120 "$CHUNK?v10=$stamp" -o /tmp/v10-first-chunk.iso \
-              && test "$(stat -c %s /tmp/v10-first-chunk.iso)" = 16777216; then
-              python3 - <<'PY'
-          from pathlib import Path
-          data=Path('/tmp/v10-first-chunk.iso').read_bytes()
-          assert data[32769:32774] == b'CD001'
-          assert data[34817:34822] == b'CD001'
-          assert b'EL TORITO' in data[34823:34855]
-          PY
+              && python3 scripts/verify_iso_boot_chunk.py /tmp/v10-first-chunk.iso; then
               ready=1
               echo "public R12 and versioned chunk observed attempt=$attempt"
               break
