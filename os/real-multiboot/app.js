@@ -453,7 +453,7 @@
   if (presetKey === 'gorics' || presetKey === 'dsl' || presetKey === 'dsl-high') {
     ready = graphicalReady;
   } else if (presetKey === 'buildroot' || presetKey === 'buildroot-serial') {
-    ready = textReady && /Welcome to Buildroot|buildroot login:|Please press Enter to activate this console|\n[^\n]*#\s*$/im.test(observed);
+    ready = textReady && (/Welcome to Buildroot|buildroot login:|Please press Enter to activate this console/im.test(observed) || /Files send via emulator appear in \/mnt\/[\s\S]*\n\s*[~\/\\w.-]*[%#]\s*$/im.test(observed) || /\n\s*[~\/\\w.-]+[%#]\s*$/im.test(observed));
   } else if (presetKey === 'freedos') {
     ready = textReady && /Welcome to FreeDOS|FreeCOM version|command\.com|[A-Z]:\\>\s*$/im.test(observed);
   } else if (presetKey === 'tiny') {

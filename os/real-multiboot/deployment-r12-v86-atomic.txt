@@ -1,8 +1,6 @@
 GORICS Real Multiboot deployment trigger
-build=20260708-r13-visibility-safe-p2
-root_cause=the first visibility-safe Pages run was cancelled by a competing deployment in the shared concurrency group
-fix=publish the latest main revision with strict OS readiness, Buildroot prompt correction, and foreground-active mobile boot timeout
-verification=Pages assembly syntax checks, public binary checks, ISO range verification, and strict 1024x768 GORICS GUI readiness
-tracker=atomic-pages-status.json and final-all-multiboot-presets-status.json
-trigger_mode=isolated-marker-retry
-source_commit=7402bc148afb844e96965bd489693aed0e53d0dc
+build=20260708-r14-buildroot-shell-ready
+root_cause=Buildroot reached its percent shell prompt but strict readiness only accepted hash prompts
+fix=recognize the verified Buildroot emulator shell banner and percent/hash prompts
+verification=rerun seven sequential public boots with OS-specific readiness
+trigger_mode=isolated-marker-only
