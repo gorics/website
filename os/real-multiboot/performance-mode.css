@@ -1,13 +1,13 @@
-/* Low-lag rendering overrides for browser VMs. */
+/* r16 ultra low-lag rendering overrides for browser VMs. */
 .gorics-performance-mode .hero,
 .gorics-performance-mode .panel,
 .gorics-performance-mode .screen-wrap {
-  box-shadow: 0 10px 34px rgba(0,0,0,.22);
+  box-shadow: 0 8px 26px rgba(0,0,0,.18);
 }
 
 .gorics-performance-mode .progress-track>div,
 .gorics-performance-mode .overlay-progress>div {
-  transition-duration: .12s;
+  transition-duration: .08s;
 }
 
 .gorics-performance-mode #log {
@@ -19,6 +19,11 @@
 .gorics-performance-mode .screen,
 .gorics-performance-mode .screen-wrap {
   contain: layout paint style;
+}
+
+.gorics-performance-mode .screen>canvas {
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 @media (max-width: 900px), (pointer: coarse) {
@@ -33,31 +38,85 @@
   }
 
   .gorics-performance-mode .target-card,
-  .gorics-performance-mode .loading-overlay {
-    background-image: none;
-  }
-
+  .gorics-performance-mode .loading-overlay,
   .gorics-performance-mode .screen {
     background-image: none;
-    image-rendering: auto;
   }
 
-  .gorics-performance-mode.gorics-vm-active .log-panel,
-  .gorics-performance-mode body.gorics-vm-active .log-panel {
+  .gorics-performance-mode .spinner {
+    animation: none;
+    border-color: rgba(103,232,249,.28);
+    border-top-color: var(--cyan);
+  }
+
+  body.gorics-vm-active .hero,
+  body.gorics-vm-active .log-panel,
+  body.gorics-vm-active .target-card,
+  body.gorics-vm-active .info-panel,
+  body.gorics-vm-active .control-panel>.field-label,
+  body.gorics-vm-active #os-select {
     display: none;
   }
 
   body.gorics-vm-active .iso-app {
-    grid-template-rows: auto auto minmax(68svh,1fr);
-  }
-
-  body.gorics-vm-active .screen-wrap {
-    min-height: 68svh;
+    grid-template-rows: auto minmax(72svh,1fr);
+    padding: 6px;
+    gap: 6px;
   }
 
   body.gorics-vm-active .control-panel {
-    max-height: 34svh;
-    overflow: auto;
+    order: 2;
+    max-height: none;
+    padding: 8px;
+    overflow: visible;
+  }
+
+  body.gorics-vm-active .actions {
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    margin-top: 0;
+    gap: 5px;
+  }
+
+  body.gorics-vm-active .actions button {
+    min-height: 38px;
+    padding: 6px 4px;
+    font-size: 11px;
+    border-radius: 10px;
+  }
+
+  body.gorics-vm-active .progress-card {
+    margin-top: 6px;
+    padding: 8px;
+  }
+
+  body.gorics-vm-active .progress-card p,
+  body.gorics-vm-active .steps {
+    display: none;
+  }
+
+  body.gorics-vm-active .screen-wrap {
+    order: 1;
+    min-height: 72svh;
+    border-radius: 12px;
+  }
+
+  body.gorics-vm-active .screen {
+    min-height: 72svh;
+  }
+}
+
+@media (max-width: 520px) {
+  body.gorics-vm-active .iso-app {
+    grid-template-rows: minmax(76svh,1fr) auto;
+  }
+
+  body.gorics-vm-active .screen-wrap,
+  body.gorics-vm-active .screen {
+    min-height: 76svh;
+  }
+
+  body.gorics-vm-active .actions {
+    grid-template-columns: repeat(2,minmax(0,1fr));
   }
 }
 
@@ -67,9 +126,5 @@
   .gorics-performance-mode *::after {
     scroll-behavior: auto !important;
     transition-duration: 0s !important;
-  }
-
-  .gorics-performance-mode .spinner {
-    animation-duration: 1.4s;
   }
 }
