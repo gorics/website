@@ -124,12 +124,29 @@ def patch_loader(app: Path) -> None:
 def patch_index(index: Path) -> None:
     text = index.read_text(encoding="utf-8")
     text = re.sub(r"([?&]v=)[A-Za-z0-9._-]+", r"\1l", text)
-    text = re.sub(r"(ISO page\. )[A-Za-z0-9._-]+", r"\1l", text)
+    text = re.sub(
+        r'(<meta name="gorics-build" content=")[^"]*',
+        r"\1l",
+        text,
+    )
+    text = re.sub(
+        r'(<meta name="gorics-deployment-marker" content=")[^"]*',
+        r"\1GORICS Real Multiboot l",
+        text,
+    )
+    text = re.sub(
+        r"(\[ready\] GORICS Real Multiboot )[A-Za-z0-9._-]+",
+        r"\1l",
+        text,
+    )
     required = (
         "app.js?v=l",
         "responsive-overrides.css?v=l",
         "responsive.js?v=l",
-        "ISO page. l",
+        "asset-versioning.js?v=l",
+        "safe-diagnostics.js?v=l",
+        'meta name="gorics-build" content="l"',
+        "[ready] GORICS Real Multiboot l",
     )
     missing = [marker for marker in required if marker not in text]
     if missing:
