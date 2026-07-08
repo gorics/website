@@ -1,0 +1,40 @@
+name: Record Final V3 Runs
+
+on:
+  workflow_dispatch: {}
+  push:
+    paths:
+      - '.github/workflows/record-final-v3-runs.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Record latest V3 runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run list --repo "$GITHUB_REPOSITORY" \
+            --workflow deploy-real-multiboot-final-v3.yml --limit 10 \
+            --json databaseId,status,conclusion,createdAt,updatedAt,headSha,url,event \
+            > /tmp/final-v3-runs.json
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          mkdir -p os/iso
+          cp /tmp/final-v3-runs.json os/iso/final-v3-workflow-runs.json
+          git add os/iso/final-v3-workflow-runs.json
+          git commit -m 'Record final V3 workflow runs [skip ci]' || true
+          git push origin HEAD:main
+
+# refresh: same-origin guest boot verification
