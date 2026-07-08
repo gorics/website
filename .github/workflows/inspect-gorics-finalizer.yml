@@ -17,16 +17,23 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Record latest finalizer run
+      - name: Record finalizer and static runs
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh run list --workflow finalize-gorics-pages.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/runs.json
+          gh run list --workflow finalize-gorics-pages.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/finalizer.json
+          gh run list --workflow static.yml --limit 20 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/static.json
           python3 - <<'PY'
           import json
           from pathlib import Path
-          runs = json.loads(Path('/tmp/runs.json').read_text())
-          result = {'latest': runs[0] if runs else None, 'runs': runs}
+          finalizer = json.loads(Path('/tmp/finalizer.json').read_text())
+          static = json.loads(Path('/tmp/static.json').read_text())
+          result = {
+              'latest': finalizer[0] if finalizer else None,
+              'runs': finalizer,
+              'latest_static': static[0] if static else None,
+              'static_runs': static,
+          }
           Path('os/iso/finalizer-run-status.json').write_text(json.dumps(result, indent=2) + '\n')
           print(json.dumps(result, indent=2))
           PY
@@ -35,5 +42,5 @@ jobs:
           git fetch origin main
           git checkout -B main origin/main
           git add os/iso/finalizer-run-status.json
-          git commit -m 'Record finalizer run status [skip ci]' || true
+          git commit -m 'Record finalizer and static run status [skip ci]' || true
           git push origin HEAD:main
