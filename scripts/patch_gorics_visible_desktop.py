@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 TARGET = Path("os/iso/build-gorics-web-iso.sh")
 MARKER = "GORICS_VISIBLE_WINDOW_READY"
 
 
-def replace_once(text: str, old: str, new: str, label: str) -> str:
-    count = text.count(old)
+def sub_once(text: str, pattern: str, replacement: str, label: str, flags: int = 0) -> str:
+    updated, count = re.subn(pattern, replacement, text, count=1, flags=flags)
     if count != 1:
         raise RuntimeError(f"{label}: expected one match, found {count}")
-    return text.replace(old, new, 1)
+    return updated
 
 
 def validate(text: str) -> None:
@@ -36,18 +37,15 @@ def main() -> None:
         print("visible desktop patch already present")
         return
 
-    text = replace_once(
-        text,
-        "x11-xserver-utils\nopenbox",
-        "x11-xserver-utils\nx11-utils\nopenbox",
-        "x11 utility package",
-    )
+    if "x11-utils\n" not in text:
+        text = sub_once(
+            text,
+            r"(?m)^x11-xserver-utils$",
+            "x11-xserver-utils\nx11-utils",
+            "x11 utility package",
+        )
 
-    desktop_anchor = """chmod +x config/includes.chroot/etc/skel/Desktop/FILE-MANAGER.desktop
-cp config/includes.chroot/etc/skel/Desktop/FILE-MANAGER.desktop config/includes.chroot/root/Desktop/FILE-MANAGER.desktop
-
-"""
-    desktop_assets = desktop_anchor + r"""mkdir -p config/includes.chroot/usr/share/backgrounds
+    visual_assets = r'''mkdir -p config/includes.chroot/usr/share/backgrounds
 cat > config/includes.chroot/usr/share/backgrounds/gorics.xpm <<'EOF'
 /* XPM */
 static char * gorics_xpm[] = {
@@ -89,37 +87,35 @@ exec /bin/sh -i
 EOF
 chmod +x config/includes.chroot/usr/local/bin/gorics-visible-terminal
 
-"""
-    text = replace_once(text, desktop_anchor, desktop_assets, "desktop visual assets")
+'''
+    text = sub_once(
+        text,
+        r"(?m)^(cat > config/includes\.chroot/etc/skel/\.config/pcmanfm/LXDE/desktop-items-0\.conf <<'EOF')$",
+        visual_assets + r"\1",
+        "visual assets insertion",
+    )
 
-    text = replace_once(text, "wallpaper_mode=color\nwallpaper=", "wallpaper_mode=stretch\nwallpaper=/usr/share/backgrounds/gorics.xpm", "desktop wallpaper")
+    text = text.replace("wallpaper_mode=color", "wallpaper_mode=stretch", 1)
+    text = sub_once(
+        text,
+        r"(?m)^wallpaper=$",
+        "wallpaper=/usr/share/backgrounds/gorics.xpm",
+        "desktop wallpaper",
+    )
     text = text.replace("panel_background_id = 1", "panel_background_id = 0")
     text = text.replace("task_active_background_id = 1", "task_active_background_id = 0")
     text = text.replace("tooltip_background_id = 1", "tooltip_background_id = 0")
 
-    autostart_anchor = """EOF
-cp config/includes.chroot/etc/skel/.config/openbox/autostart config/includes.chroot/root/.config/openbox/autostart
+    text = sub_once(
+        text,
+        r"(?m)^(cp config/includes\.chroot/etc/skel/\.config/openbox/autostart config/includes\.chroot/root/\.config/openbox/autostart)$",
+        "chmod +x config/includes.chroot/etc/skel/.config/openbox/autostart\n"
+        r"\1"
+        "\nchmod +x config/includes.chroot/root/.config/openbox/autostart",
+        "autostart executable",
+    )
 
-cat > config/includes.chroot/usr/local/bin/gorics-session <<'EOF'
-#!/bin/sh
-set -eu
-export HOME=/root
-export USER=root
-export LOGNAME=root
-export DISPLAY=:0
-export XDG_RUNTIME_DIR=/run/gorics-x
-export XDG_CURRENT_DESKTOP=OPENBOX
-export DESKTOP_SESSION=openbox
-exec openbox-session
-EOF
-chmod +x config/includes.chroot/usr/local/bin/gorics-session
-"""
-    direct_session = """EOF
-chmod +x config/includes.chroot/etc/skel/.config/openbox/autostart
-cp config/includes.chroot/etc/skel/.config/openbox/autostart config/includes.chroot/root/.config/openbox/autostart
-chmod +x config/includes.chroot/root/.config/openbox/autostart
-
-cat > config/includes.chroot/usr/local/bin/gorics-session <<'EOF'
+    direct_session = r'''cat > config/includes.chroot/usr/local/bin/gorics-session <<'EOF'
 #!/bin/sh
 set -eu
 export HOME=/root
@@ -143,13 +139,22 @@ xterm -hold -title 'GORICS Control Center' -geometry 84x26+92+72 -fa 'DejaVu San
 (sleep 4; xmessage -name GORICSWelcome -title 'GORICS Linux GUI Ready' -center -buttons 'Continue:0' 'GORICS Linux GUI is running in the browser.' > /var/log/gorics-xmessage.log 2>&1) &
 wait "$openbox_pid"
 EOF
-chmod +x config/includes.chroot/usr/local/bin/gorics-session
-"""
-    text = replace_once(text, autostart_anchor, direct_session, "direct visible session")
+chmod +x config/includes.chroot/usr/local/bin/gorics-session'''
+    text = sub_once(
+        text,
+        r"cat > config/includes\.chroot/usr/local/bin/gorics-session <<'EOF'\n.*?\nEOF\nchmod \+x config/includes\.chroot/usr/local/bin/gorics-session",
+        direct_session,
+        "direct visible session",
+        flags=re.DOTALL,
+    )
 
-    old_ready = """ExecStart=/bin/sh -c 'i=0; while [ "$i" -lt 300 ]; do if pgrep -x openbox >/dev/null && pgrep -x tint2 >/dev/null && pgrep -x pcmanfm >/dev/null && pgrep -x xterm >/dev/null; then printf "GORICS_OPENBOX_READY\nGORICS_TINT2_READY\nGORICS_PCMANFM_READY\nGORICS_XTERM_READY\nGORICS_WEB_GUI_READY\n" > /dev/ttyS0; exit 0; fi; i=$((i+1)); sleep 1; done; printf "GORICS_WEB_GUI_FAILED\n" > /dev/ttyS0; for name in openbox tint2 pcmanfm xterm; do pgrep -a -x "$name" > /dev/ttyS0 2>&1 || true; done; systemctl --no-pager status gorics-x.service > /dev/ttyS0 2>&1 || true; for f in /var/log/gorics-xorg.log /var/log/gorics-tint2.log /var/log/gorics-pcmanfm.log /var/log/gorics-xterm.log; do printf "--- %s ---\n" "$f" > /dev/ttyS0; cat "$f" > /dev/ttyS0 2>&1 || true; done; exit 1'"""
-    new_ready = """ExecStart=/bin/sh -c 'i=0; while [ "$i" -lt 300 ]; do DISPLAY=:0 xwininfo -root -tree > /tmp/gorics-window-tree 2>&1 || true; if pgrep -x openbox >/dev/null && pgrep -x tint2 >/dev/null && pgrep -x pcmanfm >/dev/null && pgrep -x xterm >/dev/null && grep -q "GORICS Control Center" /tmp/gorics-window-tree; then cat /tmp/gorics-window-tree > /dev/ttyS0 2>&1 || true; printf "GORICS_OPENBOX_READY\nGORICS_TINT2_READY\nGORICS_PCMANFM_READY\nGORICS_XTERM_READY\nGORICS_VISIBLE_WINDOW_READY\nGORICS_WEB_GUI_READY\n" > /dev/ttyS0; exit 0; fi; i=$((i+1)); sleep 1; done; printf "GORICS_WEB_GUI_FAILED\n" > /dev/ttyS0; cat /tmp/gorics-window-tree > /dev/ttyS0 2>&1 || true; for name in openbox tint2 pcmanfm xterm xmessage; do pgrep -a -x "$name" > /dev/ttyS0 2>&1 || true; done; systemctl --no-pager status gorics-x.service > /dev/ttyS0 2>&1 || true; for f in /var/log/gorics-xorg.log /var/log/gorics-openbox.log /var/log/gorics-tint2.log /var/log/gorics-pcmanfm.log /var/log/gorics-xterm.log /var/log/gorics-xmessage.log; do printf "--- %s ---\n" "$f" > /dev/ttyS0; cat "$f" > /dev/ttyS0 2>&1 || true; done; exit 1'"""
-    text = replace_once(text, old_ready, new_ready, "mapped window readiness")
+    ready_line = r'''ExecStart=/bin/sh -c 'i=0; while [ "$i" -lt 300 ]; do DISPLAY=:0 xwininfo -root -tree > /tmp/gorics-window-tree 2>&1 || true; if pgrep -x openbox >/dev/null && pgrep -x tint2 >/dev/null && pgrep -x pcmanfm >/dev/null && pgrep -x xterm >/dev/null && grep -q "GORICS Control Center" /tmp/gorics-window-tree; then cat /tmp/gorics-window-tree > /dev/ttyS0 2>&1 || true; printf "GORICS_OPENBOX_READY\nGORICS_TINT2_READY\nGORICS_PCMANFM_READY\nGORICS_XTERM_READY\nGORICS_VISIBLE_WINDOW_READY\nGORICS_WEB_GUI_READY\n" > /dev/ttyS0; exit 0; fi; i=$((i+1)); sleep 1; done; printf "GORICS_WEB_GUI_FAILED\n" > /dev/ttyS0; cat /tmp/gorics-window-tree > /dev/ttyS0 2>&1 || true; for name in openbox tint2 pcmanfm xterm xmessage; do pgrep -a -x "$name" > /dev/ttyS0 2>&1 || true; done; systemctl --no-pager status gorics-x.service > /dev/ttyS0 2>&1 || true; for f in /var/log/gorics-xorg.log /var/log/gorics-openbox.log /var/log/gorics-tint2.log /var/log/gorics-pcmanfm.log /var/log/gorics-xterm.log /var/log/gorics-xmessage.log; do printf "--- %s ---\n" "$f" > /dev/ttyS0; cat "$f" > /dev/ttyS0 2>&1 || true; done; exit 1' '''.rstrip()
+    text = sub_once(
+        text,
+        r"(?m)^ExecStart=/bin/sh -c 'i=0; while \[ \"\$i\" -lt 300 \]; do if pgrep.*exit 1'$",
+        ready_line,
+        "mapped window readiness",
+    )
 
     validate(text)
     TARGET.write_text(text, encoding="utf-8")
