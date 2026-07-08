@@ -23,7 +23,18 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Wait for direct i386 public files
+      - name: Record verification start
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          printf '{"success":false,"state":"running","run_id":"%s","architecture":"i386","desktop":"direct-xorg-openbox","started_at":"%s"}\n' "$GITHUB_RUN_ID" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > os/iso/real-multiboot-status.json
+          git add os/iso/real-multiboot-status.json
+          git commit -m "Record real multiboot verification start [skip ci]" || true
+          git push origin HEAD:main
+
+      - name: Verify direct i386 public files
         id: public
         continue-on-error: true
         run: |
@@ -100,9 +111,9 @@ jobs:
           cat > /tmp/verify.mjs <<'JS'
           import { chromium } from 'playwright';
           import fs from 'node:fs';
-
           const result = {
             success: false,
+            state: 'browser-running',
             architecture: 'i386',
             desktop: 'direct-xorg-openbox',
             boot_mode: 'direct-kernel-initrd-plus-iso',
@@ -115,23 +126,15 @@ jobs:
           let browser;
           let page;
           try {
-            browser = await chromium.launch({
-              headless: true,
-              args: ['--disable-dev-shm-usage', '--no-sandbox'],
-            });
+            browser = await chromium.launch({ headless: true, args: ['--disable-dev-shm-usage', '--no-sandbox'] });
             page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
             page.setDefaultTimeout(120000);
             page.on('console', message => result.console.push(`${message.type()}: ${message.text()}`));
             page.on('pageerror', error => result.console.push(`pageerror: ${error.message}`));
-            page.on('requestfailed', request => result.failed_requests.push({
-              url: request.url(),
-              error: request.failure()?.errorText || 'unknown',
-            }));
-
+            page.on('requestfailed', request => result.failed_requests.push({ url: request.url(), error: request.failure()?.errorText || 'unknown' }));
             await page.goto(process.env.VERIFY_URL, { waitUntil: 'domcontentloaded', timeout: 120000 });
             await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('ready: keyboard, touch and pointer bridge installed'));
             await page.click('#boot-btn');
-
             await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('ISO9660 and El Torito verified'), null, { timeout: 240000 });
             await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('runtime loaded'), null, { timeout: 240000 });
             await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('emulator-started'), null, { timeout: 600000 });
@@ -139,7 +142,6 @@ jobs:
               const canvas = document.querySelector('#screen canvas');
               return canvas && canvas.width >= 320 && canvas.height >= 200 && getComputedStyle(canvas).display !== 'none';
             }, null, { timeout: 900000 });
-
             await page.waitForTimeout(15000);
             const details = await page.evaluate(() => {
               const canvas = document.querySelector('#screen canvas');
@@ -152,25 +154,25 @@ jobs:
                 text_display: textScreen ? getComputedStyle(textScreen).display : 'missing',
                 screen_active: document.querySelector('#screen')?.classList.contains('active') || false,
                 boot_button_text: document.querySelector('#boot-btn')?.textContent || '',
-                log_tail: log.split('\n').slice(-120),
+                log_tail: log.split('\n').slice(-160),
               };
             });
             Object.assign(result, details, {
               success: details.screen_active && details.canvas_width >= 320 && details.canvas_height >= 200 && details.canvas_display !== 'none',
+              state: 'completed',
               completed_at: new Date().toISOString(),
             });
             await page.screenshot({ path: '/tmp/real-multiboot-proof.png', fullPage: true });
           } catch (error) {
+            result.state = 'failed';
             result.error = error?.stack || String(error);
             result.completed_at = new Date().toISOString();
-            try {
-              if (page) {
-                const log = await page.locator('#log').textContent().catch(() => '');
-                result.log_tail = (log || '').split('\n').slice(-160);
-                result.page_url = page.url();
-                await page.screenshot({ path: '/tmp/real-multiboot-proof.png', fullPage: true }).catch(() => {});
-              }
-            } catch {}
+            if (page) {
+              const log = await page.locator('#log').textContent().catch(() => '');
+              result.log_tail = (log || '').split('\n').slice(-200);
+              result.page_url = page.url();
+              await page.screenshot({ path: '/tmp/real-multiboot-proof.png', fullPage: true }).catch(() => {});
+            }
           } finally {
             await browser?.close().catch(() => {});
             fs.writeFileSync('/tmp/real-multiboot-verification.json', JSON.stringify(result, null, 2) + '\n');
@@ -183,7 +185,7 @@ jobs:
         if: always()
         run: |
           if test ! -s /tmp/real-multiboot-verification.json; then
-            printf '{"success":false,"run_id":"%s","architecture":"i386","desktop":"direct-xorg-openbox","public_files_outcome":"%s","error":"browser verification did not run or produce a result"}\n' "$GITHUB_RUN_ID" "${{ steps.public.outcome }}" > /tmp/real-multiboot-verification.json
+            printf '{"success":false,"state":"failed","run_id":"%s","architecture":"i386","desktop":"direct-xorg-openbox","public_files_outcome":"%s","error":"browser verification did not run or produce a result"}\n' "$GITHUB_RUN_ID" "${{ steps.public.outcome }}" > /tmp/real-multiboot-verification.json
           fi
 
       - name: Upload proof
