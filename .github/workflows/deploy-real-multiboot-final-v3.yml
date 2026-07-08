@@ -91,7 +91,8 @@ jobs:
 
           meta = json.loads(Path('/tmp/final-v3-iso-meta.json').read_text())
           assert meta['architecture'] == 'i386'
-          assert meta['release_version'] == 'r12'
+          assert meta.get('release') == 'r12-visible-desktop' or meta.get('release_version') == 'r12'
+          assert meta.get('name') == 'gorics-linux-gui-web-i386-r12.iso'
           for path_name, key in (('final-v3-vmlinuz', 'kernel'), ('final-v3-initrd.img', 'initrd')):
               data = (Path('/tmp') / path_name).read_bytes()
               expected = meta[key]
