@@ -1,4 +1,4 @@
-name: Fix v86 Chunk Filenames
+name: Fix Exact v86 Chunk Filenames
 
 on:
   workflow_dispatch:
@@ -16,72 +16,114 @@ concurrency:
 
 jobs:
   fix:
-    runs-on: ubuntu-latest
-    timeout-minutes: 40
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
     steps:
       - name: Checkout all branches
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Add v86-compatible .iso suffix to every chunk
+      - name: Create the exact name-range.iso aliases requested by v86
         run: |
+          set -euo pipefail
           git config user.name github-actions
           git config user.email github-actions@github.com
           git fetch origin os-assets
           git checkout -B os-assets origin/os-assets
           DIR='os/real-multiboot/assets/v86-parts'
           test -d "$DIR"
-          COUNT=0
-          for src in "$DIR"/gorics-linux-gui-web-i386.iso-[0-9]*-[0-9]*; do
-            test -f "$src" || continue
-            case "$src" in
-              *.iso) continue ;;
-            esac
-            cp "$src" "$src.iso"
-            COUNT=$((COUNT + 1))
-          done
-          echo "created compatible chunk aliases: $COUNT"
-          test "$COUNT" = 21
-          test -f "$DIR/gorics-linux-gui-web-i386.iso-0-16777216.iso"
-          test -f "$DIR/gorics-linux-gui-web-i386.iso-335544320-352321536.iso"
-          git add "$DIR"
-          git commit -m 'Add v86-compatible ISO chunk filename aliases'
-          git push origin HEAD:os-assets
 
-      - name: Verify first and last raw chunk aliases
-        run: |
-          ROOT='https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts'
-          FIRST="$ROOT/gorics-linux-gui-web-i386.iso-0-16777216.iso"
-          LAST="$ROOT/gorics-linux-gui-web-i386.iso-335544320-352321536.iso"
-          READY=0
-          for attempt in $(seq 1 60); do
-            FIRST_CODE=$(curl -sS -L --max-time 90 -r 32768-36863 -o /tmp/first.bin -w '%{http_code}' "$FIRST")
-            LAST_CODE=$(curl -sS -L --max-time 90 -r 0-4095 -o /tmp/last.bin -w '%{http_code}' "$LAST")
-            if test "$FIRST_CODE" = 206 && test "$LAST_CODE" = 206 \
-              && test "$(stat -c %s /tmp/first.bin)" = 4096 \
-              && test "$(stat -c %s /tmp/last.bin)" = 4096; then
-              READY=1
-              break
-            fi
-            echo "chunk aliases not ready attempt=$attempt first=$FIRST_CODE last=$LAST_CODE"
-            sleep 5
-          done
-          test "$READY" = 1
           python3 - <<'PY'
+          import re
+          import shutil
           from pathlib import Path
-          data = Path('/tmp/first.bin').read_bytes()
-          assert data[1:6] == b'CD001'
-          assert data[2049:2054] == b'CD001'
-          assert b'EL TORITO' in data[2055:2087]
-          print('first and last v86 chunk aliases verified')
+
+          directory = Path('os/real-multiboot/assets/v86-parts')
+          source_pattern = re.compile(r'^gorics-linux-gui-web-i386\.iso-(\d+)-(\d+)$')
+          exact_pattern = re.compile(r'^gorics-linux-gui-web-i386-(\d+)-(\d+)\.iso$')
+          chunk_size = 16 * 1024 * 1024
+          sources = []
+
+          for source in sorted(directory.iterdir()):
+              match = source_pattern.match(source.name)
+              if match:
+                  sources.append((int(match.group(1)), int(match.group(2)), source))
+
+          if len(sources) != 21:
+              raise SystemExit(f'expected 21 source chunks, found {len(sources)}')
+
+          created = 0
+          for index, (start, end, source) in enumerate(sources):
+              expected_start = index * chunk_size
+              expected_end = expected_start + chunk_size
+              if (start, end) != (expected_start, expected_end):
+                  raise SystemExit(f'non-contiguous source chunk: {source.name}')
+              if source.stat().st_size != chunk_size:
+                  raise SystemExit(f'invalid source chunk size: {source.name}')
+              destination = directory / f'gorics-linux-gui-web-i386-{start}-{end}.iso'
+              if destination.exists():
+                  if destination.stat().st_size != source.stat().st_size:
+                      raise SystemExit(f'alias size mismatch: {destination.name}')
+              else:
+                  shutil.copyfile(source, destination)
+                  created += 1
+
+          aliases = []
+          for path in sorted(directory.iterdir()):
+              match = exact_pattern.match(path.name)
+              if match:
+                  aliases.append((int(match.group(1)), int(match.group(2)), path))
+          if len(aliases) != 21:
+              raise SystemExit(f'expected 21 exact v86 aliases, found {len(aliases)}')
+          for index, (start, end, path) in enumerate(aliases):
+              if start != index * chunk_size or end != (index + 1) * chunk_size:
+                  raise SystemExit(f'bad exact alias range: {path.name}')
+              if path.stat().st_size != chunk_size:
+                  raise SystemExit(f'bad exact alias size: {path.name}')
+
+          print(f'created={created} verified={len(aliases)} first={aliases[0][2].name} last={aliases[-1][2].name}')
           PY
 
-      - name: Return to main and dispatch final GUI verifier
+          git add "$DIR"
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add exact v86 name-range.iso chunk aliases'
+            git push origin HEAD:os-assets
+          else
+            echo 'Exact v86 aliases already exist.'
+          fi
+
+      - name: Verify all 21 exact raw chunk aliases
+        run: |
+          set -euo pipefail
+          ROOT='https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts'
+          CHUNK=$((16 * 1024 * 1024))
+          for index in $(seq 0 20); do
+            start=$((index * CHUNK))
+            end=$((start + CHUNK))
+            name="gorics-linux-gui-web-i386-${start}-${end}.iso"
+            READY=0
+            for attempt in $(seq 1 60); do
+              stamp="${GITHUB_RUN_ID}-${index}-${attempt}-$(date +%s)"
+              CODE=$(curl -sS -L --max-time 90 -r 0-15 -o /tmp/chunk.bin -w '%{http_code}' "$ROOT/$name?exact=$stamp" || true)
+              BYTES=$(stat -c %s /tmp/chunk.bin 2>/dev/null || echo 0)
+              if { test "$CODE" = 206 || test "$CODE" = 200; } && test "$BYTES" -ge 16; then
+                echo "verified $name HTTP=$CODE bytes=$BYTES"
+                READY=1
+                break
+              fi
+              echo "not ready $name attempt=$attempt HTTP=$CODE bytes=$BYTES"
+              sleep 5
+            done
+            test "$READY" = 1
+          done
+
+      - name: Dispatch final browser GUI verifier
         id: verifier
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          set -euo pipefail
           git checkout main
           BEFORE=$(gh run list --workflow verify-q-gui-final.yml --limit 1 --json databaseId --jq '.[0].databaseId // 0')
           gh workflow run verify-q-gui-final.yml --ref main
@@ -98,13 +140,20 @@ jobs:
           echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
           echo "final GUI verifier run=$RUN_ID"
 
-      - name: Record final verifier run
+      - name: Record exact filename repair and verifier run
         env:
           FINAL_RUN_ID: ${{ steps.verifier.outputs.run_id }}
         run: |
+          set -euo pipefail
           git fetch origin main
           git checkout -B main origin/main
-          printf '{"state":"dispatched","fix":"v86 chunk aliases with trailing .iso","chunk_aliases":21,"final_run_id":"%s"}\n' "$FINAL_RUN_ID" > os/iso/v86-chunk-filename-fix.json
+          printf '{"state":"dispatched","fix":"exact v86 name-range.iso aliases","chunk_aliases":21,"final_run_id":"%s"}\n' "$FINAL_RUN_ID" > os/iso/v86-chunk-filename-fix.json
           git add os/iso/v86-chunk-filename-fix.json
-          git commit -m 'Record v86 chunk filename fix [skip ci]' || true
-          git push origin HEAD:main
+          git commit -m 'Record exact v86 chunk filename repair [skip ci]' || true
+          for attempt in $(seq 1 8); do
+            if git push origin HEAD:main; then exit 0; fi
+            git fetch origin main
+            git rebase origin/main
+            sleep $((attempt * 3))
+          done
+          exit 1
