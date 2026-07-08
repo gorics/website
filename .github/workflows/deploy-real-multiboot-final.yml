@@ -30,7 +30,9 @@ jobs:
       - name: Build atomic multiboot Pages tree
         env:
           GH_TOKEN: ${{ github.token }}
-        run: bash scripts/build-real-multiboot-pages-final.sh _site
+        run: |
+          set -o pipefail
+          bash scripts/build-real-multiboot-pages-final.sh _site 2>&1 | tee /tmp/final-build.log
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -118,6 +120,7 @@ jobs:
         with:
           name: final-real-multiboot-proof-${{ github.run_id }}
           path: |
+            /tmp/final-build.log
             /tmp/final-real-multiboot-verification.json
             /tmp/final-*.png
             /tmp/final-index.html
