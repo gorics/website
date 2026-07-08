@@ -1,0 +1,146 @@
+name: Verify t Openbox Final
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/verify-t-openbox-final.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: verify-t-openbox-final
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Record definitive verification start
+        run: |
+          printf '{"success":false,"state":"running","version":"t","run_id":"%s","started_at":"%s"}\n' "$GITHUB_RUN_ID" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > /tmp/t-openbox-status.json
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          cp /tmp/t-openbox-status.json os/iso/t-openbox-final-status.json
+          git add os/iso/t-openbox-final-status.json
+          git commit -m 'Record definitive t Openbox verification start [skip ci]' || true
+          git push origin HEAD:main
+
+      - name: Wait for public t CDN bridge
+        run: |
+          PAGE='https://gorics.github.io/website/os/real-multiboot'
+          READY=0
+          for attempt in $(seq 1 120); do
+            stamp="$GITHUB_RUN_ID-$attempt-$(date +%s)"
+            if curl -fsSL --max-time 60 "$PAGE/?t-final=$stamp" -o /tmp/index.html \
+              && grep -q 'ISO page. t' /tmp/index.html \
+              && grep -q 'chunk-compat.js?v=t' /tmp/index.html \
+              && curl -fsSL --max-time 60 "$PAGE/chunk-compat.js?t-final=$stamp" -o /tmp/chunk-compat.js \
+              && grep -q 'cdn.jsdelivr.net' /tmp/chunk-compat.js \
+              && grep -q 'raw GitHub fallback' /tmp/chunk-compat.js \
+              && curl -fsSL --max-time 60 "$PAGE/app.js?t-final=$stamp" -o /tmp/app.js \
+              && grep -q "screen.classList.add('active')" /tmp/app.js \
+              && grep -q "\['runtime', runtime, 50_000\]" /tmp/app.js \
+              && curl -fsSL --max-time 60 "$PAGE/assets/iso-meta.json?t-final=$stamp" -o /tmp/meta.json; then
+              python3 - <<'PY' && READY=1 && break
+          import json
+          from pathlib import Path
+          m=json.loads(Path('/tmp/meta.json').read_text())
+          assert m['name']=='gorics-linux-gui-web-i386.iso'
+          assert m['architecture']=='i386'
+          assert m['page_version']=='t'
+          assert m['chunked'] is True
+          assert m['direct_boot'] is True
+          assert m['complete_ui_verified'] is True
+          assert m['parts']==21
+          PY
+            fi
+            echo "public t CDN bridge not ready attempt=$attempt"
+            sleep 10
+          done
+          test "$READY" = 1
+          node --check /tmp/app.js
+          node --check /tmp/chunk-compat.js
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Build t verifier
+        run: |
+          cp scripts/verify-public-q-v86.mjs verify-public-t-v86.mjs
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('verify-public-t-v86.mjs')
+          text=p.read_text()
+          text=text.replace("initial.includes('page. q')", "initial.includes('page. t')")
+          text=text.replace('00-page-q.png', '00-page-t.png')
+          text=text.replace('public q graphical Openbox readiness timeout', 'public t graphical Openbox readiness timeout')
+          p.write_text(text)
+          PY
+          node --check verify-public-t-v86.mjs
+
+      - name: Boot t Linux and require complete Openbox desktop
+        id: browser
+        continue-on-error: true
+        env:
+          TARGET_URL: https://gorics.github.io/website/os/real-multiboot/?definitive-t=${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          rm -rf browser-proof
+          mkdir -p browser-proof
+          set -o pipefail
+          timeout --signal=TERM --kill-after=30s 22m node verify-public-t-v86.mjs 2>&1 | tee browser-proof/runner.log
+
+      - name: Upload definitive proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: definitive-t-openbox-proof-${{ github.run_id }}
+          path: browser-proof/
+          if-no-files-found: warn
+
+      - name: Record definitive result
+        if: always()
+        run: |
+          if test ! -s browser-proof/result.json; then
+            printf '{"success":false,"state":"no-result","version":"t","run_id":"%s"}\n' "$GITHUB_RUN_ID" > /tmp/t-openbox-status.json
+          else
+            cp browser-proof/result.json /tmp/t-openbox-status.json
+          fi
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          cp /tmp/t-openbox-status.json os/iso/t-openbox-final-status.json
+          cp /tmp/t-openbox-status.json os/iso/real-multiboot-status.json
+          git add os/iso/t-openbox-final-status.json os/iso/real-multiboot-status.json
+          git commit -m 'Record definitive t Openbox browser result [skip ci]' || true
+          git push origin HEAD:main
+
+      - name: Require definitive success
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          result=json.loads(Path('/tmp/t-openbox-status.json').read_text())
+          print(json.dumps(result,indent=2))
+          assert result.get('success') is True
+          assert result.get('emulator_started') is True
+          assert result.get('xorg_ready') is True
+          assert result.get('gui_ready') is True
+          assert result.get('graphical_canvas') is True
+          PY
