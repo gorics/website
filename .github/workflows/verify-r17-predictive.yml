@@ -147,10 +147,12 @@ jobs:
           RUN_STATUS: ${{ job.status }}
           RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          gh issue comment 134 --repo "$GITHUB_REPOSITORY" --body "R17 예측 선로딩 검증 완료
-
-- run: $GITHUB_RUN_ID
-- conclusion: $RUN_STATUS
-- head: $GITHUB_SHA
-- url: $RUN_URL
-- recorded: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          body=$(printf '%s\n' \
+            'R17 예측 선로딩 검증 완료' \
+            '' \
+            "- run: $GITHUB_RUN_ID" \
+            "- conclusion: $RUN_STATUS" \
+            "- head: $GITHUB_SHA" \
+            "- url: $RUN_URL" \
+            "- recorded: $(date -u +%Y-%m-%dT%H:%M:%SZ)")
+          gh issue comment 134 --repo "$GITHUB_REPOSITORY" --body "$body"
