@@ -38,4 +38,4 @@ jobs:
           git commit -m 'Record final V2 workflow runs [skip ci]' || true
           git push origin HEAD:main
 
-# refresh: multi-CDN final verification
+# refresh: Playwright root resolution final run
