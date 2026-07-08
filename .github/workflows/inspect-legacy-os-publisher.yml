@@ -1,0 +1,39 @@
+name: Inspect Legacy OS Publisher
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/inspect-legacy-os-publisher.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Record publisher runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run list --workflow publish-legacy-os-assets.yml --limit 20 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/legacy.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          runs = json.loads(Path('/tmp/legacy.json').read_text())
+          result = {'latest': runs[0] if runs else None, 'runs': runs}
+          Path('os/iso/legacy-publisher-run.json').write_text(json.dumps(result, indent=2) + '\n')
+          print(json.dumps(result, indent=2))
+          PY
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          git add os/iso/legacy-publisher-run.json
+          git commit -m 'Record Legacy OS publisher run [skip ci]' || true
+          git push origin HEAD:main
