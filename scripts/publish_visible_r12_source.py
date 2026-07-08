@@ -32,47 +32,55 @@ if ASSET_NAME not in app or BUILD not in app:
 APP.write_text(app, encoding="utf-8")
 
 html = INDEX.read_text(encoding="utf-8")
-html, meta_count = re.subn(
-    r'(<meta name="gorics-build" content=")[^"]*(")',
-    rf"\g<1>{BUILD}\g<2>",
-    html,
-    count=1,
+
+
+def replace_meta(name: str, value: str) -> int:
+    global html
+    pattern = rf'(<meta name="{re.escape(name)}" content=")[^"]*(")'
+    html, count = re.subn(pattern, rf"\g<1>{value}\g<2>", html, count=1)
+    return count
+
+
+build_meta_count = replace_meta("gorics-build", BUILD)
+deployment_count = replace_meta(
+    "gorics-deployment-marker",
+    f"GORICS Real Multiboot {BUILD}",
 )
-html, deployment_count = re.subn(
-    r'(<meta name="gorics-deployment-marker" content=")[^"]*(")',
-    rf"\g<1>GORICS Real Multiboot {BUILD}\g<2>",
-    html,
-    count=1,
-)
-html, verification_count = re.subn(
-    r'(<meta name="gorics-verification" content=")[^"]*(")',
-    rf"\g<1>{VERIFICATION}\g<2>",
-    html,
-    count=1,
-)
+verification_count = replace_meta("gorics-verification", VERIFICATION)
+
+# Update every local cache-busting token without assuming which optional helpers are present.
 html = re.sub(r"([?&]v=)[A-Za-z0-9._-]+", rf"\g<1>{BUILD}", html)
 html = re.sub(
     r"(\[ready\] GORICS Real Multiboot )[A-Za-z0-9._-]+",
     rf"\g<1>{BUILD}",
     html,
 )
-if meta_count != 1 or deployment_count != 1 or verification_count != 1:
+
+if deployment_count != 1 or verification_count != 1:
     raise SystemExit(
-        "index meta patch failed "
-        f"build={meta_count} deployment={deployment_count} verification={verification_count}"
+        "index core meta patch failed "
+        f"build={build_meta_count} deployment={deployment_count} verification={verification_count}"
     )
+
 required = (
     BUILD,
     VERIFICATION,
     f"app.js?v={BUILD}",
-    f"asset-versioning.js?v={BUILD}",
-    f"safe-diagnostics.js?v={BUILD}",
     f"[ready] GORICS Real Multiboot {BUILD}",
 )
 missing = [marker for marker in required if marker not in html]
 if missing:
-    raise SystemExit(f"R12 index markers missing: {missing}")
+    raise SystemExit(f"R12 index core markers missing: {missing}")
+
+# Any optional local script or stylesheet with a version query must use the same build.
+versioned_paths = re.findall(r'(?:src|href)="(\./[^"?]+\?v=([^"]+))"', html)
+stale = [path for path, version in versioned_paths if version != BUILD]
+if stale:
+    raise SystemExit(f"stale index asset versions remain: {stale}")
+
 INDEX.write_text(html, encoding="utf-8")
 print(
-    f"published source markers asset={ASSET_NAME} build={BUILD} verification={VERIFICATION}"
+    "published source markers "
+    f"asset={ASSET_NAME} build={BUILD} verification={VERIFICATION} "
+    f"versioned_assets={len(versioned_paths)}"
 )
