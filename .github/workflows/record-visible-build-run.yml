@@ -1,0 +1,43 @@
+name: Record Visible Build Run
+
+on:
+  workflow_dispatch: {}
+  push:
+    paths:
+      - '.github/workflows/record-visible-build-run.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Record latest i386 build and R12 publisher
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run list --workflow build-gorics-openbox-i386.yml --limit 5 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,url,event > /tmp/build-runs.json
+          gh run list --workflow publish-visible-desktop-r12-v2.yml --limit 5 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,url,event > /tmp/publish-runs.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          result={
+            'build_runs': json.loads(Path('/tmp/build-runs.json').read_text()),
+            'publish_runs': json.loads(Path('/tmp/publish-runs.json').read_text()),
+          }
+          Path('os/iso/visible-r12-workflow-runs.json').write_text(json.dumps(result,indent=2)+'\n')
+          print(json.dumps(result,indent=2))
+          PY
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          git add os/iso/visible-r12-workflow-runs.json
+          git commit -m 'Record visible R12 workflow runs [skip ci]' || true
+          git push origin HEAD:main
