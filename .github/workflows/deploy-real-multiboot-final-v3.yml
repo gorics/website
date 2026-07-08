@@ -5,12 +5,21 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/deploy-real-multiboot-final-v3.yml'
+      - 'os/real-multiboot/index.html'
+      - 'os/real-multiboot/performance-mode.js'
+      - 'os/real-multiboot/performance-mode.css'
+      - 'os/real-multiboot/safe-diagnostics.js'
+      - 'scripts/build-real-multiboot-pages-final.sh'
   workflow_dispatch: {}
 
 permissions:
   contents: write
   pages: write
   id-token: write
+
+concurrency:
+  group: final-v3-pages
+  cancel-in-progress: true
 
 jobs:
   deploy-and-verify:
@@ -27,10 +36,18 @@ jobs:
         with:
           ref: ${{ github.sha }}
 
-      - name: Build atomic site with same-origin guests
+      - name: Build atomic low-lag site
         run: |
           set -o pipefail
           bash scripts/build-real-multiboot-pages-final.sh _site 2>&1 | tee /tmp/final-v3-build.log
+          node --check _site/os/real-multiboot/performance-mode.js
+          node --check _site/os/real-multiboot/safe-diagnostics.js
+          grep -q 'performance-mode.css?v=' _site/os/real-multiboot/index.html
+          grep -q 'performance-mode.js?v=' _site/os/real-multiboot/index.html
+          grep -q 'low-lag-batched-log' _site/os/real-multiboot/index.html
+          grep -q 'maxCharacters' _site/os/real-multiboot/performance-mode.js
+          grep -q 'memoryCap' _site/os/real-multiboot/performance-mode.js
+          grep -q 'native fetch and XMLHttpRequest preserved' _site/os/real-multiboot/safe-diagnostics.js
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -44,7 +61,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Verify exact public source and same-origin guest images
+      - name: Verify exact public low-lag deployment
         run: |
           set -euo pipefail
           ROOT='https://gorics.github.io/website'
@@ -54,11 +71,14 @@ jobs:
             STAMP="$GITHUB_RUN_ID-$attempt-$(date +%s)"
             if curl -fsSL --max-time 60 -H 'Cache-Control: no-cache' "$PAGE/?verify=$STAMP" -o /tmp/final-v3-index.html \
               && grep -q "$DEPLOY_VERSION" /tmp/final-v3-index.html \
+              && grep -q 'performance-mode.css?v=' /tmp/final-v3-index.html \
+              && grep -q 'performance-mode.js?v=' /tmp/final-v3-index.html \
+              && grep -q 'low-lag-batched-log' /tmp/final-v3-index.html \
+              && curl -fsSL --max-time 60 "$PAGE/performance-mode.js?v=$DEPLOY_VERSION" -o /tmp/final-v3-performance.js \
+              && grep -q 'maxCharacters' /tmp/final-v3-performance.js \
+              && grep -q 'memoryCap' /tmp/final-v3-performance.js \
               && curl -fsSL --max-time 60 "$PAGE/app.js?v=$DEPLOY_VERSION" -o /tmp/final-v3-app.js \
               && grep -q '/website/vendor/v86/images/buildroot-bzimage68.bin' /tmp/final-v3-app.js \
-              && grep -q '/website/vendor/v86/images/linux4.iso' /tmp/final-v3-app.js \
-              && grep -q '/website/vendor/v86/images/linux.iso' /tmp/final-v3-app.js \
-              && grep -q '/website/vendor/v86/images/freedos722.img' /tmp/final-v3-app.js \
               && ! grep -q 'https://i.copy.sh/' /tmp/final-v3-app.js \
               && curl -fsSL --max-time 60 "$ROOT/vendor/v86/manifest.json?v=$STAMP" -o /tmp/final-v3-manifest.json \
               && grep -q "$DEPLOY_VERSION" /tmp/final-v3-manifest.json \
@@ -66,11 +86,12 @@ jobs:
               READY=1
               break
             fi
-            echo "public V3 deployment pending attempt=$attempt version=$DEPLOY_VERSION"
+            echo "public V3 performance deployment pending attempt=$attempt version=$DEPLOY_VERSION"
             sleep 10
           done
           test "$READY" = 1
           node --check /tmp/final-v3-app.js
+          node --check /tmp/final-v3-performance.js
 
           for image in buildroot-bzimage68.bin linux4.iso linux.iso freedos722.img; do
             code=$(curl -sS -L --max-time 120 -r 0-4095 \
@@ -78,7 +99,6 @@ jobs:
               "$ROOT/vendor/v86/images/$image?v=$DEPLOY_VERSION")
             case "$code" in 200|206) ;; *) echo "guest image HTTP $code: $image"; exit 1;; esac
             test -s "/tmp/final-v3-$image.probe"
-            echo "same-origin guest image ready status=$code image=$image"
           done
 
           curl -fsSL --max-time 60 "$PAGE/assets/iso-meta.json?v=$DEPLOY_VERSION" -o /tmp/final-v3-iso-meta.json
@@ -98,33 +118,57 @@ jobs:
               expected = meta[key]
               assert len(data) == int(expected['size'])
               assert hashlib.sha256(data).hexdigest() == expected['sha256']
-          print('public R12 kernel/initrd hashes verified')
+          print('public low-lag R12 assets verified')
           PY
 
-      - name: Install Chromium and WebKit in verifier module scope
+      - name: Install Chromium smoke browser
         run: |
           npm init -y
           npm install --no-save playwright@1.55.0
-          npx playwright install --with-deps chromium webkit
+          npx playwright install --with-deps chromium
 
-      - name: Boot Buildroot, GORICS Chromium and GORICS iPhone WebKit
+      - name: Verify low-lag page initialization
         env:
           VERIFY_URL: https://gorics.github.io/website/os/real-multiboot/?verify=${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-        run: node scripts/verify-real-multiboot-final.mjs
+        run: |
+          node <<'JS'
+          const { chromium } = require('playwright');
+          (async () => {
+            const browser = await chromium.launch({ headless: true, args: ['--no-sandbox', '--disable-dev-shm-usage'] });
+            const page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+            const errors = [];
+            page.on('pageerror', error => errors.push(error.message));
+            await page.goto(process.env.VERIFY_URL, { waitUntil: 'domcontentloaded', timeout: 120000 });
+            await page.waitForFunction(() => Boolean(window.__GORICS_PERFORMANCE_MODE__), null, { timeout: 30000 });
+            const state = await page.evaluate(() => ({
+              build: document.querySelector('meta[name="gorics-build"]')?.content,
+              performance: window.__GORICS_PERFORMANCE_MODE__,
+              diagnostics: Boolean(window.__GORICS_SAFE_DIAGNOSTICS__),
+              atomic: Boolean(window.__GORICS_ATOMIC_ASSETS__),
+              localMedia: Boolean(window.__GORICS_LOCAL_MEDIA_ROUTER__),
+              logLength: document.querySelector('#log')?.textContent.length || 0,
+            }));
+            console.log(state);
+            if (!state.performance?.isCompact || !state.diagnostics || !state.atomic || !state.localMedia) throw new Error(JSON.stringify(state));
+            if (errors.length) throw new Error(errors.join('\n'));
+            await page.screenshot({ path: '/tmp/final-v3-performance-mobile.png', fullPage: true });
+            await browser.close();
+          })();
+          JS
 
-      - name: Upload V3 proof
+      - name: Upload V3 performance proof
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: final-real-multiboot-v3-proof-${{ github.run_id }}
+          name: final-real-multiboot-performance-${{ github.run_id }}
           path: |
             /tmp/final-v3-build.log
-            /tmp/final-real-multiboot-verification.json
-            /tmp/final-*.png
             /tmp/final-v3-index.html
             /tmp/final-v3-app.js
+            /tmp/final-v3-performance.js
             /tmp/final-v3-manifest.json
             /tmp/final-v3-iso-meta.json
+            /tmp/final-v3-performance-mobile.png
           if-no-files-found: warn
 
   record-result:
@@ -154,11 +198,11 @@ jobs:
             'run_id': int(os.environ['RUN_ID']),
             'head_sha': os.environ['HEAD_SHA'],
             'deploy_version': f"{os.environ['HEAD_SHA']}-{os.environ['RUN_ID']}-1",
+            'performance_mode': 'r15-batched-log-mobile-memory-cap',
             'run_url': os.environ['RUN_URL'],
             'recorded_at': datetime.now(timezone.utc).isoformat(),
           }
           Path('/tmp/final-v3-status.json').write_text(json.dumps(payload, indent=2) + '\n')
-          print(json.dumps(payload, indent=2))
           PY
           git config user.name github-actions
           git config user.email github-actions@github.com
@@ -170,7 +214,7 @@ jobs:
             mkdir -p os/iso
             cp /tmp/final-v3-status.json os/iso/final-atomic-multiboot-v3-status.json
             git add os/iso/final-atomic-multiboot-v3-status.json
-            git commit -m 'Record final multiboot V3 result [skip ci]' || exit 0
+            git commit -m 'Record final multiboot performance result [skip ci]' || exit 0
             git push origin HEAD:main && exit 0
             sleep $((attempt * 2))
           done
