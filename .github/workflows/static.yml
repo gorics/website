@@ -1,6 +1,12 @@
 name: Deploy static content to Pages
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'os/real-multiboot/**'
+      - '.github/workflows/static.yml'
   workflow_dispatch:
 
 permissions:
@@ -151,7 +157,8 @@ jobs:
           grep -q 'bzimage: { url: kernelUrl }' _site/os/real-multiboot/app.js
           grep -q 'systemd.unit=graphical.target' _site/os/real-multiboot/app.js
           grep -q 'app.js?v=n' _site/os/real-multiboot/index.html
-          grep -q 'page. n' _site/os/real-multiboot/index.html
+          grep -q 'Real Multiboot' _site/os/real-multiboot/index.html
+          grep -q 'responsive-overrides.css?v=n' _site/os/real-multiboot/index.html
           grep -q 'gorics-linux-gui-web-i386.iso' _site/os/real-multiboot/app.js
           test -s _site/vendor/v86/libv86.js
           test -s _site/vendor/v86/v86.wasm
@@ -181,6 +188,7 @@ jobs:
           for attempt in $(seq 1 36); do
             if curl -fsSL --max-time 30 "$PAGE?v=n-$GITHUB_RUN_ID" -o /tmp/index.html \
               && grep -q 'app.js?v=n' /tmp/index.html \
+              && grep -q 'responsive-overrides.css?v=n' /tmp/index.html \
               && curl -fsSL --max-time 30 "$PAGE/assets/iso-meta.json?v=$GITHUB_RUN_ID" -o /tmp/meta.json \
               && grep -q 'openbox-tint2-pcmanfm-xterm' /tmp/meta.json \
               && curl -fsSL --max-time 30 "$BASE/vendor/v86/libv86.js?v=$GITHUB_RUN_ID" -o /tmp/libv86.js \
