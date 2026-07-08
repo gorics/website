@@ -22,6 +22,7 @@
   let watchdog = null;
   let inputLogged = false;
   let touchActive = false;
+  let lastTouch = null;
 
   const actions = $('.actions');
   const keyboardButton = document.createElement('button');
@@ -37,6 +38,7 @@
   phoneKeyboard.id = 'phone-keyboard';
   phoneKeyboard.className = 'phone_keyboard';
   phoneKeyboard.type = 'text';
+  phoneKeyboard.inputMode = 'text';
   phoneKeyboard.autocomplete = 'off';
   phoneKeyboard.autocapitalize = 'off';
   phoneKeyboard.autocorrect = 'off';
@@ -77,6 +79,7 @@
   }
 
   function openVirtualKeyboard() {
+    if (state !== 'running') return;
     enableInputDevices();
     phoneKeyboard.value = '';
     try {
@@ -98,6 +101,7 @@
       boot.disabled = next !== 'idle';
       boot.textContent = next === 'idle' ? 'Run ISO' : next === 'loading' ? 'Checking ISO' : next === 'starting' ? 'Starting' : 'Running';
     }
+    if (stop) stop.disabled = next === 'idle';
     keyboardButton.disabled = next !== 'running';
   }
 
@@ -105,7 +109,7 @@
     return new Promise((resolve, reject) => {
       if (constructor()) return resolve(constructor());
       const script = document.createElement('script');
-      script.src = runtime;
+      script.src = `${runtime}?v=n`;
       script.async = false;
       script.onload = () => setTimeout(() => constructor() ? resolve(constructor()) : reject(new Error('v86 constructor missing')), 60);
       script.onerror = () => reject(new Error(`runtime load failed ${runtime}`));
@@ -119,7 +123,9 @@
       for (const registration of registrations) {
         if (registration.scope.includes('/os/real-multiboot/')) await registration.unregister();
       }
-      if (registrations.length) log('obsolete ISO service workers removed');
+      const cacheNames = await globalThis.caches?.keys?.() || [];
+      await Promise.all(cacheNames.filter((name) => name.startsWith('gorics-v86-')).map((name) => caches.delete(name)));
+      if (registrations.length || cacheNames.length) log('obsolete ISO workers and caches removed');
     } catch (error) {
       log(`service worker cleanup skipped ${error.message}`);
     }
@@ -131,12 +137,12 @@
 
   async function getMeta() {
     log('loading QEMU-tested ISO metadata');
-    const response = await fetch(metaUrl, { cache: 'no-store' });
+    const response = await fetch(`${metaUrl}?v=${Date.now()}`, { cache: 'no-store' });
     if (!response.ok) throw new Error(`ISO metadata HTTP ${response.status}`);
     const meta = await response.json();
     if (meta.name !== 'gorics-linux-gui-web-amd64.iso') throw new Error(`unexpected ISO name ${meta.name}`);
     if (!Number.isFinite(meta.size) || meta.size <= 0 || meta.size >= 900000000) throw new Error(`invalid ISO size ${meta.size}`);
-    log(`ISO size=${meta.size} sha256=${String(meta.sha256).slice(0, 16)}...`);
+    log(`ISO size=${meta.size} sha256=${String(meta.sha256).slice(0, 16)}... architecture=${meta.architecture || 'unknown'} desktop=${meta.desktop || 'unknown'}`);
     return { url: iso, size: meta.size };
   }
 
@@ -159,6 +165,7 @@
   }
 
   function prepareScreen() {
+    if (!screen) throw new Error('screen container missing');
     screen.innerHTML = '<div style="white-space:pre;font:14px monospace;line-height:14px"></div><canvas style="display:none"></canvas>';
     screen.classList.add('active');
   }
@@ -184,14 +191,20 @@
       log(`runtime loaded ${runtime}`);
       prepareScreen();
       setState('starting');
+
+      const mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const memoryMiB = mobile ? 384 : 512;
+      const vgaMiB = mobile ? 16 : 32;
+      log(`VM profile memory=${memoryMiB}MiB vga=${vgaMiB}MiB mobile=${mobile}`);
+
       vm = new Emulator({
         wasm_path: wasm,
         bios: { url: bios },
         vga_bios: { url: vga },
         screen_container: screen,
         autostart: true,
-        memory_size: 512 * 1024 * 1024,
-        vga_memory_size: 32 * 1024 * 1024,
+        memory_size: memoryMiB * 1024 * 1024,
+        vga_memory_size: vgaMiB * 1024 * 1024,
         disable_speaker: true,
         boot_order: 0x123,
         cdrom: {
@@ -204,7 +217,7 @@
       window.goricsRealLinuxIso = vm;
       vm.add_listener('download-progress', (data) => log(`download-progress${progress(data)}`));
       vm.add_listener('download-error', (data) => {
-        log(`download-error ${JSON.stringify(data).slice(0, 400)}`);
+        log(`download-error ${JSON.stringify(data).slice(0, 500)}`);
         setState('idle');
       });
       vm.add_listener('emulator-loaded', () => log('emulator-loaded'));
@@ -228,6 +241,8 @@
     } catch (error) {
       log(`ERROR ${error?.message || error}`);
       log(`userAgent ${navigator.userAgent}`);
+      try { vm?.destroy?.(); } catch {}
+      vm = null;
       setState('idle');
     }
   }
@@ -242,13 +257,15 @@
     }
     vm = null;
     inputLogged = false;
+    touchActive = false;
+    lastTouch = null;
     screen?.classList.remove('active');
     if (screen) screen.innerHTML = '';
     setState('idle');
     log('stopped');
   }
 
-  function dispatchTouchMouse(type, touch) {
+  function dispatchTouchMouse(type, touch, buttons) {
     if (!touch || !screen) return;
     const target = document.elementFromPoint(touch.clientX, touch.clientY);
     const receiver = target && screen.contains(target) ? target : screen;
@@ -261,7 +278,7 @@
       screenX: touch.screenX,
       screenY: touch.screenY,
       button: 0,
-      buttons: type === 'mousedown' ? 1 : 0,
+      buttons,
     });
     try {
       Object.defineProperty(event, 'which', { value: 1 });
@@ -272,27 +289,36 @@
   function onTouchStart(event) {
     if (state !== 'running' || !event.changedTouches?.length) return;
     event.preventDefault();
+    const touch = event.changedTouches[event.changedTouches.length - 1];
     touchActive = true;
+    lastTouch = touch;
     enableInputDevices();
     focusScreen();
-    dispatchTouchMouse('mousedown', event.changedTouches[event.changedTouches.length - 1]);
+    dispatchTouchMouse('mousemove', touch, 0);
+    dispatchTouchMouse('mousedown', touch, 1);
   }
 
   function onTouchMove(event) {
-    if (!touchActive || state !== 'running') return;
+    if (!touchActive || state !== 'running' || !event.changedTouches?.length) return;
     event.preventDefault();
+    const touch = event.changedTouches[event.changedTouches.length - 1];
+    lastTouch = touch;
+    dispatchTouchMouse('mousemove', touch, 1);
   }
 
   function onTouchEnd(event) {
-    if (!touchActive || !event.changedTouches?.length) return;
+    if (!touchActive) return;
     event.preventDefault();
-    dispatchTouchMouse('mouseup', event.changedTouches[event.changedTouches.length - 1]);
+    const touch = event.changedTouches?.[event.changedTouches.length - 1] || lastTouch;
+    dispatchTouchMouse('mouseup', touch, 0);
     touchActive = false;
+    lastTouch = null;
     focusScreen();
   }
 
   async function toggleFullscreen() {
-    const wrapper = screen.closest('.screen-wrap') || screen;
+    const wrapper = screen?.closest('.screen-wrap') || screen;
+    if (!wrapper) return;
     try {
       if (document.fullscreenElement) {
         await document.exitFullscreen();
@@ -308,17 +334,41 @@
     }
     const enabled = !document.body.classList.contains('ios-fullscreen');
     document.body.classList.toggle('ios-fullscreen', enabled);
-    full.textContent = enabled ? 'Exit Fullscreen' : 'Fullscreen';
+    if (full) full.textContent = enabled ? 'Exit Fullscreen' : 'Fullscreen';
     window.scrollTo(0, 0);
     focusScreen();
     log(enabled ? 'iOS fullscreen fallback enabled' : 'iOS fullscreen fallback disabled');
   }
 
+  function sendScancode(make, release = make | 0x80) {
+    vm?.keyboard_send_scancodes?.([make, release]);
+  }
+
   boot?.addEventListener('click', run);
   stop?.addEventListener('click', halt);
   keyboardButton.addEventListener('click', openVirtualKeyboard);
-  phoneKeyboard.addEventListener('input', () => setTimeout(() => { phoneKeyboard.value = ''; }, 0));
-  phoneKeyboard.addEventListener('blur', focusScreen);
+  phoneKeyboard.addEventListener('input', () => {
+    const text = phoneKeyboard.value;
+    if (text) vm?.keyboard_send_text?.(text);
+    phoneKeyboard.value = '';
+  });
+  phoneKeyboard.addEventListener('keydown', (event) => {
+    const keys = {
+      Backspace: 0x0e,
+      Enter: 0x1c,
+      Tab: 0x0f,
+      Escape: 0x01,
+      ArrowUp: 0x48,
+      ArrowDown: 0x50,
+      ArrowLeft: 0x4b,
+      ArrowRight: 0x4d,
+    };
+    const code = keys[event.key];
+    if (code) {
+      sendScancode(code);
+      event.preventDefault();
+    }
+  });
   screen?.addEventListener('pointerdown', () => {
     enableInputDevices();
     focusScreen();
@@ -333,6 +383,7 @@
     focusScreen();
   });
   window.addEventListener('keydown', enableInputDevices, true);
+  window.addEventListener('focus', enableInputDevices);
 
   setState('idle');
   log('ready: keyboard, touch and pointer bridge installed');
