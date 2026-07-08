@@ -1,0 +1,6 @@
+{
+  "run_id": "28917977293",
+  "success": false,
+  "exit_code": 1,
+  "log": "Traceback (most recent call last):\n  File \"/home/runner/work/website/website/scripts/patch_gorics_visible_desktop.py\", line 165, in <module>\n    main()\n  File \"/home/runner/work/website/website/scripts/patch_gorics_visible_desktop.py\", line 91, in main\n    text = sub_once(\n           ^^^^^^^^^\n  File \"/home/runner/work/website/website/scripts/patch_gorics_visible_desktop.py\", line 14, in sub_once\n    raise RuntimeError(f\"{label}: expected one match, found {count}\")\nRuntimeError: visual assets insertion: expected one match, found 0\n"
+}
