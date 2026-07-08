@@ -32,17 +32,25 @@
   }
 
   function cacheKey(info) {
-    if (!info || info.url.origin !== location.origin) return '';
+    if (!info) return '';
     const path = info.url.pathname;
-    if (info.method === 'HEAD' && (
-      path.startsWith('/website/vendor/v86/') ||
-      path === '/website/os/real-multiboot/assets/vmlinuz' ||
-      path === '/website/os/real-multiboot/assets/initrd.img'
-    )) return `HEAD:${path}`;
-    if (info.method === 'GET' && !info.range && path === '/website/os/real-multiboot/assets/iso-meta.json') return `GET:${path}`;
-    if (info.method === 'GET' && /^bytes=0-(1023|4095)$/i.test(info.range) && path.startsWith('/website/vendor/v86/images/')) {
-      return `RANGE:${path}:${info.range.toLowerCase()}`;
+    if (info.url.origin === location.origin) {
+      if (info.method === 'HEAD' && (
+        path.startsWith('/website/vendor/v86/') ||
+        path === '/website/os/real-multiboot/assets/vmlinuz' ||
+        path === '/website/os/real-multiboot/assets/initrd.img'
+      )) return `HEAD:${path}`;
+      if (info.method === 'GET' && !info.range && path === '/website/os/real-multiboot/assets/iso-meta.json') return `GET:${path}`;
+      if (info.method === 'GET' && /^bytes=0-(1023|4095)$/i.test(info.range) && path.startsWith('/website/vendor/v86/images/')) {
+        return `RANGE:${path}:${info.range.toLowerCase()}`;
+      }
     }
+    if (
+      info.method === 'GET' &&
+      /^(bytes=32768-36863|bytes=0-15)$/i.test(info.range) &&
+      /\/v86-parts\/gorics-linux-gui-web-i386-r12-\d+-\d+\.iso$/i.test(path) &&
+      /(?:^|\.)jsdelivr\.net$|raw\.githubusercontent\.com$|cdn\.statically\.io$/i.test(info.url.hostname)
+    ) return `ISO:${info.url.origin}${path}:${info.range.toLowerCase()}`;
     return '';
   }
 
@@ -65,8 +73,6 @@
     };
   }
 
-  // Keep the visible log tiny. The old implementation copied the complete log
-  // string on every line, which caused quadratic work during downloads.
   if (logBox) {
     const descriptor = Object.getOwnPropertyDescriptor(Node.prototype, 'textContent');
     const nativeGet = descriptor?.get?.bind(logBox);
@@ -112,8 +118,6 @@
     } catch {}
   }
 
-  // Atomic URLs make boot-time cache deletion unnecessary. Preserve the real
-  // methods privately but make app.js skip this expensive synchronous preflight.
   const realCacheKeys = globalThis.caches?.keys?.bind(globalThis.caches);
   if (globalThis.caches?.keys) {
     try { globalThis.caches.keys = async () => []; } catch {}
@@ -124,8 +128,6 @@
     try { serviceWorker.getRegistrations = async () => []; } catch {}
   }
 
-  // Clean obsolete workers and named caches only after the page has been idle
-  // for a long time, never on the boot critical path.
   const deferredCleanup = async () => {
     if (document.body.classList.contains('gorics-vm-active')) return;
     try {
@@ -142,7 +144,6 @@
     else deferredCleanup();
   }, 30000);
 
-  // Reduce readiness polling while the emulator owns the main thread.
   const nativeSetInterval = globalThis.setInterval.bind(globalThis);
   globalThis.setInterval = (callback, delay, ...args) => {
     let nextDelay = Number(delay) || 0;
@@ -181,7 +182,16 @@
   const wrapConstructor = (Native) => {
     if (typeof Native !== 'function' || Native.__goricsOptimized) return Native;
     function GoricsOptimizedV86(options) {
-      return new Native(optimizeOptions(options));
+      const optimized = optimizeOptions(options);
+      globalThis.__GORICS_LAST_VM_OPTIONS__ = Object.freeze({
+        memory_size: optimized.memory_size,
+        vga_memory_size: optimized.vga_memory_size,
+        has_initrd: Boolean(optimized.initrd),
+        has_cdrom: Boolean(optimized.cdrom),
+        has_bzimage: Boolean(optimized.bzimage),
+        has_hda: Boolean(optimized.hda),
+      });
+      return new Native(optimized);
     }
     try { Object.setPrototypeOf(GoricsOptimizedV86, Native); } catch {}
     GoricsOptimizedV86.prototype = Native.prototype;
@@ -208,7 +218,6 @@
     syncRunningClass();
   }
 
-  // Warm only small boot-critical resources and cache the six serial HEAD checks.
   const warm = async () => {
     if (navigator.connection?.saveData || !nativeFetch) return;
     const version = document.querySelector('meta[name="gorics-build"]')?.content || BUILD;
@@ -220,11 +229,18 @@
       '/website/vendor/v86/seabios.bin',
       '/website/vendor/v86/vgabios.bin',
     ].map((url) => `${url}?v=${encodeURIComponent(version)}`);
+    const isoRoot = 'https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/';
     const requests = [
       ...headUrls.map((url) => fetch(url, { method: 'HEAD', cache: 'force-cache', priority: 'low' })),
       fetch(`/website/os/real-multiboot/assets/iso-meta.json?v=${encodeURIComponent(version)}`, { cache: 'force-cache', priority: 'low' }),
       fetch(`/website/vendor/v86/images/buildroot-bzimage68.bin?v=${encodeURIComponent(version)}`, {
         headers: { Range: 'bytes=0-1023' }, cache: 'force-cache', priority: 'low',
+      }),
+      fetch(`${isoRoot}gorics-linux-gui-web-i386-r12-0-16777216.iso?v=${encodeURIComponent(version)}`, {
+        headers: { Range: 'bytes=32768-36863' }, cache: 'force-cache', priority: 'low',
+      }),
+      fetch(`${isoRoot}gorics-linux-gui-web-i386-r12-335544320-352321536.iso?v=${encodeURIComponent(version)}`, {
+        headers: { Range: 'bytes=0-15' }, cache: 'force-cache', priority: 'low',
       }),
     ];
     await Promise.allSettled(requests);
@@ -241,7 +257,9 @@
     cores,
     deviceMemory,
     preflightCache: true,
+    isoProbeWarm: true,
     bootCleanupDeferred: true,
+    cachedPreflights: () => responseCache.size,
   });
 
   console.log(`[GORICS PERFORMANCE] enabled build=${BUILD} profile=${profile} cores=${cores} memory=${deviceMemory || 'unknown'}GB`);
