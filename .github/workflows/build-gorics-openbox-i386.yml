@@ -1,4 +1,4 @@
-# Terminal + internet rebuild trigger: R18 20260708.
+# Terminal + internet rebuild trigger: R18 diagnostics 20260708.
 name: Build GORICS Direct Openbox i386 ISO
 
 on:
@@ -86,6 +86,7 @@ jobs:
           grep -q 'GORICS_NETWORK_LINK_READY' out-web/gorics-network-check
           grep -q 'GORICS_DNS_READY' out-web/gorics-network-check
           grep -q 'GORICS_INTERNET_READY' out-web/gorics-network-check
+          echo 'STATIC_TERMINAL_NETWORK_CONTENT_READY'
           qemu-system-i386 -machine pc -cpu pentium3,+pae -accel tcg -m 512 -smp 1 \
             -kernel out-web/vmlinuz -initrd out-web/initrd.img \
             -append 'boot=live components live-media=/dev/sr0 username=user hostname=gorics-web systemd.unit=graphical.target console=ttyS0,115200n8' \
@@ -111,7 +112,9 @@ jobs:
           sleep 5
           kill "$PID" 2>/dev/null || true
           wait "$PID" 2>/dev/null || true
-          tail -n 700 out-web/qemu-serial.log
+          printf 'FINAL_READINESS GUI_READY=%s NET_READY=%s\n' "$GUI_READY" "$NET_READY"
+          grep -E 'GORICS_|NetworkManager|virtio|enp|eth[0-9]|default via|example.com|curl:' out-web/qemu-serial.log | tail -n 400 || true
+          tail -n 1000 out-web/qemu-serial.log
           test "$GUI_READY" = 1
           test "$NET_READY" = 1
           grep -q 'GORICS_XORG_READY' out-web/qemu-serial.log
@@ -126,7 +129,8 @@ jobs:
           ! grep -q 'requires an x86-64 CPU' out-web/qemu-serial.log
           ! grep -Eqi 'FAILED.*e2scrub|Failed to start .*e2scrub|e2scrub_all.*failed' out-web/qemu-serial.log
 
-      - name: Upload verified ISO artifact
+      - name: Upload verified ISO artifact and diagnostics
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: gorics-visible-i386-${{ github.run_id }}
@@ -141,10 +145,9 @@ jobs:
             out-web/tint2rc
           compression-level: 0
           retention-days: 7
-          if-no-files-found: error
+          if-no-files-found: warn
 
       - name: Publish convenience release
-        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: gorics-linux-gui-web-iso-latest
