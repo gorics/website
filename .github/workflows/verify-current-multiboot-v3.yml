@@ -1,0 +1,150 @@
+name: Verify Current Multiboot GUI v3
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/verify-current-multiboot-v3.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: verify-current-multiboot-v3
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Build verifier
+        run: |
+          mkdir -p current-v3-proof
+          cat > verify-current-v3.mjs <<'JS'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
+
+          const output = 'current-v3-proof/result.json';
+          const result = { success:false, state:'starting', run_id:process.env.GITHUB_RUN_ID, target:process.env.TARGET_URL, started_at:new Date().toISOString(), console:[], page_errors:[], failed_requests:[] };
+          const save = (state, extra={}) => { Object.assign(result, extra, {state, updated_at:new Date().toISOString()}); fs.writeFileSync(output, JSON.stringify(result,null,2)+'\n'); };
+          const fatal = /I\/O error, dev sr0|Buffer I\/O error on dev sr0|SQUASHFS error|unable to find a medium containing a live file system/i;
+          const router = /ISO chunk .*router.*installed/i;
+          const route = /ISO chunk (?:route|routed)/i;
+          save('starting');
+
+          let browser, page;
+          try {
+            browser = await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--disable-background-timer-throttling','--disable-renderer-backgrounding']});
+            const context = await browser.newContext({viewport:{width:1280,height:900}});
+            page = await context.newPage();
+            page.setDefaultTimeout(120000);
+            page.on('console', m => { result.console.push(`${m.type()}: ${m.text()}`); if(result.console.length>1200) result.console.shift(); });
+            page.on('pageerror', e => result.page_errors.push(String(e)));
+            page.on('requestfailed', r => result.failed_requests.push({url:r.url(),error:r.failure()?.errorText||'failed'}));
+
+            const response = await page.goto(process.env.TARGET_URL,{waitUntil:'domcontentloaded',timeout:120000});
+            save('page-opened',{page_http:response?.status()||null});
+            await page.waitForFunction(() => /ISO chunk .*router.*installed/i.test(document.querySelector('#log')?.textContent||''),null,{timeout:300000});
+            const initial = await page.locator('#log').textContent()||'';
+            save('router-ready',{initial_marker:initial.split('\n')[0]||''});
+            await page.screenshot({path:'current-v3-proof/00-ready.png',fullPage:true});
+            await page.click('#boot-btn');
+            save('boot-clicked');
+
+            await page.waitForFunction(() => {
+              const log=document.querySelector('#log')?.textContent||'';
+              if(/I\/O error, dev sr0|Buffer I\/O error on dev sr0|SQUASHFS error|unable to find a medium containing a live file system/i.test(log)) return 'fatal';
+              const c=document.querySelector('#screen canvas');
+              const t=document.querySelector('#screen > div');
+              if(/ISO chunk (?:route|routed)/i.test(log)&&log.includes('emulator-started')&&c&&c.width>=640&&c.height>=480&&getComputedStyle(c).display!=='none'&&(!t||getComputedStyle(t).display==='none')) return 'gui';
+              return false;
+            },null,{timeout:1200000});
+
+            let log=await page.locator('#log').textContent()||'';
+            if(fatal.test(log)) throw new Error('fatal CD-ROM read error detected');
+            await page.waitForTimeout(45000);
+            const details=await page.evaluate(() => {
+              const c=document.querySelector('#screen canvas');
+              const t=document.querySelector('#screen > div');
+              const log=document.querySelector('#log')?.textContent||'';
+              return {
+                canvas_width:c?.width||0, canvas_height:c?.height||0,
+                canvas_display:c?getComputedStyle(c).display:'missing', text_display:t?getComputedStyle(t).display:'missing',
+                screen_active:document.querySelector('#screen')?.classList.contains('active')||false,
+                boot_button_text:document.querySelector('#boot-btn')?.textContent||'', stop_button_disabled:document.querySelector('#stop-btn')?.disabled??null,
+                emulator_object_present:Boolean(window.goricsRealLinuxIso), emulator_started:log.includes('emulator-started'),
+                router_installed:/ISO chunk .*router.*installed/i.test(log), route_observed:/ISO chunk (?:route|routed)/i.test(log),
+                first_chunk_verified:log.includes('ISO9660 and El Torito verified'),
+                sr0_error_observed:/I\/O error, dev sr0|Buffer I\/O error on dev sr0/i.test(log), squashfs_error_observed:/SQUASHFS error/i.test(log),
+                log_tail:log.split('\n').slice(-1000),
+              };
+            });
+            log=details.log_tail.join('\n');
+            if(fatal.test(log)) throw new Error('fatal CD-ROM read error appeared after GUI transition');
+            await page.screenshot({path:'current-v3-proof/99-gui.png',fullPage:true});
+            const canvas=page.locator('#screen canvas');
+            if(await canvas.count()) await canvas.screenshot({path:'current-v3-proof/99-canvas.png'}).catch(()=>{});
+            const success=details.canvas_width>=640&&details.canvas_height>=480&&details.canvas_display!=='none'&&details.text_display==='none'&&details.screen_active&&details.boot_button_text==='Running'&&details.stop_button_disabled===false&&details.emulator_object_present&&details.emulator_started&&details.router_installed&&details.route_observed&&details.first_chunk_verified&&!details.sr0_error_observed&&!details.squashfs_error_observed;
+            save('completed',{...details,success,completed_at:new Date().toISOString()});
+            if(!success) throw new Error('current multiboot GUI assertions failed');
+          } catch(error) {
+            let details={};
+            try { details=await page?.evaluate(()=>{const log=document.querySelector('#log')?.textContent||'';const c=document.querySelector('#screen canvas');return {canvas_width:c?.width||0,canvas_height:c?.height||0,log_tail:log.split('\n').slice(-1200)};})||{}; await page?.screenshot({path:'current-v3-proof/99-failure.png',fullPage:true}); } catch {}
+            save('failed',{...details,success:false,error:String(error?.stack||error),completed_at:new Date().toISOString()});
+            throw error;
+          } finally { await browser?.close().catch(()=>{}); }
+          JS
+          node --check verify-current-v3.mjs
+
+      - name: Boot current public multiboot
+        env:
+          TARGET_URL: https://gorics.github.io/website/os/real-multiboot/?current-v3=${{ github.run_id }}-${{ github.run_attempt }}
+        run: node verify-current-v3.mjs
+
+      - name: Upload proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-multiboot-v3-proof-${{ github.run_id }}
+          path: current-v3-proof/
+          if-no-files-found: warn
+
+      - name: Record result
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          set -euo pipefail
+          if test -s current-v3-proof/result.json; then cp current-v3-proof/result.json /tmp/result.json; else printf '{"success":false,"state":"no-result","run_id":"%s"}\n' "$GITHUB_RUN_ID" > /tmp/result.json; fi
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path('/tmp/result.json'); d=json.loads(p.read_text()); d['job_status']=os.environ.get('JOB_STATUS'); d['workflow_sha']=os.environ.get('GITHUB_SHA'); p.write_text(json.dumps(d,indent=2)+'\n')
+          PY
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for attempt in $(seq 1 20); do
+            git fetch origin main
+            git checkout -B main origin/main
+            mkdir -p os/iso
+            cp /tmp/result.json os/iso/current-multiboot-v3-result.json
+            git add os/iso/current-multiboot-v3-result.json
+            git commit -m 'Record current multiboot v3 GUI verification [skip ci]' || exit 0
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
