@@ -105,13 +105,38 @@ app_text, count = re.subn(
 )
 if count != 1:
     raise SystemExit('app BUILD constant was not updated exactly once')
+
+# The build already packages every secondary guest image. Force the deployed
+# app to use those same-origin copies so browser VM startup never depends on
+# i.copy.sh CORS, availability or redirects.
+local_guest_urls = {
+    'https://i.copy.sh/buildroot-bzimage68.bin': '/website/vendor/v86/images/buildroot-bzimage68.bin',
+    'https://i.copy.sh/linux4.iso': '/website/vendor/v86/images/linux4.iso',
+    'https://i.copy.sh/linux.iso': '/website/vendor/v86/images/linux.iso',
+    'https://i.copy.sh/freedos722.img': '/website/vendor/v86/images/freedos722.img',
+}
+for external, local in local_guest_urls.items():
+    occurrences = app_text.count(external)
+    if occurrences < 2:
+        raise SystemExit(f'expected preset source and boot URL for {external}, found {occurrences}')
+    app_text = app_text.replace(external, local)
+if 'https://i.copy.sh/' in app_text:
+    raise SystemExit('external i.copy.sh guest URL remains in deployed app')
 app.write_text(app_text, encoding='utf-8')
 
 runtime_root = site / 'vendor' / 'v86'
-manifest = {'version': version, 'files': {}}
+manifest = {'version': version, 'files': {}, 'guest_images': {}}
 for name in ('libv86.js', 'v86.wasm', 'seabios.bin', 'vgabios.bin'):
     data = (runtime_root / name).read_bytes()
     manifest['files'][name] = {
+        'size': len(data),
+        'sha256': hashlib.sha256(data).hexdigest(),
+    }
+for name in ('buildroot-bzimage68.bin', 'linux4.iso', 'linux.iso', 'freedos722.img'):
+    data = (runtime_root / 'images' / name).read_bytes()
+    if not data:
+        raise SystemExit(f'empty local guest image: {name}')
+    manifest['guest_images'][name] = {
         'size': len(data),
         'sha256': hashlib.sha256(data).hexdigest(),
     }
@@ -120,7 +145,7 @@ for name in ('libv86.js', 'v86.wasm', 'seabios.bin', 'vgabios.bin'):
 meta_path = page / 'assets' / 'iso-meta.json'
 meta = json.loads(meta_path.read_text(encoding='utf-8'))
 meta['page_version'] = version
-meta['deployment'] = 'atomic-v86-native-xhr-final-repository-assets'
+meta['deployment'] = 'atomic-v86-native-xhr-local-guests'
 meta_path.write_text(json.dumps(meta, indent=2) + '\n', encoding='utf-8')
 
 (page / 'assets' / 'deployment.json').write_text(json.dumps({
@@ -131,6 +156,7 @@ meta_path.write_text(json.dumps(meta, indent=2) + '\n', encoding='utf-8')
     'chunked_iso': True,
     'atomic_v86_assets': True,
     'native_xhr': True,
+    'same_origin_guest_images': True,
     'iso_sha256': meta['sha256'],
     'runtime_manifest': manifest,
 }, indent=2) + '\n', encoding='utf-8')
@@ -142,6 +168,11 @@ node --check "$SITE_DIR/os/real-multiboot/safe-diagnostics.js"
 node --check "$SITE_DIR/os/real-multiboot/local-media-router.js"
 grep -q 'bzimage: { url: kernelUrl }' "$SITE_DIR/os/real-multiboot/app.js"
 grep -q 'systemd.unit=graphical.target' "$SITE_DIR/os/real-multiboot/app.js"
+grep -q '/website/vendor/v86/images/buildroot-bzimage68.bin' "$SITE_DIR/os/real-multiboot/app.js"
+grep -q '/website/vendor/v86/images/linux4.iso' "$SITE_DIR/os/real-multiboot/app.js"
+grep -q '/website/vendor/v86/images/linux.iso' "$SITE_DIR/os/real-multiboot/app.js"
+grep -q '/website/vendor/v86/images/freedos722.img' "$SITE_DIR/os/real-multiboot/app.js"
+! grep -q 'https://i.copy.sh/' "$SITE_DIR/os/real-multiboot/app.js"
 grep -q 'asset-versioning.js?v=' "$SITE_DIR/os/real-multiboot/index.html"
 grep -q 'safe-diagnostics.js?v=' "$SITE_DIR/os/real-multiboot/index.html"
 grep -q "$DEPLOY_VERSION" "$SITE_DIR/os/real-multiboot/index.html"
@@ -152,6 +183,10 @@ test -s "$SITE_DIR/vendor/v86/v86.wasm"
 test -s "$SITE_DIR/vendor/v86/seabios.bin"
 test -s "$SITE_DIR/vendor/v86/vgabios.bin"
 test -s "$SITE_DIR/vendor/v86/manifest.json"
+test -s "$SITE_DIR/vendor/v86/images/buildroot-bzimage68.bin"
+test -s "$SITE_DIR/vendor/v86/images/linux4.iso"
+test -s "$SITE_DIR/vendor/v86/images/linux.iso"
+test -s "$SITE_DIR/vendor/v86/images/freedos722.img"
 test -s "$SITE_DIR/os/real-multiboot/assets/vmlinuz"
 test -s "$SITE_DIR/os/real-multiboot/assets/initrd.img"
 test -s "$SITE_DIR/os/real-multiboot/assets/iso-meta.json"
