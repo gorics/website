@@ -11,11 +11,13 @@
     warn: console.warn.bind(console),
     error: console.error.bind(console),
   };
-  const counters = { lines: 0, fetch: 0, xhr: 0, warnings: 0, errors: 0 };
+  const counters = { lines: 0, fetch: 0, xhr: 0, warnings: 0, errors: 0, progressSuppressed: 0 };
   const entries = [];
   const xhrMeta = new WeakMap();
+  const pendingDomLines = [];
   let sequence = 0;
   let toolbarInstalled = false;
+  let renderScheduled = false;
 
   function cleanUrl(value) {
     try {
@@ -52,6 +54,25 @@
     return out;
   }
 
+  function flushDomLines() {
+    renderScheduled = false;
+    if (!pendingDomLines.length) return;
+    const box = document.querySelector('#log');
+    const lines = pendingDomLines.splice(0, pendingDomLines.length);
+    if (!box) return;
+    const prefix = box.textContent ? '\n' : '';
+    box.append(document.createTextNode(`${prefix}${lines.join('\n')}`));
+    box.scrollTop = box.scrollHeight;
+  }
+
+  function queueDomLine(line) {
+    pendingDomLines.push(line);
+    if (renderScheduled) return;
+    renderScheduled = true;
+    if (typeof requestAnimationFrame === 'function') requestAnimationFrame(flushDomLines);
+    else setTimeout(flushDomLines, 16);
+  }
+
   function emit(level, category, message, data) {
     const id = ++sequence;
     const elapsed = (performance.now() - startedAt).toFixed(1).padStart(9, ' ');
@@ -66,11 +87,7 @@
     counters.lines += 1;
     if (level === 'warn') counters.warnings += 1;
     if (level === 'error') counters.errors += 1;
-    const box = document.querySelector('#log');
-    if (box) {
-      box.textContent += `${box.textContent ? '\n' : ''}${line}`;
-      box.scrollTop = box.scrollHeight;
-    }
+    queueDomLine(line);
     (level === 'error' ? nativeConsole.error : level === 'warn' ? nativeConsole.warn : nativeConsole.log)(`[GORICS/${category}]`, message, data ?? '');
   }
 
@@ -81,7 +98,10 @@
     info: (category, message, data) => emit('info', category, message, data),
     warn: (category, message, data) => emit('warn', category, message, data),
     error: (category, message, data) => emit('error', category, message, data),
-    exportText: () => document.querySelector('#log')?.textContent || entries.join('\n'),
+    exportText: () => {
+      flushDomLines();
+      return document.querySelector('#log')?.textContent || entries.join('\n');
+    },
   });
   Object.defineProperty(globalThis, 'GORICS_DIAG', { value: api, configurable: false });
 
@@ -111,39 +131,85 @@
     };
   }
 
+  function progressSnapshot(xhr, meta, event) {
+    let status = 0;
+    let responseType = '';
+    try { status = xhr.status; } catch {}
+    try { responseType = xhr.responseType; } catch {}
+    return {
+      method: meta.method,
+      url: meta.url,
+      status,
+      responseType,
+      loaded: event.loaded,
+      total: event.total,
+      lengthComputable: event.lengthComputable,
+      durationMs: meta.began ? Number((performance.now() - meta.began).toFixed(2)) : null,
+    };
+  }
+
+  function shouldLogProgress(meta, event) {
+    const now = performance.now();
+    const loaded = Number(event.loaded) || 0;
+    const total = Number(event.total) || 0;
+    const percent = total > 0 ? Math.floor(loaded * 100 / total) : -1;
+    const completed = total > 0 && loaded >= total;
+    const elapsedEnough = now - meta.lastProgressAt >= 750;
+    const bytesEnough = loaded - meta.lastProgressLoaded >= 4 * 1024 * 1024;
+    const percentEnough = percent >= 0 && (meta.lastProgressPercent < 0 || percent - meta.lastProgressPercent >= 10);
+    if (!completed && !elapsedEnough && !bytesEnough && !percentEnough) {
+      counters.progressSuppressed += 1;
+      return false;
+    }
+    meta.lastProgressAt = now;
+    meta.lastProgressLoaded = loaded;
+    meta.lastProgressPercent = percent;
+    return true;
+  }
+
   const NativeXHR = globalThis.XMLHttpRequest;
   if (NativeXHR?.prototype?.open && NativeXHR?.prototype?.send) {
     const nativeOpen = NativeXHR.prototype.open;
     const nativeSend = NativeXHR.prototype.send;
     NativeXHR.prototype.open = function goricsDiagnosticOpen(method, url, ...rest) {
-      const meta = { id: ++counters.xhr, method: String(method).toUpperCase(), url: cleanUrl(url), began: 0, listeners: false };
+      const meta = {
+        id: ++counters.xhr,
+        method: String(method).toUpperCase(),
+        url: cleanUrl(url),
+        began: 0,
+        listeners: false,
+        lastProgressAt: 0,
+        lastProgressLoaded: 0,
+        lastProgressPercent: -1,
+      };
       xhrMeta.set(this, meta);
       emit('info', 'XHR', `#${meta.id} open`, { method: meta.method, url: meta.url, async: rest[0] !== false });
       return nativeOpen.call(this, method, url, ...rest);
     };
     NativeXHR.prototype.send = function goricsDiagnosticSend(body) {
-      const meta = xhrMeta.get(this) || { id: ++counters.xhr, method: 'GET', url: '<unknown>', began: 0, listeners: false };
+      const meta = xhrMeta.get(this) || {
+        id: ++counters.xhr,
+        method: 'GET',
+        url: '<unknown>',
+        began: 0,
+        listeners: false,
+        lastProgressAt: 0,
+        lastProgressLoaded: 0,
+        lastProgressPercent: -1,
+      };
       xhrMeta.set(this, meta);
       meta.began = performance.now();
       if (!meta.listeners) {
         meta.listeners = true;
         for (const type of ['loadstart', 'progress', 'abort', 'error', 'timeout', 'load', 'loadend']) {
           this.addEventListener(type, (event) => {
-            let status = 0;
-            let responseType = '';
-            try { status = this.status; } catch {}
-            try { responseType = this.responseType; } catch {}
+            const snapshot = progressSnapshot(this, meta, event);
+            try {
+              window.dispatchEvent(new CustomEvent('gorics:xhr-event', { detail: { id: meta.id, type, ...snapshot } }));
+            } catch {}
+            if (type === 'progress' && !shouldLogProgress(meta, event)) return;
             const level = type === 'error' || type === 'timeout' ? 'error' : type === 'abort' ? 'warn' : 'info';
-            emit(level, 'XHR', `#${meta.id} ${type}`, {
-              method: meta.method,
-              url: meta.url,
-              status,
-              responseType,
-              loaded: event.loaded,
-              total: event.total,
-              lengthComputable: event.lengthComputable,
-              durationMs: meta.began ? Number((performance.now() - meta.began).toFixed(2)) : null,
-            });
+            emit(level, 'XHR', `#${meta.id} ${type}`, snapshot);
           });
         }
       }
@@ -162,7 +228,9 @@
     bar.style.cssText = 'display:flex;gap:.45rem;align-items:center;flex-wrap:wrap;margin:0 0 .55rem';
     const status = document.createElement('span');
     status.style.cssText = 'font:12px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;color:#94a3b8;margin-right:auto';
-    const refresh = () => { status.textContent = `safe diagnostics · lines ${counters.lines} · fetch ${counters.fetch} · xhr ${counters.xhr} · warn ${counters.warnings} · error ${counters.errors}`; };
+    const refresh = () => {
+      status.textContent = `safe diagnostics · lines ${counters.lines} · fetch ${counters.fetch} · xhr ${counters.xhr} · warn ${counters.warnings} · error ${counters.errors} · sampled ${counters.progressSuppressed}`;
+    };
     bar.appendChild(status);
     const button = document.createElement('button');
     button.type = 'button';
@@ -188,7 +256,7 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', installToolbar, { once: true });
   else installToolbar();
 
-  emit('info', 'BOOTSTRAP', 'safe diagnostics installed without replacing XMLHttpRequest', {
+  emit('info', 'BOOTSTRAP', 'safe diagnostics installed with sampled progress and batched DOM output', {
     build,
     userAgent: navigator.userAgent,
     platform: navigator.platform,
