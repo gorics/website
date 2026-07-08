@@ -17,22 +17,26 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Record finalizer and static runs
+      - name: Record finalizer static and V3 runs
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh run list --workflow finalize-gorics-pages.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/finalizer.json
           gh run list --workflow static.yml --limit 20 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/static.json
+          gh run list --workflow verify-real-multiboot-v3.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/v3.json
           python3 - <<'PY'
           import json
           from pathlib import Path
           finalizer = json.loads(Path('/tmp/finalizer.json').read_text())
           static = json.loads(Path('/tmp/static.json').read_text())
+          v3 = json.loads(Path('/tmp/v3.json').read_text())
           result = {
               'latest': finalizer[0] if finalizer else None,
               'runs': finalizer,
               'latest_static': static[0] if static else None,
               'static_runs': static,
+              'latest_v3': v3[0] if v3 else None,
+              'v3_runs': v3,
           }
           Path('os/iso/finalizer-run-status.json').write_text(json.dumps(result, indent=2) + '\n')
           print(json.dumps(result, indent=2))
@@ -42,7 +46,7 @@ jobs:
           git fetch origin main
           git checkout -B main origin/main
           git add os/iso/finalizer-run-status.json
-          git commit -m 'Record finalizer and static run status [skip ci]' || true
+          git commit -m 'Record finalizer static and V3 run status [skip ci]' || true
           git push origin HEAD:main
 
-# refreshed after Openbox metadata verifier fix
+# refreshed after corrected Openbox metadata deployment
