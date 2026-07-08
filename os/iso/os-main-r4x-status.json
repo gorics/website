@@ -1,11 +1,10 @@
 {
-  "success": true,
-  "state": "completed",
+  "success": false,
+  "state": "failed",
   "page": "https://gorics.github.io/website/os/",
   "main_runtime": "https://gorics.github.io/website/os/real-multiboot/",
   "version": "r4x",
-  "job_status": "success",
-  "run_id": "28916011440",
-  "workflow_sha": "d6b400ec1fc1f42fce096a437047a2df9c4f213b",
-  "verified_at": "2026-07-08T03:48:30.315774+00:00"
+  "run_id": "28915908515",
+  "workflow_sha": "9c418370b5ba0e5498f5d64aab2469c54094fc99",
+  "verified_at": "2026-07-08T04:06:13.518232+00:00"
 }
