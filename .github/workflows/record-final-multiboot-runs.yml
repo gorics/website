@@ -30,6 +30,7 @@ jobs:
         run: |
           set -euo pipefail
           gh run list --repo "$GITHUB_REPOSITORY" --workflow 'Verify Final All Multiboot Presets' --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/final-runs.json
+          gh run list --repo "$GITHUB_REPOSITORY" --workflow 'Apply Strict Multiboot Readiness' --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/strict-runs.json
           gh run list --repo "$GITHUB_REPOSITORY" --workflow 'Deploy static content to Pages' --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/pages-runs.json
           python3 - <<'PY'
           import json
@@ -38,6 +39,7 @@ jobs:
           payload = {
               'recorded_at': datetime.now(timezone.utc).isoformat(),
               'final_verifier_runs': json.loads(Path('/tmp/final-runs.json').read_text()),
+              'strict_readiness_runs': json.loads(Path('/tmp/strict-runs.json').read_text()),
               'pages_runs': json.loads(Path('/tmp/pages-runs.json').read_text()),
           }
           Path('/tmp/final-multiboot-runs.json').write_text(json.dumps(payload, indent=2) + '\n')
