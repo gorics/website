@@ -1,0 +1,54 @@
+name: Record Final Stable Deploy Runs
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/record-final-stable-deploy-runs.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  record:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Query stable deploy and final verifier
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run list --repo "$GITHUB_REPOSITORY" --workflow 'Deploy Final Multiboot Stable' --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/deploy.json
+          gh run list --repo "$GITHUB_REPOSITORY" --workflow 'Verify Final All Multiboot Presets' --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/verify.json
+          python3 - <<'PY'
+          import json
+          from datetime import datetime,timezone
+          from pathlib import Path
+          out={'recorded_at':datetime.now(timezone.utc).isoformat(),'deploy_runs':json.loads(Path('/tmp/deploy.json').read_text()),'verify_runs':json.loads(Path('/tmp/verify.json').read_text())}
+          Path('/tmp/status.json').write_text(json.dumps(out,indent=2)+'\n')
+          print(json.dumps(out,indent=2))
+          PY
+      - name: Publish
+        run: |
+          set -euo pipefail
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          cp /tmp/status.json /tmp/final.json
+          for attempt in $(seq 1 10); do
+            git reset --hard
+            git clean -fd
+            git fetch origin main
+            git checkout -B main origin/main
+            mkdir -p os/iso
+            cp /tmp/final.json os/iso/final-stable-deploy-runs.json
+            git add os/iso/final-stable-deploy-runs.json
+            git commit -m 'Record isolated stable deployment runs [skip ci]' || exit 0
+            git push origin HEAD:main && exit 0
+            sleep $((attempt*2))
+          done
+          exit 1
