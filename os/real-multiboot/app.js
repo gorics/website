@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const BUILD = '20260708-r8-overlay-complete';
+  const BUILD = '20260708-r12-visible-desktop';
   const $ = (selector) => document.querySelector(selector);
   const logBox = $('#log');
   const screen = $('#screen');
@@ -28,7 +28,7 @@
   const wasm = '/website/vendor/v86/v86.wasm';
   const bios = '/website/vendor/v86/seabios.bin';
   const vgaBios = '/website/vendor/v86/vgabios.bin';
-  const assetName = 'gorics-linux-gui-web-i386.iso';
+  const assetName = 'gorics-linux-gui-web-i386-r12.iso';
   const chunkSize = 16 * 1024 * 1024;
   const chunkRoots = [
     'https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/',
