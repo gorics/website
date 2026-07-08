@@ -29,158 +29,110 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build live site with atomic local VM runtime
-        shell: python
-        run: |
-          import hashlib
-          import json
-          import pathlib
-          import shutil
-          import urllib.request
-
-          build = pathlib.Path('_site')
-          if build.exists():
-              shutil.rmtree(build)
-          shutil.copytree('.', build, ignore=shutil.ignore_patterns('.git', '_site'))
-          (build / '.nojekyll').write_text('', encoding='utf-8')
-
-          root = build / 'vendor' / 'v86'
-          imgroot = root / 'images'
-          root.mkdir(parents=True, exist_ok=True)
-          imgroot.mkdir(parents=True, exist_ok=True)
-
-          h = ''.join(['https://', 'co', 'py', '.sh', '/v86/'])
-          hi = ''.join(['https://', 'i.', 'co', 'py', '.sh', '/'])
-          runtime_files = {
-              'libv86.js': h + 'build/libv86.js',
-              'v86.wasm': h + 'build/v86.wasm',
-              'seabios.bin': h + 'bios/seabios.bin',
-              'vgabios.bin': h + 'bios/vgabios.bin',
-          }
-          image_files = {
-              'dsl-4.11.rc2.iso': hi + 'dsl-4.11.rc2.iso',
-              'buildroot-bzimage68.bin': hi + 'buildroot-bzimage68.bin',
-              'linux4.iso': hi + 'linux4.iso',
-              'linux.iso': hi + 'linux.iso',
-              'freedos722.img': hi + 'freedos722.img',
-              'windows101.img': hi + 'windows101.img',
-          }
-
-          manifest = {'source': h, 'files': {}}
-          for name, url in runtime_files.items():
-              dst = root / name
-              print('fetch runtime', name, url)
-              urllib.request.urlretrieve(url, dst)
-              data = dst.read_bytes()
-              manifest['files'][name] = {
-                  'size': len(data),
-                  'sha256': hashlib.sha256(data).hexdigest(),
-              }
-              print(name, len(data), manifest['files'][name]['sha256'])
-          (root / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
-
-          for name, url in image_files.items():
-              dst = imgroot / name
-              print('fetch image', name, url)
-              urllib.request.urlretrieve(url, dst)
-              print(name, dst.stat().st_size)
-
-          repl = {
-              h + 'build/libv86.js': '/website/vendor/v86/libv86.js',
-              h + 'build/v86.wasm': '/website/vendor/v86/v86.wasm',
-              h + 'bios/seabios.bin': '/website/vendor/v86/seabios.bin',
-              h + 'bios/vgabios.bin': '/website/vendor/v86/vgabios.bin',
-          }
-          for name in image_files:
-              repl[hi + name] = '/website/vendor/v86/images/' + name
-
-          for path in build.rglob('*'):
-              if not path.is_file() or path.suffix.lower() not in {'.html', '.js'}:
-                  continue
-              try:
-                  text = path.read_text(encoding='utf-8')
-              except UnicodeDecodeError:
-                  continue
-              old_text = text
-              for old, new in repl.items():
-                  text = text.replace(old, new)
-              if text != old_text:
-                  path.write_text(text, encoding='utf-8')
-                  print('patched', path)
-
-      - name: Add verified Openbox i386 ISO
+      - name: Assemble atomic Pages tree
         env:
+          DEPLOY_VERSION: ${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           GH_TOKEN: ${{ github.token }}
         run: |
-          DEST=_site/os/real-multiboot/assets
-          mkdir -p "$DEST"
+          set -euo pipefail
+          rm -rf _site
+          python3 - <<'PY'
+          import pathlib
+          import shutil
+
+          source = pathlib.Path('.')
+          target = pathlib.Path('_site')
+          shutil.copytree(source, target, ignore=shutil.ignore_patterns('.git', '_site'))
+          (target / '.nojekyll').write_text('', encoding='utf-8')
+          PY
+
+          mkdir -p _site/vendor/v86/images _site/os/real-multiboot/assets
+
+          download() {
+            local url="$1"
+            local output="$2"
+            echo "download $url -> $output"
+            curl -fL --retry 5 --retry-all-errors --connect-timeout 20 --max-time 900 \
+              -o "$output.tmp" "$url"
+            test -s "$output.tmp"
+            mv "$output.tmp" "$output"
+          }
+
+          download 'https://copy.sh/v86/build/libv86.js' '_site/vendor/v86/libv86.js'
+          download 'https://copy.sh/v86/build/v86.wasm' '_site/vendor/v86/v86.wasm'
+          download 'https://copy.sh/v86/bios/seabios.bin' '_site/vendor/v86/seabios.bin'
+          download 'https://copy.sh/v86/bios/vgabios.bin' '_site/vendor/v86/vgabios.bin'
+          download 'https://i.copy.sh/buildroot-bzimage68.bin' '_site/vendor/v86/images/buildroot-bzimage68.bin'
+          download 'https://i.copy.sh/linux4.iso' '_site/vendor/v86/images/linux4.iso'
+          download 'https://i.copy.sh/linux.iso' '_site/vendor/v86/images/linux.iso'
+          download 'https://i.copy.sh/freedos722.img' '_site/vendor/v86/images/freedos722.img'
+
           gh release download gorics-linux-gui-web-iso-latest \
             --repo "$GITHUB_REPOSITORY" \
             --pattern gorics-linux-gui-web-i386.iso \
-            --dir "$DEST"
+            --dir _site/os/real-multiboot/assets
+
+          python3 os/real-multiboot/prepare-direct-deploy.py _site
+
           python3 - <<'PY'
           import hashlib
           import json
-          from pathlib import Path
-
-          iso = Path('_site/os/real-multiboot/assets/gorics-linux-gui-web-i386.iso')
-          if not iso.is_file():
-              raise SystemExit('verified i386 web ISO missing')
-          size = iso.stat().st_size
-          if size >= 900_000_000:
-              raise SystemExit(f'web ISO too large for Pages: {size}')
-          h = hashlib.sha256()
-          with iso.open('rb') as f:
-              for block in iter(lambda: f.read(1024 * 1024), b''):
-                  h.update(block)
-          meta = {
-              'name': iso.name,
-              'architecture': 'i386',
-              'desktop': 'openbox-tint2-pcmanfm-xterm',
-              'openbox_verified': True,
-              'lightdm': False,
-              'size': size,
-              'sha256': h.hexdigest(),
-              'source': 'i686-qemu-openbox-verified-release',
-          }
-          iso.with_name('iso-meta.json').write_text(json.dumps(meta, indent=2) + '\n', encoding='utf-8')
-          print(meta)
-          PY
-
-      - name: Configure direct i386 kernel boot and unique cache version
-        env:
-          DEPLOY_VERSION: ${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-        run: |
-          python3 os/real-multiboot/prepare-direct-deploy.py _site
-          python3 - <<'PY'
-          import json
           import os
+          import pathlib
           import re
-          from pathlib import Path
 
           version = os.environ['DEPLOY_VERSION']
-          page = Path('_site/os/real-multiboot')
+          site = pathlib.Path('_site')
+          page = site / 'os' / 'real-multiboot'
           index = page / 'index.html'
+          app = page / 'app.js'
+
           html = index.read_text(encoding='utf-8')
-          html = re.sub(r'(<meta name="gorics-build" content=")[^"]*', lambda m: m.group(1) + version, html)
-          html = re.sub(r'(<meta name="gorics-deployment-marker" content=")[^"]*', lambda m: m.group(1) + 'GORICS Real Multiboot ' + version, html)
           html = re.sub(r'([?&]v=)[A-Za-z0-9._-]+', lambda m: m.group(1) + version, html)
-          html = re.sub(r'(\[ready\] GORICS Real Multiboot )[A-Za-z0-9._-]+', lambda m: m.group(1) + version, html)
+          html = re.sub(r'(<meta name="gorics-build" content=")[^"]*', lambda m: m.group(1) + version, html)
+          html = re.sub(
+              r'(<meta name="gorics-deployment-marker" content=")[^"]*',
+              lambda m: m.group(1) + 'GORICS Real Multiboot ' + version,
+              html,
+          )
+          html = re.sub(
+              r'(\[ready\] GORICS Real Multiboot )[A-Za-z0-9._-]+',
+              lambda m: m.group(1) + version,
+              html,
+          )
           index.write_text(html, encoding='utf-8')
 
-          app = page / 'app.js'
           app_text = app.read_text(encoding='utf-8')
-          app_text, count = re.subn(r"const BUILD = '[^']+';", f"const BUILD = '{version}';", app_text, count=1)
+          app_text, count = re.subn(
+              r"const BUILD = '[^']+';",
+              f"const BUILD = '{version}';",
+              app_text,
+              count=1,
+          )
           if count != 1:
               raise SystemExit('app BUILD constant was not updated exactly once')
           app.write_text(app_text, encoding='utf-8')
 
-          meta_path = page / 'assets/iso-meta.json'
+          runtime_root = site / 'vendor' / 'v86'
+          manifest = {'version': version, 'files': {}}
+          for name in ('libv86.js', 'v86.wasm', 'seabios.bin', 'vgabios.bin'):
+              data = (runtime_root / name).read_bytes()
+              manifest['files'][name] = {
+                  'size': len(data),
+                  'sha256': hashlib.sha256(data).hexdigest(),
+              }
+          (runtime_root / 'manifest.json').write_text(
+              json.dumps(manifest, indent=2) + '\n',
+              encoding='utf-8',
+          )
+
+          meta_path = page / 'assets' / 'iso-meta.json'
           meta = json.loads(meta_path.read_text(encoding='utf-8'))
           meta['page_version'] = version
-          meta['deployment'] = 'single-static-workflow-atomic-v86'
+          meta['deployment'] = 'atomic-v86-native-xhr'
           meta_path.write_text(json.dumps(meta, indent=2) + '\n', encoding='utf-8')
-          (page / 'assets/deployment.json').write_text(json.dumps({
+
+          deployment = {
               'version': version,
               'architecture': 'i386',
               'desktop': 'openbox-tint2-pcmanfm-xterm',
@@ -188,10 +140,18 @@ jobs:
               'atomic_v86_assets': True,
               'native_xhr': True,
               'iso_sha256': meta['sha256'],
-          }, indent=2) + '\n', encoding='utf-8')
-          print('deployment version', version)
+              'runtime_manifest': manifest,
+          }
+          (page / 'assets' / 'deployment.json').write_text(
+              json.dumps(deployment, indent=2) + '\n',
+              encoding='utf-8',
+          )
+          print(json.dumps(deployment, indent=2))
           PY
 
+      - name: Validate assembled deployment
+        run: |
+          set -euo pipefail
           node --check _site/os/real-multiboot/app.js
           node --check _site/os/real-multiboot/asset-versioning.js
           node --check _site/os/real-multiboot/safe-diagnostics.js
@@ -200,15 +160,18 @@ jobs:
           grep -q 'systemd.unit=graphical.target' _site/os/real-multiboot/app.js
           grep -q 'asset-versioning.js?v=' _site/os/real-multiboot/index.html
           grep -q 'safe-diagnostics.js?v=' _site/os/real-multiboot/index.html
-          ! grep -q 'chunk-router-v4.js' _site/os/real-multiboot/index.html
-          ! grep -q 'diagnostics.js' _site/os/real-multiboot/index.html
           grep -q 'gorics-build' _site/os/real-multiboot/index.html
+          ! grep -q 'src="./diagnostics.js' _site/os/real-multiboot/index.html
+          ! grep -q 'chunk-router-v4.js' _site/os/real-multiboot/index.html
           test -s _site/vendor/v86/libv86.js
           test -s _site/vendor/v86/v86.wasm
+          test -s _site/vendor/v86/seabios.bin
+          test -s _site/vendor/v86/vgabios.bin
           test -s _site/vendor/v86/manifest.json
-          test -s _site/os/real-multiboot/assets/iso-meta.json
           test -s _site/os/real-multiboot/assets/vmlinuz
           test -s _site/os/real-multiboot/assets/initrd.img
+          test -s _site/os/real-multiboot/assets/iso-meta.json
+          test -s _site/os/real-multiboot/assets/deployment.json
           test "$(du -sb _site | cut -f1)" -lt 1000000000
 
           node <<'JS'
@@ -216,7 +179,7 @@ jobs:
           const bytes = fs.readFileSync('_site/vendor/v86/v86.wasm');
           const module = new WebAssembly.Module(bytes);
           const exports = WebAssembly.Module.exports(module);
-          if (!exports.some((entry) => entry.name === 'memory' && entry.kind === 'memory')) {
+          if (!exports.some(entry => entry.name === 'memory' && entry.kind === 'memory')) {
             throw new Error(`v86.wasm does not export memory: ${JSON.stringify(exports.slice(0, 30))}`);
           }
           console.log('v86.wasm compiled and exports memory', bytes.length);
@@ -230,44 +193,42 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '_site'
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Verify public OS deployment
+      - name: Verify public deployment
         run: |
           set -euo pipefail
-          BASE='https://gorics.github.io/website'
-          PAGE="$BASE/os/real-multiboot/"
-          READY=0
+          ROOT='https://gorics.github.io/website'
+          PAGE="$ROOT/os/real-multiboot"
+          ready=0
           for attempt in $(seq 1 60); do
             stamp="$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT-$attempt-$(date +%s)"
-            if curl -fsSL --max-time 30 -H 'Cache-Control: no-cache' "$PAGE?verify=$stamp" -o /tmp/index.html \
+            if curl -fsSL --max-time 45 -H 'Cache-Control: no-cache' "$PAGE/?verify=$stamp" -o /tmp/index.html \
               && grep -q 'asset-versioning.js?v=' /tmp/index.html \
               && grep -q 'safe-diagnostics.js?v=' /tmp/index.html \
               && grep -q 'gorics-build' /tmp/index.html \
               && ! grep -q 'chunk-router-v4.js' /tmp/index.html \
-              && curl -fsSL --max-time 30 "$PAGE/assets/iso-meta.json?v=$stamp" -o /tmp/meta.json \
-              && grep -q 'openbox-tint2-pcmanfm-xterm' /tmp/meta.json \
-              && curl -fsSL --max-time 30 "$BASE/vendor/v86/manifest.json?v=$stamp" -o /tmp/v86-manifest.json \
-              && grep -q 'v86.wasm' /tmp/v86-manifest.json \
-              && curl -fsSL --max-time 30 "$BASE/vendor/v86/libv86.js?v=$stamp" -o /tmp/libv86.js \
-              && test -s /tmp/libv86.js \
-              && curl -fsSL --max-time 30 "$BASE/vendor/v86/v86.wasm?v=$stamp" -o /tmp/v86.wasm \
-              && test -s /tmp/v86.wasm \
+              && curl -fsSL --max-time 45 "$ROOT/vendor/v86/manifest.json?v=$stamp" -o /tmp/manifest.json \
+              && grep -q 'v86.wasm' /tmp/manifest.json \
+              && curl -fsSL --max-time 60 "$ROOT/vendor/v86/libv86.js?v=$stamp" -o /tmp/libv86.js \
+              && curl -fsSL --max-time 60 "$ROOT/vendor/v86/v86.wasm?v=$stamp" -o /tmp/v86.wasm \
               && curl -fsSL --max-time 60 "$PAGE/assets/vmlinuz?v=$stamp" -o /tmp/vmlinuz \
+              && curl -fsSL --max-time 90 "$PAGE/assets/initrd.img?v=$stamp" -o /tmp/initrd.img \
+              && test -s /tmp/libv86.js \
+              && test -s /tmp/v86.wasm \
               && test "$(stat -c %s /tmp/vmlinuz)" -gt 1000000 \
-              && curl -fsSL --max-time 60 "$PAGE/assets/initrd.img?v=$stamp" -o /tmp/initrd.img \
               && test "$(stat -c %s /tmp/initrd.img)" -gt 10000000; then
-              READY=1
+              ready=1
               break
             fi
-            echo "public deployment not ready, attempt $attempt"
+            echo "public deployment pending attempt=$attempt"
             sleep 10
           done
-          test "$READY" = 1
+          test "$ready" = 1
 
           node --check /tmp/libv86.js
           node <<'JS'
@@ -275,12 +236,13 @@ jobs:
           const bytes = fs.readFileSync('/tmp/v86.wasm');
           const module = new WebAssembly.Module(bytes);
           const exports = WebAssembly.Module.exports(module);
-          if (!exports.some((entry) => entry.name === 'memory' && entry.kind === 'memory')) process.exit(1);
-          console.log('public v86.wasm exports memory', bytes.length);
+          if (!exports.some(entry => entry.name === 'memory' && entry.kind === 'memory')) process.exit(1);
+          console.log('public v86.wasm compiled and exports memory', bytes.length);
           JS
 
-          CODE=$(curl -sS --max-time 60 -r 32768-36863 -o /tmp/iso-probe.bin -w '%{http_code}' "$PAGE/assets/gorics-linux-gui-web-i386.iso?v=$GITHUB_RUN_ID")
-          test "$CODE" = 206
+          code=$(curl -sS --max-time 60 -r 32768-36863 -o /tmp/iso-probe.bin -w '%{http_code}' \
+            'https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-0-16777216')
+          test "$code" = 206
           test "$(stat -c %s /tmp/iso-probe.bin)" = 4096
           python3 - <<'PY'
           from pathlib import Path
