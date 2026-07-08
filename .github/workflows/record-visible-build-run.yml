@@ -23,7 +23,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh run list --workflow build-gorics-openbox-i386.yml --limit 5 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,url,event > /tmp/build-runs.json
-          gh run list --workflow publish-visible-desktop-r12-v2.yml --limit 5 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,url,event > /tmp/publish-runs.json
+          gh run list --workflow publish-visible-desktop-r12-v2.yml --limit 8 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,url,event > /tmp/publish-runs.json
           python3 - <<'PY'
           import json
           from pathlib import Path
@@ -42,4 +42,4 @@ jobs:
           git commit -m 'Record visible R12 workflow runs [skip ci]' || true
           git push origin HEAD:main
 
-# refresh: canonical successful artifact publisher 20260708-final
+# refresh: isolated canonical R12 publisher active
