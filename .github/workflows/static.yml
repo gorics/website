@@ -3,6 +3,8 @@ name: Deploy static content to Pages
 on:
   push:
     branches: ["main"]
+    paths-ignore:
+      - 'os/iso/*-status.json'
   workflow_dispatch:
 
 permissions:
@@ -20,6 +22,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -84,7 +87,7 @@ jobs:
                   path.write_text(text, encoding='utf-8')
                   print('patched', path)
 
-      - name: Add tested browser ISO to site
+      - name: Add verified Openbox i386 ISO
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -99,7 +102,7 @@ jobs:
           from pathlib import Path
           iso = Path('_site/os/real-multiboot/assets/gorics-linux-gui-web-i386.iso')
           if not iso.is_file():
-              raise SystemExit('tested i386 web ISO missing')
+              raise SystemExit('verified i386 web ISO missing')
           size = iso.stat().st_size
           if size >= 900_000_000:
               raise SystemExit(f'web ISO too large for Pages: {size}')
@@ -110,21 +113,57 @@ jobs:
           meta = {
               'name': iso.name,
               'architecture': 'i386',
+              'desktop': 'direct-xorg-openbox',
+              'openbox_verified': True,
+              'lightdm': False,
               'size': size,
               'sha256': h.hexdigest(),
-              'source': 'i686-qemu-tested-release',
+              'source': 'i686-qemu-openbox-verified-release',
           }
           iso.with_name('iso-meta.json').write_text(
               json.dumps(meta, indent=2) + '\n', encoding='utf-8'
           )
           print(meta)
           PY
-          sed -i 's/gorics-linux-gui-web-amd64.iso/gorics-linux-gui-web-i386.iso/g' _site/os/real-multiboot/app.js
-          sed -i 's/?v=i/?v=k/g; s/page. i/page. k/g' _site/os/real-multiboot/index.html
+
+      - name: Configure direct i386 kernel boot
+        run: |
+          python3 os/real-multiboot/prepare-direct-deploy.py _site
+          python3 - <<'PY'
+          import json, re
+          from pathlib import Path
+          page = Path('_site/os/real-multiboot')
+          index = page / 'index.html'
+          html = index.read_text(encoding='utf-8')
+          html = re.sub(r'([?&]v=)[A-Za-z0-9._-]+', r'\1n', html)
+          html = re.sub(r'(ISO page\. )[A-Za-z0-9._-]+', r'\1n', html)
+          index.write_text(html, encoding='utf-8')
+          meta_path = page / 'assets/iso-meta.json'
+          meta = json.loads(meta_path.read_text(encoding='utf-8'))
+          meta['page_version'] = 'n'
+          meta['deployment'] = 'single-static-workflow'
+          meta_path.write_text(json.dumps(meta, indent=2) + '\n', encoding='utf-8')
+          (page / 'assets/deployment.json').write_text(json.dumps({
+              'version': 'n',
+              'architecture': 'i386',
+              'desktop': 'direct-xorg-openbox',
+              'direct_boot': True,
+              'iso_sha256': meta['sha256'],
+          }, indent=2) + '\n', encoding='utf-8')
+          PY
+          node --check _site/os/real-multiboot/app.js
+          grep -q 'bzimage: { url: kernelUrl }' _site/os/real-multiboot/app.js
+          grep -q 'systemd.unit=graphical.target' _site/os/real-multiboot/app.js
+          grep -q 'app.js?v=n' _site/os/real-multiboot/index.html
+          grep -q 'page. n' _site/os/real-multiboot/index.html
           grep -q 'gorics-linux-gui-web-i386.iso' _site/os/real-multiboot/app.js
-          grep -q 'app.js?v=k' _site/os/real-multiboot/index.html
+          test -s _site/vendor/v86/libv86.js
+          test -s _site/vendor/v86/v86.wasm
+          test -s _site/os/real-multiboot/assets/iso-meta.json
+          test -s _site/os/real-multiboot/assets/vmlinuz
+          test -s _site/os/real-multiboot/assets/initrd.img
           test "$(du -sb _site | cut -f1)" -lt 1000000000
-          du -sh _site "$DEST"/*
+          du -sh _site _site/os/real-multiboot/assets/* _site/vendor/v86/*
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -137,3 +176,38 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Verify public OS deployment
+        run: |
+          BASE='https://gorics.github.io/website'
+          PAGE="$BASE/os/real-multiboot/"
+          READY=0
+          for attempt in $(seq 1 36); do
+            if curl -fsSL --max-time 30 "$PAGE?v=n-$GITHUB_RUN_ID" -o /tmp/index.html \
+              && grep -q 'app.js?v=n' /tmp/index.html \
+              && curl -fsSL --max-time 30 "$PAGE/assets/iso-meta.json?v=$GITHUB_RUN_ID" -o /tmp/meta.json \
+              && grep -q 'direct-xorg-openbox' /tmp/meta.json \
+              && curl -fsSL --max-time 30 "$BASE/vendor/v86/libv86.js?v=$GITHUB_RUN_ID" -o /tmp/libv86.js \
+              && test -s /tmp/libv86.js \
+              && curl -fsSL --max-time 60 "$PAGE/assets/vmlinuz?v=$GITHUB_RUN_ID" -o /tmp/vmlinuz \
+              && test "$(stat -c %s /tmp/vmlinuz)" -gt 1000000 \
+              && curl -fsSL --max-time 60 "$PAGE/assets/initrd.img?v=$GITHUB_RUN_ID" -o /tmp/initrd.img \
+              && test "$(stat -c %s /tmp/initrd.img)" -gt 10000000; then
+              READY=1
+              break
+            fi
+            echo "public deployment not ready, attempt $attempt"
+            sleep 10
+          done
+          test "$READY" = 1
+          CODE=$(curl -sS --max-time 60 -r 32768-36863 -o /tmp/iso-probe.bin -w '%{http_code}' "$PAGE/assets/gorics-linux-gui-web-i386.iso?v=$GITHUB_RUN_ID")
+          test "$CODE" = 206
+          test "$(stat -c %s /tmp/iso-probe.bin)" = 4096
+          python3 - <<'PY'
+          from pathlib import Path
+          data = Path('/tmp/iso-probe.bin').read_bytes()
+          assert data[1:6] == b'CD001'
+          assert data[2049:2054] == b'CD001'
+          assert b'EL TORITO' in data[2055:2087]
+          print('public ISO9660 and El Torito range verified')
+          PY
