@@ -29,7 +29,7 @@ jobs:
           git config user.email github-actions@github.com
           git fetch origin main
           git checkout -B main origin/main
-          printf '{"success":false,"state":"running","run_id":"%s","architecture":"i386","desktop":"direct-xorg-openbox","started_at":"%s"}\n' "$GITHUB_RUN_ID" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > os/iso/real-multiboot-status.json
+          printf '{"success":false,"state":"running","run_id":"%s","architecture":"i386","desktop":"openbox-tint2-pcmanfm-xterm","started_at":"%s"}\n' "$GITHUB_RUN_ID" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > os/iso/real-multiboot-status.json
           git add os/iso/real-multiboot-status.json
           git commit -m "Record real multiboot verification start [skip ci]" || true
           git push origin HEAD:main
@@ -49,7 +49,7 @@ jobs:
               && grep -q 'bzimage: { url: kernelUrl }' /tmp/app.js \
               && grep -q 'gorics-linux-gui-web-i386.iso' /tmp/app.js \
               && curl -fsSL --max-time 30 "$PAGE/assets/iso-meta.json?verify=$stamp" -o /tmp/meta.json \
-              && grep -q 'direct-xorg-openbox' /tmp/meta.json \
+              && grep -q 'openbox-tint2-pcmanfm-xterm' /tmp/meta.json \
               && curl -fsSL --max-time 30 "$BASE/vendor/v86/libv86.js?verify=$stamp" -o /tmp/libv86.js \
               && test "$(stat -c %s /tmp/libv86.js)" -gt 100000 \
               && curl -fsSL --max-time 60 "$PAGE/assets/vmlinuz?verify=$stamp" -o /tmp/vmlinuz \
@@ -70,8 +70,9 @@ jobs:
           meta = json.loads(Path('/tmp/meta.json').read_text())
           assert meta['name'] == 'gorics-linux-gui-web-i386.iso'
           assert meta['architecture'] == 'i386'
-          assert meta['desktop'] == 'direct-xorg-openbox'
+          assert meta['desktop'] in {'openbox-tint2-pcmanfm-xterm', 'direct-xorg-openbox'}
           assert meta.get('direct_boot') is True
+          assert meta.get('complete_ui_verified') is True
           assert meta['size'] > 0
           assert meta['kernel']['size'] > 1_000_000
           assert meta['initrd']['size'] > 10_000_000
@@ -115,7 +116,7 @@ jobs:
             success: false,
             state: 'browser-running',
             architecture: 'i386',
-            desktop: 'direct-xorg-openbox',
+            desktop: 'openbox-tint2-pcmanfm-xterm',
             boot_mode: 'direct-kernel-initrd-plus-iso',
             run_id: process.env.GITHUB_RUN_ID,
             url: process.env.VERIFY_URL,
@@ -185,7 +186,7 @@ jobs:
         if: always()
         run: |
           if test ! -s /tmp/real-multiboot-verification.json; then
-            printf '{"success":false,"state":"failed","run_id":"%s","architecture":"i386","desktop":"direct-xorg-openbox","public_files_outcome":"%s","error":"browser verification did not run or produce a result"}\n' "$GITHUB_RUN_ID" "${{ steps.public.outcome }}" > /tmp/real-multiboot-verification.json
+            printf '{"success":false,"state":"failed","run_id":"%s","architecture":"i386","desktop":"openbox-tint2-pcmanfm-xterm","public_files_outcome":"%s","error":"browser verification did not run or produce a result"}\n' "$GITHUB_RUN_ID" "${{ steps.public.outcome }}" > /tmp/real-multiboot-verification.json
           fi
 
       - name: Upload proof
