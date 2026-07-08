@@ -1,0 +1,238 @@
+name: Publish Legacy Pages OS Assets
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/publish-legacy-os-assets.yml'
+      - 'os/real-multiboot/app-legacy-chunked.js'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: publish-legacy-os-assets-final
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Cancel obsolete Actions Pages runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for workflow in static.yml deploy-gorics-direct-kernel.yml finalize-gorics-pages.yml switch-pages-to-actions.yml; do
+            gh run list --workflow "$workflow" --limit 100 --json databaseId,status \
+              --jq '.[] | select(.status == "queued" or .status == "in_progress") | .databaseId' \
+              | while read -r run_id; do
+                  test -n "$run_id" || continue
+                  echo "cancelling obsolete $workflow run $run_id"
+                  gh run cancel "$run_id" || true
+                done
+          done
+
+      - name: Download verified i386 ISO and runtime
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends xorriso
+          rm -rf /tmp/gorics-legacy-assets
+          mkdir -p /tmp/gorics-legacy-assets/release
+          gh release download gorics-linux-gui-web-iso-latest \
+            --repo "$GITHUB_REPOSITORY" \
+            --pattern 'gorics-linux-gui-web-i386.iso' \
+            --pattern 'SHA256SUMS.txt' \
+            --dir /tmp/gorics-legacy-assets/release
+          test -s /tmp/gorics-legacy-assets/release/gorics-linux-gui-web-i386.iso
+          sha256sum /tmp/gorics-legacy-assets/release/gorics-linux-gui-web-i386.iso
+
+          rm -rf os/real-multiboot/assets/v86-parts vendor/v86
+          mkdir -p os/real-multiboot/assets/v86-parts vendor/v86
+          curl -fL --retry 5 --retry-delay 2 https://copy.sh/v86/build/libv86.js -o vendor/v86/libv86.js
+          curl -fL --retry 5 --retry-delay 2 https://copy.sh/v86/build/v86.wasm -o vendor/v86/v86.wasm
+          curl -fL --retry 5 --retry-delay 2 https://copy.sh/v86/bios/seabios.bin -o vendor/v86/seabios.bin
+          curl -fL --retry 5 --retry-delay 2 https://copy.sh/v86/bios/vgabios.bin -o vendor/v86/vgabios.bin
+          test -s vendor/v86/libv86.js
+          test -s vendor/v86/v86.wasm
+
+      - name: Extract kernel and split ISO into repository-safe chunks
+        run: |
+          ISO=/tmp/gorics-legacy-assets/release/gorics-linux-gui-web-i386.iso
+          xorriso -osirrox on -indev "$ISO" -extract /live/vmlinuz os/real-multiboot/assets/vmlinuz
+          xorriso -osirrox on -indev "$ISO" -extract /live/initrd.img os/real-multiboot/assets/initrd.img
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+
+          iso = Path('/tmp/gorics-legacy-assets/release/gorics-linux-gui-web-i386.iso')
+          parts_dir = Path('os/real-multiboot/assets/v86-parts')
+          chunk_size = 16 * 1024 * 1024
+          size = iso.stat().st_size
+          digest = hashlib.sha256()
+          with iso.open('rb') as source:
+              for block in iter(lambda: source.read(1024 * 1024), b''):
+                  digest.update(block)
+          sha = digest.hexdigest()
+
+          for old in parts_dir.iterdir():
+              if old.is_file():
+                  old.unlink()
+          count = 0
+          start = 0
+          with iso.open('rb') as source:
+              while start < size:
+                  data = source.read(chunk_size)
+                  if len(data) < chunk_size:
+                      data += bytes(chunk_size - len(data))
+                  end = start + chunk_size
+                  target = parts_dir / f'{iso.name}-{start}-{end}'
+                  target.write_bytes(data)
+                  count += 1
+                  start = end
+
+          kernel = Path('os/real-multiboot/assets/vmlinuz')
+          initrd = Path('os/real-multiboot/assets/initrd.img')
+          def file_sha(path):
+              h = hashlib.sha256()
+              with path.open('rb') as stream:
+                  for block in iter(lambda: stream.read(1024 * 1024), b''):
+                      h.update(block)
+              return h.hexdigest()
+
+          meta = {
+              'name': iso.name,
+              'architecture': 'i386',
+              'desktop': 'direct-xorg-openbox',
+              'openbox_verified': True,
+              'lightdm': False,
+              'direct_boot': True,
+              'legacy_pages': True,
+              'chunked': True,
+              'chunk_size': chunk_size,
+              'parts': count,
+              'size': size,
+              'sha256': sha,
+              'kernel': {'name': kernel.name, 'size': kernel.stat().st_size, 'sha256': file_sha(kernel)},
+              'initrd': {'name': initrd.name, 'size': initrd.stat().st_size, 'sha256': file_sha(initrd)},
+              'page_version': 'p',
+          }
+          Path('os/real-multiboot/assets/iso-meta.json').write_text(json.dumps(meta, indent=2) + '\n')
+          Path('os/real-multiboot/assets/deployment.json').write_text(json.dumps({
+              'version': 'p',
+              'mode': 'legacy-main-chunked',
+              'architecture': 'i386',
+              'desktop': 'direct-xorg-openbox',
+              'direct_boot': True,
+              'iso_sha256': sha,
+              'parts': count,
+          }, indent=2) + '\n')
+          Path('os/iso/legacy-assets-status.json').write_text(json.dumps({
+              'state': 'prepared',
+              'run_id': '${{ github.run_id }}',
+              **meta,
+          }, indent=2) + '\n')
+          print(json.dumps(meta, indent=2))
+          PY
+
+      - name: Install legacy chunked loader
+        run: |
+          cp os/real-multiboot/app-legacy-chunked.js os/real-multiboot/app.js
+          cat > os/real-multiboot/index.html <<'HTML'
+          <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>GORICS Linux GUI OS</title><link rel="stylesheet" href="./styles.css?v=p"></head><body><main class="iso-app"><header class="hero"><h1>GORICS Linux GUI OS</h1><div class="actions"><button id="boot-btn">Run ISO</button><button id="stop-btn" class="secondary">Stop</button><button id="fullscreen-btn" class="secondary">Fullscreen</button></div></header><section class="panel info"><code id="iso-url">loading</code></section><section class="screen-wrap"><div id="screen" class="screen" tabindex="0"></div></section><section class="panel log-panel"><pre id="log">[ready] GORICS Linux GUI ISO page. p</pre></section></main><script src="./app.js?v=p"></script></body></html>
+          HTML
+          touch .nojekyll
+          node --check os/real-multiboot/app.js
+          grep -q 'use_parts: true' os/real-multiboot/app.js
+          grep -q 'gorics-linux-gui-web-i386.iso' os/real-multiboot/app.js
+          grep -q 'app.js?v=p' os/real-multiboot/index.html
+          test -s os/real-multiboot/assets/iso-meta.json
+          test -s os/real-multiboot/assets/vmlinuz
+          test -s os/real-multiboot/assets/initrd.img
+          test -s vendor/v86/libv86.js
+          test -s vendor/v86/v86.wasm
+          PARTS=$(find os/real-multiboot/assets/v86-parts -type f | wc -l)
+          test "$PARTS" -gt 10
+          if find os/real-multiboot/assets/v86-parts vendor/v86 os/real-multiboot/assets/vmlinuz os/real-multiboot/assets/initrd.img -type f -size +95M | grep -q .; then
+            echo 'repository file exceeds safe GitHub size' >&2
+            exit 1
+          fi
+          du -sh os/real-multiboot/assets/v86-parts vendor/v86
+          ls -lh os/real-multiboot/assets/vmlinuz os/real-multiboot/assets/initrd.img
+
+      - name: Commit all Legacy Pages assets atomically
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add \
+            .nojekyll \
+            vendor/v86 \
+            os/real-multiboot/app.js \
+            os/real-multiboot/app-legacy-chunked.js \
+            os/real-multiboot/index.html \
+            os/real-multiboot/assets \
+            os/iso/legacy-assets-status.json
+          git commit -m 'Publish complete chunked i386 OS for Legacy Pages'
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep $((attempt * 10))
+          done
+          exit 1
+
+      - name: Verify Legacy Pages build and every public asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BASE='https://gorics.github.io/website'
+          PAGE="$BASE/os/real-multiboot"
+          READY=0
+          for attempt in $(seq 1 90); do
+            stamp="$GITHUB_RUN_ID-$attempt"
+            BUILD_TYPE=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq '.build_type')
+            STATUS=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq '.status')
+            echo "attempt=$attempt build_type=$BUILD_TYPE status=$STATUS"
+            if test "$BUILD_TYPE" = legacy \
+              && curl -fsSL --max-time 60 "$PAGE/?legacy=$stamp" -o /tmp/index.html \
+              && grep -q 'app.js?v=p' /tmp/index.html \
+              && grep -q 'ISO page. p' /tmp/index.html \
+              && curl -fsSL --max-time 60 "$PAGE/app.js?legacy=$stamp" -o /tmp/app.js \
+              && grep -q 'use_parts: true' /tmp/app.js \
+              && grep -q 'gorics-linux-gui-web-i386.iso' /tmp/app.js \
+              && curl -fsSL --max-time 60 "$PAGE/assets/iso-meta.json?legacy=$stamp" -o /tmp/meta.json \
+              && grep -q 'legacy_pages' /tmp/meta.json \
+              && curl -fsSL --max-time 60 "$BASE/vendor/v86/libv86.js?legacy=$stamp" -o /tmp/libv86.js \
+              && test "$(stat -c %s /tmp/libv86.js)" -gt 100000 \
+              && curl -fsSL --max-time 60 "$PAGE/assets/vmlinuz?legacy=$stamp" -o /tmp/vmlinuz \
+              && test "$(stat -c %s /tmp/vmlinuz)" -gt 1000000 \
+              && curl -fsSL --max-time 90 "$PAGE/assets/initrd.img?legacy=$stamp" -o /tmp/initrd.img \
+              && test "$(stat -c %s /tmp/initrd.img)" -gt 10000000; then
+              CHUNK='gorics-linux-gui-web-i386.iso-0-16777216'
+              CODE=$(curl -sS --max-time 90 -r 32768-36863 -o /tmp/chunk-probe.bin -w '%{http_code}' "$PAGE/assets/v86-parts/$CHUNK?legacy=$stamp")
+              if { test "$CODE" = 206 || test "$CODE" = 200; }; then
+                python3 - <<'PY'
+                from pathlib import Path
+                data = Path('/tmp/chunk-probe.bin').read_bytes()
+                if len(data) > 4096:
+                    data = data[32768:36864]
+                assert len(data) == 4096
+                assert data[1:6] == b'CD001'
+                assert data[2049:2054] == b'CD001'
+                assert b'EL TORITO' in data[2055:2087]
+                PY
+                READY=1
+                break
+              fi
+            fi
+            sleep 10
+          done
+          test "$READY" = 1
+          echo 'Legacy Pages chunked i386 Openbox deployment verified.'
