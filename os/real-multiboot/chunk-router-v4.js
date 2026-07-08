@@ -342,5 +342,5 @@
     return fetchAsset(asset, requestInit);
   };
 
-  pageLog('ISO chunk router v4 installed (fetch-backed XHR + verified multi-CDN failover)');
+  pageLog('ISO chunk router v4 installed (fetch-backed multi-CDN XHR + verified failover)');
 })();
