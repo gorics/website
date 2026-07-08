@@ -1,0 +1,37 @@
+name: Extract R16 Failure
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/extract-r16-failure.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Extract failed step log
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -o pipefail
+          gh run view 28929087281 --repo "$GITHUB_REPOSITORY" --log-failed > /tmp/r16-failure-log.txt 2>&1 || true
+          tail -n 500 /tmp/r16-failure-log.txt > /tmp/r16-failure-tail.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          mkdir -p os/iso
+          cp /tmp/r16-failure-tail.txt os/iso/r16-failure-log.txt
+          git add os/iso/r16-failure-log.txt
+          git commit -m 'Record R16 failure log [skip ci]' || exit 0
+          git push origin HEAD:main
