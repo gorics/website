@@ -36,3 +36,5 @@ jobs:
           git add os/iso/public-q-v86-run.json
           git commit -m 'Record public q v86 verification run [skip ci]' || true
           git push origin HEAD:main
+
+# refresh: repository-path verifier
