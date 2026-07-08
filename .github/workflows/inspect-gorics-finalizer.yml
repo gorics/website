@@ -44,3 +44,5 @@ jobs:
           git add os/iso/finalizer-run-status.json
           git commit -m 'Record finalizer and static run status [skip ci]' || true
           git push origin HEAD:main
+
+# refreshed after Openbox metadata verifier fix
