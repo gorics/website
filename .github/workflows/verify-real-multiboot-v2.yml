@@ -255,3 +255,5 @@ jobs:
           if not r.get('success'):
               raise SystemExit('V2 browser verification failed')
           PY
+
+# final verification trigger after stale Pages runs were cancelled
