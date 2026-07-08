@@ -26,21 +26,38 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Download rebuilt ISO and inspect guest files
+      - name: Download verified ISO artifact and inspect guest files
         env:
           GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ github.event.workflow_run.id }}
         run: |
           set -euo pipefail
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends xorriso squashfs-tools
           rm -rf /tmp/gorics-r12
           mkdir -p /tmp/gorics-r12/release /tmp/gorics-r12/bundle
-          gh release download gorics-linux-gui-web-iso-latest \
-            --repo "$GITHUB_REPOSITORY" \
-            --pattern gorics-linux-gui-web-i386.iso \
-            --dir /tmp/gorics-r12/release
-          ISO=/tmp/gorics-r12/release/gorics-linux-gui-web-i386.iso
+          if test -z "${SOURCE_RUN_ID:-}"; then
+            SOURCE_RUN_ID=$(gh run list --repo "$GITHUB_REPOSITORY" \
+              --workflow build-gorics-openbox-i386.yml \
+              --status success --limit 1 --json databaseId --jq '.[0].databaseId')
+          fi
+          test -n "$SOURCE_RUN_ID"
+          ARTIFACT="gorics-visible-i386-${SOURCE_RUN_ID}"
+          if ! gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" \
+            --name "$ARTIFACT" --dir /tmp/gorics-r12/release; then
+            echo "artifact download failed; trying convenience release" >&2
+            gh release download gorics-linux-gui-web-iso-latest \
+              --repo "$GITHUB_REPOSITORY" \
+              --pattern gorics-linux-gui-web-i386.iso \
+              --dir /tmp/gorics-r12/release
+          fi
+          ISO=$(find /tmp/gorics-r12/release -type f -name gorics-linux-gui-web-i386.iso -print -quit)
+          test -n "$ISO"
           test -s "$ISO"
+          if test "$ISO" != /tmp/gorics-r12/release/gorics-linux-gui-web-i386.iso; then
+            cp "$ISO" /tmp/gorics-r12/release/gorics-linux-gui-web-i386.iso
+          fi
+          ISO=/tmp/gorics-r12/release/gorics-linux-gui-web-i386.iso
           xorriso -osirrox on -indev "$ISO" -extract /live/vmlinuz /tmp/gorics-r12/bundle/vmlinuz
           xorriso -osirrox on -indev "$ISO" -extract /live/initrd.img /tmp/gorics-r12/bundle/initrd.img
           xorriso -osirrox on -indev "$ISO" -extract /live/filesystem.squashfs /tmp/gorics-r12/filesystem.squashfs
