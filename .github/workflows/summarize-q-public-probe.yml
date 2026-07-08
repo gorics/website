@@ -1,0 +1,49 @@
+name: Summarize q Public Probe
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/summarize-q-public-probe.yml'
+      - 'os/iso/legacy-public-probe.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: summarize-q-public-probe
+  cancel-in-progress: true
+
+jobs:
+  summarize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Write compact result
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          source=json.loads(Path('os/iso/legacy-public-probe.json').read_text())
+          result={
+              'run_id':source.get('run_id'),
+              'pages_status':source.get('pages',{}).get('status'),
+              'latest_build_status':source.get('latest_build',{}).get('status'),
+              'latest_build_commit':source.get('latest_build',{}).get('commit'),
+              'checks':source.get('checks',{}),
+              'success':source.get('success',False),
+              'codes':{k:v.get('code') for k,v in source.get('targets',{}).items()},
+              'sizes':{k:v.get('size') for k,v in source.get('targets',{}).items()},
+          }
+          Path('os/iso/q-public-status.json').write_text(json.dumps(result,indent=2)+"\n")
+          print(json.dumps(result,indent=2))
+          PY
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          git add os/iso/q-public-status.json
+          git commit -m 'Record compact q public status [skip ci]' || true
+          git push origin HEAD:main
