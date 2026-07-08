@@ -3,7 +3,6 @@ set -euo pipefail
 
 SITE_DIR="${1:-_site}"
 DEPLOY_VERSION="${DEPLOY_VERSION:?DEPLOY_VERSION is required}"
-: "${GH_TOKEN:?GH_TOKEN is required}"
 
 rm -rf "$SITE_DIR"
 python3 - "$SITE_DIR" <<'PY'
@@ -38,12 +37,36 @@ download 'https://i.copy.sh/linux4.iso' "$SITE_DIR/vendor/v86/images/linux4.iso"
 download 'https://i.copy.sh/linux.iso' "$SITE_DIR/vendor/v86/images/linux.iso"
 download 'https://i.copy.sh/freedos722.img' "$SITE_DIR/vendor/v86/images/freedos722.img"
 
-gh release download gorics-linux-gui-web-iso-latest \
-  --repo "$GITHUB_REPOSITORY" \
-  --pattern gorics-linux-gui-web-i386.iso \
-  --dir "$SITE_DIR/os/real-multiboot/assets"
+# The release tag is intentionally not required here. The verified direct-boot
+# kernel, initrd and chunk metadata are versioned in the repository, while the
+# 339 MB ISO is served as range-addressable chunks from the os-assets branch.
+python3 - "$SITE_DIR" <<'PY'
+import hashlib
+import json
+import pathlib
+import sys
 
-python3 os/real-multiboot/prepare-direct-deploy.py "$SITE_DIR"
+site = pathlib.Path(sys.argv[1])
+assets = site / 'os' / 'real-multiboot' / 'assets'
+meta_path = assets / 'iso-meta.json'
+kernel = assets / 'vmlinuz'
+initrd = assets / 'initrd.img'
+for required in (meta_path, kernel, initrd):
+    if not required.is_file() or required.stat().st_size == 0:
+        raise SystemExit(f'missing repository-pinned boot asset: {required}')
+meta = json.loads(meta_path.read_text(encoding='utf-8'))
+if meta.get('architecture') != 'i386' or not meta.get('chunked') or not meta.get('direct_boot'):
+    raise SystemExit(f'invalid ISO metadata: {meta}')
+for path, key in ((kernel, 'kernel'), (initrd, 'initrd')):
+    expected = meta[key]
+    data = path.read_bytes()
+    actual_hash = hashlib.sha256(data).hexdigest()
+    if len(data) != int(expected['size']) or actual_hash != expected['sha256']:
+        raise SystemExit(
+            f'{path.name} integrity mismatch size={len(data)} sha256={actual_hash} expected={expected}'
+        )
+print('repository-pinned direct boot assets verified', meta['sha256'])
+PY
 
 python3 - "$SITE_DIR" "$DEPLOY_VERSION" <<'PY'
 import hashlib
@@ -97,14 +120,15 @@ for name in ('libv86.js', 'v86.wasm', 'seabios.bin', 'vgabios.bin'):
 meta_path = page / 'assets' / 'iso-meta.json'
 meta = json.loads(meta_path.read_text(encoding='utf-8'))
 meta['page_version'] = version
-meta['deployment'] = 'atomic-v86-native-xhr-final'
+meta['deployment'] = 'atomic-v86-native-xhr-final-repository-assets'
 meta_path.write_text(json.dumps(meta, indent=2) + '\n', encoding='utf-8')
 
 (page / 'assets' / 'deployment.json').write_text(json.dumps({
     'version': version,
     'architecture': 'i386',
-    'desktop': 'openbox-tint2-pcmanfm-xterm',
+    'desktop': meta.get('desktop', 'direct-xorg-openbox'),
     'direct_boot': True,
+    'chunked_iso': True,
     'atomic_v86_assets': True,
     'native_xhr': True,
     'iso_sha256': meta['sha256'],
