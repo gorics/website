@@ -1,0 +1,33 @@
+publish	Publish R12 boot files and loader to main	﻿2026-07-08T05:16:05.3498352Z ##[group]Run set -euo pipefail
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3498708Z ^[[36;1mset -euo pipefail^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3498984Z ^[[36;1mgit config user.name github-actions^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3499325Z ^[[36;1mgit config user.email github-actions@github.com^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3499663Z ^[[36;1mfor attempt in $(seq 1 15); do^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3499932Z ^[[36;1m  git fetch origin main^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3500199Z ^[[36;1m  git checkout -B main origin/main^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3500587Z ^[[36;1m  cp /tmp/gorics-r12/bundle/vmlinuz os/real-multiboot/assets/vmlinuz^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3501101Z ^[[36;1m  cp /tmp/gorics-r12/bundle/initrd.img os/real-multiboot/assets/initrd.img^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3501648Z ^[[36;1m  cp /tmp/gorics-r12/bundle/iso-meta.json os/real-multiboot/assets/iso-meta.json^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3502119Z ^[[36;1m  python3 scripts/publish_visible_r12_source.py^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3502462Z ^[[36;1m  node --check os/real-multiboot/app.js^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3503061Z ^[[36;1m  grep -q 'gorics-linux-gui-web-i386-r12.iso' os/real-multiboot/app.js^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3503594Z ^[[36;1m  grep -q '20260708-r12-visible-desktop' os/real-multiboot/index.html^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3504068Z ^[[36;1m  git add os/real-multiboot/app.js os/real-multiboot/index.html \^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3504453Z ^[[36;1m    os/real-multiboot/assets/vmlinuz \^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3505004Z ^[[36;1m    os/real-multiboot/assets/initrd.img \^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3505336Z ^[[36;1m    os/real-multiboot/assets/iso-meta.json^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3505732Z ^[[36;1m  git commit -m 'Publish GORICS R12 visible desktop boot assets' || true^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3506153Z ^[[36;1m  if git push origin HEAD:main; then exit 0; fi^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3506462Z ^[[36;1m  sleep $((attempt*4))^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3506702Z ^[[36;1mdone^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3506888Z ^[[36;1mexit 1^[[0m
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3538714Z shell: /usr/bin/bash -e {0}
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.3538974Z ##[endgroup]
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.5531049Z From https://github.com/gorics/website
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.5532165Z  * branch              main       -> FETCH_HEAD
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:05.5533059Z    1a429c31..44c9fe6a  main       -> origin/main
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:06.3273646Z Reset branch 'main'
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:06.3277222Z branch 'main' set up to track 'origin/main'.
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:06.3277603Z Your branch is up to date with 'origin/main'.
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:06.3700743Z R12 index markers missing
+publish	Publish R12 boot files and loader to main	2026-07-08T05:16:06.3752473Z ##[error]Process completed with exit code 1.
