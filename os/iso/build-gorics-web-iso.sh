@@ -55,6 +55,7 @@ xserver-xorg-video-vesa
 xserver-xorg-video-fbdev
 xserver-xorg-input-libinput
 x11-xserver-utils
+x11-utils
 openbox
 tint2
 pcmanfm
@@ -129,6 +130,57 @@ EOF
 chmod +x config/includes.chroot/etc/skel/Desktop/FILE-MANAGER.desktop
 cp config/includes.chroot/etc/skel/Desktop/FILE-MANAGER.desktop config/includes.chroot/root/Desktop/FILE-MANAGER.desktop
 
+mkdir -p config/includes.chroot/usr/share/backgrounds
+cat > config/includes.chroot/usr/share/backgrounds/gorics.xpm <<'EOF'
+/* XPM */
+static char * gorics_xpm[] = {
+"32 18 6 1",
+"  c #08111F",
+". c #0F1B33",
+"+ c #1D4ED8",
+"@ c #06B6D4",
+"# c #22C55E",
+"X c #F8FAFC",
+"++++++++++++++++++++++++++++++++",
+"+..............................+",
+"+.@@@@@@@@@@@@@@@@@@@@@@@@@@@@.+",
+"+.@..........................@.+",
+"+.@.XXXXXXXXXXXXXXXXXXXXXX...@.+",
+"+.@.X....................X...@.+",
+"+.@.X..################..X...@.+",
+"+.@.X..#..............#..X...@.+",
+"+.@.X..#..++++++++++..#..X...@.+",
+"+.@.X..#..+...........#..X...@.+",
+"+.@.X..#..+..XXXXXXX..#..X...@.+",
+"+.@.X..#..+......X....#..X...@.+",
+"+.@.X..#..++++++++....#..X...@.+",
+"+.@.X..#..............#..X...@.+",
+"+.@.X..################..X...@.+",
+"+.@.XXXXXXXXXXXXXXXXXXXXXX...@.+",
+"+.@@@@@@@@@@@@@@@@@@@@@@@@@@@@.+",
+"++++++++++++++++++++++++++++++++"};
+EOF
+
+cat > config/includes.chroot/usr/local/bin/gorics-visible-terminal <<'EOF'
+#!/bin/sh
+printf '[2J[H'
+printf '[1;36mGORICS Linux GUI OS[0m
+'
+printf '[1;32mDesktop rendered successfully[0m
+
+'
+printf 'Openbox window manager
+Tint2 application panel
+PCManFM desktop
+NetSurf web browser
+
+'
+printf 'This terminal stays open as a visible readiness window.
+'
+exec /bin/sh -i
+EOF
+chmod +x config/includes.chroot/usr/local/bin/gorics-visible-terminal
+
 cat > config/includes.chroot/etc/skel/.config/pcmanfm/LXDE/pcmanfm.conf <<'EOF'
 [config]
 bm_open_method=0
@@ -140,8 +192,8 @@ mount_removable=1
 autorun=1
 
 [desktop]
-wallpaper_mode=color
-wallpaper=
+wallpaper_mode=stretch
+wallpaper=/usr/share/backgrounds/gorics.xpm
 desktop_bg=#182033
 desktop_fg=#f8fafc
 desktop_shadow=#000000
@@ -164,7 +216,7 @@ panel_items = LTSC
 panel_size = 100% 42
 panel_margin = 0 0
 panel_padding = 8 4 8
-panel_background_id = 1
+panel_background_id = 0
 panel_position = bottom center horizontal
 panel_layer = top
 panel_monitor = all
@@ -200,7 +252,7 @@ task_padding = 6 2 6
 task_font = Sans 10
 task_font_color = #f8fafc 100
 task_background_id = 0
-task_active_background_id = 1
+task_active_background_id = 0
 
 systray_padding = 4 2 4
 systray_background_id = 0
@@ -215,7 +267,7 @@ clock_font_color = #f8fafc 100
 
 tooltip = 1
 tooltip_padding = 6 4
-tooltip_background_id = 1
+tooltip_background_id = 0
 tooltip_font = Sans 10
 tooltip_font_color = #f8fafc 100
 mouse_left = toggle_iconify
@@ -247,7 +299,9 @@ tint2 -c /root/.config/tint2/tint2rc > /var/log/gorics-tint2.log 2>&1 &
 nm-applet > /var/log/gorics-nm-applet.log 2>&1 &
 (sleep 2; xterm -title 'GORICS Linux GUI OS' -geometry 80x24+90+70 -e /usr/local/bin/gorics-welcome) > /var/log/gorics-xterm.log 2>&1 &
 EOF
+chmod +x config/includes.chroot/etc/skel/.config/openbox/autostart
 cp config/includes.chroot/etc/skel/.config/openbox/autostart config/includes.chroot/root/.config/openbox/autostart
+chmod +x config/includes.chroot/root/.config/openbox/autostart
 
 cat > config/includes.chroot/usr/local/bin/gorics-session <<'EOF'
 #!/bin/sh
@@ -259,7 +313,19 @@ export DISPLAY=:0
 export XDG_RUNTIME_DIR=/run/gorics-x
 export XDG_CURRENT_DESKTOP=OPENBOX
 export DESKTOP_SESSION=openbox
-exec openbox-session
+export XDG_CONFIG_HOME=/root/.config
+
+xset s off -dpms >/dev/null 2>&1 || true
+xsetroot -solid '#08111f' >/dev/null 2>&1 || true
+openbox --config-file /etc/xdg/openbox/rc.xml > /var/log/gorics-openbox.log 2>&1 &
+openbox_pid=$!
+sleep 2
+pcmanfm --desktop --profile LXDE > /var/log/gorics-pcmanfm.log 2>&1 &
+tint2 -c /root/.config/tint2/tint2rc > /var/log/gorics-tint2.log 2>&1 &
+nm-applet > /var/log/gorics-nm-applet.log 2>&1 &
+xterm -hold -title 'GORICS Control Center' -geometry 84x26+92+72 -fa 'DejaVu Sans Mono' -fs 11 -bg '#07111f' -fg '#f8fafc' -e /usr/local/bin/gorics-visible-terminal > /var/log/gorics-xterm.log 2>&1 &
+(sleep 4; xmessage -name GORICSWelcome -title 'GORICS Linux GUI Ready' -center -buttons 'Continue:0' 'GORICS Linux GUI is running in the browser.' > /var/log/gorics-xmessage.log 2>&1) &
+wait "$openbox_pid"
 EOF
 chmod +x config/includes.chroot/usr/local/bin/gorics-session
 
@@ -334,7 +400,15 @@ Requires=gorics-x.service
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'i=0; while [ "$i" -lt 300 ]; do if pgrep -x openbox >/dev/null && pgrep -x tint2 >/dev/null && pgrep -x pcmanfm >/dev/null && pgrep -x xterm >/dev/null; then printf "GORICS_OPENBOX_READY\nGORICS_TINT2_READY\nGORICS_PCMANFM_READY\nGORICS_XTERM_READY\nGORICS_WEB_GUI_READY\n" > /dev/ttyS0; exit 0; fi; i=$((i+1)); sleep 1; done; printf "GORICS_WEB_GUI_FAILED\n" > /dev/ttyS0; for name in openbox tint2 pcmanfm xterm; do pgrep -a -x "$name" > /dev/ttyS0 2>&1 || true; done; systemctl --no-pager status gorics-x.service > /dev/ttyS0 2>&1 || true; for f in /var/log/gorics-xorg.log /var/log/gorics-tint2.log /var/log/gorics-pcmanfm.log /var/log/gorics-xterm.log; do printf "--- %s ---\n" "$f" > /dev/ttyS0; cat "$f" > /dev/ttyS0 2>&1 || true; done; exit 1'
+ExecStart=/bin/sh -c 'i=0; while [ "$i" -lt 300 ]; do DISPLAY=:0 xwininfo -root -tree > /tmp/gorics-window-tree 2>&1 || true; if pgrep -x openbox >/dev/null && pgrep -x tint2 >/dev/null && pgrep -x pcmanfm >/dev/null && pgrep -x xterm >/dev/null && grep -q "GORICS Control Center" /tmp/gorics-window-tree; then cat /tmp/gorics-window-tree > /dev/ttyS0 2>&1 || true; printf "GORICS_OPENBOX_READY
+GORICS_TINT2_READY
+GORICS_PCMANFM_READY
+GORICS_XTERM_READY
+GORICS_VISIBLE_WINDOW_READY
+GORICS_WEB_GUI_READY
+" > /dev/ttyS0; exit 0; fi; i=$((i+1)); sleep 1; done; printf "GORICS_WEB_GUI_FAILED
+" > /dev/ttyS0; cat /tmp/gorics-window-tree > /dev/ttyS0 2>&1 || true; for name in openbox tint2 pcmanfm xterm xmessage; do pgrep -a -x "$name" > /dev/ttyS0 2>&1 || true; done; systemctl --no-pager status gorics-x.service > /dev/ttyS0 2>&1 || true; for f in /var/log/gorics-xorg.log /var/log/gorics-openbox.log /var/log/gorics-tint2.log /var/log/gorics-pcmanfm.log /var/log/gorics-xterm.log /var/log/gorics-xmessage.log; do printf "--- %s ---
+" "$f" > /dev/ttyS0; cat "$f" > /dev/ttyS0 2>&1 || true; done; exit 1'
 
 [Install]
 WantedBy=graphical.target
