@@ -2,57 +2,106 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#050816">
   <meta name="color-scheme" content="dark">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <title>GORICS Linux GUI OS</title>
-  <link rel="stylesheet" href="./styles.css?v=20260708-r6-responsive">
+  <title>GORICS Real Multiboot</title>
+  <link rel="stylesheet" href="./styles.css?v=20260708-r6multiboot">
 </head>
 <body>
   <main class="iso-app">
-    <aside class="control-rail" aria-label="멀티부트 제어판">
-      <header class="hero">
-        <div class="hero-copy">
-          <span class="badge">REAL MULTIBOOT CONSOLE</span>
-          <h1>GORICS Linux GUI OS</h1>
-          <p>실제 ISO를 브라우저에서 부팅합니다. 화면을 누르면 키보드와 포인터 입력이 활성화됩니다.</p>
-        </div>
-        <div class="actions" aria-label="가상 머신 제어">
-          <button id="boot-btn" type="button">Run ISO</button>
-          <button id="stop-btn" type="button" class="secondary" disabled>Stop</button>
-          <button id="fullscreen-btn" type="button" class="secondary">Fullscreen</button>
-        </div>
-      </header>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">REAL BROWSER VM · MULTIBOOT</p>
+        <h1>GORICS Real Multiboot</h1>
+        <p class="subtitle">GORICS Linux를 기본으로 Buildroot, DSL, Tiny Linux, FreeDOS를 같은 실행 화면에서 선택해 부팅합니다.</p>
+      </div>
+      <a class="hub-link" href="../">OS 허브로 돌아가기</a>
+    </header>
 
-      <section class="panel info" aria-labelledby="source-title">
-        <div class="panel-heading">
-          <h2 id="source-title">ISO source</h2>
-          <span class="status-dot" aria-hidden="true"></span>
+    <aside class="control-panel panel" aria-label="멀티부트 제어판">
+      <label class="field-label" for="os-select">부팅할 운영체제</label>
+      <select id="os-select">
+        <option value="gorics">GORICS Linux GUI — 기본</option>
+        <option value="buildroot">Buildroot Linux — 경량 콘솔</option>
+        <option value="dsl">Damn Small Linux — GUI ISO</option>
+        <option value="tiny">Tiny Linux — 초경량 ISO</option>
+        <option value="freedos">FreeDOS — HDD 이미지</option>
+        <option value="buildroot-serial">Buildroot Serial — 진단 콘솔</option>
+        <option value="dsl-high">DSL GUI High Memory — 384 MB</option>
+      </select>
+
+      <section class="target-card" aria-labelledby="boot-target">
+        <div class="target-head">
+          <span class="target-icon" id="target-icon">G</span>
+          <div>
+            <span class="target-kind" id="target-kind">CUSTOM ISO · GUI</span>
+            <h2 id="boot-target">GORICS Linux GUI</h2>
+          </div>
         </div>
-        <code id="iso-url">loading</code>
+        <p id="target-description">실제 i386 Linux ISO와 Openbox 데스크톱을 다중 CDN 청크로 부팅합니다.</p>
+        <div class="target-meta">
+          <span id="target-memory">RAM 384 MB</span>
+          <span id="target-media">ISO + kernel/initrd</span>
+        </div>
       </section>
 
-      <section class="panel log-panel" aria-labelledby="log-title">
-        <div class="panel-heading">
-          <h2 id="log-title">Boot log</h2>
-          <span class="live-label">LIVE</span>
+      <div class="actions">
+        <button id="boot-btn" type="button">선택 OS 부팅</button>
+        <button id="keyboard-btn" type="button" class="secondary" disabled>키보드</button>
+        <button id="stop-btn" type="button" class="danger" disabled>중지</button>
+        <button id="fullscreen-btn" type="button" class="secondary">전체화면</button>
+      </div>
+
+      <section class="progress-card" aria-live="polite" aria-atomic="true">
+        <div class="progress-heading">
+          <strong id="stage-label">부팅 대기</strong>
+          <span id="progress-percent">0%</span>
         </div>
-        <pre id="log" role="log" aria-live="polite">[ready] GORICS Linux GUI ISO page. 20260708-r6 responsive UI</pre>
+        <p id="stage-detail">운영체제를 선택한 뒤 부팅 버튼을 누르세요.</p>
+        <div class="progress-track" aria-hidden="true"><div id="progress-bar"></div></div>
+        <ol class="steps" id="boot-steps">
+          <li data-step="prepare"><span>1</span>환경 준비</li>
+          <li data-step="runtime"><span>2</span>v86 런타임</li>
+          <li data-step="media"><span>3</span>부팅 매체</li>
+          <li data-step="emulator"><span>4</span>VM 생성</li>
+          <li data-step="boot"><span>5</span>OS 부팅</li>
+          <li data-step="display"><span>6</span>화면 출력</li>
+        </ol>
+      </section>
+
+      <section class="panel info-panel">
+        <span class="field-label">현재 부팅 소스</span>
+        <code id="iso-url">GORICS 다중 CDN 소스를 선택할 준비가 되었습니다.</code>
       </section>
     </aside>
 
-    <section class="screen-wrap" aria-label="가상 머신 화면">
-      <div id="screen" class="screen" tabindex="0" aria-label="GORICS Linux 가상 화면"></div>
+    <section class="screen-wrap" id="screen-wrap" aria-label="가상 머신 화면">
+      <div id="screen" class="screen" tabindex="0"></div>
+      <div id="loading-overlay" class="loading-overlay idle" role="status" aria-live="polite">
+        <div class="spinner" aria-hidden="true"></div>
+        <strong id="overlay-title">멀티부트 준비 완료</strong>
+        <p id="overlay-detail">OS를 선택하고 부팅을 시작하세요.</p>
+        <div class="overlay-progress"><div id="overlay-progress-bar"></div></div>
+        <span id="overlay-percent">0%</span>
+      </div>
+    </section>
+
+    <section class="panel log-panel">
+      <div class="log-head">
+        <strong>실시간 상세 로그</strong>
+        <button id="copy-log-btn" type="button" class="small secondary">로그 복사</button>
+      </div>
+      <pre id="log">[ready] GORICS Real Multiboot 20260708-r6multiboot</pre>
     </section>
   </main>
 
-  <script src="./diagnostics.js?v=20260708-r6-responsive"></script>
-  <script src="./chunk-fetch-timeout.js?v=20260708-r6-responsive"></script>
-  <script src="./chunk-router-v4.js?v=20260708-r6-responsive"></script>
-  <script src="./app.js?v=20260708-r6-responsive"></script>
-  <script src="./responsive.js?v=20260708-r6-responsive"></script>
+  <script src="./diagnostics.js?v=20260708-r6multiboot"></script>
+  <script src="./chunk-fetch-timeout.js?v=20260708-r6multiboot"></script>
+  <script src="./chunk-router-v4.js?v=20260708-r6multiboot"></script>
+  <script src="./app.js?v=20260708-r6multiboot"></script>
 </body>
 </html>
