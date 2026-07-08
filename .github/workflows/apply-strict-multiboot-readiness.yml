@@ -37,26 +37,7 @@ jobs:
 
           path = Path('os/real-multiboot/app.js')
           text = path.read_text(encoding='utf-8')
-          old = '''  function displaySnapshot(preset) {
-              const canvas = screen?.querySelector('canvas');
-              const text = screen?.querySelector(':scope > div');
-              const canvasVisible = Boolean(canvas && getComputedStyle(canvas).display !== 'none');
-              const canvasReady = Boolean(canvasVisible && canvas.width >= 320 && canvas.height >= 200);
-              const graphicalReady = Boolean(canvasVisible && canvas.width >= 640 && canvas.height >= 480);
-              const textReady = Boolean(text && text.textContent.trim().length > 0 && getComputedStyle(text).display !== 'none');
-              return {
-                ready: preset.mode === 'gorics' ? graphicalReady : (canvasReady || textReady),
-                canvasWidth: canvas?.width || 0,
-                canvasHeight: canvas?.height || 0,
-                canvasVisible,
-                textLength: text?.textContent?.trim().length || 0,
-                textReady,
-              };
-            }
-          '''
-          # Accept current normal indentation exactly as stored in source.
-          old = old.replace('          function', '  function').replace('\n              ', '\n    ').replace('\n            }', '\n  }')
-          new = '''  function displaySnapshot(preset) {
+          new = r'''  function displaySnapshot(preset) {
             const canvas = screen?.querySelector('canvas');
             const text = screen?.querySelector(':scope > div');
             const canvasVisible = Boolean(canvas && getComputedStyle(canvas).display !== 'none');
@@ -93,16 +74,12 @@ jobs:
               textLength: textContent.trim().length,
               textReady,
             };
-          }
-          '''
-          if old not in text:
-              start = text.find('  function displaySnapshot(preset) {')
-              end = text.find('\n  function completeDisplay(', start)
-              if start < 0 or end < 0:
-                  raise SystemExit('displaySnapshot block not found')
-              text = text[:start] + new.rstrip() + text[end:]
-          else:
-              text = text.replace(old, new, 1)
+          }'''
+          start = text.find('  function displaySnapshot(preset) {')
+          end = text.find('\n  function completeDisplay(', start)
+          if start < 0 or end < 0:
+              raise SystemExit('displaySnapshot block not found')
+          text = text[:start] + new + text[end:]
           text = text.replace(
               "setStage('display', `${preset.name} 화면 출력 완료`, '가상 머신 화면이 준비됐습니다. 화면을 클릭하면 키보드와 포인터 입력이 활성화됩니다.', 100, 'success');",
               "setStage('display', `${preset.name} 부팅 완료`, '운영체제 준비 조건을 확인했습니다. 화면을 클릭하면 키보드와 포인터 입력이 활성화됩니다.', 100, 'success');",
