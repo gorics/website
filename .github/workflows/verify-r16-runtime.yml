@@ -1,0 +1,113 @@
+name: Diagnose R16 Runtime
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/verify-r16-runtime.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Install Chromium
+        run: |
+          npm init -y
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Capture R16 mobile runtime states
+        env:
+          VERIFY_URL: https://gorics.github.io/website/os/real-multiboot/?verify=r16-diagnostic-${{ github.run_id }}
+        run: |
+          node <<'JS'
+          const fs = require('fs');
+          const { chromium } = require('playwright');
+          const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+          const report = { url: process.env.VERIFY_URL, console: [], pageErrors: [], requestFailures: [], timeline: [] };
+          const snapshot = async (page, label) => {
+            const state = await page.evaluate((label) => ({
+              label,
+              at: Date.now(),
+              readyState: document.readyState,
+              build: document.querySelector('meta[name="gorics-build"]')?.content || null,
+              bootText: document.querySelector('#boot-btn')?.textContent || null,
+              progress: document.querySelector('#progress-percent')?.textContent || null,
+              stage: document.querySelector('#stage-label')?.textContent || null,
+              detail: document.querySelector('#stage-detail')?.textContent || null,
+              vm: Boolean(window.goricsRealMultiboot),
+              options: window.__GORICS_LAST_VM_OPTIONS__ || null,
+              performance: window.__GORICS_PERFORMANCE_MODE__ ? {
+                build: window.__GORICS_PERFORMANCE_MODE__.build,
+                profile: window.__GORICS_PERFORMANCE_MODE__.profile,
+                isCompact: window.__GORICS_PERFORMANCE_MODE__.isCompact,
+                cachedPreflights: window.__GORICS_PERFORMANCE_MODE__.cachedPreflights(),
+              } : null,
+              log: (document.querySelector('#log')?.textContent || '').slice(-20000),
+              screen: {
+                html: (document.querySelector('#screen')?.innerHTML || '').slice(0,2500),
+                canvases: [...document.querySelectorAll('#screen canvas')].map(c => ({ width: c.width, height: c.height, display: getComputedStyle(c).display })),
+              },
+            }), label);
+            report.timeline.push(state);
+            fs.writeFileSync('/tmp/r16-runtime-diagnostic.json', JSON.stringify(report, null, 2));
+            return state;
+          };
+          (async () => {
+            let browser;
+            try {
+              browser = await chromium.launch({ headless: true, args: ['--no-sandbox', '--disable-dev-shm-usage'] });
+              const page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+              page.on('console', message => report.console.push({ type: message.type(), text: message.text().slice(0,2000) }));
+              page.on('pageerror', error => report.pageErrors.push(String(error)));
+              page.on('requestfailed', request => report.requestFailures.push({ url: request.url(), failure: request.failure() }));
+              await page.goto(process.env.VERIFY_URL, { waitUntil: 'domcontentloaded', timeout: 120000 });
+              await snapshot(page, 'domcontentloaded');
+              await page.waitForFunction(() => Boolean(window.__GORICS_PERFORMANCE_MODE__), null, { timeout: 30000 });
+              await snapshot(page, 'performance-ready');
+              await page.selectOption('#os-select', 'buildroot');
+              await page.click('#boot-btn');
+              for (let index = 0; index < 50; index += 1) {
+                await sleep(3000);
+                const state = await snapshot(page, `tick-${index + 1}`);
+                if (/emulator-started/.test(state.log) || /부팅 실패/.test(state.stage || '') || /다시 부팅/.test(state.bootText || '')) break;
+              }
+              await page.screenshot({ path: '/tmp/r16-runtime-diagnostic.png', fullPage: true });
+            } catch (error) {
+              report.fatal = { message: error.message, stack: error.stack };
+            } finally {
+              fs.writeFileSync('/tmp/r16-runtime-diagnostic.json', JSON.stringify(report, null, 2));
+              if (browser) await browser.close();
+            }
+          })();
+          JS
+      - name: Upload diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r16-runtime-diagnostic-${{ github.run_id }}
+          path: |
+            /tmp/r16-runtime-diagnostic.json
+            /tmp/r16-runtime-diagnostic.png
+          if-no-files-found: warn
+      - name: Record diagnostic in repository
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          mkdir -p os/iso
+          cp /tmp/r16-runtime-diagnostic.json os/iso/r16-runtime-diagnostic.json
+          git add os/iso/r16-runtime-diagnostic.json
+          git commit -m 'Record R16 runtime diagnostic [skip ci]' || exit 0
+          git push origin HEAD:main
