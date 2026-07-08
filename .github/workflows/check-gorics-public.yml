@@ -1,0 +1,99 @@
+name: Check GORICS Public Deployment
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/check-gorics-public.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: check-gorics-public-final
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Probe every public OS file
+        env:
+          STAMP: ${{ github.run_id }}
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+
+          base = 'https://gorics.github.io/website'
+          page = base + '/os/real-multiboot'
+          stamp = os.environ['STAMP']
+          targets = {
+              'index': page + '/?probe=' + stamp,
+              'app': page + '/app.js?probe=' + stamp,
+              'meta': page + '/assets/iso-meta.json?probe=' + stamp,
+              'deployment': page + '/assets/deployment.json?probe=' + stamp,
+              'runtime': base + '/vendor/v86/libv86.js?probe=' + stamp,
+              'wasm': base + '/vendor/v86/v86.wasm?probe=' + stamp,
+              'kernel': page + '/assets/vmlinuz?probe=' + stamp,
+              'initrd': page + '/assets/initrd.img?probe=' + stamp,
+              'iso': page + '/assets/gorics-linux-gui-web-i386.iso?probe=' + stamp,
+          }
+          result = {'run_id': stamp, 'targets': {}}
+          for name, url in targets.items():
+              headers = Path(f'/tmp/{name}.headers')
+              body = Path(f'/tmp/{name}.body')
+              cmd = ['curl', '-sS', '-L', '--max-time', '90', '-D', str(headers), '-o', str(body), '-w', '%{http_code}', url]
+              if name == 'iso':
+                  cmd[1:1] = ['-r', '32768-36863']
+              try:
+                  completed = subprocess.run(cmd, text=True, capture_output=True, timeout=100)
+                  code = completed.stdout.strip()
+                  error = completed.stderr.strip()
+              except Exception as exc:
+                  code, error = 'exception', repr(exc)
+              text = ''
+              if body.exists() and body.stat().st_size <= 2_000_000:
+                  text = body.read_text(errors='replace')[:4000]
+              result['targets'][name] = {
+                  'url': url,
+                  'http_code': code,
+                  'size': body.stat().st_size if body.exists() else 0,
+                  'headers': headers.read_text(errors='replace')[-4000:] if headers.exists() else '',
+                  'body_prefix': text,
+                  'error': error,
+              }
+
+          index = result['targets']['index']['body_prefix']
+          app = result['targets']['app']['body_prefix']
+          meta = result['targets']['meta']['body_prefix']
+          result['checks'] = {
+              'index_version_n': 'app.js?v=n' in index and 'ISO page. n' in index,
+              'app_i386': 'gorics-linux-gui-web-i386.iso' in app,
+              'app_direct_kernel': 'bzimage' in app and 'initrd' in app and 'systemd.unit=graphical.target' in app,
+              'meta_openbox': 'direct-xorg-openbox' in meta,
+              'runtime_200': result['targets']['runtime']['http_code'] == '200',
+              'kernel_200': result['targets']['kernel']['http_code'] == '200',
+              'initrd_200': result['targets']['initrd']['http_code'] == '200',
+              'iso_range_206': result['targets']['iso']['http_code'] == '206' and result['targets']['iso']['size'] == 4096,
+          }
+          result['success'] = all(result['checks'].values())
+          Path('os/iso/public-probe.json').write_text(json.dumps(result, indent=2, ensure_ascii=False) + '\n')
+          print(json.dumps(result, indent=2, ensure_ascii=False))
+          PY
+
+      - name: Commit probe result
+        if: always()
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          git add os/iso/public-probe.json
+          git commit -m 'Record exact public OS probe [skip ci]' || true
+          git push origin HEAD:main
