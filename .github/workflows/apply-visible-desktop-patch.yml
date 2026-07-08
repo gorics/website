@@ -10,10 +10,11 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: apply-visible-desktop-patch
-  cancel-in-progress: false
+  cancel-in_progress: false
 
 jobs:
   patch:
@@ -44,15 +45,34 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add os/iso/build-gorics-web-iso.sh
-          if git diff --cached --quiet; then
+          if ! git diff --cached --quiet; then
+            git commit -m 'fix(os): render visible Openbox desktop and window'
+            for attempt in $(seq 1 15); do
+              if git push origin HEAD:main; then break; fi
+              sleep $((attempt*3))
+              git fetch origin main
+              git rebase origin/main
+            done
+          else
             echo 'visible desktop source already patched'
-            exit 0
           fi
-          git commit -m 'fix(os): render visible Openbox desktop and window'
-          for attempt in $(seq 1 15); do
-            if git push origin HEAD:main; then exit 0; fi
-            sleep $((attempt*3))
-            git fetch origin main
-            git rebase origin/main
+
+      - name: Confirm patched source on main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 30); do
+            CONTENT=$(gh api "repos/$GITHUB_REPOSITORY/contents/os/iso/build-gorics-web-iso.sh?ref=main" --jq .content | tr -d '\n' | base64 -d)
+            if grep -q 'GORICS_VISIBLE_WINDOW_READY' <<<"$CONTENT" \
+              && grep -q 'GORICS Control Center' <<<"$CONTENT"; then
+              exit 0
+            fi
+            sleep 3
           done
           exit 1
+
+      - name: Dispatch clean i386 ISO rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run build-gorics-openbox-i386.yml --repo "$GITHUB_REPOSITORY" --ref main
