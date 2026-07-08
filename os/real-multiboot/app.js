@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const BUILD = '20260708-r6multiboot';
+  const BUILD = '20260708-r8-overlay-complete';
   const $ = (selector) => document.querySelector(selector);
   const logBox = $('#log');
   const screen = $('#screen');
@@ -96,6 +96,7 @@
   let lastTouch = null;
   let bootTimeout = null;
   let displayTimer = null;
+  let displayCompletedToken = 0;
   let lastProgressSignature = '';
 
   const phoneKeyboard = document.createElement('input');
@@ -147,7 +148,12 @@
     if (overlayPercent) overlayPercent.textContent = `${value}%`;
     if (overlayProgressBar) overlayProgressBar.style.width = `${value}%`;
     if (overlay) {
-      overlay.classList.remove('idle', 'error', 'success', 'hidden');
+      const preserveHidden = state === 'running' && mode !== 'error' && mode !== 'idle';
+      overlay.classList.remove('idle', 'error', 'success');
+      if (!preserveHidden) {
+        overlay.classList.remove('hidden');
+        overlay.removeAttribute('aria-hidden');
+      }
       if (mode === 'idle') overlay.classList.add('idle');
       if (mode === 'error') overlay.classList.add('error');
       if (mode === 'success') overlay.classList.add('success');
@@ -157,7 +163,9 @@
   }
 
   function hideOverlay() {
-    overlay?.classList.add('hidden');
+    if (!overlay) return;
+    overlay.classList.add('hidden');
+    overlay.setAttribute('aria-hidden', 'true');
   }
 
   function setState(next) {
@@ -404,8 +412,19 @@
       if (line && /(Linux version|FreeDOS|Welcome|login|GORICS_|graphical|openbox|xorg|failed|error|panic)/i.test(line)) {
         log(`serial ${line.slice(0, 420)}`, /failed|error|panic/i.test(line) ? 'warn' : 'info');
       }
-      if (/openbox|graphical target|GORICS_GUI_READY/i.test(line)) {
+      if (state !== 'running' && /openbox|graphical target|GORICS_GUI_READY/i.test(line)) {
         setStage('display', '그래픽 데스크톱 실행 중', 'Openbox 그래픽 환경 신호를 확인했습니다.', 99);
+      }
+      if (/GORICS_WEB_GUI_READY|GORICS_GUI_READY/i.test(line)) {
+        const serialRunToken = token;
+        const serialPreset = presets[selectedPreset] || presets.gorics;
+        let attempts = 0;
+        const settleTimer = setInterval(() => {
+          attempts += 1;
+          if (completeDisplay(serialRunToken, serialPreset, 'serial-gui-ready') || attempts >= 80) {
+            clearInterval(settleTimer);
+          }
+        }, 250);
       }
     } else if (serialBuffer.length < 4000) serialBuffer += character;
   }
@@ -434,6 +453,24 @@
     };
   }
 
+  function completeDisplay(runToken, preset, trigger = 'canvas-watch') {
+    if (runToken !== token || !vm || displayCompletedToken === runToken) return false;
+    const display = displaySnapshot(preset);
+    if (!display.ready) return false;
+    displayCompletedToken = runToken;
+    clearInterval(displayTimer);
+    log(`display completion trigger=${trigger} preset=${selectedPreset} canvas=${display.canvasWidth}x${display.canvasHeight} canvasVisible=${display.canvasVisible} textLength=${display.textLength}`);
+    setStage('display', `${preset.name} 화면 출력 완료`, '가상 머신 화면이 준비됐습니다. 화면을 클릭하면 키보드와 포인터 입력이 활성화됩니다.', 100, 'success');
+    setState('running');
+    enableInput();
+    focusScreen();
+    clearTimeout(bootTimeout);
+    hideOverlay();
+    setTimeout(hideOverlay, 650);
+    log(`display ready preset=${selectedPreset} name=${preset.name}`);
+    return true;
+  }
+
   function beginDisplayWatch(runToken, preset) {
     clearInterval(displayTimer);
     displayTimer = setInterval(() => {
@@ -441,17 +478,7 @@
         clearInterval(displayTimer);
         return;
       }
-      const display = displaySnapshot(preset);
-      if (!display.ready) return;
-      clearInterval(displayTimer);
-      log(`display verification passed preset=${selectedPreset} canvas=${display.canvasWidth}x${display.canvasHeight} canvasVisible=${display.canvasVisible} textLength=${display.textLength}`);
-      setStage('display', `${preset.name} 화면 출력 완료`, '가상 머신 화면이 준비됐습니다. 화면을 클릭하면 키보드와 포인터 입력이 활성화됩니다.', 100, 'success');
-      setState('running');
-      enableInput();
-      focusScreen();
-      clearTimeout(bootTimeout);
-      setTimeout(hideOverlay, 650);
-      log(`display ready preset=${selectedPreset} name=${preset.name}`);
+      completeDisplay(runToken, preset, 'canvas-watch');
     }, 250);
   }
 
@@ -482,7 +509,10 @@
     vm.add_listener('emulator-stopped', () => log('emulator-stopped'));
     vm.add_listener('screen-set-size', (data) => {
       log(`screen-set-size ${JSON.stringify(data)}`);
-      setStage('display', '화면 해상도 설정 중', `가상 디스플레이 크기가 ${JSON.stringify(data)}로 변경됐습니다.`, 96);
+      if (state !== 'running') {
+        setStage('display', '화면 해상도 설정 중', `가상 디스플레이 크기가 ${JSON.stringify(data)}로 변경됐습니다.`, 96);
+      }
+      completeDisplay(runToken, preset, 'screen-set-size');
     });
     try { vm.add_listener('serial0-output-byte', serialByte); } catch (error) { log(`serial listener unavailable ${error.message}`, 'warn'); }
   }
@@ -496,6 +526,7 @@
     lastProgressSignature = '';
     serialBuffer = '';
     inputLogged = false;
+    displayCompletedToken = 0;
     setState('checking');
     setStage('prepare', `${preset.name} 부팅 준비 중`, '브라우저 기능과 이전 실행 상태를 확인하고 있습니다.', 3);
     focusScreen();
