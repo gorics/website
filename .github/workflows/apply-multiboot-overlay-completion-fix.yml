@@ -2,12 +2,20 @@ name: Apply Multiboot Overlay Completion Fix
 
 on:
   workflow_dispatch:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+    paths:
+      - 'os/real-multiboot/.trigger-apply-overlay-fix'
   push:
     paths:
       - '.github/workflows/apply-multiboot-overlay-completion-fix.yml'
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: apply-multiboot-overlay-completion-fix
@@ -15,8 +23,9 @@ concurrency:
 
 jobs:
   patch:
+    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,6 +41,20 @@ jobs:
 
           path = Path('os/real-multiboot/app.js')
           text = path.read_text(encoding='utf-8')
+
+          if "20260708-r8-overlay-complete" in text:
+              required = [
+                  "function completeDisplay",
+                  "display completion trigger=",
+                  "serial-gui-ready",
+                  "overlay.setAttribute('aria-hidden', 'true')",
+                  "completeDisplay(runToken, preset, 'screen-set-size')",
+              ]
+              missing = [item for item in required if item not in text]
+              if missing:
+                  raise SystemExit(f'partially patched loader missing markers: {missing}')
+              print('loader already patched; validation passed')
+              raise SystemExit(0)
 
           def replace_once(old: str, new: str, label: str) -> None:
               global text
@@ -197,7 +220,11 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add os/real-multiboot/app.js
-          git commit -m 'fix(multiboot): complete GUI state and hide overlay' || exit 0
+          if git diff --cached --quiet; then
+            echo 'loader already repaired'
+            exit 0
+          fi
+          git commit -m 'fix(multiboot): complete GUI state and hide overlay'
           for attempt in $(seq 1 12); do
             if git push origin HEAD:main; then
               exit 0
@@ -207,3 +234,9 @@ jobs:
             git rebase origin/main
           done
           exit 1
+
+      - name: Dispatch repaired Pages deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run static.yml --repo "$GITHUB_REPOSITORY" --ref main
