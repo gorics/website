@@ -1,0 +1,88 @@
+name: Diagnose And Apply Visible Desktop
+
+on:
+  workflow_dispatch: {}
+  push:
+    paths:
+      - '.github/workflows/diagnose-and-apply-visible-desktop.yml'
+      - 'scripts/patch_gorics_visible_desktop.py'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: diagnose-and-apply-visible-desktop
+  cancel-in-progress: false
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Run patch and capture exact result
+        id: patch
+        continue-on-error: true
+        run: |
+          set +e
+          python3 scripts/patch_gorics_visible_desktop.py > /tmp/visible-patch.log 2>&1
+          code=$?
+          set -e
+          cat /tmp/visible-patch.log
+          printf '%s' "$code" > /tmp/visible-patch-code
+          if test "$code" = 0; then
+            bash -n os/iso/build-gorics-web-iso.sh
+            grep -q 'GORICS_VISIBLE_WINDOW_READY' os/iso/build-gorics-web-iso.sh
+            grep -q 'GORICS Control Center' os/iso/build-gorics-web-iso.sh
+            grep -q 'panel_background_id = 0' os/iso/build-gorics-web-iso.sh
+            git diff --check
+          fi
+          exit "$code"
+
+      - name: Record exact patch result and source changes
+        if: always()
+        run: |
+          set -euo pipefail
+          code=$(cat /tmp/visible-patch-code 2>/dev/null || printf 99)
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          log = Path('/tmp/visible-patch.log').read_text(errors='replace') if Path('/tmp/visible-patch.log').exists() else 'patch did not run'
+          code = int(Path('/tmp/visible-patch-code').read_text()) if Path('/tmp/visible-patch-code').exists() else 99
+          result = {
+              'run_id': os.environ['GITHUB_RUN_ID'],
+              'success': code == 0,
+              'exit_code': code,
+              'log': log,
+          }
+          Path('os/iso/visible-desktop-patch-status.json').write_text(json.dumps(result, indent=2) + '\n')
+          PY
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add os/iso/visible-desktop-patch-status.json
+          if test "$code" = 0; then
+            git add os/iso/build-gorics-web-iso.sh
+          fi
+          git commit -m 'Record and apply visible desktop patch result [skip ci]' || true
+          for attempt in $(seq 1 12); do
+            if git push origin HEAD:main; then break; fi
+            sleep $((attempt*3))
+            git fetch origin main
+            git rebase origin/main
+          done
+
+      - name: Dispatch clean ISO rebuild after successful patch
+        if: steps.patch.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run build-gorics-openbox-i386.yml --repo "$GITHUB_REPOSITORY" --ref main
+
+      - name: Require successful patch
+        if: always()
+        run: test "$(cat /tmp/visible-patch-code 2>/dev/null || printf 99)" = 0
