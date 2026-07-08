@@ -1,8 +1,8 @@
 GORICS Real Multiboot deployment trigger
-build=20260708-r12-v86-atomic-stable
-root_cause=v86 JavaScript/WASM cache generation mismatch on iOS WebKit
-fix=atomic asset versioning plus native XMLHttpRequest diagnostics
-verification=Chromium full Buildroot/GORICS boots and iPhone WebKit GORICS startup
-tracker=atomic-pages-status.json and atomic-browser-status.json
+build=20260708-r13-strict-readiness
+root_cause=generic first-text display completion falsely marked BIOS and early boot screens as complete
+fix=OS-specific readiness gates for Buildroot, FreeDOS, Tiny Linux, DSL GUI, and GORICS GUI
+verification=seven sequential public boots with screenshots and fatal-signature rejection
+tracker=final-all-multiboot-presets-status.json and final-multiboot-workflow-runs.json
 trigger_mode=isolated-marker-only
-workflow_revision=stable-exact-sha
+source_commit=c20da84351c79f3ec5dce257ccff879c6f77488b
