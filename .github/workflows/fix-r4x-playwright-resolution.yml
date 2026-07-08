@@ -1,0 +1,48 @@
+name: Fix R4X Playwright Resolution
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/fix-r4x-playwright-resolution.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fix-r4x-playwright-resolution
+  cancel-in-progress: false
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch verifier and push
+        run: |
+          set -euo pipefail
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for attempt in $(seq 1 12); do
+            git fetch origin main
+            git checkout -B main origin/main
+            python3 - <<'PY'
+          from pathlib import Path
+          path = Path('.github/workflows/verify-r4x-final.yml')
+          text = path.read_text()
+          old = "          node --check /tmp/verify-r4x.mjs\n"
+          new = "          ln -sfn \"$GITHUB_WORKSPACE/node_modules\" /tmp/node_modules\n          node --check /tmp/verify-r4x.mjs\n"
+          if new not in text:
+              if old not in text:
+                  raise SystemExit('r4x verifier insertion point not found')
+              path.write_text(text.replace(old, new, 1))
+          PY
+            git add .github/workflows/verify-r4x-final.yml
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Fix r4x verifier Playwright module resolution'
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
