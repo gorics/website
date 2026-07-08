@@ -5,12 +5,14 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/verify-r17-predictive.yml'
+      - '.github/workflows/deploy-real-multiboot-final-v3.yml'
       - 'os/real-multiboot/predictive-prefetch.js'
       - 'os/real-multiboot/index.html'
   workflow_dispatch: {}
 
 permissions:
   actions: read
+  issues: write
 
 jobs:
   verify:
@@ -137,3 +139,18 @@ jobs:
             /tmp/r17-predictive-result.json
             /tmp/r17-predictive-mobile.png
           if-no-files-found: warn
+
+      - name: Report R17 result
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_STATUS: ${{ job.status }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh issue comment 134 --repo "$GITHUB_REPOSITORY" --body "R17 예측 선로딩 검증 완료
+
+- run: $GITHUB_RUN_ID
+- conclusion: $RUN_STATUS
+- head: $GITHUB_SHA
+- url: $RUN_URL
+- recorded: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
