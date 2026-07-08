@@ -79,10 +79,10 @@ jobs:
 
       - name: Build r4x verifier
         run: |
-          cp scripts/verify-public-q-v86.mjs /tmp/verify-r4x.mjs
+          cp scripts/verify-public-q-v86.mjs verify-r4x.mjs
           python3 - <<'PY'
           from pathlib import Path
-          p=Path('/tmp/verify-r4x.mjs')
+          p=Path('verify-r4x.mjs')
           s=p.read_text()
           s=s.replace("initial.includes('page. q')", "initial.includes('page. 20260708-r4x')")
           s=s.replace('00-page-q.png', '00-page-r4x.png')
@@ -91,7 +91,7 @@ jobs:
           s=s.replace("'browser-proof/", "'/tmp/r4x-proof/")
           p.write_text(s)
           PY
-          node --check /tmp/verify-r4x.mjs
+          node --check verify-r4x.mjs
 
       - name: Boot current r4x Linux GUI
         id: browser
@@ -102,7 +102,7 @@ jobs:
           rm -rf /tmp/r4x-proof
           mkdir -p /tmp/r4x-proof
           set -o pipefail
-          timeout --signal=TERM --kill-after=30s 22m node /tmp/verify-r4x.mjs 2>&1 | tee /tmp/r4x-proof/runner.log
+          timeout --signal=TERM --kill-after=30s 22m node verify-r4x.mjs 2>&1 | tee /tmp/r4x-proof/runner.log
 
       - name: Upload r4x proof
         if: always()
