@@ -1,0 +1,37 @@
+name: Record R16 Diagnostic Runs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/record-r16-diagnostic-runs.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Record diagnostic runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run list --repo "$GITHUB_REPOSITORY" --workflow verify-r16-runtime.yml --limit 10 \
+            --json databaseId,status,conclusion,createdAt,updatedAt,headSha,url,event > /tmp/r16-diagnostic-runs.json
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          mkdir -p os/iso
+          cp /tmp/r16-diagnostic-runs.json os/iso/r16-diagnostic-runs.json
+          git add os/iso/r16-diagnostic-runs.json
+          git commit -m 'Record R16 diagnostic runs [skip ci]' || exit 0
+          git push origin HEAD:main
