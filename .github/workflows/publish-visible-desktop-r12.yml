@@ -1,0 +1,184 @@
+name: Publish Visible Desktop R12
+
+on:
+  workflow_dispatch: {}
+  workflow_run:
+    workflows:
+      - Build GORICS Direct Openbox i386 ISO
+    types: [completed]
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: publish-visible-desktop-r12
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Download and inspect rebuilt ISO
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends xorriso squashfs-tools
+          rm -rf /tmp/gorics-r12
+          mkdir -p /tmp/gorics-r12/release /tmp/gorics-r12/bundle/v86-parts
+          gh release download gorics-linux-gui-web-iso-latest \
+            --repo "$GITHUB_REPOSITORY" \
+            --pattern gorics-linux-gui-web-i386.iso \
+            --dir /tmp/gorics-r12/release
+          ISO=/tmp/gorics-r12/release/gorics-linux-gui-web-i386.iso
+          test -s "$ISO"
+          xorriso -osirrox on -indev "$ISO" -extract /live/vmlinuz /tmp/gorics-r12/bundle/vmlinuz
+          xorriso -osirrox on -indev "$ISO" -extract /live/initrd.img /tmp/gorics-r12/bundle/initrd.img
+          xorriso -osirrox on -indev "$ISO" -extract /live/filesystem.squashfs /tmp/gorics-r12/filesystem.squashfs
+          unsquashfs -cat /tmp/gorics-r12/filesystem.squashfs usr/local/bin/gorics-session > /tmp/gorics-r12/gorics-session
+          unsquashfs -cat /tmp/gorics-r12/filesystem.squashfs etc/systemd/system/gorics-web-ready.service > /tmp/gorics-r12/gorics-web-ready.service
+          unsquashfs -cat /tmp/gorics-r12/filesystem.squashfs root/.config/tint2/tint2rc > /tmp/gorics-r12/tint2rc
+          grep -q 'GORICS Control Center' /tmp/gorics-r12/gorics-session
+          grep -q 'GORICS_VISIBLE_WINDOW_READY' /tmp/gorics-r12/gorics-web-ready.service
+          grep -q 'xwininfo -root -tree' /tmp/gorics-r12/gorics-web-ready.service
+          grep -q 'panel_background_id = 0' /tmp/gorics-r12/tint2rc
+          test "$(stat -c %s /tmp/gorics-r12/bundle/vmlinuz)" -gt 1000000
+          test "$(stat -c %s /tmp/gorics-r12/bundle/initrd.img)" -gt 10000000
+
+      - name: Build immutable R12 CDN chunks and metadata
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, math
+          from pathlib import Path
+
+          root = Path('/tmp/gorics-r12')
+          iso = root / 'release/gorics-linux-gui-web-i386.iso'
+          parts = root / 'bundle/v86-parts'
+          chunk_size = 16 * 1024 * 1024
+          asset_name = 'gorics-linux-gui-web-i386-r12.iso'
+
+          def digest(path: Path) -> str:
+              h = hashlib.sha256()
+              with path.open('rb') as stream:
+                  for block in iter(lambda: stream.read(1024 * 1024), b''):
+                      h.update(block)
+              return h.hexdigest()
+
+          size = iso.stat().st_size
+          count = 0
+          with iso.open('rb') as source:
+              start = 0
+              while start < size:
+                  data = source.read(chunk_size)
+                  if len(data) < chunk_size:
+                      data += bytes(chunk_size - len(data))
+                  end = start + chunk_size
+                  (parts / f'{asset_name}-{start}-{end}').write_bytes(data)
+                  start = end
+                  count += 1
+
+          kernel = root / 'bundle/vmlinuz'
+          initrd = root / 'bundle/initrd.img'
+          meta = {
+              'name': asset_name,
+              'source_release_name': iso.name,
+              'architecture': 'i386',
+              'desktop': 'openbox-tint2-pcmanfm-xterm-visible-r12',
+              'direct_boot': True,
+              'chunked': True,
+              'chunk_size': chunk_size,
+              'parts': count,
+              'size': size,
+              'sha256': digest(iso),
+              'visible_window_required': True,
+              'visible_window_marker': 'GORICS_VISIBLE_WINDOW_READY',
+              'mapped_window_title': 'GORICS Control Center',
+              'pixel_variance_required': True,
+              'kernel': {'name': kernel.name, 'size': kernel.stat().st_size, 'sha256': digest(kernel)},
+              'initrd': {'name': initrd.name, 'size': initrd.stat().st_size, 'sha256': digest(initrd)},
+              'release': 'r12-visible-desktop',
+          }
+          assert count == math.ceil(size / chunk_size)
+          (root / 'bundle/iso-meta.json').write_text(json.dumps(meta, indent=2) + '\n')
+          print(json.dumps(meta, indent=2))
+          PY
+          test "$(find /tmp/gorics-r12/bundle/v86-parts -type f | wc -l)" -gt 10
+          if find /tmp/gorics-r12/bundle/v86-parts -type f -size +95M | grep -q .; then
+            echo 'unsafe chunk size' >&2
+            exit 1
+          fi
+
+      - name: Publish R12 chunks to os-assets branch
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/gorics-os-assets
+          git fetch origin os-assets
+          git worktree add -B os-assets /tmp/gorics-os-assets origin/os-assets
+          cd /tmp/gorics-os-assets
+          mkdir -p os/real-multiboot/assets/v86-parts
+          find os/real-multiboot/assets/v86-parts -maxdepth 1 -type f -name 'gorics-linux-gui-web-i386-r12.iso-*' -delete
+          cp -a /tmp/gorics-r12/bundle/v86-parts/. os/real-multiboot/assets/v86-parts/
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -f os/real-multiboot/assets/v86-parts
+          git commit -m 'Publish visible GORICS i386 R12 chunks' || true
+          for attempt in $(seq 1 12); do
+            if git push origin HEAD:os-assets; then exit 0; fi
+            sleep $((attempt*5))
+            git fetch origin os-assets
+            git rebase origin/os-assets
+          done
+          exit 1
+
+      - name: Publish R12 boot files and loader to main
+        run: |
+          set -euo pipefail
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for attempt in $(seq 1 15); do
+            git fetch origin main
+            git checkout -B main origin/main
+            cp /tmp/gorics-r12/bundle/vmlinuz os/real-multiboot/assets/vmlinuz
+            cp /tmp/gorics-r12/bundle/initrd.img os/real-multiboot/assets/initrd.img
+            cp /tmp/gorics-r12/bundle/iso-meta.json os/real-multiboot/assets/iso-meta.json
+            python3 - <<'PY'
+          from pathlib import Path
+          app = Path('os/real-multiboot/app.js')
+          text = app.read_text()
+          import re
+          text, count = re.subn(r"const assetName = '[^']+';", "const assetName = 'gorics-linux-gui-web-i386-r12.iso';", text, count=1)
+          if count != 1:
+              raise SystemExit('assetName patch failed')
+          text = text.replace("const BUILD = '20260708-r8-overlay-complete';", "const BUILD = '20260708-r12-visible-desktop';")
+          app.write_text(text)
+
+          index = Path('os/real-multiboot/index.html')
+          html = index.read_text()
+          html = re.sub(r'20260708-r11-overlay-complete', '20260708-r12-visible-desktop', html)
+          html = html.replace('overlay-hidden-running-controls-ready', 'mapped-window-pixel-variance-ready')
+          index.write_text(html)
+          PY
+            node --check os/real-multiboot/app.js
+            grep -q 'gorics-linux-gui-web-i386-r12.iso' os/real-multiboot/app.js
+            grep -q '20260708-r12-visible-desktop' os/real-multiboot/index.html
+            git add os/real-multiboot/app.js os/real-multiboot/index.html os/real-multiboot/assets/vmlinuz os/real-multiboot/assets/initrd.img os/real-multiboot/assets/iso-meta.json
+            git commit -m 'Publish GORICS R12 visible desktop boot assets' || true
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt*4))
+          done
+          exit 1
+
+      - name: Dispatch Pages deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run static.yml --repo "$GITHUB_REPOSITORY" --ref main
