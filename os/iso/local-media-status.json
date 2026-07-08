@@ -1,11 +1,9 @@
 {
   "success": true,
   "state": "completed",
-  "run_id": "28918914240",
-  "checked_at": "2026-07-08T05:06:06.412400+00:00",
+  "run_id": "28924032022",
+  "checked_at": "2026-07-08T07:02:43.187441+00:00",
   "probe": [
-    "buildroot-bzimage68.bin status=206 bytes=4096",
-    "linux4.iso status=206 bytes=4096",
-    "freedos722.img status=206 bytes=4096"
+    "buildroot-bzimage68.bin status=404 bytes=1827"
   ]
 }
