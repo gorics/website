@@ -21,12 +21,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh run list --limit 200 --json databaseId,workflowName,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/runs.json
+          gh run list --limit 250 --json databaseId,workflowName,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/runs.json
           python3 - <<'PY'
           import json
           from pathlib import Path
           runs=json.loads(Path('/tmp/runs.json').read_text())
-          relevant=[r for r in runs if any(k in (r.get('workflowName') or '').lower() for k in ('page','jekyll','build and deployment'))]
+          keywords=('page','jekyll','build and deployment','multiboot','v7')
+          relevant=[r for r in runs if any(k in (r.get('workflowName') or '').lower() for k in keywords)]
           result={'relevant':relevant,'all_names':sorted(set(r.get('workflowName') or '' for r in runs))}
           Path('os/iso/automatic-pages-runs.json').write_text(json.dumps(result,indent=2)+"\n")
           print(json.dumps(result,indent=2))
@@ -36,7 +37,7 @@ jobs:
           git fetch origin main
           git checkout -B main origin/main
           git add os/iso/automatic-pages-runs.json
-          git commit -m 'Record automatic Pages workflow runs [skip ci]' || true
+          git commit -m 'Record automatic Pages and multiboot workflow runs [skip ci]' || true
           git push origin HEAD:main
 
-# one-shot final inspection after q migration and automatic Actions deploy shutdown
+# one-shot inspection for Pages and current Real Multiboot verification runs
