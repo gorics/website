@@ -1,0 +1,142 @@
+name: Migrate ISO Chunks to Assets Branch
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/migrate-iso-chunks-to-assets-branch.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: migrate-iso-chunks-to-assets-branch
+  cancel-in-progress: true
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify os-assets branch chunk CORS and ISO records
+        run: |
+          URL='https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-0-16777216'
+          CODE=$(curl -sS -L --max-time 120 -D /tmp/raw-headers.txt -r 32768-36863 -o /tmp/raw-probe.bin -w '%{http_code}' "$URL")
+          echo "raw chunk HTTP $CODE bytes=$(stat -c %s /tmp/raw-probe.bin)"
+          cat /tmp/raw-headers.txt
+          grep -qi '^access-control-allow-origin: \*' /tmp/raw-headers.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          data = Path('/tmp/raw-probe.bin').read_bytes()
+          if len(data) > 4096:
+              data = data[32768:36864]
+          assert len(data) == 4096
+          assert data[1:6] == b'CD001'
+          assert data[2049:2054] == b'CD001'
+          assert b'EL TORITO' in data[2055:2087]
+          print('Raw GitHub chunk CORS, Range and ISO records verified')
+          PY
+
+      - name: Build source-safe q loader bundle
+        run: |
+          rm -rf /tmp/gorics-q
+          mkdir -p /tmp/gorics-q
+          cp os/real-multiboot/app.js /tmp/gorics-q/app.js
+          cp os/real-multiboot/app-legacy-chunked.js /tmp/gorics-q/app-legacy-chunked.js
+          cp os/real-multiboot/index.html /tmp/gorics-q/index.html
+          cp os/real-multiboot/assets/iso-meta.json /tmp/gorics-q/iso-meta.json
+          cp os/real-multiboot/assets/deployment.json /tmp/gorics-q/deployment.json
+          python3 - <<'PY'
+          import json, re
+          from pathlib import Path
+
+          root = Path('/tmp/gorics-q')
+          raw_root = 'https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/'
+          for filename in ('app.js', 'app-legacy-chunked.js'):
+              path = root / filename
+              text = path.read_text(encoding='utf-8')
+              text = text.replace(
+                  "const partsRoot = new URL('./assets/v86-parts/', location.href).href;",
+                  f"const partsRoot = '{raw_root}';",
+              )
+              text = text.replace('?v=p', '?v=q')
+              text = text.replace('legacy Pages chunked loader p', 'Legacy Pages external-chunk loader q')
+              text = text.replace('probing first same-origin ISO chunk', 'probing first CORS-enabled os-assets ISO chunk')
+              text = text.replace('(chunked)', '(external chunked)')
+              if raw_root not in text or 'use_parts: true' not in text:
+                  raise SystemExit(f'loader migration failed: {filename}')
+              path.write_text(text, encoding='utf-8')
+
+          index = root / 'index.html'
+          html = index.read_text(encoding='utf-8')
+          html = re.sub(r'([?&]v=)[A-Za-z0-9._-]+', r'\1q', html)
+          html = re.sub(r'(ISO page\. )[A-Za-z0-9._-]+', r'\1q', html)
+          if 'app.js?v=q' not in html or 'ISO page. q' not in html:
+              raise SystemExit('index migration failed')
+          index.write_text(html, encoding='utf-8')
+
+          meta_path = root / 'iso-meta.json'
+          meta = json.loads(meta_path.read_text(encoding='utf-8'))
+          meta.update({
+              'page_version': 'q',
+              'legacy_pages': True,
+              'chunked': True,
+              'chunk_source': 'raw-github-os-assets-branch',
+              'chunk_base_url': raw_root,
+          })
+          meta_path.write_text(json.dumps(meta, indent=2) + '\n', encoding='utf-8')
+
+          deployment_path = root / 'deployment.json'
+          deployment = json.loads(deployment_path.read_text(encoding='utf-8'))
+          deployment.update({
+              'version': 'q',
+              'mode': 'legacy-main-external-chunks',
+              'chunk_source': 'raw-github-os-assets-branch',
+              'chunk_base_url': raw_root,
+          })
+          deployment_path.write_text(json.dumps(deployment, indent=2) + '\n', encoding='utf-8')
+          PY
+          node --check /tmp/gorics-q/app.js
+          grep -q 'raw.githubusercontent.com/gorics/website/os-assets' /tmp/gorics-q/app.js
+          grep -q 'use_parts: true' /tmp/gorics-q/app.js
+          grep -q 'app.js?v=q' /tmp/gorics-q/index.html
+
+      - name: Apply q loader and remove chunks from main atomically
+        run: |
+          apply_bundle() {
+            git fetch origin main
+            git reset --hard origin/main
+            rm -rf os/real-multiboot/assets/v86-parts
+            cp /tmp/gorics-q/app.js os/real-multiboot/app.js
+            cp /tmp/gorics-q/app-legacy-chunked.js os/real-multiboot/app-legacy-chunked.js
+            cp /tmp/gorics-q/index.html os/real-multiboot/index.html
+            cp /tmp/gorics-q/iso-meta.json os/real-multiboot/assets/iso-meta.json
+            cp /tmp/gorics-q/deployment.json os/real-multiboot/assets/deployment.json
+            git add -A os/real-multiboot
+            git commit -m 'Move ISO chunks to os-assets branch and publish q loader'
+          }
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for attempt in 1 2 3 4 5 6; do
+            apply_bundle
+            if git push origin HEAD:main; then
+              echo "q loader pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "main moved; reapplying q bundle attempt=$attempt"
+            sleep $((attempt * 5))
+          done
+          exit 1
+
+      - name: Confirm main no longer carries ISO chunks
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+          test ! -d os/real-multiboot/assets/v86-parts
+          grep -q 'app.js?v=q' os/real-multiboot/index.html
+          grep -q 'raw.githubusercontent.com/gorics/website/os-assets' os/real-multiboot/app.js
+          du -sh .
