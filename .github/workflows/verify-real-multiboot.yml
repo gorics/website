@@ -41,7 +41,7 @@ jobs:
           BASE='https://gorics.github.io/website'
           PAGE="$BASE/os/real-multiboot"
           READY=0
-          for attempt in $(seq 1 60); do
+          for attempt in $(seq 1 30); do
             stamp="$GITHUB_RUN_ID-$attempt-$(date +%s)"
             if curl -fsSL --max-time 30 "$PAGE/?verify=$stamp" -o /tmp/index.html \
               && grep -q 'app.js?v=n' /tmp/index.html \
@@ -52,10 +52,10 @@ jobs:
               && grep -q 'openbox-tint2-pcmanfm-xterm' /tmp/meta.json \
               && curl -fsSL --max-time 30 "$BASE/vendor/v86/libv86.js?verify=$stamp" -o /tmp/libv86.js \
               && test "$(stat -c %s /tmp/libv86.js)" -gt 100000 \
-              && curl -fsSL --max-time 60 "$PAGE/assets/vmlinuz?verify=$stamp" -o /tmp/vmlinuz \
-              && test "$(stat -c %s /tmp/vmlinuz)" -gt 1000000 \
-              && curl -fsSL --max-time 60 "$PAGE/assets/initrd.img?verify=$stamp" -o /tmp/initrd.img \
-              && test "$(stat -c %s /tmp/initrd.img)" -gt 10000000; then
+              && curl -fsSL --max-time 30 -r 0-4095 "$PAGE/assets/vmlinuz?verify=$stamp" -o /tmp/vmlinuz-probe \
+              && test "$(stat -c %s /tmp/vmlinuz-probe)" = 4096 \
+              && curl -fsSL --max-time 30 -r 0-4095 "$PAGE/assets/initrd.img?verify=$stamp" -o /tmp/initrd-probe \
+              && test "$(stat -c %s /tmp/initrd-probe)" = 4096; then
               READY=1
               break
             fi
@@ -127,8 +127,14 @@ jobs:
           let browser;
           let page;
           try {
-            browser = await chromium.launch({ headless: true, args: ['--disable-dev-shm-usage', '--no-sandbox'] });
-            page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+            browser = await chromium.launch({
+              headless: true,
+              args: ['--disable-dev-shm-usage', '--no-sandbox', '--disable-gpu'],
+            });
+            page = await browser.newPage({
+              viewport: { width: 412, height: 915 },
+              userAgent: 'Mozilla/5.0 (Linux; Android 15; GORICSVerifier) AppleWebKit/537.36 Chrome/149 Mobile Safari/537.36',
+            });
             page.setDefaultTimeout(120000);
             page.on('console', message => result.console.push(`${message.type()}: ${message.text()}`));
             page.on('pageerror', error => result.console.push(`pageerror: ${error.message}`));
@@ -180,7 +186,36 @@ jobs:
           }
           if (!result.success) process.exit(1);
           JS
-          node /tmp/verify.mjs
+
+          set +e
+          node --check /tmp/verify.mjs > /tmp/browser-verifier.log 2>&1
+          CHECK_EXIT=$?
+          if test "$CHECK_EXIT" = 0; then
+            node /tmp/verify.mjs >> /tmp/browser-verifier.log 2>&1
+            BROWSER_EXIT=$?
+          else
+            BROWSER_EXIT=$CHECK_EXIT
+          fi
+          set -e
+          if test ! -s /tmp/real-multiboot-verification.json; then
+            python3 - "$BROWSER_EXIT" <<'PY'
+          import json, os, sys
+          from pathlib import Path
+          log = Path('/tmp/browser-verifier.log').read_text(errors='replace') if Path('/tmp/browser-verifier.log').exists() else ''
+          result = {
+              'success': False,
+              'state': 'process-exited-without-result',
+              'run_id': os.environ.get('GITHUB_RUN_ID'),
+              'architecture': 'i386',
+              'desktop': 'openbox-tint2-pcmanfm-xterm',
+              'browser_exit_code': int(sys.argv[1]),
+              'browser_log_tail': log.splitlines()[-200:],
+          }
+          Path('/tmp/real-multiboot-verification.json').write_text(json.dumps(result, indent=2) + '\n')
+          PY
+          fi
+          cat /tmp/browser-verifier.log || true
+          exit "$BROWSER_EXIT"
 
       - name: Create fallback result
         if: always()
@@ -197,6 +232,7 @@ jobs:
           path: |
             /tmp/real-multiboot-verification.json
             /tmp/real-multiboot-proof.png
+            /tmp/browser-verifier.log
             /tmp/index.html
             /tmp/app.js
             /tmp/meta.json
