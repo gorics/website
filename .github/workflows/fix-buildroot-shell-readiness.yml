@@ -1,0 +1,67 @@
+name: Fix Buildroot Shell Readiness
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/fix-buildroot-shell-readiness.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fix-buildroot-shell-readiness
+  cancel-in-progress: false
+
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch Buildroot readiness and deploy marker
+        run: |
+          set -euo pipefail
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for attempt in $(seq 1 12); do
+            git reset --hard
+            git clean -fd
+            git fetch origin main
+            git checkout -B main origin/main
+            python3 - <<'PY'
+          from pathlib import Path
+
+          app_path = Path('os/real-multiboot/app.js')
+          text = app_path.read_text(encoding='utf-8')
+          old = r"ready = textReady && /Welcome to Buildroot|buildroot login:|Please press Enter to activate this console|\n[^\n]*#\s*$/im.test(observed);"
+          new = r"ready = textReady && (/Welcome to Buildroot|buildroot login:|Please press Enter to activate this console/im.test(observed) || /Files send via emulator appear in \/mnt\/[\s\S]*\n\s*[~\/\\w.-]*[%#]\s*$/im.test(observed) || /\n\s*[~\/\\w.-]+[%#]\s*$/im.test(observed));"
+          if old in text:
+              text = text.replace(old, new, 1)
+          elif new not in text:
+              raise SystemExit('Buildroot readiness expression not found')
+          app_path.write_text(text, encoding='utf-8')
+
+          marker = Path('os/real-multiboot/deployment-r12-v86-atomic.txt')
+          marker.write_text(
+              'GORICS Real Multiboot deployment trigger\n'
+              'build=20260708-r14-buildroot-shell-ready\n'
+              'root_cause=Buildroot reached its percent shell prompt but strict readiness only accepted hash prompts\n'
+              'fix=recognize the verified Buildroot emulator shell banner and percent/hash prompts\n'
+              'verification=rerun seven sequential public boots with OS-specific readiness\n'
+              'trigger_mode=isolated-marker-only\n',
+              encoding='utf-8',
+          )
+          PY
+            node --check os/real-multiboot/app.js
+            grep -q 'Files send via emulator appear in' os/real-multiboot/app.js
+            grep -q 'r14-buildroot-shell-ready' os/real-multiboot/deployment-r12-v86-atomic.txt
+            git add os/real-multiboot/app.js os/real-multiboot/deployment-r12-v86-atomic.txt
+            git commit -m 'fix(real-multiboot): accept verified Buildroot shell prompt'
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
