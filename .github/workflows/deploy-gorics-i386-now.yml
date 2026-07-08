@@ -70,4 +70,4 @@ jobs:
           git push origin HEAD:main
           test "$PAGES_OUTCOME" = success
 
-# trigger: 20260708-final-serialized-i386-openbox
+# trigger: 20260708-isolated-final-i386-openbox
