@@ -1,3 +1,4 @@
+# Clean-boot rebuild trigger: e2scrub timers must stay disabled.
 name: Build GORICS Direct Openbox i386 ISO
 
 on:
