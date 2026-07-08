@@ -1,0 +1,175 @@
+{
+  "run_id": "28914530141",
+  "hosts": {
+    "jsdelivr": {
+      "root": "https://cdn.jsdelivr.net/gh/gorics/website@os-assets/",
+      "first": {
+        "curl_exit": 0,
+        "http_code": "206",
+        "bytes": 4096,
+        "cors": "*",
+        "content_range": "bytes 0-4095/16777216",
+        "content_length": "4096",
+        "content_type": "application/octet-stream",
+        "accept_ranges": "bytes",
+        "stderr": "",
+        "ok": true
+      },
+      "last": {
+        "curl_exit": 0,
+        "http_code": "206",
+        "bytes": 4096,
+        "cors": "*",
+        "content_range": "bytes 0-4095/16777216",
+        "content_length": "4096",
+        "content_type": "application/octet-stream",
+        "accept_ranges": "bytes",
+        "stderr": "",
+        "ok": true
+      },
+      "usable": true
+    },
+    "jsdelivr_fastly": {
+      "root": "https://fastly.jsdelivr.net/gh/gorics/website@os-assets/",
+      "first": {
+        "curl_exit": 0,
+        "http_code": "206",
+        "bytes": 4096,
+        "cors": "*",
+        "content_range": "bytes 0-4095/16777216",
+        "content_length": "4096",
+        "content_type": "application/octet-stream",
+        "accept_ranges": "bytes",
+        "stderr": "",
+        "ok": true
+      },
+      "last": {
+        "curl_exit": 0,
+        "http_code": "206",
+        "bytes": 4096,
+        "cors": "*",
+        "content_range": "bytes 0-4095/16777216",
+        "content_length": "4096",
+        "content_type": "application/octet-stream",
+        "accept_ranges": "bytes",
+        "stderr": "",
+        "ok": true
+      },
+      "usable": true
+    },
+    "jsdelivr_gcore": {
+      "root": "https://gcore.jsdelivr.net/gh/gorics/website@os-assets/",
+      "first": {
+        "curl_exit": 0,
+        "http_code": "206",
+        "bytes": 0,
+        "cors": "*",
+        "content_range": "bytes 0-4095/6580118",
+        "content_length": null,
+        "content_type": "application/octet-stream",
+        "accept_ranges": null,
+        "stderr": "",
+        "ok": false
+      },
+      "last": {
+        "curl_exit": 0,
+        "http_code": "206",
+        "bytes": 4092,
+        "cors": "*",
+        "content_range": "bytes 0-4095/3193678",
+        "content_length": null,
+        "content_type": "application/octet-stream",
+        "accept_ranges": null,
+        "stderr": "",
+        "ok": false
+      },
+      "usable": false
+    },
+    "raw_githack": {
+      "root": "https://raw.githack.com/gorics/website/os-assets/",
+      "first": {
+        "curl_exit": 0,
+        "http_code": "206",
+        "bytes": 4096,
+        "cors": "*",
+        "content_range": "bytes 0-4095/16777216",
+        "content_length": "4096",
+        "content_type": "application/octet-stream",
+        "accept_ranges": "bytes",
+        "stderr": "",
+        "ok": true
+      },
+      "last": {
+        "curl_exit": 0,
+        "http_code": "206",
+        "bytes": 4096,
+        "cors": "*",
+        "content_range": "bytes 0-4095/16777216",
+        "content_length": "4096",
+        "content_type": "application/octet-stream",
+        "accept_ranges": "bytes",
+        "stderr": "",
+        "ok": true
+      },
+      "usable": true
+    },
+    "media_github": {
+      "root": "https://media.githubusercontent.com/media/gorics/website/os-assets/",
+      "first": {
+        "curl_exit": 0,
+        "http_code": "404",
+        "bytes": 0,
+        "cors": "*",
+        "content_range": null,
+        "content_length": "0",
+        "content_type": null,
+        "accept_ranges": "bytes",
+        "stderr": "",
+        "ok": false
+      },
+      "last": {
+        "curl_exit": 0,
+        "http_code": "404",
+        "bytes": 0,
+        "cors": "*",
+        "content_range": null,
+        "content_length": "0",
+        "content_type": null,
+        "accept_ranges": "bytes",
+        "stderr": "",
+        "ok": false
+      },
+      "usable": false
+    },
+    "raw_github": {
+      "root": "https://raw.githubusercontent.com/gorics/website/os-assets/",
+      "first": {
+        "curl_exit": 0,
+        "http_code": "206",
+        "bytes": 4096,
+        "cors": "*",
+        "content_range": "bytes 0-4095/16777216",
+        "content_length": "4096",
+        "content_type": "application/octet-stream",
+        "accept_ranges": "bytes",
+        "stderr": "",
+        "ok": true
+      },
+      "last": {
+        "curl_exit": 0,
+        "http_code": "206",
+        "bytes": 4096,
+        "cors": "*",
+        "content_range": "bytes 0-4095/16777216",
+        "content_length": "4096",
+        "content_type": "application/octet-stream",
+        "accept_ranges": "bytes",
+        "stderr": "",
+        "ok": true
+      },
+      "usable": true
+    }
+  },
+  "preferred": "jsdelivr",
+  "success": true
+}
