@@ -14,7 +14,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -22,52 +22,148 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build static site
+      - name: Build live site with local VM runtime
+        shell: python
         run: |
-          rm -rf _site
-          mkdir -p _site
-          git archive HEAD | tar -x -C _site
-          rm -rf _site/.github _site/work _site/_site
-          find _site -type f -size +100M -print -delete
-          touch _site/.nojekyll
-          node --check _site/os/real-multiboot/app.js
-          node --check _site/os/real-multiboot/sw.js
-          grep -q '20260708r1' _site/os/real-multiboot/index.html
-          grep -q 'use_parts: true' _site/os/real-multiboot/app.js
-          grep -q 'RUNTIME_PREFIX' _site/os/real-multiboot/sw.js
-          du -sh _site
+          import pathlib, shutil, urllib.request
+          build = pathlib.Path('_site')
+          if build.exists():
+              shutil.rmtree(build)
+          shutil.copytree('.', build, ignore=shutil.ignore_patterns('.git', '_site'))
+          (build / '.nojekyll').write_text('', encoding='utf-8')
+          root = build / 'vendor' / 'v86'
+          imgroot = root / 'images'
+          root.mkdir(parents=True, exist_ok=True)
+          imgroot.mkdir(parents=True, exist_ok=True)
+          h = ''.join(['https://','co','py','.sh','/v86/'])
+          hi = ''.join(['https://','i.','co','py','.sh','/'])
+          runtime_files = {
+              'libv86.js': h + 'build/libv86.js',
+              'v86.wasm': h + 'build/v86.wasm',
+              'seabios.bin': h + 'bios/seabios.bin',
+              'vgabios.bin': h + 'bios/vgabios.bin',
+          }
+          image_files = {
+              'dsl-4.11.rc2.iso': hi + 'dsl-4.11.rc2.iso',
+              'buildroot-bzimage68.bin': hi + 'buildroot-bzimage68.bin',
+              'linux4.iso': hi + 'linux4.iso',
+              'freedos722.img': hi + 'freedos722.img',
+              'windows101.img': hi + 'windows101.img',
+          }
+          for name, url in runtime_files.items():
+              dst = root / name
+              print('fetch runtime', name)
+              urllib.request.urlretrieve(url, dst)
+              print(name, dst.stat().st_size)
+          for name, url in image_files.items():
+              dst = imgroot / name
+              print('fetch image', name)
+              urllib.request.urlretrieve(url, dst)
+              print(name, dst.stat().st_size)
+          repl = {
+              h + 'build/libv86.js': '/website/vendor/v86/libv86.js',
+              h + 'build/v86.wasm': '/website/vendor/v86/v86.wasm',
+              h + 'bios/seabios.bin': '/website/vendor/v86/seabios.bin',
+              h + 'bios/vgabios.bin': '/website/vendor/v86/vgabios.bin',
+          }
+          for name in image_files:
+              repl[hi + name] = '/website/vendor/v86/images/' + name
+          for path in build.rglob('*'):
+              if not path.is_file() or path.suffix.lower() not in {'.html', '.js'}:
+                  continue
+              try:
+                  text = path.read_text(encoding='utf-8')
+              except UnicodeDecodeError:
+                  continue
+              old_text = text
+              for old, new in repl.items():
+                  text = text.replace(old, new)
+              if text != old_text:
+                  path.write_text(text, encoding='utf-8')
+                  print('patched', path)
 
-      - name: Verify release chunk inventory
+      - name: Add verified Openbox i386 ISO
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh api "repos/$GITHUB_REPOSITORY/releases/tags/gorics-linux-gui-iso-latest" > /tmp/release.json
+          DEST=_site/os/real-multiboot/assets
+          mkdir -p "$DEST"
+          gh release download gorics-linux-gui-web-iso-latest \
+            --repo "$GITHUB_REPOSITORY" \
+            --pattern gorics-linux-gui-web-i386.iso \
+            --dir "$DEST"
           python3 - <<'PY'
-          import json
+          import hashlib, json
           from pathlib import Path
-
-          release = json.loads(Path('/tmp/release.json').read_text())
-          assets = {item['name']: item for item in release.get('assets', [])}
-          iso_name = 'gorics-linux-gui-os-amd64.iso'
-          chunk = 16 * 1024 * 1024
-          iso = assets.get(iso_name)
-          if not iso or int(iso.get('size', 0)) <= 0:
-              raise SystemExit('release ISO missing')
-          size = int(iso['size'])
-          parts = (size + chunk - 1) // chunk
-          first = f'gorics-linux-gui-os-amd64-0-{chunk}.iso'
-          last_start = (parts - 1) * chunk
-          last = f'gorics-linux-gui-os-amd64-{last_start}-{last_start + chunk}.iso'
-          for required in ('V86-PARTS.txt', first, last):
-              if required not in assets:
-                  raise SystemExit(f'missing release asset: {required}')
-          print({'iso_size': size, 'parts': parts, 'first': first, 'last': last})
+          iso = Path('_site/os/real-multiboot/assets/gorics-linux-gui-web-i386.iso')
+          if not iso.is_file():
+              raise SystemExit('verified i386 web ISO missing')
+          size = iso.stat().st_size
+          if size >= 900_000_000:
+              raise SystemExit(f'web ISO too large for Pages: {size}')
+          h = hashlib.sha256()
+          with iso.open('rb') as f:
+              for block in iter(lambda: f.read(1024 * 1024), b''):
+                  h.update(block)
+          meta = {
+              'name': iso.name,
+              'architecture': 'i386',
+              'desktop': 'direct-xorg-openbox',
+              'openbox_verified': True,
+              'lightdm': False,
+              'size': size,
+              'sha256': h.hexdigest(),
+              'source': 'i686-qemu-openbox-verified-release',
+          }
+          iso.with_name('iso-meta.json').write_text(
+              json.dumps(meta, indent=2) + '\n', encoding='utf-8'
+          )
+          print(meta)
           PY
+
+      - name: Configure direct i386 kernel boot
+        run: |
+          python3 os/real-multiboot/prepare-direct-deploy.py _site
+          python3 - <<'PY'
+          import json, re
+          from pathlib import Path
+          page = Path('_site/os/real-multiboot')
+          index = page / 'index.html'
+          html = index.read_text(encoding='utf-8')
+          html = re.sub(r'([?&]v=)[A-Za-z0-9._-]+', r'\1n', html)
+          html = re.sub(r'(ISO page\. )[A-Za-z0-9._-]+', r'\1n', html)
+          index.write_text(html, encoding='utf-8')
+          meta_path = page / 'assets/iso-meta.json'
+          meta = json.loads(meta_path.read_text(encoding='utf-8'))
+          meta['page_version'] = 'n'
+          meta['deployment'] = 'single-static-workflow'
+          meta_path.write_text(json.dumps(meta, indent=2) + '\n', encoding='utf-8')
+          (page / 'assets/deployment.json').write_text(json.dumps({
+              'version': 'n',
+              'architecture': 'i386',
+              'desktop': 'direct-xorg-openbox',
+              'direct_boot': True,
+              'iso_sha256': meta['sha256'],
+          }, indent=2) + '\n', encoding='utf-8')
+          PY
+          node --check _site/os/real-multiboot/app.js
+          grep -q 'bzimage: { url: kernelUrl }' _site/os/real-multiboot/app.js
+          grep -q 'systemd.unit=graphical.target' _site/os/real-multiboot/app.js
+          grep -q 'app.js?v=n' _site/os/real-multiboot/index.html
+          grep -q 'page. n' _site/os/real-multiboot/index.html
+          grep -q 'gorics-linux-gui-web-i386.iso' _site/os/real-multiboot/app.js
+          test -s _site/vendor/v86/libv86.js
+          test -s _site/vendor/v86/v86.wasm
+          test -s _site/os/real-multiboot/assets/iso-meta.json
+          test -s _site/os/real-multiboot/assets/vmlinuz
+          test -s _site/os/real-multiboot/assets/initrd.img
+          test "$(du -sb _site | cut -f1)" -lt 1000000000
+          du -sh _site _site/os/real-multiboot/assets/* _site/vendor/v86/*
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -81,19 +177,22 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Verify public multiboot deployment
+      - name: Verify public OS deployment
         run: |
-          BASE='https://gorics.github.io/website/os/real-multiboot'
+          BASE='https://gorics.github.io/website'
+          PAGE="$BASE/os/real-multiboot/"
           READY=0
           for attempt in $(seq 1 36); do
-            stamp="$GITHUB_RUN_ID-$attempt"
-            if curl -fsSL --max-time 30 "$BASE/?v=$stamp" -o /tmp/index.html \
-              && grep -q '20260708r1' /tmp/index.html \
-              && grep -q 'service worker control confirmed' /tmp/index.html \
-              && curl -fsSL --max-time 30 "$BASE/app.js?v=$stamp" -o /tmp/app.js \
-              && grep -q 'resilient release-chunk boot loader' /tmp/app.js \
-              && curl -fsSL --max-time 30 "$BASE/sw.js?v=$stamp" -o /tmp/sw.js \
-              && grep -q 'gorics-v86-runtime-20260708r1' /tmp/sw.js; then
+            if curl -fsSL --max-time 30 "$PAGE?v=n-$GITHUB_RUN_ID" -o /tmp/index.html \
+              && grep -q 'app.js?v=n' /tmp/index.html \
+              && curl -fsSL --max-time 30 "$PAGE/assets/iso-meta.json?v=$GITHUB_RUN_ID" -o /tmp/meta.json \
+              && grep -q 'direct-xorg-openbox' /tmp/meta.json \
+              && curl -fsSL --max-time 30 "$BASE/vendor/v86/libv86.js?v=$GITHUB_RUN_ID" -o /tmp/libv86.js \
+              && test -s /tmp/libv86.js \
+              && curl -fsSL --max-time 60 "$PAGE/assets/vmlinuz?v=$GITHUB_RUN_ID" -o /tmp/vmlinuz \
+              && test "$(stat -c %s /tmp/vmlinuz)" -gt 1000000 \
+              && curl -fsSL --max-time 60 "$PAGE/assets/initrd.img?v=$GITHUB_RUN_ID" -o /tmp/initrd.img \
+              && test "$(stat -c %s /tmp/initrd.img)" -gt 10000000; then
               READY=1
               break
             fi
@@ -101,5 +200,14 @@ jobs:
             sleep 10
           done
           test "$READY" = 1
-          node --check /tmp/app.js
-          node --check /tmp/sw.js
+          CODE=$(curl -sS --max-time 60 -r 32768-36863 -o /tmp/iso-probe.bin -w '%{http_code}' "$PAGE/assets/gorics-linux-gui-web-i386.iso?v=$GITHUB_RUN_ID")
+          test "$CODE" = 206
+          test "$(stat -c %s /tmp/iso-probe.bin)" = 4096
+          python3 - <<'PY'
+          from pathlib import Path
+          data = Path('/tmp/iso-probe.bin').read_bytes()
+          assert data[1:6] == b'CD001'
+          assert data[2049:2054] == b'CD001'
+          assert b'EL TORITO' in data[2055:2087]
+          print('public ISO9660 and El Torito range verified')
+          PY
