@@ -11,7 +11,9 @@
     '/website/os/real-multiboot/assets/initrd.img',
     '/website/os/real-multiboot/assets/iso-meta.json',
   ];
-  const ISO_PART = /\/v86-parts\/gorics-linux-gui-web-i386(?:\.iso)?-\d+-\d+(?:\.iso)?$/;
+  // Accept both legacy names and versioned names such as
+  // gorics-linux-gui-web-i386-r12.iso-0-16777216.
+  const ISO_PART = /\/v86-parts\/gorics-linux-gui-web-i386[^/]*-\d+-\d+(?:\.iso)?$/i;
 
   function shouldVersion(url) {
     if (ISO_PART.test(url.pathname)) return true;
@@ -61,6 +63,6 @@
     return nativeAppendChild.call(this, node);
   };
 
-  globalThis.GORICS_ASSET_VERSION = Object.freeze({ build, versioned });
+  globalThis.GORICS_ASSET_VERSION = Object.freeze({ build, versioned, isoPartPattern: ISO_PART.source });
   console.log(`[GORICS ASSET] atomic cache versioning installed build=${build}`);
 })();
