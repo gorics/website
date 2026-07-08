@@ -210,16 +210,43 @@ jobs:
           }
           if(!result.success) process.exit(1);
           JS
-          node --check /tmp/verify-unified.mjs
-          node /tmp/verify-unified.mjs
+          set +e
+          node --check /tmp/verify-unified.mjs > /tmp/browser-verifier.log 2>&1
+          exit_code=$?
+          if test "$exit_code" = 0; then
+            node /tmp/verify-unified.mjs >> /tmp/browser-verifier.log 2>&1
+            exit_code=$?
+          fi
+          if test ! -s /tmp/unified-multiboot-result.json; then
+            python3 - "$exit_code" <<'PY'
+          import json, os, sys
+          from pathlib import Path
+          log=Path('/tmp/browser-verifier.log').read_text(errors='replace') if Path('/tmp/browser-verifier.log').exists() else ''
+          result={'success':False,'state':'browser-process-failed','run_id':os.environ.get('GITHUB_RUN_ID'),'run_attempt':os.environ.get('GITHUB_RUN_ATTEMPT'),'exit_code':int(sys.argv[1]),'browser_log_tail':log.splitlines()[-300:]}
+          Path('/tmp/unified-multiboot-result.json').write_text(json.dumps(result,indent=2)+'\n')
+          PY
+          fi
+          cat /tmp/browser-verifier.log || true
+          cat /tmp/unified-multiboot-result.json
+          exit "$exit_code"
+
+      - name: Ensure result exists
+        if: always()
+        run: |
+          if test ! -s /tmp/unified-multiboot-result.json; then
+            printf '{"success":false,"state":"pre-browser-failed","run_id":"%s","run_attempt":"%s","error":"browser verification did not run"}\n' "$GITHUB_RUN_ID" "$GITHUB_RUN_ATTEMPT" > /tmp/unified-multiboot-result.json
+          fi
+          cat /tmp/unified-multiboot-result.json
 
       - name: Upload proof
-        if: always() && steps.browser.outcome != 'skipped'
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: unified-multiboot-proof-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             /tmp/unified-multiboot-result.json
+            /tmp/browser-verifier.log
+            /tmp/verify-unified.mjs
             /tmp/unified-*.png
             /tmp/public-index.html
             /tmp/public-app.js
@@ -227,12 +254,14 @@ jobs:
           if-no-files-found: warn
 
       - name: Publish final status
-        if: always() && steps.browser.outcome != 'skipped'
+        if: always()
         run: |
           set -euo pipefail
           test -s /tmp/unified-multiboot-result.json
           git config user.name github-actions
           git config user.email github-actions@github.com
+          git reset --hard
+          git clean -fd
           for attempt in $(seq 1 10); do
             git fetch origin main
             git checkout -B main origin/main
@@ -253,7 +282,7 @@ jobs:
           path=Path('/tmp/unified-multiboot-result.json')
           assert path.exists(), 'browser verification did not run'
           result=json.loads(path.read_text())
-          assert result.get('success') is True, result.get('error')
+          assert result.get('success') is True, result.get('error') or result.get('browser_log_tail')
           assert result.get('boots',{}).get('buildroot',{}).get('success') is True
           assert result.get('boots',{}).get('gorics',{}).get('success') is True
           assert result['boots']['gorics']['canvas_width']>=640
