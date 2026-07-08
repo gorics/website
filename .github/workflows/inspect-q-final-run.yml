@@ -1,0 +1,38 @@
+name: Inspect q Final Run
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/inspect-q-final-run.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Record q verifier run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run list --workflow verify-q-gui-final.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/q-final-runs.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          runs=json.loads(Path('/tmp/q-final-runs.json').read_text())
+          Path('os/iso/q-final-run-status.json').write_text(json.dumps({'latest':runs[0] if runs else None,'runs':runs},indent=2)+'\n')
+          print(json.dumps(runs,indent=2))
+          PY
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          git add os/iso/q-final-run-status.json
+          git commit -m 'Record q final verifier run [skip ci]' || true
+          git push origin HEAD:main
