@@ -1,0 +1,58 @@
+name: Apply Visible Desktop Patch
+
+on:
+  workflow_dispatch: {}
+  pull_request:
+    types: [closed]
+    branches: [main]
+    paths:
+      - 'os/real-multiboot/.trigger-visible-desktop-rebuild'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apply-visible-desktop-patch
+  cancel-in-progress: false
+
+jobs:
+  patch:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Apply visible desktop source repair
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout -B main origin/main
+          python3 scripts/patch_gorics_visible_desktop.py
+          bash -n os/iso/build-gorics-web-iso.sh
+          grep -q 'GORICS_VISIBLE_WINDOW_READY' os/iso/build-gorics-web-iso.sh
+          grep -q 'GORICS Control Center' os/iso/build-gorics-web-iso.sh
+          grep -q 'panel_background_id = 0' os/iso/build-gorics-web-iso.sh
+          git diff --check
+
+      - name: Commit build source repair
+        run: |
+          set -euo pipefail
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add os/iso/build-gorics-web-iso.sh
+          if git diff --cached --quiet; then
+            echo 'visible desktop source already patched'
+            exit 0
+          fi
+          git commit -m 'fix(os): render visible Openbox desktop and window'
+          for attempt in $(seq 1 15); do
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt*3))
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
