@@ -1,0 +1,226 @@
+name: Verify Current Resilient Router
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/verify-current-resilient-router.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: verify-current-resilient-router
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Verify current source
+        run: |
+          set -euo pipefail
+          node --check os/real-multiboot/chunk-router-v3.js
+          node --check os/real-multiboot/app.js
+          grep -q 'chunk-router-v3.js?v=' os/real-multiboot/index.html
+          grep -q 'ISO chunk resilient router v3 installed' os/real-multiboot/chunk-router-v3.js
+
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Boot current public GUI
+        env:
+          TARGET_URL: https://gorics.github.io/website/os/real-multiboot/?current-router=${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          mkdir -p /tmp/current-router-proof
+          cat > /tmp/current-router.mjs <<'JS'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
+
+          const output = '/tmp/current-router-proof/result.json';
+          const fatal = /I\/O error, dev sr0|Buffer I\/O error on dev sr0|SQUASHFS error|unable to find a medium containing a live file system/i;
+          const result = {
+            success: false,
+            state: 'starting',
+            run_id: process.env.GITHUB_RUN_ID,
+            target: process.env.TARGET_URL,
+            started_at: new Date().toISOString(),
+            console: [],
+            page_errors: [],
+            failed_requests: [],
+          };
+          const save = (state, extra = {}) => {
+            Object.assign(result, extra, { state, updated_at: new Date().toISOString() });
+            fs.writeFileSync(output, JSON.stringify(result, null, 2) + '\n');
+          };
+          save('starting');
+
+          let browser;
+          let page;
+          try {
+            browser = await chromium.launch({
+              headless: true,
+              args: ['--no-sandbox', '--disable-dev-shm-usage', '--disable-background-timer-throttling', '--disable-renderer-backgrounding'],
+            });
+            const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+            page = await context.newPage();
+            page.setDefaultTimeout(120000);
+            page.on('console', message => {
+              result.console.push(`${message.type()}: ${message.text()}`);
+              if (result.console.length > 1500) result.console.shift();
+            });
+            page.on('pageerror', error => result.page_errors.push(String(error)));
+            page.on('requestfailed', request => result.failed_requests.push({
+              url: request.url(),
+              error: request.failure()?.errorText || 'failed',
+            }));
+
+            let response = null;
+            for (let attempt = 1; attempt <= 60; attempt += 1) {
+              response = await page.goto(`${process.env.TARGET_URL}&attempt=${attempt}`, { waitUntil: 'domcontentloaded', timeout: 120000 });
+              const ready = await page.evaluate(() => {
+                const log = document.querySelector('#log')?.textContent || '';
+                return log.includes('ISO chunk resilient router v3 installed') && Boolean(document.querySelector('#boot-btn'));
+              });
+              if (ready) break;
+              await page.waitForTimeout(10000);
+            }
+            const initialLog = await page.locator('#log').textContent() || '';
+            if (!initialLog.includes('ISO chunk resilient router v3 installed')) throw new Error('public resilient router not deployed');
+            save('page-ready', { page_http: response?.status() || null, initial_marker: initialLog.split('\n')[0] || '' });
+            await page.screenshot({ path: '/tmp/current-router-proof/00-ready.png', fullPage: true });
+            await page.click('#boot-btn');
+            save('boot-clicked');
+
+            await page.waitForFunction(() => {
+              const log = document.querySelector('#log')?.textContent || '';
+              if (/I\/O error, dev sr0|Buffer I\/O error on dev sr0|SQUASHFS error|unable to find a medium containing a live file system/i.test(log)) return 'fatal';
+              const canvas = document.querySelector('#screen canvas');
+              const text = document.querySelector('#screen > div');
+              if (canvas
+                && canvas.width >= 640
+                && canvas.height >= 480
+                && getComputedStyle(canvas).display !== 'none'
+                && (!text || getComputedStyle(text).display === 'none')
+                && log.includes('emulator-started')) return 'gui';
+              return false;
+            }, null, { timeout: 1200000 });
+
+            let log = await page.locator('#log').textContent() || '';
+            if (fatal.test(log)) throw new Error('fatal CD-ROM read error before GUI');
+            await page.waitForTimeout(60000);
+            const details = await page.evaluate(() => {
+              const canvas = document.querySelector('#screen canvas');
+              const text = document.querySelector('#screen > div');
+              const log = document.querySelector('#log')?.textContent || '';
+              return {
+                canvas_width: canvas?.width || 0,
+                canvas_height: canvas?.height || 0,
+                canvas_display: canvas ? getComputedStyle(canvas).display : 'missing',
+                text_display: text ? getComputedStyle(text).display : 'missing',
+                screen_active: document.querySelector('#screen')?.classList.contains('active') || false,
+                boot_button_text: document.querySelector('#boot-btn')?.textContent || '',
+                stop_button_disabled: document.querySelector('#stop-btn')?.disabled ?? null,
+                emulator_object_present: Boolean(window.goricsRealLinuxIso),
+                router_loaded: log.includes('ISO chunk resilient router v3 installed'),
+                real_route_observed: log.includes('ISO chunk route ') || log.includes('ISO chunk retry ') || log.includes('selected ISO chunk source '),
+                emulator_started: log.includes('emulator-started'),
+                descriptor_verified: log.includes('ISO9660') && log.includes('El Torito'),
+                sr0_error_observed: /I\/O error, dev sr0|Buffer I\/O error on dev sr0/i.test(log),
+                squashfs_error_observed: /SQUASHFS error/i.test(log),
+                log_tail: log.split('\n').slice(-1200),
+              };
+            });
+            log = details.log_tail.join('\n');
+            if (fatal.test(log)) throw new Error('fatal CD-ROM read error after GUI');
+            await page.screenshot({ path: '/tmp/current-router-proof/99-gui.png', fullPage: true });
+            const canvas = page.locator('#screen canvas');
+            if (await canvas.count()) await canvas.screenshot({ path: '/tmp/current-router-proof/99-canvas.png' }).catch(() => {});
+
+            const success = details.canvas_width >= 640
+              && details.canvas_height >= 480
+              && details.canvas_display !== 'none'
+              && details.text_display === 'none'
+              && details.screen_active
+              && details.boot_button_text === 'Running'
+              && details.stop_button_disabled === false
+              && details.emulator_object_present
+              && details.router_loaded
+              && details.real_route_observed
+              && details.emulator_started
+              && details.descriptor_verified
+              && !details.sr0_error_observed
+              && !details.squashfs_error_observed;
+            save('completed', { ...details, success, completed_at: new Date().toISOString() });
+            if (!success) throw new Error('current resilient-router GUI assertions failed');
+          } catch (error) {
+            let details = {};
+            try {
+              details = await page?.evaluate(() => {
+                const log = document.querySelector('#log')?.textContent || '';
+                const canvas = document.querySelector('#screen canvas');
+                return { canvas_width: canvas?.width || 0, canvas_height: canvas?.height || 0, log_tail: log.split('\n').slice(-1500) };
+              }) || {};
+              await page?.screenshot({ path: '/tmp/current-router-proof/99-failure.png', fullPage: true });
+            } catch {}
+            save('failed', { ...details, success: false, error: String(error?.stack || error), completed_at: new Date().toISOString() });
+            throw error;
+          } finally {
+            await browser?.close().catch(() => {});
+          }
+          JS
+          node --check /tmp/current-router.mjs
+          node /tmp/current-router.mjs
+
+      - name: Upload proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-resilient-router-proof-${{ github.run_id }}
+          path: /tmp/current-router-proof/
+          if-no-files-found: warn
+
+      - name: Record result
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          set -euo pipefail
+          if test -s /tmp/current-router-proof/result.json; then
+            cp /tmp/current-router-proof/result.json /tmp/current-router-result.json
+          else
+            printf '{"success":false,"state":"workflow-failed-before-browser","run_id":"%s"}\n' "$GITHUB_RUN_ID" > /tmp/current-router-result.json
+          fi
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          path = Path('/tmp/current-router-result.json')
+          data = json.loads(path.read_text())
+          data['job_status'] = os.environ.get('JOB_STATUS')
+          data['workflow_sha'] = os.environ.get('GITHUB_SHA')
+          path.write_text(json.dumps(data, indent=2) + '\n')
+          PY
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for attempt in $(seq 1 15); do
+            git fetch origin main
+            git checkout -B main origin/main
+            mkdir -p os/iso
+            cp /tmp/current-router-result.json os/iso/current-resilient-router-result.json
+            git add os/iso/current-resilient-router-result.json
+            git commit -m 'Record current resilient router verification [skip ci]' || exit 0
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
