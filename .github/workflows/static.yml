@@ -114,7 +114,7 @@ jobs:
           meta = {
               'name': iso.name,
               'architecture': 'i386',
-              'desktop': 'direct-xorg-openbox',
+              'desktop': 'openbox-tint2-pcmanfm-xterm',
               'openbox_verified': True,
               'lightdm': False,
               'size': size,
@@ -147,7 +147,7 @@ jobs:
           (page / 'assets/deployment.json').write_text(json.dumps({
               'version': 'n',
               'architecture': 'i386',
-              'desktop': 'direct-xorg-openbox',
+              'desktop': 'openbox-tint2-pcmanfm-xterm',
               'direct_boot': True,
               'iso_sha256': meta['sha256'],
           }, indent=2) + '\n', encoding='utf-8')
@@ -187,7 +187,7 @@ jobs:
             if curl -fsSL --max-time 30 "$PAGE?v=n-$GITHUB_RUN_ID" -o /tmp/index.html \
               && grep -q 'app.js?v=n' /tmp/index.html \
               && curl -fsSL --max-time 30 "$PAGE/assets/iso-meta.json?v=$GITHUB_RUN_ID" -o /tmp/meta.json \
-              && grep -q 'direct-xorg-openbox' /tmp/meta.json \
+              && grep -q 'openbox-tint2-pcmanfm-xterm' /tmp/meta.json \
               && curl -fsSL --max-time 30 "$BASE/vendor/v86/libv86.js?v=$GITHUB_RUN_ID" -o /tmp/libv86.js \
               && test -s /tmp/libv86.js \
               && curl -fsSL --max-time 60 "$PAGE/assets/vmlinuz?v=$GITHUB_RUN_ID" -o /tmp/vmlinuz \
