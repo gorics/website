@@ -31,8 +31,9 @@ jobs:
           set -euo pipefail
           gh run list --repo "$GITHUB_REPOSITORY" --workflow 'Verify Final All Multiboot Presets' --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/final-runs.json
           gh run list --repo "$GITHUB_REPOSITORY" --workflow 'Apply Strict Multiboot Readiness' --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/strict-runs.json
+          gh run list --repo "$GITHUB_REPOSITORY" --workflow 'Fix Buildroot Shell Readiness' --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/buildroot-fix-runs.json
           gh run list --repo "$GITHUB_REPOSITORY" --workflow 'Dispatch Final Verifier After Strict Readiness' --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/dispatch-runs.json
-          gh run list --repo "$GITHUB_REPOSITORY" --workflow 'Deploy static content to Pages' --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/pages-runs.json
+          gh run list --repo "$GITHUB_REPOSITORY" --workflow 'Deploy static content to Pages' --limit 15 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/pages-runs.json
           python3 - <<'PY'
           import json
           from datetime import datetime, timezone
@@ -41,6 +42,7 @@ jobs:
               'recorded_at': datetime.now(timezone.utc).isoformat(),
               'final_verifier_runs': json.loads(Path('/tmp/final-runs.json').read_text()),
               'strict_readiness_runs': json.loads(Path('/tmp/strict-runs.json').read_text()),
+              'buildroot_fix_runs': json.loads(Path('/tmp/buildroot-fix-runs.json').read_text()),
               'strict_dispatch_runs': json.loads(Path('/tmp/dispatch-runs.json').read_text()),
               'pages_runs': json.loads(Path('/tmp/pages-runs.json').read_text()),
           }
