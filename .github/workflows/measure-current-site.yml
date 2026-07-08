@@ -1,0 +1,63 @@
+name: Measure Current Site Tree
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/measure-current-site.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Measure current tree
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from collections import defaultdict
+          from pathlib import Path
+
+          root=Path('.')
+          files=[]
+          by_top=defaultdict(int)
+          by_two=defaultdict(int)
+          total=0
+          for path in root.rglob('*'):
+              if not path.is_file() or '.git' in path.parts:
+                  continue
+              try: size=path.stat().st_size
+              except OSError: continue
+              rel=path.as_posix().lstrip('./')
+              total+=size
+              parts=rel.split('/')
+              by_top[parts[0]]+=size
+              by_two['/'.join(parts[:2])]+=size
+              files.append({'path':rel,'size':size,'mib':round(size/1048576,2)})
+          files.sort(key=lambda x:x['size'],reverse=True)
+          result={
+              'total_bytes':total,
+              'total_mib':round(total/1048576,2),
+              'file_count':len(files),
+              'top_level':sorted(({'path':k,'bytes':v,'mib':round(v/1048576,2)} for k,v in by_top.items()),key=lambda x:x['bytes'],reverse=True),
+              'two_level':sorted(({'path':k,'bytes':v,'mib':round(v/1048576,2)} for k,v in by_two.items()),key=lambda x:x['bytes'],reverse=True)[:100],
+              'largest_files':files[:200],
+          }
+          Path('os/iso/current-site-size.json').write_text(json.dumps(result,indent=2)+"\n")
+          print(json.dumps(result,indent=2))
+          PY
+      - name: Commit size report
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          git add os/iso/current-site-size.json
+          git commit -m 'Record current Legacy Pages source size [skip ci]' || true
+          git push origin HEAD:main
