@@ -1,4 +1,4 @@
-# Clean-boot rebuild trigger: atomic R12 publisher input 20260708-final.
+# Terminal + internet rebuild trigger: R18 20260708.
 name: Build GORICS Direct Openbox i386 ISO
 
 on:
@@ -7,6 +7,8 @@ on:
     paths:
       - '.github/workflows/build-gorics-openbox-i386.yml'
       - 'os/iso/build-gorics-web-iso.sh'
+      - 'scripts/patch_gorics_terminal_network.py'
+      - 'os/real-multiboot/local-media-router.js'
 
 permissions:
   contents: write
@@ -26,7 +28,7 @@ jobs:
 
       - name: Record start
         run: |
-          printf '{"state":"running","desktop":"direct-xorg-openbox-visible","run_id":"%s","commit":"%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" > os/iso/openbox-i386-status.json
+          printf '{"state":"running","desktop":"direct-xorg-openbox-terminal-network","run_id":"%s","commit":"%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" > os/iso/openbox-i386-status.json
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add os/iso/openbox-i386-status.json
@@ -34,18 +36,27 @@ jobs:
           git pull --rebase origin main
           git push origin HEAD:main
 
-      - name: Prepare clean i386 source
+      - name: Prepare clean i386 source with terminal and internet
         run: |
+          set -euo pipefail
           sed -i 's/gorics-linux-gui-web-amd64.iso/gorics-linux-gui-web-i386.iso/g' os/iso/build-gorics-web-iso.sh
           sed -i 's/--architectures amd64/--architectures i386/g' os/iso/build-gorics-web-iso.sh
           sed -i 's/linux-image-amd64/linux-image-686-pae/g' os/iso/build-gorics-web-iso.sh
           sed -i 's/systemctl mask e2scrub_reap.service e2scrub_all.service NetworkManager-wait-online.service/systemctl mask e2scrub_reap.service e2scrub_reap.timer e2scrub_all.service e2scrub_all.timer NetworkManager-wait-online.service/' os/iso/build-gorics-web-iso.sh
           sed -i '/systemctl mask e2scrub_reap.service/a rm -f /etc/systemd/system/timers.target.wants/e2scrub_all.timer /etc/systemd/system/multi-user.target.wants/e2scrub_reap.service 2>/dev/null || true' os/iso/build-gorics-web-iso.sh
+          python3 scripts/patch_gorics_terminal_network.py
+          bash -n os/iso/build-gorics-web-iso.sh
           grep -q 'gorics-x.service' os/iso/build-gorics-web-iso.sh
           grep -q 'GORICS_VISIBLE_WINDOW_READY' os/iso/build-gorics-web-iso.sh
           grep -q 'GORICS Control Center' os/iso/build-gorics-web-iso.sh
           grep -q 'panel_background_id = 0' os/iso/build-gorics-web-iso.sh
           grep -q 'e2scrub_all.timer' os/iso/build-gorics-web-iso.sh
+          grep -q 'TERMINAL.desktop' os/iso/build-gorics-web-iso.sh
+          grep -q 'launcher_item_app = /root/Desktop/TERMINAL.desktop' os/iso/build-gorics-web-iso.sh
+          grep -q 'gorics-network.service' os/iso/build-gorics-web-iso.sh
+          grep -q 'GORICS_NETWORK_LINK_READY' os/iso/build-gorics-web-iso.sh
+          grep -q 'GORICS_DNS_READY' os/iso/build-gorics-web-iso.sh
+          grep -q 'GORICS_INTERNET_READY' os/iso/build-gorics-web-iso.sh
 
       - name: Build ISO
         run: |
@@ -54,38 +65,62 @@ jobs:
           sudo chown -R "$USER:$USER" out-web build || true
           test -s out-web/gorics-linux-gui-web-i386.iso
 
-      - name: Verify mapped Openbox window and clean boot
+      - name: Verify terminal, mapped Openbox window and real network
         run: |
+          set -euo pipefail
           sudo apt-get update
-          sudo apt-get install -y xorriso qemu-system-x86
+          sudo apt-get install -y xorriso qemu-system-x86 squashfs-tools
           ISO=out-web/gorics-linux-gui-web-i386.iso
           xorriso -indev "$ISO" -report_el_torito plain | tee out-web/el-torito-report.txt
           sha256sum "$ISO" | tee out-web/SHA256SUMS.txt
           xorriso -osirrox on -indev "$ISO" -extract /live/vmlinuz out-web/vmlinuz
           xorriso -osirrox on -indev "$ISO" -extract /live/initrd.img out-web/initrd.img
+          xorriso -osirrox on -indev "$ISO" -extract /live/filesystem.squashfs out-web/filesystem.squashfs
+          unsquashfs -cat out-web/filesystem.squashfs root/Desktop/TERMINAL.desktop > out-web/TERMINAL.desktop
+          unsquashfs -cat out-web/filesystem.squashfs etc/systemd/system/gorics-network.service > out-web/gorics-network.service
+          unsquashfs -cat out-web/filesystem.squashfs usr/local/bin/gorics-network-check > out-web/gorics-network-check
+          unsquashfs -cat out-web/filesystem.squashfs root/.config/tint2/tint2rc > out-web/tint2rc
+          grep -q '^Exec=lxterminal$' out-web/TERMINAL.desktop
+          grep -q 'launcher_item_app = /root/Desktop/TERMINAL.desktop' out-web/tint2rc
+          grep -q 'NetworkManager.service' out-web/gorics-network.service
+          grep -q 'GORICS_NETWORK_LINK_READY' out-web/gorics-network-check
+          grep -q 'GORICS_DNS_READY' out-web/gorics-network-check
+          grep -q 'GORICS_INTERNET_READY' out-web/gorics-network-check
           qemu-system-i386 -machine pc -cpu pentium3,+pae -accel tcg -m 512 -smp 1 \
             -kernel out-web/vmlinuz -initrd out-web/initrd.img \
             -append 'boot=live components live-media=/dev/sr0 username=user hostname=gorics-web systemd.unit=graphical.target console=ttyS0,115200n8' \
-            -cdrom "$ISO" -nographic -monitor none -no-reboot >out-web/qemu-serial.log 2>&1 &
+            -cdrom "$ISO" -nic user,model=virtio-net-pci -nographic -monitor none -no-reboot >out-web/qemu-serial.log 2>&1 &
           PID=$!
-          READY=0
-          for second in $(seq 1 420); do
-            grep -q 'GORICS_VISIBLE_WINDOW_READY' out-web/qemu-serial.log 2>/dev/null \
-              && grep -q 'GORICS_WEB_GUI_READY' out-web/qemu-serial.log 2>/dev/null \
-              && READY=1 && break
+          GUI_READY=0
+          NET_READY=0
+          for second in $(seq 1 480); do
+            if grep -q 'GORICS_VISIBLE_WINDOW_READY' out-web/qemu-serial.log 2>/dev/null \
+              && grep -q 'GORICS_WEB_GUI_READY' out-web/qemu-serial.log 2>/dev/null; then
+              GUI_READY=1
+            fi
+            if grep -q 'GORICS_NETWORK_LINK_READY' out-web/qemu-serial.log 2>/dev/null \
+              && grep -q 'GORICS_DNS_READY' out-web/qemu-serial.log 2>/dev/null \
+              && grep -q 'GORICS_INTERNET_READY' out-web/qemu-serial.log 2>/dev/null; then
+              NET_READY=1
+            fi
+            test "$GUI_READY" = 1 && test "$NET_READY" = 1 && break
             grep -q 'GORICS_WEB_GUI_FAILED' out-web/qemu-serial.log 2>/dev/null && break
             kill -0 "$PID" 2>/dev/null || break
             sleep 1
           done
-          sleep 8
+          sleep 5
           kill "$PID" 2>/dev/null || true
           wait "$PID" 2>/dev/null || true
-          tail -n 500 out-web/qemu-serial.log
-          test "$READY" = 1
+          tail -n 700 out-web/qemu-serial.log
+          test "$GUI_READY" = 1
+          test "$NET_READY" = 1
           grep -q 'GORICS_XORG_READY' out-web/qemu-serial.log
           grep -q 'GORICS_VISIBLE_WINDOW_READY' out-web/qemu-serial.log
           grep -q 'GORICS_WEB_GUI_READY' out-web/qemu-serial.log
           grep -q 'GORICS Control Center' out-web/qemu-serial.log
+          grep -q 'GORICS_NETWORK_LINK_READY' out-web/qemu-serial.log
+          grep -q 'GORICS_DNS_READY' out-web/qemu-serial.log
+          grep -q 'GORICS_INTERNET_READY' out-web/qemu-serial.log
           ! grep -q 'GORICS_WEB_GUI_FAILED' out-web/qemu-serial.log
           ! grep -q 'Starting lightdm.service' out-web/qemu-serial.log
           ! grep -q 'requires an x86-64 CPU' out-web/qemu-serial.log
@@ -100,6 +135,10 @@ jobs:
             out-web/SHA256SUMS.txt
             out-web/el-torito-report.txt
             out-web/qemu-serial.log
+            out-web/TERMINAL.desktop
+            out-web/gorics-network.service
+            out-web/gorics-network-check
+            out-web/tint2rc
           compression-level: 0
           retention-days: 7
           if-no-files-found: error
@@ -122,7 +161,7 @@ jobs:
               out-web/el-torito-report.txt \
               out-web/qemu-serial.log \
               --title 'GORICS Direct Openbox i386 ISO' \
-              --notes 'Verified with Xorg, mapped GORICS Control Center window, Openbox, Tint2, PCManFM and xterm. The Actions artifact is the canonical publisher input.'; then
+              --notes 'Verified Openbox desktop with visible Terminal launcher, NetSurf browser, NetworkManager DHCP, DNS and outbound HTTP Internet access. The Actions artifact is the canonical publisher input.'; then
               exit 0
             fi
             sleep $((attempt*15))
@@ -134,9 +173,9 @@ jobs:
         run: |
           SIZE=$(stat -c %s out-web/gorics-linux-gui-web-i386.iso)
           SHA=$(cut -d' ' -f1 out-web/SHA256SUMS.txt)
-          printf '{"state":"success","desktop":"direct-xorg-openbox-visible","run_id":"%s","commit":"%s","size":%s,"sha256":"%s","openbox_ready":true,"mapped_window_ready":true,"lightdm":false,"e2scrub_clean":true,"artifact":"gorics-visible-i386-%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" "$SIZE" "$SHA" "$GITHUB_RUN_ID" > os/iso/openbox-i386-status.json
+          printf '{"state":"success","desktop":"direct-xorg-openbox-terminal-network","run_id":"%s","commit":"%s","size":%s,"sha256":"%s","openbox_ready":true,"mapped_window_ready":true,"terminal_ready":true,"network_link_ready":true,"dns_ready":true,"internet_ready":true,"lightdm":false,"e2scrub_clean":true,"artifact":"gorics-visible-i386-%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" "$SIZE" "$SHA" "$GITHUB_RUN_ID" > os/iso/openbox-i386-status.json
           git restore os/iso/build-gorics-web-iso.sh
           git add os/iso/openbox-i386-status.json
-          git commit -m 'Record visible Openbox ISO success [skip ci]'
+          git commit -m 'Record terminal and network ISO success [skip ci]'
           git pull --rebase origin main
           git push origin HEAD:main
