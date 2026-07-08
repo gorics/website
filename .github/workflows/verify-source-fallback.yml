@@ -1,0 +1,229 @@
+name: Verify Source Fallback GUI
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/verify-source-fallback.yml'
+      - 'os/real-multiboot/app.js'
+      - 'os/real-multiboot/index.html'
+      - 'os/real-multiboot/styles.css'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: verify-source-fallback-gui
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate source and install Chromium
+        run: |
+          node --check os/real-multiboot/app.js
+          grep -q 'source-safe loader' os/real-multiboot/app.js
+          grep -q 'GitHub Release fallback' os/real-multiboot/app.js
+          grep -q 'jsDelivr mirror' os/real-multiboot/app.js
+          grep -q 'app.js?v=n' os/real-multiboot/index.html
+          grep -q 'ISO page. n' os/real-multiboot/index.html
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Start unbuilt source server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/source-server.log 2>&1 &
+          echo $! > /tmp/source-server.pid
+          for attempt in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:4173/os/real-multiboot/ >/dev/null && exit 0
+            sleep 1
+          done
+          exit 1
+
+      - name: Boot release fallback and verify GUI
+        id: browser
+        continue-on-error: true
+        run: |
+          cat > verify-source-fallback.mjs <<'JS'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
+
+          const output = '/tmp/source-fallback-verification.json';
+          const result = {
+            success: false,
+            state: 'starting',
+            run_id: process.env.GITHUB_RUN_ID,
+            url: 'http://127.0.0.1:4173/os/real-multiboot/',
+            mode: 'unbuilt-source-release-cdn-fallback',
+            started_at: new Date().toISOString(),
+            console: [],
+            failed_requests: [],
+          };
+          const save = (state, extra = {}) => {
+            Object.assign(result, extra, { state, updated_at: new Date().toISOString() });
+            fs.writeFileSync(output, JSON.stringify(result, null, 2) + '\n');
+          };
+          save('starting');
+          let browser;
+          let page;
+          try {
+            browser = await chromium.launch({
+              headless: true,
+              args: ['--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu'],
+            });
+            const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+            page = await context.newPage();
+            page.setDefaultTimeout(120000);
+            page.on('console', message => {
+              result.console.push(`${message.type()}: ${message.text()}`);
+              if (result.console.length > 500) result.console.shift();
+            });
+            page.on('pageerror', error => result.console.push(`pageerror: ${error.message}`));
+            page.on('requestfailed', request => result.failed_requests.push({
+              url: request.url(),
+              error: request.failure()?.errorText || 'unknown',
+            }));
+            page.on('crash', () => save('page-crashed'));
+
+            await page.goto(result.url, { waitUntil: 'domcontentloaded', timeout: 120000 });
+            await page.waitForFunction(() => {
+              const log = document.querySelector('#log')?.textContent || '';
+              return log.includes('ISO page. n') && log.includes('source-safe loader');
+            });
+            save('source-loader-ready');
+            await page.click('#boot-btn');
+            save('boot-clicked');
+
+            await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('same-origin ISO unavailable: ISO metadata HTTP 404'), null, { timeout: 120000 });
+            save('local-assets-missing-as-expected');
+            await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('ISO metadata source=GitHub Release fallback'), null, { timeout: 180000 });
+            save('release-metadata-loaded');
+            await page.waitForFunction(() => {
+              const log = document.querySelector('#log')?.textContent || '';
+              return log.includes('runtime source selected: jsDelivr mirror') || log.includes('runtime source selected: GitHub raw mirror');
+            }, null, { timeout: 180000 });
+            save('cdn-runtime-loaded');
+            await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('ISO9660 and El Torito verified'), null, { timeout: 300000 });
+            save('release-iso-range-verified');
+            await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('emulator-started'), null, { timeout: 600000 });
+            save('emulator-started');
+            await page.waitForFunction(() => {
+              const canvas = document.querySelector('#screen canvas');
+              const text = document.querySelector('#screen > div');
+              return canvas
+                && canvas.width >= 640
+                && canvas.height >= 480
+                && getComputedStyle(canvas).display !== 'none'
+                && (!text || getComputedStyle(text).display === 'none');
+            }, null, { timeout: 900000 });
+            save('graphical-canvas-visible');
+            await page.waitForTimeout(20000);
+
+            const details = await page.evaluate(() => {
+              const canvas = document.querySelector('#screen canvas');
+              const text = document.querySelector('#screen > div');
+              const log = document.querySelector('#log')?.textContent || '';
+              const keyboard = document.querySelector('#keyboard-btn');
+              return {
+                canvas_width: canvas?.width || 0,
+                canvas_height: canvas?.height || 0,
+                canvas_display: canvas ? getComputedStyle(canvas).display : 'missing',
+                text_display: text ? getComputedStyle(text).display : 'missing',
+                screen_active: document.querySelector('#screen')?.classList.contains('active') || false,
+                keyboard_button_present: Boolean(keyboard),
+                keyboard_button_disabled: keyboard?.disabled ?? null,
+                emulator_object_present: Boolean(window.goricsRealLinuxIso),
+                log_tail: log.split('\n').slice(-260),
+              };
+            });
+            await page.screenshot({ path: '/tmp/source-fallback-proof.png', fullPage: true });
+            const success = details.screen_active
+              && details.canvas_width >= 640
+              && details.canvas_height >= 480
+              && details.canvas_display !== 'none'
+              && details.text_display === 'none'
+              && details.keyboard_button_present
+              && details.keyboard_button_disabled === false
+              && details.emulator_object_present;
+            save('completed', { ...details, success, completed_at: new Date().toISOString() });
+          } catch (error) {
+            let details = {};
+            try {
+              details = await page?.evaluate(() => {
+                const canvas = document.querySelector('#screen canvas');
+                const text = document.querySelector('#screen > div');
+                const log = document.querySelector('#log')?.textContent || '';
+                return {
+                  canvas_width: canvas?.width || 0,
+                  canvas_height: canvas?.height || 0,
+                  canvas_display: canvas ? getComputedStyle(canvas).display : 'missing',
+                  text_display: text ? getComputedStyle(text).display : 'missing',
+                  page_url: location.href,
+                  log_tail: log.split('\n').slice(-300),
+                };
+              }) || {};
+              await page?.screenshot({ path: '/tmp/source-fallback-proof.png', fullPage: true });
+            } catch {}
+            save('failed', {
+              ...details,
+              success: false,
+              error: error?.stack || String(error),
+              completed_at: new Date().toISOString(),
+            });
+          } finally {
+            await browser?.close().catch(() => {});
+          }
+          if (!result.success) process.exit(1);
+          JS
+          node --check verify-source-fallback.mjs
+          set -o pipefail
+          timeout --signal=TERM --kill-after=30s 25m node verify-source-fallback.mjs 2>&1 | tee /tmp/source-fallback-browser.log
+
+      - name: Upload source fallback proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-fallback-proof-${{ github.run_id }}
+          path: |
+            /tmp/source-fallback-verification.json
+            /tmp/source-fallback-proof.png
+            /tmp/source-fallback-browser.log
+            /tmp/source-server.log
+          if-no-files-found: warn
+
+      - name: Record source fallback result
+        if: always()
+        run: |
+          if test ! -s /tmp/source-fallback-verification.json; then
+            printf '{"success":false,"state":"no-result","run_id":"%s"}\n' "$GITHUB_RUN_ID" > /tmp/source-fallback-verification.json
+          fi
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          cp /tmp/source-fallback-verification.json os/iso/source-fallback-status.json
+          git add os/iso/source-fallback-status.json
+          git commit -m 'Record source fallback GUI verification [skip ci]' || true
+          git push origin HEAD:main
+
+      - name: Require source fallback success
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path('/tmp/source-fallback-verification.json').read_text())
+          print(json.dumps(result, indent=2))
+          if not result.get('success'):
+              raise SystemExit('source fallback GUI verification failed')
+          PY
