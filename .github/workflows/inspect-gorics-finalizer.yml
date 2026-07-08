@@ -17,44 +17,28 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Record all real multiboot runs
+      - name: Record final deployment and verification runs
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh run list --workflow finalize-gorics-pages.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/finalizer.json
-          gh run list --workflow static.yml --limit 20 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/static.json
-          gh run list --workflow verify-real-multiboot-v4.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/v4.json
-          gh run list --workflow switch-pages-to-actions.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/switch.json
-          gh run list --workflow publish-legacy-os-assets.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/legacy.json
-          gh run list --workflow publish-legacy-os-assets-v2.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/legacy_v2.json
-          gh run list --workflow verify-source-fallback.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/fallback.json
+          gh run list --workflow publish-legacy-os-assets-v2.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/publisher.json
+          gh run list --workflow verify-legacy-chunked-v6.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/v6.json
+          gh run list --workflow diagnose-legacy-pages-build.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/pages_diag.json
           python3 - <<'PY'
           import json
           from pathlib import Path
           def read(path):
               return json.loads(Path(path).read_text())
-          finalizer = read('/tmp/finalizer.json')
-          static = read('/tmp/static.json')
-          v4 = read('/tmp/v4.json')
-          switch = read('/tmp/switch.json')
-          legacy = read('/tmp/legacy.json')
-          legacy_v2 = read('/tmp/legacy_v2.json')
-          fallback = read('/tmp/fallback.json')
+          publisher = read('/tmp/publisher.json')
+          v6 = read('/tmp/v6.json')
+          pages_diag = read('/tmp/pages_diag.json')
           result = {
-              'latest': finalizer[0] if finalizer else None,
-              'runs': finalizer,
-              'latest_static': static[0] if static else None,
-              'static_runs': static,
-              'latest_v4': v4[0] if v4 else None,
-              'v4_runs': v4,
-              'latest_switch': switch[0] if switch else None,
-              'switch_runs': switch,
-              'latest_legacy': legacy[0] if legacy else None,
-              'legacy_runs': legacy,
-              'latest_legacy_v2': legacy_v2[0] if legacy_v2 else None,
-              'legacy_v2_runs': legacy_v2,
-              'latest_source_fallback': fallback[0] if fallback else None,
-              'source_fallback_runs': fallback,
+              'latest_legacy_v2': publisher[0] if publisher else None,
+              'legacy_v2_runs': publisher,
+              'latest_v6': v6[0] if v6 else None,
+              'v6_runs': v6,
+              'latest_pages_diagnostic': pages_diag[0] if pages_diag else None,
+              'pages_diagnostic_runs': pages_diag,
           }
           Path('os/iso/finalizer-run-status.json').write_text(json.dumps(result, indent=2) + '\n')
           print(json.dumps(result, indent=2))
@@ -64,7 +48,5 @@ jobs:
           git fetch origin main
           git checkout -B main origin/main
           git add os/iso/finalizer-run-status.json
-          git commit -m 'Record legacy V2 publisher status [skip ci]' || true
+          git commit -m 'Record V6 and legacy Pages build status [skip ci]' || true
           git push origin HEAD:main
-
-# inspector includes conflict-free legacy asset publisher V2
