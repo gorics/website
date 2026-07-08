@@ -1,112 +1,13 @@
-name: Deploy GORICS Direct Kernel Page
+name: Disabled Legacy Direct Kernel Deployer
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/deploy-gorics-direct-kernel.yml'
-      - 'os/real-multiboot/prepare-direct-deploy.py'
 
 permissions:
-  contents: write
-  actions: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: gorics-direct-pages
-  cancel-in-progress: true
+  contents: read
 
 jobs:
-  patch-and-deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  disabled:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Record direct deployment start
-        run: |
-          printf '{"state":"running","run_id":"%s","commit":"%s","page_version":"m"}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" > os/iso/direct-pages-status.json
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add os/iso/direct-pages-status.json
-          git commit -m "Record direct Pages deployment start [skip ci]"
-          git pull --rebase origin main
-          git push origin HEAD:main
-
-      - name: Wait for base Pages build
-        id: base
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          RUN_ID=''
-          for attempt in $(seq 1 60); do
-            RUN_ID=$(gh run list \
-              --repo "$GITHUB_REPOSITORY" \
-              --workflow static.yml \
-              --commit "$GITHUB_SHA" \
-              --limit 1 \
-              --json databaseId \
-              --jq '.[0].databaseId // empty')
-            test -n "$RUN_ID" && break
-            sleep 5
-          done
-          test -n "$RUN_ID"
-          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
-          gh run watch "$RUN_ID" --repo "$GITHUB_REPOSITORY" --exit-status --interval 10
-
-      - name: Download base Pages artifact
-        env:
-          GH_TOKEN: ${{ github.token }}
-          RUN_ID: ${{ steps.base.outputs.run_id }}
-        run: |
-          mkdir -p download _site
-          gh run download "$RUN_ID" \
-            --repo "$GITHUB_REPOSITORY" \
-            --name github-pages \
-            --dir download
-          test -s download/artifact.tar
-          tar -xf download/artifact.tar -C _site
-          test -s _site/os/real-multiboot/assets/gorics-linux-gui-web-i386.iso
-
-      - name: Configure direct i386 kernel boot
-        run: |
-          python3 os/real-multiboot/prepare-direct-deploy.py _site
-          sed -i 's/?v=l/?v=m/g; s/page. l/page. m/g' _site/os/real-multiboot/index.html
-          node --check _site/os/real-multiboot/app.js
-          grep -q 'bzimage: { url: kernelUrl }' _site/os/real-multiboot/app.js
-          grep -q 'systemd.unit=graphical.target' _site/os/real-multiboot/app.js
-          grep -q 'app.js?v=m' _site/os/real-multiboot/index.html
-          grep -q 'gorics-linux-gui-web-i386.iso' _site/os/real-multiboot/app.js
-          test -s _site/os/real-multiboot/assets/vmlinuz
-          test -s _site/os/real-multiboot/assets/initrd.img
-          test "$(du -sb _site | cut -f1)" -lt 1000000000
-          du -sh _site/os/real-multiboot/assets/*
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload direct Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-
-      - name: Deploy direct Pages artifact
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-      - name: Record direct deployment success
-        run: |
-          BASE_RUN='${{ steps.base.outputs.run_id }}'
-          printf '{"state":"success","run_id":"%s","base_pages_run_id":"%s","commit":"%s","page_version":"m","direct_boot":true,"desktop":"direct-xorg-openbox"}\n' "$GITHUB_RUN_ID" "$BASE_RUN" "$GITHUB_SHA" > os/iso/direct-pages-status.json
-          git add os/iso/direct-pages-status.json
-          git commit -m "Record direct Pages deployment success [skip ci]"
-          git clean -fd _site download || true
-          git pull --rebase origin main
-          git push origin HEAD:main
+      - run: echo 'Legacy secondary Pages deployment is disabled. Use static.yml only.'
