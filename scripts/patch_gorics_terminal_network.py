@@ -4,7 +4,7 @@ from __future__ import annotations
 from pathlib import Path
 
 TARGET = Path("os/iso/build-gorics-web-iso.sh")
-MARKER = "# GORICS terminal+network patch v1"
+MARKER = "# GORICS terminal+network patch v2-managed-dhcp"
 
 
 def replace_once(text: str, old: str, new: str, label: str) -> str:
@@ -22,7 +22,7 @@ if MARKER in text:
 text = replace_once(
     text,
     "xterm\nnetsurf-gtk\nnetwork-manager\n",
-    "xterm\niproute2\niputils-ping\ndnsutils\nnet-tools\nethtool\nnetsurf-gtk\nnetwork-manager\n",
+    "xterm\niproute2\niputils-ping\ndnsutils\nnet-tools\nethtool\nisc-dhcp-client\nnetsurf-gtk\nnetwork-manager\n",
     "network utility packages",
 )
 
@@ -70,7 +70,40 @@ text = replace_once(
     "network status menu",
 )
 
-network_block = r'''cat > config/includes.chroot/usr/local/bin/gorics-network-check <<'EOF'
+network_block = r'''mkdir -p config/includes.chroot/etc/NetworkManager/conf.d
+cat > config/includes.chroot/etc/NetworkManager/conf.d/10-gorics-managed.conf <<'EOF'
+[main]
+plugins=keyfile,ifupdown
+
+[ifupdown]
+managed=true
+
+[device]
+wifi.scan-rand-mac-address=no
+EOF
+
+mkdir -p config/includes.chroot/etc/NetworkManager/system-connections
+cat > config/includes.chroot/etc/NetworkManager/system-connections/gorics-wired.nmconnection <<'EOF'
+[connection]
+id=GORICS Wired
+uuid=8b821657-4a56-4cf2-9db9-14b9f5ad7f86
+type=ethernet
+autoconnect=true
+autoconnect-priority=100
+
+[ethernet]
+
+[ipv4]
+method=auto
+
+[ipv6]
+method=disabled
+
+[proxy]
+EOF
+chmod 600 config/includes.chroot/etc/NetworkManager/system-connections/gorics-wired.nmconnection
+
+cat > config/includes.chroot/usr/local/bin/gorics-network-check <<'EOF'
 #!/bin/sh
 set +e
 exec 3>/dev/ttyS0
@@ -79,18 +112,33 @@ systemctl start NetworkManager.service >/dev/null 2>&1 || true
 nmcli networking on >/dev/null 2>&1 || true
 nmcli radio all on >/dev/null 2>&1 || true
 
-i=0
-while [ "$i" -lt 45 ]; do
-  state=$(nmcli -t -f STATE general status 2>/dev/null | head -n1)
-  if [ "$state" = connected ] || ip route show default 2>/dev/null | grep -q '^default '; then
+DEVICES=$(find /sys/class/net -mindepth 1 -maxdepth 1 -printf '%f\n' 2>/dev/null | grep -v '^lo$')
+for dev in $DEVICES; do
+  ip link set dev "$dev" up >/dev/null 2>&1 || true
+  nmcli device set "$dev" managed yes >/dev/null 2>&1 || true
+  nmcli connection modify 'GORICS Wired' connection.interface-name "$dev" >/dev/null 2>&1 || true
+  nmcli connection up 'GORICS Wired' ifname "$dev" >/dev/null 2>&1 || true
+done
+
+attempt=0
+while [ "$attempt" -lt 20 ]; do
+  if ip route show default 2>/dev/null | grep -q '^default '; then
     break
   fi
-  for dev in $(nmcli -t -f DEVICE,TYPE device status 2>/dev/null | awk -F: '$2 == "ethernet" {print $1}'); do
+  for dev in $DEVICES; do
     nmcli device connect "$dev" >/dev/null 2>&1 || true
+    nmcli connection up 'GORICS Wired' ifname "$dev" >/dev/null 2>&1 || true
   done
-  i=$((i+1))
+  attempt=$((attempt+1))
   sleep 1
 done
+
+if ! ip route show default 2>/dev/null | grep -q '^default '; then
+  printf 'GORICS_NETWORK_DHCLIENT_FALLBACK\n' >&3
+  for dev in $DEVICES; do
+    dhclient -4 -v -1 "$dev" >&3 2>&1 || true
+  done
+fi
 
 nmcli general status >&3 2>&1 || true
 nmcli device status >&3 2>&1 || true
@@ -132,7 +180,7 @@ Wants=NetworkManager.service network.target
 Type=oneshot
 ExecStart=/usr/local/bin/gorics-network-check
 RemainAfterExit=yes
-TimeoutStartSec=70
+TimeoutStartSec=180
 
 [Install]
 WantedBy=graphical.target
@@ -168,6 +216,10 @@ TARGET.write_text(text, encoding="utf-8")
 required = (
     "TERMINAL.desktop",
     "launcher_item_app = /root/Desktop/TERMINAL.desktop",
+    "10-gorics-managed.conf",
+    "gorics-wired.nmconnection",
+    "managed=true",
+    "dhclient -4 -v -1",
     "gorics-network-check",
     "GORICS_NETWORK_LINK_READY",
     "GORICS_DNS_READY",
@@ -177,4 +229,4 @@ required = (
 missing = [item for item in required if item not in text]
 if missing:
     raise SystemExit(f"patch verification failed: {missing}")
-print("patched GORICS ISO source with visible terminal and browser VM networking")
+print("patched GORICS ISO source with visible terminal, managed Ethernet and DHCP fallback")
