@@ -6,17 +6,22 @@ on:
     workflows:
       - Publish Visible Desktop R12 V2
     types: [completed]
+  pull_request:
+    types: [closed]
+    branches: [main]
+    paths:
+      - 'os/real-multiboot/.trigger-v10-final-proof'
 
 permissions:
   contents: write
 
 concurrency:
-  group: verify-real-multiboot-v10
-  cancel-in-progress: true
+  group: verify-real-multiboot-v10-${{ github.run_id }}
+  cancel-in-progress: false
 
 jobs:
   verify:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ubuntu-24.04
     timeout-minutes: 50
     steps:
