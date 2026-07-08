@@ -1,0 +1,146 @@
+name: Finalize GORICS Pages
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/finalize-gorics-pages.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: finalize-gorics-pages-only
+  cancel-in-progress: true
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Cancel every stale Pages deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for workflow in static.yml deploy-gorics-direct-kernel.yml; do
+            gh run list --workflow "$workflow" --limit 100 --json databaseId,status \
+              --jq '.[] | select(.status == "queued" or .status == "in_progress") | .databaseId' \
+              | while read -r run_id; do
+                  test -n "$run_id" || continue
+                  echo "cancelling stale $workflow run $run_id"
+                  gh run cancel "$run_id" || true
+                done
+          done
+          for attempt in $(seq 1 60); do
+            ACTIVE=0
+            for workflow in static.yml deploy-gorics-direct-kernel.yml; do
+              COUNT=$(gh run list --workflow "$workflow" --limit 100 --json status \
+                --jq '[.[] | select(.status == "queued" or .status == "in_progress")] | length')
+              ACTIVE=$((ACTIVE + COUNT))
+            done
+            echo "active stale Pages runs: $ACTIVE"
+            test "$ACTIVE" = 0 && break
+            sleep 5
+          done
+          test "$ACTIVE" = 0
+
+      - name: Dispatch exactly one final static deployment
+        id: final
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BEFORE=$(gh run list --workflow static.yml --limit 1 --json databaseId --jq '.[0].databaseId // 0')
+          gh workflow run static.yml --ref main
+          RUN_ID=''
+          for attempt in $(seq 1 30); do
+            sleep 4
+            CANDIDATE=$(gh run list --workflow static.yml --event workflow_dispatch --limit 1 --json databaseId --jq '.[0].databaseId // 0')
+            if test "$CANDIDATE" != 0 && test "$CANDIDATE" != "$BEFORE"; then
+              RUN_ID="$CANDIDATE"
+              break
+            fi
+          done
+          test -n "$RUN_ID"
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+          echo "final static run: $RUN_ID"
+          gh run watch "$RUN_ID" --exit-status --interval 10
+
+      - name: Probe final public deployment
+        env:
+          RUN_ID: ${{ steps.final.outputs.run_id }}
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess, time
+          from pathlib import Path
+
+          base = 'https://gorics.github.io/website'
+          page = base + '/os/real-multiboot'
+          run_id = os.environ['RUN_ID']
+          urls = {
+              'index': page + '/?final=' + run_id,
+              'app': page + '/app.js?final=' + run_id,
+              'meta': page + '/assets/iso-meta.json?final=' + run_id,
+              'runtime': base + '/vendor/v86/libv86.js?final=' + run_id,
+              'kernel': page + '/assets/vmlinuz?final=' + run_id,
+              'initrd': page + '/assets/initrd.img?final=' + run_id,
+              'iso': page + '/assets/gorics-linux-gui-web-i386.iso?final=' + run_id,
+          }
+
+          def get(name, url, range_request=False):
+              body = Path('/tmp/' + name)
+              cmd = ['curl', '-sS', '-L', '--max-time', '90', '-o', str(body), '-w', '%{http_code}', url]
+              if range_request:
+                  cmd[1:1] = ['-r', '32768-36863']
+              result = subprocess.run(cmd, text=True, capture_output=True, timeout=100)
+              return result.stdout.strip(), body.read_bytes() if body.exists() else b'', result.stderr.strip()
+
+          result = {'state': 'failure', 'pages_run_id': run_id, 'attempts': []}
+          for attempt in range(1, 61):
+              codes = {}
+              bodies = {}
+              errors = {}
+              for name, url in urls.items():
+                  code, body, error = get(name, url, name == 'iso')
+                  codes[name], bodies[name], errors[name] = code, body, error
+              checks = {
+                  'index_n': b'app.js?v=n' in bodies['index'] and b'ISO page. n' in bodies['index'],
+                  'app_i386': b'gorics-linux-gui-web-i386.iso' in bodies['app'],
+                  'app_direct': b'bzimage' in bodies['app'] and b'initrd' in bodies['app'] and b'systemd.unit=graphical.target' in bodies['app'],
+                  'meta_openbox': b'direct-xorg-openbox' in bodies['meta'],
+                  'runtime': codes['runtime'] == '200' and len(bodies['runtime']) > 100000,
+                  'kernel': codes['kernel'] == '200' and len(bodies['kernel']) > 1000000,
+                  'initrd': codes['initrd'] == '200' and len(bodies['initrd']) > 10000000,
+                  'iso_range': codes['iso'] == '206' and len(bodies['iso']) == 4096 and bodies['iso'][1:6] == b'CD001' and bodies['iso'][2049:2054] == b'CD001',
+              }
+              result['attempts'].append({'attempt': attempt, 'codes': codes, 'sizes': {k: len(v) for k, v in bodies.items()}, 'checks': checks, 'errors': errors})
+              if all(checks.values()):
+                  result.update({'state': 'success', 'checks': checks, 'completed_attempt': attempt})
+                  break
+              time.sleep(10)
+          Path('os/iso/pages-final-status.json').write_text(json.dumps(result, indent=2) + '\n')
+          print(json.dumps(result, indent=2))
+          if result['state'] != 'success':
+              raise SystemExit('final public deployment probe failed')
+          PY
+
+      - name: Record final result
+        if: always()
+        env:
+          PAGES_RUN_ID: ${{ steps.final.outputs.run_id }}
+        run: |
+          if test ! -s os/iso/pages-final-status.json; then
+            printf '{"state":"failure","pages_run_id":"%s","error":"final probe did not produce status"}\n' "$PAGES_RUN_ID" > os/iso/pages-final-status.json
+          fi
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          git add os/iso/pages-final-status.json
+          git commit -m 'Record final GORICS Pages status [skip ci]' || true
+          git push origin HEAD:main
+          grep -q '"state": "success"' os/iso/pages-final-status.json
