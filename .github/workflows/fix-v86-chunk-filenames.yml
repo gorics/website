@@ -1,0 +1,110 @@
+name: Fix v86 Chunk Filenames
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/fix-v86-chunk-filenames.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: fix-v86-chunk-filenames
+  cancel-in-progress: true
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout all branches
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add v86-compatible .iso suffix to every chunk
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin os-assets
+          git checkout -B os-assets origin/os-assets
+          DIR='os/real-multiboot/assets/v86-parts'
+          test -d "$DIR"
+          COUNT=0
+          for src in "$DIR"/gorics-linux-gui-web-i386.iso-[0-9]*-[0-9]*; do
+            test -f "$src" || continue
+            case "$src" in
+              *.iso) continue ;;
+            esac
+            cp "$src" "$src.iso"
+            COUNT=$((COUNT + 1))
+          done
+          echo "created compatible chunk aliases: $COUNT"
+          test "$COUNT" = 21
+          test -f "$DIR/gorics-linux-gui-web-i386.iso-0-16777216.iso"
+          test -f "$DIR/gorics-linux-gui-web-i386.iso-335544320-352321536.iso"
+          git add "$DIR"
+          git commit -m 'Add v86-compatible ISO chunk filename aliases'
+          git push origin HEAD:os-assets
+
+      - name: Verify first and last raw chunk aliases
+        run: |
+          ROOT='https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts'
+          FIRST="$ROOT/gorics-linux-gui-web-i386.iso-0-16777216.iso"
+          LAST="$ROOT/gorics-linux-gui-web-i386.iso-335544320-352321536.iso"
+          READY=0
+          for attempt in $(seq 1 60); do
+            FIRST_CODE=$(curl -sS -L --max-time 90 -r 32768-36863 -o /tmp/first.bin -w '%{http_code}' "$FIRST")
+            LAST_CODE=$(curl -sS -L --max-time 90 -r 0-4095 -o /tmp/last.bin -w '%{http_code}' "$LAST")
+            if test "$FIRST_CODE" = 206 && test "$LAST_CODE" = 206 \
+              && test "$(stat -c %s /tmp/first.bin)" = 4096 \
+              && test "$(stat -c %s /tmp/last.bin)" = 4096; then
+              READY=1
+              break
+            fi
+            echo "chunk aliases not ready attempt=$attempt first=$FIRST_CODE last=$LAST_CODE"
+            sleep 5
+          done
+          test "$READY" = 1
+          python3 - <<'PY'
+          from pathlib import Path
+          data = Path('/tmp/first.bin').read_bytes()
+          assert data[1:6] == b'CD001'
+          assert data[2049:2054] == b'CD001'
+          assert b'EL TORITO' in data[2055:2087]
+          print('first and last v86 chunk aliases verified')
+          PY
+
+      - name: Return to main and dispatch final GUI verifier
+        id: verifier
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git checkout main
+          BEFORE=$(gh run list --workflow verify-q-gui-final.yml --limit 1 --json databaseId --jq '.[0].databaseId // 0')
+          gh workflow run verify-q-gui-final.yml --ref main
+          RUN_ID=''
+          for attempt in $(seq 1 30); do
+            sleep 4
+            CANDIDATE=$(gh run list --workflow verify-q-gui-final.yml --event workflow_dispatch --limit 1 --json databaseId --jq '.[0].databaseId // 0')
+            if test "$CANDIDATE" != 0 && test "$CANDIDATE" != "$BEFORE"; then
+              RUN_ID="$CANDIDATE"
+              break
+            fi
+          done
+          test -n "$RUN_ID"
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+          echo "final GUI verifier run=$RUN_ID"
+
+      - name: Record final verifier run
+        env:
+          FINAL_RUN_ID: ${{ steps.verifier.outputs.run_id }}
+        run: |
+          git fetch origin main
+          git checkout -B main origin/main
+          printf '{"state":"dispatched","fix":"v86 chunk aliases with trailing .iso","chunk_aliases":21,"final_run_id":"%s"}\n' "$FINAL_RUN_ID" > os/iso/v86-chunk-filename-fix.json
+          git add os/iso/v86-chunk-filename-fix.json
+          git commit -m 'Record v86 chunk filename fix [skip ci]' || true
+          git push origin HEAD:main
