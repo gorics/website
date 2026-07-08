@@ -10,6 +10,10 @@ permissions:
   contents: write
   actions: write
 
+concurrency:
+  group: gorics-pages-orchestrator
+  cancel-in-progress: true
+
 jobs:
   dispatch-watch:
     runs-on: ubuntu-latest
@@ -18,16 +22,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Record orchestrator start
-        run: |
-          printf '{"state":"dispatching","orchestrator_run_id":"%s","page_version":"20260708r1","loader":"release-chunks"}\n' "$GITHUB_RUN_ID" > os/iso/pages-deploy-status.json
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add os/iso/pages-deploy-status.json
-          git commit -m "Record resilient Pages deployment start [skip ci]"
-          git pull --rebase origin main
-          git push origin HEAD:main
 
       - name: Dispatch Pages workflow
         id: pages
@@ -56,9 +50,12 @@ jobs:
           PAGES_RUN_ID: ${{ steps.pages.outputs.run_id }}
           PAGES_OUTCOME: ${{ steps.pages.outcome }}
         run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
           printf '{"state":"%s","orchestrator_run_id":"%s","pages_run_id":"%s","page_version":"20260708r1","loader":"release-chunks","public_self_test":true}\n' "$PAGES_OUTCOME" "$GITHUB_RUN_ID" "$PAGES_RUN_ID" > os/iso/pages-deploy-status.json
           git add os/iso/pages-deploy-status.json
-          git commit -m "Record resilient Pages deployment result [skip ci]"
-          git pull --rebase origin main
+          git commit -m "Record resilient Pages deployment result [skip ci]" || true
           git push origin HEAD:main
           test "$PAGES_OUTCOME" = success
