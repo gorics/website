@@ -97,3 +97,5 @@ jobs:
           git add os/iso/public-probe.json
           git commit -m 'Record exact public OS probe [skip ci]' || true
           git push origin HEAD:main
+
+# trigger: final-public-recheck-20260708
