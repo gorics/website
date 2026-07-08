@@ -1,15 +1,25 @@
 {
   "latest": {
     "conclusion": "failure",
-    "createdAt": "2026-07-08T02:24:04Z",
-    "databaseId": 28912917591,
+    "createdAt": "2026-07-08T02:29:07Z",
+    "databaseId": 28913107917,
     "event": "push",
-    "headSha": "1dfd1a2a3b272e4a9367aa14e697ed0c188d4b1a",
+    "headSha": "f620de5422fff1d1132c05f4f77534624bc09aa9",
     "status": "completed",
-    "updatedAt": "2026-07-08T02:25:05Z",
-    "url": "https://github.com/gorics/website/actions/runs/28912917591"
+    "updatedAt": "2026-07-08T02:30:09Z",
+    "url": "https://github.com/gorics/website/actions/runs/28913107917"
   },
   "runs": [
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-07-08T02:29:07Z",
+      "databaseId": 28913107917,
+      "event": "push",
+      "headSha": "f620de5422fff1d1132c05f4f77534624bc09aa9",
+      "status": "completed",
+      "updatedAt": "2026-07-08T02:30:09Z",
+      "url": "https://github.com/gorics/website/actions/runs/28913107917"
+    },
     {
       "conclusion": "failure",
       "createdAt": "2026-07-08T02:24:04Z",
