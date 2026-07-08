@@ -1,0 +1,39 @@
+name: Inspect GORICS Finalizer
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/inspect-gorics-finalizer.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Record latest finalizer run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run list --workflow finalize-gorics-pages.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/runs.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          runs = json.loads(Path('/tmp/runs.json').read_text())
+          result = {'latest': runs[0] if runs else None, 'runs': runs}
+          Path('os/iso/finalizer-run-status.json').write_text(json.dumps(result, indent=2) + '\n')
+          print(json.dumps(result, indent=2))
+          PY
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          git add os/iso/finalizer-run-status.json
+          git commit -m 'Record finalizer run status [skip ci]' || true
+          git push origin HEAD:main
