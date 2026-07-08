@@ -1,8 +1,10 @@
 (() => {
   'use strict';
 
-  const BUILD = '20260708-r10-local-media';
+  const BUILD = '20260708-r18-terminal-network';
   const LOCAL_ROOT = '/website/vendor/v86/images/';
+  const DEFAULT_RELAY = 'wss://relay.widgetry.org/';
+  const WRAPPED = Symbol.for('gorics.v86.network.wrapped');
   const ROUTES = new Map([
     ['/buildroot-bzimage68.bin', `${LOCAL_ROOT}buildroot-bzimage68.bin`],
     ['/linux4.iso', `${LOCAL_ROOT}linux4.iso`],
@@ -29,6 +31,56 @@
     }
   }
 
+  function networkMode() {
+    const requested = new URLSearchParams(location.search).get('network');
+    if (requested === 'off' || requested === 'none') return 'off';
+    if (requested === 'fetch') return 'fetch';
+    return 'relay';
+  }
+
+  function withNetwork(options = {}) {
+    if (options.network_relay_url || options.net_device?.relay_url || networkMode() === 'off') return options;
+    const modernLinux = Boolean(options.bzimage && options.initrd);
+    const relayUrl = networkMode() === 'fetch' ? 'fetch' : DEFAULT_RELAY;
+    const netDevice = {
+      type: modernLinux ? 'virtio' : 'ne2k',
+      relay_url: relayUrl,
+      router_ip: '192.168.86.1',
+      vm_ip: '192.168.86.100',
+      masquerade: true,
+      dns_method: relayUrl === 'fetch' ? 'static' : 'doh',
+    };
+    console.log(`[GORICS NETWORK] enabled type=${netDevice.type} backend=${relayUrl}`);
+    return { ...options, net_device: netDevice };
+  }
+
+  function wrapConstructor(NativeConstructor, name) {
+    if (typeof NativeConstructor !== 'function' || NativeConstructor[WRAPPED]) return NativeConstructor;
+    function GoricsNetworkV86(options) {
+      return new NativeConstructor(withNetwork(options));
+    }
+    try { Object.setPrototypeOf(GoricsNetworkV86, NativeConstructor); } catch {}
+    GoricsNetworkV86.prototype = NativeConstructor.prototype;
+    Object.defineProperty(GoricsNetworkV86, WRAPPED, { value: true });
+    Object.defineProperty(GoricsNetworkV86, 'name', { value: name, configurable: true });
+    return GoricsNetworkV86;
+  }
+
+  function installConstructorHook(name) {
+    const descriptor = Object.getOwnPropertyDescriptor(globalThis, name);
+    if (descriptor && descriptor.configurable === false) {
+      if (typeof globalThis[name] === 'function') globalThis[name] = wrapConstructor(globalThis[name], name);
+      return;
+    }
+    let current = typeof globalThis[name] === 'function' ? wrapConstructor(globalThis[name], name) : globalThis[name];
+    Object.defineProperty(globalThis, name, {
+      configurable: true,
+      enumerable: true,
+      get() { return current; },
+      set(value) { current = wrapConstructor(value, name); },
+    });
+  }
+
   const nativeFetch = globalThis.fetch?.bind(globalThis);
   if (nativeFetch) {
     globalThis.fetch = function goricsLocalMediaFetch(input, init) {
@@ -49,10 +101,15 @@
     };
   }
 
+  installConstructorHook('V86');
+  installConstructorHook('V86Starter');
+
   globalThis.__GORICS_LOCAL_MEDIA_ROUTER__ = {
     build: BUILD,
     routes: Object.fromEntries(ROUTES),
+    network: { mode: networkMode(), defaultRelay: DEFAULT_RELAY },
     rewrite,
+    withNetwork,
   };
-  console.log(`[GORICS LOCAL MEDIA] router installed build=${BUILD} routes=${ROUTES.size}`);
+  console.log(`[GORICS LOCAL MEDIA] router installed build=${BUILD} routes=${ROUTES.size} network=${networkMode()}`);
 })();
