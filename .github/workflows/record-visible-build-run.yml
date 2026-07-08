@@ -41,3 +41,5 @@ jobs:
           git add os/iso/visible-r12-workflow-runs.json
           git commit -m 'Record visible R12 workflow runs [skip ci]' || true
           git push origin HEAD:main
+
+# refresh: escaped readiness rebuild
