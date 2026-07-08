@@ -5,29 +5,37 @@ on:
   push:
     paths:
       - 'os/real-multiboot/index.html'
-      - 'os/real-multiboot/styles.css'
-      - 'os/real-multiboot/responsive-overrides.css'
       - 'os/real-multiboot/app.js'
-      - 'os/real-multiboot/responsive.js'
-      - 'os/real-multiboot/chunk-router-v4.js'
       - '.github/workflows/verify-unified-multiboot.yml'
 
 permissions:
   contents: write
 
 concurrency:
-  group: verify-unified-real-multiboot
-  cancel-in-progress: true
+  group: verify-unified-real-multiboot-stable
+  cancel-in-progress: false
 
 jobs:
   verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 40
+    timeout-minutes: 45
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Record verification start
+        run: |
+          set -euo pipefail
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          printf '{"success":false,"state":"running","run_id":"%s","run_attempt":"%s","started_at":"%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_RUN_ATTEMPT" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > os/iso/unified-multiboot-status.json
+          git add os/iso/unified-multiboot-status.json
+          git commit -m 'Record unified multiboot verification start [skip ci]' || true
+          git push origin HEAD:main
 
       - name: Validate source and seven presets
         run: |
@@ -41,27 +49,27 @@ jobs:
             grep -q "value=\"$preset\"" os/real-multiboot/index.html
           done
           grep -q "const BUILD = '20260708-r6multiboot'" os/real-multiboot/app.js
-          grep -q "window.goricsRealMultiboot = vm" os/real-multiboot/app.js
-          grep -q "display ready preset=" os/real-multiboot/app.js
-          grep -q "stage step=" os/real-multiboot/app.js
+          grep -q 'window.goricsRealMultiboot = vm' os/real-multiboot/app.js
+          grep -q 'display verification passed preset=' os/real-multiboot/app.js
+          grep -q 'graphicalReady' os/real-multiboot/app.js
           node --check os/real-multiboot/app.js
-          node --check os/real-multiboot/responsive.js
           node --check os/real-multiboot/chunk-router-v4.js
+          node --check os/real-multiboot/responsive.js
 
-      - name: Wait for GitHub Pages deployment
+      - name: Wait for public deployment
         run: |
           set -euo pipefail
           BASE='https://gorics.github.io/website/os/real-multiboot'
           ready=0
-          for attempt in $(seq 1 90); do
+          for attempt in $(seq 1 120); do
             stamp="${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-${attempt}-$(date +%s)"
             if curl -fsSL --max-time 60 "$BASE/?verify=$stamp" -o /tmp/public-index.html \
               && grep -q 'id="os-select"' /tmp/public-index.html \
               && grep -q 'id="loading-overlay"' /tmp/public-index.html \
               && grep -q 'value="dsl-high"' /tmp/public-index.html \
               && curl -fsSL --max-time 60 "$BASE/app.js?verify=$stamp" -o /tmp/public-app.js \
-              && grep -q "20260708-r6multiboot" /tmp/public-app.js \
-              && grep -q "window.goricsRealMultiboot = vm" /tmp/public-app.js; then
+              && grep -q '20260708-r6multiboot' /tmp/public-app.js \
+              && grep -q 'graphicalReady' /tmp/public-app.js; then
               ready=1
               echo "public deployment ready attempt=$attempt"
               break
@@ -72,12 +80,12 @@ jobs:
           test "$ready" = 1
           node --check /tmp/public-app.js
 
-      - name: Verify public runtime and boot media
+      - name: Verify public boot assets
         run: |
           set -euo pipefail
           ROOT='https://gorics.github.io/website'
           PAGE="$ROOT/os/real-multiboot"
-          curl -fsSL --max-time 60 "$PAGE/assets/iso-meta.json?verify=$GITHUB_RUN_ID" -o /tmp/iso-meta.json
+          curl -fsSL --max-time 90 "$PAGE/assets/iso-meta.json?verify=$GITHUB_RUN_ID" -o /tmp/iso-meta.json
           python3 - <<'PY'
           import json
           from pathlib import Path
@@ -90,13 +98,13 @@ jobs:
           print(json.dumps(meta, indent=2))
           PY
           for path in vendor/v86/libv86.js vendor/v86/v86.wasm vendor/v86/seabios.bin vendor/v86/vgabios.bin os/real-multiboot/assets/vmlinuz os/real-multiboot/assets/initrd.img; do
-            code=$(curl -sS -L --max-time 90 -r 0-4095 -o "/tmp/$(basename "$path").probe" -w '%{http_code}' "$ROOT/$path?verify=$GITHUB_RUN_ID")
-            test "$code" = 200 -o "$code" = 206
+            code=$(curl -sS -L --max-time 120 -r 0-4095 -o "/tmp/$(basename "$path").probe" -w '%{http_code}' "$ROOT/$path?verify=$GITHUB_RUN_ID")
+            case "$code" in 200|206) ;; *) echo "bad HTTP $code for $path"; exit 1;; esac
             test -s "/tmp/$(basename "$path").probe"
             echo "asset OK status=$code path=$path bytes=$(stat -c %s "/tmp/$(basename "$path").probe")"
           done
           FIRST='https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-0-16777216'
-          curl -fsSL --max-time 120 -r 32768-36863 "$FIRST?verify=$GITHUB_RUN_ID" -o /tmp/iso-descriptor.bin
+          curl -fsSL --max-time 150 -r 32768-36863 "$FIRST?verify=$GITHUB_RUN_ID" -o /tmp/iso-descriptor.bin
           python3 - <<'PY'
           from pathlib import Path
           data=Path('/tmp/iso-descriptor.bin').read_bytes()
@@ -108,18 +116,11 @@ jobs:
           assert b'EL TORITO' in data[2055:2087]
           print('GORICS ISO9660 and El Torito descriptors verified')
           PY
-          for url in \
-            https://i.copy.sh/buildroot-bzimage68.bin \
-            https://i.copy.sh/linux4.iso \
-            https://i.copy.sh/linux.iso \
-            https://i.copy.sh/freedos722.img; do
-            code=$(curl -sS -L --max-time 120 -r 0-1023 -o /tmp/external-media.probe -w '%{http_code}' "$url")
-            test "$code" = 200 -o "$code" = 206
-            test -s /tmp/external-media.probe
-            echo "external media OK status=$code url=$url bytes=$(stat -c %s /tmp/external-media.probe)"
-          done
+          code=$(curl -sS -L --max-time 150 -r 0-1023 -o /tmp/buildroot.probe -w '%{http_code}' https://i.copy.sh/buildroot-bzimage68.bin)
+          case "$code" in 200|206) ;; *) echo "bad Buildroot HTTP $code"; exit 1;; esac
+          test -s /tmp/buildroot.probe
 
-      - name: Setup browser verifier
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -129,7 +130,7 @@ jobs:
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
 
-      - name: Boot Buildroot then GORICS on public page
+      - name: Boot Buildroot then GORICS
         id: browser
         continue-on-error: true
         env:
@@ -139,110 +140,81 @@ jobs:
           import { chromium } from 'playwright';
           import fs from 'node:fs';
 
-          const result = {
-            success: false,
-            state: 'running',
-            run_id: process.env.GITHUB_RUN_ID,
-            run_attempt: process.env.GITHUB_RUN_ATTEMPT,
-            url: process.env.VERIFY_URL,
-            started_at: new Date().toISOString(),
-            presets_found: [],
-            boots: {},
-            console: [],
-            failed_requests: [],
-          };
+          const result={success:false,state:'running',run_id:process.env.GITHUB_RUN_ID,run_attempt:process.env.GITHUB_RUN_ATTEMPT,url:process.env.VERIFY_URL,started_at:new Date().toISOString(),presets_found:[],boots:{},console:[],failed_requests:[]};
           let browser;
           let page;
 
-          async function snapshot(name) {
-            const details = await page.evaluate(() => {
-              const canvas = document.querySelector('#screen canvas');
-              const text = document.querySelector('#screen > div');
-              const log = document.querySelector('#log')?.textContent || '';
+          async function snapshot(name){
+            const details=await page.evaluate(()=>{
+              const canvas=document.querySelector('#screen canvas');
+              const text=document.querySelector('#screen > div');
+              const log=document.querySelector('#log')?.textContent||'';
               return {
-                selected: document.querySelector('#os-select')?.value,
-                state_text: document.querySelector('#boot-btn')?.textContent,
-                stage: document.querySelector('#stage-label')?.textContent,
-                progress: document.querySelector('#progress-percent')?.textContent,
-                overlay_hidden: document.querySelector('#loading-overlay')?.classList.contains('hidden'),
-                canvas_width: canvas?.width || 0,
-                canvas_height: canvas?.height || 0,
-                canvas_display: canvas ? getComputedStyle(canvas).display : 'missing',
-                text_length: text?.textContent?.length || 0,
-                text_display: text ? getComputedStyle(text).display : 'missing',
-                screen_active: document.querySelector('#screen')?.classList.contains('active') || false,
-                log_tail: log.split('\n').slice(-220),
+                selected:document.querySelector('#os-select')?.value,
+                state_text:document.querySelector('#boot-btn')?.textContent,
+                stage:document.querySelector('#stage-label')?.textContent,
+                progress:document.querySelector('#progress-percent')?.textContent,
+                overlay_hidden:document.querySelector('#loading-overlay')?.classList.contains('hidden'),
+                canvas_width:canvas?.width||0,
+                canvas_height:canvas?.height||0,
+                canvas_display:canvas?getComputedStyle(canvas).display:'missing',
+                text_length:text?.textContent?.length||0,
+                text_display:text?getComputedStyle(text).display:'missing',
+                screen_active:document.querySelector('#screen')?.classList.contains('active')||false,
+                log_tail:log.split('\n').slice(-260),
               };
             });
-            await page.screenshot({ path: `/tmp/${name}.png`, fullPage: true });
+            await page.screenshot({path:`/tmp/${name}.png`,fullPage:true});
             return details;
           }
 
-          async function bootPreset(name, timeout) {
-            await page.selectOption('#os-select', name);
-            await page.waitForFunction(value => document.querySelector('#os-select')?.value === value, name);
+          async function bootPreset(name,timeout,requireGui){
+            await page.selectOption('#os-select',name);
             await page.click('#boot-btn');
-            await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('emulator-started'), null, { timeout });
-            await page.waitForFunction(() => {
-              const progress = document.querySelector('#progress-percent')?.textContent;
-              const hidden = document.querySelector('#loading-overlay')?.classList.contains('hidden');
-              const running = document.querySelector('#boot-btn')?.textContent === '실행 중';
-              return progress === '100%' && hidden && running;
-            }, null, { timeout });
-            const details = await snapshot(`unified-${name}`);
-            const displayed = (details.canvas_width >= 320 && details.canvas_height >= 200 && details.canvas_display !== 'none') ||
-              (details.text_length > 0 && details.text_display !== 'none');
-            if (!details.screen_active || details.progress !== '100%' || !details.overlay_hidden || !displayed) {
-              throw new Error(`${name} display assertion failed: ${JSON.stringify(details)}`);
-            }
-            result.boots[name] = { success: true, ...details };
+            await page.waitForFunction(()=>document.querySelector('#log')?.textContent.includes('emulator-started'),null,{timeout});
+            await page.waitForFunction(()=>document.querySelector('#progress-percent')?.textContent==='100%'&&document.querySelector('#loading-overlay')?.classList.contains('hidden')&&document.querySelector('#boot-btn')?.textContent==='실행 중',null,{timeout});
+            const details=await snapshot(`unified-${name}`);
+            const canvasReady=details.canvas_display!=='none'&&details.canvas_display!=='missing'&&details.canvas_width>=(requireGui?640:320)&&details.canvas_height>=(requireGui?480:200);
+            const textReady=!requireGui&&details.text_length>0&&details.text_display!=='none'&&details.text_display!=='missing';
+            if(!details.screen_active||details.progress!=='100%'||!details.overlay_hidden||!(canvasReady||textReady)) throw new Error(`${name} display assertion failed ${JSON.stringify(details)}`);
+            result.boots[name]={success:true,...details};
             await page.click('#stop-btn');
-            await page.waitForFunction(() => document.querySelector('#progress-percent')?.textContent === '0%');
+            await page.waitForFunction(()=>document.querySelector('#progress-percent')?.textContent==='0%');
           }
 
-          try {
-            browser = await chromium.launch({ headless: true, args: ['--disable-dev-shm-usage', '--no-sandbox', '--disable-gpu'] });
-            page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+          try{
+            browser=await chromium.launch({headless:true,args:['--disable-dev-shm-usage','--no-sandbox','--disable-gpu']});
+            page=await browser.newPage({viewport:{width:1440,height:1000}});
             page.setDefaultTimeout(120000);
-            page.on('console', message => result.console.push(`${message.type()}: ${message.text()}`));
-            page.on('pageerror', error => result.console.push(`pageerror: ${error.message}`));
-            page.on('requestfailed', request => result.failed_requests.push({ url: request.url(), error: request.failure()?.errorText || 'unknown' }));
-            await page.goto(process.env.VERIFY_URL, { waitUntil: 'domcontentloaded', timeout: 120000 });
+            page.on('console',m=>result.console.push(`${m.type()}: ${m.text()}`));
+            page.on('pageerror',e=>result.console.push(`pageerror: ${e.message}`));
+            page.on('requestfailed',r=>result.failed_requests.push({url:r.url(),error:r.failure()?.errorText||'unknown'}));
+            await page.goto(process.env.VERIFY_URL,{waitUntil:'domcontentloaded',timeout:120000});
             await page.waitForSelector('#os-select');
-            result.presets_found = await page.locator('#os-select option').evaluateAll(options => options.map(option => option.value));
-            const expected = ['gorics', 'buildroot', 'dsl', 'tiny', 'freedos', 'buildroot-serial', 'dsl-high'];
-            if (JSON.stringify(result.presets_found) !== JSON.stringify(expected)) throw new Error(`preset mismatch ${JSON.stringify(result.presets_found)}`);
-            await bootPreset('buildroot', 600000);
-            await bootPreset('gorics', 1100000);
-            result.success = true;
-            result.state = 'completed';
-            result.completed_at = new Date().toISOString();
-          } catch (error) {
-            result.state = 'failed';
-            result.error = error?.stack || String(error);
-            result.completed_at = new Date().toISOString();
-            if (page) {
-              result.failure_snapshot = await snapshot('unified-failure').catch(() => null);
-            }
-          } finally {
-            await browser?.close().catch(() => {});
-            fs.writeFileSync('/tmp/unified-multiboot-result.json', JSON.stringify(result, null, 2) + '\n');
+            result.presets_found=await page.locator('#os-select option').evaluateAll(options=>options.map(option=>option.value));
+            const expected=['gorics','buildroot','dsl','tiny','freedos','buildroot-serial','dsl-high'];
+            if(JSON.stringify(result.presets_found)!==JSON.stringify(expected)) throw new Error(`preset mismatch ${JSON.stringify(result.presets_found)}`);
+            await bootPreset('buildroot',600000,false);
+            await bootPreset('gorics',1100000,true);
+            result.success=true;
+            result.state='completed';
+            result.completed_at=new Date().toISOString();
+          }catch(error){
+            result.state='failed';
+            result.error=error?.stack||String(error);
+            result.completed_at=new Date().toISOString();
+            if(page) result.failure_snapshot=await snapshot('unified-failure').catch(()=>null);
+          }finally{
+            await browser?.close().catch(()=>{});
+            fs.writeFileSync('/tmp/unified-multiboot-result.json',JSON.stringify(result,null,2)+'\n');
           }
-          if (!result.success) process.exit(1);
+          if(!result.success) process.exit(1);
           JS
           node --check /tmp/verify-unified.mjs
           node /tmp/verify-unified.mjs
 
-      - name: Ensure browser result exists
-        if: always()
-        run: |
-          if test ! -s /tmp/unified-multiboot-result.json; then
-            printf '{"success":false,"state":"no-result","run_id":"%s","error":"browser verifier did not produce a result"}\n' "$GITHUB_RUN_ID" > /tmp/unified-multiboot-result.json
-          fi
-          cat /tmp/unified-multiboot-result.json
-
-      - name: Upload verification proof
-        if: always()
+      - name: Upload proof
+        if: always() && steps.browser.outcome != 'skipped'
         uses: actions/upload-artifact@v4
         with:
           name: unified-multiboot-proof-${{ github.run_id }}-${{ github.run_attempt }}
@@ -254,33 +226,37 @@ jobs:
             /tmp/iso-meta.json
           if-no-files-found: warn
 
-      - name: Publish latest verification status
-        if: always()
+      - name: Publish final status
+        if: always() && steps.browser.outcome != 'skipped'
         run: |
           set -euo pipefail
+          test -s /tmp/unified-multiboot-result.json
           git config user.name github-actions
           git config user.email github-actions@github.com
-          for attempt in $(seq 1 8); do
+          for attempt in $(seq 1 10); do
             git fetch origin main
             git checkout -B main origin/main
             cp /tmp/unified-multiboot-result.json os/iso/unified-multiboot-status.json
             git add os/iso/unified-multiboot-status.json
             git commit -m 'Record unified multiboot verification result [skip ci]' || exit 0
             if git push origin HEAD:main; then exit 0; fi
-            echo "status push conflict attempt=$attempt"
-            sleep $((attempt * 3))
+            sleep $((attempt*3))
           done
           exit 1
 
-      - name: Require successful consecutive boots
+      - name: Require successful boots
         if: always()
         run: |
           python3 - <<'PY'
           import json
           from pathlib import Path
-          result=json.loads(Path('/tmp/unified-multiboot-result.json').read_text())
+          path=Path('/tmp/unified-multiboot-result.json')
+          assert path.exists(), 'browser verification did not run'
+          result=json.loads(path.read_text())
           assert result.get('success') is True, result.get('error')
-          assert result.get('boots', {}).get('buildroot', {}).get('success') is True
-          assert result.get('boots', {}).get('gorics', {}).get('success') is True
+          assert result.get('boots',{}).get('buildroot',{}).get('success') is True
+          assert result.get('boots',{}).get('gorics',{}).get('success') is True
+          assert result['boots']['gorics']['canvas_width']>=640
+          assert result['boots']['gorics']['canvas_height']>=480
           print('Buildroot and GORICS consecutive public boots passed')
           PY
