@@ -437,30 +437,51 @@
   }
 
   function displaySnapshot(preset) {
-    const canvas = screen?.querySelector('canvas');
-    const text = screen?.querySelector(':scope > div');
-    const canvasVisible = Boolean(canvas && getComputedStyle(canvas).display !== 'none');
-    const canvasReady = Boolean(canvasVisible && canvas.width >= 320 && canvas.height >= 200);
-    const graphicalReady = Boolean(canvasVisible && canvas.width >= 640 && canvas.height >= 480);
-    const textReady = Boolean(text && text.textContent.trim().length > 0 && getComputedStyle(text).display !== 'none');
-    return {
-      ready: preset.mode === 'gorics' ? graphicalReady : (canvasReady || textReady),
-      canvasWidth: canvas?.width || 0,
-      canvasHeight: canvas?.height || 0,
-      canvasVisible,
-      textLength: text?.textContent?.trim().length || 0,
-      textReady,
-    };
+  const canvas = screen?.querySelector('canvas');
+  const text = screen?.querySelector(':scope > div');
+  const canvasVisible = Boolean(canvas && getComputedStyle(canvas).display !== 'none');
+  const canvasReady = Boolean(canvasVisible && canvas.width >= 320 && canvas.height >= 200);
+  const graphicalReady = Boolean(canvasVisible && canvas.width >= 640 && canvas.height >= 480);
+  const textContent = text?.textContent || '';
+  const textReady = Boolean(text && textContent.trim().length > 0 && getComputedStyle(text).display !== 'none');
+  const recentLog = (logBox?.textContent || '').slice(-120000);
+  const observed = `${textContent}\n${recentLog}`;
+  const presetKey = selectedPreset || 'gorics';
+  const fatal = /kernel panic|VFS: Unable to mount root|not a bootable disk|no bootable device|could not read from boot medium/i.test(observed);
+  let ready = false;
+
+  if (presetKey === 'gorics' || presetKey === 'dsl' || presetKey === 'dsl-high') {
+    ready = graphicalReady;
+  } else if (presetKey === 'buildroot' || presetKey === 'buildroot-serial') {
+    ready = textReady && /Welcome to Buildroot|buildroot login:|Please press Enter to activate this console|\n[^\n]*#\s*$/im.test(observed);
+  } else if (presetKey === 'freedos') {
+    ready = textReady && /Welcome to FreeDOS|FreeCOM version|command\.com|[A-Z]:\\>\s*$/im.test(observed);
+  } else if (presetKey === 'tiny') {
+    ready = graphicalReady || (textReady && /Tiny Core|Micro Core|tc@box|box login:|Welcome to.*Linux|\n[^\n]*#\s*$/im.test(observed));
+  } else {
+    ready = canvasReady || textReady;
   }
 
+  if (fatal) ready = false;
+  return {
+    ready,
+    fatal,
+    presetKey,
+    canvasWidth: canvas?.width || 0,
+    canvasHeight: canvas?.height || 0,
+    canvasVisible,
+    textLength: textContent.trim().length,
+    textReady,
+  };
+}
   function completeDisplay(runToken, preset, trigger = 'canvas-watch') {
     if (runToken !== token || !vm || displayCompletedToken === runToken) return false;
     const display = displaySnapshot(preset);
     if (!display.ready) return false;
     displayCompletedToken = runToken;
     clearInterval(displayTimer);
-    log(`display completion trigger=${trigger} preset=${selectedPreset} canvas=${display.canvasWidth}x${display.canvasHeight} canvasVisible=${display.canvasVisible} textLength=${display.textLength}`);
-    setStage('display', `${preset.name} 화면 출력 완료`, '가상 머신 화면이 준비됐습니다. 화면을 클릭하면 키보드와 포인터 입력이 활성화됩니다.', 100, 'success');
+    log(`display completion trigger=${trigger} preset=${selectedPreset} readiness=strict canvas=${display.canvasWidth}x${display.canvasHeight} canvasVisible=${display.canvasVisible} textLength=${display.textLength}`);
+    setStage('display', `${preset.name} 부팅 완료`, '운영체제 준비 조건을 확인했습니다. 화면을 클릭하면 키보드와 포인터 입력이 활성화됩니다.', 100, 'success');
     setState('running');
     enableInput();
     focusScreen();
