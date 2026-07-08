@@ -26,6 +26,7 @@ jobs:
           gh run list --workflow verify-real-multiboot-v4.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/v4.json
           gh run list --workflow switch-pages-to-actions.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/switch.json
           gh run list --workflow publish-legacy-os-assets.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/legacy.json
+          gh run list --workflow publish-legacy-os-assets-v2.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/legacy_v2.json
           gh run list --workflow verify-source-fallback.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/fallback.json
           python3 - <<'PY'
           import json
@@ -37,6 +38,7 @@ jobs:
           v4 = read('/tmp/v4.json')
           switch = read('/tmp/switch.json')
           legacy = read('/tmp/legacy.json')
+          legacy_v2 = read('/tmp/legacy_v2.json')
           fallback = read('/tmp/fallback.json')
           result = {
               'latest': finalizer[0] if finalizer else None,
@@ -49,6 +51,8 @@ jobs:
               'switch_runs': switch,
               'latest_legacy': legacy[0] if legacy else None,
               'legacy_runs': legacy,
+              'latest_legacy_v2': legacy_v2[0] if legacy_v2 else None,
+              'legacy_v2_runs': legacy_v2,
               'latest_source_fallback': fallback[0] if fallback else None,
               'source_fallback_runs': fallback,
           }
@@ -60,7 +64,7 @@ jobs:
           git fetch origin main
           git checkout -B main origin/main
           git add os/iso/finalizer-run-status.json
-          git commit -m 'Record complete real multiboot run status [skip ci]' || true
+          git commit -m 'Record legacy V2 publisher status [skip ci]' || true
           git push origin HEAD:main
 
-# inspector includes legacy asset publisher and source fallback GUI verifier
+# inspector includes conflict-free legacy asset publisher V2
