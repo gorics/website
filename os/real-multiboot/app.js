@@ -1,6 +1,7 @@
 (() => {
   'use strict';
 
+  const VERSION = 'n';
   const $ = (selector) => document.querySelector(selector);
   const logBox = $('#log');
   const screen = $('#screen');
@@ -11,10 +12,32 @@
 
   const iso = new URL('./assets/gorics-linux-gui-web-amd64.iso', location.href).href;
   const metaUrl = new URL('./assets/iso-meta.json', location.href).href;
-  const runtime = '/website/vendor/v86/libv86.js';
-  const wasm = '/website/vendor/v86/v86.wasm';
-  const bios = '/website/vendor/v86/seabios.bin';
-  const vga = '/website/vendor/v86/vgabios.bin';
+  const RELEASE_API = 'https://api.github.com/repos/gorics/website/releases/tags/gorics-linux-gui-web-iso-latest';
+  const RELEASE_ISO_NAME = 'gorics-linux-gui-web-i386.iso';
+
+  const runtimeCandidates = [
+    {
+      label: 'same-origin',
+      lib: '/website/vendor/v86/libv86.js',
+      wasm: '/website/vendor/v86/v86.wasm',
+      bios: '/website/vendor/v86/seabios.bin',
+      vga: '/website/vendor/v86/vgabios.bin',
+    },
+    {
+      label: 'jsDelivr mirror',
+      lib: 'https://cdn.jsdelivr.net/gh/cloudgamingrage/copysh-v86-precompiled@main/build/libv86.js',
+      wasm: 'https://cdn.jsdelivr.net/gh/cloudgamingrage/copysh-v86-precompiled@main/build/v86.wasm',
+      bios: 'https://cdn.jsdelivr.net/gh/cloudgamingrage/copysh-v86-precompiled@main/bios/seabios.bin',
+      vga: 'https://cdn.jsdelivr.net/gh/cloudgamingrage/copysh-v86-precompiled@main/bios/vgabios.bin',
+    },
+    {
+      label: 'GitHub raw mirror',
+      lib: 'https://raw.githubusercontent.com/cloudgamingrage/copysh-v86-precompiled/main/build/libv86.js',
+      wasm: 'https://raw.githubusercontent.com/cloudgamingrage/copysh-v86-precompiled/main/build/v86.wasm',
+      bios: 'https://raw.githubusercontent.com/cloudgamingrage/copysh-v86-precompiled/main/bios/seabios.bin',
+      vga: 'https://raw.githubusercontent.com/cloudgamingrage/copysh-v86-precompiled/main/bios/vgabios.bin',
+    },
+  ];
 
   let vm = null;
   let state = 'idle';
@@ -30,9 +53,7 @@
   keyboardButton.type = 'button';
   keyboardButton.className = 'secondary';
   keyboardButton.textContent = 'Keyboard';
-  if (actions && !$('#keyboard-btn')) {
-    actions.insertBefore(keyboardButton, stop || full || null);
-  }
+  if (actions && !$('#keyboard-btn')) actions.insertBefore(keyboardButton, stop || full || null);
 
   const phoneKeyboard = document.createElement('input');
   phoneKeyboard.id = 'phone-keyboard';
@@ -46,7 +67,7 @@
   phoneKeyboard.setAttribute('aria-label', 'Virtual keyboard input');
   document.body.appendChild(phoneKeyboard);
 
-  if (urlBox) urlBox.textContent = iso;
+  if (urlBox) urlBox.textContent = `${iso} · release fallback: ${RELEASE_ISO_NAME}`;
 
   function log(text) {
     if (logBox) {
@@ -57,11 +78,7 @@
   }
 
   function focusScreen() {
-    try {
-      screen?.focus({ preventScroll: true });
-    } catch {
-      screen?.focus();
-    }
+    try { screen?.focus({ preventScroll: true }); } catch { screen?.focus(); }
   }
 
   function enableInputDevices() {
@@ -82,16 +99,12 @@
     if (state !== 'running') return;
     enableInputDevices();
     phoneKeyboard.value = '';
-    try {
-      phoneKeyboard.focus({ preventScroll: true });
-    } catch {
-      phoneKeyboard.focus();
-    }
+    try { phoneKeyboard.focus({ preventScroll: true }); } catch { phoneKeyboard.focus(); }
     phoneKeyboard.click();
     log('virtual keyboard requested');
   }
 
-  function constructor() {
+  function emulatorConstructor() {
     return window.V86 || globalThis.V86 || window.V86Starter || globalThis.V86Starter;
   }
 
@@ -105,16 +118,35 @@
     keyboardButton.disabled = next !== 'running';
   }
 
-  function loadRuntime() {
+  function loadScript(url) {
     return new Promise((resolve, reject) => {
-      if (constructor()) return resolve(constructor());
       const script = document.createElement('script');
-      script.src = `${runtime}?v=n`;
+      script.src = `${url}${url.includes('?') ? '&' : '?'}v=${VERSION}`;
       script.async = false;
-      script.onload = () => setTimeout(() => constructor() ? resolve(constructor()) : reject(new Error('v86 constructor missing')), 60);
-      script.onerror = () => reject(new Error(`runtime load failed ${runtime}`));
+      script.onload = () => setTimeout(() => emulatorConstructor() ? resolve() : reject(new Error('v86 constructor missing')), 80);
+      script.onerror = () => reject(new Error(`runtime load failed ${url}`));
       document.head.appendChild(script);
     });
+  }
+
+  async function loadRuntime() {
+    const existing = emulatorConstructor();
+    if (existing) return { Emulator: existing, resources: runtimeCandidates[0] };
+    let lastError;
+    for (const resources of runtimeCandidates) {
+      try {
+        log(`loading v86 runtime from ${resources.label}`);
+        await loadScript(resources.lib);
+        const Emulator = emulatorConstructor();
+        if (!Emulator) throw new Error('v86 constructor missing');
+        log(`runtime source selected: ${resources.label}`);
+        return { Emulator, resources };
+      } catch (error) {
+        lastError = error;
+        log(`runtime candidate failed: ${resources.label} · ${error.message}`);
+      }
+    }
+    throw lastError || new Error('all v86 runtime candidates failed');
   }
 
   async function clearOldWorkers() {
@@ -135,19 +167,63 @@
     return String.fromCharCode(...array.slice(offset, offset + length));
   }
 
-  async function getMeta() {
-    log('loading QEMU-tested ISO metadata');
+  function validateMeta(meta, expectedNames) {
+    if (!meta || !expectedNames.includes(meta.name)) throw new Error(`unexpected ISO name ${meta?.name || 'missing'}`);
+    if (!Number.isFinite(meta.size) || meta.size <= 0 || meta.size >= 900000000) throw new Error(`invalid ISO size ${meta.size}`);
+  }
+
+  async function getLocalMeta() {
     const response = await fetch(`${metaUrl}?v=${Date.now()}`, { cache: 'no-store' });
     if (!response.ok) throw new Error(`ISO metadata HTTP ${response.status}`);
     const meta = await response.json();
-    if (meta.name !== 'gorics-linux-gui-web-amd64.iso') throw new Error(`unexpected ISO name ${meta.name}`);
-    if (!Number.isFinite(meta.size) || meta.size <= 0 || meta.size >= 900000000) throw new Error(`invalid ISO size ${meta.size}`);
-    log(`ISO size=${meta.size} sha256=${String(meta.sha256).slice(0, 16)}... architecture=${meta.architecture || 'unknown'} desktop=${meta.desktop || 'unknown'}`);
-    return { url: iso, size: meta.size };
+    validateMeta(meta, ['gorics-linux-gui-web-amd64.iso', RELEASE_ISO_NAME]);
+    return {
+      url: iso,
+      size: meta.size,
+      sha256: meta.sha256,
+      architecture: meta.architecture,
+      desktop: meta.desktop,
+      source: 'same-origin deployment',
+    };
+  }
+
+  async function getReleaseMeta() {
+    const response = await fetch(`${RELEASE_API}?v=${Date.now()}`, {
+      cache: 'no-store',
+      headers: { Accept: 'application/vnd.github+json' },
+    });
+    if (!response.ok) throw new Error(`release metadata HTTP ${response.status}`);
+    const release = await response.json();
+    const asset = (release.assets || []).find((item) => item.name === RELEASE_ISO_NAME);
+    if (!asset) throw new Error(`release asset missing ${RELEASE_ISO_NAME}`);
+    const meta = { name: asset.name, size: Number(asset.size) };
+    validateMeta(meta, [RELEASE_ISO_NAME]);
+    return {
+      url: asset.browser_download_url,
+      size: meta.size,
+      sha256: null,
+      architecture: 'i386',
+      desktop: 'openbox-tint2-pcmanfm-xterm',
+      source: 'GitHub Release fallback',
+    };
+  }
+
+  async function getMeta() {
+    log('loading QEMU-tested ISO metadata');
+    try {
+      const meta = await getLocalMeta();
+      log(`ISO metadata source=${meta.source}`);
+      return meta;
+    } catch (localError) {
+      log(`same-origin ISO unavailable: ${localError.message}`);
+      const meta = await getReleaseMeta();
+      log(`ISO metadata source=${meta.source}`);
+      return meta;
+    }
   }
 
   async function probe(meta) {
-    log('probing same-origin ISO range and boot records');
+    log(`probing ISO range and boot records from ${meta.source}`);
     const response = await fetch(meta.url, {
       cache: 'no-store',
       headers: { Range: 'bytes=32768-36863' },
@@ -185,10 +261,11 @@
     focusScreen();
     try {
       await clearOldWorkers();
-      const [Emulator, meta] = await Promise.all([loadRuntime(), getMeta()]);
+      const [{ Emulator, resources }, meta] = await Promise.all([loadRuntime(), getMeta()]);
       await probe(meta);
       if (token !== bootToken) return;
-      log(`runtime loaded ${runtime}`);
+      log(`ISO size=${meta.size} sha256=${String(meta.sha256 || 'release').slice(0, 16)} architecture=${meta.architecture || 'unknown'} desktop=${meta.desktop || 'unknown'}`);
+      log(`runtime loaded ${resources.lib}`);
       prepareScreen();
       setState('starting');
 
@@ -198,9 +275,9 @@
       log(`VM profile memory=${memoryMiB}MiB vga=${vgaMiB}MiB mobile=${mobile}`);
 
       vm = new Emulator({
-        wasm_path: wasm,
-        bios: { url: bios },
-        vga_bios: { url: vga },
+        wasm_path: resources.wasm,
+        bios: { url: resources.bios },
+        vga_bios: { url: resources.vga },
         screen_container: screen,
         autostart: true,
         memory_size: memoryMiB * 1024 * 1024,
@@ -250,11 +327,7 @@
   function halt() {
     bootToken++;
     clearTimeout(watchdog);
-    try {
-      vm?.destroy?.();
-    } catch (error) {
-      log(`stop error ${error.message}`);
-    }
+    try { vm?.destroy?.(); } catch (error) { log(`stop error ${error.message}`); }
     vm = null;
     inputLogged = false;
     touchActive = false;
@@ -280,9 +353,7 @@
       button: 0,
       buttons,
     });
-    try {
-      Object.defineProperty(event, 'which', { value: 1 });
-    } catch {}
+    try { Object.defineProperty(event, 'which', { value: 1 }); } catch {}
     receiver.dispatchEvent(event);
   }
 
@@ -353,16 +424,7 @@
     phoneKeyboard.value = '';
   });
   phoneKeyboard.addEventListener('keydown', (event) => {
-    const keys = {
-      Backspace: 0x0e,
-      Enter: 0x1c,
-      Tab: 0x0f,
-      Escape: 0x01,
-      ArrowUp: 0x48,
-      ArrowDown: 0x50,
-      ArrowLeft: 0x4b,
-      ArrowRight: 0x4d,
-    };
+    const keys = { Backspace: 0x0e, Enter: 0x1c, Tab: 0x0f, Escape: 0x01, ArrowUp: 0x48, ArrowDown: 0x50, ArrowLeft: 0x4b, ArrowRight: 0x4d };
     const code = keys[event.key];
     if (code) {
       sendScancode(code);
@@ -387,4 +449,5 @@
 
   setState('idle');
   log('ready: keyboard, touch and pointer bridge installed');
+  log('source-safe loader: same-origin assets with GitHub Release and CDN fallback');
 })();
