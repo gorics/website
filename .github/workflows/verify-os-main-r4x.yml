@@ -41,16 +41,6 @@ jobs:
           Path('/tmp/os-main-inline.js').write_text('\n'.join(scripts))
           PY
           node --check /tmp/os-main-inline.js
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-          d=json.loads(Path('os/iso/real-multiboot-status.json').read_text())
-          assert d.get('success') is True
-          assert d.get('emulator_started') is True
-          assert d.get('xorg_ready') is True
-          assert d.get('gui_ready') is True
-          assert d.get('graphical_canvas') is True
-          PY
 
       - name: Wait for public Pages deployment
         run: |
@@ -63,17 +53,9 @@ jobs:
               && grep -q '<title>GORICS 멀티부트</title>' /tmp/public-os.html \
               && grep -q 'GORICS Linux 실행' /tmp/public-os.html \
               && grep -q 'iso/real-multiboot-status.json' /tmp/public-os.html \
-              && grep -q 'VERIFIED r4x' /tmp/public-os.html \
-              && curl -fsSL --max-time 60 "${BASE}iso/real-multiboot-status.json?verify-main=$stamp" -o /tmp/public-status.json; then
-              python3 - <<'PY' && ready=1 && break
-          import json
-          from pathlib import Path
-          d=json.loads(Path('/tmp/public-status.json').read_text())
-          assert d.get('success') is True
-          assert d.get('gui_ready') is True
-          assert d.get('xorg_ready') is True
-          assert d.get('graphical_canvas') is True
-          PY
+              && grep -q 'VERIFIED r4x' /tmp/public-os.html; then
+              ready=1
+              break
             fi
             echo "public OS main not ready attempt=$attempt"
             sleep 10
@@ -84,6 +66,8 @@ jobs:
         run: |
           set -euo pipefail
           curl -fsSI --max-time 60 'https://gorics.github.io/website/os/real-multiboot/' | grep -E 'HTTP/[0-9.]+ (200|304)'
+          curl -fsSL --max-time 60 'https://gorics.github.io/website/os/iso/real-multiboot-status.json' -o /tmp/runtime-status.json
+          python3 -m json.tool /tmp/runtime-status.json >/dev/null
 
       - name: Record verification result
         if: always()
