@@ -103,19 +103,28 @@ jobs:
           print('kernel/initrd hashes match public metadata; first chunk', first)
           PY
           FIRST_CHUNK=$(cat /tmp/final-v2-first-chunk-name.txt)
-          code=$(curl -sS --max-time 60 -r 32768-36863 -o /tmp/final-v2-iso-probe.bin -w '%{http_code}' \
-            "https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/$FIRST_CHUNK")
-          test "$code" = 206
-          test "$(stat -c %s /tmp/final-v2-iso-probe.bin)" = 4096
-          python3 - <<'PY'
-          from pathlib import Path
-          data = Path('/tmp/final-v2-iso-probe.bin').read_bytes()
-          assert len(data) == 4096
-          assert data[1:6] == b'CD001'
-          assert data[2049:2054] == b'CD001'
-          assert b'EL TORITO' in data[2055:2087]
-          print('ISO9660 and El Torito verified from metadata-selected 4 KiB range response')
-          PY
+          CHUNK_OK=0
+          : > /tmp/final-v2-chunk-attempts.log
+          for CHUNK_ROOT in \
+            'https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/' \
+            'https://fastly.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/' \
+            'https://gcore.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/' \
+            'https://cdn.statically.io/gh/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/' \
+            'https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/'; do
+            URL="${CHUNK_ROOT}${FIRST_CHUNK}?v=${DEPLOY_VERSION}-${GITHUB_RUN_ID}"
+            CODE=$(curl -sS -L --max-time 90 -H 'Cache-Control: no-cache' -r 32768-36863 \
+              -o /tmp/final-v2-iso-probe.bin -w '%{http_code}' "$URL" || true)
+            printf '%s %s\n' "$CODE" "$URL" | tee -a /tmp/final-v2-chunk-attempts.log
+            if test "$CODE" = 206 \
+              && test "$(stat -c %s /tmp/final-v2-iso-probe.bin 2>/dev/null || echo 0)" = 4096 \
+              && python3 scripts/check_iso_range_probe.py /tmp/final-v2-iso-probe.bin; then
+              printf '%s\n' "$CHUNK_ROOT" > /tmp/final-v2-selected-chunk-root.txt
+              CHUNK_OK=1
+              break
+            fi
+          done
+          test "$CHUNK_OK" = 1
+          echo "selected verified ISO chunk root: $(cat /tmp/final-v2-selected-chunk-root.txt)"
 
       - name: Install Chromium and WebKit
         run: |
@@ -142,6 +151,8 @@ jobs:
             /tmp/final-v2-manifest.json
             /tmp/final-v2-iso-meta.json
             /tmp/final-v2-iso-probe.bin
+            /tmp/final-v2-chunk-attempts.log
+            /tmp/final-v2-selected-chunk-root.txt
           if-no-files-found: warn
 
   record-result:
