@@ -20,6 +20,11 @@ def digest(path: Path) -> str:
     return result.hexdigest()
 
 
+def part_name(start: int, end: int) -> str:
+    asset = Path(ASSET_NAME)
+    return f"{asset.stem}-{start}-{end}{asset.suffix}"
+
+
 def main() -> None:
     if len(sys.argv) != 3:
         raise SystemExit("usage: build_visible_r12_bundle.py ISO BUNDLE_DIR")
@@ -48,7 +53,7 @@ def main() -> None:
             if len(data) < CHUNK_SIZE:
                 data += bytes(CHUNK_SIZE - len(data))
             end = start + CHUNK_SIZE
-            output = parts / f"{ASSET_NAME}-{start}-{end}"
+            output = parts / part_name(start, end)
             output.write_bytes(data)
             if output.stat().st_size != CHUNK_SIZE:
                 raise SystemExit(f"invalid chunk size: {output}")
@@ -58,6 +63,11 @@ def main() -> None:
     expected = math.ceil(size / CHUNK_SIZE)
     if count != expected:
         raise SystemExit(f"chunk count mismatch {count} != {expected}")
+    first = parts / part_name(0, CHUNK_SIZE)
+    final_start = (count - 1) * CHUNK_SIZE
+    final = parts / part_name(final_start, final_start + CHUNK_SIZE)
+    if not first.is_file() or not final.is_file():
+        raise SystemExit("first or final app-compatible chunk is missing")
 
     meta = {
         "name": ASSET_NAME,
@@ -70,6 +80,9 @@ def main() -> None:
         "parts": count,
         "size": size,
         "sha256": digest(iso),
+        "chunk_pattern": f"{Path(ASSET_NAME).stem}-{{start}}-{{end}}{Path(ASSET_NAME).suffix}",
+        "first_chunk": first.name,
+        "final_chunk": final.name,
         "visible_window_required": True,
         "visible_window_marker": "GORICS_VISIBLE_WINDOW_READY",
         "mapped_window_title": "GORICS Control Center",
