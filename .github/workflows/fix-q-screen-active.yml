@@ -1,0 +1,60 @@
+name: Fix q Screen Active
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/fix-q-screen-active.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fix-q-screen-active
+  cancel-in-progress: true
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch q loaders exactly
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+
+          for filename in ('os/real-multiboot/app.js', 'os/real-multiboot/app-legacy-chunked.js'):
+              path = Path(filename)
+              text = path.read_text(encoding='utf-8')
+              if "screen.classList.add('active')" not in text:
+                  text, count = re.subn(
+                      r"(function prepareScreen\(\) \{\n\s*screen\.innerHTML = [^\n]+;\n)(\s*\})",
+                      r"\1    screen.classList.add('active');\n\2",
+                      text,
+                      count=1,
+                  )
+                  if count != 1:
+                      raise SystemExit(f'prepareScreen patch failed: {filename}')
+              if "screen.classList.remove('active')" not in text:
+                  text, count = re.subn(
+                      r"if \(screen\) screen\.innerHTML = '';",
+                      "if (screen) { screen.innerHTML = ''; screen.classList.remove('active'); }",
+                      text,
+                      count=1,
+                  )
+                  if count != 1:
+                      raise SystemExit(f'halt patch failed: {filename}')
+              path.write_text(text, encoding='utf-8')
+              assert "screen.classList.add('active')" in text
+              assert "screen.classList.remove('active')" in text
+          PY
+          node --check os/real-multiboot/app.js
+          node --check os/real-multiboot/app-legacy-chunked.js
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add os/real-multiboot/app.js os/real-multiboot/app-legacy-chunked.js
+          git commit -m 'Fix q screen active state' || true
+          git push origin HEAD:main
