@@ -22,9 +22,10 @@
     "size": 30724198,
     "sha256": "9a5c0673d394432afa0f0a874744ec41356831159e5f4c57c438ed2e80f45647"
   },
-  "page_version": "s",
-  "chunk_source": "raw-github-os-assets-branch",
-  "chunk_base_url": "https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/",
+  "page_version": "t",
+  "chunk_source": "jsdelivr-os-assets-primary",
+  "chunk_base_url": "https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/",
+  "chunk_fallback_url": "https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/",
   "chunk_compatibility_bridge": true,
   "v86_requested_format": "gorics-linux-gui-web-i386-{start}-{end}.iso",
   "published_format": "gorics-linux-gui-web-i386.iso-{start}-{end}"
