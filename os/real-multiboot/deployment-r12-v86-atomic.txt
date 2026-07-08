@@ -1,0 +1,5 @@
+GORICS Real Multiboot deployment trigger
+build=20260708-r12-v86-atomic
+root_cause=v86 JavaScript/WASM cache generation mismatch on iOS WebKit
+fix=atomic asset versioning plus native XMLHttpRequest diagnostics
+verification=Chromium full Buildroot/GORICS boots and iPhone WebKit GORICS startup
