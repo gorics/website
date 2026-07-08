@@ -60,12 +60,27 @@
     const nativeKeys = globalThis.caches.keys.bind(globalThis.caches);
     globalThis.caches.keys = async () => {
       const key = `gorics-cache-scan:${BUILD}`;
-      if (sessionStorage.getItem(key) === 'done') return [];
-      const names = await nativeKeys();
-      sessionStorage.setItem(key, 'done');
-      return names;
+      try {
+        if (sessionStorage.getItem(key) === 'done') return [];
+        const names = await nativeKeys();
+        sessionStorage.setItem(key, 'done');
+        return names;
+      } catch {
+        return nativeKeys();
+      }
     };
   }
+
+  // app.js checks display readiness every 250 ms. On touch devices that causes
+  // needless style/layout reads while v86 is already using the main thread.
+  const nativeSetInterval = globalThis.setInterval.bind(globalThis);
+  globalThis.setInterval = (callback, delay, ...args) => {
+    let nextDelay = Number(delay) || 0;
+    if (isCompact && nextDelay <= 250 && typeof callback === 'function' && /completeDisplay/.test(Function.prototype.toString.call(callback))) {
+      nextDelay = 750;
+    }
+    return nativeSetInterval(callback, nextDelay, ...args);
+  };
 
   // Cap the large GUI VM on phones/tablets. 256 MB + 16 MB VGA avoids iOS
   // memory pressure while leaving desktop allocations unchanged.
@@ -110,9 +125,10 @@
     syncRunningClass();
   }
 
-  // Warm the immutable runtime during idle time so clicking Boot does not wait
-  // for JS/WASM/BIOS sequentially.
+  // Warm immutable runtime assets during idle time. Skip this on data-saver
+  // connections to avoid competing with a user's immediate boot request.
   const warm = () => {
+    if (navigator.connection?.saveData) return;
     const version = document.querySelector('meta[name="gorics-build"]')?.content || BUILD;
     const urls = [
       `/website/vendor/v86/libv86.js?v=${version}`,
