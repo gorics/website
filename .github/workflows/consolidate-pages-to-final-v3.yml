@@ -8,7 +8,7 @@ on:
   workflow_dispatch: {}
 
 permissions:
-  contents: read
+  contents: write
   actions: write
 
 jobs:
@@ -17,6 +17,9 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Disable legacy Pages deployers
         env:
@@ -67,4 +70,56 @@ jobs:
           set -euo pipefail
           gh workflow enable deploy-real-multiboot-final-v3.yml --repo "$GITHUB_REPOSITORY"
           gh workflow run deploy-real-multiboot-final-v3.yml --repo "$GITHUB_REPOSITORY" --ref main
-          echo 'Final V3 is now the sole Pages deployment workflow.'
+          sleep 5
+          gh run list --repo "$GITHUB_REPOSITORY" \
+            --workflow deploy-real-multiboot-final-v3.yml --limit 5 \
+            --json databaseId,status,conclusion,createdAt,updatedAt,headSha,url,event \
+            > /tmp/final-v3-runs.json
+
+      - name: Record consolidation state
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow list --repo "$GITHUB_REPOSITORY" --all --json name,path,state \
+            > /tmp/workflows.json
+          python3 - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          workflows = json.loads(Path('/tmp/workflows.json').read_text())
+          runs = json.loads(Path('/tmp/final-v3-runs.json').read_text())
+          watched = {
+              '.github/workflows/static.yml',
+              '.github/workflows/deploy-real-multiboot-final.yml',
+              '.github/workflows/deploy-real-multiboot-final-v2.yml',
+              '.github/workflows/deploy-final-multiboot-stable.yml',
+              '.github/workflows/deploy-real-multiboot-final-v3.yml',
+          }
+          payload = {
+              'recorded_at': datetime.now(timezone.utc).isoformat(),
+              'workflows': [item for item in workflows if item.get('path') in watched],
+              'v3_runs': runs,
+          }
+          Path('/tmp/pages-consolidation-status.json').write_text(json.dumps(payload, indent=2) + '\n')
+          print(json.dumps(payload, indent=2))
+          PY
+
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for attempt in $(seq 1 20); do
+            git reset --hard
+            git clean -fd
+            git fetch origin main
+            git checkout -B main origin/main
+            mkdir -p os/iso
+            cp /tmp/pages-consolidation-status.json os/iso/pages-consolidation-status.json
+            git add os/iso/pages-consolidation-status.json
+            git commit -m 'Record consolidated Pages deployment state [skip ci]' || exit 0
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 2))
+          done
+          exit 1
