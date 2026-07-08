@@ -1,0 +1,217 @@
+name: Verify R12 All Multiboot Presets
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/verify-r12-all-presets.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: verify-r12-all-presets-stable
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Wait for exact R12 deployment and local media
+        run: |
+          set -euo pipefail
+          BASE='https://gorics.github.io/website'
+          ready=0
+          for attempt in $(seq 1 150); do
+            stamp="$GITHUB_RUN_ID-$attempt-$(date +%s)"
+            html=0; router=0; app=0; media=0
+            if curl -fsSL --max-time 60 "$BASE/os/real-multiboot/?r12=$stamp" -o /tmp/r12-index.html \
+              && grep -q '20260708-r12-v86-atomic' /tmp/r12-index.html \
+              && grep -q 'local-media-router.js' /tmp/r12-index.html \
+              && grep -q 'asset-versioning.js' /tmp/r12-index.html; then html=1; fi
+            if curl -fsSL --max-time 60 "$BASE/os/real-multiboot/local-media-router.js?r12=$stamp" -o /tmp/r12-router.js \
+              && grep -q '20260708-r10-local-media' /tmp/r12-router.js; then router=1; fi
+            if curl -fsSL --max-time 60 "$BASE/os/real-multiboot/app.js?r12=$stamp" -o /tmp/r12-app.js \
+              && grep -q '20260708-r8-overlay-complete' /tmp/r12-app.js \
+              && grep -q 'function completeDisplay' /tmp/r12-app.js; then app=1; fi
+            code=$(curl -sS -L --max-time 120 -r 0-4095 -o /tmp/buildroot-local.probe -w '%{http_code}' "$BASE/vendor/v86/images/buildroot-bzimage68.bin?r12=$stamp" || true)
+            bytes=$(stat -c %s /tmp/buildroot-local.probe 2>/dev/null || echo 0)
+            case "$code" in 200|206) if test "$bytes" -gt 0; then media=1; fi;; esac
+            echo "attempt=$attempt html=$html router=$router app=$app media=$media http=$code bytes=$bytes"
+            if test "$html" = 1 && test "$router" = 1 && test "$app" = 1 && test "$media" = 1; then ready=1; break; fi
+            sleep 8
+          done
+          test "$ready" = 1
+          node --check /tmp/r12-router.js
+          node --check /tmp/r12-app.js
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Chromium verifier
+        run: |
+          cd /tmp
+          npm init -y
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Boot all seven presets
+        id: browser
+        continue-on-error: true
+        env:
+          TARGET_URL: https://gorics.github.io/website/os/real-multiboot/?r12-all=${{ github.run_id }}
+        run: |
+          cat > /tmp/verify-r12-all.mjs <<'JS'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
+
+          const expected=['buildroot','buildroot-serial','freedos','tiny','dsl','dsl-high','gorics'];
+          const result={success:false,state:'running',run_id:process.env.GITHUB_RUN_ID,url:process.env.TARGET_URL,started_at:new Date().toISOString(),order:expected,boots:{},console:[],failed_requests:[]};
+          const save=()=>fs.writeFileSync('/tmp/r12-all-presets-result.json',JSON.stringify(result,null,2)+'\n');
+          let browser,page;
+
+          async function snapshot(name){
+            const data=await page.evaluate(()=>{
+              const canvas=document.querySelector('#screen canvas');
+              const text=document.querySelector('#screen>div');
+              const log=document.querySelector('#log')?.textContent||'';
+              return {
+                selected:document.querySelector('#os-select')?.value,
+                state:document.querySelector('#boot-btn')?.textContent,
+                stage:document.querySelector('#stage-label')?.textContent,
+                detail:document.querySelector('#stage-detail')?.textContent,
+                progress:document.querySelector('#progress-percent')?.textContent,
+                overlay_hidden:document.querySelector('#loading-overlay')?.classList.contains('hidden'),
+                overlay_aria:document.querySelector('#loading-overlay')?.getAttribute('aria-hidden'),
+                canvas_width:canvas?.width||0,
+                canvas_height:canvas?.height||0,
+                canvas_display:canvas?getComputedStyle(canvas).display:'missing',
+                text_length:text?.textContent?.length||0,
+                text_display:text?getComputedStyle(text).display:'missing',
+                text_tail:(text?.textContent||'').slice(-2000),
+                router_build:globalThis.__GORICS_LOCAL_MEDIA_ROUTER__?.build||null,
+                log_tail:log.split('\n').slice(-450),
+              };
+            });
+            await page.screenshot({path:`/tmp/r12-${name}.png`,fullPage:true});
+            return data;
+          }
+
+          async function waitRunning(timeout){
+            await page.waitForFunction(()=>document.querySelector('#log')?.textContent.includes('emulator-started'),null,{timeout});
+            await page.waitForFunction(()=>document.querySelector('#progress-percent')?.textContent==='100%'&&document.querySelector('#boot-btn')?.textContent==='실행 중'&&document.querySelector('#loading-overlay')?.classList.contains('hidden'),null,{timeout});
+          }
+
+          async function bootPreset(name,timeout,kind){
+            await page.selectOption('#os-select',name);
+            await page.waitForFunction(value=>document.querySelector('#os-select')?.value===value,name);
+            await page.click('#boot-btn');
+            await waitRunning(timeout);
+            if(kind==='linux-console'){
+              await page.waitForFunction(()=>/Linux version|Welcome|login:/i.test(document.querySelector('#log')?.textContent||'')||/Linux|login:/i.test(document.querySelector('#screen>div')?.textContent||''),null,{timeout:180000}).catch(()=>{});
+            }else if(kind==='freedos'){
+              await page.waitForFunction(()=>/FreeDOS|C:\\>|DOS/i.test(document.querySelector('#screen>div')?.textContent||'')||/FreeDOS/i.test(document.querySelector('#log')?.textContent||''),null,{timeout:180000}).catch(()=>{});
+            }else if(kind==='gui'){
+              await page.waitForFunction(()=>{const c=document.querySelector('#screen canvas');return c&&getComputedStyle(c).display!=='none'&&c.width>=640&&c.height>=480;},null,{timeout:300000});
+            }
+            const data=await snapshot(name);
+            const canvasVisible=data.canvas_display!=='none'&&data.canvas_display!=='missing'&&data.canvas_width>=320&&data.canvas_height>=200;
+            const textVisible=data.text_display!=='none'&&data.text_display!=='missing'&&data.text_length>0;
+            const guiReady=data.canvas_display!=='none'&&data.canvas_display!=='missing'&&data.canvas_width>=640&&data.canvas_height>=480;
+            if(data.router_build!=='20260708-r10-local-media')throw new Error(`${name}: router missing`);
+            if(data.progress!=='100%'||data.state!=='실행 중'||!data.overlay_hidden)throw new Error(`${name}: completion UI failed ${JSON.stringify(data)}`);
+            if(kind==='gui'&&!guiReady)throw new Error(`${name}: graphical canvas failed ${JSON.stringify(data)}`);
+            if(kind!=='gui'&&!(canvasVisible||textVisible))throw new Error(`${name}: no visible display ${JSON.stringify(data)}`);
+            result.boots[name]={success:true,kind,...data};save();
+            await page.click('#stop-btn');
+            await page.waitForFunction(()=>document.querySelector('#progress-percent')?.textContent==='0%'&&document.querySelector('#boot-btn')?.textContent==='선택 OS 부팅',null,{timeout:120000});
+          }
+
+          try{
+            browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--disable-gpu']});
+            page=await browser.newPage({viewport:{width:1440,height:1000}});
+            page.setDefaultTimeout(120000);
+            page.on('console',m=>result.console.push(`${m.type()}: ${m.text()}`));
+            page.on('pageerror',e=>result.console.push(`pageerror: ${e.message}`));
+            page.on('requestfailed',r=>result.failed_requests.push({url:r.url(),error:r.failure()?.errorText||'unknown'}));
+            await page.goto(process.env.TARGET_URL,{waitUntil:'domcontentloaded',timeout:120000});
+            await page.waitForFunction(()=>globalThis.__GORICS_LOCAL_MEDIA_ROUTER__?.build==='20260708-r10-local-media');
+            const options=await page.locator('#os-select option').evaluateAll(nodes=>nodes.map(n=>n.value));
+            for(const name of expected)if(!options.includes(name))throw new Error(`missing preset ${name}`);
+            await bootPreset('buildroot',420000,'linux-console');
+            await bootPreset('buildroot-serial',420000,'linux-console');
+            await bootPreset('freedos',420000,'freedos');
+            await bootPreset('tiny',600000,'linux-console');
+            await bootPreset('dsl',720000,'gui');
+            await bootPreset('dsl-high',720000,'gui');
+            await bootPreset('gorics',1100000,'gui');
+            result.success=true;result.state='completed';result.completed_at=new Date().toISOString();save();
+          }catch(error){
+            result.state='failed';result.error=error?.stack||String(error);result.completed_at=new Date().toISOString();
+            if(page)result.failure=await snapshot('failure').catch(()=>null);save();
+          }finally{await browser?.close().catch(()=>{});save();}
+          if(!result.success)process.exit(1);
+          JS
+          set +e
+          node --check /tmp/verify-r12-all.mjs > /tmp/r12-all-runner.log 2>&1
+          code=$?
+          if test "$code" = 0; then node /tmp/verify-r12-all.mjs >> /tmp/r12-all-runner.log 2>&1; code=$?; fi
+          if test ! -s /tmp/r12-all-presets-result.json; then printf '{"success":false,"state":"browser-process-failed","run_id":"%s","exit_code":%s}\n' "$GITHUB_RUN_ID" "$code" > /tmp/r12-all-presets-result.json; fi
+          cat /tmp/r12-all-runner.log || true
+          cat /tmp/r12-all-presets-result.json
+          exit "$code"
+
+      - name: Publish all-presets status
+        if: always()
+        run: |
+          set -euo pipefail
+          if test ! -s /tmp/r12-all-presets-result.json; then printf '{"success":false,"state":"preflight-failed","run_id":"%s"}\n' "$GITHUB_RUN_ID" > /tmp/r12-all-presets-result.json; fi
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for attempt in $(seq 1 12); do
+            git reset --hard
+            git clean -fd
+            git fetch origin main
+            git checkout -B main origin/main
+            cp /tmp/r12-all-presets-result.json os/iso/r12-all-presets-status.json
+            git add os/iso/r12-all-presets-status.json
+            git commit -m 'Record R12 all-presets boot result [skip ci]' || exit 0
+            git push origin HEAD:main && exit 0
+            sleep $((attempt*2))
+          done
+          exit 1
+
+      - name: Upload all-presets proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r12-all-presets-proof-${{ github.run_id }}
+          path: |
+            /tmp/r12-all-presets-result.json
+            /tmp/r12-all-runner.log
+            /tmp/r12-*.png
+            /tmp/r12-index.html
+            /tmp/r12-router.js
+            /tmp/r12-app.js
+            /tmp/buildroot-local.probe
+          if-no-files-found: warn
+
+      - name: Require seven successful boots
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('/tmp/r12-all-presets-result.json').read_text())
+          assert r.get('success') is True, r.get('error') or r
+          expected=['buildroot','buildroot-serial','freedos','tiny','dsl','dsl-high','gorics']
+          for name in expected:
+              assert r.get('boots',{}).get(name,{}).get('success') is True, name
+          print('All seven R12 multiboot presets passed')
+          PY
