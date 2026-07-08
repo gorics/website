@@ -8,6 +8,7 @@ on:
       - 'os/real-multiboot/index.html'
       - 'os/real-multiboot/app.js'
       - 'os/real-multiboot/chunk-router-v4.js'
+      - 'os/real-multiboot/chunk-fetch-timeout.js'
       - 'os/real-multiboot/assets/iso-meta.json'
 
 permissions:
@@ -47,11 +48,13 @@ jobs:
             stamp="${GITHUB_RUN_ID}-${attempt}-$(date +%s)"
             if curl -fsSL --max-time 60 "$BASE/?r4x=$stamp" -o /tmp/index.html \
               && grep -q 'ISO page. 20260708-r4x' /tmp/index.html \
+              && grep -q 'chunk-fetch-timeout.js?v=20260708-r4x' /tmp/index.html \
               && grep -q 'chunk-router-v4.js?v=20260708-r4x' /tmp/index.html \
               && grep -q 'app.js?v=20260708-r4x' /tmp/index.html \
               && curl -fsSL --max-time 60 "$BASE/chunk-router-v4.js?r4x=$stamp" -o /tmp/router.js \
-              && grep -q 'fetch-backed multi-CDN' /tmp/router.js \
+              && grep -q 'fetch-backed multi-CDN XHR' /tmp/router.js \
               && grep -q 'ISO9660 and El Torito verified' /tmp/router.js \
+              && curl -fsSL --max-time 60 "$BASE/chunk-fetch-timeout.js?r4x=$stamp" -o /tmp/timeout.js \
               && curl -fsSL --max-time 60 "$BASE/app.js?r4x=$stamp" -o /tmp/app.js \
               && grep -q 'fixed_chunk_size' /tmp/app.js; then
               ready=1
@@ -61,6 +64,7 @@ jobs:
             sleep 10
           done
           test "$ready" = 1
+          node --check /tmp/timeout.js
           node --check /tmp/router.js
           node --check /tmp/app.js
 
