@@ -101,8 +101,10 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install Chromium
+      - name: Install Chromium beside verifier
         run: |
+          cd /tmp
+          npm init -y
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
 
