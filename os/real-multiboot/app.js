@@ -417,11 +417,21 @@
     return { loaded, total, percent, file: data?.file_name || data?.url || 'boot asset' };
   }
 
-  function hasVisibleDisplay() {
+  function displaySnapshot(preset) {
     const canvas = screen?.querySelector('canvas');
-    if (canvas && canvas.width >= 320 && canvas.height >= 200 && getComputedStyle(canvas).display !== 'none') return true;
     const text = screen?.querySelector(':scope > div');
-    return Boolean(text && text.textContent.trim().length > 0 && getComputedStyle(text).display !== 'none');
+    const canvasVisible = Boolean(canvas && getComputedStyle(canvas).display !== 'none');
+    const canvasReady = Boolean(canvasVisible && canvas.width >= 320 && canvas.height >= 200);
+    const graphicalReady = Boolean(canvasVisible && canvas.width >= 640 && canvas.height >= 480);
+    const textReady = Boolean(text && text.textContent.trim().length > 0 && getComputedStyle(text).display !== 'none');
+    return {
+      ready: preset.mode === 'gorics' ? graphicalReady : (canvasReady || textReady),
+      canvasWidth: canvas?.width || 0,
+      canvasHeight: canvas?.height || 0,
+      canvasVisible,
+      textLength: text?.textContent?.trim().length || 0,
+      textReady,
+    };
   }
 
   function beginDisplayWatch(runToken, preset) {
@@ -431,8 +441,10 @@
         clearInterval(displayTimer);
         return;
       }
-      if (!hasVisibleDisplay()) return;
+      const display = displaySnapshot(preset);
+      if (!display.ready) return;
       clearInterval(displayTimer);
+      log(`display verification passed preset=${selectedPreset} canvas=${display.canvasWidth}x${display.canvasHeight} canvasVisible=${display.canvasVisible} textLength=${display.textLength}`);
       setStage('display', `${preset.name} 화면 출력 완료`, '가상 머신 화면이 준비됐습니다. 화면을 클릭하면 키보드와 포인터 입력이 활성화됩니다.', 100, 'success');
       setState('running');
       enableInput();
@@ -529,6 +541,12 @@
   function fail(error, step = 'prepare') {
     clearTimeout(bootTimeout);
     clearInterval(displayTimer);
+    try { vm?.destroy?.(); } catch (destroyError) { log(`failed VM cleanup warning ${destroyError.message}`, 'warn'); }
+    vm = null;
+    if (screen) {
+      screen.innerHTML = '';
+      screen.classList.remove('active');
+    }
     const message = error?.message || String(error);
     log(`ERROR preset=${selectedPreset} step=${step} message=${message}`, 'error');
     log(`userAgent ${navigator.userAgent}`);
