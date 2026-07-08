@@ -111,3 +111,5 @@ jobs:
           git add os/iso/r16-runtime-diagnostic.json
           git commit -m 'Record R16 runtime diagnostic [skip ci]' || exit 0
           git push origin HEAD:main
+
+# trigger after workflow registration
