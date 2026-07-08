@@ -1,0 +1,81 @@
+name: Patch Multiboot Local Images
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/patch-multiboot-local-images.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: patch-multiboot-local-images
+  cancel-in-progress: false
+
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch latest main and push
+        run: |
+          set -euo pipefail
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for attempt in $(seq 1 10); do
+            git fetch origin main
+            git reset --hard origin/main
+            python3 - <<'PY'
+          from pathlib import Path
+
+          app_path = Path('os/real-multiboot/app.js')
+          app = app_path.read_text(encoding='utf-8')
+          marker = "  const initrdUrl = new URL('./assets/initrd.img', location.href).href;\n"
+          if "const imageRoot = '/website/vendor/v86/images/';" not in app:
+              if marker not in app:
+                  raise SystemExit('initrd marker missing')
+              app = app.replace(marker, marker + "  const imageRoot = '/website/vendor/v86/images/';\n", 1)
+          replacements = {
+              "'https://i.copy.sh/buildroot-bzimage68.bin'": "`${imageRoot}buildroot-bzimage68.bin`",
+              "'https://i.copy.sh/linux4.iso'": "`${imageRoot}linux4.iso`",
+              "'https://i.copy.sh/linux.iso'": "`${imageRoot}linux.iso`",
+              "'https://i.copy.sh/freedos722.img'": "`${imageRoot}freedos722.img`",
+          }
+          for old, new in replacements.items():
+              app = app.replace(old, new)
+          if 'https://i.copy.sh/' in app:
+              raise SystemExit('external i.copy.sh URL remains in app.js')
+          app_path.write_text(app, encoding='utf-8')
+
+          deploy_path = Path('.github/workflows/static.yml')
+          deploy = deploy_path.read_text(encoding='utf-8')
+          linux4 = "              'linux4.iso': hi + 'linux4.iso',\n"
+          linux = "              'linux.iso': hi + 'linux.iso',\n"
+          if linux not in deploy:
+              if linux4 not in deploy:
+                  raise SystemExit('static image map marker missing')
+              deploy = deploy.replace(linux4, linux4 + linux, 1)
+          deploy_path.write_text(deploy, encoding='utf-8')
+          PY
+            node --check os/real-multiboot/app.js
+            grep -q "const imageRoot = '/website/vendor/v86/images/'" os/real-multiboot/app.js
+            ! grep -q 'https://i.copy.sh/' os/real-multiboot/app.js
+            grep -q "'linux.iso': hi + 'linux.iso'" .github/workflows/static.yml
+            git add os/real-multiboot/app.js .github/workflows/static.yml
+            if git diff --cached --quiet; then
+              echo 'local image patch already applied'
+              exit 0
+            fi
+            git commit -m 'fix(real-multiboot): serve all boot media from same origin'
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "push conflict attempt=$attempt"
+            sleep $((attempt * 3))
+          done
+          exit 1
