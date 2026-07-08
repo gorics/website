@@ -1,11 +1,9 @@
 {
-  "version": "q",
-  "mode": "legacy-main-external-chunks",
+  "version": "p",
+  "mode": "legacy-main-chunked",
   "architecture": "i386",
-  "desktop": "openbox-tint2-pcmanfm-xterm",
+  "desktop": "direct-xorg-openbox",
   "direct_boot": true,
   "iso_sha256": "4572344448515c06bf62f8a5b5df5f3ba0af7080221c83feaa342467b1cee150",
-  "parts": 21,
-  "chunk_source": "raw-github-os-assets-branch",
-  "chunk_base_url": "https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/"
+  "parts": 21
 }

@@ -1,11 +1,10 @@
 {
   "state": "prepared",
-  "run_id": "28912346326",
+  "run_id": "28914617105",
   "name": "gorics-linux-gui-web-i386.iso",
   "architecture": "i386",
-  "desktop": "openbox-tint2-pcmanfm-xterm",
+  "desktop": "direct-xorg-openbox",
   "openbox_verified": true,
-  "complete_ui_verified": true,
   "lightdm": false,
   "direct_boot": true,
   "legacy_pages": true,

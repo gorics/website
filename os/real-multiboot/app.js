@@ -144,9 +144,7 @@
           cache: 'no-store',
           headers: { Range: `bytes=${range}` },
         });
-        if (response.status !== 200 && response.status !== 206) {
-          throw new Error(`HTTP ${response.status}`);
-        }
+        if (response.status !== 200 && response.status !== 206) throw new Error(`HTTP ${response.status}`);
         return response;
       } catch (error) {
         lastError = error;
@@ -170,9 +168,7 @@
         if (firstResponse.status === 200 && firstBytes.length >= 36864) firstBytes = firstBytes.slice(32768, 36864);
         if (firstBytes.length !== 4096) throw new Error(`first probe size ${firstBytes.length}`);
         if (ascii(firstBytes, 1, 5) !== 'CD001') throw new Error('ISO9660 descriptor missing');
-        if (ascii(firstBytes, 2049, 5) !== 'CD001' || !ascii(firstBytes, 2055, 32).includes('EL TORITO')) {
-          throw new Error('El Torito record missing');
-        }
+        if (ascii(firstBytes, 2049, 5) !== 'CD001' || !ascii(firstBytes, 2055, 32).includes('EL TORITO')) throw new Error('El Torito record missing');
 
         const finalPart = partUrl(candidate, finalStart, finalStart + chunkSize);
         log(`probing ${label} final ISO chunk ${finalPart.split('/').pop()}`);
