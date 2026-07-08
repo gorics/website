@@ -1,0 +1,1641 @@
+{
+  "total_bytes": 404525318,
+  "total_mib": 385.79,
+  "file_count": 897,
+  "top_level": [
+    {
+      "path": "os",
+      "bytes": 394731391,
+      "mib": 376.45
+    },
+    {
+      "path": "news",
+      "bytes": 5234117,
+      "mib": 4.99
+    },
+    {
+      "path": "vendor",
+      "bytes": 1939342,
+      "mib": 1.85
+    },
+    {
+      "path": "data",
+      "bytes": 1589621,
+      "mib": 1.52
+    },
+    {
+      "path": "study",
+      "bytes": 276550,
+      "mib": 0.26
+    },
+    {
+      "path": "game",
+      "bytes": 273942,
+      "mib": 0.26
+    },
+    {
+      "path": "github",
+      "bytes": 172078,
+      "mib": 0.16
+    },
+    {
+      "path": "scripts",
+      "bytes": 42759,
+      "mib": 0.04
+    },
+    {
+      "path": "clock",
+      "bytes": 41668,
+      "mib": 0.04
+    },
+    {
+      "path": "benchmark_result.png",
+      "bytes": 39997,
+      "mib": 0.04
+    },
+    {
+      "path": "board",
+      "bytes": 36895,
+      "mib": 0.04
+    },
+    {
+      "path": "pdf",
+      "bytes": 36552,
+      "mib": 0.03
+    },
+    {
+      "path": "cellgame",
+      "bytes": 31364,
+      "mib": 0.03
+    },
+    {
+      "path": "artist",
+      "bytes": 19241,
+      "mib": 0.02
+    },
+    {
+      "path": "goflat",
+      "bytes": 16787,
+      "mib": 0.02
+    },
+    {
+      "path": "new",
+      "bytes": 10213,
+      "mib": 0.01
+    },
+    {
+      "path": "find",
+      "bytes": 9339,
+      "mib": 0.01
+    },
+    {
+      "path": "fun",
+      "bytes": 6492,
+      "mib": 0.01
+    },
+    {
+      "path": "web-agent",
+      "bytes": 6053,
+      "mib": 0.01
+    },
+    {
+      "path": "privacy.html",
+      "bytes": 3201,
+      "mib": 0.0
+    },
+    {
+      "path": "index.html",
+      "bytes": 3014,
+      "mib": 0.0
+    },
+    {
+      "path": "public-hosting-ok-20260702",
+      "bytes": 2077,
+      "mib": 0.0
+    },
+    {
+      "path": "404.html",
+      "bytes": 1827,
+      "mib": 0.0
+    },
+    {
+      "path": "githooks",
+      "bytes": 753,
+      "mib": 0.0
+    },
+    {
+      "path": "README.md",
+      "bytes": 45,
+      "mib": 0.0
+    },
+    {
+      "path": "nojekyll",
+      "bytes": 0,
+      "mib": 0.0
+    }
+  ],
+  "two_level": [
+    {
+      "path": "os/real-multiboot",
+      "bytes": 388850552,
+      "mib": 370.84
+    },
+    {
+      "path": "os/linux",
+      "bytes": 5677961,
+      "mib": 5.41
+    },
+    {
+      "path": "vendor/v86",
+      "bytes": 1939342,
+      "mib": 1.85
+    },
+    {
+      "path": "news/financial",
+      "bytes": 1808145,
+      "mib": 1.72
+    },
+    {
+      "path": "data/news.json",
+      "bytes": 1589621,
+      "mib": 1.52
+    },
+    {
+      "path": "news/data.json",
+      "bytes": 720396,
+      "mib": 0.69
+    },
+    {
+      "path": "news/news",
+      "bytes": 720396,
+      "mib": 0.69
+    },
+    {
+      "path": "github/workflows",
+      "bytes": 172078,
+      "mib": 0.16
+    },
+    {
+      "path": "study/society",
+      "bytes": 160236,
+      "mib": 0.15
+    },
+    {
+      "path": "os/iso",
+      "bytes": 127236,
+      "mib": 0.12
+    },
+    {
+      "path": "study/society_culture",
+      "bytes": 59092,
+      "mib": 0.06
+    },
+    {
+      "path": "news/feed.xml",
+      "bytes": 47385,
+      "mib": 0.05
+    },
+    {
+      "path": "benchmark_result.png",
+      "bytes": 39997,
+      "mib": 0.04
+    },
+    {
+      "path": "pdf/index.html",
+      "bytes": 36552,
+      "mib": 0.03
+    },
+    {
+      "path": "cellgame/index.html",
+      "bytes": 31364,
+      "mib": 0.03
+    },
+    {
+      "path": "board/data.json",
+      "bytes": 27000,
+      "mib": 0.03
+    },
+    {
+      "path": "study/geography",
+      "bytes": 23260,
+      "mib": 0.02
+    },
+    {
+      "path": "os/quantum-real",
+      "bytes": 22226,
+      "mib": 0.02
+    },
+    {
+      "path": "game/tower-defense",
+      "bytes": 20024,
+      "mib": 0.02
+    },
+    {
+      "path": "scripts/update-hot-news.mjs",
+      "bytes": 19812,
+      "mib": 0.02
+    },
+    {
+      "path": "game/frogger",
+      "bytes": 19724,
+      "mib": 0.02
+    },
+    {
+      "path": "os/index.html",
+      "bytes": 19042,
+      "mib": 0.02
+    },
+    {
+      "path": "os/window",
+      "bytes": 18978,
+      "mib": 0.02
+    },
+    {
+      "path": "game/breakout",
+      "bytes": 18853,
+      "mib": 0.02
+    },
+    {
+      "path": "game/sokoban",
+      "bytes": 18070,
+      "mib": 0.02
+    },
+    {
+      "path": "game/tetris",
+      "bytes": 17324,
+      "mib": 0.02
+    },
+    {
+      "path": "goflat/index.html",
+      "bytes": 16787,
+      "mib": 0.02
+    },
+    {
+      "path": "game/space-shooter",
+      "bytes": 15968,
+      "mib": 0.02
+    },
+    {
+      "path": "game/blackjack",
+      "bytes": 15636,
+      "mib": 0.01
+    },
+    {
+      "path": "game/minesweeper",
+      "bytes": 14735,
+      "mib": 0.01
+    },
+    {
+      "path": "clock/script.js",
+      "bytes": 14139,
+      "mib": 0.01
+    },
+    {
+      "path": "study/math",
+      "bytes": 14084,
+      "mib": 0.01
+    },
+    {
+      "path": "scripts/update_news.py",
+      "bytes": 14039,
+      "mib": 0.01
+    },
+    {
+      "path": "game/2048",
+      "bytes": 13921,
+      "mib": 0.01
+    },
+    {
+      "path": "artist/script.js",
+      "bytes": 13465,
+      "mib": 0.01
+    },
+    {
+      "path": "game/runner",
+      "bytes": 12953,
+      "mib": 0.01
+    },
+    {
+      "path": "game/whack-a-mole",
+      "bytes": 12423,
+      "mib": 0.01
+    },
+    {
+      "path": "os/real-os",
+      "bytes": 12374,
+      "mib": 0.01
+    },
+    {
+      "path": "study/schedule",
+      "bytes": 12260,
+      "mib": 0.01
+    },
+    {
+      "path": "game/wordle",
+      "bytes": 11791,
+      "mib": 0.01
+    },
+    {
+      "path": "game/flappy",
+      "bytes": 11663,
+      "mib": 0.01
+    },
+    {
+      "path": "news/index.html",
+      "bytes": 11228,
+      "mib": 0.01
+    },
+    {
+      "path": "clock/style.css",
+      "bytes": 11201,
+      "mib": 0.01
+    },
+    {
+      "path": "game/mobile-controls.js",
+      "bytes": 10971,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260626-0232.json",
+      "bytes": 10794,
+      "mib": 0.01
+    },
+    {
+      "path": "news/portal.css",
+      "bytes": 10700,
+      "mib": 0.01
+    },
+    {
+      "path": "game/nebulous",
+      "bytes": 10609,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260625-1608.json",
+      "bytes": 10407,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-2133.json",
+      "bytes": 10351,
+      "mib": 0.01
+    },
+    {
+      "path": "clock/sleep",
+      "bytes": 10234,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260625-0608.json",
+      "bytes": 10195,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260628-0007.json",
+      "bytes": 10133,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260627-0309.json",
+      "bytes": 10105,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260624-0734.json",
+      "bytes": 10075,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260627-1435.json",
+      "bytes": 10061,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260627-1635.json",
+      "bytes": 9741,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260624-0633.json",
+      "bytes": 9386,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260628-0138.json",
+      "bytes": 9377,
+      "mib": 0.01
+    },
+    {
+      "path": "find/index.html",
+      "bytes": 9339,
+      "mib": 0.01
+    },
+    {
+      "path": "game/snake",
+      "bytes": 9254,
+      "mib": 0.01
+    },
+    {
+      "path": "game/sand-tetris",
+      "bytes": 9115,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260625-0135.json",
+      "bytes": 9061,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260625-0409.json",
+      "bytes": 9003,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260625-0208.json",
+      "bytes": 8996,
+      "mib": 0.01
+    },
+    {
+      "path": "scripts/update-financial-news.mjs",
+      "bytes": 8908,
+      "mib": 0.01
+    },
+    {
+      "path": "game/memory-match",
+      "bytes": 8840,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260625-0109.json",
+      "bytes": 8731,
+      "mib": 0.01
+    },
+    {
+      "path": "board/index.html",
+      "bytes": 8625,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260624-0509.json",
+      "bytes": 8244,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260626-1909.json",
+      "bytes": 8216,
+      "mib": 0.01
+    },
+    {
+      "path": "game/global-enhancements.js",
+      "bytes": 7912,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-2033.json",
+      "bytes": 7817,
+      "mib": 0.01
+    },
+    {
+      "path": "game/pong",
+      "bytes": 7719,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1607.json",
+      "bytes": 7631,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1932.json",
+      "bytes": 7625,
+      "mib": 0.01
+    },
+    {
+      "path": "study/index.html",
+      "bytes": 7618,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260621-0809.json",
+      "bytes": 7613,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260621-2107.json",
+      "bytes": 7595,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1708.json",
+      "bytes": 7579,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1808.json",
+      "bytes": 7549,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260624-2207.json",
+      "bytes": 7533,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1907.json",
+      "bytes": 7514,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1108.json",
+      "bytes": 7510,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260614-1850.json",
+      "bytes": 7481,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260624-2310.json",
+      "bytes": 7436,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1607.json",
+      "bytes": 7310,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260621-2208.json",
+      "bytes": 7219,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1308.json",
+      "bytes": 7199,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260624-1707.json",
+      "bytes": 7199,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260624-1907.json",
+      "bytes": 7132,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260622-2110.json",
+      "bytes": 7098,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1936.json",
+      "bytes": 7049,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-0510.json",
+      "bytes": 7020,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1408.json",
+      "bytes": 6971,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260620-1733.json",
+      "bytes": 6967,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-2010.json",
+      "bytes": 6961,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260620-1633.json",
+      "bytes": 6950,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260630-0009.json",
+      "bytes": 6860,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260620-1608.json",
+      "bytes": 6855,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260620-1708.json",
+      "bytes": 6837,
+      "mib": 0.01
+    }
+  ],
+  "largest_files": [
+    {
+      "path": "os/real-multiboot/assets/initrd.img",
+      "size": 30724198,
+      "mib": 29.3
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-150994944-167772160",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-117440512-134217728",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-301989888-318767104",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-201326592-218103808",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-218103808-234881024",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-0-16777216",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-184549376-201326592",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-318767104-335544320",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-100663296-117440512",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-83886080-100663296",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-285212672-301989888",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-167772160-184549376",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-67108864-83886080",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-335544320-352321536",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-234881024-251658240",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-16777216-33554432",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-268435456-285212672",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-50331648-67108864",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-251658240-268435456",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-33554432-50331648",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-134217728-150994944",
+      "size": 16777216,
+      "mib": 16.0
+    },
+    {
+      "path": "os/real-multiboot/assets/vmlinuz",
+      "size": 5756864,
+      "mib": 5.49
+    },
+    {
+      "path": "os/linux/1/linux.iso",
+      "size": 5666816,
+      "mib": 5.4
+    },
+    {
+      "path": "data/news.json",
+      "size": 1589621,
+      "mib": 1.52
+    },
+    {
+      "path": "vendor/v86/v86.wasm",
+      "size": 1418156,
+      "mib": 1.35
+    },
+    {
+      "path": "news/data.json",
+      "size": 720396,
+      "mib": 0.69
+    },
+    {
+      "path": "news/news/data.json",
+      "size": 720396,
+      "mib": 0.69
+    },
+    {
+      "path": "news/financial/data.json",
+      "size": 470084,
+      "mib": 0.45
+    },
+    {
+      "path": "vendor/v86/libv86.js",
+      "size": 353762,
+      "mib": 0.34
+    },
+    {
+      "path": "vendor/v86/seabios.bin",
+      "size": 131072,
+      "mib": 0.12
+    },
+    {
+      "path": "study/society/index.html",
+      "size": 90771,
+      "mib": 0.09
+    },
+    {
+      "path": "news/financial/feed.xml",
+      "size": 78578,
+      "mib": 0.07
+    },
+    {
+      "path": "study/society_culture/index.html",
+      "size": 59092,
+      "mib": 0.06
+    },
+    {
+      "path": "study/society/society_culture",
+      "size": 55000,
+      "mib": 0.05
+    },
+    {
+      "path": "news/feed.xml",
+      "size": 47385,
+      "mib": 0.05
+    },
+    {
+      "path": "benchmark_result.png",
+      "size": 39997,
+      "mib": 0.04
+    },
+    {
+      "path": "pdf/index.html",
+      "size": 36552,
+      "mib": 0.03
+    },
+    {
+      "path": "vendor/v86/vgabios.bin",
+      "size": 36352,
+      "mib": 0.03
+    },
+    {
+      "path": "os/iso/legacy-public-probe.json",
+      "size": 32678,
+      "mib": 0.03
+    },
+    {
+      "path": "cellgame/index.html",
+      "size": 31364,
+      "mib": 0.03
+    },
+    {
+      "path": "board/data.json",
+      "size": 27000,
+      "mib": 0.03
+    },
+    {
+      "path": "os/iso/public-probe.json",
+      "size": 26285,
+      "mib": 0.03
+    },
+    {
+      "path": "study/geography/blank-map/index.html",
+      "size": 23260,
+      "mib": 0.02
+    },
+    {
+      "path": "game/tower-defense/index.html",
+      "size": 20024,
+      "mib": 0.02
+    },
+    {
+      "path": "scripts/update-hot-news.mjs",
+      "size": 19812,
+      "mib": 0.02
+    },
+    {
+      "path": "game/frogger/index.html",
+      "size": 19724,
+      "mib": 0.02
+    },
+    {
+      "path": "os/index.html",
+      "size": 19042,
+      "mib": 0.02
+    },
+    {
+      "path": "game/breakout/index.html",
+      "size": 18853,
+      "mib": 0.02
+    },
+    {
+      "path": "game/sokoban/index.html",
+      "size": 18070,
+      "mib": 0.02
+    },
+    {
+      "path": "os/iso/legacy-pages-build-diagnostic.json",
+      "size": 17460,
+      "mib": 0.02
+    },
+    {
+      "path": "game/tetris/index.html",
+      "size": 17324,
+      "mib": 0.02
+    },
+    {
+      "path": "goflat/index.html",
+      "size": 16787,
+      "mib": 0.02
+    },
+    {
+      "path": "game/space-shooter/index.html",
+      "size": 15968,
+      "mib": 0.02
+    },
+    {
+      "path": "game/blackjack/index.html",
+      "size": 15636,
+      "mib": 0.01
+    },
+    {
+      "path": "os/iso/legacy-publish-failure.log",
+      "size": 15506,
+      "mib": 0.01
+    },
+    {
+      "path": "game/minesweeper/index.html",
+      "size": 14735,
+      "mib": 0.01
+    },
+    {
+      "path": "study/society/style.css",
+      "size": 14465,
+      "mib": 0.01
+    },
+    {
+      "path": "clock/script.js",
+      "size": 14139,
+      "mib": 0.01
+    },
+    {
+      "path": "scripts/update_news.py",
+      "size": 14039,
+      "mib": 0.01
+    },
+    {
+      "path": "game/2048/index.html",
+      "size": 13921,
+      "mib": 0.01
+    },
+    {
+      "path": "artist/script.js",
+      "size": 13465,
+      "mib": 0.01
+    },
+    {
+      "path": "game/runner/index.html",
+      "size": 12953,
+      "mib": 0.01
+    },
+    {
+      "path": "os/real-multiboot/app-legacy-chunked.js",
+      "size": 12673,
+      "mib": 0.01
+    },
+    {
+      "path": "os/real-multiboot/app.js",
+      "size": 12673,
+      "mib": 0.01
+    },
+    {
+      "path": "game/whack-a-mole/index.html",
+      "size": 12423,
+      "mib": 0.01
+    },
+    {
+      "path": "github/workflows/publish-legacy-os-assets.yml",
+      "size": 12353,
+      "mib": 0.01
+    },
+    {
+      "path": "github/workflows/verify-legacy-chunked-v6.yml",
+      "size": 12333,
+      "mib": 0.01
+    },
+    {
+      "path": "study/schedule/index.html",
+      "size": 12260,
+      "mib": 0.01
+    },
+    {
+      "path": "github/workflows/verify-real-multiboot.yml",
+      "size": 12175,
+      "mib": 0.01
+    },
+    {
+      "path": "os/iso/build-gorics-web-iso.sh",
+      "size": 11839,
+      "mib": 0.01
+    },
+    {
+      "path": "game/wordle/index.html",
+      "size": 11791,
+      "mib": 0.01
+    },
+    {
+      "path": "game/flappy/index.html",
+      "size": 11663,
+      "mib": 0.01
+    },
+    {
+      "path": "github/workflows/verify-real-multiboot-v4.yml",
+      "size": 11437,
+      "mib": 0.01
+    },
+    {
+      "path": "github/workflows/verify-real-multiboot-v2.yml",
+      "size": 11412,
+      "mib": 0.01
+    },
+    {
+      "path": "news/index.html",
+      "size": 11228,
+      "mib": 0.01
+    },
+    {
+      "path": "clock/style.css",
+      "size": 11201,
+      "mib": 0.01
+    },
+    {
+      "path": "game/mobile-controls.js",
+      "size": 10971,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260626-0232.json",
+      "size": 10794,
+      "mib": 0.01
+    },
+    {
+      "path": "github/workflows/verify-real-multiboot-v3.yml",
+      "size": 10750,
+      "mib": 0.01
+    },
+    {
+      "path": "news/portal.css",
+      "size": 10700,
+      "mib": 0.01
+    },
+    {
+      "path": "game/nebulous/index.html",
+      "size": 10609,
+      "mib": 0.01
+    },
+    {
+      "path": "github/workflows/publish-legacy-os-assets-v2.yml",
+      "size": 10497,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260625-1608.json",
+      "size": 10407,
+      "mib": 0.01
+    },
+    {
+      "path": "os/window/2/app.js",
+      "size": 10363,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-2133.json",
+      "size": 10351,
+      "mib": 0.01
+    },
+    {
+      "path": "github/workflows/verify-source-fallback.yml",
+      "size": 10285,
+      "mib": 0.01
+    },
+    {
+      "path": "clock/sleep/index.html",
+      "size": 10234,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260625-0608.json",
+      "size": 10195,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260628-0007.json",
+      "size": 10133,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260627-0309.json",
+      "size": 10105,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260624-0734.json",
+      "size": 10075,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260627-1435.json",
+      "size": 10061,
+      "mib": 0.01
+    },
+    {
+      "path": "os/quantum-real/app.js",
+      "size": 9886,
+      "mib": 0.01
+    },
+    {
+      "path": "os/real-os/launcher.js",
+      "size": 9824,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260627-1635.json",
+      "size": 9741,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260624-0633.json",
+      "size": 9386,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260628-0138.json",
+      "size": 9377,
+      "mib": 0.01
+    },
+    {
+      "path": "find/index.html",
+      "size": 9339,
+      "mib": 0.01
+    },
+    {
+      "path": "game/snake/index.html",
+      "size": 9254,
+      "mib": 0.01
+    },
+    {
+      "path": "news/financial/latest-20260627-0309.json",
+      "size": 9213,
+      "mib": 0.01
+    },
+    {
+      "path": "game/sand-tetris/index.html",
+      "size": 9115,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260625-0135.json",
+      "size": 9061,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260625-0409.json",
+      "size": 9003,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260625-0208.json",
+      "size": 8996,
+      "mib": 0.01
+    },
+    {
+      "path": "news/financial/latest-20260627-1435.json",
+      "size": 8987,
+      "mib": 0.01
+    },
+    {
+      "path": "news/financial/latest-20260628-0007.json",
+      "size": 8961,
+      "mib": 0.01
+    },
+    {
+      "path": "scripts/update-financial-news.mjs",
+      "size": 8908,
+      "mib": 0.01
+    },
+    {
+      "path": "study/math/csat/app.html",
+      "size": 8874,
+      "mib": 0.01
+    },
+    {
+      "path": "game/memory-match/index.html",
+      "size": 8840,
+      "mib": 0.01
+    },
+    {
+      "path": "github/workflows/static.yml",
+      "size": 8780,
+      "mib": 0.01
+    },
+    {
+      "path": "news/financial/latest-20260628-0138.json",
+      "size": 8774,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260625-0109.json",
+      "size": 8731,
+      "mib": 0.01
+    },
+    {
+      "path": "board/index.html",
+      "size": 8625,
+      "mib": 0.01
+    },
+    {
+      "path": "news/financial/latest-20260627-1635.json",
+      "size": 8269,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260624-0509.json",
+      "size": 8244,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260626-1909.json",
+      "size": 8216,
+      "mib": 0.01
+    },
+    {
+      "path": "game/global-enhancements.js",
+      "size": 7912,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-2033.json",
+      "size": 7817,
+      "mib": 0.01
+    },
+    {
+      "path": "game/pong/index.html",
+      "size": 7719,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1607.json",
+      "size": 7631,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1932.json",
+      "size": 7625,
+      "mib": 0.01
+    },
+    {
+      "path": "study/index.html",
+      "size": 7618,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260621-0809.json",
+      "size": 7613,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260621-2107.json",
+      "size": 7595,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1708.json",
+      "size": 7579,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1808.json",
+      "size": 7549,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260624-2207.json",
+      "size": 7533,
+      "mib": 0.01
+    },
+    {
+      "path": "news/financial/latest-20260625-1608.json",
+      "size": 7520,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1907.json",
+      "size": 7514,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1108.json",
+      "size": 7510,
+      "mib": 0.01
+    },
+    {
+      "path": "news/financial/latest-20260626-0232.json",
+      "size": 7496,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260614-1850.json",
+      "size": 7481,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260624-2310.json",
+      "size": 7436,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1607.json",
+      "size": 7310,
+      "mib": 0.01
+    },
+    {
+      "path": "github/workflows/build-gorics-web-iso.yml",
+      "size": 7243,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260621-2208.json",
+      "size": 7219,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1308.json",
+      "size": 7199,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260624-1707.json",
+      "size": 7199,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260624-1907.json",
+      "size": 7132,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260622-2110.json",
+      "size": 7098,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1936.json",
+      "size": 7049,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-0510.json",
+      "size": 7020,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1408.json",
+      "size": 6971,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260620-1733.json",
+      "size": 6967,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-2010.json",
+      "size": 6961,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260620-1633.json",
+      "size": 6950,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260630-0009.json",
+      "size": 6860,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260620-1608.json",
+      "size": 6855,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260620-1708.json",
+      "size": 6837,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260625-2035.json",
+      "size": 6737,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260625-1509.json",
+      "size": 6661,
+      "mib": 0.01
+    },
+    {
+      "path": "news/app.js",
+      "size": 6660,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1508.json",
+      "size": 6623,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1209.json",
+      "size": 6594,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1631.json",
+      "size": 6573,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1533.json",
+      "size": 6571,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1033.json",
+      "size": 6549,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1235.json",
+      "size": 6525,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1107.json",
+      "size": 6495,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1307.json",
+      "size": 6492,
+      "mib": 0.01
+    },
+    {
+      "path": "os/quantum-real/scripts/build-browser-iso.sh",
+      "size": 6477,
+      "mib": 0.01
+    },
+    {
+      "path": "github/workflows/finalize-gorics-pages.yml",
+      "size": 6464,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260623-0908.json",
+      "size": 6460,
+      "mib": 0.01
+    },
+    {
+      "path": "github/workflows/switch-pages-to-actions.yml",
+      "size": 6453,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-2208.json",
+      "size": 6449,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260627-0510.json",
+      "size": 6447,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1007.json",
+      "size": 6437,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260622-0132.json",
+      "size": 6426,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260622-0106.json",
+      "size": 6419,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1409.json",
+      "size": 6418,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260627-1309.json",
+      "size": 6418,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260625-1106.json",
+      "size": 6412,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-2234.json",
+      "size": 6408,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260620-1108.json",
+      "size": 6398,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-0908.json",
+      "size": 6396,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260627-0607.json",
+      "size": 6392,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260630-0035.json",
+      "size": 6385,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1809.json",
+      "size": 6384,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260620-1208.json",
+      "size": 6384,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-0010.json",
+      "size": 6373,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260620-0908.json",
+      "size": 6364,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260624-1309.json",
+      "size": 6361,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1910.json",
+      "size": 6353,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260630-0108.json",
+      "size": 6351,
+      "mib": 0.01
+    },
+    {
+      "path": "os/real-multiboot/sw.js",
+      "size": 6347,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260625-0810.json",
+      "size": 6346,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260619-1208.json",
+      "size": 6345,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260620-1308.json",
+      "size": 6339,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-0635.json",
+      "size": 6337,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-2107.json",
+      "size": 6336,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260623-0310.json",
+      "size": 6331,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260624-1731.json",
+      "size": 6329,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260620-0833.json",
+      "size": 6327,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260620-1508.json",
+      "size": 6314,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-1706.json",
+      "size": 6312,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260629-0610.json",
+      "size": 6305,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260620-0808.json",
+      "size": 6302,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260620-1408.json",
+      "size": 6294,
+      "mib": 0.01
+    },
+    {
+      "path": "news/latest-20260626-1807.json",
+      "size": 6294,
+      "mib": 0.01
+    }
+  ]
+}
