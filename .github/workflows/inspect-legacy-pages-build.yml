@@ -1,0 +1,67 @@
+name: Inspect Legacy Pages Build
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/inspect-legacy-pages-build.yml'
+
+permissions:
+  contents: write
+  pages: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Read latest Pages build details
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p os/iso
+          set +e
+          gh api "repos/$GITHUB_REPOSITORY/pages" > /tmp/pages.json 2>/tmp/pages.err
+          echo $? > /tmp/pages.rc
+          gh api "repos/$GITHUB_REPOSITORY/pages/builds/latest" > /tmp/latest.json 2>/tmp/latest.err
+          echo $? > /tmp/latest.rc
+          gh api "repos/$GITHUB_REPOSITORY/pages/builds?per_page=20" > /tmp/builds.json 2>/tmp/builds.err
+          echo $? > /tmp/builds.rc
+          set -e
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          def text(path):
+              p=Path(path)
+              return p.read_text(errors='replace') if p.exists() else ''
+          def parse(path):
+              try: return json.loads(text(path))
+              except Exception: return None
+          def rc(path):
+              try: return int(text(path).strip())
+              except Exception: return None
+          result={
+              'pages_rc': rc('/tmp/pages.rc'),
+              'latest_rc': rc('/tmp/latest.rc'),
+              'builds_rc': rc('/tmp/builds.rc'),
+              'pages': parse('/tmp/pages.json'),
+              'latest': parse('/tmp/latest.json'),
+              'builds': parse('/tmp/builds.json'),
+              'pages_error': text('/tmp/pages.err'),
+              'latest_error': text('/tmp/latest.err'),
+              'builds_error': text('/tmp/builds.err'),
+          }
+          Path('os/iso/legacy-pages-build.json').write_text(json.dumps(result,indent=2)+"\n")
+          print(json.dumps(result,indent=2))
+          PY
+      - name: Commit build diagnostic
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          git add os/iso/legacy-pages-build.json
+          git commit -m 'Record Legacy Pages build diagnostic [skip ci]' || true
+          git push origin HEAD:main
