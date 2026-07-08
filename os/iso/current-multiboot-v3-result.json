@@ -1,0 +1,62 @@
+{
+  "success": false,
+  "state": "failed",
+  "run_id": "28914860242",
+  "target": "https://gorics.github.io/website/os/real-multiboot/?current-v3=28914860242-1",
+  "started_at": "2026-07-08T03:16:57.574Z",
+  "console": [
+    "log: [GORICS CHUNK] ISO chunk CDN router installed (jsDelivr primary, raw GitHub fallback)",
+    "log: [GORICS ISO] ready: legacy Pages chunked i386 Openbox loader installed",
+    "log: [GORICS ISO] loading legacy Pages chunk metadata",
+    "log: [GORICS ISO] ISO size=339738624 parts=21 sha256=4572344448515c06...",
+    "log: [GORICS ISO] probing first CORS-enabled os-assets ISO chunk gorics-linux-gui-web-i386.iso-0-16777216",
+    "log: [GORICS ISO] kernel available size=5731413",
+    "log: [GORICS ISO] initrd available size=30551742",
+    "log: [GORICS ISO] runtime available size=93547",
+    "log: [GORICS ISO] wasm available size=300977",
+    "log: [GORICS ISO] ERROR ISO9660 descriptor missing",
+    "log: [GORICS ISO] userAgent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/140.0.7339.16 Safari/537.36"
+  ],
+  "page_errors": [],
+  "failed_requests": [
+    {
+      "url": "https://gorics.github.io/website/os/real-multiboot/assets/vmlinuz?v=q",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://gorics.github.io/website/os/real-multiboot/assets/initrd.img?v=q",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://gorics.github.io/website/vendor/v86/libv86.js?v=q",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://gorics.github.io/website/vendor/v86/v86.wasm?v=q",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "updated_at": "2026-07-08T03:36:58.659Z",
+  "page_http": 200,
+  "initial_marker": "[ready] GORICS Linux GUI ISO page. t",
+  "canvas_width": 0,
+  "canvas_height": 0,
+  "log_tail": [
+    "[ready] GORICS Linux GUI ISO page. t",
+    "[2026-07-08T03:16:58.365Z] ISO chunk CDN router installed (jsDelivr primary, raw GitHub fallback)",
+    "[2026-07-08T03:16:58.368Z] ready: legacy Pages chunked i386 Openbox loader installed",
+    "[2026-07-08T03:16:58.588Z] loading legacy Pages chunk metadata",
+    "[2026-07-08T03:16:58.606Z] ISO size=339738624 parts=21 sha256=4572344448515c06...",
+    "[2026-07-08T03:16:58.691Z] probing first CORS-enabled os-assets ISO chunk gorics-linux-gui-web-i386.iso-0-16777216",
+    "[2026-07-08T03:16:58.702Z] kernel available size=5731413",
+    "[2026-07-08T03:16:58.718Z] initrd available size=30551742",
+    "[2026-07-08T03:16:58.725Z] runtime available size=93547",
+    "[2026-07-08T03:16:58.740Z] wasm available size=300977",
+    "[2026-07-08T03:16:58.768Z] ERROR ISO9660 descriptor missing",
+    "[2026-07-08T03:16:58.769Z] userAgent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/140.0.7339.16 Safari/537.36"
+  ],
+  "error": "page.waitForFunction: Timeout 1200000ms exceeded.\n    at /home/runner/work/website/website/verify-current-v3.mjs:31:14",
+  "completed_at": "2026-07-08T03:36:58.659Z",
+  "job_status": "failure",
+  "workflow_sha": "2f0d8ce7b6b5be48c82e5b192b5cfdea4515462e"
+}
