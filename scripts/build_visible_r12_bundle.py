@@ -73,7 +73,25 @@ def main() -> None:
         "name": ASSET_NAME,
         "source_release_name": iso.name,
         "architecture": "i386",
-        "desktop": "openbox-tint2-pcmanfm-xterm-visible-r12",
+        "desktop": "openbox-tint2-pcmanfm-terminal-netsurf-network-r18",
+        "terminal": {
+            "desktop_launcher": True,
+            "panel_launcher": True,
+            "commands": ["lxterminal", "xterm"],
+        },
+        "network": {
+            "manager": "NetworkManager",
+            "v86_nic": "virtio",
+            "backend": "secure-websocket-relay",
+            "dhcp_check": True,
+            "dns_check": True,
+            "http_check": True,
+            "ready_markers": [
+                "GORICS_NETWORK_LINK_READY",
+                "GORICS_DNS_READY",
+                "GORICS_INTERNET_READY",
+            ],
+        },
         "direct_boot": True,
         "chunked": True,
         "chunk_size": CHUNK_SIZE,
@@ -97,7 +115,7 @@ def main() -> None:
             "size": initrd.stat().st_size,
             "sha256": digest(initrd),
         },
-        "release": "r12-visible-desktop",
+        "release": "r18-terminal-network",
     }
     (bundle / "iso-meta.json").write_text(
         json.dumps(meta, indent=2) + "\n",
