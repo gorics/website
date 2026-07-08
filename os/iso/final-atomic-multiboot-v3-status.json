@@ -1,10 +1,10 @@
 {
   "workflow": "Deploy And Verify Real Multiboot Final V3",
-  "conclusion": "cancelled",
-  "run_id": 28929009276,
-  "head_sha": "b7299f5b06b26d5282f40f866258204d43c474a1",
-  "deploy_version": "b7299f5b06b26d5282f40f866258204d43c474a1-28929009276-1",
-  "performance_mode": "r15-batched-log-mobile-memory-cap",
-  "run_url": "https://github.com/gorics/website/actions/runs/28929009276",
-  "recorded_at": "2026-07-08T08:34:44.078569+00:00"
+  "conclusion": "failure",
+  "run_id": 28929087281,
+  "head_sha": "8ed4074b975e26bca06579204548a4be32328de2",
+  "deploy_version": "8ed4074b975e26bca06579204548a4be32328de2-28929087281-1",
+  "performance_mode": "r16-ultra-preflight-cache-adaptive-memory",
+  "run_url": "https://github.com/gorics/website/actions/runs/28929087281",
+  "recorded_at": "2026-07-08T08:40:23.397878+00:00"
 }
