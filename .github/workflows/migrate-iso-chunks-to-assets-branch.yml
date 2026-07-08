@@ -1,4 +1,4 @@
-name: Superseded v86 Chunk Migration
+name: Probe v86 Chunk CDN Hosts
 
 on:
   workflow_dispatch:
@@ -7,14 +7,107 @@ on:
       - '.github/workflows/migrate-iso-chunks-to-assets-branch.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: repair-v86-iso-chunks
+  group: probe-v86-chunk-cdns
   cancel-in-progress: true
 
 jobs:
-  superseded:
+  probe:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
-      - run: echo 'Superseded by fix-v86-chunk-filenames.yml'
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Probe CORS and byte ranges on first and last chunks
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import subprocess
+          import time
+          from pathlib import Path
+
+          rel_first = 'os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386-0-16777216.iso'
+          rel_last = 'os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386-335544320-352321536.iso'
+          roots = {
+              'jsdelivr': 'https://cdn.jsdelivr.net/gh/gorics/website@os-assets/',
+              'jsdelivr_fastly': 'https://fastly.jsdelivr.net/gh/gorics/website@os-assets/',
+              'jsdelivr_gcore': 'https://gcore.jsdelivr.net/gh/gorics/website@os-assets/',
+              'raw_githack': 'https://raw.githack.com/gorics/website/os-assets/',
+              'media_github': 'https://media.githubusercontent.com/media/gorics/website/os-assets/',
+              'raw_github': 'https://raw.githubusercontent.com/gorics/website/os-assets/',
+          }
+
+          def probe(url):
+              stamp = f'{time.time_ns()}'
+              header = Path('/tmp/header.txt')
+              body = Path('/tmp/body.bin')
+              command = [
+                  'curl', '-sS', '-L', '--max-time', '90',
+                  '-D', str(header), '-r', '0-4095', '-o', str(body),
+                  '-w', '%{http_code}', f'{url}?probe={stamp}',
+              ]
+              result = subprocess.run(command, text=True, capture_output=True)
+              headers = header.read_text(errors='replace') if header.exists() else ''
+              final = {}
+              for line in headers.splitlines():
+                  if line.startswith('HTTP/'):
+                      final = {'status_line': line.strip()}
+                  elif ':' in line:
+                      key, value = line.split(':', 1)
+                      final[key.lower().strip()] = value.strip()
+              data = body.read_bytes() if body.exists() else b''
+              return {
+                  'curl_exit': result.returncode,
+                  'http_code': result.stdout.strip(),
+                  'bytes': len(data),
+                  'cors': final.get('access-control-allow-origin'),
+                  'content_range': final.get('content-range'),
+                  'content_length': final.get('content-length'),
+                  'content_type': final.get('content-type'),
+                  'accept_ranges': final.get('accept-ranges'),
+                  'stderr': result.stderr[-500:],
+                  'ok': result.returncode == 0 and result.stdout.strip() in {'200', '206'} and len(data) >= 4096,
+              }
+
+          report = {'run_id': '${{ github.run_id }}', 'hosts': {}}
+          for name, root in roots.items():
+              first = probe(root + rel_first)
+              last = probe(root + rel_last)
+              report['hosts'][name] = {
+                  'root': root,
+                  'first': first,
+                  'last': last,
+                  'usable': first['ok'] and last['ok'] and first['cors'] in {'*', 'https://gorics.github.io'},
+              }
+              print(name, json.dumps(report['hosts'][name], ensure_ascii=False))
+
+          preferred = next((name for name in ('jsdelivr', 'jsdelivr_fastly', 'jsdelivr_gcore', 'raw_githack', 'media_github', 'raw_github') if report['hosts'][name]['usable']), None)
+          report['preferred'] = preferred
+          report['success'] = preferred is not None
+          Path('/tmp/v86-cdn-probe.json').write_text(json.dumps(report, indent=2) + '\n')
+          if preferred is None:
+              raise SystemExit('No candidate returned both chunks with CORS and byte data')
+          PY
+
+      - name: Record probe result
+        if: always()
+        run: |
+          set -euo pipefail
+          test -s /tmp/v86-cdn-probe.json || printf '{"success":false,"run_id":"%s","error":"probe did not produce output"}\n' "$GITHUB_RUN_ID" > /tmp/v86-cdn-probe.json
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for attempt in $(seq 1 10); do
+            git fetch origin main
+            git checkout -B main origin/main
+            cp /tmp/v86-cdn-probe.json os/iso/v86-cdn-probe.json
+            git add os/iso/v86-cdn-probe.json
+            git commit -m 'Record v86 CDN range probe [skip ci]' || true
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
