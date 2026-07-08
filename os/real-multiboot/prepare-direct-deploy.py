@@ -3,12 +3,14 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
 import sys
 from pathlib import Path
 
 SECTOR = 2048
 ISO_NAME = "gorics-linux-gui-web-i386.iso"
+CHUNK_SIZE = 16 * 1024 * 1024
 
 
 def sha256(path: Path) -> str:
@@ -123,8 +125,15 @@ def patch_index(index: Path) -> None:
     text = index.read_text(encoding="utf-8")
     text = re.sub(r"([?&]v=)[A-Za-z0-9._-]+", r"\1l", text)
     text = re.sub(r"(ISO page\. )[A-Za-z0-9._-]+", r"\1l", text)
-    if "app.js?v=l" not in text:
-        raise RuntimeError("index cache version patch failed")
+    required = (
+        "app.js?v=l",
+        "responsive-overrides.css?v=l",
+        "responsive.js?v=l",
+        "ISO page. l",
+    )
+    missing = [marker for marker in required if marker not in text]
+    if missing:
+        raise RuntimeError(f"index deployment patch failed: {missing}")
     index.write_text(text, encoding="utf-8")
 
 
@@ -145,6 +154,7 @@ def main() -> None:
     patch_loader(app)
     patch_index(index)
 
+    iso_size = iso.stat().st_size
     meta = json.loads(meta_path.read_text(encoding="utf-8"))
     meta.update(
         {
@@ -153,6 +163,10 @@ def main() -> None:
             "direct_boot": True,
             "desktop": "openbox-tint2-pcmanfm-xterm",
             "complete_ui_verified": True,
+            "chunked": True,
+            "chunk_size": CHUNK_SIZE,
+            "parts": math.ceil(iso_size / CHUNK_SIZE),
+            "size": iso_size,
             "kernel": {"name": kernel.name, "size": kernel.stat().st_size, "sha256": sha256(kernel)},
             "initrd": {"name": initrd.name, "size": initrd.stat().st_size, "sha256": sha256(initrd)},
         }
@@ -163,6 +177,7 @@ def main() -> None:
     print(f"direct loader: {app}")
     print(f"kernel: {kernel.stat().st_size} bytes")
     print(f"initrd: {initrd.stat().st_size} bytes")
+    print(f"ISO chunks: {meta['parts']} x {CHUNK_SIZE} bytes")
 
 
 if __name__ == "__main__":
