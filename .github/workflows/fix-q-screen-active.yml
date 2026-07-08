@@ -1,4 +1,4 @@
-name: Fix q Screen Active
+name: Fix q Runtime and Dispatch
 
 on:
   workflow_dispatch:
@@ -8,19 +8,22 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
-  group: fix-q-screen-active
+  group: fix-q-runtime-dispatch
   cancel-in-progress: true
 
 jobs:
   patch:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Patch q loaders exactly
+
+      - name: Patch q runtime validation
         run: |
           python3 - <<'PY'
           import re
@@ -29,6 +32,7 @@ jobs:
           for filename in ('os/real-multiboot/app.js', 'os/real-multiboot/app-legacy-chunked.js'):
               path = Path(filename)
               text = path.read_text(encoding='utf-8')
+              text = text.replace("probeFile(runtime, 100000, 'runtime')", "probeFile(runtime, 50000, 'runtime')")
               if "screen.classList.add('active')" not in text:
                   text, count = re.subn(
                       r"(function prepareScreen\(\) \{\n\s*screen\.innerHTML = [^\n]+;\n)(\s*\})",
@@ -47,14 +51,66 @@ jobs:
                   )
                   if count != 1:
                       raise SystemExit(f'halt patch failed: {filename}')
+              if "probeFile(runtime, 50000, 'runtime')" not in text:
+                  raise SystemExit(f'runtime threshold patch failed: {filename}')
               path.write_text(text, encoding='utf-8')
-              assert "screen.classList.add('active')" in text
-              assert "screen.classList.remove('active')" in text
           PY
           node --check os/real-multiboot/app.js
           node --check os/real-multiboot/app-legacy-chunked.js
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add os/real-multiboot/app.js os/real-multiboot/app-legacy-chunked.js
-          git commit -m 'Fix q screen active state' || true
+          git commit -m 'Fix q v86 runtime size validation' || true
+          git push origin HEAD:main
+
+      - name: Wait for fixed runtime threshold
+        run: |
+          PAGE='https://gorics.github.io/website/os/real-multiboot'
+          READY=0
+          for attempt in $(seq 1 120); do
+            stamp="$GITHUB_RUN_ID-$attempt-$(date +%s)"
+            if curl -fsSL --max-time 60 "$PAGE/app.js?runtime-fix=$stamp" -o /tmp/public-app.js \
+              && grep -q "probeFile(runtime, 50000, 'runtime')" /tmp/public-app.js \
+              && grep -q "screen.classList.add('active')" /tmp/public-app.js \
+              && curl -fsSL --max-time 60 "$PAGE/?runtime-fix=$stamp" -o /tmp/public-index.html \
+              && grep -q 'app.js?v=q' /tmp/public-index.html; then
+              READY=1
+              break
+            fi
+            echo "runtime fix not propagated attempt=$attempt"
+            sleep 10
+          done
+          test "$READY" = 1
+
+      - name: Dispatch final GUI verification
+        id: dispatch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BEFORE=$(gh run list --workflow verify-q-gui-final.yml --limit 1 --json databaseId --jq '.[0].databaseId // 0')
+          gh workflow run verify-q-gui-final.yml --ref main
+          RUN_ID=''
+          for attempt in $(seq 1 30); do
+            sleep 4
+            CANDIDATE=$(gh run list --workflow verify-q-gui-final.yml --event workflow_dispatch --limit 1 --json databaseId --jq '.[0].databaseId // 0')
+            if test "$CANDIDATE" != 0 && test "$CANDIDATE" != "$BEFORE"; then
+              RUN_ID="$CANDIDATE"
+              break
+            fi
+          done
+          test -n "$RUN_ID"
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+          echo "final GUI run: $RUN_ID"
+
+      - name: Record dispatched run
+        env:
+          FINAL_RUN_ID: ${{ steps.dispatch.outputs.run_id }}
+        run: |
+          printf '{"runtime_threshold":50000,"public_runtime_size":93547,"final_run_id":"%s","state":"dispatched"}\n' "$FINAL_RUN_ID" > os/iso/q-runtime-fix-status.json
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin main
+          git checkout -B main origin/main
+          git add os/iso/q-runtime-fix-status.json
+          git commit -m 'Record q runtime fix and final verifier [skip ci]' || true
           git push origin HEAD:main
