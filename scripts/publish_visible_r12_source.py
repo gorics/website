@@ -7,7 +7,7 @@ from pathlib import Path
 APP = Path("os/real-multiboot/app.js")
 INDEX = Path("os/real-multiboot/index.html")
 ASSET_NAME = "gorics-linux-gui-web-i386-r12.iso"
-BUILD = "20260708-r14-r12-visible-atomic"
+BUILD = "20260708-r12-visible-desktop"
 VERIFICATION = "mapped-window-pixel-variance-ready-atomic-v86-native-xhr-webkit-safe"
 
 app = APP.read_text(encoding="utf-8")
