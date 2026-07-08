@@ -1,4 +1,4 @@
-name: Migrate ISO Chunks to Assets Branch
+name: Repair v86 ISO Chunks and Verify GUI
 
 on:
   workflow_dispatch:
@@ -10,133 +10,259 @@ permissions:
   contents: write
 
 concurrency:
-  group: migrate-iso-chunks-to-assets-branch
+  group: repair-v86-iso-chunks
   cancel-in-progress: true
 
 jobs:
-  migrate:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
+  repair:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Verify os-assets branch chunk CORS and ISO records
+      - name: Rename os-assets chunks to the filename format v86 actually requests
         run: |
-          URL='https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/gorics-linux-gui-web-i386.iso-0-16777216'
-          CODE=$(curl -sS -L --max-time 120 -D /tmp/raw-headers.txt -r 32768-36863 -o /tmp/raw-probe.bin -w '%{http_code}' "$URL")
-          echo "raw chunk HTTP $CODE bytes=$(stat -c %s /tmp/raw-probe.bin)"
-          cat /tmp/raw-headers.txt
-          grep -qi '^access-control-allow-origin: \*' /tmp/raw-headers.txt
-          python3 - <<'PY'
-          from pathlib import Path
-          data = Path('/tmp/raw-probe.bin').read_bytes()
-          if len(data) > 4096:
-              data = data[32768:36864]
-          assert len(data) == 4096
-          assert data[1:6] == b'CD001'
-          assert data[2049:2054] == b'CD001'
-          assert b'EL TORITO' in data[2055:2087]
-          print('Raw GitHub chunk CORS, Range and ISO records verified')
-          PY
-
-      - name: Build source-safe q loader bundle
-        run: |
-          rm -rf /tmp/gorics-q
-          mkdir -p /tmp/gorics-q
-          cp os/real-multiboot/app.js /tmp/gorics-q/app.js
-          cp os/real-multiboot/app-legacy-chunked.js /tmp/gorics-q/app-legacy-chunked.js
-          cp os/real-multiboot/index.html /tmp/gorics-q/index.html
-          cp os/real-multiboot/assets/iso-meta.json /tmp/gorics-q/iso-meta.json
-          cp os/real-multiboot/assets/deployment.json /tmp/gorics-q/deployment.json
-          python3 - <<'PY'
-          import json, re
-          from pathlib import Path
-
-          root = Path('/tmp/gorics-q')
-          raw_root = 'https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/'
-          for filename in ('app.js', 'app-legacy-chunked.js'):
-              path = root / filename
-              text = path.read_text(encoding='utf-8')
-              text = text.replace(
-                  "const partsRoot = new URL('./assets/v86-parts/', location.href).href;",
-                  f"const partsRoot = '{raw_root}';",
-              )
-              text = text.replace('?v=p', '?v=q')
-              text = text.replace('legacy Pages chunked loader p', 'Legacy Pages external-chunk loader q')
-              text = text.replace('probing first same-origin ISO chunk', 'probing first CORS-enabled os-assets ISO chunk')
-              text = text.replace('(chunked)', '(external chunked)')
-              if raw_root not in text or 'use_parts: true' not in text:
-                  raise SystemExit(f'loader migration failed: {filename}')
-              path.write_text(text, encoding='utf-8')
-
-          index = root / 'index.html'
-          html = index.read_text(encoding='utf-8')
-          html = re.sub(r'([?&]v=)[A-Za-z0-9._-]+', r'\1q', html)
-          html = re.sub(r'(ISO page\. )[A-Za-z0-9._-]+', r'\1q', html)
-          if 'app.js?v=q' not in html or 'ISO page. q' not in html:
-              raise SystemExit('index migration failed')
-          index.write_text(html, encoding='utf-8')
-
-          meta_path = root / 'iso-meta.json'
-          meta = json.loads(meta_path.read_text(encoding='utf-8'))
-          meta.update({
-              'page_version': 'q',
-              'legacy_pages': True,
-              'chunked': True,
-              'chunk_source': 'raw-github-os-assets-branch',
-              'chunk_base_url': raw_root,
-          })
-          meta_path.write_text(json.dumps(meta, indent=2) + '\n', encoding='utf-8')
-
-          deployment_path = root / 'deployment.json'
-          deployment = json.loads(deployment_path.read_text(encoding='utf-8'))
-          deployment.update({
-              'version': 'q',
-              'mode': 'legacy-main-external-chunks',
-              'chunk_source': 'raw-github-os-assets-branch',
-              'chunk_base_url': raw_root,
-          })
-          deployment_path.write_text(json.dumps(deployment, indent=2) + '\n', encoding='utf-8')
-          PY
-          node --check /tmp/gorics-q/app.js
-          grep -q 'raw.githubusercontent.com/gorics/website/os-assets' /tmp/gorics-q/app.js
-          grep -q 'use_parts: true' /tmp/gorics-q/app.js
-          grep -q 'app.js?v=q' /tmp/gorics-q/index.html
-
-      - name: Apply q loader and remove chunks from main atomically
-        run: |
-          apply_bundle() {
-            git fetch origin main
-            git reset --hard origin/main
-            rm -rf os/real-multiboot/assets/v86-parts
-            cp /tmp/gorics-q/app.js os/real-multiboot/app.js
-            cp /tmp/gorics-q/app-legacy-chunked.js os/real-multiboot/app-legacy-chunked.js
-            cp /tmp/gorics-q/index.html os/real-multiboot/index.html
-            cp /tmp/gorics-q/iso-meta.json os/real-multiboot/assets/iso-meta.json
-            cp /tmp/gorics-q/deployment.json os/real-multiboot/assets/deployment.json
-            git add -A os/real-multiboot
-            git commit -m 'Move ISO chunks to os-assets branch and publish q loader'
-          }
+          set -euo pipefail
           git config user.name github-actions
           git config user.email github-actions@github.com
-          for attempt in 1 2 3 4 5 6; do
-            apply_bundle
+          git fetch origin os-assets
+          git switch --force-create os-assets origin/os-assets
+
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+
+          directory = Path('os/real-multiboot/assets/v86-parts')
+          old_pattern = re.compile(r'^gorics-linux-gui-web-i386\.iso-(\d+)-(\d+)$')
+          new_pattern = re.compile(r'^gorics-linux-gui-web-i386-(\d+)-(\d+)\.iso$')
+          renamed = 0
+
+          for source in sorted(directory.iterdir()):
+              match = old_pattern.match(source.name)
+              if not match:
+                  continue
+              destination = directory / f'gorics-linux-gui-web-i386-{match.group(1)}-{match.group(2)}.iso'
+              if destination.exists():
+                  if source.read_bytes() != destination.read_bytes():
+                      raise SystemExit(f'conflicting chunk: {source.name}')
+                  source.unlink()
+              else:
+                  source.rename(destination)
+              renamed += 1
+
+          chunks = []
+          for path in sorted(directory.iterdir()):
+              match = new_pattern.match(path.name)
+              if match:
+                  chunks.append((int(match.group(1)), int(match.group(2)), path))
+
+          chunk_size = 16 * 1024 * 1024
+          expected_count = 21
+          if len(chunks) != expected_count:
+              raise SystemExit(f'expected {expected_count} v86 chunks, found {len(chunks)}')
+          for index, (start, end, path) in enumerate(chunks):
+              expected_start = index * chunk_size
+              expected_end = expected_start + chunk_size
+              if (start, end) != (expected_start, expected_end):
+                  raise SystemExit(f'non-contiguous chunk {path.name}')
+              if path.stat().st_size != chunk_size:
+                  raise SystemExit(f'invalid padded chunk size {path.name}: {path.stat().st_size}')
+
+          old_files = [p.name for p in directory.iterdir() if old_pattern.match(p.name)]
+          if old_files:
+              raise SystemExit(f'old chunk names remain: {old_files[:3]}')
+
+          print(f'renamed={renamed} verified={len(chunks)} first={chunks[0][2].name} last={chunks[-1][2].name}')
+          PY
+
+          git add -A os/real-multiboot/assets/v86-parts
+          if ! git diff --cached --quiet; then
+            git commit -m 'Rename ISO chunks to v86 part URL convention'
+            git push --force-with-lease origin HEAD:os-assets
+          else
+            echo 'os-assets chunk names already repaired'
+          fi
+
+      - name: Verify all 21 raw GitHub chunk URLs
+        run: |
+          set -euo pipefail
+          ROOT='https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts'
+          CHUNK=$((16 * 1024 * 1024))
+          for index in $(seq 0 20); do
+            start=$((index * CHUNK))
+            end=$((start + CHUNK))
+            name="gorics-linux-gui-web-i386-${start}-${end}.iso"
+            ok=0
+            for attempt in $(seq 1 30); do
+              stamp="${GITHUB_RUN_ID}-${index}-${attempt}-$(date +%s)"
+              code=$(curl -sS -L --max-time 90 -r 0-15 -o /tmp/chunk.bin -w '%{http_code}' "$ROOT/$name?repair=$stamp" || true)
+              bytes=$(stat -c %s /tmp/chunk.bin 2>/dev/null || echo 0)
+              if { test "$code" = 206 || test "$code" = 200; } && test "$bytes" -ge 16; then
+                echo "verified $name HTTP=$code bytes=$bytes"
+                ok=1
+                break
+              fi
+              echo "waiting for $name attempt=$attempt HTTP=$code bytes=$bytes"
+              sleep 5
+            done
+            test "$ok" = 1
+          done
+
+      - name: Publish cache-busted r loader with correct preflight URLs
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git switch --force-create main origin/main
+
+          python3 - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          loader_paths = [
+              Path('os/real-multiboot/app.js'),
+              Path('os/real-multiboot/app-legacy-chunked.js'),
+          ]
+          helper = """  function partUrl(start, end) {
+            const slash = isoBase.lastIndexOf('/');
+            const dot = isoBase.lastIndexOf('.');
+            return dot > slash
+              ? `${isoBase.slice(0, dot)}-${start}-${end}${isoBase.slice(dot)}`
+              : `${isoBase}-${start}-${end}`;
+          }
+
+"""
+          for path in loader_paths:
+              text = path.read_text(encoding='utf-8')
+              if 'function partUrl(start, end)' not in text:
+                  marker = '  async function verifyFirstPart() {\n'
+                  if marker not in text:
+                      raise SystemExit(f'verifyFirstPart marker missing in {path}')
+                  text = text.replace(marker, helper + marker, 1)
+              text = text.replace("const firstPart = `${isoBase}-0-${chunkSize}`;", "const firstPart = partUrl(0, chunkSize);")
+              text = text.replace("`${runtime}?v=q`", "`${runtime}?v=r`")
+              text = text.replace("`${metaUrl}?v=q`", "`${metaUrl}?v=r`")
+              text = text.replace("`${firstPart}?v=q`", "`${firstPart}?v=r`")
+              text = text.replace(
+                  "await Promise.all([verifyFirstPart(), verifyBootFiles()]);",
+                  "await Promise.all([verifyFirstPart(), verifyLastPart(meta), verifyBootFiles()]);",
+              )
+              if 'async function verifyLastPart(meta)' not in text:
+                  marker = '  async function verifyBootFiles() {\n'
+                  addition = """  async function verifyLastPart(meta) {
+            const start = (meta.parts - 1) * chunkSize;
+            const end = start + chunkSize;
+            const lastPart = partUrl(start, end);
+            log(`probing final v86 ISO chunk ${lastPart.split('/').pop()}`);
+            const response = await fetch(`${lastPart}?v=r`, {
+              cache: 'no-store',
+              headers: { Range: 'bytes=0-15' },
+            });
+            const bytes = new Uint8Array(await response.arrayBuffer());
+            if (response.status !== 206 && response.status !== 200) throw new Error(`final ISO chunk HTTP ${response.status}`);
+            if (bytes.length < 16) throw new Error(`final ISO chunk too small ${bytes.length}`);
+            log(`final ISO chunk HTTP ${response.status} verified`);
+          }
+
+"""
+                  if marker not in text:
+                      raise SystemExit(f'verifyBootFiles marker missing in {path}')
+                  text = text.replace(marker, addition + marker, 1)
+              if 'const firstPart = partUrl(0, chunkSize);' not in text:
+                  raise SystemExit(f'part URL repair missing in {path}')
+              if 'verifyLastPart(meta)' not in text:
+                  raise SystemExit(f'last-part preflight missing in {path}')
+              path.write_text(text, encoding='utf-8')
+
+          index = Path('os/real-multiboot/index.html')
+          html = index.read_text(encoding='utf-8')
+          html = re.sub(r'(?<=styles\.css\?v=)[A-Za-z0-9._-]+', 'r', html)
+          html = re.sub(r'(?<=app\.js\?v=)[A-Za-z0-9._-]+', 'r', html)
+          html = re.sub(r'(?<=ISO page\. )[A-Za-z0-9._-]+', 'r', html)
+          index.write_text(html, encoding='utf-8')
+
+          for filename in ('iso-meta.json', 'deployment.json'):
+              path = Path('os/real-multiboot/assets') / filename
+              data = json.loads(path.read_text(encoding='utf-8'))
+              if filename == 'iso-meta.json':
+                  data['page_version'] = 'r'
+                  data['chunk_filename_format'] = 'gorics-linux-gui-web-i386-{start}-{end}.iso'
+              else:
+                  data['version'] = 'r'
+                  data['mode'] = 'legacy-main-external-v86-named-chunks'
+              path.write_text(json.dumps(data, indent=2) + '\n', encoding='utf-8')
+
+          verifier = Path('.github/workflows/verify-q-gui-final.yml')
+          text = verifier.read_text(encoding='utf-8')
+          text = text.replace("- '.github/workflows/verify-q-gui-final.yml'", "- '.github/workflows/verify-q-gui-final.yml'\n      - 'os/real-multiboot/app.js'\n      - 'os/real-multiboot/index.html'")
+          text = text.replace('app.js?v=q', 'app.js?v=r')
+          text = text.replace('ISO page. q', 'ISO page. r')
+          text = text.replace("assert m['page_version']=='q'", "assert m['page_version']=='r'")
+          text = text.replace("version:'q'", "version:'r'")
+          text = text.replace('fixed q', 'fixed r')
+          text = text.replace('public q Linux GUI', 'public r Linux GUI')
+          text = text.replace('?final-q=', '?final-r=')
+          verifier.write_text(text, encoding='utf-8')
+          PY
+
+          node --check os/real-multiboot/app.js
+          node --check os/real-multiboot/app-legacy-chunked.js
+          grep -q 'app.js?v=r' os/real-multiboot/index.html
+          grep -q 'ISO page. r' os/real-multiboot/index.html
+          grep -q 'function partUrl(start, end)' os/real-multiboot/app.js
+          grep -q 'verifyLastPart(meta)' os/real-multiboot/app.js
+          grep -q "page_version.*r" os/real-multiboot/assets/iso-meta.json
+
+          git add \
+            os/real-multiboot/app.js \
+            os/real-multiboot/app-legacy-chunked.js \
+            os/real-multiboot/index.html \
+            os/real-multiboot/assets/iso-meta.json \
+            os/real-multiboot/assets/deployment.json \
+            .github/workflows/verify-q-gui-final.yml
+          git commit -m 'Use v86-compatible external ISO chunk names'
+
+          for attempt in $(seq 1 12); do
             if git push origin HEAD:main; then
-              echo "q loader pushed on attempt $attempt"
+              echo "r loader published on attempt $attempt"
               exit 0
             fi
-            echo "main moved; reapplying q bundle attempt=$attempt"
-            sleep $((attempt * 5))
+            echo "main moved; rebuilding repaired loader commit attempt=$attempt"
+            git fetch origin main
+            git rebase origin/main || {
+              git rebase --abort || true
+              exit 1
+            }
+            sleep $((attempt * 3))
           done
           exit 1
 
-      - name: Confirm main no longer carries ISO chunks
+      - name: Confirm public r loader and both edge chunks
         run: |
-          git fetch origin main
-          git reset --hard origin/main
-          test ! -d os/real-multiboot/assets/v86-parts
-          grep -q 'app.js?v=q' os/real-multiboot/index.html
-          grep -q 'raw.githubusercontent.com/gorics/website/os-assets' os/real-multiboot/app.js
-          du -sh .
+          set -euo pipefail
+          PAGE='https://gorics.github.io/website/os/real-multiboot'
+          RAW='https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts'
+          READY=0
+          for attempt in $(seq 1 120); do
+            stamp="${GITHUB_RUN_ID}-${attempt}-$(date +%s)"
+            if curl -fsSL --max-time 60 "$PAGE/?r=$stamp" -o /tmp/index.html \
+              && grep -q 'app.js?v=r' /tmp/index.html \
+              && grep -q 'ISO page. r' /tmp/index.html \
+              && curl -fsSL --max-time 60 "$PAGE/app.js?r=$stamp" -o /tmp/app.js \
+              && grep -q 'function partUrl(start, end)' /tmp/app.js \
+              && grep -q 'verifyLastPart(meta)' /tmp/app.js \
+              && curl -fsSL --max-time 60 "$PAGE/assets/iso-meta.json?r=$stamp" -o /tmp/meta.json \
+              && grep -q 'chunk_filename_format' /tmp/meta.json \
+              && curl -fsSL -L --max-time 90 -r 0-15 "$RAW/gorics-linux-gui-web-i386-0-16777216.iso?r=$stamp" -o /tmp/first.bin \
+              && curl -fsSL -L --max-time 90 -r 0-15 "$RAW/gorics-linux-gui-web-i386-335544320-352321536.iso?r=$stamp" -o /tmp/last.bin; then
+              READY=1
+              break
+            fi
+            echo "public r loader not ready attempt=$attempt"
+            sleep 10
+          done
+          test "$READY" = 1
+          node --check /tmp/app.js
+          echo 'Public r loader and v86-named edge chunks verified.'
