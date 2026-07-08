@@ -16,51 +16,86 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 40
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Wait for resilient public files
+      - name: Wait for direct i386 public files
+        id: public
+        continue-on-error: true
         run: |
-          BASE='https://gorics.github.io/website/os/real-multiboot'
+          BASE='https://gorics.github.io/website'
+          PAGE="$BASE/os/real-multiboot"
           READY=0
           for attempt in $(seq 1 60); do
-            stamp="$GITHUB_RUN_ID-$attempt"
-            if curl -fsSL --max-time 30 "$BASE/?verify=$stamp" -o /tmp/index.html \
-              && grep -q '20260708r1' /tmp/index.html \
-              && grep -q 'service worker control confirmed' /tmp/index.html \
-              && curl -fsSL --max-time 30 "$BASE/app.js?verify=$stamp" -o /tmp/app.js \
-              && grep -q 'resilient release-chunk boot loader' /tmp/app.js \
-              && curl -fsSL --max-time 30 "$BASE/sw.js?verify=$stamp" -o /tmp/sw.js \
-              && grep -q 'gorics-v86-runtime-20260708r1' /tmp/sw.js; then
+            stamp="$GITHUB_RUN_ID-$attempt-$(date +%s)"
+            if curl -fsSL --max-time 30 "$PAGE/?verify=$stamp" -o /tmp/index.html \
+              && grep -q 'app.js?v=n' /tmp/index.html \
+              && curl -fsSL --max-time 30 "$PAGE/app.js?verify=$stamp" -o /tmp/app.js \
+              && grep -q 'bzimage: { url: kernelUrl }' /tmp/app.js \
+              && grep -q 'gorics-linux-gui-web-i386.iso' /tmp/app.js \
+              && curl -fsSL --max-time 30 "$PAGE/assets/iso-meta.json?verify=$stamp" -o /tmp/meta.json \
+              && grep -q 'direct-xorg-openbox' /tmp/meta.json \
+              && curl -fsSL --max-time 30 "$BASE/vendor/v86/libv86.js?verify=$stamp" -o /tmp/libv86.js \
+              && test "$(stat -c %s /tmp/libv86.js)" -gt 100000 \
+              && curl -fsSL --max-time 60 "$PAGE/assets/vmlinuz?verify=$stamp" -o /tmp/vmlinuz \
+              && test "$(stat -c %s /tmp/vmlinuz)" -gt 1000000 \
+              && curl -fsSL --max-time 60 "$PAGE/assets/initrd.img?verify=$stamp" -o /tmp/initrd.img \
+              && test "$(stat -c %s /tmp/initrd.img)" -gt 10000000; then
               READY=1
               break
             fi
-            echo "public files not ready, attempt $attempt"
+            echo "direct i386 files not ready, attempt $attempt"
             sleep 10
           done
           test "$READY" = 1
           node --check /tmp/app.js
-          node --check /tmp/sw.js
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          meta = json.loads(Path('/tmp/meta.json').read_text())
+          assert meta['name'] == 'gorics-linux-gui-web-i386.iso'
+          assert meta['architecture'] == 'i386'
+          assert meta['desktop'] == 'direct-xorg-openbox'
+          assert meta.get('direct_boot') is True
+          assert meta['size'] > 0
+          assert meta['kernel']['size'] > 1_000_000
+          assert meta['initrd']['size'] > 10_000_000
+          print(json.dumps(meta, indent=2))
+          PY
+          CODE=$(curl -sS --max-time 90 -r 32768-36863 -o /tmp/iso-probe.bin -w '%{http_code}' "$PAGE/assets/gorics-linux-gui-web-i386.iso?verify=$GITHUB_RUN_ID")
+          test "$CODE" = 206
+          test "$(stat -c %s /tmp/iso-probe.bin)" = 4096
+          python3 - <<'PY'
+          from pathlib import Path
+          data = Path('/tmp/iso-probe.bin').read_bytes()
+          assert data[1:6] == b'CD001'
+          assert data[2049:2054] == b'CD001'
+          assert b'EL TORITO' in data[2055:2087]
+          print('public ISO9660 and El Torito verified')
+          PY
 
       - name: Setup Node
+        if: steps.public.outcome == 'success'
         uses: actions/setup-node@v4
         with:
           node-version: '22'
 
       - name: Install Chromium verifier
+        if: steps.public.outcome == 'success'
         run: |
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
 
       - name: Boot ISO and verify graphical screen
+        if: steps.public.outcome == 'success'
         id: browser
         continue-on-error: true
         env:
-          VERIFY_URL: https://gorics.github.io/website/os/real-multiboot/?browser=${{ github.run_id }}
+          VERIFY_URL: https://gorics.github.io/website/os/real-multiboot/?browser=${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           cat > /tmp/verify.mjs <<'JS'
           import { chromium } from 'playwright';
@@ -68,48 +103,71 @@ jobs:
 
           const result = {
             success: false,
+            architecture: 'i386',
+            desktop: 'direct-xorg-openbox',
+            boot_mode: 'direct-kernel-initrd-plus-iso',
             run_id: process.env.GITHUB_RUN_ID,
             url: process.env.VERIFY_URL,
             started_at: new Date().toISOString(),
             console: [],
+            failed_requests: [],
           };
           let browser;
+          let page;
           try {
-            browser = await chromium.launch({ headless: true, args: ['--disable-dev-shm-usage'] });
-            const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+            browser = await chromium.launch({
+              headless: true,
+              args: ['--disable-dev-shm-usage', '--no-sandbox'],
+            });
+            page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+            page.setDefaultTimeout(120000);
             page.on('console', message => result.console.push(`${message.type()}: ${message.text()}`));
             page.on('pageerror', error => result.console.push(`pageerror: ${error.message}`));
+            page.on('requestfailed', request => result.failed_requests.push({
+              url: request.url(),
+              error: request.failure()?.errorText || 'unknown',
+            }));
+
             await page.goto(process.env.VERIFY_URL, { waitUntil: 'domcontentloaded', timeout: 120000 });
-            await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('service worker control confirmed'), null, { timeout: 90000 });
+            await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('ready: keyboard, touch and pointer bridge installed'));
             await page.click('#boot-btn');
-            await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('ISO manifest size='), null, { timeout: 180000 });
-            await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('runtime ready'), null, { timeout: 180000 });
+
+            await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('ISO9660 and El Torito verified'), null, { timeout: 240000 });
+            await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('runtime loaded'), null, { timeout: 240000 });
             await page.waitForFunction(() => document.querySelector('#log')?.textContent.includes('emulator-started'), null, { timeout: 600000 });
             await page.waitForFunction(() => {
               const canvas = document.querySelector('#screen canvas');
               return canvas && canvas.width >= 320 && canvas.height >= 200 && getComputedStyle(canvas).display !== 'none';
-            }, null, { timeout: 720000 });
+            }, null, { timeout: 900000 });
+
+            await page.waitForTimeout(15000);
             const details = await page.evaluate(() => {
               const canvas = document.querySelector('#screen canvas');
               const log = document.querySelector('#log')?.textContent || '';
+              const textScreen = document.querySelector('#screen > div');
               return {
                 canvas_width: canvas?.width || 0,
                 canvas_height: canvas?.height || 0,
                 canvas_display: canvas ? getComputedStyle(canvas).display : 'missing',
-                log_tail: log.split('\n').slice(-80),
+                text_display: textScreen ? getComputedStyle(textScreen).display : 'missing',
+                screen_active: document.querySelector('#screen')?.classList.contains('active') || false,
+                boot_button_text: document.querySelector('#boot-btn')?.textContent || '',
+                log_tail: log.split('\n').slice(-120),
               };
             });
-            Object.assign(result, details, { success: true, completed_at: new Date().toISOString() });
+            Object.assign(result, details, {
+              success: details.screen_active && details.canvas_width >= 320 && details.canvas_height >= 200 && details.canvas_display !== 'none',
+              completed_at: new Date().toISOString(),
+            });
             await page.screenshot({ path: '/tmp/real-multiboot-proof.png', fullPage: true });
           } catch (error) {
             result.error = error?.stack || String(error);
             result.completed_at = new Date().toISOString();
             try {
-              const pages = browser?.contexts()?.flatMap(context => context.pages()) || [];
-              const page = pages[0];
               if (page) {
                 const log = await page.locator('#log').textContent().catch(() => '');
-                result.log_tail = (log || '').split('\n').slice(-120);
+                result.log_tail = (log || '').split('\n').slice(-160);
+                result.page_url = page.url();
                 await page.screenshot({ path: '/tmp/real-multiboot-proof.png', fullPage: true }).catch(() => {});
               }
             } catch {}
@@ -121,6 +179,13 @@ jobs:
           JS
           node /tmp/verify.mjs
 
+      - name: Create fallback result
+        if: always()
+        run: |
+          if test ! -s /tmp/real-multiboot-verification.json; then
+            printf '{"success":false,"run_id":"%s","architecture":"i386","desktop":"direct-xorg-openbox","public_files_outcome":"%s","error":"browser verification did not run or produce a result"}\n' "$GITHUB_RUN_ID" "${{ steps.public.outcome }}" > /tmp/real-multiboot-verification.json
+          fi
+
       - name: Upload proof
         if: always()
         uses: actions/upload-artifact@v4
@@ -129,14 +194,14 @@ jobs:
           path: |
             /tmp/real-multiboot-verification.json
             /tmp/real-multiboot-proof.png
+            /tmp/index.html
+            /tmp/app.js
+            /tmp/meta.json
           if-no-files-found: warn
 
       - name: Record verification result
         if: always()
         run: |
-          if test ! -s /tmp/real-multiboot-verification.json; then
-            printf '{"success":false,"run_id":"%s","error":"verification did not produce a result"}\n' "$GITHUB_RUN_ID" > /tmp/real-multiboot-verification.json
-          fi
           git config user.name github-actions
           git config user.email github-actions@github.com
           git fetch origin main
