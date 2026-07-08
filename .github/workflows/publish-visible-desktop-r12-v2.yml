@@ -59,6 +59,8 @@ jobs:
             /tmp/gorics-r12/release/gorics-linux-gui-web-i386.iso \
             /tmp/gorics-r12/bundle
           test "$(find /tmp/gorics-r12/bundle/v86-parts -type f | wc -l)" -gt 10
+          test -s /tmp/gorics-r12/bundle/v86-parts/gorics-linux-gui-web-i386-r12-0-16777216.iso
+          python3 scripts/verify_iso_boot_chunk.py /tmp/gorics-r12/bundle/v86-parts/gorics-linux-gui-web-i386-r12-0-16777216.iso
           if find /tmp/gorics-r12/bundle/v86-parts -type f -size +95M | grep -q .; then
             echo 'unsafe chunk size' >&2
             exit 1
@@ -72,7 +74,7 @@ jobs:
           git worktree add -B os-assets /tmp/gorics-os-assets origin/os-assets
           cd /tmp/gorics-os-assets
           mkdir -p os/real-multiboot/assets/v86-parts
-          find os/real-multiboot/assets/v86-parts -maxdepth 1 -type f -name 'gorics-linux-gui-web-i386-r12.iso-*' -delete
+          find os/real-multiboot/assets/v86-parts -maxdepth 1 -type f -name 'gorics-linux-gui-web-i386-r12-*.iso' -delete
           cp -a /tmp/gorics-r12/bundle/v86-parts/. os/real-multiboot/assets/v86-parts/
           git config user.name github-actions
           git config user.email github-actions@github.com
