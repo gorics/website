@@ -24,6 +24,7 @@ jobs:
         run: |
           set -euo pipefail
           RUN_ID=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow static.yml --status failure --limit 1 --json databaseId --jq '.[0].databaseId')
+          export RUN_ID
           test -n "$RUN_ID"
           set +e
           gh run view "$RUN_ID" --repo "$GITHUB_REPOSITORY" --log-failed > /tmp/static-pages-failed.log 2>&1
