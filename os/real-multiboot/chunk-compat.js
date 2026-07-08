@@ -1,11 +1,14 @@
 (() => {
   'use strict';
 
-  const root = 'https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/';
+  const rawRoot = 'https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/';
+  const cdnRoot = 'https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/';
   const stem = 'gorics-linux-gui-web-i386';
-  const legacyBase = `${stem}.iso`;
+  const publishedBase = `${stem}.iso`;
   const originalOpen = XMLHttpRequest.prototype.open;
+  const originalFetch = globalThis.fetch.bind(globalThis);
   let rewrites = 0;
+  let fallbacks = 0;
 
   function pageLog(message) {
     const line = `[${new Date().toISOString()}] ${message}`;
@@ -17,34 +20,59 @@
     console.log('[GORICS CHUNK]', message);
   }
 
-  function rewrite(url) {
+  function parseAsset(url) {
     let parsed;
     try {
       parsed = new URL(String(url), location.href);
     } catch {
-      return url;
+      return null;
     }
 
-    if (!parsed.href.startsWith(root)) return url;
+    const href = parsed.href;
+    let sourceRoot = null;
+    if (href.startsWith(rawRoot)) sourceRoot = rawRoot;
+    if (href.startsWith(cdnRoot)) sourceRoot = cdnRoot;
+    if (!sourceRoot) return null;
 
     const filename = decodeURIComponent(parsed.pathname.split('/').pop() || '');
     const patterns = [
       new RegExp(`^${stem}-(\\d+)-(\\d+)\\.iso$`),
       new RegExp(`^${stem}\\.iso-(\\d+)-(\\d+)\\.iso$`),
+      new RegExp(`^${stem}\\.iso-(\\d+)-(\\d+)$`),
     ];
 
     for (const pattern of patterns) {
       const match = filename.match(pattern);
       if (!match) continue;
-      const target = `${root}${legacyBase}-${match[1]}-${match[2]}`;
-      rewrites += 1;
-      if (rewrites <= 10 || match[1] === '335544320') {
-        pageLog(`v86 chunk URL rewrite ${filename} -> ${target.split('/').pop()}`);
-      }
-      return target;
+      return {
+        start: match[1],
+        end: match[2],
+        search: parsed.search,
+        publishedName: `${publishedBase}-${match[1]}-${match[2]}`,
+      };
     }
 
-    return url;
+    return null;
+  }
+
+  function assetUrl(asset, root) {
+    return `${root}${asset.publishedName}${asset.search || ''}`;
+  }
+
+  function primaryUrl(url) {
+    const asset = parseAsset(url);
+    if (!asset) return url;
+    const target = assetUrl(asset, cdnRoot);
+    rewrites += 1;
+    if (rewrites <= 12 || asset.start === '335544320') {
+      pageLog(`ISO chunk routed to CDN ${asset.publishedName}`);
+    }
+    return target;
+  }
+
+  function fallbackUrl(url) {
+    const asset = parseAsset(url);
+    return asset ? assetUrl(asset, rawRoot) : url;
   }
 
   if (!XMLHttpRequest.prototype.__goricsChunkCompat) {
@@ -56,9 +84,43 @@
     });
 
     XMLHttpRequest.prototype.open = function(method, url, ...rest) {
-      return originalOpen.call(this, method, rewrite(url), ...rest);
+      return originalOpen.call(this, method, primaryUrl(url), ...rest);
     };
-
-    pageLog('v86 ISO chunk compatibility bridge installed');
   }
+
+  if (!globalThis.__goricsChunkFetchCompat) {
+    Object.defineProperty(globalThis, '__goricsChunkFetchCompat', {
+      value: true,
+      configurable: false,
+      enumerable: false,
+      writable: false,
+    });
+
+    globalThis.fetch = async function(input, init) {
+      const originalUrl = input instanceof Request ? input.url : String(input);
+      const asset = parseAsset(originalUrl);
+      if (!asset) return originalFetch(input, init);
+
+      const primary = assetUrl(asset, cdnRoot);
+      const fallback = assetUrl(asset, rawRoot);
+      const requestInit = input instanceof Request ? undefined : init;
+      const primaryInput = input instanceof Request ? new Request(primary, input) : primary;
+
+      try {
+        const response = await originalFetch(primaryInput, requestInit);
+        if (response.ok || (response.status >= 200 && response.status < 400)) return response;
+        if (response.status !== 429 && response.status < 500) return response;
+        fallbacks += 1;
+        pageLog(`CDN chunk HTTP ${response.status}; raw fallback ${asset.publishedName}`);
+      } catch (error) {
+        fallbacks += 1;
+        pageLog(`CDN chunk fetch failed; raw fallback ${asset.publishedName}: ${error?.message || error}`);
+      }
+
+      const fallbackInput = input instanceof Request ? new Request(fallback, input) : fallback;
+      return originalFetch(fallbackInput, requestInit);
+    };
+  }
+
+  pageLog('ISO chunk CDN router installed (jsDelivr primary, raw GitHub fallback)');
 })();
