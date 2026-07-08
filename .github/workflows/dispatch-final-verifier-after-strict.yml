@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     steps:
-      - name: Wait for strict public app
+      - name: Wait for strict public app with Buildroot shell readiness
         run: |
           set -euo pipefail
           URL='https://gorics.github.io/website/os/real-multiboot/app.js'
@@ -30,12 +30,13 @@ jobs:
               && grep -q 'readiness=strict' /tmp/public-strict-app.js \
               && grep -q "presetKey === 'dsl'" /tmp/public-strict-app.js \
               && grep -q 'Welcome to Buildroot' /tmp/public-strict-app.js \
+              && grep -q 'Files send via emulator appear in' /tmp/public-strict-app.js \
               && grep -q 'Welcome to FreeDOS' /tmp/public-strict-app.js; then
               ready=1
-              echo "strict readiness deployment detected attempt=$attempt"
+              echo "Buildroot shell readiness deployment detected attempt=$attempt"
               break
             fi
-            echo "waiting for strict readiness deployment attempt=$attempt"
+            echo "waiting for Buildroot shell readiness deployment attempt=$attempt"
             sleep 10
           done
           test "$ready" = 1
@@ -47,4 +48,4 @@ jobs:
         run: |
           set -euo pipefail
           gh workflow run verify-final-all-multiboot-presets.yml --repo "$GITHUB_REPOSITORY" --ref main
-          echo 'Final seven-preset verifier dispatched after strict deployment.'
+          echo 'Final seven-preset verifier dispatched after Buildroot shell readiness deployment.'
