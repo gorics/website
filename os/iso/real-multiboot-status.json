@@ -1,8 +1,19 @@
 {
-  "success": false,
-  "state": "no-result",
-  "version": "r3z",
-  "run_id": "28914889748",
-  "job_status": "failure",
-  "workflow_sha": "d1669588232f35283e1e8b4bd7aad891f6616e54"
+  "success": true,
+  "state": "completed",
+  "version": "r4x",
+  "run_id": "28915211549",
+  "target": "https://gorics.github.io/website/os/real-multiboot/?r4x-proof=28915211549-1",
+  "emulator_started": true,
+  "xorg_ready": true,
+  "gui_ready": true,
+  "graphical_canvas": true,
+  "screen_sizes": [
+    "[80,256,0]",
+    "[80,16,0]",
+    "[80,25,0]",
+    "[1024,768,32]"
+  ],
+  "main_page_integration": true,
+  "verified_at": "2026-07-08T03:31:42Z"
 }
