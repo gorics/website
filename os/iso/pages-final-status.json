@@ -1,1 +1,59 @@
-{"state":"failure","pages_run_id":"28911193274","error":"final probe did not produce status"}
+{
+  "state": "success",
+  "pages_run_id": "28916521464",
+  "attempts": [
+    {
+      "attempt": 1,
+      "codes": {
+        "index": "200",
+        "app": "200",
+        "meta": "200",
+        "runtime": "200",
+        "kernel": "200",
+        "initrd": "200",
+        "iso": "206"
+      },
+      "sizes": {
+        "index": 5194,
+        "app": 32895,
+        "meta": 787,
+        "runtime": 353762,
+        "kernel": 5756864,
+        "initrd": 30724840,
+        "iso": 4096
+      },
+      "checks": {
+        "index_n": true,
+        "app_i386": true,
+        "app_direct": true,
+        "meta_openbox": true,
+        "meta_chunked": true,
+        "runtime": true,
+        "kernel": true,
+        "initrd": true,
+        "iso_range": true
+      },
+      "errors": {
+        "index": "",
+        "app": "",
+        "meta": "",
+        "runtime": "",
+        "kernel": "",
+        "initrd": "",
+        "iso": ""
+      }
+    }
+  ],
+  "checks": {
+    "index_n": true,
+    "app_i386": true,
+    "app_direct": true,
+    "meta_openbox": true,
+    "meta_chunked": true,
+    "runtime": true,
+    "kernel": true,
+    "initrd": true,
+    "iso_range": true
+  },
+  "completed_attempt": 1
+}
