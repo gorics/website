@@ -7,6 +7,7 @@ on:
       - '.github/workflows/diagnose-and-apply-visible-desktop.yml'
       - 'scripts/patch_gorics_visible_desktop.py'
       - 'scripts/patch_gorics_visible_desktop_v2.py'
+      - 'scripts/fix_visible_desktop_escaping.py'
 
 permissions:
   contents: write
@@ -31,7 +32,10 @@ jobs:
         continue-on-error: true
         run: |
           set +e
-          python3 scripts/patch_gorics_visible_desktop_v2.py > /tmp/visible-patch.log 2>&1
+          {
+            python3 scripts/patch_gorics_visible_desktop_v2.py
+            python3 scripts/fix_visible_desktop_escaping.py
+          } > /tmp/visible-patch.log 2>&1
           code=$?
           set -e
           cat /tmp/visible-patch.log
@@ -41,6 +45,11 @@ jobs:
             grep -q 'GORICS_VISIBLE_WINDOW_READY' os/iso/build-gorics-web-iso.sh
             grep -q 'GORICS Control Center' os/iso/build-gorics-web-iso.sh
             grep -q 'panel_background_id = 0' os/iso/build-gorics-web-iso.sh
+            test "$(grep -c '^ExecStart=/bin/sh -c.*GORICS_VISIBLE_WINDOW_READY' os/iso/build-gorics-web-iso.sh)" = 1
+            if grep -n '^GORICS_TINT2_READY$' os/iso/build-gorics-web-iso.sh; then
+              echo 'readiness marker escaped onto a physical line' >&2
+              exit 1
+            fi
             git diff --check
           fi
           exit "$code"
