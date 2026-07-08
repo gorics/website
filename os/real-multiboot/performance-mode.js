@@ -15,6 +15,8 @@
   const logBox = document.querySelector('#log');
   const responseCache = new Map();
   const nativeFetch = globalThis.fetch?.bind(globalThis);
+  const nativeSetInterval = globalThis.setInterval.bind(globalThis);
+  const nativeClearInterval = globalThis.clearInterval.bind(globalThis);
 
   document.documentElement.classList.add('gorics-performance-mode', `gorics-profile-${profile}`);
 
@@ -144,7 +146,6 @@
     else deferredCleanup();
   }, 30000);
 
-  const nativeSetInterval = globalThis.setInterval.bind(globalThis);
   globalThis.setInterval = (callback, delay, ...args) => {
     let nextDelay = Number(delay) || 0;
     const source = typeof callback === 'function' ? Function.prototype.toString.call(callback) : '';
@@ -199,6 +200,22 @@
     return GoricsOptimizedV86;
   };
 
+  function installConstructor(name, value) {
+    if (typeof value !== 'function') return false;
+    const wrapped = wrapConstructor(value);
+    if (wrapped === value && value.__goricsOptimized) return true;
+    try {
+      globalThis[name] = wrapped;
+      if (globalThis[name]?.__goricsOptimized) return true;
+    } catch {}
+    try {
+      Object.defineProperty(globalThis, name, { configurable: true, writable: true, value: wrapped });
+      return Boolean(globalThis[name]?.__goricsOptimized);
+    } catch {
+      return false;
+    }
+  }
+
   for (const name of ['V86', 'V86Starter']) {
     let current = globalThis[name];
     if (current) current = wrapConstructor(current);
@@ -210,6 +227,22 @@
       });
     } catch {}
   }
+
+  // libv86 declares its globals while loading and may replace the accessors
+  // above. Poll faster than app.js's 60 ms post-load delay so the constructor
+  // is always re-wrapped before the VM is instantiated.
+  let constructorPollCount = 0;
+  const constructorPoll = nativeSetInterval(() => {
+    constructorPollCount += 1;
+    let installed = false;
+    for (const name of ['V86', 'V86Starter']) {
+      const candidate = globalThis[name];
+      if (typeof candidate === 'function') installed = installConstructor(name, candidate) || installed;
+    }
+    if ((installed && constructorPollCount >= 20) || constructorPollCount >= 2000) {
+      nativeClearInterval(constructorPoll);
+    }
+  }, 10);
 
   const screen = document.querySelector('#screen');
   if (screen) {
@@ -225,7 +258,6 @@
       '/website/os/real-multiboot/assets/vmlinuz',
       '/website/os/real-multiboot/assets/initrd.img',
       '/website/vendor/v86/libv86.js',
-      '/website/vendor/v86/v86.wasm',
       '/website/vendor/v86/seabios.bin',
       '/website/vendor/v86/vgabios.bin',
     ].map((url) => `${url}?v=${encodeURIComponent(version)}`);
@@ -259,6 +291,7 @@
     preflightCache: true,
     isoProbeWarm: true,
     bootCleanupDeferred: true,
+    constructorPoll: true,
     cachedPreflights: () => responseCache.size,
   });
 
