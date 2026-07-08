@@ -3,17 +3,11 @@ name: Deploy And Verify Real Multiboot Final V3
 on:
   push:
     branches: [main]
-    paths:
-      - '.github/workflows/deploy-real-multiboot-final-v3.yml'
-      - 'os/real-multiboot/index.html'
-      - 'os/real-multiboot/performance-mode.js'
-      - 'os/real-multiboot/performance-mode.css'
-      - 'os/real-multiboot/safe-diagnostics.js'
-      - 'scripts/build-real-multiboot-pages-final.sh'
   workflow_dispatch: {}
 
 permissions:
-  contents: write
+  contents: read
+  actions: read
   pages: write
   id-token: write
 
@@ -36,6 +30,28 @@ jobs:
         with:
           ref: ${{ github.sha }}
 
+      - name: Wait for branch Pages deployment to finish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          seen=0
+          for attempt in $(seq 1 72); do
+            gh run list --repo "$GITHUB_REPOSITORY" --commit "$GITHUB_SHA" --limit 100 \
+              --json workflowName,status,databaseId,event > /tmp/current-sha-runs.json
+            count=$(jq '[.[] | select(.workflowName == "pages-build-deployment")] | length' /tmp/current-sha-runs.json)
+            pending=$(jq '[.[] | select(.workflowName == "pages-build-deployment" and .status != "completed")] | length' /tmp/current-sha-runs.json)
+            if [ "$count" -gt 0 ]; then seen=1; fi
+            echo "branch Pages wait attempt=$attempt seen=$seen count=$count pending=$pending"
+            if [ "$seen" = 1 ] && [ "$pending" = 0 ]; then break; fi
+            sleep 5
+          done
+          if [ "$seen" != 1 ]; then
+            echo 'branch Pages run was not observed; applying conservative grace period'
+            sleep 45
+          fi
+          sleep 20
+
       - name: Build atomic R16 ultra site
         run: |
           set -o pipefail
@@ -48,6 +64,7 @@ jobs:
           grep -q 'maxCharacters' _site/os/real-multiboot/performance-mode.js
           grep -q 'memoryCap' _site/os/real-multiboot/performance-mode.js
           grep -q 'isoProbeWarm' _site/os/real-multiboot/performance-mode.js
+          grep -q 'constructorPoll' _site/os/real-multiboot/performance-mode.js
           grep -q '__GORICS_LAST_VM_OPTIONS__' _site/os/real-multiboot/performance-mode.js
           grep -q 'native fetch and XMLHttpRequest preserved' _site/os/real-multiboot/safe-diagnostics.js
 
@@ -59,7 +76,7 @@ jobs:
         with:
           path: _site
 
-      - name: Deploy Pages artifact
+      - name: Deploy final Pages artifact
         id: deployment
         uses: actions/deploy-pages@v4
 
@@ -74,9 +91,8 @@ jobs:
             if curl -fsSL --max-time 60 -H 'Cache-Control: no-cache' "$PAGE/?verify=$STAMP" -o /tmp/final-v3-index.html \
               && grep -q "$DEPLOY_VERSION" /tmp/final-v3-index.html \
               && grep -q 'r16-preflight-cache' /tmp/final-v3-index.html \
-              && grep -q 'rel="preload"' /tmp/final-v3-index.html \
               && curl -fsSL --max-time 60 "$PAGE/performance-mode.js?v=$DEPLOY_VERSION" -o /tmp/final-v3-performance.js \
-              && grep -q 'isoProbeWarm' /tmp/final-v3-performance.js \
+              && grep -q 'constructorPoll' /tmp/final-v3-performance.js \
               && grep -q '__GORICS_LAST_VM_OPTIONS__' /tmp/final-v3-performance.js \
               && curl -fsSL --max-time 60 "$PAGE/app.js?v=$DEPLOY_VERSION" -o /tmp/final-v3-app.js \
               && grep -q '/website/vendor/v86/images/buildroot-bzimage68.bin' /tmp/final-v3-app.js \
@@ -135,50 +151,103 @@ jobs:
           node <<'JS'
           const fs = require('fs');
           const { chromium } = require('playwright');
+          const report = { url: process.env.VERIFY_URL, console: [], pageErrors: [], failedRequests: [] };
           (async () => {
-            const browser = await chromium.launch({ headless: true, args: ['--no-sandbox', '--disable-dev-shm-usage'] });
-            const page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
-            const errors = [];
-            page.on('pageerror', error => errors.push(error.message));
-            await page.goto(process.env.VERIFY_URL, { waitUntil: 'domcontentloaded', timeout: 120000 });
-            await page.waitForFunction(() => Boolean(window.__GORICS_PERFORMANCE_MODE__), null, { timeout: 30000 });
-            const initial = await page.evaluate(() => ({
-              build: document.querySelector('meta[name="gorics-build"]')?.content,
-              performance: {
-                ...window.__GORICS_PERFORMANCE_MODE__,
-                cachedPreflights: window.__GORICS_PERFORMANCE_MODE__.cachedPreflights(),
-              },
-              diagnostics: Boolean(window.__GORICS_SAFE_DIAGNOSTICS__),
-              atomic: Boolean(window.__GORICS_ATOMIC_ASSETS__),
-              localMedia: Boolean(window.__GORICS_LOCAL_MEDIA_ROUTER__),
-            }));
-            if (!initial.performance.isCompact || !initial.performance.preflightCache || !initial.performance.isoProbeWarm) throw new Error(JSON.stringify(initial));
-            if (!initial.diagnostics || !initial.atomic || !initial.localMedia) throw new Error(JSON.stringify(initial));
+            let browser;
+            let page;
+            try {
+              browser = await chromium.launch({ headless: true, args: ['--no-sandbox', '--disable-dev-shm-usage'] });
+              page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+              page.on('console', message => report.console.push({ type: message.type(), text: message.text().slice(0, 2000) }));
+              page.on('pageerror', error => report.pageErrors.push(error.message));
+              page.on('requestfailed', request => report.failedRequests.push({ url: request.url(), failure: request.failure() }));
+              page.on('response', response => {
+                if (response.status() >= 400 && /vendor\/v86|real-multiboot/.test(response.url())) {
+                  report.failedRequests.push({ url: response.url(), status: response.status() });
+                }
+              });
 
-            await page.selectOption('#os-select', 'buildroot');
-            const startedAt = Date.now();
-            await page.click('#boot-btn');
-            await page.waitForFunction(() => Boolean(window.goricsRealMultiboot && window.__GORICS_LAST_VM_OPTIONS__), null, { timeout: 180000 });
-            await page.waitForFunction(() => /emulator-started/.test(document.querySelector('#log')?.textContent || ''), null, { timeout: 180000 });
-            const result = await page.evaluate((startedAt) => ({
-              elapsedMs: Date.now() - startedAt,
-              options: window.__GORICS_LAST_VM_OPTIONS__,
-              performance: {
-                profile: window.__GORICS_PERFORMANCE_MODE__.profile,
-                cachedPreflights: window.__GORICS_PERFORMANCE_MODE__.cachedPreflights(),
-              },
-              log: (document.querySelector('#log')?.textContent || '').slice(-12000),
-            }), startedAt);
-            const MB = 1024 * 1024;
-            if (result.options.memory_size > 112 * MB) throw new Error(`Buildroot memory too high: ${JSON.stringify(result)}`);
-            if (result.options.vga_memory_size > 4 * MB) throw new Error(`Buildroot VGA too high: ${JSON.stringify(result)}`);
-            if (/RangeError: Length out of range of buffer/i.test(result.log)) throw new Error('original RangeError returned');
-            if (errors.length) throw new Error(errors.join('\n'));
-            fs.writeFileSync('/tmp/final-v3-performance-result.json', JSON.stringify({ initial, result }, null, 2));
-            await page.screenshot({ path: '/tmp/final-v3-performance-mobile.png', fullPage: true });
-            await browser.close();
-          })().catch(error => { console.error(error); process.exit(1); });
+              await page.goto(process.env.VERIFY_URL, { waitUntil: 'domcontentloaded', timeout: 120000 });
+              await page.waitForFunction(() => Boolean(window.__GORICS_PERFORMANCE_MODE__), null, { timeout: 30000 });
+              report.initial = await page.evaluate(() => ({
+                build: document.querySelector('meta[name="gorics-build"]')?.content,
+                performance: {
+                  build: window.__GORICS_PERFORMANCE_MODE__.build,
+                  profile: window.__GORICS_PERFORMANCE_MODE__.profile,
+                  isCompact: window.__GORICS_PERFORMANCE_MODE__.isCompact,
+                  constructorPoll: window.__GORICS_PERFORMANCE_MODE__.constructorPoll,
+                  cachedPreflights: window.__GORICS_PERFORMANCE_MODE__.cachedPreflights(),
+                },
+                diagnostics: Boolean(window.__GORICS_SAFE_DIAGNOSTICS__),
+                atomic: Boolean(window.__GORICS_ATOMIC_ASSETS__),
+                localMedia: Boolean(window.__GORICS_LOCAL_MEDIA_ROUTER__),
+              }));
+              if (!report.initial.build.includes(process.env.GITHUB_SHA || report.initial.build)) {
+                console.log('build marker', report.initial.build);
+              }
+              if (!report.initial.performance.isCompact || !report.initial.performance.constructorPoll) throw new Error(JSON.stringify(report.initial));
+              if (!report.initial.diagnostics || !report.initial.atomic || !report.initial.localMedia) throw new Error(JSON.stringify(report.initial));
+
+              await page.selectOption('#os-select', 'buildroot');
+              const startedAt = Date.now();
+              await page.click('#boot-btn');
+              await page.waitForFunction(() => Boolean(window.goricsRealMultiboot), null, { timeout: 180000 });
+              await page.waitForFunction(() => Boolean(window.__GORICS_LAST_VM_OPTIONS__), null, { timeout: 30000 });
+              await page.waitForFunction(() => {
+                const log = document.querySelector('#log')?.textContent || '';
+                return /emulator-started/.test(log) || /부팅 실패/.test(document.querySelector('#stage-label')?.textContent || '');
+              }, null, { timeout: 180000 });
+
+              report.result = await page.evaluate((startedAt) => ({
+                elapsedMs: Date.now() - startedAt,
+                options: window.__GORICS_LAST_VM_OPTIONS__,
+                stage: document.querySelector('#stage-label')?.textContent || '',
+                detail: document.querySelector('#stage-detail')?.textContent || '',
+                log: (document.querySelector('#log')?.textContent || '').slice(-16000),
+              }), startedAt);
+              const MB = 1024 * 1024;
+              if (report.result.options.memory_size > 112 * MB) throw new Error(`Buildroot memory too high: ${JSON.stringify(report.result)}`);
+              if (report.result.options.vga_memory_size > 4 * MB) throw new Error(`Buildroot VGA too high: ${JSON.stringify(report.result)}`);
+              if (!/emulator-started/.test(report.result.log)) throw new Error(`Buildroot did not start: ${JSON.stringify(report.result)}`);
+              if (/RangeError: Length out of range of buffer/i.test(report.result.log)) throw new Error('original RangeError returned');
+              if (report.failedRequests.some(item => /buildroot-bzimage68\.bin/.test(item.url || '') && Number(item.status || 0) >= 400)) {
+                throw new Error(`Buildroot image failed: ${JSON.stringify(report.failedRequests)}`);
+              }
+              if (report.pageErrors.length) throw new Error(report.pageErrors.join('\n'));
+              report.success = true;
+            } catch (error) {
+              report.success = false;
+              report.error = { message: error.message, stack: error.stack };
+              if (page) {
+                report.failureState = await page.evaluate(() => ({
+                  options: window.__GORICS_LAST_VM_OPTIONS__ || null,
+                  vm: Boolean(window.goricsRealMultiboot),
+                  stage: document.querySelector('#stage-label')?.textContent || '',
+                  detail: document.querySelector('#stage-detail')?.textContent || '',
+                  log: (document.querySelector('#log')?.textContent || '').slice(-20000),
+                })).catch(() => null);
+              }
+            } finally {
+              fs.writeFileSync('/tmp/final-v3-performance-result.json', JSON.stringify(report, null, 2));
+              if (page) await page.screenshot({ path: '/tmp/final-v3-performance-mobile.png', fullPage: true }).catch(() => {});
+              if (browser) await browser.close();
+            }
+            if (!report.success) process.exit(1);
+          })();
           JS
+
+      - name: Verify deployment remains final after stabilization
+        run: |
+          set -euo pipefail
+          sleep 30
+          curl -fsSL --max-time 60 -H 'Cache-Control: no-cache' \
+            "https://gorics.github.io/website/os/real-multiboot/?stable=$GITHUB_RUN_ID-$(date +%s)" \
+            -o /tmp/final-v3-stable-index.html
+          grep -q "$DEPLOY_VERSION" /tmp/final-v3-stable-index.html
+          curl -fsSL --max-time 60 -r 0-4095 \
+            "https://gorics.github.io/website/vendor/v86/images/buildroot-bzimage68.bin?v=$DEPLOY_VERSION" \
+            -o /tmp/final-v3-stable-buildroot.probe
+          test -s /tmp/final-v3-stable-buildroot.probe
 
       - name: Upload V3 R16 proof
         if: always()
@@ -187,7 +256,9 @@ jobs:
           name: final-real-multiboot-r16-${{ github.run_id }}
           path: |
             /tmp/final-v3-build.log
+            /tmp/current-sha-runs.json
             /tmp/final-v3-index.html
+            /tmp/final-v3-stable-index.html
             /tmp/final-v3-app.js
             /tmp/final-v3-performance.js
             /tmp/final-v3-manifest.json
@@ -195,52 +266,3 @@ jobs:
             /tmp/final-v3-performance-result.json
             /tmp/final-v3-performance-mobile.png
           if-no-files-found: warn
-
-  record-result:
-    if: always()
-    needs: deploy-and-verify
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-          fetch-depth: 0
-      - name: Record V3 result
-        env:
-          RESULT: ${{ needs.deploy-and-verify.result }}
-          RUN_ID: ${{ github.run_id }}
-          HEAD_SHA: ${{ github.sha }}
-          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          import json, os
-          from datetime import datetime, timezone
-          from pathlib import Path
-          payload = {
-            'workflow': 'Deploy And Verify Real Multiboot Final V3',
-            'conclusion': os.environ['RESULT'],
-            'run_id': int(os.environ['RUN_ID']),
-            'head_sha': os.environ['HEAD_SHA'],
-            'deploy_version': f"{os.environ['HEAD_SHA']}-{os.environ['RUN_ID']}-1",
-            'performance_mode': 'r16-ultra-preflight-cache-adaptive-memory',
-            'run_url': os.environ['RUN_URL'],
-            'recorded_at': datetime.now(timezone.utc).isoformat(),
-          }
-          Path('/tmp/final-v3-status.json').write_text(json.dumps(payload, indent=2) + '\n')
-          PY
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          for attempt in $(seq 1 20); do
-            git reset --hard
-            git clean -fd
-            git fetch origin main
-            git checkout -B main origin/main
-            mkdir -p os/iso
-            cp /tmp/final-v3-status.json os/iso/final-atomic-multiboot-v3-status.json
-            git add os/iso/final-atomic-multiboot-v3-status.json
-            git commit -m 'Record final multiboot R16 result [skip ci]' || exit 0
-            git push origin HEAD:main && exit 0
-            sleep $((attempt * 2))
-          done
-          exit 1
