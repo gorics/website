@@ -1,9 +1,1 @@
-{
-  "state": "deployed",
-  "pages_run_id": "28909660146",
-  "page_version": "20260708r1",
-  "loader": "release-chunks",
-  "deploy_step": "success",
-  "public_self_test": "cancelled_by_newer_pages_run",
-  "notes": "The prior 404-prone generated ISO metadata and /website/vendor/v86 runtime paths are no longer required by the resilient loader."
-}
+{"state":"failure","orchestrator_run_id":"28909766493","pages_run_id":"28909786789","page_version":"20260708r1","loader":"release-chunks","public_self_test":true}
