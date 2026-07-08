@@ -1,8 +1,8 @@
 GORICS Real Multiboot deployment trigger
-build=20260708-r13-strict-readiness
-root_cause=generic first-text display completion falsely marked BIOS and early boot screens as complete
-fix=OS-specific readiness gates for Buildroot, FreeDOS, Tiny Linux, DSL GUI, and GORICS GUI
-verification=seven sequential public boots with screenshots and fatal-signature rejection
+build=20260708-r13-visibility-safe
+root_cause=mobile WebKit pauses v86 CPU in hidden tabs while the wall-clock 15-minute failure timer kept advancing; Pages also lagged behind current main because deployment only watches this marker
+fix=deploy current strict-readiness app and pause the boot timeout whenever the document is hidden or page-cached
+verification=syntax validation in Pages workflow plus public asset checks and strict 1024x768 GORICS GUI readiness verifier
 tracker=final-all-multiboot-presets-status.json and final-multiboot-workflow-runs.json
 trigger_mode=isolated-marker-only
-source_commit=c20da84351c79f3ec5dce257ccff879c6f77488b
+source_commit=69171d473c24913e6a6528430c32863b4ac84bd3
