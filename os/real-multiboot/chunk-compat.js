@@ -13,6 +13,7 @@
   const originalFetch = globalThis.fetch.bind(globalThis);
   let rewrites = 0;
   let fallbacks = 0;
+  let preferredRoot = null;
 
   function pageLog(message) {
     const line = `[${new Date().toISOString()}] ${message}`;
@@ -66,16 +67,18 @@
   }
 
   function orderedRoots(asset) {
-    return [asset.sourceRoot, ...roots.filter((root) => root !== asset.sourceRoot)];
+    const first = preferredRoot || asset.sourceRoot;
+    return [first, ...roots.filter((root) => root !== first)];
   }
 
   function primaryUrl(url) {
     const asset = parseAsset(url);
     if (!asset) return url;
-    const target = assetUrl(asset, asset.sourceRoot);
+    const targetRoot = preferredRoot || asset.sourceRoot;
+    const target = assetUrl(asset, targetRoot);
     rewrites += 1;
     if (rewrites <= 16 || asset.start === 335544320) {
-      pageLog(`ISO chunk filename normalized ${new URL(asset.sourceRoot).hostname} ${asset.publishedName}`);
+      pageLog(`ISO chunk filename normalized ${new URL(targetRoot).hostname} ${asset.publishedName}`);
     }
     return target;
   }
@@ -174,8 +177,12 @@
           if (!response.ok && response.status !== 206) {
             throw new Error(`HTTP ${response.status}`);
           }
-          if (!range) return response;
+          if (!range) {
+            preferredRoot = root;
+            return response;
+          }
           const normalized = await normalizeRangeResponse(response, range, { ...asset, sourceRoot: root });
+          preferredRoot = root;
           if (root !== asset.sourceRoot) {
             fallbacks += 1;
             pageLog(`ISO chunk fallback selected ${new URL(root).hostname} ${asset.publishedName}`);
