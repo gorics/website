@@ -1,0 +1,77 @@
+name: Apply Multiboot Overlay Fix V2
+
+on:
+  workflow_dispatch: {}
+  pull_request:
+    types: [closed]
+    branches: [main]
+    paths:
+      - 'os/real-multiboot/.trigger-overlay-fix-v2'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: apply-multiboot-overlay-fix-v2
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Apply deterministic repair
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout -B main origin/main
+          python3 scripts/patch_multiboot_overlay_completion.py
+          node --check os/real-multiboot/app.js
+          git diff --check
+
+      - name: Commit repair
+        run: |
+          set -euo pipefail
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add os/real-multiboot/app.js
+          if git diff --cached --quiet; then
+            echo 'repair already applied'
+          else
+            git commit -m 'fix(multiboot): expose completed GUI and hide overlay'
+            for attempt in $(seq 1 12); do
+              if git push origin HEAD:main; then
+                break
+              fi
+              sleep $((attempt*3))
+              git fetch origin main
+              git rebase origin/main
+            done
+          fi
+
+      - name: Confirm repaired source on main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 30); do
+            CONTENT=$(gh api "repos/$GITHUB_REPOSITORY/contents/os/real-multiboot/app.js?ref=main" --jq .content | tr -d '\n' | base64 -d)
+            if grep -q '20260708-r8-overlay-complete' <<<"$CONTENT" \
+              && grep -q 'function completeDisplay' <<<"$CONTENT"; then
+              exit 0
+            fi
+            sleep 3
+          done
+          exit 1
+
+      - name: Deploy repaired Pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run static.yml --repo "$GITHUB_REPOSITORY" --ref main
