@@ -12,8 +12,13 @@
 
   const assetName = 'gorics-linux-gui-web-i386.iso';
   const chunkSize = 16 * 1024 * 1024;
-  const partsRoot = 'https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/';
-  const isoBase = partsRoot + assetName;
+  const chunkRoots = [
+    'https://cdn.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/',
+    'https://fastly.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/',
+    'https://gcore.jsdelivr.net/gh/gorics/website@os-assets/os/real-multiboot/assets/v86-parts/',
+    'https://raw.githubusercontent.com/gorics/website/os-assets/os/real-multiboot/assets/v86-parts/',
+  ];
+  let isoBase = chunkRoots[0] + assetName;
   const metaUrl = new URL('./assets/iso-meta.json', location.href).href;
   const kernelUrl = new URL('./assets/vmlinuz', location.href).href;
   const initrdUrl = new URL('./assets/initrd.img', location.href).href;
@@ -21,6 +26,7 @@
   const wasm = '/website/vendor/v86/v86.wasm';
   const bios = '/website/vendor/v86/seabios.bin';
   const vga = '/website/vendor/v86/vgabios.bin';
+  const version = 'r2';
 
   let vm = null;
   let state = 'idle';
@@ -48,7 +54,7 @@
   phoneKeyboard.setAttribute('aria-label', 'Virtual keyboard input');
   document.body.appendChild(phoneKeyboard);
 
-  if (urlBox) urlBox.textContent = `${isoBase} (external chunked)`;
+  if (urlBox) urlBox.textContent = 'Selecting a healthy ISO chunk CDN…';
 
   function log(text) {
     const line = `[${new Date().toISOString()}] ${text}`;
@@ -81,7 +87,7 @@
     return new Promise((resolve, reject) => {
       if (constructor()) return resolve(constructor());
       const script = document.createElement('script');
-      script.src = `${runtime}?v=q`;
+      script.src = `${runtime}?v=${version}`;
       script.async = false;
       script.onload = () => setTimeout(() => constructor() ? resolve(constructor()) : reject(new Error('v86 constructor missing')), 60);
       script.onerror = () => reject(new Error(`runtime load failed ${runtime}`));
@@ -106,13 +112,14 @@
 
   async function loadMetadata() {
     log('loading legacy Pages chunk metadata');
-    const response = await fetch(`${metaUrl}?v=q`, { cache: 'no-store' });
+    const response = await fetch(`${metaUrl}?v=${version}`, { cache: 'no-store' });
     if (!response.ok) throw new Error(`ISO metadata HTTP ${response.status}`);
     const meta = await response.json();
     if (meta.name !== assetName) throw new Error(`unexpected ISO ${meta.name}`);
     if (meta.architecture !== 'i386') throw new Error(`unexpected architecture ${meta.architecture}`);
     if (!Number.isFinite(meta.size) || meta.size <= 0) throw new Error(`invalid ISO size ${meta.size}`);
     if (meta.chunk_size !== chunkSize) throw new Error(`invalid chunk size ${meta.chunk_size}`);
+    if (!Number.isInteger(meta.parts) || meta.parts < 1) throw new Error(`invalid part count ${meta.parts}`);
     log(`ISO size=${meta.size} parts=${meta.parts} sha256=${String(meta.sha256).slice(0, 16)}...`);
     return meta;
   }
@@ -121,22 +128,68 @@
     return String.fromCharCode(...bytes.slice(start, start + length));
   }
 
-  async function verifyFirstPart() {
-    const firstPart = `${isoBase}-0-${chunkSize}`;
-    log(`probing first CORS-enabled os-assets ISO chunk ${firstPart.split('/').pop()}`);
-    const response = await fetch(`${firstPart}?v=q`, {
-      cache: 'no-store',
-      headers: { Range: 'bytes=32768-36863' },
-    });
-    let bytes = new Uint8Array(await response.arrayBuffer());
-    if (response.status === 200 && bytes.length >= 36864) bytes = bytes.slice(32768, 36864);
-    if (response.status !== 206 && response.status !== 200) throw new Error(`ISO chunk HTTP ${response.status}`);
-    if (bytes.length !== 4096) throw new Error(`ISO probe size ${bytes.length}`);
-    if (ascii(bytes, 1, 5) !== 'CD001') throw new Error('ISO9660 descriptor missing');
-    if (ascii(bytes, 2049, 5) !== 'CD001' || !ascii(bytes, 2055, 32).includes('EL TORITO')) {
-      throw new Error('El Torito record missing');
+  function partUrl(base, start, end) {
+    const slash = base.lastIndexOf('/');
+    const dot = base.lastIndexOf('.');
+    if (dot <= slash) return `${base}-${start}-${end}`;
+    return `${base.slice(0, dot)}-${start}-${end}${base.slice(dot)}`;
+  }
+
+  async function rangeFetch(url, range) {
+    let lastError = null;
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      try {
+        const join = url.includes('?') ? '&' : '?';
+        const response = await fetch(`${url}${join}v=${version}-${attempt}-${Date.now()}`, {
+          cache: 'no-store',
+          headers: { Range: `bytes=${range}` },
+        });
+        if (response.status !== 200 && response.status !== 206) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        return response;
+      } catch (error) {
+        lastError = error;
+        if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, attempt * 700));
+      }
     }
-    log(`ISO chunk probe HTTP ${response.status}; ISO9660 and El Torito verified`);
+    throw lastError || new Error('chunk request failed');
+  }
+
+  async function selectChunkSource(meta) {
+    const finalStart = (meta.parts - 1) * chunkSize;
+    const failures = [];
+    for (const root of chunkRoots) {
+      const candidate = root + assetName;
+      const label = new URL(root).hostname;
+      try {
+        const firstPart = partUrl(candidate, 0, chunkSize);
+        log(`probing ${label} first ISO chunk ${firstPart.split('/').pop()}`);
+        const firstResponse = await rangeFetch(firstPart, '32768-36863');
+        let firstBytes = new Uint8Array(await firstResponse.arrayBuffer());
+        if (firstResponse.status === 200 && firstBytes.length >= 36864) firstBytes = firstBytes.slice(32768, 36864);
+        if (firstBytes.length !== 4096) throw new Error(`first probe size ${firstBytes.length}`);
+        if (ascii(firstBytes, 1, 5) !== 'CD001') throw new Error('ISO9660 descriptor missing');
+        if (ascii(firstBytes, 2049, 5) !== 'CD001' || !ascii(firstBytes, 2055, 32).includes('EL TORITO')) {
+          throw new Error('El Torito record missing');
+        }
+
+        const finalPart = partUrl(candidate, finalStart, finalStart + chunkSize);
+        log(`probing ${label} final ISO chunk ${finalPart.split('/').pop()}`);
+        const finalResponse = await rangeFetch(finalPart, '0-15');
+        const finalBytes = new Uint8Array(await finalResponse.arrayBuffer());
+        if (finalBytes.length < 16) throw new Error(`final probe size ${finalBytes.length}`);
+
+        isoBase = candidate;
+        if (urlBox) urlBox.textContent = `${isoBase} (automatic CDN failover)`;
+        log(`selected ISO chunk source ${label}; first and final chunks verified`);
+        return;
+      } catch (error) {
+        failures.push(`${label}: ${error.message}`);
+        log(`chunk source rejected ${label}: ${error.message}`);
+      }
+    }
+    throw new Error(`all ISO chunk sources failed: ${failures.join(' | ')}`);
   }
 
   async function verifyBootFiles() {
@@ -147,7 +200,7 @@
       ['wasm', wasm, 100_000],
     ];
     for (const [name, url, minimum] of checks) {
-      const response = await fetch(`${url}?v=q`, { method: 'HEAD', cache: 'no-store' });
+      const response = await fetch(`${url}?v=${version}`, { method: 'HEAD', cache: 'no-store' });
       if (!response.ok) throw new Error(`${name} HTTP ${response.status}`);
       const length = Number(response.headers.get('content-length')) || 0;
       if (length && length < minimum) throw new Error(`${name} too small ${length}`);
@@ -209,7 +262,7 @@
     try {
       await clearOldWorkers();
       const [Emulator, meta] = await Promise.all([loadRuntime(), loadMetadata()]);
-      await Promise.all([verifyFirstPart(), verifyBootFiles()]);
+      await Promise.all([selectChunkSource(meta), verifyBootFiles()]);
       if (runToken !== token) return;
       prepareScreen();
       setState('starting');
@@ -247,7 +300,7 @@
       vm.add_listener('emulator-stopped', () => log('emulator-stopped'));
       vm.add_listener('screen-set-size', (data) => log(`screen-set-size ${JSON.stringify(data)}`));
       try { vm.add_listener('serial0-output-byte', serialByte); } catch {}
-      log('v86 started with legacy Pages same-origin chunks and direct i386 Openbox boot');
+      log(`v86 started with ${new URL(isoBase).hostname} chunks and direct i386 Openbox boot`);
     } catch (error) {
       log(`ERROR ${error?.message || error}`);
       log(`userAgent ${navigator.userAgent}`);
@@ -332,5 +385,5 @@
   });
 
   setState('idle');
-  log('ready: legacy Pages chunked i386 Openbox loader installed');
+  log('ready: resilient multi-CDN i386 Openbox loader r2 installed');
 })();
