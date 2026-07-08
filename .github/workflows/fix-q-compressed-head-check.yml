@@ -1,0 +1,71 @@
+name: Fix q Compressed HEAD Check
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/fix-q-compressed-head-check.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Remove invalid compressed Content-Length threshold
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          old = """  async function verifyBootFiles() {
+    const checks = [
+      ['kernel', kernelUrl, 1_000_000],
+      ['initrd', initrdUrl, 10_000_000],
+      ['runtime', runtime, 100_000],
+      ['wasm', wasm, 100_000],
+    ];
+    for (const [name, url, minimum] of checks) {
+      const response = await fetch(`${url}?v=q`, { method: 'HEAD', cache: 'no-store' });
+      if (!response.ok) throw new Error(`${name} HTTP ${response.status}`);
+      const length = Number(response.headers.get('content-length')) || 0;
+      if (length && length < minimum) throw new Error(`${name} too small ${length}`);
+      log(`${name} available${length ? ` size=${length}` : ''}`);
+    }
+  }"""
+          new = """  async function verifyBootFiles() {
+    const checks = [
+      ['kernel', kernelUrl],
+      ['initrd', initrdUrl],
+      ['runtime', runtime],
+      ['wasm', wasm],
+    ];
+    for (const [name, url] of checks) {
+      const response = await fetch(`${url}?v=q`, { method: 'HEAD', cache: 'no-store' });
+      if (!response.ok) throw new Error(`${name} HTTP ${response.status}`);
+      const length = Number(response.headers.get('content-length')) || 0;
+      const encoding = response.headers.get('content-encoding') || 'identity';
+      log(`${name} available${length ? ` transferred=${length}` : ''} encoding=${encoding}`);
+    }
+  }"""
+
+          for filename in ('os/real-multiboot/app.js', 'os/real-multiboot/app-legacy-chunked.js'):
+              path = Path(filename)
+              text = path.read_text(encoding='utf-8')
+              if old not in text:
+                  raise SystemExit(f'expected verifyBootFiles block missing: {filename}')
+              path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+          node --check os/real-multiboot/app.js
+          node --check os/real-multiboot/app-legacy-chunked.js
+          grep -q 'encoding=${encoding}' os/real-multiboot/app.js
+          ! grep -q 'runtime too small' os/real-multiboot/app.js
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add os/real-multiboot/app.js os/real-multiboot/app-legacy-chunked.js
+          git commit -m 'Accept compressed HEAD sizes for q boot resources'
+          git pull --rebase origin main
+          git push origin HEAD:main
