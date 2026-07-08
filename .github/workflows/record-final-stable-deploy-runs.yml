@@ -23,6 +23,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          echo 'refresh after successful stable deployment'
           gh run list --repo "$GITHUB_REPOSITORY" --workflow 'Deploy Final Multiboot Stable' --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/deploy.json
           gh run list --repo "$GITHUB_REPOSITORY" --workflow 'Verify Final All Multiboot Presets' --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,headSha,event,url > /tmp/verify.json
           python3 - <<'PY'
