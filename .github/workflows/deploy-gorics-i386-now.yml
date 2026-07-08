@@ -1,4 +1,4 @@
-name: Deploy GORICS Multiboot Now
+name: Deploy GORICS i386 Openbox Now
 
 on:
   workflow_dispatch:
@@ -17,11 +17,21 @@ concurrency:
 jobs:
   dispatch-watch:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Record deployment start
+        run: |
+          printf '{"state":"dispatching","orchestrator_run_id":"%s","page_version":"n","loader":"same-origin-i386-direct-kernel","desktop":"direct-xorg-openbox"}\n' "$GITHUB_RUN_ID" > os/iso/pages-deploy-status.json
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add os/iso/pages-deploy-status.json
+          git commit -m "Record i386 Pages deployment start [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
 
       - name: Dispatch Pages workflow
         id: pages
@@ -54,10 +64,8 @@ jobs:
           git config user.email github-actions@github.com
           git fetch origin main
           git checkout -B main origin/main
-          printf '{"state":"%s","orchestrator_run_id":"%s","pages_run_id":"%s","page_version":"20260708r1","loader":"release-chunks","public_self_test":true}\n' "$PAGES_OUTCOME" "$GITHUB_RUN_ID" "$PAGES_RUN_ID" > os/iso/pages-deploy-status.json
+          printf '{"state":"%s","orchestrator_run_id":"%s","pages_run_id":"%s","page_version":"n","loader":"same-origin-i386-direct-kernel","desktop":"direct-xorg-openbox","public_self_test":true}\n' "$PAGES_OUTCOME" "$GITHUB_RUN_ID" "$PAGES_RUN_ID" > os/iso/pages-deploy-status.json
           git add os/iso/pages-deploy-status.json
-          git commit -m "Record resilient Pages deployment result [skip ci]" || true
+          git commit -m "Record i386 Pages deployment result [skip ci]" || true
           git push origin HEAD:main
           test "$PAGES_OUTCOME" = success
-
-# final trigger: service-worker bootstrap + non-cancelling Pages validation
