@@ -1,0 +1,375 @@
+{
+  "site": {
+    "url": "https://api.github.com/repos/gorics/website/pages",
+    "status": "building",
+    "cname": null,
+    "custom_404": true,
+    "html_url": "https://gorics.github.io/website/",
+    "build_type": "legacy",
+    "source": {
+      "branch": "main",
+      "path": "/"
+    },
+    "public": true,
+    "protected_domain_state": null,
+    "pending_domain_unverified_at": null,
+    "https_enforced": true
+  },
+  "site_error": "",
+  "latest_build": {
+    "url": "https://api.github.com/repos/gorics/website/pages/builds/1084164146",
+    "status": "building",
+    "error": {
+      "message": null
+    },
+    "pusher": {
+      "login": "gorics",
+      "id": 111979713,
+      "node_id": "U_kgDOBqyswQ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/111979713?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/gorics",
+      "html_url": "https://github.com/gorics",
+      "followers_url": "https://api.github.com/users/gorics/followers",
+      "following_url": "https://api.github.com/users/gorics/following{/other_user}",
+      "gists_url": "https://api.github.com/users/gorics/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/gorics/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/gorics/subscriptions",
+      "organizations_url": "https://api.github.com/users/gorics/orgs",
+      "repos_url": "https://api.github.com/users/gorics/repos",
+      "events_url": "https://api.github.com/users/gorics/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/gorics/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "commit": "018c682506265275e153b273dfbe02feec527046",
+    "duration": 0,
+    "created_at": "2026-07-08T02:10:51Z",
+    "updated_at": "2026-07-08T02:10:51Z"
+  },
+  "latest_error": "",
+  "builds": [
+    {
+      "url": "https://api.github.com/repos/gorics/website/pages/builds/1084164146",
+      "status": "building",
+      "error": {
+        "message": null
+      },
+      "pusher": {
+        "login": "gorics",
+        "id": 111979713,
+        "node_id": "U_kgDOBqyswQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/111979713?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gorics",
+        "html_url": "https://github.com/gorics",
+        "followers_url": "https://api.github.com/users/gorics/followers",
+        "following_url": "https://api.github.com/users/gorics/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gorics/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gorics/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gorics/subscriptions",
+        "organizations_url": "https://api.github.com/users/gorics/orgs",
+        "repos_url": "https://api.github.com/users/gorics/repos",
+        "events_url": "https://api.github.com/users/gorics/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gorics/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "commit": "018c682506265275e153b273dfbe02feec527046",
+      "duration": 0,
+      "created_at": "2026-07-08T02:10:51Z",
+      "updated_at": "2026-07-08T02:10:51Z"
+    },
+    {
+      "url": "https://api.github.com/repos/gorics/website/pages/builds/1084163954",
+      "status": "errored",
+      "error": {
+        "message": "Page build failed."
+      },
+      "pusher": {
+        "login": "gorics",
+        "id": 111979713,
+        "node_id": "U_kgDOBqyswQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/111979713?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gorics",
+        "html_url": "https://github.com/gorics",
+        "followers_url": "https://api.github.com/users/gorics/followers",
+        "following_url": "https://api.github.com/users/gorics/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gorics/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gorics/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gorics/subscriptions",
+        "organizations_url": "https://api.github.com/users/gorics/orgs",
+        "repos_url": "https://api.github.com/users/gorics/repos",
+        "events_url": "https://api.github.com/users/gorics/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gorics/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "commit": "cf89e063a4edf8682eba45f069d61da66f8ef0c8",
+      "duration": 0,
+      "created_at": "2026-07-08T02:10:43Z",
+      "updated_at": "2026-07-08T02:10:46Z"
+    },
+    {
+      "url": "https://api.github.com/repos/gorics/website/pages/builds/1084163244",
+      "status": "errored",
+      "error": {
+        "message": "Page build failed."
+      },
+      "pusher": {
+        "login": "github-actions[bot]",
+        "id": 41898282,
+        "node_id": "MDM6Qm90NDE4OTgyODI=",
+        "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+        "html_url": "https://github.com/apps/github-actions",
+        "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "commit": "64f47cd7fdc74535dc3db5fccd8d1f2aebcb832a",
+      "duration": 0,
+      "created_at": "2026-07-08T02:10:06Z",
+      "updated_at": "2026-07-08T02:10:43Z"
+    },
+    {
+      "url": "https://api.github.com/repos/gorics/website/pages/builds/1084163040",
+      "status": "errored",
+      "error": {
+        "message": "Page build failed."
+      },
+      "pusher": {
+        "login": "github-actions[bot]",
+        "id": 41898282,
+        "node_id": "MDM6Qm90NDE4OTgyODI=",
+        "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+        "html_url": "https://github.com/apps/github-actions",
+        "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "commit": "391306d95dca2c2dcfec898b5a2115e306246809",
+      "duration": 0,
+      "created_at": "2026-07-08T02:09:55Z",
+      "updated_at": "2026-07-08T02:10:06Z"
+    },
+    {
+      "url": "https://api.github.com/repos/gorics/website/pages/builds/1084162583",
+      "status": "errored",
+      "error": {
+        "message": "Page build failed."
+      },
+      "pusher": {
+        "login": "gorics",
+        "id": 111979713,
+        "node_id": "U_kgDOBqyswQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/111979713?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gorics",
+        "html_url": "https://github.com/gorics",
+        "followers_url": "https://api.github.com/users/gorics/followers",
+        "following_url": "https://api.github.com/users/gorics/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gorics/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gorics/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gorics/subscriptions",
+        "organizations_url": "https://api.github.com/users/gorics/orgs",
+        "repos_url": "https://api.github.com/users/gorics/repos",
+        "events_url": "https://api.github.com/users/gorics/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gorics/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "commit": "8f29527f5c494929a49086ffb5b5115f0ffb1661",
+      "duration": 0,
+      "created_at": "2026-07-08T02:09:29Z",
+      "updated_at": "2026-07-08T02:09:55Z"
+    },
+    {
+      "url": "https://api.github.com/repos/gorics/website/pages/builds/1084162119",
+      "status": "errored",
+      "error": {
+        "message": "Page build failed."
+      },
+      "pusher": {
+        "login": "gorics",
+        "id": 111979713,
+        "node_id": "U_kgDOBqyswQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/111979713?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gorics",
+        "html_url": "https://github.com/gorics",
+        "followers_url": "https://api.github.com/users/gorics/followers",
+        "following_url": "https://api.github.com/users/gorics/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gorics/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gorics/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gorics/subscriptions",
+        "organizations_url": "https://api.github.com/users/gorics/orgs",
+        "repos_url": "https://api.github.com/users/gorics/repos",
+        "events_url": "https://api.github.com/users/gorics/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gorics/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "commit": "3a562bb28a385eee321caf6803e36c0e8f747c66",
+      "duration": 0,
+      "created_at": "2026-07-08T02:09:02Z",
+      "updated_at": "2026-07-08T02:09:29Z"
+    },
+    {
+      "url": "https://api.github.com/repos/gorics/website/pages/builds/1084161816",
+      "status": "errored",
+      "error": {
+        "message": "Page build failed."
+      },
+      "pusher": {
+        "login": "gorics",
+        "id": 111979713,
+        "node_id": "U_kgDOBqyswQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/111979713?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gorics",
+        "html_url": "https://github.com/gorics",
+        "followers_url": "https://api.github.com/users/gorics/followers",
+        "following_url": "https://api.github.com/users/gorics/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gorics/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gorics/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gorics/subscriptions",
+        "organizations_url": "https://api.github.com/users/gorics/orgs",
+        "repos_url": "https://api.github.com/users/gorics/repos",
+        "events_url": "https://api.github.com/users/gorics/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gorics/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "commit": "3a562bb28a385eee321caf6803e36c0e8f747c66",
+      "duration": 0,
+      "created_at": "2026-07-08T02:08:45Z",
+      "updated_at": "2026-07-08T02:09:02Z"
+    },
+    {
+      "url": "https://api.github.com/repos/gorics/website/pages/builds/1084161330",
+      "status": "errored",
+      "error": {
+        "message": "Page build failed."
+      },
+      "pusher": {
+        "login": "gorics",
+        "id": 111979713,
+        "node_id": "U_kgDOBqyswQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/111979713?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gorics",
+        "html_url": "https://github.com/gorics",
+        "followers_url": "https://api.github.com/users/gorics/followers",
+        "following_url": "https://api.github.com/users/gorics/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gorics/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gorics/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gorics/subscriptions",
+        "organizations_url": "https://api.github.com/users/gorics/orgs",
+        "repos_url": "https://api.github.com/users/gorics/repos",
+        "events_url": "https://api.github.com/users/gorics/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gorics/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "commit": "0c51bdf4db492997b529b23f4c823742a9e37605",
+      "duration": 0,
+      "created_at": "2026-07-08T02:08:16Z",
+      "updated_at": "2026-07-08T02:08:45Z"
+    },
+    {
+      "url": "https://api.github.com/repos/gorics/website/pages/builds/1084161149",
+      "status": "errored",
+      "error": {
+        "message": "Page build failed."
+      },
+      "pusher": {
+        "login": "github-actions[bot]",
+        "id": 41898282,
+        "node_id": "MDM6Qm90NDE4OTgyODI=",
+        "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+        "html_url": "https://github.com/apps/github-actions",
+        "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "commit": "154204a58340740c5b47e0e48b6eb804c4eeeeb2",
+      "duration": 0,
+      "created_at": "2026-07-08T02:08:07Z",
+      "updated_at": "2026-07-08T02:08:16Z"
+    },
+    {
+      "url": "https://api.github.com/repos/gorics/website/pages/builds/1084160044",
+      "status": "errored",
+      "error": {
+        "message": "Page build failed."
+      },
+      "pusher": {
+        "login": "github-actions[bot]",
+        "id": 41898282,
+        "node_id": "MDM6Qm90NDE4OTgyODI=",
+        "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+        "html_url": "https://github.com/apps/github-actions",
+        "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "commit": "9fc1ff15c4513d8de5ee96b57e3aaa5555831ece",
+      "duration": 0,
+      "created_at": "2026-07-08T02:07:03Z",
+      "updated_at": "2026-07-08T02:08:07Z"
+    }
+  ],
+  "builds_error": ""
+}
