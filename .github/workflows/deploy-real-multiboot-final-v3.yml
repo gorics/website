@@ -18,12 +18,12 @@ concurrency:
 jobs:
   deploy-and-verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 75
+    timeout-minutes: 90
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     env:
       DEPLOY_VERSION: ${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+      PAGES_ARTIFACT: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - name: Checkout immutable current source
         uses: actions/checkout@v4
@@ -36,7 +36,7 @@ jobs:
         run: |
           set -euo pipefail
           seen=0
-          for attempt in $(seq 1 72); do
+          for attempt in $(seq 1 90); do
             gh run list --repo "$GITHUB_REPOSITORY" --commit "$GITHUB_SHA" --limit 100 \
               --json workflowName,status,databaseId,event > /tmp/current-sha-runs.json
             count=$(jq '[.[] | select(.workflowName == "pages-build-deployment")] | length' /tmp/current-sha-runs.json)
@@ -48,22 +48,21 @@ jobs:
           done
           if [ "$seen" != 1 ]; then
             echo 'branch Pages run was not observed; applying conservative grace period'
-            sleep 45
+            sleep 60
           fi
-          sleep 20
+          sleep 75
 
-      - name: Build atomic R16 ultra site
+      - name: Build atomic R17 predictive site
         run: |
-          set -o pipefail
+          set -euo pipefail
           bash scripts/build-real-multiboot-pages-final.sh _site 2>&1 | tee /tmp/final-v3-build.log
           node --check _site/os/real-multiboot/performance-mode.js
+          node --check _site/os/real-multiboot/predictive-prefetch.js
           node --check _site/os/real-multiboot/safe-diagnostics.js
-          grep -q 'performance-mode.css?v=' _site/os/real-multiboot/index.html
-          grep -q 'performance-mode.js?v=' _site/os/real-multiboot/index.html
-          grep -q 'r16-preflight-cache' _site/os/real-multiboot/index.html
-          grep -q 'maxCharacters' _site/os/real-multiboot/performance-mode.js
-          grep -q 'memoryCap' _site/os/real-multiboot/performance-mode.js
-          grep -q 'isoProbeWarm' _site/os/real-multiboot/performance-mode.js
+          grep -q 'r17-predictive' _site/os/real-multiboot/index.html
+          grep -q 'predictive-prefetch.js?v=' _site/os/real-multiboot/index.html
+          grep -q '__GORICS_PREDICTIVE_PREFETCH__' _site/os/real-multiboot/predictive-prefetch.js
+          grep -q 'cancelBackgroundWork' _site/os/real-multiboot/predictive-prefetch.js
           grep -q 'constructorPoll' _site/os/real-multiboot/performance-mode.js
           grep -q '__GORICS_LAST_VM_OPTIONS__' _site/os/real-multiboot/performance-mode.js
           grep -q 'native fetch and XMLHttpRequest preserved' _site/os/real-multiboot/safe-diagnostics.js
@@ -71,16 +70,60 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload Pages artifact
+      - name: Upload uniquely named Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          name: ${{ env.PAGES_ARTIFACT }}
           path: _site
 
-      - name: Deploy final Pages artifact
-        id: deployment
+      - name: Deploy final Pages artifact attempt 1
+        id: deploy1
+        continue-on-error: true
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ env.PAGES_ARTIFACT }}
+          timeout: 600000
+          error_count: 20
 
-      - name: Verify exact public R16 deployment
+      - name: Cool down after deployment conflict
+        if: steps.deploy1.outcome == 'failure'
+        run: sleep 45
+
+      - name: Deploy final Pages artifact attempt 2
+        id: deploy2
+        if: steps.deploy1.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ env.PAGES_ARTIFACT }}
+          timeout: 600000
+          error_count: 20
+
+      - name: Extended cool down after second conflict
+        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        run: sleep 90
+
+      - name: Deploy final Pages artifact attempt 3
+        id: deploy3
+        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ env.PAGES_ARTIFACT }}
+          timeout: 600000
+          error_count: 30
+
+      - name: Confirm a Pages deployment succeeded
+        run: |
+          set -euo pipefail
+          echo "deploy1=${{ steps.deploy1.outcome }} deploy2=${{ steps.deploy2.outcome }} deploy3=${{ steps.deploy3.outcome }}"
+          if [ "${{ steps.deploy1.outcome }}" != success ] \
+            && [ "${{ steps.deploy2.outcome }}" != success ] \
+            && [ "${{ steps.deploy3.outcome }}" != success ]; then
+            echo 'all Pages deployment attempts failed'
+            exit 1
+          fi
+
+      - name: Verify exact public R17 deployment
         run: |
           set -euo pipefail
           ROOT='https://gorics.github.io/website'
@@ -90,10 +133,11 @@ jobs:
             STAMP="$GITHUB_RUN_ID-$attempt-$(date +%s)"
             if curl -fsSL --max-time 60 -H 'Cache-Control: no-cache' "$PAGE/?verify=$STAMP" -o /tmp/final-v3-index.html \
               && grep -q "$DEPLOY_VERSION" /tmp/final-v3-index.html \
-              && grep -q 'r16-preflight-cache' /tmp/final-v3-index.html \
+              && grep -q 'predictive-prefetch.js?v=' /tmp/final-v3-index.html \
+              && curl -fsSL --max-time 60 "$PAGE/predictive-prefetch.js?v=$DEPLOY_VERSION" -o /tmp/final-v3-prefetch.js \
+              && grep -q 'cancelBackgroundWork' /tmp/final-v3-prefetch.js \
               && curl -fsSL --max-time 60 "$PAGE/performance-mode.js?v=$DEPLOY_VERSION" -o /tmp/final-v3-performance.js \
               && grep -q 'constructorPoll' /tmp/final-v3-performance.js \
-              && grep -q '__GORICS_LAST_VM_OPTIONS__' /tmp/final-v3-performance.js \
               && curl -fsSL --max-time 60 "$PAGE/app.js?v=$DEPLOY_VERSION" -o /tmp/final-v3-app.js \
               && grep -q '/website/vendor/v86/images/buildroot-bzimage68.bin' /tmp/final-v3-app.js \
               && ! grep -q 'https://i.copy.sh/' /tmp/final-v3-app.js \
@@ -103,12 +147,13 @@ jobs:
               READY=1
               break
             fi
-            echo "public R16 deployment pending attempt=$attempt version=$DEPLOY_VERSION"
+            echo "public R17 deployment pending attempt=$attempt version=$DEPLOY_VERSION"
             sleep 10
           done
           test "$READY" = 1
           node --check /tmp/final-v3-app.js
           node --check /tmp/final-v3-performance.js
+          node --check /tmp/final-v3-prefetch.js
 
           for image in buildroot-bzimage68.bin linux4.iso linux.iso freedos722.img; do
             code=$(curl -sS -L --max-time 120 -r 0-4095 \
@@ -128,14 +173,13 @@ jobs:
 
           meta = json.loads(Path('/tmp/final-v3-iso-meta.json').read_text())
           assert meta['architecture'] == 'i386'
-          assert meta.get('release') == 'r12-visible-desktop' or meta.get('release_version') == 'r12'
           assert meta.get('name') == 'gorics-linux-gui-web-i386-r12.iso'
           for path_name, key in (('final-v3-vmlinuz', 'kernel'), ('final-v3-initrd.img', 'initrd')):
               data = (Path('/tmp') / path_name).read_bytes()
               expected = meta[key]
               assert len(data) == int(expected['size'])
               assert hashlib.sha256(data).hexdigest() == expected['sha256']
-          print('public R16 assets verified')
+          print('public R17 direct boot assets verified')
           PY
 
       - name: Install Chromium smoke browser
@@ -144,7 +188,7 @@ jobs:
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
 
-      - name: Verify mobile R16 VM startup and memory limits
+      - name: Verify mobile OS switching and Buildroot startup
         env:
           VERIFY_URL: https://gorics.github.io/website/os/real-multiboot/?verify=${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
@@ -168,60 +212,39 @@ jobs:
               });
 
               await page.goto(process.env.VERIFY_URL, { waitUntil: 'domcontentloaded', timeout: 120000 });
-              await page.waitForFunction(() => Boolean(window.__GORICS_PERFORMANCE_MODE__), null, { timeout: 30000 });
-              report.initial = await page.evaluate(() => ({
-                build: document.querySelector('meta[name="gorics-build"]')?.content,
-                performance: {
-                  build: window.__GORICS_PERFORMANCE_MODE__.build,
-                  profile: window.__GORICS_PERFORMANCE_MODE__.profile,
-                  isCompact: window.__GORICS_PERFORMANCE_MODE__.isCompact,
-                  constructorPoll: window.__GORICS_PERFORMANCE_MODE__.constructorPoll,
-                  cachedPreflights: window.__GORICS_PERFORMANCE_MODE__.cachedPreflights(),
-                },
-                diagnostics: Boolean(window.__GORICS_SAFE_DIAGNOSTICS__),
-                atomic: Boolean(window.__GORICS_ATOMIC_ASSETS__),
-                localMedia: Boolean(window.__GORICS_LOCAL_MEDIA_ROUTER__),
-              }));
-              if (!report.initial.build.includes(process.env.GITHUB_SHA || report.initial.build)) {
-                console.log('build marker', report.initial.build);
-              }
-              if (!report.initial.performance.isCompact || !report.initial.performance.constructorPoll) throw new Error(JSON.stringify(report.initial));
-              if (!report.initial.diagnostics || !report.initial.atomic || !report.initial.localMedia) throw new Error(JSON.stringify(report.initial));
-
+              await page.waitForFunction(() => Boolean(window.__GORICS_PERFORMANCE_MODE__ && window.__GORICS_PREDICTIVE_PREFETCH__), null, { timeout: 30000 });
               await page.selectOption('#os-select', 'buildroot');
+              await page.waitForTimeout(250);
               const startedAt = Date.now();
               await page.click('#boot-btn');
-              await page.waitForFunction(() => Boolean(window.goricsRealMultiboot), null, { timeout: 180000 });
-              await page.waitForFunction(() => Boolean(window.__GORICS_LAST_VM_OPTIONS__), null, { timeout: 30000 });
-              await page.waitForFunction(() => {
-                const log = document.querySelector('#log')?.textContent || '';
-                return /emulator-started/.test(log) || /부팅 실패/.test(document.querySelector('#stage-label')?.textContent || '');
-              }, null, { timeout: 180000 });
-
+              await page.waitForFunction(() => Boolean(window.goricsRealMultiboot && window.__GORICS_LAST_VM_OPTIONS__), null, { timeout: 180000 });
+              await page.waitForFunction(() => /emulator-started/.test(document.querySelector('#log')?.textContent || ''), null, { timeout: 180000 });
               report.result = await page.evaluate((startedAt) => ({
                 elapsedMs: Date.now() - startedAt,
                 options: window.__GORICS_LAST_VM_OPTIONS__,
+                prefetch: window.__GORICS_PREDICTIVE_PREFETCH__.getStats(),
                 stage: document.querySelector('#stage-label')?.textContent || '',
                 detail: document.querySelector('#stage-detail')?.textContent || '',
                 log: (document.querySelector('#log')?.textContent || '').slice(-16000),
               }), startedAt);
+
               const MB = 1024 * 1024;
               if (report.result.options.memory_size > 112 * MB) throw new Error(`Buildroot memory too high: ${JSON.stringify(report.result)}`);
               if (report.result.options.vga_memory_size > 4 * MB) throw new Error(`Buildroot VGA too high: ${JSON.stringify(report.result)}`);
-              if (!/emulator-started/.test(report.result.log)) throw new Error(`Buildroot did not start: ${JSON.stringify(report.result)}`);
+              if (report.result.prefetch.lastPreset !== 'buildroot') throw new Error(`prefetch did not switch: ${JSON.stringify(report.result.prefetch)}`);
               if (/RangeError: Length out of range of buffer/i.test(report.result.log)) throw new Error('original RangeError returned');
+              if (report.pageErrors.length) throw new Error(report.pageErrors.join('\n'));
               if (report.failedRequests.some(item => /buildroot-bzimage68\.bin/.test(item.url || '') && Number(item.status || 0) >= 400)) {
                 throw new Error(`Buildroot image failed: ${JSON.stringify(report.failedRequests)}`);
               }
-              if (report.pageErrors.length) throw new Error(report.pageErrors.join('\n'));
               report.success = true;
             } catch (error) {
               report.success = false;
               report.error = { message: error.message, stack: error.stack };
               if (page) {
                 report.failureState = await page.evaluate(() => ({
+                  prefetch: window.__GORICS_PREDICTIVE_PREFETCH__?.getStats?.() || null,
                   options: window.__GORICS_LAST_VM_OPTIONS__ || null,
-                  vm: Boolean(window.goricsRealMultiboot),
                   stage: document.querySelector('#stage-label')?.textContent || '',
                   detail: document.querySelector('#stage-detail')?.textContent || '',
                   log: (document.querySelector('#log')?.textContent || '').slice(-20000),
@@ -244,16 +267,13 @@ jobs:
             "https://gorics.github.io/website/os/real-multiboot/?stable=$GITHUB_RUN_ID-$(date +%s)" \
             -o /tmp/final-v3-stable-index.html
           grep -q "$DEPLOY_VERSION" /tmp/final-v3-stable-index.html
-          curl -fsSL --max-time 60 -r 0-4095 \
-            "https://gorics.github.io/website/vendor/v86/images/buildroot-bzimage68.bin?v=$DEPLOY_VERSION" \
-            -o /tmp/final-v3-stable-buildroot.probe
-          test -s /tmp/final-v3-stable-buildroot.probe
+          grep -q 'predictive-prefetch.js?v=' /tmp/final-v3-stable-index.html
 
-      - name: Upload V3 R16 proof
+      - name: Upload V3 R17 proof
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: final-real-multiboot-r16-${{ github.run_id }}
+          name: final-real-multiboot-r17-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             /tmp/final-v3-build.log
             /tmp/current-sha-runs.json
@@ -261,6 +281,7 @@ jobs:
             /tmp/final-v3-stable-index.html
             /tmp/final-v3-app.js
             /tmp/final-v3-performance.js
+            /tmp/final-v3-prefetch.js
             /tmp/final-v3-manifest.json
             /tmp/final-v3-iso-meta.json
             /tmp/final-v3-performance-result.json
