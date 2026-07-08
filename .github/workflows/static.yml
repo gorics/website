@@ -67,12 +67,20 @@ jobs:
           download 'https://i.copy.sh/linux.iso' '_site/vendor/v86/images/linux.iso'
           download 'https://i.copy.sh/freedos722.img' '_site/vendor/v86/images/freedos722.img'
 
-          gh release download gorics-linux-gui-web-iso-latest \
+          if gh release download gorics-linux-gui-web-iso-latest \
             --repo "$GITHUB_REPOSITORY" \
             --pattern gorics-linux-gui-web-i386.iso \
-            --dir _site/os/real-multiboot/assets
-
-          python3 os/real-multiboot/prepare-direct-deploy.py _site
+            --dir _site/os/real-multiboot/assets; then
+            echo 'full ISO release found; refreshing extracted direct-boot files'
+            python3 os/real-multiboot/prepare-direct-deploy.py _site
+          else
+            echo 'full ISO release unavailable; using repository direct-boot files and CDN ISO chunks'
+            test -s _site/os/real-multiboot/assets/vmlinuz
+            test -s _site/os/real-multiboot/assets/initrd.img
+            test -s _site/os/real-multiboot/assets/iso-meta.json
+            grep -q 'bzimage: { url: kernelUrl }' _site/os/real-multiboot/app.js
+            grep -q 'systemd.unit=graphical.target' _site/os/real-multiboot/app.js
+          fi
 
           python3 - <<'PY'
           import hashlib
@@ -156,12 +164,10 @@ jobs:
           node --check _site/os/real-multiboot/asset-versioning.js
           node --check _site/os/real-multiboot/safe-diagnostics.js
           node --check _site/os/real-multiboot/local-media-router.js
-          node --check _site/os/real-multiboot/visibility-timeout-guard.js
           grep -q 'bzimage: { url: kernelUrl }' _site/os/real-multiboot/app.js
           grep -q 'systemd.unit=graphical.target' _site/os/real-multiboot/app.js
           grep -q 'asset-versioning.js?v=' _site/os/real-multiboot/index.html
           grep -q 'safe-diagnostics.js?v=' _site/os/real-multiboot/index.html
-          grep -q 'visibility-timeout-guard.js?v=' _site/os/real-multiboot/index.html
           grep -q 'gorics-build' _site/os/real-multiboot/index.html
           ! grep -q 'src="./diagnostics.js' _site/os/real-multiboot/index.html
           ! grep -q 'chunk-router-v4.js' _site/os/real-multiboot/index.html
@@ -212,7 +218,6 @@ jobs:
             if curl -fsSL --max-time 45 -H 'Cache-Control: no-cache' "$PAGE/?verify=$stamp" -o /tmp/index.html \
               && grep -q 'asset-versioning.js?v=' /tmp/index.html \
               && grep -q 'safe-diagnostics.js?v=' /tmp/index.html \
-              && grep -q 'visibility-timeout-guard.js?v=' /tmp/index.html \
               && grep -q 'gorics-build' /tmp/index.html \
               && ! grep -q 'chunk-router-v4.js' /tmp/index.html \
               && curl -fsSL --max-time 45 "$ROOT/vendor/v86/manifest.json?v=$stamp" -o /tmp/manifest.json \
