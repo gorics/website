@@ -1,6 +1,16 @@
 {
-  "recorded_at": "2026-07-08T04:51:11.048833+00:00",
+  "recorded_at": "2026-07-08T04:55:07.950299+00:00",
   "final_verifier_runs": [
+    {
+      "conclusion": "",
+      "createdAt": "2026-07-08T04:54:34Z",
+      "databaseId": 28918495739,
+      "event": "workflow_dispatch",
+      "headSha": "5353300d68b8650989378452dae597d4ee47f91e",
+      "status": "in_progress",
+      "updatedAt": "2026-07-08T04:54:37Z",
+      "url": "https://github.com/gorics/website/actions/runs/28918495739"
+    },
     {
       "conclusion": "success",
       "createdAt": "2026-07-08T04:42:52Z",
@@ -14,6 +24,16 @@
   ],
   "strict_readiness_runs": [
     {
+      "conclusion": "success",
+      "createdAt": "2026-07-08T04:52:23Z",
+      "databaseId": 28918413620,
+      "event": "push",
+      "headSha": "1d3308841c5dbf9e00b5a2ef362796811d90c8b1",
+      "status": "completed",
+      "updatedAt": "2026-07-08T04:53:12Z",
+      "url": "https://github.com/gorics/website/actions/runs/28918413620"
+    },
+    {
       "conclusion": "failure",
       "createdAt": "2026-07-08T04:49:10Z",
       "databaseId": 28918296735,
@@ -24,7 +44,29 @@
       "url": "https://github.com/gorics/website/actions/runs/28918296735"
     }
   ],
+  "strict_dispatch_runs": [
+    {
+      "conclusion": "success",
+      "createdAt": "2026-07-08T04:53:38Z",
+      "databaseId": 28918461477,
+      "event": "push",
+      "headSha": "43cacf34a18cc8e0b9c5d90c1d684bdd7ed1ad6e",
+      "status": "completed",
+      "updatedAt": "2026-07-08T04:54:36Z",
+      "url": "https://github.com/gorics/website/actions/runs/28918461477"
+    }
+  ],
   "pages_runs": [
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-07-08T04:51:25Z",
+      "databaseId": 28918377894,
+      "event": "workflow_dispatch",
+      "headSha": "6d5d9514a88f6d265c8575fa0da0a11311fc013b",
+      "status": "completed",
+      "updatedAt": "2026-07-08T04:52:35Z",
+      "url": "https://github.com/gorics/website/actions/runs/28918377894"
+    },
     {
       "conclusion": "",
       "createdAt": "2026-07-08T04:50:31Z",
@@ -32,7 +74,7 @@
       "event": "workflow_dispatch",
       "headSha": "f67d5fcfdfe6d5c324eb2867a20d4407a5528bf4",
       "status": "in_progress",
-      "updatedAt": "2026-07-08T04:50:37Z",
+      "updatedAt": "2026-07-08T04:54:55Z",
       "url": "https://github.com/gorics/website/actions/runs/28918345045"
     },
     {
@@ -114,16 +156,6 @@
       "status": "completed",
       "updatedAt": "2026-07-08T04:41:58Z",
       "url": "https://github.com/gorics/website/actions/runs/28918032451"
-    },
-    {
-      "conclusion": "cancelled",
-      "createdAt": "2026-07-08T04:41:46Z",
-      "databaseId": 28918029482,
-      "event": "workflow_dispatch",
-      "headSha": "e6485201baee0c1bb9fc5596ee57809311ccc4da",
-      "status": "completed",
-      "updatedAt": "2026-07-08T04:41:51Z",
-      "url": "https://github.com/gorics/website/actions/runs/28918029482"
     }
   ]
 }
