@@ -1,9 +1,7 @@
 {
-  "success": true,
-  "state": "completed",
-  "run_id": "28937461486",
-  "checked_at": "2026-07-08T10:59:32.539145+00:00",
-  "probe": [
-    "buildroot-bzimage68.bin status=404 bytes=1827"
-  ]
+  "success": false,
+  "state": "failed",
+  "run_id": "28941600713",
+  "checked_at": "2026-07-08T12:24:06.057090+00:00",
+  "probe": []
 }
