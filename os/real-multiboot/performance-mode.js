@@ -33,22 +33,49 @@
     await Promise.allSettled(requests);
   }
 
+  // The legacy application still contains a broad boot-time cleanup routine.
+  // Hide only the enumeration APIs during that short routine so existing v86
+  // and ISO caches survive; restore the native methods before normal runtime use.
+  let cleanupShieldTimer = 0;
   function shieldDestructiveCleanup() {
     const cacheApi = globalThis.caches;
     const workerApi = navigator.serviceWorker;
     const nativeKeys = cacheApi?.keys?.bind(cacheApi);
     const nativeRegistrations = workerApi?.getRegistrations?.bind(workerApi);
+    clearTimeout(cleanupShieldTimer);
     try { if (cacheApi?.keys) cacheApi.keys = async () => []; } catch {}
     try { if (workerApi?.getRegistrations) workerApi.getRegistrations = async () => []; } catch {}
-    setTimeout(() => {
+    cleanupShieldTimer = window.setTimeout(() => {
       try { if (cacheApi && nativeKeys) cacheApi.keys = nativeKeys; } catch {}
       try { if (workerApi && nativeRegistrations) workerApi.getRegistrations = nativeRegistrations; } catch {}
-    }, 0);
+    }, 4000);
   }
 
   document.querySelector('#boot-btn')?.addEventListener('click', shieldDestructiveCleanup, { capture: true });
 
+  // Keep the visible text log bounded during long VM sessions. This prevents
+  // repeated textContent concatenation from growing the DOM without limit.
+  function installLogCap() {
+    const logBox = document.querySelector('#log');
+    if (!logBox || typeof MutationObserver !== 'function') return;
+    const MAX_CHARS = 120000;
+    const KEEP_CHARS = 90000;
+    let trimming = false;
+    const trim = () => {
+      if (trimming || (logBox.textContent?.length || 0) <= MAX_CHARS) return;
+      trimming = true;
+      const text = logBox.textContent || '';
+      const tail = text.slice(-KEEP_CHARS);
+      const boundary = tail.indexOf('\n');
+      logBox.textContent = `[older log lines removed]\n${boundary >= 0 ? tail.slice(boundary + 1) : tail}`;
+      trimming = false;
+    };
+    new MutationObserver(trim).observe(logBox, { childList: true, characterData: true, subtree: true });
+    trim();
+  }
+
   const scheduleWarm = () => {
+    installLogCap();
     if ('requestIdleCallback' in globalThis) requestIdleCallback(warmRuntime, { timeout: 2500 });
     else setTimeout(warmRuntime, 900);
   };
@@ -85,6 +112,7 @@
     globalFetchPatched: false,
     cacheDeletionEnabled: false,
     cleanupShield: true,
+    logCapChars: 120000,
     constructorPatched: false,
   });
 

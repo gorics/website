@@ -34,6 +34,7 @@ jobs:
           node --check os/real-multiboot/performance-mode.js
           node --check os/real-multiboot/predictive-prefetch.js
           node --check os/real-multiboot/pointer-calibration.js
+          node --check os/real-multiboot/local-media-router.js
           node --check .github/scripts/verify-real-multiboot-r19.mjs
           python3 - <<'PY'
           import json
@@ -43,6 +44,7 @@ jobs:
           root = Path('os/real-multiboot')
           html = (root / 'index.html').read_text(encoding='utf-8')
           meta = json.loads((root / 'assets/iso-meta.json').read_text(encoding='utf-8'))
+          performance = (root / 'performance-mode.js').read_text(encoding='utf-8')
           required = {
               'os-select', 'boot-btn', 'keyboard-btn', 'stop-btn', 'fullscreen-btn',
               'screen-wrap', 'screen', 'loading-overlay', 'log', 'stage-label',
@@ -58,6 +60,8 @@ jobs:
           parser = Parser(); parser.feed(html)
           assert not (required - parser.ids), sorted(required - parser.ids)
           assert '20260710-r19-stability' in html
+          assert 'r19-stable-runtime-cache-safe-local-media-pointer-calibration' in html
+          assert 'logCapChars: 120000' in performance
           assert meta['name'] == 'gorics-linux-gui-web-i386-r12.iso'
           assert meta['architecture'] == 'i386'
           assert meta['direct_boot'] is True and meta['chunked'] is True
@@ -77,25 +81,40 @@ jobs:
           npx playwright install --with-deps chromium
           node --check verify.mjs
 
-      - name: Wait for public R19 deployment
+      - name: Wait for public R19 deployment and all preset media
         run: |
           set -euo pipefail
-          BASE='https://gorics.github.io/website/os/real-multiboot/'
+          ROOT='https://gorics.github.io/website'
+          BASE="$ROOT/os/real-multiboot/"
           ready=0
-          for attempt in $(seq 1 45); do
+          for attempt in $(seq 1 60); do
             stamp="${GITHUB_RUN_ID}-${attempt}-$(date +%s)"
             if curl -fsSL --max-time 30 "${BASE}?deploy=${stamp}" -o /tmp/public-index.html \
-              && grep -q '20260710-r19-stability' /tmp/public-index.html \
+              && grep -q 'r19-stable-runtime-cache-safe-local-media-pointer-calibration' /tmp/public-index.html \
               && curl -fsSL --max-time 30 "${BASE}app.js?deploy=${stamp}" -o /tmp/public-app.js \
+              && curl -fsSL --max-time 30 "${BASE}performance-mode.js?deploy=${stamp}" -o /tmp/public-performance.js \
+              && grep -q 'logCapChars: 120000' /tmp/public-performance.js \
+              && curl -fsSL --max-time 30 "${BASE}local-media-router.js?deploy=${stamp}" -o /tmp/public-router.js \
               && curl -fsSL --max-time 30 "${BASE}assets/iso-meta.json?deploy=${stamp}" -o /tmp/public-meta.json; then
               ready=1
               break
             fi
-            echo "public deployment not ready: ${attempt}/45"
+            echo "public deployment not ready: ${attempt}/60"
             sleep 10
           done
           test "$ready" = 1
           node --check /tmp/public-app.js
+          node --check /tmp/public-performance.js
+          node --check /tmp/public-router.js
+
+          : > /tmp/public-media-probe.txt
+          for image in buildroot-bzimage68.bin linux4.iso linux.iso freedos722.img; do
+            code=$(curl -sS -L --max-time 120 -r 0-4095 -o "/tmp/${image}.probe" -w '%{http_code}' "$ROOT/vendor/v86/images/$image?verify=$GITHUB_RUN_ID")
+            bytes=$(stat -c %s "/tmp/${image}.probe" 2>/dev/null || echo 0)
+            printf '%s status=%s bytes=%s\n' "$image" "$code" "$bytes" | tee -a /tmp/public-media-probe.txt
+            case "$code" in 200|206) ;; *) exit 1;; esac
+            test "$bytes" -gt 0
+          done
 
       - name: Boot GORICS Linux in Chromium
         id: browser
@@ -149,7 +168,10 @@ jobs:
             /tmp/real-multiboot-r19.log
             /tmp/public-index.html
             /tmp/public-app.js
+            /tmp/public-performance.js
+            /tmp/public-router.js
             /tmp/public-meta.json
+            /tmp/public-media-probe.txt
           if-no-files-found: warn
 
       - name: Publish canonical status
