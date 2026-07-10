@@ -3,254 +3,257 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#07111f">
+  <meta name="theme-color" content="#050816">
   <meta name="color-scheme" content="dark">
   <meta name="referrer" content="no-referrer">
   <meta name="robots" content="index,follow,max-image-preview:none">
+  <meta name="description" content="GORICS Linux GUI와 Buildroot, DSL, Tiny Linux, FreeDOS를 브라우저에서 실행하는 단일 멀티부트 허브입니다.">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'self'; upgrade-insecure-requests">
-  <title>GORICS 멀티부트</title>
-  <meta name="description" content="검증된 GORICS Linux GUI를 메인으로 실행하고 Buildroot, DSL, Tiny Linux, FreeDOS, Windows 실험 환경을 선택하는 브라우저 멀티부트 허브입니다.">
+  <title>GORICS OS · Real Multiboot</title>
   <style>
-    :root {
+    :root{
       color-scheme:dark;
-      --bg:#040812;
-      --surface:rgba(13,25,44,.82);
-      --surface2:rgba(20,37,63,.94);
-      --line:rgba(158,190,230,.18);
-      --line2:rgba(109,229,255,.38);
-      --text:#f6f9ff;
-      --muted:#a9b8cc;
-      --cyan:#6de5ff;
-      --blue:#6c8fff;
-      --green:#59e6ab;
-      --yellow:#ffd473;
-      --pink:#ff8acb;
-      --shadow:0 30px 100px rgba(0,0,0,.38);
+      --bg:#050816;
+      --panel:#0d1729;
+      --panel-2:#13233c;
+      --line:rgba(166,195,234,.18);
+      --line-strong:rgba(103,232,249,.38);
+      --text:#f4f8ff;
+      --muted:#a7b7ce;
+      --cyan:#67e8f9;
+      --blue:#8aa6ff;
+      --green:#63e6ae;
+      --yellow:#f7d477;
+      --pink:#ff91c8;
+      --shadow:0 28px 90px rgba(0,0,0,.38);
     }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth;background:var(--bg)}
     body{
-      margin:0;min-height:100svh;overflow-x:hidden;color:var(--text);
+      margin:0;
+      min-width:280px;
+      min-height:100svh;
+      overflow-x:hidden;
+      color:var(--text);
       background:
-        radial-gradient(circle at 8% -10%,rgba(108,143,255,.3),transparent 35rem),
-        radial-gradient(circle at 94% 2%,rgba(89,230,171,.18),transparent 30rem),
-        linear-gradient(180deg,#071321 0%,var(--bg) 58%,#02050b 100%);
+        radial-gradient(circle at 10% -10%,rgba(80,112,255,.28),transparent 36rem),
+        radial-gradient(circle at 95% 3%,rgba(99,230,174,.17),transparent 31rem),
+        linear-gradient(180deg,#071421 0%,var(--bg) 52%,#02050a 100%);
       font-family:Inter,Pretendard,"Noto Sans KR",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       -webkit-font-smoothing:antialiased;
     }
     body::before{
-      content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;
-      background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
-      background-size:32px 32px;mask-image:linear-gradient(to bottom,#000,transparent 85%);
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.16;
+      background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+      background-size:32px 32px;
+      mask-image:linear-gradient(to bottom,#000,transparent 88%);
     }
     a{color:inherit}
     button{font:inherit}
-    .shell{width:min(1200px,calc(100% - 32px));margin:auto;padding:max(18px,env(safe-area-inset-top)) 0 max(36px,env(safe-area-inset-bottom))}
+    .shell{
+      width:min(1180px,calc(100% - 32px));
+      margin:auto;
+      padding:max(18px,env(safe-area-inset-top)) 0 max(38px,env(safe-area-inset-bottom));
+    }
     .topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:58px;margin-bottom:16px}
     .brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none;font-weight:950;letter-spacing:-.035em}
-    .mark{display:grid;place-items:center;width:39px;height:39px;border:1px solid var(--line2);border-radius:13px;background:linear-gradient(145deg,rgba(109,229,255,.22),rgba(108,143,255,.12));box-shadow:inset 0 0 24px rgba(109,229,255,.08)}
-    .status{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 12px;border:1px solid rgba(89,230,171,.28);border-radius:999px;background:rgba(89,230,171,.08);color:#c8ffe9;font-size:13px;font-weight:850}
-    .status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 16px rgba(89,230,171,.75)}
-    .status.checking::before{background:var(--yellow);box-shadow:0 0 16px rgba(255,212,115,.7)}
-    .status.failed{border-color:rgba(255,138,203,.3);background:rgba(255,138,203,.08);color:#ffd5ed}
-    .status.failed::before{background:var(--pink);box-shadow:0 0 16px rgba(255,138,203,.7)}
-    .hero{position:relative;overflow:hidden;padding:clamp(30px,6vw,72px);border:1px solid var(--line);border-radius:34px;background:linear-gradient(145deg,rgba(18,34,58,.95),rgba(5,14,27,.9));box-shadow:var(--shadow);isolation:isolate}
-    .hero::after{content:"";position:absolute;z-index:-1;width:520px;aspect-ratio:1;right:-170px;top:-220px;border-radius:50%;background:radial-gradient(circle,rgba(109,229,255,.22),transparent 68%)}
-    .eyebrow{margin:0 0 17px;color:var(--cyan);font-size:13px;font-weight:950;letter-spacing:.13em;text-transform:uppercase}
-    h1{max-width:900px;margin:0;font-size:clamp(3.1rem,9vw,7.5rem);line-height:.89;letter-spacing:-.078em}
-    .gradient{color:transparent;background:linear-gradient(100deg,#fff 5%,var(--cyan) 52%,#9eb3ff 96%);-webkit-background-clip:text;background-clip:text}
-    .lead{max-width:790px;margin:25px 0 0;color:#c4cfdf;font-size:clamp(1rem,1.8vw,1.18rem);line-height:1.75;word-break:keep-all}
+    .mark{display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--line-strong);border-radius:13px;background:linear-gradient(145deg,rgba(103,232,249,.21),rgba(138,166,255,.12));box-shadow:inset 0 0 24px rgba(103,232,249,.08)}
+    .status{display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:0 13px;border:1px solid rgba(247,212,119,.3);border-radius:999px;background:rgba(247,212,119,.08);color:#ffe9ad;font-size:13px;font-weight:850;white-space:nowrap}
+    .status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 15px rgba(247,212,119,.72)}
+    .status.pass{border-color:rgba(99,230,174,.3);background:rgba(99,230,174,.08);color:#c9ffe8}
+    .status.pass::before{background:var(--green);box-shadow:0 0 15px rgba(99,230,174,.72)}
+    .status.fail{border-color:rgba(255,145,200,.3);background:rgba(255,145,200,.08);color:#ffd8eb}
+    .status.fail::before{background:var(--pink);box-shadow:0 0 15px rgba(255,145,200,.72)}
+    .hero{position:relative;overflow:hidden;padding:clamp(30px,6vw,70px);border:1px solid var(--line);border-radius:34px;background:linear-gradient(145deg,rgba(18,35,60,.96),rgba(6,15,29,.92));box-shadow:var(--shadow);isolation:isolate}
+    .hero::after{content:"";position:absolute;z-index:-1;width:540px;aspect-ratio:1;right:-175px;top:-230px;border-radius:50%;background:radial-gradient(circle,rgba(103,232,249,.21),transparent 68%)}
+    .eyebrow{margin:0 0 17px;color:var(--cyan);font-size:12px;font-weight:950;letter-spacing:.14em;text-transform:uppercase}
+    h1{max-width:900px;margin:0;font-size:clamp(3.15rem,9vw,7.5rem);line-height:.9;letter-spacing:-.078em}
+    .gradient{color:transparent;background:linear-gradient(100deg,#fff 5%,var(--cyan) 52%,#a8b8ff 96%);-webkit-background-clip:text;background-clip:text}
+    .lead{max-width:800px;margin:25px 0 0;color:#c7d2e2;font-size:clamp(1rem,1.8vw,1.17rem);line-height:1.75;word-break:keep-all}
     .hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
-    .hero-meta span{padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.045);color:#c8d5e8;font-size:12px;font-weight:800}
-    .hero-meta .verified{border-color:rgba(89,230,171,.34);background:rgba(89,230,171,.08);color:#c8ffe9}
+    .hero-meta span{padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.045);color:#c9d6e8;font-size:12px;font-weight:800}
     .hero-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:28px}
-    .button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 19px;border:1px solid transparent;border-radius:15px;text-decoration:none;font-weight:950;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 19px;border:1px solid transparent;border-radius:15px;text-decoration:none;font-weight:950;transition:transform .18s ease,border-color .18s ease,background .18s ease}
     .button:hover{transform:translateY(-2px)}
-    .button:focus-visible,.filter:focus-visible,.os-card:focus-visible,.legacy-link:focus-visible{outline:3px solid rgba(109,229,255,.5);outline-offset:3px}
-    .primary{color:#04121b;background:linear-gradient(120deg,var(--green),var(--cyan));box-shadow:0 18px 50px rgba(89,230,171,.17)}
+    .button:focus-visible,.filter:focus-visible,.os-card:focus-visible,.legacy-link:focus-visible{outline:3px solid rgba(103,232,249,.5);outline-offset:3px}
+    .primary{color:#04131a;background:linear-gradient(120deg,var(--green),var(--cyan));box-shadow:0 18px 48px rgba(99,230,174,.17)}
     .secondary{border-color:var(--line);background:rgba(255,255,255,.055)}
-    .runtime{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;margin-top:18px;padding:20px 22px;border:1px solid rgba(89,230,171,.26);border-radius:22px;background:linear-gradient(120deg,rgba(89,230,171,.09),rgba(109,229,255,.055))}
+    .runtime{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;margin-top:18px;padding:20px 22px;border:1px solid rgba(103,232,249,.23);border-radius:22px;background:linear-gradient(120deg,rgba(103,232,249,.075),rgba(99,230,174,.055))}
     .runtime-copy{min-width:0}
-    .runtime-kicker{display:block;margin-bottom:6px;color:#aaffd7;font-size:11px;font-weight:950;letter-spacing:.12em}
+    .runtime-kicker{display:block;margin-bottom:6px;color:#a9f5ff;font-size:11px;font-weight:950;letter-spacing:.12em}
     .runtime strong{display:block;font-size:clamp(1.05rem,2vw,1.3rem);letter-spacing:-.025em}
-    .runtime p{margin:7px 0 0;color:#a9c8bb;font-size:13px;line-height:1.6;word-break:keep-all}
+    .runtime p{margin:7px 0 0;color:#a8bfd1;font-size:13px;line-height:1.62;word-break:keep-all}
     .runtime-metrics{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}
-    .metric{min-width:112px;padding:11px 12px;border:1px solid rgba(255,255,255,.09);border-radius:14px;background:rgba(4,12,22,.46)}
-    .metric b{display:block;color:#eafff7;font-size:14px}
-    .metric span{display:block;margin-top:3px;color:#7fa293;font-size:11px;font-weight:800}
+    .metric{min-width:110px;padding:11px 12px;border:1px solid rgba(255,255,255,.09);border-radius:14px;background:rgba(4,12,22,.48)}
+    .metric b{display:block;color:#eafff8;font-size:14px}
+    .metric span{display:block;margin-top:3px;color:#8199a8;font-size:11px;font-weight:800}
     .section{padding-top:30px}
     .section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:0 4px 15px}
     h2{margin:0;font-size:clamp(1.55rem,3.4vw,2.35rem);letter-spacing:-.048em}
     .section-head p{margin:0;color:var(--muted);font-size:14px}
     .filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 4px 16px}
-    .filter{min-height:38px;padding:0 13px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:#c6d2e4;cursor:pointer;font-size:13px;font-weight:850}
-    .filter[aria-pressed="true"]{border-color:rgba(109,229,255,.45);background:rgba(109,229,255,.13);color:#eaffff}
+    .filter{min-height:42px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:#c7d4e5;cursor:pointer;font-size:13px;font-weight:850}
+    .filter[aria-pressed="true"]{border-color:rgba(103,232,249,.45);background:rgba(103,232,249,.13);color:#edffff}
     .os-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-    .os-card{position:relative;display:flex;flex-direction:column;min-height:260px;padding:22px;border:1px solid var(--line);border-radius:23px;background:var(--surface);backdrop-filter:blur(15px);text-decoration:none;overflow:hidden;transition:transform .18s ease,border-color .18s ease,background .18s ease}
-    .os-card::after{content:"";position:absolute;width:170px;aspect-ratio:1;right:-80px;bottom:-100px;border-radius:50%;background:radial-gradient(circle,var(--glow,rgba(109,229,255,.13)),transparent 70%);pointer-events:none}
-    .os-card:hover{transform:translateY(-4px);border-color:rgba(109,229,255,.34);background:var(--surface2)}
-    .os-card.featured{grid-column:span 2;background:linear-gradient(140deg,rgba(31,65,98,.94),rgba(10,27,48,.92));border-color:rgba(89,230,171,.4);box-shadow:inset 0 0 0 1px rgba(89,230,171,.06)}
+    .os-card{position:relative;display:flex;flex-direction:column;min-height:250px;padding:22px;border:1px solid var(--line);border-radius:23px;background:rgba(13,23,41,.88);backdrop-filter:blur(14px);text-decoration:none;overflow:hidden;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+    .os-card::after{content:"";position:absolute;width:170px;aspect-ratio:1;right:-80px;bottom:-100px;border-radius:50%;background:radial-gradient(circle,var(--glow,rgba(103,232,249,.13)),transparent 70%);pointer-events:none}
+    .os-card:hover{transform:translateY(-4px);border-color:rgba(103,232,249,.34);background:var(--panel-2)}
+    .os-card.featured{grid-column:span 2;background:linear-gradient(140deg,rgba(31,66,99,.95),rgba(10,27,49,.93));border-color:rgba(99,230,174,.38)}
     .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-    .icon{display:grid;place-items:center;width:46px;height:46px;border:1px solid rgba(109,229,255,.24);border-radius:14px;background:rgba(109,229,255,.08);font-size:21px}
-    .badge{padding:6px 9px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.045);color:#b8c8dc;font-size:11px;font-weight:900;letter-spacing:.04em}
-    .badge.live{border-color:rgba(89,230,171,.3);color:#bfffe3;background:rgba(89,230,171,.07)}
-    .badge.lab{border-color:rgba(255,212,115,.28);color:#ffe8ad;background:rgba(255,212,115,.07)}
-    .os-card h3{margin:28px 0 0;font-size:1.22rem;letter-spacing:-.035em}
+    .icon{display:grid;place-items:center;width:46px;height:46px;border:1px solid rgba(103,232,249,.24);border-radius:14px;background:rgba(103,232,249,.08);font-size:21px;font-weight:950}
+    .badge{padding:6px 9px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.045);color:#b9c9dc;font-size:11px;font-weight:900;letter-spacing:.04em}
+    .badge.live{border-color:rgba(99,230,174,.3);color:#c6ffe5;background:rgba(99,230,174,.07)}
+    .badge.lab{border-color:rgba(247,212,119,.28);color:#ffe8ad;background:rgba(247,212,119,.07)}
+    .badge.fail{border-color:rgba(255,145,200,.28);color:#ffd6e9;background:rgba(255,145,200,.07)}
+    .os-card h3{margin:27px 0 0;font-size:1.22rem;letter-spacing:-.035em}
     .os-card p{margin:10px 0 20px;color:var(--muted);font-size:14px;line-height:1.62;word-break:keep-all}
     .card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;color:#dce8f8;font-size:13px;font-weight:900}
     .card-foot span:last-child{font-size:18px}
-    .privacy{display:grid;grid-template-columns:auto minmax(0,1fr);gap:15px;margin-top:14px;padding:20px;border:1px solid rgba(89,230,171,.24);border-radius:20px;background:rgba(89,230,171,.07)}
-    .privacy-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:rgba(89,230,171,.12);font-size:20px}
-    .privacy strong{display:block;margin-bottom:6px;color:#c8ffe8}
-    .privacy p{margin:0;color:#abc8bb;font-size:13px;line-height:1.6;word-break:keep-all}
-    details{margin-top:14px;border:1px solid var(--line);border-radius:20px;background:rgba(10,20,36,.7)}
+    details{margin-top:14px;border:1px solid var(--line);border-radius:20px;background:rgba(10,20,36,.72)}
     summary{padding:18px 20px;cursor:pointer;font-weight:900;list-style:none}
     summary::-webkit-details-marker{display:none}
     summary::after{content:"＋";float:right;color:var(--cyan)}
     details[open] summary::after{content:"－"}
-    .legacy-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;padding:0 18px 18px}
-    .legacy-link{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:48px;padding:0 13px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.035);text-decoration:none;color:#c6d4e7;font-size:13px;font-weight:850}
+    .legacy-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;padding:0 18px 18px}
+    .legacy-link{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:48px;padding:0 13px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.035);text-decoration:none;color:#c7d5e7;font-size:13px;font-weight:850}
+    .notice{display:grid;grid-template-columns:auto minmax(0,1fr);gap:15px;margin-top:14px;padding:20px;border:1px solid rgba(247,212,119,.22);border-radius:20px;background:rgba(247,212,119,.06)}
+    .notice-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:rgba(247,212,119,.1);font-size:20px}
+    .notice strong{display:block;margin-bottom:6px;color:#ffe9ad}
+    .notice p{margin:0;color:#c9bd94;font-size:13px;line-height:1.62;word-break:keep-all}
     footer{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:27px 4px 0;color:#75869d;font-size:12px}
     .compat{display:inline-flex;align-items:center;gap:7px}.compat::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--yellow)}
     [hidden]{display:none!important}
     @media(max-width:900px){.os-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.os-card.featured{grid-column:span 2}.legacy-list{grid-template-columns:repeat(2,minmax(0,1fr))}.runtime{grid-template-columns:1fr}.runtime-metrics{justify-content:flex-start}}
-    @media(max-width:590px){.shell{width:min(100% - 20px,1200px)}.status span{display:none}.hero{padding:31px 20px;border-radius:24px}h1{font-size:clamp(3rem,17vw,5.2rem)}.hero-actions{display:grid}.button{width:100%}.runtime{padding:18px}.runtime-metrics{display:grid;grid-template-columns:1fr 1fr}.metric{min-width:0}.section-head{align-items:flex-start;flex-direction:column;gap:5px}.os-grid{grid-template-columns:1fr}.os-card.featured{grid-column:auto}.os-card{min-height:230px}.legacy-list{grid-template-columns:1fr}.privacy{grid-template-columns:1fr}footer{align-items:flex-start;flex-direction:column}}
+    @media(max-width:590px){.shell{width:min(100% - 20px,1180px)}.status span{display:none}.hero{padding:31px 20px;border-radius:24px}h1{font-size:clamp(3rem,17vw,5.2rem)}.hero-actions{display:grid}.button{width:100%}.runtime{padding:18px}.runtime-metrics{display:grid;grid-template-columns:1fr 1fr}.metric{min-width:0}.section-head{align-items:flex-start;flex-direction:column;gap:5px}.os-grid{grid-template-columns:1fr}.os-card.featured{grid-column:auto}.legacy-list{grid-template-columns:1fr}.notice{grid-template-columns:1fr}footer{align-items:flex-start;flex-direction:column}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
 <body>
   <div class="shell">
     <header class="topbar" aria-label="상단 메뉴">
-      <a class="brand" href="./" aria-label="GORICS 멀티부트 홈"><span class="mark">G</span><span>GORICS MULTIBOOT</span></a>
-      <div class="status checking" id="main-status" role="status"><span id="status-text">메인 OS 상태 확인 중</span></div>
+      <a class="brand" href="./" aria-label="GORICS OS 홈"><span class="mark">G</span><span>GORICS OS</span></a>
+      <div class="status" id="main-status" role="status"><span id="status-text">R19 검증 결과 확인 중</span></div>
     </header>
 
     <main>
       <section class="hero" aria-labelledby="main-title">
-        <p class="eyebrow">Verified Main OS · Browser VM</p>
-        <h1 id="main-title"><span class="gradient">GORICS Linux를</span><br>바로 실행.</h1>
-        <p class="lead">실제 i386 Linux ISO와 Openbox 데스크톱을 v86에서 부팅하는 검증된 메인 환경입니다. 메인 OS를 즉시 실행하거나 아래에서 Buildroot, DSL, Tiny Linux, FreeDOS, Windows 실험 환경을 선택할 수 있습니다.</p>
-        <div class="hero-meta" aria-label="메인 OS 검증 요약">
-          <span class="verified" id="verified-version">r4x 검증 완료</span>
-          <span id="verified-resolution">1024×768 GUI</span>
+        <p class="eyebrow">Real browser VM · One canonical runtime</p>
+        <h1 id="main-title"><span class="gradient">GORICS Linux를</span><br>브라우저에서.</h1>
+        <p class="lead">실제 i386 Linux ISO와 Openbox 데스크톱을 v86에서 부팅합니다. GORICS Linux를 기본으로 Buildroot, DSL, Tiny Linux, FreeDOS를 동일한 안정화 런타임에서 선택할 수 있습니다.</p>
+        <div class="hero-meta" aria-label="실행 환경 요약">
+          <span id="verified-version">R19 검증 확인 중</span>
+          <span id="verified-resolution">그래픽 화면 확인 중</span>
           <span>Openbox · tint2 · PCManFM · xterm</span>
-          <span>다중 CDN 자동 전환</span>
+          <span>로컬 v86 · 다중 CDN ISO</span>
         </div>
         <div class="hero-actions">
-          <a class="button primary" href="real-multiboot/">GORICS Linux 실행 →</a>
+          <a class="button primary" href="real-multiboot/?preset=gorics">GORICS Linux 실행 →</a>
           <a class="button secondary" href="#all-os">다른 OS 선택 ↓</a>
           <a class="button secondary" href="../">사이트 메인</a>
         </div>
       </section>
 
-      <aside class="runtime" aria-label="메인 OS 검증 상태">
+      <aside class="runtime" aria-label="자동 검증 상태">
         <div class="runtime-copy">
-          <span class="runtime-kicker">CURRENT MAIN RUNTIME</span>
+          <span class="runtime-kicker">CANONICAL RUNTIME STATUS</span>
           <strong id="runtime-title">GORICS Linux GUI · 검증 상태 불러오는 중</strong>
-          <p id="runtime-detail">공개 배포본의 에뮬레이터, Xorg, Openbox 및 그래픽 캔버스 검증 결과를 확인하고 있습니다.</p>
+          <p id="runtime-detail">R19 자동 검증 결과에서 에뮬레이터 시작과 그래픽 캔버스 출력을 확인합니다.</p>
         </div>
         <div class="runtime-metrics">
-          <div class="metric"><b id="runtime-version">r4x</b><span>배포 버전</span></div>
-          <div class="metric"><b id="runtime-screen">1024×768</b><span>그래픽 화면</span></div>
-          <div class="metric"><b id="runtime-result">확인 중</b><span>자동 검증</span></div>
+          <div class="metric"><b id="runtime-version">R19</b><span>웹 셸</span></div>
+          <div class="metric"><b id="runtime-screen">확인 중</b><span>그래픽 화면</span></div>
+          <div class="metric"><b id="runtime-result">CHECK</b><span>자동 검증</span></div>
         </div>
       </aside>
 
       <section class="section" id="all-os" aria-labelledby="all-title">
-        <div class="section-head"><div><h2 id="all-title">실행 가능한 OS</h2></div><p id="visible-count">9개 표시 중</p></div>
-        <div class="filters" aria-label="OS 종류 필터">
+        <div class="section-head"><h2 id="all-title">실행 환경</h2><p id="visible-count">8개 표시 중</p></div>
+        <div class="filters" aria-label="환경 종류 필터">
           <button class="filter" type="button" data-filter="all" aria-pressed="true">전체</button>
           <button class="filter" type="button" data-filter="linux" aria-pressed="false">Linux</button>
           <button class="filter" type="button" data-filter="dos" aria-pressed="false">DOS</button>
-          <button class="filter" type="button" data-filter="windows" aria-pressed="false">Windows</button>
-          <button class="filter" type="button" data-filter="hub" aria-pressed="false">허브·실험</button>
+          <button class="filter" type="button" data-filter="lab" aria-pressed="false">실험·상태</button>
         </div>
 
         <div class="os-grid">
-          <a class="os-card featured" data-kind="linux" href="real-multiboot/" style="--glow:rgba(89,230,171,.2)">
-            <div class="card-top"><span class="icon">G</span><span class="badge live" id="main-card-badge">VERIFIED r4x</span></div>
+          <a class="os-card featured" data-kind="linux" href="real-multiboot/?preset=gorics" style="--glow:rgba(99,230,174,.2)">
+            <div class="card-top"><span class="icon">G</span><span class="badge" id="main-card-badge">CHECKING R19</span></div>
             <h3>GORICS Linux GUI</h3>
-            <p>실제 i386 ISO, Xorg, Openbox, tint2, PCManFM, xterm과 1024×768 그래픽 출력을 자동 검증한 멀티부트 메인 OS입니다.</p>
-            <div class="card-foot"><span>MAIN · Custom ISO · Multi-CDN</span><span>→</span></div>
+            <p>실제 i386 ISO, Xorg, Openbox, tint2, PCManFM, xterm을 사용하는 메인 데스크톱입니다.</p>
+            <div class="card-foot"><span>MAIN · Custom ISO · 자동 RAM</span><span>→</span></div>
           </a>
 
-          <a class="os-card" data-kind="linux" href="linux/4/" style="--glow:rgba(109,229,255,.17)">
-            <div class="card-top"><span class="icon">⚡</span><span class="badge live">REAL VM</span></div>
+          <a class="os-card" data-kind="linux" href="real-multiboot/?preset=buildroot" style="--glow:rgba(103,232,249,.17)">
+            <div class="card-top"><span class="icon">⚡</span><span class="badge live">PRESET</span></div>
             <h3>Buildroot Linux</h3>
             <p>작은 Buildroot 커널을 빠르게 부팅하는 경량 콘솔 Linux 환경입니다.</p>
-            <div class="card-foot"><span>Console · 128 MB</span><span>→</span></div>
+            <div class="card-foot"><span>Console · 자동 RAM</span><span>→</span></div>
           </a>
 
-          <a class="os-card" data-kind="linux" href="linux/5/" style="--glow:rgba(255,138,203,.16)">
-            <div class="card-top"><span class="icon">🖥️</span><span class="badge live">GUI ISO</span></div>
-            <h3>Damn Small Linux GUI</h3>
-            <p>작은 용량의 GUI Linux ISO를 CD-ROM 방식으로 부팅하는 데스크톱 환경입니다.</p>
-            <div class="card-foot"><span>GUI · 192 MB</span><span>→</span></div>
+          <a class="os-card" data-kind="linux" href="real-multiboot/?preset=dsl" style="--glow:rgba(255,145,200,.16)">
+            <div class="card-top"><span class="icon">🖥</span><span class="badge live">GUI ISO</span></div>
+            <h3>Damn Small Linux</h3>
+            <p>작은 GUI Linux ISO를 CD-ROM 방식으로 부팅하는 데스크톱 환경입니다.</p>
+            <div class="card-foot"><span>GUI · 자동 RAM</span><span>→</span></div>
           </a>
 
-          <a class="os-card" data-kind="linux" href="linux/6/" style="--glow:rgba(255,212,115,.16)">
+          <a class="os-card" data-kind="linux" href="real-multiboot/?preset=tiny" style="--glow:rgba(247,212,119,.16)">
             <div class="card-top"><span class="icon">🐧</span><span class="badge live">TINY</span></div>
             <h3>Tiny Linux ISO</h3>
-            <p>v86 테스트용 초경량 Linux ISO를 빠르게 실행하는 호환성 확인 환경입니다.</p>
-            <div class="card-foot"><span>ISO · 128 MB</span><span>→</span></div>
+            <p>초경량 Linux ISO로 v86 부팅과 화면 호환성을 빠르게 확인합니다.</p>
+            <div class="card-foot"><span>ISO · 자동 RAM</span><span>→</span></div>
           </a>
 
-          <a class="os-card" data-kind="dos" href="linux/7/" style="--glow:rgba(108,143,255,.18)">
-            <div class="card-top"><span class="icon">⌨️</span><span class="badge live">DOS</span></div>
+          <a class="os-card" data-kind="dos" href="real-multiboot/?preset=freedos" style="--glow:rgba(138,166,255,.18)">
+            <div class="card-top"><span class="icon">⌨</span><span class="badge live">DOS</span></div>
             <h3>FreeDOS</h3>
-            <p>작고 안정적인 FreeDOS HDD 이미지로 화면과 키보드 입력 호환성을 확인합니다.</p>
-            <div class="card-foot"><span>HDD Image · 64 MB</span><span>→</span></div>
+            <p>작고 안정적인 HDD 이미지로 키보드와 디스플레이 호환성을 확인합니다.</p>
+            <div class="card-foot"><span>HDD Image · 자동 RAM</span><span>→</span></div>
           </a>
 
-          <a class="os-card" data-kind="linux" href="linux/8/" style="--glow:rgba(89,230,171,.16)">
+          <a class="os-card" data-kind="linux" href="real-multiboot/?preset=buildroot-serial" style="--glow:rgba(99,230,174,.16)">
             <div class="card-top"><span class="icon">▣</span><span class="badge live">SERIAL</span></div>
             <h3>Buildroot Serial</h3>
-            <p>Buildroot 커널을 serial·tty0 콘솔 출력으로 부팅하는 진단용 Linux 환경입니다.</p>
-            <div class="card-foot"><span>Console · 192 MB</span><span>→</span></div>
+            <p>serial·tty0 출력을 함께 사용하는 부팅 진단용 Linux 콘솔입니다.</p>
+            <div class="card-foot"><span>Diagnostic Console</span><span>→</span></div>
           </a>
 
-          <a class="os-card" data-kind="linux" href="linux/9/" style="--glow:rgba(255,138,203,.18)">
+          <a class="os-card" data-kind="linux" href="real-multiboot/?preset=dsl-high" style="--glow:rgba(255,145,200,.18)">
             <div class="card-top"><span class="icon">🚀</span><span class="badge live">HIGH RAM</span></div>
             <h3>DSL GUI High Memory</h3>
-            <p>Damn Small Linux GUI를 더 큰 메모리로 실행하는 고성능 설정 버전입니다.</p>
-            <div class="card-foot"><span>GUI · 384 MB</span><span>→</span></div>
+            <p>DSL GUI에 더 큰 메모리 상한을 적용하는 데스크톱 preset입니다.</p>
+            <div class="card-foot"><span>GUI · High Memory</span><span>→</span></div>
           </a>
 
-          <a class="os-card" data-kind="windows hub" href="window/" style="--glow:rgba(108,143,255,.2)">
-            <div class="card-top"><span class="icon">⊞</span><span class="badge lab">LAB</span></div>
+          <a class="os-card" data-kind="lab" href="window/" style="--glow:rgba(247,212,119,.17)">
+            <div class="card-top"><span class="icon">⊞</span><span class="badge lab">IMAGE 없음</span></div>
             <h3>Windows Lab</h3>
-            <p>Windows 브라우저 VM과 관련 실험용 진입점을 모아 둔 Windows 환경 허브입니다.</p>
-            <div class="card-foot"><span>Windows · VM Hub</span><span>→</span></div>
-          </a>
-
-          <a class="os-card" data-kind="hub" href="quantum-real/" style="--glow:rgba(109,229,255,.16)">
-            <div class="card-top"><span class="icon">◈</span><span class="badge lab">EXPERIMENT</span></div>
-            <h3>Quantum Real Web OS</h3>
-            <p>Quantum 계열 실험 페이지에서 중앙 실부팅 환경으로 연결되는 호환 진입점입니다.</p>
-            <div class="card-foot"><span>Experimental Hub</span><span>→</span></div>
+            <p>현재 Windows 게스트 이미지는 포함되지 않았습니다. 실행 기능이 아닌 제공 상태 안내 페이지입니다.</p>
+            <div class="card-foot"><span>Status Only</span><span>→</span></div>
           </a>
         </div>
 
         <details>
-          <summary>레거시·호환 진입 경로도 모두 보기</summary>
+          <summary>기존 주소 호환 경로</summary>
           <div class="legacy-list">
-            <a class="legacy-link" href="linux/"><span>Linux Entry Hub</span><b>→</b></a>
-            <a class="legacy-link" href="linux/1/"><span>Linux 1</span><b>→</b></a>
-            <a class="legacy-link" href="linux/2/"><span>Linux 2</span><b>→</b></a>
-            <a class="legacy-link" href="linux/3/"><span>Linux 3 Redirect</span><b>→</b></a>
-            <a class="legacy-link" href="window/2/"><span>Windows Legacy Lab</span><b>→</b></a>
-            <a class="legacy-link" href="real-multiboot/"><span>검증된 메인 OS 직접 실행</span><b>→</b></a>
+            <a class="legacy-link" href="linux/"><span>Linux 통합 진입</span><b>→</b></a>
+            <a class="legacy-link" href="quantum-real/"><span>Quantum 호환 진입</span><b>→</b></a>
+            <a class="legacy-link" href="window/"><span>Windows 상태 허브</span><b>→</b></a>
           </div>
         </details>
 
-        <aside class="privacy" aria-label="개인정보 보호 안내">
-          <div class="privacy-icon">🛡️</div>
-          <div><strong>개인정보·기밀 보호</strong><p>이 인덱스에는 이름, 이메일, 연락처, 비공개 파일 경로, 저장소 관리 링크, 광고, 분석 도구, 입력 폼이 없습니다. 외부 OS 이미지가 필요한 개별 실험 페이지에서는 해당 제공자의 네트워크 정책이 별도로 적용될 수 있습니다.</p></div>
+        <aside class="notice" aria-label="실행 및 개인정보 안내">
+          <div class="notice-icon">🛡</div>
+          <div><strong>실행 상태를 과장하지 않습니다.</strong><p>자동 검증이 성공한 경우에만 메인 OS를 VERIFIED로 표시합니다. 이 허브에는 입력 폼·광고·분석 스크립트가 없으며, VM 파일은 공개 정적 자산에서만 불러옵니다.</p></div>
         </aside>
       </section>
     </main>
 
-    <footer><span>GORICS Multiboot</span><span class="compat" id="compatibility">브라우저 호환성 확인 중</span></footer>
+    <footer><span>GORICS OS · R19</span><span class="compat" id="compatibility">브라우저 호환성 확인 중</span></footer>
   </div>
 
   <script>
@@ -259,7 +262,7 @@
       const filters=[...document.querySelectorAll('.filter')];
       const cards=[...document.querySelectorAll('.os-card')];
       const count=document.getElementById('visible-count');
-      const status=document.getElementById('status-text');
+      const statusText=document.getElementById('status-text');
       const statusWrap=document.getElementById('main-status');
       const compatibility=document.getElementById('compatibility');
       const runtimeTitle=document.getElementById('runtime-title');
@@ -279,7 +282,7 @@
           const kinds=(card.dataset.kind||'').split(/\s+/);
           const show=selected==='all'||kinds.includes(selected);
           card.hidden=!show;
-          if(show) visible++;
+          if(show) visible+=1;
         });
         count.textContent=`${visible}개 표시 중`;
       }));
@@ -288,47 +291,60 @@
       const secure=window.isSecureContext;
       compatibility.textContent=wasm&&secure?'현재 브라우저에서 VM 실행 가능':secure?'WebAssembly 지원 브라우저 필요':'HTTPS 보안 연결 필요';
 
-      const detectScreen=sizes=>{
-        if(!Array.isArray(sizes)) return '1024×768';
-        const graphical=sizes.map(value=>String(value).match(/\[(\d+),(\d+),(\d+)\]/)).filter(Boolean).map(match=>({w:Number(match[1]),h:Number(match[2]),bpp:Number(match[3])})).filter(item=>item.w>=640&&item.h>=480).sort((a,b)=>(b.w*b.h)-(a.w*a.h))[0];
-        return graphical?`${graphical.w}×${graphical.h}`:'1024×768';
+      const screenFrom=result=>{
+        if(Number(result.canvas_width)>=640&&Number(result.canvas_height)>=480) return `${result.canvas_width}×${result.canvas_height}`;
+        if(!Array.isArray(result.screen_sizes)) return '확인 필요';
+        const screens=result.screen_sizes
+          .map(value=>String(value).match(/\[(\d+),(\d+),(\d+)\]/))
+          .filter(Boolean)
+          .map(match=>({w:Number(match[1]),h:Number(match[2])}))
+          .filter(item=>item.w>=640&&item.h>=480)
+          .sort((a,b)=>(b.w*b.h)-(a.w*a.h));
+        return screens[0]?`${screens[0].w}×${screens[0].h}`:'확인 필요';
       };
 
-      fetch(`iso/real-multiboot-status.json?main=${Date.now()}`,{cache:'no-store'})
+      fetch(`iso/real-multiboot-status.json?hub=${Date.now()}`,{cache:'no-store'})
         .then(response=>{
           if(!response.ok) throw new Error(`HTTP ${response.status}`);
           return response.json();
         })
         .then(result=>{
-          const version=String(result.version||'r4x');
-          const screenSize=detectScreen(result.screen_sizes);
-          const complete=result.success===true&&result.emulator_started===true&&result.xorg_ready===true&&result.gui_ready===true&&result.graphical_canvas===true;
+          const version=String(result.version||'20260710-r19-stability').replace(/^20260710-/,'').replace(/-stability$/,'').toUpperCase();
+          const screen=screenFrom(result);
+          const pass=result.success===true&&result.emulator_started===true&&result.xorg_ready===true&&result.gui_ready===true&&result.graphical_canvas===true;
           runtimeVersion.textContent=version;
-          runtimeScreen.textContent=screenSize;
-          verifiedVersion.textContent=`${version} 검증 완료`;
-          verifiedResolution.textContent=`${screenSize} GUI`;
-          mainCardBadge.textContent=complete?`VERIFIED ${version}`:`CHECK ${version}`;
-          if(complete){
-            status.textContent='메인 OS 검증 완료';
-            statusWrap.classList.remove('checking','failed');
+          runtimeScreen.textContent=screen;
+          verifiedResolution.textContent=screen==='확인 필요'?'그래픽 화면 확인 필요':`${screen} GUI`;
+          if(pass){
+            statusWrap.classList.add('pass');
+            statusWrap.classList.remove('fail');
+            statusText.textContent='R19 그래픽 부팅 검증 완료';
             runtimeResult.textContent='PASS';
-            runtimeTitle.textContent='GORICS Linux GUI · 전체 부팅 검증 통과';
-            runtimeDetail.textContent='에뮬레이터 시작, Xorg, Openbox 데스크톱과 그래픽 캔버스가 공개 배포 환경에서 정상 동작합니다.';
+            runtimeTitle.textContent='GORICS Linux GUI · 실제 그래픽 부팅 통과';
+            runtimeDetail.textContent='에뮬레이터 시작, Xorg·GUI 상태와 가시 그래픽 캔버스를 공개 배포 환경에서 확인했습니다.';
+            verifiedVersion.textContent=`${version} 검증 완료`;
+            mainCardBadge.textContent=`VERIFIED ${version}`;
+            mainCardBadge.classList.add('live');
           }else{
-            status.textContent='메인 OS 재검증 필요';
-            statusWrap.classList.remove('checking');
-            statusWrap.classList.add('failed');
+            statusWrap.classList.add('fail');
+            statusWrap.classList.remove('pass');
+            statusText.textContent='R19 검증 결과 확인 필요';
             runtimeResult.textContent='CHECK';
-            runtimeTitle.textContent='GORICS Linux GUI · 검증 결과 확인 필요';
-            runtimeDetail.textContent='실행 페이지는 사용할 수 있지만 최신 자동 검증 결과의 일부 조건이 충족되지 않았습니다.';
+            runtimeTitle.textContent='GORICS Linux GUI · 최신 검증 미통과';
+            runtimeDetail.textContent=`현재 상태: ${String(result.state||'unknown')}. 실행 페이지는 열 수 있지만 VERIFIED 표시는 보류합니다.`;
+            verifiedVersion.textContent=`${version} 검증 확인 필요`;
+            mainCardBadge.textContent=`CHECK ${version}`;
+            mainCardBadge.classList.add('fail');
           }
         })
         .catch(()=>{
-          status.textContent=wasm&&secure?'실행 준비 완료':'호환성 확인 필요';
-          statusWrap.classList.remove('checking');
+          statusText.textContent=wasm&&secure?'실행 가능 · 검증 파일 미수신':'브라우저 호환성 확인 필요';
           runtimeResult.textContent='READY';
-          runtimeTitle.textContent='GORICS Linux GUI · 실행 준비 완료';
-          runtimeDetail.textContent='검증 상태 파일을 불러오지 못했지만 메인 실행 페이지는 직접 열 수 있습니다.';
+          runtimeScreen.textContent='미확인';
+          runtimeTitle.textContent='GORICS Linux GUI · 실행 페이지 사용 가능';
+          runtimeDetail.textContent='자동 검증 상태 파일을 불러오지 못해 VERIFIED 표시는 보류했습니다.';
+          mainCardBadge.textContent='STATUS UNKNOWN';
+          mainCardBadge.classList.add('fail');
         });
     })();
   </script>
