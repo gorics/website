@@ -1,0 +1,94 @@
+name: Collect Canonical Actions Diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/collect-canonical-actions-diagnostic.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Collect latest canonical runs
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const workflowIds = [
+              'kickoff-canonical-r19-once.yml',
+              'force-real-multiboot-deploy.yml',
+              'static.yml',
+              'verify-real-multiboot-r19-v2.yml'
+            ];
+            const output = {
+              collected_at: new Date().toISOString(),
+              collector_run_id: context.runId,
+              workflows: {}
+            };
+            for (const workflow_id of workflowIds) {
+              const { data } = await github.rest.actions.listWorkflowRuns({
+                owner,
+                repo,
+                workflow_id,
+                branch: 'main',
+                per_page: 10
+              });
+              const runs = data.workflow_runs.map(run => ({
+                id: run.id,
+                name: run.name,
+                event: run.event,
+                status: run.status,
+                conclusion: run.conclusion,
+                head_sha: run.head_sha,
+                created_at: run.created_at,
+                updated_at: run.updated_at,
+                html_url: run.html_url
+              }));
+              output.workflows[workflow_id] = { runs };
+              if (runs[0]) {
+                const jobs = await github.rest.actions.listJobsForWorkflowRun({
+                  owner,
+                  repo,
+                  run_id: runs[0].id,
+                  per_page: 100
+                });
+                output.workflows[workflow_id].latest_jobs = jobs.data.jobs.map(job => ({
+                  id: job.id,
+                  name: job.name,
+                  status: job.status,
+                  conclusion: job.conclusion,
+                  started_at: job.started_at,
+                  completed_at: job.completed_at,
+                  steps: job.steps?.map(step => ({
+                    name: step.name,
+                    status: step.status,
+                    conclusion: step.conclusion,
+                    number: step.number
+                  })) || []
+                }));
+              }
+            }
+            const path = 'os/iso/canonical-actions-diagnostic.json';
+            let sha;
+            try {
+              const existing = await github.rest.repos.getContent({ owner, repo, path, ref: 'main' });
+              sha = existing.data.sha;
+            } catch (error) {
+              if (error.status !== 404) throw error;
+            }
+            await github.rest.repos.createOrUpdateFileContents({
+              owner,
+              repo,
+              path,
+              message: 'chore(os): collect canonical Actions diagnostic [skip ci]',
+              content: Buffer.from(JSON.stringify(output, null, 2) + '\n').toString('base64'),
+              branch: 'main',
+              ...(sha ? { sha } : {})
+            });
