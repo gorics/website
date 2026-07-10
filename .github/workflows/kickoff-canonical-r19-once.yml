@@ -19,7 +19,7 @@ jobs:
   kickoff:
     runs-on: ubuntu-latest
     env:
-      AUDIT_KICKOFF: '20260710-final-direct-main-4'
+      AUDIT_KICKOFF: '20260710-r19-loader-fix-final'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
