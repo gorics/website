@@ -25,7 +25,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 75
     steps:
       - name: Checkout exact source
         uses: actions/checkout@v4
@@ -54,31 +54,58 @@ jobs:
           git commit -m 'chore(os): record canonical deploy start [skip ci]' || true
           git push origin HEAD:main
 
-      - name: Enable and dispatch pinned Pages deployment
+      - name: Dispatch and wait for pinned Pages workflow
+        id: pages-run
         uses: actions/github-script@v7
         with:
           script: |
-            await github.rest.actions.enableWorkflow({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'static.yml'
-            });
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const workflow_id = 'static.yml';
+            const started = Date.now();
+            await github.rest.actions.enableWorkflow({ owner, repo, workflow_id });
             await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'static.yml',
+              owner,
+              repo,
+              workflow_id,
               ref: 'main',
               inputs: { source_sha: context.sha }
             });
+            let selected = null;
+            for (let attempt = 0; attempt < 36 && !selected; attempt += 1) {
+              await new Promise(resolve => setTimeout(resolve, 5000));
+              const { data } = await github.rest.actions.listWorkflowRuns({
+                owner,
+                repo,
+                workflow_id,
+                event: 'workflow_dispatch',
+                branch: 'main',
+                per_page: 20
+              });
+              selected = data.workflow_runs.find(run => Date.parse(run.created_at) >= started - 5000);
+            }
+            if (!selected) throw new Error('Unable to locate dispatched Pages run');
+            core.info(`Pages run id=${selected.id} url=${selected.html_url}`);
+            core.setOutput('run_id', String(selected.id));
+            for (let attempt = 0; attempt < 240; attempt += 1) {
+              const { data: run } = await github.rest.actions.getWorkflowRun({ owner, repo, run_id: selected.id });
+              core.info(`Pages run status=${run.status} conclusion=${run.conclusion || 'pending'}`);
+              if (run.status === 'completed') {
+                if (run.conclusion !== 'success') throw new Error(`Pages run ${selected.id} concluded ${run.conclusion}`);
+                return;
+              }
+              await new Promise(resolve => setTimeout(resolve, 10000));
+            }
+            throw new Error(`Pages run ${selected.id} timed out`);
 
-      - name: Wait for exact public deployment and local media
+      - name: Verify exact public deployment and local media
         shell: bash
         run: |
           set -euo pipefail
           ROOT='https://gorics.github.io/website'
           PAGE="$ROOT/os/real-multiboot/"
           deployed=0
-          for attempt in $(seq 1 150); do
+          for attempt in $(seq 1 60); do
             stamp="${GITHUB_RUN_ID}-${attempt}-$(date +%s)"
             if curl -fsSL --max-time 30 "${PAGE}?verify=${stamp}" -o /tmp/multiboot-index.html \
               && grep -q 'r19-stable-runtime-cache-safe-local-media-pointer-calibration' /tmp/multiboot-index.html \
@@ -93,7 +120,7 @@ jobs:
               echo "exact R19 deployment verified on attempt ${attempt} sha=${GITHUB_SHA}"
               break
             fi
-            echo "exact R19 deployment not visible, attempt ${attempt}/150 sha=${GITHUB_SHA}"
+            echo "exact R19 deployment not visible, attempt ${attempt}/60 sha=${GITHUB_SHA}"
             sleep 10
           done
           test "$deployed" = 1
@@ -108,18 +135,66 @@ jobs:
             test "$bytes" -gt 0
           done
 
-      - name: Enable and dispatch canonical R19 graphical verification
+      - name: Dispatch and wait for canonical R19 graphical verification
+        id: verify-run
         uses: actions/github-script@v7
         with:
           script: |
-            await github.rest.actions.enableWorkflow({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'verify-real-multiboot-r19-v2.yml'
-            });
-            await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'verify-real-multiboot-r19-v2.yml',
-              ref: 'main'
-            });
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const workflow_id = 'verify-real-multiboot-r19-v2.yml';
+            const started = Date.now();
+            await github.rest.actions.enableWorkflow({ owner, repo, workflow_id });
+            await github.rest.actions.createWorkflowDispatch({ owner, repo, workflow_id, ref: 'main' });
+            let selected = null;
+            for (let attempt = 0; attempt < 36 && !selected; attempt += 1) {
+              await new Promise(resolve => setTimeout(resolve, 5000));
+              const { data } = await github.rest.actions.listWorkflowRuns({
+                owner,
+                repo,
+                workflow_id,
+                event: 'workflow_dispatch',
+                branch: 'main',
+                per_page: 20
+              });
+              selected = data.workflow_runs.find(run => Date.parse(run.created_at) >= started - 5000);
+            }
+            if (!selected) throw new Error('Unable to locate dispatched R19 verification run');
+            core.info(`R19 verification run id=${selected.id} url=${selected.html_url}`);
+            core.setOutput('run_id', String(selected.id));
+            for (let attempt = 0; attempt < 240; attempt += 1) {
+              const { data: run } = await github.rest.actions.getWorkflowRun({ owner, repo, run_id: selected.id });
+              core.info(`R19 verification status=${run.status} conclusion=${run.conclusion || 'pending'}`);
+              if (run.status === 'completed') {
+                if (run.conclusion !== 'success') throw new Error(`R19 verification run ${selected.id} concluded ${run.conclusion}`);
+                return;
+              }
+              await new Promise(resolve => setTimeout(resolve, 10000));
+            }
+            throw new Error(`R19 verification run ${selected.id} timed out`);
+
+      - name: Record canonical chain success
+        env:
+          PAGES_RUN_ID: ${{ steps.pages-run.outputs.run_id }}
+          VERIFY_RUN_ID: ${{ steps.verify-run.outputs.run_id }}
+        run: |
+          git fetch origin main --depth=1
+          git reset --hard origin/main
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          result = {
+              'state': 'canonical-r19-chain-succeeded',
+              'workflow': os.environ.get('GITHUB_WORKFLOW'),
+              'run_id': os.environ.get('GITHUB_RUN_ID'),
+              'source_sha': os.environ.get('GITHUB_SHA'),
+              'pages_run_id': os.environ.get('PAGES_RUN_ID'),
+              'verification_run_id': os.environ.get('VERIFY_RUN_ID'),
+          }
+          Path('os/iso/canonical-deploy-status.json').write_text(json.dumps(result, indent=2) + '\n')
+          PY
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add os/iso/canonical-deploy-status.json
+          git commit -m 'chore(os): record canonical R19 chain success [skip ci]' || true
+          git push origin HEAD:main
