@@ -2,20 +2,13 @@ name: Verify Real Multiboot R19 V2
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'os/real-multiboot/**'
-      - 'vendor/v86/**'
-      - '.github/scripts/verify-real-multiboot-r19.mjs'
-      - '.github/workflows/verify-real-multiboot-r19-v2.yml'
 
 permissions:
   contents: write
 
 concurrency:
   group: verify-real-multiboot-canonical
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   verify:
@@ -81,7 +74,7 @@ jobs:
           npx playwright install --with-deps chromium
           node --check verify.mjs
 
-      - name: Wait for public R19 deployment and all preset media
+      - name: Verify public R19 deployment and all preset media
         run: |
           set -euo pipefail
           ROOT='https://gorics.github.io/website'
@@ -133,16 +126,18 @@ jobs:
           exit "$browser_exit"
 
       - name: Guarantee diagnostic result
-        if: always()
+        if: always() && !cancelled()
         run: |
           if test ! -s /tmp/real-multiboot-r19.json; then
             python3 - <<'PY'
           import json, os
           from pathlib import Path
-          log = Path('/tmp/real-multiboot-r19.log').read_text(errors='replace') if Path('/tmp/real-multiboot-r19.log').exists() else ''
+          process_log = Path('/tmp/real-multiboot-r19.log').read_text(errors='replace') if Path('/tmp/real-multiboot-r19.log').exists() else ''
+          media_probe = Path('/tmp/public-media-probe.txt').read_text(errors='replace').splitlines() if Path('/tmp/public-media-probe.txt').exists() else []
+          public_seen = Path('/tmp/public-index.html').exists()
           result = {
               'success': False,
-              'state': 'verifier-process-failed',
+              'state': 'public-preflight-failed' if public_seen else 'verifier-process-failed',
               'version': '20260710-r19-stability',
               'run_id': os.environ.get('GITHUB_RUN_ID'),
               'workflow_sha': os.environ.get('GITHUB_SHA'),
@@ -150,7 +145,8 @@ jobs:
               'xorg_ready': False,
               'gui_ready': False,
               'graphical_canvas': False,
-              'process_log_tail': log.splitlines()[-240:],
+              'public_media_probe': media_probe,
+              'process_log_tail': process_log.splitlines()[-240:],
           }
           Path('/tmp/real-multiboot-r19.json').write_text(json.dumps(result, indent=2) + '\n')
           PY
@@ -158,7 +154,7 @@ jobs:
           cat /tmp/real-multiboot-r19.json
 
       - name: Upload verification proof
-        if: always()
+        if: always() && !cancelled()
         uses: actions/upload-artifact@v4
         with:
           name: real-multiboot-r19-v2-${{ github.run_id }}
@@ -175,9 +171,10 @@ jobs:
           if-no-files-found: warn
 
       - name: Publish canonical status
-        if: always() && github.ref == 'refs/heads/main'
+        if: always() && !cancelled() && github.ref == 'refs/heads/main'
         run: |
           set -euo pipefail
+          test -s /tmp/real-multiboot-r19.json
           git config user.name github-actions
           git config user.email github-actions@github.com
           for attempt in $(seq 1 8); do
@@ -192,7 +189,7 @@ jobs:
           exit 1
 
       - name: Require graphical boot success
-        if: always()
+        if: always() && !cancelled()
         run: |
           python3 - <<'PY'
           import json
