@@ -55,6 +55,11 @@ jobs:
               path = target / relative
               if path.exists():
                   path.unlink()
+          canonical_status = target / 'os/iso/r19-canonical-status.json'
+          public_status = target / 'os/iso/real-multiboot-status.json'
+          if not canonical_status.exists():
+              raise SystemExit('isolated canonical R19 status is missing')
+          shutil.copy2(canonical_status, public_status)
           (target / '.nojekyll').write_text('', encoding='utf-8')
           PY
 
@@ -154,6 +159,7 @@ jobs:
               'direct_boot': True,
               'atomic_v86_assets': True,
               'sanitized_pages_tree': True,
+              'isolated_canonical_status': True,
               'iso_sha256': meta['sha256'],
               'runtime_manifest': manifest,
           }
@@ -190,6 +196,7 @@ jobs:
           test -s _site/os/real-multiboot/assets/initrd.img
           test -s _site/os/real-multiboot/assets/iso-meta.json
           test -s _site/os/real-multiboot/assets/deployment.json
+          cmp -s _site/os/iso/r19-canonical-status.json _site/os/iso/real-multiboot-status.json
           test "$(du -sb _site | cut -f1)" -lt 1000000000
 
           node <<'JS'
@@ -230,6 +237,10 @@ jobs:
               && grep -q 'gorics-build' /tmp/index.html \
               && curl -fsSL --max-time 45 "$PAGE/assets/deployment.json?v=$stamp" -o /tmp/deployment.json \
               && grep -q "\"version\": \"${DEPLOY_VERSION}\"" /tmp/deployment.json \
+              && grep -q '"isolated_canonical_status": true' /tmp/deployment.json \
+              && curl -fsSL --max-time 45 "$ROOT/os/iso/real-multiboot-status.json?v=$stamp" -o /tmp/public-status.json \
+              && curl -fsSL --max-time 45 "$ROOT/os/iso/r19-canonical-status.json?v=$stamp" -o /tmp/canonical-status.json \
+              && cmp -s /tmp/public-status.json /tmp/canonical-status.json \
               && curl -fsSL --max-time 45 "$ROOT/vendor/v86/manifest.json?v=$stamp" -o /tmp/manifest.json \
               && grep -q 'v86.wasm' /tmp/manifest.json \
               && curl -fsSL --max-time 60 "$ROOT/vendor/v86/v86.wasm?v=$stamp" -o /tmp/v86.wasm \
