@@ -170,7 +170,7 @@ jobs:
             /tmp/public-media-probe.txt
           if-no-files-found: warn
 
-      - name: Publish canonical status
+      - name: Publish isolated canonical status
         if: always() && !cancelled() && github.ref == 'refs/heads/main'
         run: |
           set -euo pipefail
@@ -180,9 +180,9 @@ jobs:
           for attempt in $(seq 1 8); do
             git fetch origin main --depth=1
             git checkout -B r19-status origin/main
-            cp /tmp/real-multiboot-r19.json os/iso/real-multiboot-status.json
-            git add os/iso/real-multiboot-status.json
-            git commit -m 'chore(os): record canonical R19 verification [skip ci]' || exit 0
+            cp /tmp/real-multiboot-r19.json os/iso/r19-canonical-status.json
+            git add os/iso/r19-canonical-status.json
+            git commit -m 'chore(os): record isolated canonical R19 verification [skip ci]' || exit 0
             if git push origin HEAD:main; then exit 0; fi
             sleep $((attempt * 3))
           done
