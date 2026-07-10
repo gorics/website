@@ -19,7 +19,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Dispatch canonical Pages deployment
+      - name: Dispatch pinned Pages deployment
         uses: actions/github-script@v7
         with:
           script: |
@@ -27,5 +27,6 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'static.yml',
-              ref: 'main'
+              ref: 'main',
+              inputs: { source_sha: context.sha }
             });
