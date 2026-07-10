@@ -1,6 +1,8 @@
-GORICS Real Multiboot deployment trigger
-build=20260708-r14-buildroot-shell-ready
-root_cause=Buildroot reached its percent shell prompt but strict readiness only accepted hash prompts
-fix=recognize the verified Buildroot emulator shell banner and percent/hash prompts
-verification=rerun seven sequential public boots with OS-specific readiness
-trigger_mode=isolated-marker-only
+GORICS Real Multiboot canonical deployment trigger
+build=20260710-r19-stability
+source_policy=exact-source-sha
+status_policy=isolated-r19-canonical-status
+pages_policy=sanitized-latest-only
+runtime_policy=cache-safe-intent-prefetch-bounded-log
+verification=public-media-plus-chromium-graphical-boot
+trigger_reason=final-full-os-audit
