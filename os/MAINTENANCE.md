@@ -39,13 +39,17 @@ Deployment dispatcher: `.github/workflows/force-real-multiboot-deploy.yml`
 
 Canonical verification: `.github/workflows/verify-real-multiboot-r19-v2.yml`
 
+Status-to-Pages bridge: `.github/workflows/publish-os-status-to-pages.yml`
+
 Browser verifier: `.github/scripts/verify-real-multiboot-r19.mjs`
 
-Runtime, v86, deployment-workflow, or verifier changes trigger the deployment dispatcher. It deploys the exact triggering main-branch commit, waits until `assets/deployment.json` reports that commit, verifies all local preset media, and only then dispatches the canonical graphical verification.
+Runtime, hub, v86, deployment-workflow, or verifier changes trigger the deployment dispatcher. It deploys the exact triggering main-branch commit, waits until `assets/deployment.json` reports that commit, verifies all local preset media, and only then dispatches the canonical graphical verification.
 
 The canonical verification is `workflow_dispatch` only. Do not add a direct runtime-file push trigger, because it can start before GitHub Pages finishes deploying and produce false 404 failures. Canonical runs are never cancelled in favor of another run, and a cancelled run must never publish status.
 
-Only the canonical verification may publish `os/iso/real-multiboot-status.json`. Obsolete versioned verifiers and separate media-probe status writers must not be restored because they create duplicate browser runs, extra commits, and nondeterministic hub results.
+Only the canonical verification may write `os/iso/real-multiboot-status.json`. When that file changes, the status-to-Pages bridge dispatches a Pages deployment without launching another graphical verification. This keeps the public hub status synchronized without creating a verification loop.
+
+Obsolete versioned verifiers, separate media-probe status writers, and workflows that publish raw failure logs into the repository must not be restored. Diagnostic logs belong in private Actions logs or downloadable workflow artifacts, not in the public Pages tree.
 
 The canonical verification checks:
 
