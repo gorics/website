@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
-      COLLECTOR_NONCE: '20260710-3'
+      COLLECTOR_NONCE: '20260710-4'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,7 +25,7 @@ jobs:
       - name: Capture latest failed static logs
         run: |
           set -euo pipefail
-          run_id=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow static.yml --branch main --limit 20 --json databaseId,conclusion,createdAt --jq '[.[] | select(.conclusion == "failure")][0].databaseId')
+          run_id=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow static.yml --branch main --limit 30 --json databaseId,conclusion,createdAt --jq '[.[] | select(.conclusion == "failure")][0].databaseId')
           test -n "$run_id"
           gh run view "$run_id" --repo "$GITHUB_REPOSITORY" --log-failed > /tmp/static-failed.log 2>&1 || true
           RUN_ID="$run_id" python3 - <<'PY'
@@ -34,12 +34,12 @@ jobs:
           text = Path('/tmp/static-failed.log').read_text(errors='replace')
           result = {
               'run_id': os.environ['RUN_ID'],
-              'tail': text.splitlines()[-300:],
+              'tail': text.splitlines()[-360:],
           }
           Path('os/iso/static-failure-tail.json').write_text(json.dumps(result, indent=2) + '\n')
           PY
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add os/iso/static-failure-tail.json
-          git commit -m 'chore(os): capture static failure tail [skip ci]' || true
+          git commit -m 'chore(os): capture latest static failure tail [skip ci]' || true
           git push origin HEAD:main
