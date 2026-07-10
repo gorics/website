@@ -14,6 +14,8 @@ permissions:
 jobs:
   collect:
     runs-on: ubuntu-latest
+    env:
+      COLLECTOR_NONCE: '20260710-1'
     steps:
       - name: Collect Pages deployment state
         uses: actions/github-script@v7
