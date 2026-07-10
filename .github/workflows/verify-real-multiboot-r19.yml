@@ -1,0 +1,269 @@
+name: Verify Real Multiboot R19
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'os/real-multiboot/**'
+      - 'vendor/v86/**'
+      - '.github/workflows/verify-real-multiboot-r19.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: verify-real-multiboot-r19
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Static integrity checks
+        run: |
+          set -euo pipefail
+          node --check os/real-multiboot/app.js
+          node --check os/real-multiboot/performance-mode.js
+          node --check os/real-multiboot/predictive-prefetch.js
+          node --check os/real-multiboot/pointer-calibration.js
+          node --check os/real-multiboot/local-media-router.js
+          python3 - <<'PY'
+          import json
+          from html.parser import HTMLParser
+          from pathlib import Path
+
+          root = Path('os/real-multiboot')
+          html = (root / 'index.html').read_text(encoding='utf-8')
+          meta = json.loads((root / 'assets/iso-meta.json').read_text(encoding='utf-8'))
+          required_ids = {
+              'os-select', 'boot-btn', 'keyboard-btn', 'stop-btn', 'fullscreen-btn',
+              'screen-wrap', 'screen', 'loading-overlay', 'log', 'stage-label',
+              'stage-detail', 'progress-percent', 'progress-bar', 'overlay-title',
+              'overlay-detail', 'overlay-percent', 'overlay-progress-bar', 'boot-steps',
+          }
+
+          class IDs(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.ids = set()
+              def handle_starttag(self, tag, attrs):
+                  values = dict(attrs)
+                  if values.get('id'):
+                      self.ids.add(values['id'])
+
+          parser = IDs()
+          parser.feed(html)
+          missing = sorted(required_ids - parser.ids)
+          assert not missing, f'missing DOM ids: {missing}'
+          assert '20260710-r19-stability' in html
+          assert meta['name'] == 'gorics-linux-gui-web-i386-r12.iso'
+          assert meta['architecture'] == 'i386'
+          assert meta['direct_boot'] is True
+          assert meta['chunked'] is True
+          assert meta['parts'] >= 1 and meta['size'] > 300_000_000
+          assert meta['kernel']['size'] > 1_000_000
+          assert meta['initrd']['size'] > 10_000_000
+          print('static integrity checks passed')
+          PY
+
+      - name: Setup browser verifier
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Wait for GitHub Pages deployment
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          URL='https://gorics.github.io/website/os/real-multiboot/'
+          READY=0
+          for attempt in $(seq 1 45); do
+            stamp="${EXPECTED_SHA}-${attempt}-$(date +%s)"
+            if curl -fsSL --max-time 30 "${URL}?deploy=${stamp}" -o /tmp/public-index.html \
+              && grep -q '20260710-r19-stability' /tmp/public-index.html \
+              && curl -fsSL --max-time 30 "${URL}app.js?deploy=${stamp}" -o /tmp/public-app.js \
+              && curl -fsSL --max-time 30 "${URL}assets/iso-meta.json?deploy=${stamp}" -o /tmp/public-meta.json; then
+              READY=1
+              break
+            fi
+            echo "Pages deployment not ready: attempt ${attempt}/45"
+            sleep 10
+          done
+          test "$READY" = 1
+          node --check /tmp/public-app.js
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          meta = json.loads(Path('/tmp/public-meta.json').read_text())
+          assert meta['name'] == 'gorics-linux-gui-web-i386-r12.iso'
+          assert meta['architecture'] == 'i386'
+          assert meta['direct_boot'] is True
+          print('public deployment files verified')
+          PY
+
+      - name: Boot GORICS Linux in Chromium
+        id: browser
+        continue-on-error: true
+        env:
+          VERIFY_URL: https://gorics.github.io/website/os/real-multiboot/?preset=gorics&verify=${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          cat > /tmp/verify-r19.mjs <<'JS'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
+
+          const result = {
+            success: false,
+            state: 'starting',
+            version: '20260710-r19-stability',
+            run_id: process.env.GITHUB_RUN_ID,
+            workflow_sha: process.env.GITHUB_SHA,
+            url: process.env.VERIFY_URL,
+            architecture: 'i386',
+            desktop: 'openbox-tint2-pcmanfm-xterm-visible-r12',
+            emulator_started: false,
+            xorg_ready: false,
+            gui_ready: false,
+            graphical_canvas: false,
+            console: [],
+            failed_requests: [],
+            started_at: new Date().toISOString(),
+          };
+
+          let browser;
+          let page;
+          try {
+            browser = await chromium.launch({
+              headless: true,
+              args: ['--disable-dev-shm-usage', '--no-sandbox', '--disable-gpu'],
+            });
+            page = await browser.newPage({
+              viewport: { width: 412, height: 915 },
+              userAgent: 'Mozilla/5.0 (Linux; Android 15; GORICS-R19-Verifier) AppleWebKit/537.36 Chrome/149 Mobile Safari/537.36',
+            });
+            page.setDefaultTimeout(120000);
+            page.on('console', message => result.console.push(`${message.type()}: ${message.text()}`));
+            page.on('pageerror', error => result.console.push(`pageerror: ${error.message}`));
+            page.on('requestfailed', request => result.failed_requests.push({
+              url: request.url(),
+              error: request.failure()?.errorText || 'unknown',
+            }));
+
+            await page.goto(process.env.VERIFY_URL, { waitUntil: 'domcontentloaded', timeout: 120000 });
+            await page.waitForSelector('#boot-btn:not([disabled])');
+            await page.click('#boot-btn');
+            await page.waitForFunction(() => /emulator-started/.test(document.querySelector('#log')?.textContent || ''), null, { timeout: 600000 });
+            result.emulator_started = true;
+            await page.waitForFunction(() => {
+              const canvas = document.querySelector('#screen canvas');
+              const running = document.querySelector('#boot-btn')?.textContent?.includes('실행 중');
+              return Boolean(running && canvas && canvas.width >= 640 && canvas.height >= 480 && getComputedStyle(canvas).display !== 'none');
+            }, null, { timeout: 900000 });
+            await page.waitForTimeout(5000);
+
+            const details = await page.evaluate(() => {
+              const canvas = document.querySelector('#screen canvas');
+              const log = document.querySelector('#log')?.textContent || '';
+              return {
+                canvas_width: canvas?.width || 0,
+                canvas_height: canvas?.height || 0,
+                canvas_display: canvas ? getComputedStyle(canvas).display : 'missing',
+                boot_button_text: document.querySelector('#boot-btn')?.textContent || '',
+                pointer_geometry: document.querySelector('#screen')?.dataset.pointerGeometry || null,
+                log_tail: log.split('\n').slice(-180),
+              };
+            });
+
+            const graphical = details.canvas_width >= 640 && details.canvas_height >= 480 && details.canvas_display !== 'none';
+            Object.assign(result, details, {
+              success: graphical && details.boot_button_text.includes('실행 중'),
+              state: graphical ? 'completed' : 'display-incomplete',
+              xorg_ready: graphical,
+              gui_ready: graphical,
+              graphical_canvas: graphical,
+              screen_sizes: [`[${details.canvas_width},${details.canvas_height},32]`],
+              completed_at: new Date().toISOString(),
+            });
+            await page.screenshot({ path: '/tmp/real-multiboot-r19.png', fullPage: true });
+          } catch (error) {
+            result.state = 'failed';
+            result.error = error?.stack || String(error);
+            result.completed_at = new Date().toISOString();
+            if (page) {
+              const log = await page.locator('#log').textContent().catch(() => '');
+              result.log_tail = (log || '').split('\n').slice(-220);
+              result.page_url = page.url();
+              await page.screenshot({ path: '/tmp/real-multiboot-r19.png', fullPage: true }).catch(() => {});
+            }
+          } finally {
+            await browser?.close().catch(() => {});
+            fs.writeFileSync('/tmp/real-multiboot-r19.json', JSON.stringify(result, null, 2) + '\n');
+          }
+          if (!result.success) process.exit(1);
+          JS
+          node --check /tmp/verify-r19.mjs
+          node /tmp/verify-r19.mjs
+
+      - name: Ensure result exists
+        if: always()
+        run: |
+          if test ! -s /tmp/real-multiboot-r19.json; then
+            printf '{"success":false,"state":"no-result","version":"20260710-r19-stability","run_id":"%s","workflow_sha":"%s","emulator_started":false,"xorg_ready":false,"gui_ready":false,"graphical_canvas":false}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" > /tmp/real-multiboot-r19.json
+          fi
+          cat /tmp/real-multiboot-r19.json
+
+      - name: Upload verification proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-multiboot-r19-${{ github.run_id }}
+          path: |
+            /tmp/real-multiboot-r19.json
+            /tmp/real-multiboot-r19.png
+            /tmp/public-index.html
+            /tmp/public-app.js
+            /tmp/public-meta.json
+          if-no-files-found: warn
+
+      - name: Publish verification status
+        if: always() && github.ref == 'refs/heads/main'
+        run: |
+          set -euo pipefail
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for attempt in $(seq 1 6); do
+            git fetch origin main
+            git checkout -B r19-status origin/main
+            cp /tmp/real-multiboot-r19.json os/iso/real-multiboot-status.json
+            git add os/iso/real-multiboot-status.json
+            git commit -m 'chore(os): record R19 browser verification [skip ci]' || exit 0
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 3))
+          done
+          exit 1
+
+      - name: Require graphical boot success
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path('/tmp/real-multiboot-r19.json').read_text())
+          if not result.get('success'):
+              raise SystemExit('GORICS graphical browser boot verification failed')
+          print('GORICS graphical browser boot verified')
+          PY
