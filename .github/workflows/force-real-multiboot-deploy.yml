@@ -27,13 +27,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - name: Checkout main
+      - name: Checkout exact source
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.sha }}
           fetch-depth: 1
 
-      - name: Dispatch canonical Pages deployment
+      - name: Dispatch pinned Pages deployment
         uses: actions/github-script@v7
         with:
           script: |
@@ -41,7 +41,8 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'static.yml',
-              ref: 'main'
+              ref: 'main',
+              inputs: { source_sha: context.sha }
             });
 
       - name: Wait for exact public deployment and local media
@@ -60,12 +61,13 @@ jobs:
               && curl -fsSL --max-time 30 "${PAGE}performance-mode.js?verify=${stamp}" -o /tmp/performance-mode.js \
               && grep -q 'logCapChars: 120000' /tmp/performance-mode.js \
               && curl -fsSL --max-time 30 "${PAGE}assets/deployment.json?verify=${stamp}" -o /tmp/deployment.json \
+              && grep -q "\"source_sha\": \"${GITHUB_SHA}\"" /tmp/deployment.json \
               && grep -q "\"version\": \"${GITHUB_SHA}-" /tmp/deployment.json; then
               deployed=1
-              echo "exact R19 deployment verified on attempt ${attempt}"
+              echo "exact R19 deployment verified on attempt ${attempt} sha=${GITHUB_SHA}"
               break
             fi
-            echo "exact R19 deployment not visible, attempt ${attempt}/150"
+            echo "exact R19 deployment not visible, attempt ${attempt}/150 sha=${GITHUB_SHA}"
             sleep 10
           done
           test "$deployed" = 1

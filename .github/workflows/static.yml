@@ -2,6 +2,11 @@ name: Deploy static content to Pages
 
 on:
   workflow_dispatch:
+    inputs:
+      source_sha:
+        description: Exact repository commit to publish
+        required: false
+        type: string
   push:
     branches: [main]
     paths:
@@ -25,15 +30,19 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - name: Checkout
+      - name: Checkout exact source
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_sha || github.sha }}
 
       - name: Assemble sanitized Pages tree
         env:
-          DEPLOY_VERSION: ${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          SOURCE_SHA: ${{ inputs.source_sha || github.sha }}
+          DEPLOY_VERSION: ${{ inputs.source_sha || github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
           rm -rf _site
           python3 - <<'PY'
           import pathlib
@@ -154,6 +163,7 @@ jobs:
 
           deployment = {
               'version': version,
+              'source_sha': os.environ['SOURCE_SHA'],
               'architecture': 'i386',
               'desktop': 'openbox-tint2-pcmanfm-xterm',
               'direct_boot': True,
@@ -224,7 +234,8 @@ jobs:
 
       - name: Verify exact public deployment
         env:
-          DEPLOY_VERSION: ${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          SOURCE_SHA: ${{ inputs.source_sha || github.sha }}
+          DEPLOY_VERSION: ${{ inputs.source_sha || github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           set -euo pipefail
           ROOT='https://gorics.github.io/website'
@@ -236,6 +247,7 @@ jobs:
               && grep -q 'asset-versioning.js?v=' /tmp/index.html \
               && grep -q 'gorics-build' /tmp/index.html \
               && curl -fsSL --max-time 45 "$PAGE/assets/deployment.json?v=$stamp" -o /tmp/deployment.json \
+              && grep -q "\"source_sha\": \"${SOURCE_SHA}\"" /tmp/deployment.json \
               && grep -q "\"version\": \"${DEPLOY_VERSION}\"" /tmp/deployment.json \
               && grep -q '"isolated_canonical_status": true' /tmp/deployment.json \
               && curl -fsSL --max-time 45 "$ROOT/os/iso/real-multiboot-status.json?v=$stamp" -o /tmp/public-status.json \
