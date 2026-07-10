@@ -1,0 +1,589 @@
+{
+  "collected_at": "2026-07-10T04:32:32.347Z",
+  "collector_run_id": 29069286822,
+  "workflows": {
+    "kickoff-canonical-r19-once.yml": {
+      "runs": [
+        {
+          "id": 29069142396,
+          "name": "Kick Off Canonical R19 Once",
+          "event": "push",
+          "status": "completed",
+          "conclusion": "success",
+          "head_sha": "c965caa674c6138efb948f722c83f8bfb8f0484a",
+          "created_at": "2026-07-10T04:28:44Z",
+          "updated_at": "2026-07-10T04:29:08Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29069142396"
+        },
+        {
+          "id": 29068938807,
+          "name": "Kick Off Canonical R19 Once",
+          "event": "push",
+          "status": "completed",
+          "conclusion": "success",
+          "head_sha": "615a2b38ffb133363a3f2a4e5a56a369e5f2ba20",
+          "created_at": "2026-07-10T04:23:26Z",
+          "updated_at": "2026-07-10T04:23:54Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068938807"
+        },
+        {
+          "id": 29068880488,
+          "name": "Kick Off Canonical R19 Once",
+          "event": "push",
+          "status": "completed",
+          "conclusion": "success",
+          "head_sha": "7fcf7ec06b04a91b5b9f06edb500c4f009883915",
+          "created_at": "2026-07-10T04:21:57Z",
+          "updated_at": "2026-07-10T04:22:22Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068880488"
+        },
+        {
+          "id": 29068835573,
+          "name": "Kick Off Canonical R19 Once",
+          "event": "push",
+          "status": "completed",
+          "conclusion": "success",
+          "head_sha": "a93a450e524d1eb7da4e7a0a37c6dc9edce7a825",
+          "created_at": "2026-07-10T04:20:50Z",
+          "updated_at": "2026-07-10T04:20:59Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068835573"
+        },
+        {
+          "id": 29068800120,
+          "name": "Kick Off Canonical R19 Once",
+          "event": "push",
+          "status": "completed",
+          "conclusion": "success",
+          "head_sha": "79b3d78f5eb23b2c8fa5888d3dc59e6db73e9321",
+          "created_at": "2026-07-10T04:19:57Z",
+          "updated_at": "2026-07-10T04:20:07Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068800120"
+        }
+      ],
+      "latest_jobs": [
+        {
+          "id": 86286883610,
+          "name": "kickoff",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-07-10T04:28:46Z",
+          "completed_at": "2026-07-10T04:29:07Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Record observable kickoff marker",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Enable canonical workflows and dispatch final chain",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Post Checkout",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ]
+        }
+      ]
+    },
+    "force-real-multiboot-deploy.yml": {
+      "runs": [
+        {
+          "id": 29069155111,
+          "name": "Deploy and Verify Real Multiboot",
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "39fbf1e9c847fde9044235a36ef9740d370fd209",
+          "created_at": "2026-07-10T04:29:06Z",
+          "updated_at": "2026-07-10T04:31:31Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29069155111"
+        },
+        {
+          "id": 29069132983,
+          "name": "Deploy and Verify Real Multiboot",
+          "event": "push",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "4010da9062f0b3057d4559a86b594ed40320dca3",
+          "created_at": "2026-07-10T04:28:29Z",
+          "updated_at": "2026-07-10T04:29:06Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29069132983"
+        },
+        {
+          "id": 29068954905,
+          "name": "Deploy and Verify Real Multiboot",
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "head_sha": "ba260c0d9ad6ac938a175b788f9a20cf7af500aa",
+          "created_at": "2026-07-10T04:23:50Z",
+          "updated_at": "2026-07-10T04:28:46Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068954905"
+        },
+        {
+          "id": 29068928217,
+          "name": "Deploy and Verify Real Multiboot",
+          "event": "push",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "a51291249eeac543aa762701b7b50537f25a73a7",
+          "created_at": "2026-07-10T04:23:09Z",
+          "updated_at": "2026-07-10T04:23:48Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068928217"
+        },
+        {
+          "id": 29068895574,
+          "name": "Deploy and Verify Real Multiboot",
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "head_sha": "a6f8300fcc5f57d8ad7e2d4b701822c58d46d760",
+          "created_at": "2026-07-10T04:22:19Z",
+          "updated_at": "2026-07-10T04:23:24Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068895574"
+        },
+        {
+          "id": 29068839336,
+          "name": "Deploy and Verify Real Multiboot",
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "head_sha": "a93a450e524d1eb7da4e7a0a37c6dc9edce7a825",
+          "created_at": "2026-07-10T04:20:56Z",
+          "updated_at": "2026-07-10T04:22:37Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068839336"
+        },
+        {
+          "id": 29068804281,
+          "name": "Deploy and Verify Real Multiboot",
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "head_sha": "79b3d78f5eb23b2c8fa5888d3dc59e6db73e9321",
+          "created_at": "2026-07-10T04:20:04Z",
+          "updated_at": "2026-07-10T04:21:13Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068804281"
+        },
+        {
+          "id": 29068594475,
+          "name": "Deploy and Verify Real Multiboot",
+          "event": "push",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "head_sha": "10456f22112cbc7a45a87278adc565b33aa6b8b4",
+          "created_at": "2026-07-10T04:14:38Z",
+          "updated_at": "2026-07-10T04:20:19Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068594475"
+        },
+        {
+          "id": 29068326023,
+          "name": "Deploy and Verify Real Multiboot",
+          "event": "push",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "9859e93a77646ad6cfd0a9e52e00bb4c98816d54",
+          "created_at": "2026-07-10T04:07:41Z",
+          "updated_at": "2026-07-10T04:08:06Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068326023"
+        },
+        {
+          "id": 29068147847,
+          "name": "Deploy and Verify Real Multiboot",
+          "event": "push",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "96343a18c9c012bafb1c92e4bdcc0996a4b902d7",
+          "created_at": "2026-07-10T04:03:01Z",
+          "updated_at": "2026-07-10T04:03:21Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068147847"
+        }
+      ],
+      "latest_jobs": [
+        {
+          "id": 86286924874,
+          "name": "deploy",
+          "status": "completed",
+          "conclusion": "failure",
+          "started_at": "2026-07-10T04:29:09Z",
+          "completed_at": "2026-07-10T04:31:30Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout exact source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Record observable deployment start",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Dispatch and wait for pinned Pages workflow",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 4
+            },
+            {
+              "name": "Verify exact public deployment and local media",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 5
+            },
+            {
+              "name": "Dispatch and wait for canonical R19 graphical verification",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 6
+            },
+            {
+              "name": "Record canonical chain success",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 7
+            },
+            {
+              "name": "Post Checkout exact source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            }
+          ]
+        }
+      ]
+    },
+    "static.yml": {
+      "runs": [
+        {
+          "id": 29069169172,
+          "name": "Deploy static content to Pages",
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "0cf0c6560854fabd2e3768c5a52c109cd4999229",
+          "created_at": "2026-07-10T04:29:29Z",
+          "updated_at": "2026-07-10T04:31:22Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29069169172"
+        },
+        {
+          "id": 29068971645,
+          "name": "Deploy static content to Pages",
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "ecf2ff9972591c2914f963d871b1d3a8ce0ee7ab",
+          "created_at": "2026-07-10T04:24:15Z",
+          "updated_at": "2026-07-10T04:24:44Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068971645"
+        },
+        {
+          "id": 29068919338,
+          "name": "Deploy static content to Pages",
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "a6f8300fcc5f57d8ad7e2d4b701822c58d46d760",
+          "created_at": "2026-07-10T04:22:55Z",
+          "updated_at": "2026-07-10T04:23:25Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068919338"
+        },
+        {
+          "id": 29068864203,
+          "name": "Deploy static content to Pages",
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "a93a450e524d1eb7da4e7a0a37c6dc9edce7a825",
+          "created_at": "2026-07-10T04:21:34Z",
+          "updated_at": "2026-07-10T04:22:22Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068864203"
+        },
+        {
+          "id": 29068828277,
+          "name": "Deploy static content to Pages",
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "79b3d78f5eb23b2c8fa5888d3dc59e6db73e9321",
+          "created_at": "2026-07-10T04:20:40Z",
+          "updated_at": "2026-07-10T04:21:09Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068828277"
+        },
+        {
+          "id": 29068637894,
+          "name": "Deploy static content to Pages",
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "10456f22112cbc7a45a87278adc565b33aa6b8b4",
+          "created_at": "2026-07-10T04:15:41Z",
+          "updated_at": "2026-07-10T04:16:08Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068637894"
+        },
+        {
+          "id": 29068608667,
+          "name": "Deploy static content to Pages",
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "head_sha": "10456f22112cbc7a45a87278adc565b33aa6b8b4",
+          "created_at": "2026-07-10T04:14:59Z",
+          "updated_at": "2026-07-10T04:15:31Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29068608667"
+        },
+        {
+          "id": 28919868551,
+          "name": "Deploy static content to Pages",
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "5c08e2d324653cb738ae828f44212ae940267145",
+          "created_at": "2026-07-08T05:29:35Z",
+          "updated_at": "2026-07-08T05:30:07Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/28919868551"
+        },
+        {
+          "id": 28919836418,
+          "name": "Deploy static content to Pages",
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "head_sha": "e715f160cbe59a4752abbd6a158a1cacf9f320ae",
+          "created_at": "2026-07-08T05:28:44Z",
+          "updated_at": "2026-07-08T05:29:29Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/28919836418"
+        },
+        {
+          "id": 28919733512,
+          "name": "Deploy static content to Pages",
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "435e11ea8b1296a1b5acbe3e6b2e44924ee9fb8e",
+          "created_at": "2026-07-08T05:26:07Z",
+          "updated_at": "2026-07-08T05:26:40Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/28919733512"
+        }
+      ],
+      "latest_jobs": [
+        {
+          "id": 86286965869,
+          "name": "deploy",
+          "status": "completed",
+          "conclusion": "failure",
+          "started_at": "2026-07-10T04:29:34Z",
+          "completed_at": "2026-07-10T04:31:21Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout exact source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Assemble sanitized Pages tree",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 3
+            },
+            {
+              "name": "Validate assembled deployment",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 4
+            },
+            {
+              "name": "Setup Pages",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 5
+            },
+            {
+              "name": "Upload Pages artifact",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 6
+            },
+            {
+              "name": "Deploy to GitHub Pages",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 7
+            },
+            {
+              "name": "Verify exact public deployment",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 8
+            },
+            {
+              "name": "Post Checkout exact source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17
+            }
+          ]
+        }
+      ]
+    },
+    "verify-real-multiboot-r19-v2.yml": {
+      "runs": [
+        {
+          "id": 29067020049,
+          "name": "Verify Real Multiboot R19 V2",
+          "event": "push",
+          "status": "completed",
+          "conclusion": "failure",
+          "head_sha": "54d30b11843d5ad44e03f96982e017262b7f7217",
+          "created_at": "2026-07-10T03:31:08Z",
+          "updated_at": "2026-07-10T03:32:22Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29067020049"
+        },
+        {
+          "id": 29066755766,
+          "name": "Verify Real Multiboot R19 V2",
+          "event": "push",
+          "status": "completed",
+          "conclusion": "success",
+          "head_sha": "eb5f39d7b87aa67216dc13921ca3a949831c3a31",
+          "created_at": "2026-07-10T03:23:42Z",
+          "updated_at": "2026-07-10T03:27:09Z",
+          "html_url": "https://github.com/gorics/website/actions/runs/29066755766"
+        }
+      ],
+      "latest_jobs": [
+        {
+          "id": 86280654549,
+          "name": "verify",
+          "status": "completed",
+          "conclusion": "failure",
+          "started_at": "2026-07-10T03:31:10Z",
+          "completed_at": "2026-07-10T03:32:21Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Static integrity checks",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Install isolated Chromium verifier",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Wait for public R19 deployment and all preset media",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 5
+            },
+            {
+              "name": "Boot GORICS Linux in Chromium",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 6
+            },
+            {
+              "name": "Guarantee diagnostic result",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Upload verification proof",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Publish canonical status",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Require graphical boot success",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 10
+            },
+            {
+              "name": "Post Checkout",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
