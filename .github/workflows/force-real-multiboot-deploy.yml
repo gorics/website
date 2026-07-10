@@ -5,11 +5,13 @@ on:
   push:
     branches: [main]
     paths:
+      - 'os/index.html'
       - 'os/real-multiboot/**'
       - 'vendor/v86/**'
       - '.github/scripts/verify-real-multiboot-r19.mjs'
       - '.github/workflows/verify-real-multiboot-r19-v2.yml'
       - '.github/workflows/force-real-multiboot-deploy.yml'
+      - '.github/workflows/publish-os-status-to-pages.yml'
       - '.github/workflows/static.yml'
 
 permissions:

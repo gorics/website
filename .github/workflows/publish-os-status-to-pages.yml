@@ -1,0 +1,31 @@
+name: Publish OS Status to Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'os/iso/real-multiboot-status.json'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: publish-os-status-to-pages
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch canonical Pages deployment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'static.yml',
+              ref: 'main'
+            });
