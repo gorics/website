@@ -1,12 +1,16 @@
 name: Deploy and Verify Real Multiboot
 
 on:
-  pull_request:
-    types: [closed]
+  workflow_dispatch:
+  push:
     branches: [main]
     paths:
       - 'os/real-multiboot/**'
-  workflow_dispatch:
+      - 'vendor/v86/**'
+      - '.github/scripts/verify-real-multiboot-r19.mjs'
+      - '.github/workflows/verify-real-multiboot-r19-v2.yml'
+      - '.github/workflows/force-real-multiboot-deploy.yml'
+      - '.github/workflows/static.yml'
 
 permissions:
   actions: write
@@ -18,9 +22,8 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - name: Checkout main
         uses: actions/checkout@v4
@@ -39,29 +42,41 @@ jobs:
               ref: 'main'
             });
 
-      - name: Verify public R19 deployment
+      - name: Wait for exact public deployment and local media
         shell: bash
         run: |
           set -euo pipefail
-          PAGE='https://gorics.github.io/website/os/real-multiboot/'
+          ROOT='https://gorics.github.io/website'
+          PAGE="$ROOT/os/real-multiboot/"
           deployed=0
-          for attempt in $(seq 1 120); do
+          for attempt in $(seq 1 150); do
             stamp="${GITHUB_RUN_ID}-${attempt}-$(date +%s)"
             if curl -fsSL --max-time 30 "${PAGE}?verify=${stamp}" -o /tmp/multiboot-index.html \
               && grep -q 'r19-stable-runtime-cache-safe-local-media-pointer-calibration' /tmp/multiboot-index.html \
               && grep -q 'responsive-overrides.css?v=' /tmp/multiboot-index.html \
               && grep -q 'pointer-calibration.js?v=' /tmp/multiboot-index.html \
               && curl -fsSL --max-time 30 "${PAGE}performance-mode.js?verify=${stamp}" -o /tmp/performance-mode.js \
-              && grep -q 'logCapChars: 120000' /tmp/performance-mode.js; then
+              && grep -q 'logCapChars: 120000' /tmp/performance-mode.js \
+              && curl -fsSL --max-time 30 "${PAGE}assets/deployment.json?verify=${stamp}" -o /tmp/deployment.json \
+              && grep -q "\"version\": \"${GITHUB_SHA}-" /tmp/deployment.json; then
               deployed=1
-              echo "R19 deployment verified on attempt ${attempt}"
+              echo "exact R19 deployment verified on attempt ${attempt}"
               break
             fi
-            echo "R19 deployment not visible, attempt ${attempt}/120"
+            echo "exact R19 deployment not visible, attempt ${attempt}/150"
             sleep 10
           done
           test "$deployed" = 1
           node --check /tmp/performance-mode.js
+
+          : > /tmp/local-media-probe.txt
+          for image in buildroot-bzimage68.bin linux4.iso linux.iso freedos722.img; do
+            code=$(curl -sS -L --max-time 120 -r 0-4095 -o "/tmp/${image}.probe" -w '%{http_code}' "$ROOT/vendor/v86/images/$image?deploy=$GITHUB_RUN_ID")
+            bytes=$(stat -c %s "/tmp/${image}.probe" 2>/dev/null || echo 0)
+            printf '%s status=%s bytes=%s\n' "$image" "$code" "$bytes" | tee -a /tmp/local-media-probe.txt
+            case "$code" in 200|206) ;; *) exit 1;; esac
+            test "$bytes" -gt 0
+          done
 
       - name: Dispatch canonical R19 graphical verification
         uses: actions/github-script@v7
