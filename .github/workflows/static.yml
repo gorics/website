@@ -15,7 +15,7 @@ permissions:
 
 concurrency:
   group: pages-visibility-safe-r19
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy:
