@@ -34,7 +34,11 @@ The web shell release and the guest ISO release are separate. The R19 shell curr
 
 ## Verification
 
-Workflow: `.github/workflows/verify-real-multiboot-r19.yml`
+Canonical workflow: `.github/workflows/verify-real-multiboot-r19-v2.yml`
+
+Browser verifier: `.github/scripts/verify-real-multiboot-r19.mjs`
+
+Only the canonical workflow may publish `os/iso/real-multiboot-status.json`. Obsolete versioned verifiers must not be restored because competing status writers create nondeterministic hub results.
 
 The workflow checks:
 
@@ -43,6 +47,6 @@ The workflow checks:
 3. GitHub Pages deployment visibility.
 4. Chromium startup of the GORICS preset.
 5. `emulator-started`, a visible canvas of at least 640×480, and the UI running state.
-6. Publication of the result to `os/iso/real-multiboot-status.json`.
+6. Publication of a failure-safe diagnostic result to `os/iso/real-multiboot-status.json`.
 
 A green page badge must only be shown when all graphical boot conditions are true.
