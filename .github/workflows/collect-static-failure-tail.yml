@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
-      COLLECTOR_NONCE: '20260710-2'
+      COLLECTOR_NONCE: '20260710-3'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
           text = Path('/tmp/static-failed.log').read_text(errors='replace')
           result = {
               'run_id': os.environ['RUN_ID'],
-              'tail': text.splitlines()[-260:],
+              'tail': text.splitlines()[-300:],
           }
           Path('os/iso/static-failure-tail.json').write_text(json.dumps(result, indent=2) + '\n')
           PY
