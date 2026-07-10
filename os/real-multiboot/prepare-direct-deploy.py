@@ -81,6 +81,13 @@ def extract_live_boot_files(iso: Path, destination: Path) -> tuple[Path, Path]:
 
 
 def patch_loader(app: Path) -> None:
+    """Upgrade a legacy loader or validate an already-modern R19 loader.
+
+    R19 obtains the ISO name from ``iso-meta.json`` instead of embedding the
+    release filename in app.js. Therefore the absence of ``ISO_NAME`` in the
+    loader is expected and must not fail deployment preparation.
+    """
+
     text = app.read_text(encoding="utf-8")
     text = text.replace("gorics-linux-gui-web-amd64.iso", ISO_NAME)
 
@@ -90,7 +97,7 @@ def patch_loader(app: Path) -> None:
         + "\n  const kernelUrl = new URL('./assets/vmlinuz', location.href).href;"
         + "\n  const initrdUrl = new URL('./assets/initrd.img', location.href).href;"
     )
-    if "const kernelUrl" not in text:
+    if "const kernelUrl" not in text or "const initrdUrl" not in text:
         if meta_line not in text:
             raise RuntimeError("metadata URL declaration missing")
         text = text.replace(meta_line, direct_lines, 1)
@@ -104,7 +111,7 @@ def patch_loader(app: Path) -> None:
     )
     if "bzimage: { url: kernelUrl }" not in text:
         if old_boot not in text:
-            raise RuntimeError("boot order declaration missing")
+            raise RuntimeError("neither direct boot nor legacy boot order declaration was found")
         text = text.replace(old_boot, direct_boot, 1)
 
     text = text.replace(
@@ -114,9 +121,17 @@ def patch_loader(app: Path) -> None:
 
     if "gorics-linux-gui-web-amd64.iso" in text:
         raise RuntimeError("amd64 ISO reference remains")
-    for required in (ISO_NAME, "bzimage", "initrdUrl", "systemd.unit=graphical.target"):
-        if required not in text:
-            raise RuntimeError(f"loader patch missing: {required}")
+
+    required = (
+        "iso-meta.json",
+        "kernelUrl",
+        "initrdUrl",
+        "bzimage: { url: kernelUrl }",
+        "systemd.unit=graphical.target",
+    )
+    missing = [marker for marker in required if marker not in text]
+    if missing:
+        raise RuntimeError(f"loader direct-boot validation failed: {missing}")
 
     app.write_text(text, encoding="utf-8")
 
