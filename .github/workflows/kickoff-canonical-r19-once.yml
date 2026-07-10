@@ -18,6 +18,8 @@ concurrency:
 jobs:
   kickoff:
     runs-on: ubuntu-latest
+    env:
+      AUDIT_KICKOFF: '20260710-final-direct-main-1'
     steps:
       - name: Enable canonical workflows and dispatch final chain
         uses: actions/github-script@v7
