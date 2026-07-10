@@ -1,0 +1,42 @@
+name: Kick Off Canonical R19 Once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/kickoff-canonical-r19-once.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: kickoff-canonical-r19-once
+  cancel-in-progress: true
+
+jobs:
+  kickoff:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enable canonical workflows and dispatch final chain
+        uses: actions/github-script@v7
+        with:
+          script: |
+            for (const workflow_id of [
+              'static.yml',
+              'verify-real-multiboot-r19-v2.yml',
+              'force-real-multiboot-deploy.yml'
+            ]) {
+              await github.rest.actions.enableWorkflow({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id
+              });
+            }
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'force-real-multiboot-deploy.yml',
+              ref: 'main'
+            });
