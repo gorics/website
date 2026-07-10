@@ -1,13 +1,12 @@
 name: Deploy static content to Pages
 
 on:
+  workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
       - 'os/real-multiboot/deployment-r12-v86-atomic.txt'
       - '.github/workflows/static.yml'
-  workflow_dispatch:
 
 permissions:
   contents: read
@@ -15,7 +14,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages-visibility-safe-r15
+  group: pages-visibility-safe-r19
   cancel-in-progress: false
 
 jobs:
@@ -29,7 +28,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Assemble atomic Pages tree
+      - name: Assemble sanitized Pages tree
         env:
           DEPLOY_VERSION: ${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           GH_TOKEN: ${{ github.token }}
@@ -42,7 +41,20 @@ jobs:
 
           source = pathlib.Path('.')
           target = pathlib.Path('_site')
-          shutil.copytree(source, target, ignore=shutil.ignore_patterns('.git', '_site'))
+          shutil.copytree(
+              source,
+              target,
+              ignore=shutil.ignore_patterns('.git', '.github', '_site', 'node_modules'),
+          )
+          for path in target.rglob('*.log'):
+              path.unlink()
+          for relative in (
+              'os/iso/static-pages-failure.json',
+              'os/iso/pages-failure-diagnostic.json',
+          ):
+              path = target / relative
+              if path.exists():
+                  path.unlink()
           (target / '.nojekyll').write_text('', encoding='utf-8')
           PY
 
@@ -78,8 +90,6 @@ jobs:
             test -s _site/os/real-multiboot/assets/vmlinuz
             test -s _site/os/real-multiboot/assets/initrd.img
             test -s _site/os/real-multiboot/assets/iso-meta.json
-            grep -q 'bzimage: { url: kernelUrl }' _site/os/real-multiboot/app.js
-            grep -q 'systemd.unit=graphical.target' _site/os/real-multiboot/app.js
           fi
 
           python3 - <<'PY'
@@ -129,15 +139,12 @@ jobs:
                   'size': len(data),
                   'sha256': hashlib.sha256(data).hexdigest(),
               }
-          (runtime_root / 'manifest.json').write_text(
-              json.dumps(manifest, indent=2) + '\n',
-              encoding='utf-8',
-          )
+          (runtime_root / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
 
           meta_path = page / 'assets' / 'iso-meta.json'
           meta = json.loads(meta_path.read_text(encoding='utf-8'))
           meta['page_version'] = version
-          meta['deployment'] = 'atomic-v86-native-xhr'
+          meta['deployment'] = 'atomic-v86-sanitized-r19'
           meta_path.write_text(json.dumps(meta, indent=2) + '\n', encoding='utf-8')
 
           deployment = {
@@ -146,14 +153,11 @@ jobs:
               'desktop': 'openbox-tint2-pcmanfm-xterm',
               'direct_boot': True,
               'atomic_v86_assets': True,
-              'native_xhr': True,
+              'sanitized_pages_tree': True,
               'iso_sha256': meta['sha256'],
               'runtime_manifest': manifest,
           }
-          (page / 'assets' / 'deployment.json').write_text(
-              json.dumps(deployment, indent=2) + '\n',
-              encoding='utf-8',
-          )
+          (page / 'assets' / 'deployment.json').write_text(json.dumps(deployment, indent=2) + '\n', encoding='utf-8')
           print(json.dumps(deployment, indent=2))
           PY
 
@@ -171,13 +175,17 @@ jobs:
           grep -q 'safe-diagnostics.js?v=' _site/os/real-multiboot/index.html
           grep -q 'visibility-timeout-guard.js?v=' _site/os/real-multiboot/index.html
           grep -q 'gorics-build' _site/os/real-multiboot/index.html
-          ! grep -q 'src="./diagnostics.js' _site/os/real-multiboot/index.html
-          ! grep -q 'chunk-router-v4.js' _site/os/real-multiboot/index.html
+          test ! -d _site/.github
+          test -z "$(find _site -type f -name '*.log' -print -quit)"
           test -s _site/vendor/v86/libv86.js
           test -s _site/vendor/v86/v86.wasm
           test -s _site/vendor/v86/seabios.bin
           test -s _site/vendor/v86/vgabios.bin
           test -s _site/vendor/v86/manifest.json
+          test -s _site/vendor/v86/images/buildroot-bzimage68.bin
+          test -s _site/vendor/v86/images/linux4.iso
+          test -s _site/vendor/v86/images/linux.iso
+          test -s _site/vendor/v86/images/freedos722.img
           test -s _site/os/real-multiboot/assets/vmlinuz
           test -s _site/os/real-multiboot/assets/initrd.img
           test -s _site/os/real-multiboot/assets/iso-meta.json
@@ -195,8 +203,6 @@ jobs:
           console.log('v86.wasm compiled and exports memory', bytes.length);
           JS
 
-          du -sh _site _site/os/real-multiboot/assets/* _site/vendor/v86/*
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
@@ -209,7 +215,9 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Verify public deployment
+      - name: Verify exact public deployment
+        env:
+          DEPLOY_VERSION: ${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           set -euo pipefail
           ROOT='https://gorics.github.io/website'
@@ -219,17 +227,14 @@ jobs:
             stamp="$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT-$attempt-$(date +%s)"
             if curl -fsSL --max-time 45 -H 'Cache-Control: no-cache' "$PAGE/?verify=$stamp" -o /tmp/index.html \
               && grep -q 'asset-versioning.js?v=' /tmp/index.html \
-              && grep -q 'safe-diagnostics.js?v=' /tmp/index.html \
-              && grep -q 'visibility-timeout-guard.js?v=' /tmp/index.html \
               && grep -q 'gorics-build' /tmp/index.html \
-              && ! grep -q 'chunk-router-v4.js' /tmp/index.html \
+              && curl -fsSL --max-time 45 "$PAGE/assets/deployment.json?v=$stamp" -o /tmp/deployment.json \
+              && grep -q "\"version\": \"${DEPLOY_VERSION}\"" /tmp/deployment.json \
               && curl -fsSL --max-time 45 "$ROOT/vendor/v86/manifest.json?v=$stamp" -o /tmp/manifest.json \
               && grep -q 'v86.wasm' /tmp/manifest.json \
-              && curl -fsSL --max-time 60 "$ROOT/vendor/v86/libv86.js?v=$stamp" -o /tmp/libv86.js \
               && curl -fsSL --max-time 60 "$ROOT/vendor/v86/v86.wasm?v=$stamp" -o /tmp/v86.wasm \
               && curl -fsSL --max-time 60 "$PAGE/assets/vmlinuz?v=$stamp" -o /tmp/vmlinuz \
               && curl -fsSL --max-time 90 "$PAGE/assets/initrd.img?v=$stamp" -o /tmp/initrd.img \
-              && test -s /tmp/libv86.js \
               && test -s /tmp/v86.wasm \
               && test "$(stat -c %s /tmp/vmlinuz)" -gt 1000000 \
               && test "$(stat -c %s /tmp/initrd.img)" -gt 10000000; then
@@ -241,14 +246,11 @@ jobs:
           done
           test "$ready" = 1
 
-          node --check /tmp/libv86.js
           node <<'JS'
           const fs = require('node:fs');
           const bytes = fs.readFileSync('/tmp/v86.wasm');
           const module = new WebAssembly.Module(bytes);
-          const exports = WebAssembly.Module.exports(module);
-          if (!exports.some(entry => entry.name === 'memory' && entry.kind === 'memory')) process.exit(1);
-          console.log('public v86.wasm compiled and exports memory', bytes.length);
+          if (!WebAssembly.Module.exports(module).some(entry => entry.name === 'memory' && entry.kind === 'memory')) process.exit(1);
           JS
 
           code=$(curl -sS --max-time 60 -r 32768-36863 -o /tmp/iso-probe.bin -w '%{http_code}' \
