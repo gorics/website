@@ -5,4 +5,6 @@ status_policy=isolated-r19-canonical-status
 pages_policy=sanitized-latest-only
 runtime_policy=cache-safe-intent-prefetch-bounded-log
 verification=public-media-plus-chromium-graphical-boot
-trigger_reason=final-full-os-audit
+legacy_pages_publishers=removed
+workflow_activation=explicit-before-dispatch
+trigger_reason=final-full-os-audit-after-r17-overwriter-removal
