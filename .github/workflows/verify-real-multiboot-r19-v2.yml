@@ -1,0 +1,182 @@
+name: Verify Real Multiboot R19 V2
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'os/real-multiboot/**'
+      - 'vendor/v86/**'
+      - '.github/scripts/verify-real-multiboot-r19.mjs'
+      - '.github/workflows/verify-real-multiboot-r19-v2.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: verify-real-multiboot-canonical
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Static integrity checks
+        run: |
+          set -euo pipefail
+          node --check os/real-multiboot/app.js
+          node --check os/real-multiboot/performance-mode.js
+          node --check os/real-multiboot/predictive-prefetch.js
+          node --check os/real-multiboot/pointer-calibration.js
+          node --check .github/scripts/verify-real-multiboot-r19.mjs
+          python3 - <<'PY'
+          import json
+          from html.parser import HTMLParser
+          from pathlib import Path
+
+          root = Path('os/real-multiboot')
+          html = (root / 'index.html').read_text(encoding='utf-8')
+          meta = json.loads((root / 'assets/iso-meta.json').read_text(encoding='utf-8'))
+          required = {
+              'os-select', 'boot-btn', 'keyboard-btn', 'stop-btn', 'fullscreen-btn',
+              'screen-wrap', 'screen', 'loading-overlay', 'log', 'stage-label',
+              'stage-detail', 'progress-percent', 'progress-bar', 'overlay-title',
+              'overlay-detail', 'overlay-percent', 'overlay-progress-bar', 'boot-steps',
+          }
+          class Parser(HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.ids = set()
+              def handle_starttag(self, tag, attrs):
+                  value = dict(attrs).get('id')
+                  if value: self.ids.add(value)
+          parser = Parser(); parser.feed(html)
+          assert not (required - parser.ids), sorted(required - parser.ids)
+          assert '20260710-r19-stability' in html
+          assert meta['name'] == 'gorics-linux-gui-web-i386-r12.iso'
+          assert meta['architecture'] == 'i386'
+          assert meta['direct_boot'] is True and meta['chunked'] is True
+          assert meta['parts'] >= 1 and meta['size'] > 300_000_000
+          print('static integrity checks passed')
+          PY
+
+      - name: Install isolated Chromium verifier
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/r19-verifier
+          mkdir -p /tmp/r19-verifier
+          cp .github/scripts/verify-real-multiboot-r19.mjs /tmp/r19-verifier/verify.mjs
+          cd /tmp/r19-verifier
+          npm init -y
+          npm install --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+          node --check verify.mjs
+
+      - name: Wait for public R19 deployment
+        run: |
+          set -euo pipefail
+          BASE='https://gorics.github.io/website/os/real-multiboot/'
+          ready=0
+          for attempt in $(seq 1 45); do
+            stamp="${GITHUB_RUN_ID}-${attempt}-$(date +%s)"
+            if curl -fsSL --max-time 30 "${BASE}?deploy=${stamp}" -o /tmp/public-index.html \
+              && grep -q '20260710-r19-stability' /tmp/public-index.html \
+              && curl -fsSL --max-time 30 "${BASE}app.js?deploy=${stamp}" -o /tmp/public-app.js \
+              && curl -fsSL --max-time 30 "${BASE}assets/iso-meta.json?deploy=${stamp}" -o /tmp/public-meta.json; then
+              ready=1
+              break
+            fi
+            echo "public deployment not ready: ${attempt}/45"
+            sleep 10
+          done
+          test "$ready" = 1
+          node --check /tmp/public-app.js
+
+      - name: Boot GORICS Linux in Chromium
+        id: browser
+        continue-on-error: true
+        env:
+          VERIFY_URL: https://gorics.github.io/website/os/real-multiboot/?preset=gorics&verify=${{ github.run_id }}-${{ github.run_attempt }}
+          RESULT_PATH: /tmp/real-multiboot-r19.json
+          SCREENSHOT_PATH: /tmp/real-multiboot-r19.png
+        run: |
+          set +e
+          cd /tmp/r19-verifier
+          node verify.mjs 2>&1 | tee /tmp/real-multiboot-r19.log
+          browser_exit=${PIPESTATUS[0]}
+          set -e
+          test -s /tmp/real-multiboot-r19.json
+          exit "$browser_exit"
+
+      - name: Guarantee diagnostic result
+        if: always()
+        run: |
+          if test ! -s /tmp/real-multiboot-r19.json; then
+            python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          log = Path('/tmp/real-multiboot-r19.log').read_text(errors='replace') if Path('/tmp/real-multiboot-r19.log').exists() else ''
+          result = {
+              'success': False,
+              'state': 'verifier-process-failed',
+              'version': '20260710-r19-stability',
+              'run_id': os.environ.get('GITHUB_RUN_ID'),
+              'workflow_sha': os.environ.get('GITHUB_SHA'),
+              'emulator_started': False,
+              'xorg_ready': False,
+              'gui_ready': False,
+              'graphical_canvas': False,
+              'process_log_tail': log.splitlines()[-240:],
+          }
+          Path('/tmp/real-multiboot-r19.json').write_text(json.dumps(result, indent=2) + '\n')
+          PY
+          fi
+          cat /tmp/real-multiboot-r19.json
+
+      - name: Upload verification proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-multiboot-r19-v2-${{ github.run_id }}
+          path: |
+            /tmp/real-multiboot-r19.json
+            /tmp/real-multiboot-r19.png
+            /tmp/real-multiboot-r19.log
+            /tmp/public-index.html
+            /tmp/public-app.js
+            /tmp/public-meta.json
+          if-no-files-found: warn
+
+      - name: Publish canonical status
+        if: always() && github.ref == 'refs/heads/main'
+        run: |
+          set -euo pipefail
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          for attempt in $(seq 1 8); do
+            git fetch origin main --depth=1
+            git checkout -B r19-status origin/main
+            cp /tmp/real-multiboot-r19.json os/iso/real-multiboot-status.json
+            git add os/iso/real-multiboot-status.json
+            git commit -m 'chore(os): record canonical R19 verification [skip ci]' || exit 0
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
+
+      - name: Require graphical boot success
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path('/tmp/real-multiboot-r19.json').read_text())
+          if not result.get('success'):
+              raise SystemExit('GORICS graphical browser boot verification failed')
+          print('GORICS graphical browser boot verified')
+          PY
