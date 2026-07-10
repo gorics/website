@@ -13,6 +13,8 @@ permissions:
 jobs:
   patch:
     runs-on: ubuntu-latest
+    env:
+      PATCH_NONCE: '20260710-1'
     steps:
       - name: Patch canonical Pages workflow
         uses: actions/github-script@v7
@@ -28,10 +30,7 @@ jobs:
               /url:\s*\$\{\{\s*steps\.deployment\.outputs\.page_url\s*\}\}/,
               'url: https://gorics.github.io/website/'
             );
-            const original = `      - name: Deploy to GitHub Pages
-                    id: deployment
-                    uses: actions/deploy-pages@v4`;
-            const normalizedOriginal = original.replace(/^ {20}/gm, '');
+            const deployPattern = /      - name: Deploy to GitHub Pages\n        id: deployment\n        uses: actions\/deploy-pages@v4/;
             const replacement = `      - name: Deploy to GitHub Pages
         id: deployment
         continue-on-error: true
@@ -55,10 +54,10 @@ jobs:
         id: deployment_final
         if: steps.deployment.outcome == 'failure' && steps.deployment_retry.outcome == 'failure'
         uses: actions/deploy-pages@v4`;
-            if (!text.includes(normalizedOriginal)) {
+            if (!deployPattern.test(text)) {
               throw new Error('canonical deploy-pages block not found exactly once');
             }
-            text = text.replace(normalizedOriginal, replacement);
+            text = text.replace(deployPattern, replacement);
             if (!text.includes('cancel-in-progress: false') || !text.includes('Final GitHub Pages deployment retry')) {
               throw new Error('static Pages serialization patch validation failed');
             }
