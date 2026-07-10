@@ -1,12 +1,8 @@
 {
   "success": false,
-  "state": "verifier-process-failed",
-  "version": "20260710-r19-stability",
-  "run_id": "29067020049",
-  "workflow_sha": "54d30b11843d5ad44e03f96982e017262b7f7217",
-  "emulator_started": false,
-  "xorg_ready": false,
-  "gui_ready": false,
-  "graphical_canvas": false,
-  "process_log_tail": []
+  "state": "no-result",
+  "version": "r3z",
+  "run_id": "29066310453",
+  "job_status": "failure",
+  "workflow_sha": "c194dde58dd504e7e6d38f550f72ccda358dcbfc"
 }
