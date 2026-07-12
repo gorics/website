@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T21:02:01.778Z",
+  "generatedAt": "2026-07-12T22:00:46.424Z",
   "source": "Google News RSS search feeds; public financial metadata only",
   "page": "financial",
   "privacy": {
@@ -18,37 +18,37 @@
       "id": "market",
       "name": "증시·시장",
       "icon": "📈",
-      "count": 46
+      "count": 48
     },
     {
       "id": "macro",
       "name": "금리·환율·거시",
       "icon": "🏦",
-      "count": 16
+      "count": 15
     },
     {
       "id": "company",
       "name": "기업·실적·산업",
       "icon": "🏭",
-      "count": 27
+      "count": 24
     },
     {
       "id": "finance",
       "name": "은행·증권·보험",
       "icon": "💳",
-      "count": 18
+      "count": 20
     },
     {
       "id": "realestate",
       "name": "부동산·PF",
       "icon": "🏙️",
-      "count": 9
+      "count": 11
     },
     {
       "id": "crypto",
       "name": "가상자산",
       "icon": "₿",
-      "count": 20
+      "count": 21
     },
     {
       "id": "global",
@@ -69,7 +69,7 @@
       "count": 9
     }
   ],
-  "total": 154,
+  "total": 157,
   "byCategory": {
     "market": [
       {
@@ -86,7 +86,7 @@
         },
         "publishedAt": "2026-07-12T19:22:46.000Z",
         "guid": "CBMibEFVX3lxTE5YeUtjZzFNLU9KY2xmN3FFU1dKdXFGM3JELU9VMnFYVjZfY1V6a1lLTmRlN1FyeDNhVVdwT0hKR3BTTXNGUjlJSHBnOUZlXzBwb1I4cy1HU0hNaE4yR3Nlb3lEbG9zRm4xTEpuTA",
-        "score": 87
+        "score": 86
       },
       {
         "id": "market-6Z-T6riI66aswr",
@@ -102,7 +102,7 @@
         },
         "publishedAt": "2026-07-12T19:00:00.000Z",
         "guid": "CBMiU0FVX3lxTE9MZzVPdTNPTVlLWUpxR1diOTY1SGM1V0lJb0FObkctcXFUQ1d3ZjZfSmVpUzZNbUFJYnFMUU5IQTFJQUNPTHZ4NUxXbl94SS1iMmI4",
-        "score": 87
+        "score": 86
       },
       {
         "id": "market-W-ymneyLnCDsoI",
@@ -118,7 +118,39 @@
         },
         "publishedAt": "2026-07-12T15:00:00.000Z",
         "guid": "CBMicEFVX3lxTE5BSzJTb21jUVBRSzFXR240Z2NmVnZ4YXQ0bEZsSm5VQ3hFbWFUa2NoRHpZcjdORzVxVUJ2YWVtTWhCbFFsZHMyaHo5UXJzUE15VEJ3enZEZkdPV1NFaFFyNFlRdlVucXg3bzFmRkJwRm7SAXRBVV95cUxNWWJuMVZ0NFdsVXdBU0J5bkxDUzR3bmNocHU4c3R1b0lHUzNYOHBr…",
-        "score": 83
+        "score": 82
+      },
+      {
+        "id": "market-NzTsobAgJ-unpO",
+        "category": "market",
+        "categoryName": "증시·시장",
+        "categoryIcon": "📈",
+        "title": "74조 '매물폭탄' 사라졌다…코스피 급락이 국민연금 매도 멈췄다",
+        "description": "74조 '매물폭탄' 사라졌다…코스피 급락이 국민연금 매도 멈췄다 &nbsp;&nbsp; 네이트",
+        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9RX0NjSzlnaVJ5ZkJLOVRrWVphZ3pXRjFfYnJ3MXVhMkg3azcyWjlmY0pmblczdnFJZk1UamlmUEwtZGg1MUQzRzQ0emhJU19XMEo0?oc=5",
+        "source": {
+          "name": "네이트",
+          "url": "https://news.nate.com"
+        },
+        "publishedAt": "2026-07-12T21:51:00.000Z",
+        "guid": "CBMiU0FVX3lxTE9RX0NjSzlnaVJ5ZkJLOVRrWVphZ3pXRjFfYnJ3MXVhMkg3azcyWjlmY0pmblczdnFJZk1UamlmUEwtZGg1MUQzRzQ0emhJU19XMEo0",
+        "score": 81
+      },
+      {
+        "id": "market-U0vtlZjsnbTri4",
+        "category": "market",
+        "categoryName": "증시·시장",
+        "categoryIcon": "📈",
+        "title": "SK하이닉스 ADR 13% 급등…코스피 반등 지속성은",
+        "description": "SK하이닉스 ADR 13% 급등…코스피 반등 지속성은 &nbsp;&nbsp; TopStarNews",
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFA1SzZoeXFDZWR3bmZ1MXZQdEVTM3JWUlRSNG5Xdi1kcmJSU2I3aFk2S2FPMnVuWU03QXNNOHg4V0t5Wm1hOXVlSkZER1JWc1JuM2NOZFhuMGpMTnNGYkRfM1VHRDUwTGVZWmdfaDExVWJ5Zw?oc=5",
+        "source": {
+          "name": "TopStarNews",
+          "url": "https://www.topstarnews.net"
+        },
+        "publishedAt": "2026-07-12T21:36:24.000Z",
+        "guid": "CBMickFVX3lxTFA1SzZoeXFDZWR3bmZ1MXZQdEVTM3JWUlRSNG5Xdi1kcmJSU2I3aFk2S2FPMnVuWU03QXNNOHg4V0t5Wm1hOXVlSkZER1JWc1JuM2NOZFhuMGpMTnNGYkRfM1VHRDUwTGVZWmdfaDExVWJ5Zw",
+        "score": 81
       },
       {
         "id": "market-7L2U7Iqk64ulIO",
@@ -134,23 +166,23 @@
         },
         "publishedAt": "2026-07-12T20:45:00.000Z",
         "guid": "CBMiVEFVX3lxTFBIeEJhWVUxbUk4djJxbnhXS212WFpGeWY2R2JhV0h4dS1NWUtmclhQb254OEtUUEExaFpkUlFGMnF4NXFhWXRCaUYzN2VxSTFUeW9ZNw",
-        "score": 81
+        "score": 80
       },
       {
         "id": "market-67CY64-E7LK07K",
         "category": "market",
         "categoryName": "증시·시장",
         "categoryIcon": "📈",
-        "title": "반도체주 이끌 ASML·TSMC 실적…인플레 둔화 기대, 워시 의회 보고도 관심[이번주 美 증시는]",
-        "description": "반도체주 이끌 ASML·TSMC 실적…인플레 둔화 기대, 워시 의회 보고도 관심[이번주 美 증시는] &nbsp;&nbsp; 네이트",
-        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5GVFhiLWJWb1RhTW9MMjJHU0VibEpvanI3UmZZNlNjLV9VbVJaeFdzcnpfdTJyclZIT0xvN1BJU2ZoRWNReFlaZ2g5c05CTDlLaVdj?oc=5",
+        "title": "반도체주 이끌 ASML·TSMC 실적…인플레 둔화 기대, 워시 의회 보고도 관심[이번주 美 증시는] - 머니투데이",
+        "description": "반도체주 이끌 ASML·TSMC 실적…인플레 둔화 기대, 워시 의회 보고도 관심[이번주 美 증시는] - 머니투데이 &nbsp;&nbsp; 머니투데이",
+        "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBFcDlienNjQTNfa3hCSTgycFZuSDlyUllRQTJ1bVFQNXJJZjVsZktRTlRqS0tCdEYyMnpTd3ctZWlXekpRdHBObHIxVlVDcmE0RW1yZE9Jai1xOHF6M25hSG5FMFZBSm5qRjBkSzJB0gFuQVVfeXFMUEVwOWJ6c2NBM19reEJJODJwVm5IOXJSWVFBMnVtUVA1cklmNWxmS1FOVGpLS0J0RjIyelN3dy1laVd6SlF0cE5scjFWVUNyYTRFbXJkT0lqLXE4cXozbmFIbkUwVkFKbmpGMGRLMkE?oc=5",
         "source": {
-          "name": "네이트",
-          "url": "https://news.nate.com"
+          "name": "머니투데이",
+          "url": "https://www.mt.co.kr"
         },
-        "publishedAt": "2026-07-12T20:36:00.000Z",
-        "guid": "CBMiU0FVX3lxTE5GVFhiLWJWb1RhTW9MMjJHU0VibEpvanI3UmZZNlNjLV9VbVJaeFdzcnpfdTJyclZIT0xvN1BJU2ZoRWNReFlaZ2g5c05CTDlLaVdj",
-        "score": 81
+        "publishedAt": "2026-07-12T20:35:12.000Z",
+        "guid": "CBMibkFVX3lxTFBFcDlienNjQTNfa3hCSTgycFZuSDlyUllRQTJ1bVFQNXJJZjVsZktRTlRqS0tCdEYyMnpTd3ctZWlXekpRdHBObHIxVlVDcmE0RW1yZE9Jai1xOHF6M25hSG5FMFZBSm5qRjBkSzJB0gFuQVVfeXFMUEVwOWJ6c2NBM19reEJJODJwVm5IOXJSWVFBMnVtUVA1cklmNWxmS1FO…",
+        "score": 80
       },
       {
         "id": "market-MzjsobAg67ma7Y",
@@ -166,7 +198,7 @@
         },
         "publishedAt": "2026-07-12T20:00:00.000Z",
         "guid": "CBMiVEFVX3lxTE9uWUtLZmluMzJBSDlGeGI3YUNxbmRFMlo3NEl5ZUoycVBPTkVMUXRlVXc2VGVsYzhVVXRFV09Vd1JSWFIxcjZDZzJ6ak0tZ1Nxa2tQcQ",
-        "score": 80
+        "score": 79
       },
       {
         "id": "market-W-yLrOy4teu2hO",
@@ -182,7 +214,7 @@
         },
         "publishedAt": "2026-07-12T15:00:00.000Z",
         "guid": "CBMicEFVX3lxTE82d2JpaXZtX0IyS1d1a0F3NHZWTkJ1UTkzZDJfX3pYOEVQR0lEMnFJUC1QUkI2OXp6SXUxbTI3VUxnQW5HdFo4X2RVdDhia05pbmpoekZldGR6S2E0VjVpWW1zVmJWMDQxRUhXdTRsaE3SAXRBVV95cUxQaThkeGE5Vjc3U0gzbGhnVERMQlhMbmFzRkg2dmtadklUR0YzNEJP…",
-        "score": 75
+        "score": 74
       },
       {
         "id": "market-QUkg67aI7J6lIO",
@@ -198,7 +230,7 @@
         },
         "publishedAt": "2026-07-12T20:00:00.000Z",
         "guid": "CBMieEFVX3lxTFBpU1JsVk5DS3lxcTU4OVBIeWdBWWljdWJRSEtaSXJkcmp0MDRQUW9FQlEyMVoyZS1MbkNuYkxCM2xFY0dNS0xoTG05dXZ4eFZXZkpweDlHV09fVWVJWUU0a1ExSHdiRVlaRTFkVUZCa1V3RFFNdm1IUQ",
-        "score": 72
+        "score": 71
       },
       {
         "id": "market-7L2U7Iqk7ZS8LC",
@@ -214,7 +246,7 @@
         },
         "publishedAt": "2026-07-12T03:57:51.000Z",
         "guid": "CBMiswJBVV95cUxPdHVzVzd5UkhUbmJHaTV3a3Z5Yk1WckE4akMtZVhsdVpRX1BjcDdwMEdpVzlucGxILU9zYjJnZjhOV2xJU1BjWlY0M1R6elZtV3N3TzJYS3pWWDQ2YVk5UkNPMEwzRkVMVVU2VmtPTG85ZGtXWnphbGdyTWppaVFSVUdZVjU5N2N5UXhYdVBlaWJRS1JabEZCdlVfYjFBVjBT…",
-        "score": 72
+        "score": 71
       },
       {
         "id": "market-7L2U7Iqk7ZS8LC",
@@ -230,7 +262,7 @@
         },
         "publishedAt": "2026-07-12T14:13:42.000Z",
         "guid": "CBMibkFVX3lxTE11b1UzU1UteGphM2MxejJ0d0lZVDNnN0s1ank1VU1KMHdTUTIybndoaG9pQXh4V0xtYXlaM25CUzVDcmVHeTZMQUFCWEptT2FvajhwN3RTLTdBek9RUUVwUl9ReWhNdkk2dnBYaWZ30gFyQVVfeXFMTXZEU3VoakJIaW9uV3FFVG0xa1ZGUnR6eXdRS1V6bW9hNE94WUV1eG9C…",
-        "score": 66
+        "score": 65
       },
       {
         "id": "market-W-uvuOq1rSDrib",
@@ -246,7 +278,7 @@
         },
         "publishedAt": "2026-07-11T22:26:27.000Z",
         "guid": "CBMicEFVX3lxTFBfRzlseWkyYXdSc2ZwN0V6VHhkWlFuZEZudFQtdVFmWnRuZzZKRjhBelU5eC1HUXZ0dDNDWWw2d0JzcHd4cWdacEdsX3BHWkhhU0tja21JWGZNcEtwSXhMcTB2ZExGWXlCalUyOExNZ0Y",
-        "score": 66
+        "score": 65
       },
       {
         "id": "market-U0vtlZjsnbTri4",
@@ -262,23 +294,7 @@
         },
         "publishedAt": "2026-07-12T04:56:07.000Z",
         "guid": "CBMibkFVX3lxTE81SXE0THg2WjgzeWw1QzZwVXN3T2RJZUYzUG9EdXZVaFF2eUlNc1E0VHp0MnNvNTJQRWtSdnRyNDBKUjZCb3ptU2N6ak5TUHJGV2FWQ0ZYTFF4YzREM1ZBbHhmcGQ0Z21qb0dmTTB3",
-        "score": 65
-      },
-      {
-        "id": "market-W-ychO2BtOumrC",
-        "category": "market",
-        "categoryName": "증시·시장",
-        "categoryIcon": "📈",
-        "title": "[위클리 재테크 레터] 삼성전자 89조 벌고 급락, 하이닉스 나스닥 260조 잭팟… ‘롤러코스피’ 생존법",
-        "description": "[위클리 재테크 레터] 삼성전자 89조 벌고 급락, 하이닉스 나스닥 260조 잭팟… ‘롤러코스피’ 생존법 &nbsp;&nbsp; theconnectmoney.com",
-        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE43R3pMblRTYklTdlVZeXJIdWdZMThiSkd4M2FaMWhIcEFrQ0FCS1AwZ3pMS19LYlE5M3NTV1J5eGVSeXh3RXI0enRmRnpodEhacmlaUzQxS3pMOTEwYXZXUw?oc=5",
-        "source": {
-          "name": "theconnectmoney.com",
-          "url": "https://www.theconnectmoney.com"
-        },
-        "publishedAt": "2026-07-11T21:20:00.000Z",
-        "guid": "CBMiYEFVX3lxTE43R3pMblRTYklTdlVZeXJIdWdZMThiSkd4M2FaMWhIcEFrQ0FCS1AwZ3pMS19LYlE5M3NTV1J5eGVSeXh3RXI0enRmRnpodEhacmlaUzQxS3pMOTEwYXZXUw",
-        "score": 65
+        "score": 64
       },
       {
         "id": "market-7L2U7Iqk7ZS8wr",
@@ -294,7 +310,7 @@
         },
         "publishedAt": "2026-07-12T11:33:49.000Z",
         "guid": "CBMiUkFVX3lxTE01TVpyU3NpREI5dWZJX1paOUJMeERWdUJuVC1FSl96XzR5S2xsNTE0RkNvY2VnX0RoZER5TERqMUhQWmZoYjRWc2YyRjhRUzlmTGc",
-        "score": 64
+        "score": 63
       },
       {
         "id": "market-W-yekOyCsOyatO",
@@ -310,7 +326,7 @@
         },
         "publishedAt": "2026-07-12T04:13:00.000Z",
         "guid": "CBMia0FVX3lxTE9kZy1tX0hQLVRZZU5ScXB2cmtTVkVkTHBzUXJ1UGROME9pOFJpdnhjTUhHYnozVWVHNjVrSmdpTGNUMjhVVVBCdUcyVEIzVXdmZGV0dWZUMUw5S2tId3Z0T3dLaWJvQU5udHQ0",
-        "score": 64
+        "score": 63
       },
       {
         "id": "market-W-yYpOuKmOymne",
@@ -326,7 +342,7 @@
         },
         "publishedAt": "2026-07-12T03:21:43.000Z",
         "guid": "CBMizwJBVV95cUxNUFdLbllVZmFCN0NueVh2Y2tQVEdtZ1NUWlV5MEx6Vmc4czNrM0NKU2o5eTBvTkhpMDJjUXpja3hsMzdVSW11VTJmb19Tbmc4MnJHcDZZZUhvVVpyUFhUTU4wbF9UVGhBeWZmYU54U0RidV9zNDRBanF3TVJLOFE3RDJ2bjg1Z1RhOVFNN2dQeUd2a2VlaW9yWWYtUDFsMkZY…",
-        "score": 63
+        "score": 62
       },
       {
         "id": "market-IuydtOufsCDqso",
@@ -342,7 +358,23 @@
         },
         "publishedAt": "2026-07-12T09:41:00.000Z",
         "guid": "CBMiYEFVX3lxTE90YW9fUHp1TktxUFJfeURrUXUxel9HbVFkQ2lPVW1OUTk4ZC1kS3Ixa29Gei1pV0poSmZUT2w4UlVwX3ozd3pZc2Izc3pFOHQ1dUxCZjg1cDA1TXRESkRTVQ",
-        "score": 62
+        "score": 61
+      },
+      {
+        "id": "market-4oCY7JeF6rOEID",
+        "category": "market",
+        "categoryName": "증시·시장",
+        "categoryIcon": "📈",
+        "title": "‘업계 1위’ 삼성운용, 신한운용 상품 그대로 ‘복붙’… 규제 피하려 기존 ETF 개명",
+        "description": "‘업계 1위’ 삼성운용, 신한운용 상품 그대로 ‘복붙’… 규제 피하려 기존 ETF 개명 &nbsp;&nbsp; MSN",
+        "url": "https://news.google.com/rss/articles/CBMiywRBVV95cUxPNDd3bFViekdialRzbWRlXzBscnVLZ2JKaXlmVjV6VGNLVWxCbkt0eGViWTZubjdQTTBHNXJySlNRMWhYUW91dWFDbU5VMjdobkFIXzZUUmpVWHo5bXJoMF9sS1VjTWxFTFVYMXJVSlAzWWV3SXh0cnBHUGE3dWx3Rm00SU15bWpLc2k0LXNDWHhzVW5mTWc1aE1nY1Q4Y0t0Z2pydU9oZ3pDdnhVUl9TMWRBUWcxZm9MMmpFWndJWlM2Y1lkQzFnX2VkV0hGRTZBeVNwRkFaelV4S1U5WmJVaWViUXc0Ylo4SDhrOFpBWjZDMGNmRWVtNU41YnBfZFhndVBKMnNoSGxLZnJIdlJmajAwbTBZYWZ5QXpvZVdWOFI0ZlBqaGdUOUJhdEpsZHd1dm9iYjM1c1RjM0s5MGhfSEZIWEdFWGtGdHdHaEJ2UE5qd0huUUdObk1zT1o4b2lRYW1vQ3dHRFRSZXVDdU0wQ0dHbWJIbGFLX0p0TlN0MWRkeFR0S1daemh0QW1sVFdxbldISEF5UHpsZ294dGg0SzJuYW4zNVVrWXpnSlhyVS13cGd2SndFaU8xMm1QSXUtQmk3b1g3SnR0QnliVEVBVHN3bUd4MTBEVWpfVGJxRmxmNG5kWjktdFBNZFF3VndWQ3BELVdMT05fVjlOdVdOajJjazRSbU5kNDFTSGx5SkF0aUdrTV9fR2dxcDVvWFpOdHBYN1IzeEFJZGlFNXJTQkhneG5ad2w5VG5FR2FsVnhtNjFvYWF3WW9Xbw?oc=5",
+        "source": {
+          "name": "MSN",
+          "url": "http://www.msn.com"
+        },
+        "publishedAt": "2026-07-12T06:33:21.000Z",
+        "guid": "CBMiywRBVV95cUxPNDd3bFViekdialRzbWRlXzBscnVLZ2JKaXlmVjV6VGNLVWxCbkt0eGViWTZubjdQTTBHNXJySlNRMWhYUW91dWFDbU5VMjdobkFIXzZUUmpVWHo5bXJoMF9sS1VjTWxFTFVYMXJVSlAzWWV3SXh0cnBHUGE3dWx3Rm00SU15bWpLc2k0LXNDWHhzVW5mTWc1aE1nY1Q4Y0t0…",
+        "score": 58
       },
       {
         "id": "market-6rWt64K07Jm4IO",
@@ -358,7 +390,7 @@
         },
         "publishedAt": "2026-07-11T22:57:58.000Z",
         "guid": "CBMic0FVX3lxTFA0aktqdjNFeHc1TW41WVZaYWljRUlXamRuTURsSDdoUFNnUVpVOGxwb09iSkp4bjcwM2NTRkp2QjA2YXRGRjhxODF4ODRkRmZwMlZHay1iZnBOVG55SWJhZ0kxV19xaHBia2VvdU8wdExTUTDSAXdBVV95cUxQdHVUaWtLZlNfTTE1X0dDQm5OckNtR2IwcWdPYXRJMUpCRm9C…",
-        "score": 59
+        "score": 58
       },
       {
         "id": "market-7L2U7Iqk7ZS8LC",
@@ -374,23 +406,39 @@
         },
         "publishedAt": "2026-07-11T22:00:20.000Z",
         "guid": "CBMiX0FVX3lxTE4tYnJkTzBtYnN0bG51R2ZXT2RRRmVyeW1CYjF0TTh0T1JXMnJzeHJOYXRrU0NYdHVMa0pwOEdCMWg3QW9UOWdWRzJwSGRFRGVCa1FUVWhkb2xhMXB1TzZN",
-        "score": 58
+        "score": 57
       },
       {
-        "id": "market-IuuPiCDrtojroK",
+        "id": "market-W-yYpOuKmOymne",
         "category": "market",
         "categoryName": "증시·시장",
         "categoryIcon": "📈",
-        "title": "\"돈 불려야 되는데\"...퇴직연금 30%, 현금으로만? 주식 꽉 채울 방법",
-        "description": "\"돈 불려야 되는데\"...퇴직연금 30%, 현금으로만? 주식 꽉 채울 방법 &nbsp;&nbsp; MSN",
-        "url": "https://news.google.com/rss/articles/CBMigwNBVV95cUxNZlFYTDdYS25qRjBPNXR1LTgyNlB3WEU3d0pvcWlqM3RhQUNsRmlmMkxpN3ExNkl1WGt5NkxMaWN0UF9BQlY3OWo5TkkzQUx0dklGMkp6dnJNLTFUNjB0Wlp4Q1hhb0VIaExHTE1UNXFGckZyU0V5OTJCSFVxYzFDUFAxMF90em1QMGQ4b3JhNHhiVmkxYlc2UnhJZGJuak1uaDlkVHA2cUtCb1dnb2s4T2pqMnR1elFOcWRKSTl1aVFZN3Iwcm5LTlJPLUVBb0x2dVZnZGpxdmJVVXY0a01rVTViTWsxSTdpUUxMSG1fd0Rhd3RWdjA4Q0MxbEZaZVc3dElNRjltODhWY01lMzhBdzkyczVSa1ZTMFZIOTI3RXlfN19XMFdTVll0WmZCNEkzVTlNbXNfd2NlUlRHQjQ1TURZVGJJdlNsa05vNWdrT09RVTNwUkZucmNwbkRwS2s1VTg0UWE5c0lqMWFrbTdpZXhYTGhFS2pNbFJDSVpyR1hOZ3M?oc=5",
+        "title": "[오늘증시] '롤러코스터' 코스피, 7290선 상승 마감…하이닉스 5.3%↑",
+        "description": "[오늘증시] '롤러코스터' 코스피, 7290선 상승 마감…하이닉스 5.3%↑ &nbsp;&nbsp; MSN",
+        "url": "https://news.google.com/rss/articles/CBMi6wJBVV95cUxNQk5ENEtHeFhNTjdoNG1uWlNXMlNMT3IxMklIeTAxMzJCbF8wMVExbE0wUzV4TnBiWE9oWDdrRWpITmVCYWRHaVZ1WkZXTGJiRDNSR2djVHV5XzAtTDA4Ym8zamJmYk45Ty1XTUQzQW94MWNONG1zRGN5NzhGbmExdUZoMlRaeGF5M1VhanhHc052ajhPVWt2RjY3dlN5VjZ2LTN5M0h2aGxOelEwMGxial9CR09EZGp3N0oxVVZVWXhHZF9HM0VmS2ZIYlByNnd2SDFod3RSc2FvdDhUTUEyeC12OHowaVhzekVDQ1kxOVFvY19xTmNnV2pqWmZIYmhIV2tVR1ZNbVJLNHNTcVJMVldhQlpBUUV0NXB5NEVKdEVSVTVHZFFDS3NHUkxIR3ZONUdtdUdrS1d6VGcycV9fcVB3OTAzcDJPQVBqdkJpU0hCOU1TTmJOQUZ0anFrTWJiLWxIRFZCenRHaFU?oc=5",
         "source": {
           "name": "MSN",
           "url": "https://www.msn.com"
         },
-        "publishedAt": "2026-07-12T09:07:40.000Z",
-        "guid": "CBMigwNBVV95cUxNZlFYTDdYS25qRjBPNXR1LTgyNlB3WEU3d0pvcWlqM3RhQUNsRmlmMkxpN3ExNkl1WGt5NkxMaWN0UF9BQlY3OWo5TkkzQUx0dklGMkp6dnJNLTFUNjB0Wlp4Q1hhb0VIaExHTE1UNXFGckZyU0V5OTJCSFVxYzFDUFAxMF90em1QMGQ4b3JhNHhiVmkxYlc2UnhJZGJuak1u…",
-        "score": 53
+        "publishedAt": "2026-07-12T04:41:15.000Z",
+        "guid": "CBMi6wJBVV95cUxNQk5ENEtHeFhNTjdoNG1uWlNXMlNMT3IxMklIeTAxMzJCbF8wMVExbE0wUzV4TnBiWE9oWDdrRWpITmVCYWRHaVZ1WkZXTGJiRDNSR2djVHV5XzAtTDA4Ym8zamJmYk45Ty1XTUQzQW94MWNONG1zRGN5NzhGbmExdUZoMlRaeGF5M1VhanhHc052ajhPVWt2RjY3dlN5VjZ2…",
+        "score": 56
+      },
+      {
+        "id": "market-7L2U7Iqk7ZS8IO",
+        "category": "market",
+        "categoryName": "증시·시장",
+        "categoryIcon": "📈",
+        "title": "코스피 외면한 외인, 코스닥은 6조 샀다",
+        "description": "코스피 외면한 외인, 코스닥은 6조 샀다 &nbsp;&nbsp; MSN",
+        "url": "https://news.google.com/rss/articles/CBMingJBVV95cUxOZGpuV2xVamVsMDhuejBUczdxeW9FcWNIS1BJNmtuaHJ1dUV1ZFBkVjlOdy1kbXZ6Q21zT0RyVjAzSFN4Y010THg2bTcyalhkcXgxY2xQZmhKY1RlTE5IMlJXSWpMRTdVaTFDS2xES1ZjNEc4eng3eENpS0RiZXIySnIyd2JfRG5HLTRhUWZ0M0xIZG5ZNHlmSUc5TGFMNEc1Z01ZQUxjcGxfUEhaQ3p3WnZaSktldkJDMVVHNGVpSlpjb0hfRXdMbWRmT0RQTzB0S0ZaT3cxQmVZQVFqVDJpTVNzYjlBZHBPdzZQUVVkTm5NRU9LOU5xXzhRT3VsSVZuS1RQaGt6bFg3TkROVi16MmhvQ1d6Q2lHUldVemJR?oc=5",
+        "source": {
+          "name": "MSN",
+          "url": "https://www.msn.com"
+        },
+        "publishedAt": "2026-07-11T19:48:21.000Z",
+        "guid": "CBMingJBVV95cUxOZGpuV2xVamVsMDhuejBUczdxeW9FcWNIS1BJNmtuaHJ1dUV1ZFBkVjlOdy1kbXZ6Q21zT0RyVjAzSFN4Y010THg2bTcyalhkcXgxY2xQZmhKY1RlTE5IMlJXSWpMRTdVaTFDS2xES1ZjNEc4eng3eENpS0RiZXIySnIyd2JfRG5HLTRhUWZ0M0xIZG5ZNHlmSUc5TGFMNEc1…",
+        "score": 55
       },
       {
         "id": "market-U0vtlZjsnbTri4",
@@ -406,7 +454,23 @@
         },
         "publishedAt": "2026-07-12T01:24:06.000Z",
         "guid": "CBMibkFVX3lxTE4tOVd6bGFmMjhHbGZ6Ylo5Z0I5M0ljSW9UMHE1QnJNWFpRTDlqSThZbFdfMWIzbXNVWHIxaVBxOU96RDNiMTN4UEN0Y0Izek03WFp5SGEyS3A0NHZfbEZTYTZfZHpSNDdWNFdjcWNB",
-        "score": 53
+        "score": 52
+      },
+      {
+        "id": "market-6riw6rSAIDEuNO",
+        "category": "market",
+        "categoryName": "증시·시장",
+        "categoryIcon": "📈",
+        "title": "기관 1.4조원 순매수… 코스피 1.4% 상승 견인",
+        "description": "기관 1.4조원 순매수… 코스피 1.4% 상승 견인 &nbsp;&nbsp; MSN",
+        "url": "https://news.google.com/rss/articles/CBMiqANBVV95cUxPelU1LVlJamw2TFpxQy05dVRYdjlXeklHamxMck5saVk4cE5BSk9HUEFWaVZZUUdtbW9sZVEyc2JnNnJCN3JWSGRNMms1cGNtNGlkNnllOHIxUGFCYlJNY1pQX1gyUjRhaHJjdW5iVW8tcDZnVmtOMU9ndExqZDMzQ3dud05vbHRRUS03SXBxZkFDbHFOMER2NjVPS1BicEJkSDBIMFBURGRzS09PZVdoOGhwdHZPYnZPalB6dUJaa21RdzhwdGlZemhIMUUxZ2RwVjN4dmIxcGhxbHBHWXFQalhMR0xnNkV0S1B2cFc1OEhDS2pRWU9IdHQ5RXg2U1FTMlJzYTJoTGF4aFJ0R29ZbUJ0TTJpZnIzQkVtNU4yY3NVTDNiTjdnNUF5OWx0VDc2TnhqbExqM19tWlk4aXp0al9RRTlndUlUdTRUcE1wYVRVd1FuTmE3dC12dHZZVW14d3VNQnVwU2dUOF9MeEJzN3N4Nlc3NHlLNmdleGwyT0lHUGFXNWM1Z0ZveVBES0U0SlVLQkJNTkI1dWY4bGlkUEgyQmRObE5j?oc=5",
+        "source": {
+          "name": "MSN",
+          "url": "http://www.msn.com"
+        },
+        "publishedAt": "2026-07-12T00:53:12.000Z",
+        "guid": "CBMiqANBVV95cUxPelU1LVlJamw2TFpxQy05dVRYdjlXeklHamxMck5saVk4cE5BSk9HUEFWaVZZUUdtbW9sZVEyc2JnNnJCN3JWSGRNMms1cGNtNGlkNnllOHIxUGFCYlJNY1pQX1gyUjRhaHJjdW5iVW8tcDZnVmtOMU9ndExqZDMzQ3dud05vbHRRUS03SXBxZkFDbHFOMER2NjVPS1BicEJk…",
+        "score": 52
       },
       {
         "id": "market-J-uvuOq1rSBBSS",
@@ -422,23 +486,39 @@
         },
         "publishedAt": "2026-07-12T00:41:11.000Z",
         "guid": "CBMirgJBVV95cUxOdTI1R3pySkNheTAxeFNPVGxvOG5pU2FTcFpPN1hHZndXckhqcF82UGNMODRkT2hJWEtVTG0tbFRtaUIzTVZRNVpzN0dWcTZ0TTY5eExMWXRwZGdDblFfcGlBXzBsd0tkbElFd3JwZWQ5LTBEODVaWWJlNDNRUW9FeG5OWllqVkU3UlZsSFkxRlpoTW45OGRqWHJ2ZW9RdlEt…",
-        "score": 53
+        "score": 52
       },
       {
-        "id": "market-J0FJIO2IrOyekC",
+        "id": "market-Iuy9lOyduCDrrL",
         "category": "market",
         "categoryName": "증시·시장",
         "categoryIcon": "📈",
-        "title": "'AI 투자 확대 기대' 코스피 7400선 회복...코스닥도 5%대↑",
-        "description": "'AI 투자 확대 기대' 코스피 7400선 회복...코스닥도 5%대↑ &nbsp;&nbsp; 뉴시안",
-        "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5mQTA0WHdPZS1UU0ZDdFltb3JmMU1iV3k1UUxTcy04Y1hzcGliQVkzTEo1Nm5RUFBxdl95Vm9jdDJmVXJRWjBnZlNPQ21UcXZnU3A1NDYwYXdObkZDZkhOSEJLYjJ6U180NHfSAW5BVV95cUxQU05nd2c2clJ2NXNldkdqRXZfLXpqdnlNY2p4OV9sSTBNeVhjU1UtRzlIbmxZSzlpWVNlRnJ4NXV0QUl3V2tsSnJNaTZ3eXdzZ2JkTXFDS2FjMnBoZlJZLXNQcTNLdWNIMkhuNkpCUQ?oc=5",
+        "title": "\"코인 물린게 얼만데 세금도 내라고?\"…250만원 넘게 벌면 22%",
+        "description": "\"코인 물린게 얼만데 세금도 내라고?\"…250만원 넘게 벌면 22% &nbsp;&nbsp; 네이트",
+        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE4zbnNqZWQyZVZFbm1ydzZKRllkdk9GWV9XaW5IX3FvLXk3MUx2dXA3OEk0ZmVCSXd3a21DNktYRDlDZWNyNFZWZXk5UkE1MXJwZWRj?oc=5",
         "source": {
-          "name": "뉴시안",
-          "url": "http://www.newsian.co.kr"
+          "name": "네이트",
+          "url": "https://news.nate.com"
         },
-        "publishedAt": "2026-07-11T09:26:24.000Z",
-        "guid": "CBMiakFVX3lxTE5mQTA0WHdPZS1UU0ZDdFltb3JmMU1iV3k1UUxTcy04Y1hzcGliQVkzTEo1Nm5RUFBxdl95Vm9jdDJmVXJRWjBnZlNPQ21UcXZnU3A1NDYwYXdObkZDZkhOSEJLYjJ6U180NHfSAW5BVV95cUxQU05nd2c2clJ2NXNldkdqRXZfLXpqdnlNY2p4OV9sSTBNeVhjU1UtRzlIbmxZ…",
-        "score": 53
+        "publishedAt": "2026-07-12T00:17:00.000Z",
+        "guid": "CBMiU0FVX3lxTE4zbnNqZWQyZVZFbm1ydzZKRllkdk9GWV9XaW5IX3FvLXk3MUx2dXA3OEk0ZmVCSXd3a21DNktYRDlDZWNyNFZWZXk5UkE1MXJwZWRj",
+        "score": 51
+      },
+      {
+        "id": "market-7Iqk7Y6Y7J207I",
+        "category": "market",
+        "categoryName": "증시·시장",
+        "categoryIcon": "📈",
+        "title": "스페이스X 열풍 식자 우주 ETF '엑소더스'…한 달 새 5000억 이탈",
+        "description": "스페이스X 열풍 식자 우주 ETF '엑소더스'…한 달 새 5000억 이탈 &nbsp;&nbsp; 스페셜경제",
+        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1KaEJzeEo2M2hUV1ZQSkd4Ym5uUWZ6NVN0VGZOb1NpbS1FVnV6QXpoSFpZb010UjBBYnJsSHJBLWI0ZlVvLTY0QUNReHNEeE15em5leG5xWlhPTHlER1VsNmVTbTk2MVc3eUJ6WQ?oc=5",
+        "source": {
+          "name": "스페셜경제",
+          "url": "https://www.speconomy.com"
+        },
+        "publishedAt": "2026-07-12T05:13:28.000Z",
+        "guid": "CBMibEFVX3lxTE1KaEJzeEo2M2hUV1ZQSkd4Ym5uUWZ6NVN0VGZOb1NpbS1FVnV6QXpoSFpZb010UjBBYnJsSHJBLWI0ZlVvLTY0QUNReHNEeE15em5leG5xWlhPTHlER1VsNmVTbTk2MVc3eUJ6WQ",
+        "score": 48
       },
       {
         "id": "market-U05TIOuvuOuLtO",
@@ -454,7 +534,7 @@
         },
         "publishedAt": "2026-07-11T21:20:00.000Z",
         "guid": "CBMiW0FVX3lxTE5QYWJrQmI1TDRpRVZpVldBc2ZZOXRxZ255aXBRREpfaWxqOUY4SFByZ2tacHlRRHZnRGZGajV6RFM5RFBBM0xCOEVzWlBFdlRxWkRXek5rT0RvUzDSAWBBVV95cUxNZ3JjX2dBQmlicGNKVWJOc2htdUZXRGtaNXRSWXpUdloyTFFKUTRqU0R6WU9JcVFkYzVycDVmeU5sVWdO…",
-        "score": 49
+        "score": 48
       },
       {
         "id": "market-6rOE7KKM6rCAIO",
@@ -470,23 +550,7 @@
         },
         "publishedAt": "2026-07-11T02:00:15.000Z",
         "guid": "CBMiW0FVX3lxTE4yeEpXb2VSd3JEMUdwLU1OUkQxQ2NQLXFlYmFlUFVVX2lHYWZNMXVRSkJRcE1nNnVGRkxQbnBLbGk4bDJGbktEOUprZE9DMlFWTTBOeDE3VDBRa1HSAVJBVV95cUxOSThxZVo5RXljWGtXOUlQMllaWWtZa2VablJEbXh1SEZKNnhOTnA0ZTVkUzFWUHVWczEwLVBWU2xyQnJX…",
-        "score": 46
-      },
-      {
-        "id": "market-64uk7J2M7KO8IO",
-        "category": "market",
-        "categoryName": "증시·시장",
-        "categoryIcon": "📈",
-        "title": "다음주 반등의 신호탄?…SK하이닉스 ‘ADR 상장 대박’ [선데이 머니카페]",
-        "description": "다음주 반등의 신호탄?…SK하이닉스 ‘ADR 상장 대박’ [선데이 머니카페] &nbsp;&nbsp; 서울경제신문",
-        "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9zTjlOZFBfVmNDODBGUkg1QXlUX2txeXpnT3FveEJibHNSMTdrNGlqN1FjWEpUMHNjOHVBNmgwNGJiUFQyd0JXY0FsZlo2R3R0c2fSAVNBVV95cUxPc2NTRDNvcEV3SGJkdGU0elZUelNUa0FLM2FBQklrT0xKa3VwZ1I4Ulk0enFyQjVQTUJ4NjJSOVo5ZGpfdWprckNiZE5scUFVYW55SQ?oc=5",
-        "source": {
-          "name": "서울경제신문",
-          "url": "https://www.sedaily.com"
-        },
-        "publishedAt": "2026-07-11T22:00:00.000Z",
-        "guid": "CBMiUkFVX3lxTE9zTjlOZFBfVmNDODBGUkg1QXlUX2txeXpnT3FveEJibHNSMTdrNGlqN1FjWEpUMHNjOHVBNmgwNGJiUFQyd0JXY0FsZlo2R3R0c2fSAVNBVV95cUxPc2NTRDNvcEV3SGJkdGU0elZUelNUa0FLM2FBQklrT0xKa3VwZ1I4Ulk0enFyQjVQTUJ4NjJSOVo5ZGpfdWprckNiZE5s…",
-        "score": 42
+        "score": 45
       },
       {
         "id": "market-U0vtlZjsnbTri4",
@@ -502,7 +566,7 @@
         },
         "publishedAt": "2026-07-11T14:18:05.000Z",
         "guid": "CBMicEFVX3lxTFBJaXVocHBjNWZveGRnRkNFMzctbWk3MEc2bTN4aHBHTHh6Umt0dGNZUlVpUXpLVGtvRGJTYzlRX1VZVWZCbTZnSjRBUG9nUG9EZXVzMHZsZGlKSHJva3RXYWtzNVZCSjZaUWtDTU04Mzc",
-        "score": 42
+        "score": 41
       },
       {
         "id": "market-Wzfsm5Qg65GY7K",
@@ -518,7 +582,7 @@
         },
         "publishedAt": "2026-07-11T02:18:53.000Z",
         "guid": "CBMib0FVX3lxTFB6b3owUVVtOXJLOFFmTzEzYmRmMGRsTU4xQTRRSGV2MXRtUUlndFdSNkhqMi0tbmU5cHZBSkxrck4zRnhkVDRlSkVrdEQ4SldWT0lBMzc4bk45d25lSTBubjZVT0ZMdTV1NElfNFV5MA",
-        "score": 38
+        "score": 37
       },
       {
         "id": "market-7ZiE64yA6rG07I",
@@ -534,7 +598,23 @@
         },
         "publishedAt": "2026-07-11T15:44:06.000Z",
         "guid": "CBMilwFBVV95cUxNdmVFMUtQd1BoZ0ZvRmVUWE5lbzU3MFFyTUdEeE0zQmRyRFN5ckkxMlVUVFF4YWFlb2JaV0dYVFJYZ21McndDYi0tMm9aX0RpQnJQV1QxY2NZT0N1QkFsbUg5MUw3YXVsZVpLYnpFNzJuOEtQTmIzTkJlYTdhbHJ4eHlyT29BaGplM2lBbXkxQldPVUpRWFQ4",
-        "score": 36
+        "score": 35
+      },
+      {
+        "id": "market-U0vtlZjsnbTri4",
+        "category": "market",
+        "categoryName": "증시·시장",
+        "categoryIcon": "📈",
+        "title": "SK하이닉스, 나스닥 첫날 13% 폭등…뉴욕증시 일제히 상승",
+        "description": "SK하이닉스, 나스닥 첫날 13% 폭등…뉴욕증시 일제히 상승 &nbsp;&nbsp; 직썰",
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFA3LW03ajhoNUc5ZG4tLUxlVkY4SlZjVWM1dG9GS19BY0htaUU4MlA0bGpVYkc1aUlqQUhaVFlsYVBsV3JVUjR4NlJWcGdnZWVjNlF0Qmh2d250LWdERmtwRHpZaXBBU1E00gFsQVVfeXFMTnB2aEJNSGhHMTVINUk3TzlFZTJtakhLS3B5RzBTcHlsY3dnSDJqNW1kWlNRUzFJaHBudmlfZDlxNXAxZnRybGhpcHJtb3JMQ1BBVUJ4cEJMUkk4cms3NW9sWDFCeFhUVFo3ZnVK?oc=5",
+        "source": {
+          "name": "직썰",
+          "url": "https://www.ziksir.com"
+        },
+        "publishedAt": "2026-07-11T00:23:52.000Z",
+        "guid": "CBMiaEFVX3lxTFA3LW03ajhoNUc5ZG4tLUxlVkY4SlZjVWM1dG9GS19BY0htaUU4MlA0bGpVYkc1aUlqQUhaVFlsYVBsV3JVUjR4NlJWcGdnZWVjNlF0Qmh2d250LWdERmtwRHpZaXBBU1E00gFsQVVfeXFMTnB2aEJNSGhHMTVINUk3TzlFZTJtakhLS3B5RzBTcHlsY3dnSDJqNW1kWlNRUzFJ…",
+        "score": 35
       },
       {
         "id": "market-7L2U7Iqk7ZS8LC",
@@ -550,7 +630,7 @@
         },
         "publishedAt": "2026-07-10T23:56:00.000Z",
         "guid": "CBMickFVX3lxTE5QcVIydl85SXR4Rm9RVXRteWNrTGhrS3RtV2N1S25EUXNzZVRxMzNDb1p2TXMtS2RtNzUtWnNCeHNPdGl5UHg0VXhSS2dvcDVSYkUxbVBLVkR1amFNeUV1WnZhampvUTBNcnl2WjFvc3ZVd9IBdkFVX3lxTE1CQlljckF6R0oxM290d00yRmo3V0xnYnBpMDJzQW44aTFZLUpM…",
-        "score": 36
+        "score": 35
       },
       {
         "id": "market-U0vtlZjsnbTri4",
@@ -566,23 +646,7 @@
         },
         "publishedAt": "2026-07-11T15:03:37.000Z",
         "guid": "CBMilwFBVV95cUxNbS0yNm05aENtV3h2SzRRWGlISTJLYm5MWk9obkdaaUxnT0l4QnVUMDNVbVBsbWJJeTNURzRnN2dpWno3bmJnOUU0VHBZTjJjQVRfdWRyZDdubmFMUFI5cmg3S0VjOU55NFhwcEFkTm1haUh4ckhXRU0tOWROWGd5TENUNFI3RENYUFlkZ3VRNG4xZW1oYlFn",
-        "score": 35
-      },
-      {
-        "id": "market-U0vtlZjsnbTri4",
-        "category": "market",
-        "categoryName": "증시·시장",
-        "categoryIcon": "📈",
-        "title": "SK하이닉스, AI 반도체 수요 급증...美 증시 데뷔 첫날 13% 상승",
-        "description": "SK하이닉스, AI 반도체 수요 급증...美 증시 데뷔 첫날 13% 상승 &nbsp;&nbsp; thefairnews.co.kr",
-        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9uX0p4NEFFYnQ1WnJacHFUSjNrTGgyaUFnNnEzZ1F4alR6dXJMaWFEaWxmOVZpLVFLQ19hcjE4eEp6S0hUU2dkZ3p1UkhfbXVpUHBOWlk2bUluZ3ZlVmppM0ZWOUxQaXBBZm5uX2Nqd0bSAXRBVV95cUxNU1BLcHUxZHUycDU4NjE5dDRBblU1bkYwTFNtUWl3cGxRVkpBZUNHNFJ3QzBmQ2NEMThSd3JTTXlhOGJWb0NJNDRxNy1lZVJTVFhGRlVmS05MYThsMjFiLTVUZkpFX2lzX0R6ZFdjZndLZ293dw?oc=5",
-        "source": {
-          "name": "thefairnews.co.kr",
-          "url": "https://www.thefairnews.co.kr"
-        },
-        "publishedAt": "2026-07-10T21:11:33.000Z",
-        "guid": "CBMicEFVX3lxTE9uX0p4NEFFYnQ1WnJacHFUSjNrTGgyaUFnNnEzZ1F4alR6dXJMaWFEaWxmOVZpLVFLQ19hcjE4eEp6S0hUU2dkZ3p1UkhfbXVpUHBOWlk2bUluZ3ZlVmppM0ZWOUxQaXBBZm5uX2Nqd0bSAXRBVV95cUxNU1BLcHUxZHUycDU4NjE5dDRBblU1bkYwTFNtUWl3cGxRVkpBZUNH…",
-        "score": 33
+        "score": 34
       },
       {
         "id": "market-66as7ZSMWFJQLC",
@@ -598,7 +662,7 @@
         },
         "publishedAt": "2026-07-11T12:19:55.000Z",
         "guid": "CBMiaEFVX3lxTE1GVWhPZDFVYWdxTkpyaGVEREl0ZTVjamJacHF3NnFWeEpBNUxBM2tuUndMRUtZYklqTjJoMS1STzlVcURnZ1ByNkxWakdWZDlRN2lJWTJrYTdHaUFvckYzX2NuekZBQnd6",
-        "score": 32
+        "score": 31
       },
       {
         "id": "market-7J2867O4LCDrlJ",
@@ -614,7 +678,23 @@
         },
         "publishedAt": "2026-07-11T04:00:00.000Z",
         "guid": "CBMiWEFVX3lxTE12YzI0RjlBWEtDX1ZRS1pPYTZ1cFlaOFJQRmpuN3cxdE11MmpUOEFtUjhna005WklaOFpPMWtjc0xhS0N0Z3R2WTF3R25TR1dpalNISGNFOTg",
-        "score": 32
+        "score": 31
+      },
+      {
+        "id": "market-64m07JqV7Kad7I",
+        "category": "market",
+        "categoryName": "증시·시장",
+        "categoryIcon": "📈",
+        "title": "뉴욕증시 'SK하이닉스 첫날' 상승 마감…나스닥 0.3%↑",
+        "description": "뉴욕증시 'SK하이닉스 첫날' 상승 마감…나스닥 0.3%↑ &nbsp;&nbsp; 경기신문",
+        "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5CNHEwSG05NzhacDZhb0d3T2JCallkSzJYN0JLRmxBUlhvdUYtazBYUGlZUVphQ21kb0xNT25aZTNOQnU1UC1QZWcwQ1VDNmdTUTVsalh6bU41enhrNzYzWkJ3?oc=5",
+        "source": {
+          "name": "경기신문",
+          "url": "https://www.kgnews.co.kr"
+        },
+        "publishedAt": "2026-07-11T01:28:29.000Z",
+        "guid": "CBMiYkFVX3lxTE5CNHEwSG05NzhacDZhb0d3T2JCallkSzJYN0JLRmxBUlhvdUYtazBYUGlZUVphQ21kb0xNT25aZTNOQnU1UC1QZWcwQ1VDNmdTUTVsalh6bU41enhrNzYzWkJ3",
+        "score": 28
       },
       {
         "id": "market-W-uJtOyaleymne",
@@ -630,7 +710,7 @@
         },
         "publishedAt": "2026-07-11T00:15:03.000Z",
         "guid": "CBMia0FVX3lxTE9XcTMxcHBKOGFFVWlXUnFLOGxLYURBdjd2Y1Znbkw3MDQ3V1lDd1M4RWhxR0pFOXZiOURSanZnZ0dwcUJQVDVFQU1kUmpabkxXOXU5a1FGOWdSZkhQWFRCUU1nQWR3TllTVXBR0gFvQVVfeXFMUE9vQ3BYU2p0a0QxaTdWRHF4RmVma0QyQTl1aHBRel8wbzhzNS04bFYyQ2VL…",
-        "score": 28
+        "score": 27
       },
       {
         "id": "market-W-uvuOq1reymne",
@@ -646,7 +726,7 @@
         },
         "publishedAt": "2026-07-11T00:00:00.000Z",
         "guid": "CBMiZ0FVX3lxTE5JM0p2RmtkV3liVnhETHY2ZUQxQ1Z0RElXbDAzdmRYQ2FnYTZNRncyUW9rUDRwRWhwNDVDRVNRUEtSd2FpZmN3ZE9VSEIyMWJpRC1DNmc3MU5MajlyaFZrOVZwTUFaN2M",
-        "score": 28
+        "score": 27
       },
       {
         "id": "market-64m07JqV7Kad7I",
@@ -662,7 +742,7 @@
         },
         "publishedAt": "2026-07-10T23:51:32.000Z",
         "guid": "CBMibEFVX3lxTE16M2RiZ29veTNGZkhZSTM3MmNtMnFTR2ROV1ZQWnBGdEJxcHNlb3YyRTF0Wkg5T2VQVC1Jc2R4cE11d0RhYXpUcnFLbDNaWk1UZE1fTWpnQ1FCemhwTUhzbVRFcU50VDFZb19ERg",
-        "score": 28
+        "score": 27
       },
       {
         "id": "market-7Zi864-I7J2YIO",
@@ -678,39 +758,23 @@
         },
         "publishedAt": "2026-07-10T23:28:29.000Z",
         "guid": "CBMiWEFVX3lxTE82b2ZNemdvR1g3ckZDeGhGdjhBbmphbG5DMndJa0FILV9vREtRbmpHM0JjWVlZMlNKbzdhdDFyMEc5NHdTTFRpVjZBNk9nNDhnVjFIVkhnYk3SAVhBVV95cUxPNm9mTXpnb0dYN3JGQ3hoRnY4QW5qYWxuQzJ3SWtBSC1fb0RLUW5qRzNCY1lZWTJTSm83YXQxcjBHOTR3U0xU…",
-        "score": 27
+        "score": 26
       },
       {
         "id": "market-64m07JqV7Kad7I",
         "category": "market",
         "categoryName": "증시·시장",
         "categoryIcon": "📈",
-        "title": "뉴욕증시, SK하이닉스 상장 '대박'에 상승 마감... 나스닥 0.3%↑",
-        "description": "뉴욕증시, SK하이닉스 상장 '대박'에 상승 마감... 나스닥 0.3%↑ &nbsp;&nbsp; 글로벌경제신문",
-        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1RV01pSFlNdXNuaG1FdGdjdmdjQXFnUmtzeWxmVzlJQ2NuX1ZDcXFkeDJWb3F4a0UxMzdDMXRrNHVuMnh5NWRIZkFZRnNjdHhBVVFJS1VBZmp5aDFjS2o2MmFqVHlDRjVWV1lDbtIBcEFVX3lxTE9mUVNxOWtaa0s1XzhubEVack1SSTg0dUxNWExzSW5TVXBnV2EtTTNtQWhtM3VJMTJIU2pwMHRUdkhndHphYTBCdkJjbzktdFV3a2ZUTlRRWVZkVHN3Rm51XzFMbmF6Z3U5MnpOU1lCeUU?oc=5",
+        "title": "뉴욕증시, ‘SK하이닉스 데뷔’에 상승…나스닥 0.29%↑",
+        "description": "뉴욕증시, ‘SK하이닉스 데뷔’에 상승…나스닥 0.29%↑ &nbsp;&nbsp; 중소기업신문",
+        "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5LMDB0ZkJhbWRKWjEzYzVfbnJyV2FDWmtBcUMzcVFjVFp0d2VZc0c0SFhISE9SQ1hQVTc3c3I4YzF4Qm14bU9nT1BUV0JQVmdVVWU3aEVXVEk0eEo1TlpIb1V6UXU1aTlIODRHaC1n?oc=5",
         "source": {
-          "name": "글로벌경제신문",
-          "url": "https://www.getnews.co.kr"
+          "name": "중소기업신문",
+          "url": "https://www.smedaily.co.kr"
         },
-        "publishedAt": "2026-07-10T22:51:47.000Z",
-        "guid": "CBMibEFVX3lxTE1RV01pSFlNdXNuaG1FdGdjdmdjQXFnUmtzeWxmVzlJQ2NuX1ZDcXFkeDJWb3F4a0UxMzdDMXRrNHVuMnh5NWRIZkFZRnNjdHhBVVFJS1VBZmp5aDFjS2o2MmFqVHlDRjVWV1lDbtIBcEFVX3lxTE9mUVNxOWtaa0s1XzhubEVack1SSTg0dUxNWExzSW5TVXBnV2EtTTNtQWht…",
-        "score": 27
-      },
-      {
-        "id": "market-64KY7Iqk64ulIO",
-        "category": "market",
-        "categoryName": "증시·시장",
-        "categoryIcon": "📈",
-        "title": "나스닥 데뷔 SK하이닉스 13% 상승…뉴욕증시 소폭 상승 마감 [뉴욕증시 브리핑]",
-        "description": "나스닥 데뷔 SK하이닉스 13% 상승…뉴욕증시 소폭 상승 마감 [뉴욕증시 브리핑] &nbsp;&nbsp; 블루밍비트",
-        "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE8wdjQxR3prazVmc2dRLTlVTTlIcGhTb3VsNzFvNW1abGMzZkdkM0pmX3F3M21NczlETktDc2JtYWgwR2wwU3RzYzQyWmdPYXk2?oc=5",
-        "source": {
-          "name": "블루밍비트",
-          "url": "https://bloomingbit.io"
-        },
-        "publishedAt": "2026-07-10T22:48:36.000Z",
-        "guid": "CBMiUEFVX3lxTE8wdjQxR3prazVmc2dRLTlVTTlIcGhTb3VsNzFvNW1abGMzZkdkM0pmX3F3M21NczlETktDc2JtYWgwR2wwU3RzYzQyWmdPYXk2",
-        "score": 27
+        "publishedAt": "2026-07-10T22:52:42.000Z",
+        "guid": "CBMibkFVX3lxTE5LMDB0ZkJhbWRKWjEzYzVfbnJyV2FDWmtBcUMzcVFjVFp0d2VZc0c0SFhISE9SQ1hQVTc3c3I4YzF4Qm14bU9nT1BUV0JQVmdVVWU3aEVXVEk0eEo1TlpIb1V6UXU1aTlIODRHaC1n",
+        "score": 26
       },
       {
         "id": "market-64m07JqV7Kad7I",
@@ -719,46 +783,14 @@
         "categoryIcon": "📈",
         "title": "뉴욕증시, 기술주 호조에 상승...나스닥 0.3%↑",
         "description": "뉴욕증시, 기술주 호조에 상승...나스닥 0.3%↑ &nbsp;&nbsp; 여성신문",
-        "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5ZTEhLTzdZeTAwN1hndGJvUUFRRkIzcjh2OGdxcFpyNVFFcEtfY2hrZjg0QzVheVB0MWFrZG9LcDRkS09ETkdjU25oTjR3d21NRXg1WGtKYWdsbFJvblNFMjV3bXdLWnlsMm45aG4zY9IBc0FVX3lxTE9DSDJDTlM2RnZJYzZqRTlkNU1yakNuTDlQMWxSX0JTQmFTOWEtVEpiUWZmVmgzYXdJVlZhZkh6SVdrMkxlQV9qZkU0Nm83NEwzaDZYaXNiaU11cTFJMEViWk5VcHR3SmpxVGFRUXdTMWtiNTQ?oc=5",
+        "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9DSDJDTlM2RnZJYzZqRTlkNU1yakNuTDlQMWxSX0JTQmFTOWEtVEpiUWZmVmgzYXdJVlZhZkh6SVdrMkxlQV9qZkU0Nm83NEwzaDZYaXNiaU11cTFJMEViWk5VcHR3SmpxVGFRUXdTMWtiNTTSAXNBVV95cUxPQ0gyQ05TNkZ2SWM2akU5ZDVNcmpDbkw5UDFsUl9CU0JhUzlhLVRKYlFmZlZoM2F3SVZWYWZIeklXazJMZUFfamZFNDZvNzRMM2g2WGlzYmlNdXExSTBFYlpOVXB0d0pqcVRhUVF3UzFrYjU0?oc=5",
         "source": {
           "name": "여성신문",
           "url": "https://www.womennews.co.kr"
         },
-        "publishedAt": "2026-07-10T21:57:13.000Z",
-        "guid": "CBMib0FVX3lxTE5ZTEhLTzdZeTAwN1hndGJvUUFRRkIzcjh2OGdxcFpyNVFFcEtfY2hrZjg0QzVheVB0MWFrZG9LcDRkS09ETkdjU25oTjR3d21NRXg1WGtKYWdsbFJvblNFMjV3bXdLWnlsMm45aG4zY9IBc0FVX3lxTE9DSDJDTlM2RnZJYzZqRTlkNU1yakNuTDlQMWxSX0JTQmFTOWEtVEpi…",
+        "publishedAt": "2026-07-10T22:48:09.000Z",
+        "guid": "CBMic0FVX3lxTE9DSDJDTlM2RnZJYzZqRTlkNU1yakNuTDlQMWxSX0JTQmFTOWEtVEpiUWZmVmgzYXdJVlZhZkh6SVdrMkxlQV9qZkU0Nm83NEwzaDZYaXNiaU11cTFJMEViWk5VcHR3SmpxVGFRUXdTMWtiNTTSAXNBVV95cUxPQ0gyQ05TNkZ2SWM2akU5ZDVNcmpDbkw5UDFsUl9CU0JhUzlh…",
         "score": 26
-      },
-      {
-        "id": "market-64m07JqV7Kad7I",
-        "category": "market",
-        "categoryName": "증시·시장",
-        "categoryIcon": "📈",
-        "title": "뉴욕증시, 미·이란 긴장에도 상승 마감…SK하이닉스 12.7% 급등",
-        "description": "뉴욕증시, 미·이란 긴장에도 상승 마감…SK하이닉스 12.7% 급등 &nbsp;&nbsp; 네이트",
-        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1fbEgtZU9DdVM1empmb3V1NVVIMEk3OVExN0dFQUthUURLYTByQXpGbmRKQUlSQjdUc1RFX1hKVmZrR2xGNk5rMHVYRnZlZTFENEFlZFp5ZjV3aTNhNmpIRg?oc=5",
-        "source": {
-          "name": "네이트",
-          "url": "https://news.nate.com"
-        },
-        "publishedAt": "2026-07-10T21:38:00.000Z",
-        "guid": "CBMiYEFVX3lxTE1fbEgtZU9DdVM1empmb3V1NVVIMEk3OVExN0dFQUthUURLYTByQXpGbmRKQUlSQjdUc1RFX1hKVmZrR2xGNk5rMHVYRnZlZTFENEFlZFp5ZjV3aTNhNmpIRg",
-        "score": 26
-      },
-      {
-        "id": "market-W-uJtOyaleuniO",
-        "category": "market",
-        "categoryName": "증시·시장",
-        "categoryIcon": "📈",
-        "title": "[뉴욕마감] S&P500 0.42%↑…SK하닉 상장 첫날 13% 급등",
-        "description": "[뉴욕마감] S&P500 0.42%↑…SK하닉 상장 첫날 13% 급등 &nbsp;&nbsp; 뉴스1",
-        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1XQmJCVU9uX0pVbzJuT1JhWUwwSkpXRFd6STBwVDE5cnBsUVNsMENLLTk3RVNnemRuR01qR3lMc2dnSmtXelFJeGtsWXRYYm9CRkxuU2tKZXU?oc=5",
-        "source": {
-          "name": "뉴스1",
-          "url": "https://www.news1.kr"
-        },
-        "publishedAt": "2026-07-10T21:15:02.000Z",
-        "guid": "CBMiWEFVX3lxTE1XQmJCVU9uX0pVbzJuT1JhWUwwSkpXRFd6STBwVDE5cnBsUVNsMENLLTk3RVNnemRuR01qR3lMc2dnSmtXelFJeGtsWXRYYm9CRkxuU2tKZXU",
-        "score": 25
       },
       {
         "id": "market-7IK87KCE64uJ7I",
@@ -774,7 +806,7 @@
         },
         "publishedAt": "2026-07-11T03:26:16.000Z",
         "guid": "CBMiWkFVX3lxTE91dlRTQnRodXNNSHRCTEJvQVBTclFYYmRUMWFHOXBwbjlWRGNHYnRPQVlfbEl0VkVIM00wNlBfdy1VQ1JGajJZZjlDMVRGTWw5TU82MWtRNldkQdIBVEFVX3lxTE9MU3VqM1NMVFNVbWJKelZ3WDZ6NXNINTUzeXp4cnVrck90RUZDZnA1QVFOcFRSMlp4d1JjUGxzN0lsb1Rx…",
-        "score": 23
+        "score": 22
       },
       {
         "id": "market-67KE7Yuw642YIO",
@@ -790,23 +822,23 @@
         },
         "publishedAt": "2026-07-11T02:25:41.000Z",
         "guid": "CBMibkFVX3lxTE0waTdWV3BtVWxCWDlzTGNld2docmczdUdCd0ZaWHF0ZUtOQUV3Y1MzYnhuaXJTc0EzREJfNDk3LU9tU0RnRVdhRloyYldMUElMVFFFeGF2WGRSX3AtSVNySlZFNmQ0WE5BUWxidmt3",
-        "score": 22
+        "score": 21
       },
       {
         "id": "market-W0VCTiDrjbDsnb",
         "category": "market",
         "categoryName": "증시·시장",
         "categoryIcon": "📈",
-        "title": "[EBN 데이터센터] 미국 증시, 기술주 강세에 일제히 상승 마감…S&P500 7575.39",
-        "description": "[EBN 데이터센터] 미국 증시, 기술주 강세에 일제히 상승 마감…S&P500 7575.39 &nbsp;&nbsp; 네이트",
-        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5GWi1aeGp0SzZaTkpoZnhDaERZYWRMSE13TFlyX0s4Y05tRmp2MHR4YjF6Q2tRRHNBUG1OUS1GWnJzQUktTDNES19keEItYXcxMTJqTmFWcmJLV3U1SklyRw?oc=5",
+        "title": "[EBN 데이터센터] 미국 증시, 기술주 강세에 일제히 상승 마감...S&P500 7575.39",
+        "description": "[EBN 데이터센터] 미국 증시, 기술주 강세에 일제히 상승 마감...S&P500 7575.39 &nbsp;&nbsp; ebn.co.kr",
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE82Y2c2UUpVWGFCQnhqczlDUmY1S0NWWGpsRUU0R2NpTFZVNml1bU9MX0RUU3kwRlNMekxkODA1OFJKN05PdnBuSFNKak9TMWdQdUV2WXlvZ1RVODVMNWQ5NDYwQUxnZzdz?oc=5",
         "source": {
-          "name": "네이트",
-          "url": "https://news.nate.com"
+          "name": "ebn.co.kr",
+          "url": "https://www.ebn.co.kr"
         },
-        "publishedAt": "2026-07-10T23:13:00.000Z",
-        "guid": "CBMiYEFVX3lxTE5GWi1aeGp0SzZaTkpoZnhDaERZYWRMSE13TFlyX0s4Y05tRmp2MHR4YjF6Q2tRRHNBUG1OUS1GWnJzQUktTDNES19keEItYXcxMTJqTmFWcmJLV3U1SklyRw",
-        "score": 19
+        "publishedAt": "2026-07-10T23:12:43.000Z",
+        "guid": "CBMiaEFVX3lxTE82Y2c2UUpVWGFCQnhqczlDUmY1S0NWWGpsRUU0R2NpTFZVNml1bU9MX0RUU3kwRlNMekxkODA1OFJKN05PdnBuSFNKak9TMWdQdUV2WXlvZ1RVODVMNWQ5NDYwQUxnZzdz",
+        "score": 18
       }
     ],
     "macro": [
@@ -815,16 +847,32 @@
         "category": "macro",
         "categoryName": "금리·환율·거시",
         "categoryIcon": "🏦",
-        "title": "한국은행, 이번주 금리 올린다…관건은 8월 연속 인상 여부",
-        "description": "한국은행, 이번주 금리 올린다…관건은 8월 연속 인상 여부 &nbsp;&nbsp; 네이트",
-        "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5ZT3VCd3ZZTkYzd0dFSGRhUm5VM0hvQUd1X3JiRldLdTdMR2J5YjZPZzlIMW5VQnZVTFBBNXBHUDgzUzdUbnIzZklPa2FGWGxaZzNNZjc3LVRqNGIwY0N2THlseWw1T1M3NjFZRDVR?oc=5",
+        "title": "한국은행, 이번주 금리 올린다… 관건은 8월 연속 인상 여부",
+        "description": "한국은행, 이번주 금리 올린다… 관건은 8월 연속 인상 여부 &nbsp;&nbsp; 세계일보",
+        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9OYnZDMkFuSm5DcW5xZnVUaFNXeGtyMkFNZjR5UjFodHVES0pKVmdJSVU0aEtQVFU2cldVSUdxeWNMT3pzMkhUQ0hEZE1XT1ItbUI00gFUQVVfeXFMT1p0ZlBoQTVoY2hyNi11WWtWRTNtUU12ZkhtNHRxeEFyYVd0SHY1dEpFa3RldXRCX3NJRElRYVNpaVZiVy1ycThzdHc0RjJpZFhoNTVu?oc=5",
         "source": {
-          "name": "네이트",
-          "url": "https://news.nate.com"
+          "name": "세계일보",
+          "url": "https://www.segye.com"
         },
-        "publishedAt": "2026-07-12T10:16:00.000Z",
-        "guid": "CBMibkFVX3lxTE5ZT3VCd3ZZTkYzd0dFSGRhUm5VM0hvQUd1X3JiRldLdTdMR2J5YjZPZzlIMW5VQnZVTFBBNXBHUDgzUzdUbnIzZklPa2FGWGxaZzNNZjc3LVRqNGIwY0N2THlseWw1T1M3NjFZRDVR",
-        "score": 86
+        "publishedAt": "2026-07-12T10:15:52.000Z",
+        "guid": "CBMiU0FVX3lxTE9OYnZDMkFuSm5DcW5xZnVUaFNXeGtyMkFNZjR5UjFodHVES0pKVmdJSVU0aEtQVFU2cldVSUdxeWNMT3pzMkhUQ0hEZE1XT1ItbUI00gFUQVVfeXFMT1p0ZlBoQTVoY2hyNi11WWtWRTNtUU12ZkhtNHRxeEFyYVd0SHY1dEpFa3RldXRCX3NJRElRYVNpaVZiVy1ycThzdHc0…",
+        "score": 85
+      },
+      {
+        "id": "macro-MDcvMTMgW-uJtO",
+        "category": "macro",
+        "categoryName": "금리·환율·거시",
+        "categoryIcon": "🏦",
+        "title": "07/13 [뉴욕증시 마감브리핑]",
+        "description": "07/13 [뉴욕증시 마감브리핑] &nbsp;&nbsp; 네이버 프리미엄콘텐츠",
+        "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPQm5JRVVWbUZETl9XaU93ZU5QQ3Z0QTdEQU9UbXdkOEV0SmVYeFR4XzRHNFVzVGduVUZUS0UyRHZYUkVhRGZoTVctZ3hzYVJRZWN1TjI5ODctb0NrNUUwckJWekotNnZrMURtbjVSMkRGU1lwQ18tMURSSDkyXzBFZkN4N2tFWU9ETHpJ?oc=5",
+        "source": {
+          "name": "네이버 프리미엄콘텐츠",
+          "url": "https://contents.premium.naver.com"
+        },
+        "publishedAt": "2026-07-12T21:46:00.000Z",
+        "guid": "CBMiiwFBVV95cUxPQm5JRVVWbUZETl9XaU93ZU5QQ3Z0QTdEQU9UbXdkOEV0SmVYeFR4XzRHNFVzVGduVUZUS0UyRHZYUkVhRGZoTVctZ3hzYVJRZWN1TjI5ODctb0NrNUUwckJWekotNnZrMURtbjVSMkRGU1lwQ18tMURSSDkyXzBFZkN4N2tFWU9ETHpJ",
+        "score": 65
       },
       {
         "id": "macro-N-yblCAxMOydvC",
@@ -840,7 +888,7 @@
         },
         "publishedAt": "2026-07-12T04:42:25.000Z",
         "guid": "CBMiakFVX3lxTE4zNmE4VWpzMnVNM0hFVzhrNS1yZHBmYjRNYlJkLUVDUUhQUEtSOUhCVTZSYjFWMFRPR2ZkOWFNa2dBQ1QtNV8zcmVlblM3ZUdnS0tRMmdtanMzdzBpQUkxSGxOLUVoRXJOcmc",
-        "score": 65
+        "score": 64
       },
       {
         "id": "macro-7KCE66ed772c6r",
@@ -856,7 +904,7 @@
         },
         "publishedAt": "2026-07-12T04:30:22.000Z",
         "guid": "CBMiaEFVX3lxTFBNOUx6ak5Ha0I0WUh3Mm10T3RfN1ZsVzFFQ0F3aGNnMXdKVkIxVnN5MWdUMk85TGFiRHlmd2gzV0RUbGJIZDVaYTRoVUJFUkg0X1lvUld0eW01RC13VGV2RWg0VG5sSlgz",
-        "score": 64
+        "score": 63
       },
       {
         "id": "macro-W-yYpOuKmOydmC",
@@ -872,7 +920,7 @@
         },
         "publishedAt": "2026-07-12T00:00:00.000Z",
         "guid": "CBMivwRBVV95cUxQa2NVMl9oRFZlS2VVc3RQOGNOUWtlSXYxb0JTVW9tMlE0OFBBMmlUUkJabzhaMDAtb25xNkpxdmtMQlBQUTVzSExNMnFKN3ZLTFI3TEtCZVdzVDczNVU2MGlxQ0pncU01WkV1ME5hRkF3OVlaMmIybUFVcTB2NnhDUmR4SkRQR0tqeWtrX0dOdEo5ZC1yRXdSUGFnLXo2MmN5…",
-        "score": 60
+        "score": 59
       },
       {
         "id": "macro-6riw7KSA6riI66",
@@ -888,7 +936,7 @@
         },
         "publishedAt": "2026-07-11T21:38:00.000Z",
         "guid": "CBMiWkFVX3lxTE4yR0FQaTQxbUd1MXpMUkxXY1FvRG9BdDBOYUEtTVBaWTBCTEhEU1J2X3puejVYd2ZGV2xkQ3I0U1lmRHd2dHBnakc0RGo4MTZHUl9McFFJeTZBZw",
-        "score": 58
+        "score": 57
       },
       {
         "id": "macro-W-yjvOqwhOq4iO",
@@ -904,7 +952,7 @@
         },
         "publishedAt": "2026-07-11T21:01:00.000Z",
         "guid": "CBMiU0FVX3lxTE1SVjdERWZlVXVYY3phY0FISjZfQjJMRkgxNm9adnNnQ21fVHhKQjNPdjF3NjZabzV0dUQ3dEFZS1JzVHpiaWdac21tSzI3NHZRT1Bz",
-        "score": 57
+        "score": 56
       },
       {
         "id": "macro-6riI66asIOyYrO",
@@ -920,7 +968,7 @@
         },
         "publishedAt": "2026-07-11T21:01:00.000Z",
         "guid": "CBMiU0FVX3lxTFA5SHFvX1ZJbTZUYlZ4aTNJZGgxNk1Ub0ZiUjIzNVBLQW5fTVZ5R1J6TFhUWW9IRkkwdXhXNjB1OXRjMEdpY3hWdVR3Z0U1TUtYT2dJ",
-        "score": 57
+        "score": 56
       },
       {
         "id": "macro-W-yxhOq2jC3so7",
@@ -936,7 +984,7 @@
         },
         "publishedAt": "2026-07-12T04:03:16.000Z",
         "guid": "CBMicEFVX3lxTE5UT2dpOEZwZ1QzbVplQlFMRzVMaTRQTDNWLUtXbFFqQUIyZlhSYXlObkc4ME5yT0hqOU9FVjc4cEJxRl9Ga1pBdHRTSjRjMnNmblhqcXBNOTllVWtSNEUzSEFlaThnRHlUQUM4eHJfNWY",
-        "score": 56
+        "score": 55
       },
       {
         "id": "macro-7ZiE64yA7JewIC",
@@ -952,7 +1000,7 @@
         },
         "publishedAt": "2026-07-12T03:07:14.000Z",
         "guid": "CBMiiwFBVV95cUxQV0FIN3RKeTRfODV0Und6RmF4eGd6WERidmdJRzdXNkFPZThmenVNMzAtczhpT0EwRGdVOUtKYWRjbHlxSVZNYUhYR1JHdXZMc3NpVUtpQnUtRFNmcXRKTXEydUtGZDBpNWtOUklCd3F4NTcwOXJVTUdjYkVYSVM3SG91WUVNNTM4Yjlr",
-        "score": 55
+        "score": 54
       },
       {
         "id": "macro-64uk7J2M7KO8IO",
@@ -968,7 +1016,7 @@
         },
         "publishedAt": "2026-07-11T01:10:00.000Z",
         "guid": "CBMifkFVX3lxTE9qcUdaMlJ6ZjlYb1BCc2FnR1VWMWU4Nk5vdmNrVTZYd2ExY2ItOEE5WUx1VUhRU2hCVjJxZ3p3RjRQVDUyMkNIb1J4T0hzaDBaZ0YxampDYnBQblg1LXRaaUxNbDRuR09ndE5rMU9xTFY1UlBoaUw4SUpsZ2stdw",
-        "score": 53
+        "score": 52
       },
       {
         "id": "macro-W07snITtgaxdIO",
@@ -977,14 +1025,14 @@
         "categoryIcon": "🏦",
         "title": "[N위크] 李대통령 부동산 大토론회 주재...하반기 경제전략·금리 인상 나올듯",
         "description": "[N위크] 李대통령 부동산 大토론회 주재...하반기 경제전략·금리 인상 나올듯 &nbsp;&nbsp; 조세금융신문",
-        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9kU0FCTWdPYmZPajNrZVNYM0NScERmdU03NlM2TDBXcUNVWGllU2VXWEZvNWNzY0hTOV9FeUNmWENrQnVUOW1nal8tdnBQdXRtVTFqeGZIV3ZCaVMxZEgyMA?oc=5",
+        "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5YRjdmMGo4T05ScFlwLXFSdUp4dl9wMEVSa3A2WDhUbzQzMzg0NHluUHNQcHBaaW1qeFp0c2dTcUY1Z0d6cG5yX3Zrb09MSHpUR0hUdlMyV2dRbDB2bWcwQTZrZw?oc=5",
         "source": {
           "name": "조세금융신문",
-          "url": "https://tfmedia.co.kr"
+          "url": "https://www.tfmedia.co.kr"
         },
         "publishedAt": "2026-07-10T23:56:20.000Z",
-        "guid": "CBMiYEFVX3lxTE9kU0FCTWdPYmZPajNrZVNYM0NScERmdU03NlM2TDBXcUNVWGllU2VXWEZvNWNzY0hTOV9FeUNmWENrQnVUOW1nal8tdnBQdXRtVTFqeGZIV3ZCaVMxZEgyMA",
-        "score": 44
+        "guid": "CBMiY0FVX3lxTE5YRjdmMGo4T05ScFlwLXFSdUp4dl9wMEVSa3A2WDhUbzQzMzg0NHluUHNQcHBaaW1qeFp0c2dTcUY1Z0d6cG5yX3Zrb09MSHpUR0hUdlMyV2dRbDB2bWcwQTZrZw",
+        "score": 43
       },
       {
         "id": "macro-7Jik64qYKDEx7J",
@@ -1000,23 +1048,7 @@
         },
         "publishedAt": "2026-07-11T04:39:21.000Z",
         "guid": "CBMidEFVX3lxTE1UV1JjRFBxODd2aTRyZUtTbWlKMkd5cUk3UXZKekFGclNXZnplUFVfZDRHcUNrRnozWGhYOHAwcENMaWdsbWNvMVdxWEZva3BWZkVsOGpPcUpGekI1YjBxSEh0aENmM2otY190T1hoN2hyaTdn0gF0QVVfeXFMTVRXUmNEUHE4N3ZpNHJlS1NtaUoyR3lxSTdRdkp6QUZyU1dm…",
-        "score": 41
-      },
-      {
-        "id": "macro-JzUw7KGwIO2BtO",
-        "category": "macro",
-        "categoryName": "금리·환율·거시",
-        "categoryIcon": "🏦",
-        "title": "'50조 클럽' 눈앞인데…현대차 주가 전망 엇갈린 이유 [투자톡]",
-        "description": "'50조 클럽' 눈앞인데…현대차 주가 전망 엇갈린 이유 [투자톡] &nbsp;&nbsp; 블루밍비트",
-        "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5MQVdUSjVqTzQzN1NJbGNpN1JIVXZvUVllRGdUck1FeUVjNndjZVptNTRaejVDeGpSQ0huT0VrRGRmc1JGWUxzQzBha3FzaTJv?oc=5",
-        "source": {
-          "name": "블루밍비트",
-          "url": "https://bloomingbit.io"
-        },
-        "publishedAt": "2026-07-11T09:25:33.000Z",
-        "guid": "CBMiUEFVX3lxTE5MQVdUSjVqTzQzN1NJbGNpN1JIVXZvUVllRGdUck1FeUVjNndjZVptNTRaejVDeGpSQ0huT0VrRGRmc1JGWUxzQzBha3FzaTJv",
-        "score": 37
+        "score": 40
       },
       {
         "id": "macro-N-yblCAxMOydvC",
@@ -1032,22 +1064,6 @@
         },
         "publishedAt": "2026-07-11T03:48:15.000Z",
         "guid": "CBMib0FVX3lxTE5hX0NvbzJyMnFaNEQ4REo2YlZuNHhIaU8yLUFlN1UzbzFIZkRoMjZvbEZIeHV1c05qQlc4bFRJNmgyQ0dFTTFRY0tfSEhvN1lJd2prVzhmaEE2RmhlanBoU0JXMjdQczNCWVU2a0ZiNA",
-        "score": 32
-      },
-      {
-        "id": "macro-6riw7KSA6riI66",
-        "category": "macro",
-        "categoryName": "금리·환율·거시",
-        "categoryIcon": "🏦",
-        "title": "기준금리 상승 압력에 6월 초장기물 금리↑… 외인 채권보유도 ↑",
-        "description": "기준금리 상승 압력에 6월 초장기물 금리↑… 외인 채권보유도 ↑ &nbsp;&nbsp; MSN",
-        "url": "https://news.google.com/rss/articles/CBMigANBVV95cUxQWnNWblY3ZVpCQWViaGhkbkNSX0pfNi0xUnpjYXdTRWZ0M1E4SlFnZmxyQ1YxVmg1RUx5Y0V2NzNUdmpmbE1LYmRQaEVoY0dyb08wNUtIaWFlQVZZR3hEZGprMTkxaUNnVjJ1TC1yUERNOWFjMGVOQkpzdWJWU1l6UENMcWJaMkhrOEZRTlNSOWJyWFRZbC1hSzVtN3RVaENHc0o2Rm1USkZzMXVFeUJ1Z2N2bUt0YzJPTEQzYjlUX2kwaWJjZVRLQ3lCV0RENExjMkxUNkkyN2hrQ2lsQXJPZXBBWk5zOWtnNW1lOXJqYUQxNU1yc3ZFOWRDY0NvU2NCWEtST0QwU0wzaklXM21sV0xuTGZra3dNdU54SUV6bng2VlBiTnJHZnJESnhMSUxHYmxxTkZrNU1BUkJGYkdSWmVnTjMtLWRyZEJ1alNDM3F3c1lxd3RfQ3pBS2RrS2U3U0JUaWlrUUZsbW9OZVNTSW91WFNGMUs2eWpKWUVVNHQ?oc=5",
-        "source": {
-          "name": "MSN",
-          "url": "https://www.msn.com"
-        },
-        "publishedAt": "2026-07-11T03:24:14.000Z",
-        "guid": "CBMigANBVV95cUxQWnNWblY3ZVpCQWViaGhkbkNSX0pfNi0xUnpjYXdTRWZ0M1E4SlFnZmxyQ1YxVmg1RUx5Y0V2NzNUdmpmbE1LYmRQaEVoY0dyb08wNUtIaWFlQVZZR3hEZGprMTkxaUNnVjJ1TC1yUERNOWFjMGVOQkpzdWJWU1l6UENMcWJaMkhrOEZRTlNSOWJyWFRZbC1hSzVtN3RVaENH…",
         "score": 31
       },
       {
@@ -1064,7 +1080,7 @@
         },
         "publishedAt": "2026-07-11T01:55:19.000Z",
         "guid": "CBMib0FVX3lxTE5CbFQ3OFRCOWc1UW90ckVaUTc0b0dOcDFya251VmltQ0I4WXBoRmFEcnRaaUFzSm9PYkx4Nk5hbDI5ck5DUXYzRjQ5aE5pTms1SmhJRkhUd2N2Z2lmcy03UjJIQ284RnBlbmhtWlNrVQ",
-        "score": 22
+        "score": 21
       }
     ],
     "company": [
@@ -1082,7 +1098,7 @@
         },
         "publishedAt": "2026-07-12T11:07:55.000Z",
         "guid": "CBMi6gNBVV95cUxOd24xUS13S21wLWdYUTVabkxMMGlUU3k0eGlDNTZZMHNldzFaWjV5eFFhUmpVSnVfUlpMbmoxRjZMM3FKaVk0cWpyUC1pcGh3U0lVSnRIci11NjEweHppMG1RZnQtbFJObHhPV09NX01GZVo3R1FyRXJYbXhXWGRUdmM1TmVYZ0pkSjRqS2lOX0I0SFNsbHJ2dW9VVkJpYXIw…",
-        "score": 79
+        "score": 78
       },
       {
         "id": "company-7L2U7Iqk7ZS8ID",
@@ -1098,7 +1114,7 @@
         },
         "publishedAt": "2026-07-12T11:00:59.000Z",
         "guid": "CBMisgNBVV95cUxQdDA1MVczY2VCSVZCdmRMaGI0Sk11WmFlbEZVVDc3a1drOTRrbGdqMzFMZHROd0dGQ1VtUVRSRFJuc2pkRFRmZjhmNXdnMklpTlhFczBWcTRuRWl6cVZBd1B4VWlPbDhRLTZBcHRlb2NYX09Qa1hHeGNmYTc4b2RVc2luY21DVTBXTFJ5Qk00T3FOam0wZ2pTNE12bklqZHRR…",
-        "score": 71
+        "score": 70
       },
       {
         "id": "company-W-qwnOyepeyLnO",
@@ -1114,7 +1130,7 @@
         },
         "publishedAt": "2026-07-12T00:33:08.000Z",
         "guid": "CBMiuwRBVV95cUxPTU9mYWtaQXlGYkROUmF4SUxtenNTWFNpQjAzbURHbktCaVhIblBsQXFsa3pXUkNUNjJGejZqb2I1WXd6TUM3eDVRdUFnVTJpSVVjLWpCakVTd3JQRHRxbEZ0UFVCQ09POURjdUJlZ0o3RXJiU0ppQ1hESkYwUUk3SGkwdG5raHdYcHNSaEcyZmxuWTRkUVRPRklFSnA0bF8t…",
-        "score": 69
+        "score": 68
       },
       {
         "id": "company-U0vtlZjsnbTri4",
@@ -1130,7 +1146,7 @@
         },
         "publishedAt": "2026-07-11T23:12:07.000Z",
         "guid": "CBMia0FVX3lxTE9nRVBUMVpkMW5nb2ZpSVRnZGttdklWRkpFeWp3SjJHay1wN2ZrYkQ2cVp1TVd6cFFCak0yRHJwX3JhcHNETVgwaVFlaE43OFgxb2E4amx4NjloZjB5NGZqVEYzTzExV2k4MVJV",
-        "score": 67
+        "score": 66
       },
       {
         "id": "company-W-yLrOy4tSDrto",
@@ -1146,7 +1162,39 @@
         },
         "publishedAt": "2026-07-12T04:52:00.000Z",
         "guid": "CBMiakFVX3lxTE1wc0NWaVFUWlRoZHBtLWVPNm1uc0ZWNWQtYnViTzZuRGJ6aVUwb0FFbU9nUHBhOWVmcmtDclVTU09wOW0zZGFkTm5ULWoycmpXSnh5MHhTY014QS1SUnI1OTdFczcySTNWSHc",
-        "score": 65
+        "score": 64
+      },
+      {
+        "id": "company-7L2U7Iqk7ZS8LC",
+        "category": "company",
+        "categoryName": "기업·실적·산업",
+        "categoryIcon": "🏭",
+        "title": "코스피, 변동성 속 강보합 마감…코스닥은 1%대 상승",
+        "description": "코스피, 변동성 속 강보합 마감…코스닥은 1%대 상승 &nbsp;&nbsp; MSN",
+        "url": "https://news.google.com/rss/articles/CBMizgJBVV95cUxOUnNZQnpRdEkwZG9rc0dXM2ZMLU1qeHpGdHBsTkZ0Y2pMN0k3ZVU0cE02X2NMV0lLUjg4dUlhcG5ZNDcxakVZOUsxc3JPRmw3dm1xSW1uRTUtNzkxRmE3REtSYzRuMnVfSnpoZUZFczlFNmYzWGZ6ZnRIcHREUkVnLTlDUFVYcUVubXVyR3MwMkROWUFqemJWb21UZWNackdYc0M4VlZiS001ZFFQYndqUTdHenYtdnFPYmM0RmI5R0xCOUYyNXFPTnEwMnlmbGZJcFFKN1NvMmFhVzhVVnlqZEplbzdVZXUyVS1QRkFHcWlnTzFxazRVRGlYRGZLVnlKY0ZOcWlNUERVUHIyUC1iY2phOWVkMmdQUUZ5djd0U09VZVFxcU9aYS1lejU1U3FTUXA5MnJrUFg0cDhjSFBzV1VkUlZwWDNnSHNLbU1R?oc=5",
+        "source": {
+          "name": "MSN",
+          "url": "https://www.msn.com"
+        },
+        "publishedAt": "2026-07-12T04:43:27.000Z",
+        "guid": "CBMizgJBVV95cUxOUnNZQnpRdEkwZG9rc0dXM2ZMLU1qeHpGdHBsTkZ0Y2pMN0k3ZVU0cE02X2NMV0lLUjg4dUlhcG5ZNDcxakVZOUsxc3JPRmw3dm1xSW1uRTUtNzkxRmE3REtSYzRuMnVfSnpoZUZFczlFNmYzWGZ6ZnRIcHREUkVnLTlDUFVYcUVubXVyR3MwMkROWUFqemJWb21UZWNackdY…",
+        "score": 64
+      },
+      {
+        "id": "company-J-uhpOufrOy9lO",
+        "category": "company",
+        "categoryName": "기업·실적·산업",
+        "categoryIcon": "🏭",
+        "title": "'롤러코스피' 7200선 상승 마감…개인은 2조 '팔자'",
+        "description": "'롤러코스피' 7200선 상승 마감…개인은 2조 '팔자' &nbsp;&nbsp; MSN",
+        "url": "https://news.google.com/rss/articles/CBMiwgNBVV95cUxOSTVjWmR0RDNsdE5FX0EzVWdXTFF4aGhKLXluU1E1aVJUUTdhbHpKWHFBUjUyamJSQ3BYTGxTUVFubHZSV1FwSXNmWmNiN1F2Sjh0NHZVTUJRRUQ0NVpBcnUzNWMwN3d3YWVpUzJRUTFIQWV4OXN1Y0F1Q0sxUXc0YklrX08xZEMySGhNcVhWamZlMmxyZ21PeS1ZUzFZU0FZOUJYMDZqRmtHbmlmT2tMOWxVNHlFeFBJMWJ6a3JEcXpBZ29Ya1A2d2JkVl9oZzZsMThrQ3Nkb0pUNVRrU0ZsYzlWRWd6Zy1MYTFXSkZFUlpfMXlTMDBDVUZfYmxWMGZrUldGSzBVbks4dUdiT25Eb2ExdHJjZ2FTQmpPbHZfNGplMUxqMXJLeWw5TnRiZVNic1VPZF83a2dFam9ZSEJzQ2k1UGtDMFNCZjdEcERhODU1ajAxdlU3dHd3U0tYVHhWUUVaV1Q5Z3l5X2pzS0NNRE1qNjFBRFFSMUozLS1aZGhETlRGQkpiWnhuTmtsaDRJUHRWUmdHZEJNZGoyb0dUSlVKSDF3R3NRR1BmQXVLVFd5NWxTdE1YcXZ4V0dMYlptY3c?oc=5",
+        "source": {
+          "name": "MSN",
+          "url": "http://www.msn.com"
+        },
+        "publishedAt": "2026-07-12T11:05:27.000Z",
+        "guid": "CBMiwgNBVV95cUxOSTVjWmR0RDNsdE5FX0EzVWdXTFF4aGhKLXluU1E1aVJUUTdhbHpKWHFBUjUyamJSQ3BYTGxTUVFubHZSV1FwSXNmWmNiN1F2Sjh0NHZVTUJRRUQ0NVpBcnUzNWMwN3d3YWVpUzJRUTFIQWV4OXN1Y0F1Q0sxUXc0YklrX08xZEMySGhNcVhWamZlMmxyZ21PeS1ZUzFZU0FZ…",
+        "score": 62
       },
       {
         "id": "company-W0FCQyBBSeq1re",
@@ -1162,7 +1210,7 @@
         },
         "publishedAt": "2026-07-12T05:44:25.000Z",
         "guid": "CBMiWEFVX3lxTE4xaUk2clFmSHJsTEF4NTR0Q1F4OWo4amxnMVdfZlVYYmc1QVZfZVU1TEFTZjVhR0tmZzR2UUFYSjJfdllnOFliX0FkdWgzQUhmWTlLajV2SDfSAVhBVV95cUxOMWlJNnJRZkhybExBeDU0dENReDlqOGpsZzFXX2ZVWGJnNUFWX2VVNUxBU2Y1YUdLZmc0dlFBWEoyX3ZZZzhZ…",
-        "score": 58
+        "score": 57
       },
       {
         "id": "company-U0sg7LWc7YOc7J",
@@ -1178,22 +1226,6 @@
         },
         "publishedAt": "2026-07-11T22:30:00.000Z",
         "guid": "CBMiakFVX3lxTFBXeHlUSXBkbk1fTVF6LXBIc3NsbnE0Uk90R1NQLXZnSFJYcGx4bUxmSmd3UzhpTG5Nb1FpNVNRSl83bUZuVjZXSjJ2dmQwTFFqcGxReDd2SGRNY1B0Vzc5eDZBaHItWHpBVEE",
-        "score": 58
-      },
-      {
-        "id": "company-J-uhpOufrOy9lO",
-        "category": "company",
-        "categoryName": "기업·실적·산업",
-        "categoryIcon": "🏭",
-        "title": "'롤러코스피' 7200선 상승 마감…개인은 2조 '팔자'",
-        "description": "'롤러코스피' 7200선 상승 마감…개인은 2조 '팔자' &nbsp;&nbsp; MSN",
-        "url": "https://news.google.com/rss/articles/CBMirAJBVV95cUxPcmRKdEY4X3E0WmJ6ejBfeEk1cElIWk9HX3c3Y2dvRElnenp5ejdKemM2UGhsbFZKUE1NME96VVhZWTlIVXE2NVNiQ1J2LUtqQVhXaHFRdGVDYW5HQV9ROWtqaUFpeWVaOGJZWUs4ajdMWGNDdlg3RzlRZXpacTIxQVpCYTFPWDhfWTVyMWR0WkUxRDlhQVlCVUlZX29tR0lqZXpTeXM2WWhEZ0IzcTg2QW51R2NMR0k2eDJCRDB0SEQtM05tVmtUeHdta3daUmhydUpzQTNPTWJYTE40TTNJY2J2MHd4dU04eUVkVXhSZDhENm4xU1FkYUIxRkFlaVlsaVRobFZnUGV1RWU3TlI0NFVLVGdGallzdG5KbkhPR2l6ZEZvRll1RlRkUmg?oc=5",
-        "source": {
-          "name": "MSN",
-          "url": "https://www.msn.com"
-        },
-        "publishedAt": "2026-07-12T04:54:26.000Z",
-        "guid": "CBMirAJBVV95cUxPcmRKdEY4X3E0WmJ6ejBfeEk1cElIWk9HX3c3Y2dvRElnenp5ejdKemM2UGhsbFZKUE1NME96VVhZWTlIVXE2NVNiQ1J2LUtqQVhXaHFRdGVDYW5HQV9ROWtqaUFpeWVaOGJZWUs4ajdMWGNDdlg3RzlRZXpacTIxQVpCYTFPWDhfWTVyMWR0WkUxRDlhQVlCVUlZX29tR0lq…",
         "score": 57
       },
       {
@@ -1210,7 +1242,7 @@
         },
         "publishedAt": "2026-07-11T11:59:14.000Z",
         "guid": "CBMibEFVX3lxTE1VRHJhVTZmOXpJUHFIU1hoQklqVTZvcGxsb1JtczRUZTRLU1RoOGtfdDIwbkludW5icnlWZVJRTFNKczdVUWtRWUt0aklCeDBETjBXRFdIbW5oRllNSXhucHM3aUtON05PWWNmSQ",
-        "score": 56
+        "score": 55
       },
       {
         "id": "company-7LWc7YOc7JuQIC",
@@ -1226,7 +1258,7 @@
         },
         "publishedAt": "2026-07-11T09:05:42.000Z",
         "guid": "CBMib0FVX3lxTFBkaGI4UXV6WEl1c0JTOUpxU3BDUjZabllrUERLQlVhSkpyU2xjSjB2OHJ4SHMyR1pNNVVQR0xwRk1HX2E2eHlFRXc1a2FsUlFCdjYzT2ZwanJPZzlCcXBKYVJjYlE4T3ZOeUJyU2U2RQ",
-        "score": 53
+        "score": 52
       },
       {
         "id": "company-7ISx7ZmYIDEyNu",
@@ -1242,7 +1274,7 @@
         },
         "publishedAt": "2026-07-12T06:18:01.000Z",
         "guid": "CBMiaEFVX3lxTE5HS3h6V29oTkpWVVdJeVJvU1p2NGFwbGtBR2JkNDY3YnF0V1RLb1B2ZmxvSkxFLTVydnAxVTJ0c2NRRWk2eXJKYTFLTGpfZ2lvZHhpRjY2UnBGa1ZSTlhYSUZBTFAyM1NV",
-        "score": 50
+        "score": 49
       },
       {
         "id": "company-7ZSE656R7IqkIO",
@@ -1258,22 +1290,6 @@
         },
         "publishedAt": "2026-07-12T06:13:39.000Z",
         "guid": "CBMikwFBVV95cUxPMVJ5NTZoNFh5YV84YU8wa2l0M3c5d1hWbGJvSldjZDg4SGF0VDFZbUtyU0QzNzVIX2FucEM2Q3ZtN0pTUzFSSWtxV2kxRkkwd2d2ZXo0amRWOTRBWGhNV0dKRkI2VC1mbXUycF9BLXNHMVg0YWt2MG9ZZVNuN2dteGxJUDFjenpLWGZzSUNOSHY2YUE",
-        "score": 50
-      },
-      {
-        "id": "company-7Iqk7Y6Y7J207I",
-        "category": "company",
-        "categoryName": "기업·실적·산업",
-        "categoryIcon": "🏭",
-        "title": "스페이스X 열풍 식자 우주 ETF '엑소더스'…한 달 새 5000억 이탈",
-        "description": "스페이스X 열풍 식자 우주 ETF '엑소더스'…한 달 새 5000억 이탈 &nbsp;&nbsp; 스페셜경제",
-        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1KaEJzeEo2M2hUV1ZQSkd4Ym5uUWZ6NVN0VGZOb1NpbS1FVnV6QXpoSFpZb010UjBBYnJsSHJBLWI0ZlVvLTY0QUNReHNEeE15em5leG5xWlhPTHlER1VsNmVTbTk2MVc3eUJ6WQ?oc=5",
-        "source": {
-          "name": "스페셜경제",
-          "url": "https://www.speconomy.com"
-        },
-        "publishedAt": "2026-07-12T05:13:28.000Z",
-        "guid": "CBMibEFVX3lxTE1KaEJzeEo2M2hUV1ZQSkd4Ym5uUWZ6NVN0VGZOb1NpbS1FVnV6QXpoSFpZb010UjBBYnJsSHJBLWI0ZlVvLTY0QUNReHNEeE15em5leG5xWlhPTHlER1VsNmVTbTk2MVc3eUJ6WQ",
         "score": 49
       },
       {
@@ -1290,7 +1306,7 @@
         },
         "publishedAt": "2026-07-12T01:02:15.000Z",
         "guid": "CBMiU0FVX3lxTE9VZ3MwM1R1ZEg2eWlUaXExMzZ0SEJjeUZxc3RYYlV2dWRSZl9PWXBHaUNBUXdsS1hUb3hNR0VKaDlIZ3o0dFdrdW1Lc0pJWEtJZ2pB",
-        "score": 45
+        "score": 44
       },
       {
         "id": "company-U0vtlZjsnbTri4",
@@ -1306,7 +1322,7 @@
         },
         "publishedAt": "2026-07-11T00:13:06.000Z",
         "guid": "CBMiU0FVX3lxTE9sV2oxMF8ybjdzYU5hWG56VGZrZUl0dzE1ZnBUamJxMm1ScGpULWhYT0hEa1lmVFg5aE5haVYzX2hQWUhhOWpXNk9oRE9LTTJNTjdN",
-        "score": 44
+        "score": 43
       },
       {
         "id": "company-SEJNIOuLpOydjO",
@@ -1322,7 +1338,7 @@
         },
         "publishedAt": "2026-07-11T00:00:00.000Z",
         "guid": "CBMiWEFVX3lxTE9wSy1wVElqd3hFdjJqTFRCenJvMGJ0cm5ZWEVQSmlReUV3Q0lHSExOY016OHdrTkd3aGJZYS1McjdsdE1TdTJwQmtuWGMzYnZoOFZtS0VRTFXSAVhBVV95cUxPcEstcFRJand4RXYyakxUQnpybzBidHJuWVhFUEppUXlFd0NJR0hMTmNNejh3a05Hd2hiWWEtTHI3bHRNU3Uy…",
-        "score": 44
+        "score": 43
       },
       {
         "id": "company-4oCc64m07JqV7J",
@@ -1338,7 +1354,7 @@
         },
         "publishedAt": "2026-07-10T22:52:34.000Z",
         "guid": "CBMiakFVX3lxTE9JbHcwZTNEcUtvcHR1ak0yeE1QeDVaRGY1b28zR3pJQW83YkZFcWpQX2t3Y2k5aTIxbTFtdkQ0LV9wbXZoN3hyNXJ5VGZiYTJNRWdqamh0dk5TclAwZEx6WjRFbkhFaWxfSnfSAW5BVV95cUxPZ0RneFdfb3cxSmNOT25JMDdZMkgwZ3BEQVpXT2pKRG9ncmVGM05NOEE4ZVZI…",
-        "score": 43
+        "score": 42
       },
       {
         "id": "company-6riI6rCQ7JuQIO",
@@ -1354,7 +1370,7 @@
         },
         "publishedAt": "2026-07-11T18:34:11.000Z",
         "guid": "CBMiqwRBVV95cUxPNGtrT3RXekVzQzVCN1lybWxNcml1dGNSdEhFRTh4VzljYU54d2lSRHdRU0xXUDJPYVc2WE85NndIdU9tMC1ZSk1xY2RkZHlkVU9qQ0RPOTJqRWpEdWJyeUROalJ2Y3FYblRWVjFzM0NMRDJzdmF0V2ZrZjV4cHg2MS1DcmNReU9OSVQwcFRTVmphYVk5alV5ZnRQR2lrNVVN…",
-        "score": 39
+        "score": 38
       },
       {
         "id": "company-7J2Y66OM6riw6r",
@@ -1370,7 +1386,7 @@
         },
         "publishedAt": "2026-07-11T00:01:00.000Z",
         "guid": "CBMieEFVX3lxTE82ZVdzcm1rLTAzbDY2b1lGZEJVLWFYVENSeGZtU2d6OHdreWNVODRsNlRGVW1ja1Q2aUV0bUhMdjVIR05TbTFWQ0VoZjM4aDVjNnl6T2FaaUxzUnBKV3Jad1pJRDNTUGdEVmVDSzJzS0thWWFoOFFKNw",
-        "score": 36
+        "score": 35
       },
       {
         "id": "company-W0lQT-yxl10gJ-",
@@ -1386,7 +1402,7 @@
         },
         "publishedAt": "2026-07-11T00:00:02.000Z",
         "guid": "CBMiYEFVX3lxTE9ZdXgtQ25SZmRMWTJzMEtaSXBYTG1ncFFjWGN0RURNQllTVHlneVA0V2Rzci1tNkdmSkYtUlNWeTlKejVncVFnbTZnaUpJY08yOWNPa2JuQjJjS2dXdWk1U9IBYEFVX3lxTE9ZdXgtQ25SZmRMWTJzMEtaSXBYTG1ncFFjWGN0RURNQllTVHlneVA0V2Rzci1tNkdmSkYtUlNW…",
-        "score": 36
+        "score": 35
       },
       {
         "id": "company-7LWc7YOc7JuQIC",
@@ -1402,22 +1418,6 @@
         },
         "publishedAt": "2026-07-11T00:00:00.000Z",
         "guid": "CBMiU0FVX3lxTFBBN2E2ZF9Uel9CaU9vX0pKVnhNSWVFU3ZEMEdLUjQzeWt4SkhhX0NZMVJZdkc1NVZmcl9OQkM4bGxtSVZOZkx4MGJVRDZoTlphaEVv",
-        "score": 36
-      },
-      {
-        "id": "company-7J2067KI7KO8IO",
-        "category": "company",
-        "categoryName": "기업·실적·산업",
-        "categoryIcon": "🏭",
-        "title": "이번주 공모주 청약, 에이치엘지노믹스 1개사",
-        "description": "이번주 공모주 청약, 에이치엘지노믹스 1개사 &nbsp;&nbsp; 데일리안",
-        "url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxNVHl4RWF5RjAwakUzU1oxSVR0R3VaZ0hGYTh6YlBpZE1JTWR2MVhpZGYtR192SnhKaEtzbVpNa3RZc1A3MTI3Y3JyQlVOYm5zdlJfSlhwTGRfdzFpZEd4ZEoySGdGNVBwU1NkV2Y5cTZ6SzB0ZjY1ekNSNm10NzU3NW0yMXJRdVFJWlpFbGxqcm1tcUc0eWcxSW5MbVpqc0Z0LWJSNWtadVpHcVNCMGJfdXNoRm1QR1BCMzdwTkIxQ2R5N3lRTzAwRmJ0LTZlTmx4VzBkaEtjY1hHM0VyLWFjaC12OEtLZTFaVEhMQU9NbnF3N1JfcnpCSHV6MjFoWVZLdnFNdlFMR20tdkdMNWZwWktsN2Z6bXJ5WW9PelNNckNBZ9IBpAJBVV95cUxQYmJWd0g5am9MX19KWldYT1pKRHowdkl0aHNtcWVvTUlGUDF2d3ZQWjJXWFNxSGU2bnQtMVNGOHpLbFJJR1BxUmh2SU9rNldDeHhKSHMtcWdxRksyZE9QZGx4RFA5Z0RxMnROdFNZMTRrUm9JcWZQRUgwZVVkV2pqVXktbG5pODFSZjlQRDJkYVo0VkljaVVJNmhaYVdhQjdydmNwYnNZVGhNOGxTWHNYNVBvekg1QTNhMFh3Zl93V0F4SFdVeF9JOG1vSUR2UTFNU1ZfVXYyVHJwdDNMYzk4N2hqZHlUMXU5OVhqb2dXZkdGNUZnNGVieHlLNW5mcDJPd1FISUpabzd1YVJadjdSMG9VNWtXdGNoR2VqNTlQWUhabEJf?oc=5",
-        "source": {
-          "name": "데일리안",
-          "url": "https://www.dailian.co.kr"
-        },
-        "publishedAt": "2026-07-11T15:10:00.000Z",
-        "guid": "CBMiogJBVV95cUxNVHl4RWF5RjAwakUzU1oxSVR0R3VaZ0hGYTh6YlBpZE1JTWR2MVhpZGYtR192SnhKaEtzbVpNa3RZc1A3MTI3Y3JyQlVOYm5zdlJfSlhwTGRfdzFpZEd4ZEoySGdGNVBwU1NkV2Y5cTZ6SzB0ZjY1ekNSNm10NzU3NW0yMXJRdVFJWlpFbGxqcm1tcUc0eWcxSW5MbVpqc0Z0…",
         "score": 35
       },
       {
@@ -1434,39 +1434,23 @@
         },
         "publishedAt": "2026-07-11T07:08:53.000Z",
         "guid": "CBMia0FVX3lxTE1UalQ3VG9YTFNkY0pXUjk5WEp6QTR2dUVwYThxczVrdUJVZGlHQXI0U3J4NUZpZG5vTGVfdXlSWUdpOEhNeUZIYUpXenl5X284dEZxMzlZMDhnUUhFbmZUelplSU8zaENTUUkw",
-        "score": 35
-      },
-      {
-        "id": "company-W-yngOuCnOuwpC",
-        "category": "company",
-        "categoryName": "기업·실적·산업",
-        "categoryIcon": "🏭",
-        "title": "[지난밤 뉴욕에선] SK하이닉스 ADR, 나스닥 첫날 13% 급등",
-        "description": "[지난밤 뉴욕에선] SK하이닉스 ADR, 나스닥 첫날 13% 급등 &nbsp;&nbsp; 스트레이트뉴스",
-        "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBzekF1Vm1RaWQ4VHlKZWs3WXlPX2I5OVNRb1FLenNQYzFDR09KTnVrbXZsQzdFUW5YLUVxT1JKc2NUM2lNWW52ZlBfdWdCdWxSN0dJalpGaTl5dU9uOG1abGVJMWgtQ0ZqWFhncUtoTm92RWxWNzh30gF3QVVfeXFMUHN6QXVWbVFpZDhUeUplazdZeU9fYjk5U1FvUUt6c1BjMUNHT0pOdWttdmxDN0VRblgtRXFPUkpzY1QzaU1ZbnZmUF91Z0J1bFI3R0lqWkZpOXl1T244bVpsZUkxaC1DRmpYWGdxS2hOb3ZFbFY3OHc?oc=5",
-        "source": {
-          "name": "스트레이트뉴스",
-          "url": "https://www.straightnews.co.kr"
-        },
-        "publishedAt": "2026-07-10T21:44:33.000Z",
-        "guid": "CBMid0FVX3lxTFBzekF1Vm1RaWQ4VHlKZWs3WXlPX2I5OVNRb1FLenNQYzFDR09KTnVrbXZsQzdFUW5YLUVxT1JKc2NUM2lNWW52ZlBfdWdCdWxSN0dJalpGaTl5dU9uOG1abGVJMWgtQ0ZqWFhncUtoTm92RWxWNzh30gF3QVVfeXFMUHN6QXVWbVFpZDhUeUplazdZeU9fYjk5U1FvUUt6c1Bj…",
         "score": 34
       },
       {
-        "id": "company-67mE7Yq47L2U7J",
+        "id": "company-7IK87ISxU0RJKD",
         "category": "company",
         "categoryName": "기업·실적·산업",
         "categoryIcon": "🏭",
-        "title": "비트코인 P2P 거래 디시 을 효과적으로 배우는 방법: 학습 전략과 자원 - 실전 사례 분석",
-        "description": "비트코인 P2P 거래 디시 을 효과적으로 배우는 방법: 학습 전략과 자원 - 실전 사례 분석 &nbsp;&nbsp; les24heures.fr",
-        "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNWTVXRERGV0loQnAwYzJ0WFZ4OGlUYjdrZThlZHRFaW41ajgyYWhOYzZhRUhfMmtEeFVwamNTNVZDV0lzVzREQzN0d3I1TzJQUW11M3hXbUozNEIyM3Q0MkxpNE9qcW84ZFpQbGtwSDBtUVdKWjk5OE9Lbkh6cFA0eFdvMUtnTmcxbnZoMg?oc=5",
+        "title": "삼성SDI(006400)밀릴때마다 물량 모아둘 기회로 보이며 이후 전망 및 대응전략.",
+        "description": "삼성SDI(006400)밀릴때마다 물량 모아둘 기회로 보이며 이후 전망 및 대응전략. &nbsp;&nbsp; 씽크풀 AI",
+        "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9XZUNhVnpyLUJ2MXpuWWIyT2xPU0RDZEtwVVNhbnF2aU55N182NVgtbDVWZFJnejBwTVZEY3dKc3BTamxWMmJkbW9SVGUwN1FTdzJZNFlaV1lwRUwt?oc=5",
         "source": {
-          "name": "les24heures.fr",
-          "url": "https://www.les24heures.fr"
+          "name": "씽크풀 AI",
+          "url": "https://m.thinkpool.com"
         },
-        "publishedAt": "2026-07-10T21:03:46.000Z",
-        "guid": "CBMijAFBVV95cUxNWTVXRERGV0loQnAwYzJ0WFZ4OGlUYjdrZThlZHRFaW41ajgyYWhOYzZhRUhfMmtEeFVwamNTNVZDV0lzVzREQzN0d3I1TzJQUW11M3hXbUozNEIyM3Q0MkxpNE9qcW84ZFpQbGtwSDBtUVdKWjk5OE9Lbkh6cFA0eFdvMUtnTmcxbnZoMg",
-        "score": 25
+        "publishedAt": "2026-07-11T04:41:00.000Z",
+        "guid": "CBMiXEFVX3lxTE9XZUNhVnpyLUJ2MXpuWWIyT2xPU0RDZEtwVVNhbnF2aU55N182NVgtbDVWZFJnejBwTVZEY3dKc3BTamxWMmJkbW9SVGUwN1FTdzJZNFlaV1lwRUwt",
+        "score": 32
       },
       {
         "id": "company-W-yjvOqwhCDrp6",
@@ -1482,26 +1466,26 @@
         },
         "publishedAt": "2026-07-10T23:01:58.000Z",
         "guid": "CBMid0FVX3lxTE1MTUlmaEJqSlp3VjY1MFVqLS1aS2RWTGtFQmhUcEtVaDRyY3BPS25SQlF6Wi1FWmh2cFZwaG02ekNsX0NBSGNFaEM1bWRjTU1TSGExUEtIUmhFeVpuWjdzNE1mUzR6N2Y5d3AzQXVTWXl3MWd6ZmZ30gF3QVVfeXFMTUxNSWZoQmpKWndWNjUwVWotLVpLZFZMa0VCaFRwS1Vo…",
-        "score": 19
-      },
-      {
-        "id": "company-W-yjvOqwhCDqsb",
-        "category": "company",
-        "categoryName": "기업·실적·산업",
-        "categoryIcon": "🏭",
-        "title": "[주간 거래소 기관] 삼성전자·KB금융 집중 매수… SK하이닉스·삼성전기 팔았다",
-        "description": "[주간 거래소 기관] 삼성전자·KB금융 집중 매수… SK하이닉스·삼성전기 팔았다 &nbsp;&nbsp; 핀포인트뉴스",
-        "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1tVHpoYzZ1OW9aSkYwek1IcUFvUFF1ODRndWdDTmFseUsyRjMzZFdidzEtMllCSHRUMjdpVkMzeW92SkxQOTRwMU5wbXM2dGRkUkNaTEtibHp5WGhTY3pEVER4NXBXMTcxOF9SLVZXWFRwN0tBaUZZ0gF3QVVfeXFMTW1UemhjNnU5b1pKRjB6TUhxQW9QUXU4NGd1Z0NOYWx5SzJGMzNkV2J3MS0yWUJIdFQyN2lWQzN5b3ZKTFA5NHAxTnBtczZ0ZGRSQ1pMS2JsenlYaFNjekRURHg1cFcxNzE4X1ItVldYVHA3S0FpRlk?oc=5",
-        "source": {
-          "name": "핀포인트뉴스",
-          "url": "https://www.pinpointnews.co.kr"
-        },
-        "publishedAt": "2026-07-10T21:05:26.000Z",
-        "guid": "CBMid0FVX3lxTE1tVHpoYzZ1OW9aSkYwek1IcUFvUFF1ODRndWdDTmFseUsyRjMzZFdidzEtMllCSHRUMjdpVkMzeW92SkxQOTRwMU5wbXM2dGRkUkNaTEtibHp5WGhTY3pEVER4NXBXMTcxOF9SLVZXWFRwN0tBaUZZ0gF3QVVfeXFMTW1UemhjNnU5b1pKRjB6TUhxQW9QUXU4NGd1Z0NOYWx5…",
-        "score": 17
+        "score": 18
       }
     ],
     "finance": [
+      {
+        "id": "finance-QUkg7Iuc64yA7J",
+        "category": "finance",
+        "categoryName": "은행·증권·보험",
+        "categoryIcon": "💳",
+        "title": "AI 시대에도 '20년 전 규제'…국책은행 경쟁력 갉아먹는 총액인건비의 덫",
+        "description": "AI 시대에도 '20년 전 규제'…국책은행 경쟁력 갉아먹는 총액인건비의 덫 &nbsp;&nbsp; 뉴스1",
+        "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBFTWNTRlRPT2NNMXFPdHVhMWNfUUQ2VjI0TEpScFlVU1BGNzBqTHlZMzZXOFh4LW1xTm0wRmg0Y3M5bHVaNWV3UDlRaHA3bjBpUmNGX2lTWFkyYWI5T0h6QlF3?oc=5",
+        "source": {
+          "name": "뉴스1",
+          "url": "https://www.news1.kr"
+        },
+        "publishedAt": "2026-07-12T21:20:00.000Z",
+        "guid": "CBMiYkFVX3lxTFBFTWNTRlRPT2NNMXFPdHVhMWNfUUQ2VjI0TEpScFlVU1BGNzBqTHlZMzZXOFh4LW1xTm0wRmg0Y3M5bHVaNWV3UDlRaHA3bjBpUmNGX2lTWFkyYWI5T0h6QlF3",
+        "score": 88
+      },
       {
         "id": "finance-W0RRTl0g7Iug7Z",
         "category": "finance",
@@ -1516,7 +1500,7 @@
         },
         "publishedAt": "2026-07-12T15:00:00.000Z",
         "guid": "CBMifEFVX3lxTE0wTWo2bVQtdHZnSHBlOTExdXBvTktlSFNHQTBuV2FDeWJXakdhd1hTa3pqTjZTOWE5eExBU1pIMkpwNmoyY1E2cDQzZFVhR3RjT19pOUhDQkFOSjRsbExnVXVCUDdpQzY3OWpGbWZCZUhTNTBfblNpOHJxNjM",
-        "score": 83
+        "score": 82
       },
       {
         "id": "finance-NeuMgCDsnYDtlo",
@@ -1535,6 +1519,22 @@
         "score": 75
       },
       {
+        "id": "finance-MTPsnbwg7LCo6r",
+        "category": "finance",
+        "categoryName": "은행·증권·보험",
+        "categoryIcon": "💳",
+        "title": "13일 차기 보험개발원장 결정…유재훈·신현준·안철경 3파전 회추위 향방은 [보험개발원장 선임 레이스]",
+        "description": "13일 차기 보험개발원장 결정…유재훈·신현준·안철경 3파전 회추위 향방은 [보험개발원장 선임 레이스] &nbsp;&nbsp; 한국금융신문",
+        "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBIR1BOYVljbDhLVFZCMXFXSXJFN0xXc1ZidE1wOTlpMmlDbUg0ZEJ2eVo4MTdJSWI4dGY1ODZKaXdkdWhsWGduaEY2Y0h6S2VWclZYaTJQd01WMXdWbFVOVExqOFJxTWxWa3lEeGJ0azg3MnptU3BVel9vaGI?oc=5",
+        "source": {
+          "name": "한국금융신문",
+          "url": "https://www.fntimes.com"
+        },
+        "publishedAt": "2026-07-12T21:00:00.000Z",
+        "guid": "CBMifEFVX3lxTFBIR1BOYVljbDhLVFZCMXFXSXJFN0xXc1ZidE1wOTlpMmlDbUg0ZEJ2eVo4MTdJSWI4dGY1ODZKaXdkdWhsWGduaEY2Y0h6S2VWclZYaTJQd01WMXdWbFVOVExqOFJxTWxWa3lEeGJ0azg3MnptU3BVel9vaGI",
+        "score": 72
+      },
+      {
         "id": "finance-IuynkeqwksK37K",
         "category": "finance",
         "categoryName": "은행·증권·보험",
@@ -1548,7 +1548,7 @@
         },
         "publishedAt": "2026-07-12T00:30:00.000Z",
         "guid": "CBMibEFVX3lxTE5pQ1pXaGw2UWl2SlVNUkFHblluRGw0UC14dFJFcVZnLThUTFB4c2FXYU9UY0dBS3ZUYUZrODdVcng1TldPRWE1YmJHSGhzV0xxeDNLUzlSdWZGY2RqWDRGbDBHalB4X2dFa1FqTA",
-        "score": 68
+        "score": 67
       },
       {
         "id": "finance-7Iug7ZWc7Yis7J",
@@ -1564,7 +1564,7 @@
         },
         "publishedAt": "2026-07-12T12:13:34.000Z",
         "guid": "CBMiaEFVX3lxTE4td1MxM3N3eVh4R0w0Q3dwekQ0Q0JrclZ4aWMwRW5VNF9ZZkZlcDlScXZRTUpoZloyWllpV1IyeWY1WXVYeVV2NFlqZGVMc1cxNEN6WkNZSlIzYk5JOFB2VW9qTXJZTjRw0gFsQVVfeXFMTnlzZFEwa0hVS0VDMk8tVlNnOU1aY2dxend0TlhjMUlnLVlLMFRsbjVXVjNKU3Ax…",
-        "score": 64
+        "score": 63
       },
       {
         "id": "finance-NeuMgOydgO2WiS",
@@ -1572,15 +1572,15 @@
         "categoryName": "은행·증권·보험",
         "categoryIcon": "💳",
         "title": "5대은행 가계대출 증가 여력 85% 소진…하반기 대출한파 닥친다",
-        "description": "5대은행 가계대출 증가 여력 85% 소진…하반기 대출한파 닥친다 &nbsp;&nbsp; v.daum.net",
-        "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE5xd29yc1J3YUFmcDFjSWtfbXExOE1LUTR5MzQwZWc2SXctYWU5S2Q3RDZTODlGQ0txa0ZGSHFKdkpidUZUYXc?oc=5",
+        "description": "5대은행 가계대출 증가 여력 85% 소진…하반기 대출한파 닥친다 &nbsp;&nbsp; 매일경제",
+        "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1fNm9sNnZabjNPYUZwZmV3WVc4TmthanRxdm4tZktSY3dZZkswQVdXeEZTSjB3UTFYQnhvMG96X0d5VjhZb3BnSXZrc0dyemRWaUhWeQ?oc=5",
         "source": {
-          "name": "v.daum.net",
-          "url": "https://v.daum.net"
+          "name": "매일경제",
+          "url": "https://www.mk.co.kr"
         },
-        "publishedAt": "2026-07-12T04:03:03.000Z",
-        "guid": "CBMiRkFVX3lxTE5xd29yc1J3YUFmcDFjSWtfbXExOE1LUTR5MzQwZWc2SXctYWU5S2Q3RDZTODlGQ0txa0ZGSHFKdkpidUZUYXc",
-        "score": 64
+        "publishedAt": "2026-07-12T04:02:41.000Z",
+        "guid": "CBMiVEFVX3lxTE1fNm9sNnZabjNPYUZwZmV3WVc4TmthanRxdm4tZktSY3dZZkswQVdXeEZTSjB3UTFYQnhvMG96X0d5VjhZb3BnSXZrc0dyemRWaUhWeQ",
+        "score": 63
       },
       {
         "id": "finance-6rCA6rOE64yA7L",
@@ -1596,7 +1596,7 @@
         },
         "publishedAt": "2026-07-12T01:34:09.000Z",
         "guid": "CBMickFVX3lxTE1MVHRWSF9TejBOTGZGMm45SHZ4UlR1d0gyVUlOSW45dEhCaG9JZm1MZ2xEYXJxc0htREp2TmlMTmJ6ODB3a29fTlpDNDBOVFM1YWV1aDY4ZERXSzhFVU1tYUp4dF9zVV9fdGlELU1Xak53QQ",
-        "score": 62
+        "score": 61
       },
       {
         "id": "finance-7J2A7ZaJ6raMIO",
@@ -1612,7 +1612,7 @@
         },
         "publishedAt": "2026-07-12T01:33:14.000Z",
         "guid": "CBMid0FVX3lxTE1xZE84aGQ1MS1LZmYwU240YUZVTFhnVTJFa1RWV01paFgyZFo4WW1QaU5xZV9OYzJHSDk0T3FxVjRBUkxSVFo4MU1NZWVJQnZKc2JuQ29EeEZ0alVaU0JMUUFGcmZySEVxSjFISEJrMktwWk5lb0Jr0gF3QVVfeXFMTXFkTzhoZDUxLUtmZjBTbjRhRlVMWGdVMkVrVFZXTWlo…",
-        "score": 62
+        "score": 61
       },
       {
         "id": "finance-7LWc7Jyk6JmfIE",
@@ -1628,7 +1628,7 @@
         },
         "publishedAt": "2026-07-12T08:08:25.000Z",
         "guid": "CBMiWkFVX3lxTFBqTXMtaVBNOS1BT0VGbW1MZUZlMHNvNFFIcUZoMXdRWE5raWFUMlVSZHgzRjJUcFNaS2JWMExMUkFDWkhtYlU2dUJMMUNwTWZXa2hoWHd0RWxNZw",
-        "score": 60
+        "score": 59
       },
       {
         "id": "finance-6rCA6rOE7Iug7J",
@@ -1644,7 +1644,7 @@
         },
         "publishedAt": "2026-07-12T04:00:00.000Z",
         "guid": "CBMiZ0FVX3lxTE8xa25SMDlBS3JxUmxaRVZqcVJrWmFYWDJzaGtsWExPMGdvczJFWDdhRjFhalM3ZWJ4YlJqNmxqSXFfeW1nam1NZ3M0Qy1OTFpWR0JfN1kxekU4UkRzMnVUdUtsMkJLM0U",
-        "score": 56
+        "score": 55
       },
       {
         "id": "finance-W-yjvOuqqSBlLe",
@@ -1660,7 +1660,7 @@
         },
         "publishedAt": "2026-07-11T01:41:43.000Z",
         "guid": "CBMibEFVX3lxTE5VZmhkcnVxck91a1lzVjhDcWF5SGZzNVRuNklRY0hsSWh2U2h4aDNqbUd6SlN3VC1mSm02LWFBU1lRV1JXV2tublJkVk5yZEtmOXhaekVDa2VCZHh6cHRZNEhVVW4xU3hXS1ZsSQ",
-        "score": 38
+        "score": 37
       },
       {
         "id": "finance-MjDsnbzrtoDthL",
@@ -1676,7 +1676,7 @@
         },
         "publishedAt": "2026-07-10T23:36:22.000Z",
         "guid": "CBMidkFVX3lxTE1lYTdpcGFKLUdSWlYxR05wUUtWcW1BN28xTlV6MGNVazllRjVIemlVQmNlQl9nc240TXNQUjcwRl9FT0RpU1ktUHFPUWlwU0E0OW5OMC1MT1UtUVFsaTQxVjB6RUxuTlQyZmNOUFRsSG1sX3F4a0HSAXZBVV95cUxNZWE3aXBhSi1HUlpWMUdOcFFLVnFtQTdvMU5VejBjVWs5…",
-        "score": 36
+        "score": 35
       },
       {
         "id": "finance-7Iug7ZWc6riI7J",
@@ -1692,7 +1692,7 @@
         },
         "publishedAt": "2026-07-11T04:36:13.000Z",
         "guid": "CBMibkFVX3lxTE5Lc29fVlFackpoV3VvcktLb3BUVG1vM1cxRDZkY3pPTUtHS1lSNXBCUVhPQnZ4RHNzR21TZUI0ZEFINU9QdDlxUy1aekY2eEJrVmlOdGZVb1hobm1yY1AxSEkzQXYyUWtvQTBxdUVR",
-        "score": 33
+        "score": 32
       },
       {
         "id": "finance-NuyblCDqsIDqs4",
@@ -1708,7 +1708,7 @@
         },
         "publishedAt": "2026-07-11T01:57:37.000Z",
         "guid": "CBMicEFVX3lxTFBfODA3RFY3UC1reWVCNEFHOFN1eGxIb21QWE9xWGk2UjhFWXM2VUhQMnVLYldabFlHdXVBbGd5T3NSLWg5VGJJbE5yWl93ajJIM09OSThRYzFqdUpaWkRTR2tOZTRVR3lwQklVQ1V4VmY",
-        "score": 30
+        "score": 29
       },
       {
         "id": "finance-7J2067KI7KO8IO",
@@ -1724,7 +1724,7 @@
         },
         "publishedAt": "2026-07-11T08:00:00.000Z",
         "guid": "CBMiXEFVX3lxTE1CY1lneDl6Ykl2RURPTHpsM1d2cDJoV2FHNjZjOENiMVR5TW02Q2xZenhkdjFBTXg5R2VSakx6d0YwSWpvUUtuWms3RmZ0X3piUG5SWDdhVFVmeDlr",
-        "score": 28
+        "score": 27
       },
       {
         "id": "finance-W-q4sO2ajV0g7I",
@@ -1740,7 +1740,7 @@
         },
         "publishedAt": "2026-07-11T07:00:00.000Z",
         "guid": "CBMic0FVX3lxTFBEU1pFS01HTGRLRVI5MU5aY1NTamVnRFhJY3U1VjdsOVhoam5kUnhOVDRoX01XSXY5eHN2VVRJMVFVRV9KLUhNM3h3bHUtZVJISGtieXM1VlBCaV85RXRldzYtd2VjYThSa0tLN0g5anFSeDg",
-        "score": 27
+        "score": 26
       },
       {
         "id": "finance-4oCY7LqE67O065",
@@ -1756,7 +1756,7 @@
         },
         "publishedAt": "2026-07-11T03:20:18.000Z",
         "guid": "CBMiY0FVX3lxTE1qcWl0bmtXc2R3S3gybWlWTFhQQWpTSWxEamhJWlBKRDV0R0FPS1dIbGZNeFh3UlRWckEzYldlYXlVdE5kWHRSNHNMTVhUS0F3TjJPSG1hWnJ6YmJoMllWRlk3bw",
-        "score": 23
+        "score": 22
       },
       {
         "id": "finance-W-q4iOyctV0g7I",
@@ -1772,7 +1772,7 @@
         },
         "publishedAt": "2026-07-11T02:43:00.000Z",
         "guid": "CBMickFVX3lxTE5ULXU5NEVobWpNdXJ6amdnX3NkVEQ4Sjl6Ym9KUGhsV3BOQ1VVeEo0UHZQSnFmdFZtZ0l1dWdPZzZSV2Y2OFA5NC1kTnI3Z0pvdzk2VkxNQnNHT0VjRDVfcVlQX0JNakVuUkV4endEZG1zQQ",
-        "score": 23
+        "score": 22
       },
       {
         "id": "finance-7Jew66eQ64-EIO",
@@ -1788,10 +1788,42 @@
         },
         "publishedAt": "2026-07-10T23:44:43.000Z",
         "guid": "CBMia0FVX3lxTE51RWMzZDN0T1RmVHlydUZISVQtMnRnV2xfZG1PSHlKdWM2R3B3UjdpckRSd1hXdUkwV0ViQUs0X19VbTZEQmY4MGpIVUdOd2RfZ0tBLXdLTF9EZUl5cV9qcWx0dTd5ZGdpZkJr0gFrQVVfeXFMTnVFYzNkM3RPVGZUeXJ1RkhJVC0ydGdXbF9kbU9IeUp1YzZHcHdSN2lyRFJ3…",
-        "score": 20
+        "score": 19
       }
     ],
     "realestate": [
+      {
+        "id": "realestate-MTXsnbwg67aA64",
+        "category": "realestate",
+        "categoryName": "부동산·PF",
+        "categoryIcon": "🏙️",
+        "title": "15일 부동산 금융 토론회, 대출 규제 완급 조절...비거주 1주택자 규제, 지방 외지인 갭투자만 제한",
+        "description": "15일 부동산 금융 토론회, 대출 규제 완급 조절...비거주 1주택자 규제, 지방 외지인 갭투자만 제한 &nbsp;&nbsp; 대한경제",
+        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1yU3ZJWGoyVmZtMXRIWTBFUDhNbGRwaWJkQWc5NlJ1Mm9BbEZlOXo1OWs4M0ZGaHZkVnNsczBCaUpBN05rNHlkblhPdFlNcDk1SHhfTl84aFltcmlWaEI2YW5LWVF0VnVhY2VtMnM1SzN0aVdD?oc=5",
+        "source": {
+          "name": "대한경제",
+          "url": "https://www.dnews.co.kr"
+        },
+        "publishedAt": "2026-07-12T21:00:25.000Z",
+        "guid": "CBMidEFVX3lxTE1yU3ZJWGoyVmZtMXRIWTBFUDhNbGRwaWJkQWc5NlJ1Mm9BbEZlOXo1OWs4M0ZGaHZkVnNsczBCaUpBN05rNHlkblhPdFlNcDk1SHhfTl84aFltcmlWaEI2YW5LWVF0VnVhY2VtMnM1SzN0aVdD",
+        "score": 88
+      },
+      {
+        "id": "realestate-NeuMgCDsnYDtlo",
+        "category": "realestate",
+        "categoryName": "부동산·PF",
+        "categoryIcon": "🏙️",
+        "title": "5대 은행 가계대출 목표치 80% 소진…3곳은 이미 초과",
+        "description": "5대 은행 가계대출 목표치 80% 소진…3곳은 이미 초과 &nbsp;&nbsp; ER 이코노믹리뷰",
+        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFByRmQxcFdHekpwUjBET0RNeTYtOC12VE1lRmxvdmxsZWx5TWY5a0psUDdvZkpZR1FLenVFT0U2SHk0RGpJcHhKRlRIa1k2aVV4ZU42V0JIQk1mZDBtQVNyZ0U1dGJ4WEhZUVcxQg?oc=5",
+        "source": {
+          "name": "ER 이코노믹리뷰",
+          "url": "https://www.econovill.com"
+        },
+        "publishedAt": "2026-07-12T21:51:49.000Z",
+        "guid": "CBMibEFVX3lxTFByRmQxcFdHekpwUjBET0RNeTYtOC12VE1lRmxvdmxsZWx5TWY5a0psUDdvZkpZR1FLenVFT0U2SHk0RGpJcHhKRlRIa1k2aVV4ZU42V0JIQk1mZDBtQVNyZ0U1dGJ4WEhZUVcxQg",
+        "score": 81
+      },
       {
         "id": "realestate-7KCE7IS464yA7L",
         "category": "realestate",
@@ -1806,7 +1838,7 @@
         },
         "publishedAt": "2026-07-12T19:10:00.000Z",
         "guid": "CBMia0FVX3lxTE4zWUhRMnd2dzlXZGJVaVZRT3RtZVluNVUwZVI2dzBPdWJGdXpqdmxvbzlkWFhRZWdoZU5sS2pHU00tWXpsNXpldW9mOXNqNjBsVUNPdkdtaF92azBsS2VyYVhFaVQ2N1lnLVFZ0gFwQVVfeXFMTlJjWVNhMXVfTTNKWlNMbWpJUXFVRFlJcW9Ha2twczBjNjRHc1BfVmJZWDdj…",
-        "score": 79
+        "score": 78
       },
       {
         "id": "realestate-W-yYrOyVs-u2gO",
@@ -1822,7 +1854,7 @@
         },
         "publishedAt": "2026-07-12T21:00:00.000Z",
         "guid": "CBMiqgFBVV95cUxPVjBEY3FPMHdsaTdPX1MyZnhZMUdxakQyUlZpQ3JhTG1ucDJBdzJuOENMS0RqZk0wQWdCWU5tSDJxMkRfOW1OR3didDR6d2lrUTVyZTRaRTlkRGhUSGQ3R3E2S280NVRla2xQOWtnTG96aEFWSlFDUTVMelZzZWtHVTN5STNjUkxYQnVoaGJocHJLZ0lTbFhnbkpRbjF2MWxi…",
-        "score": 73
+        "score": 72
       },
       {
         "id": "realestate-6riw7KSA6riI66",
@@ -1838,7 +1870,7 @@
         },
         "publishedAt": "2026-07-12T03:38:11.000Z",
         "guid": "CBMi-wNBVV95cUxQdHNjSnhfTEw3ODRJcEd0X2VXWWQyUFhDb3JYWERYRTdSWVl3R0F1SThidmRhUWxDcHZPN0JadVowOGFEQVpNa216aXZKU3JNcmJRLThRVmJLbVBzako5ejJHZktoTlp3RV9oQmdRLW43dTZSWDdiVmthZGZJY0hjNzhldklWNjZieWxYbUxvN0tLamFJUmRLSzJhdk9Nb2E2…",
-        "score": 72
+        "score": 71
       },
       {
         "id": "realestate-S0Lqta3rr7zsnY",
@@ -1854,7 +1886,7 @@
         },
         "publishedAt": "2026-07-12T02:57:00.000Z",
         "guid": "CBMiaEFVX3lxTE0wRnMxU21POWdzdzFvQ3ZUS2NzeG5RNG9neHVoVDR4RUlWMTJnSWtEZkg4UEdDbUN5TkRkVmJTT0p4RmNxcWN6RlN3U21scUkwQnozbkl1SHQ5a19SM2w4dEpTM0d3cFdB",
-        "score": 63
+        "score": 62
       },
       {
         "id": "realestate-67aA64-Z7IKwIF",
@@ -1870,7 +1902,7 @@
         },
         "publishedAt": "2026-07-12T10:01:00.000Z",
         "guid": "CBMibkFVX3lxTE03bGNtRUlvdDVZei11MklZN0RyTlBSZ2czbjMzRXpGTXNlaVROcVVsSXdpa3A2T29VbXFETUhDOGJXT0tIXzlRU2JhdkRiRTBqZTZsV1NZcFh2d3VGR1NPaW1OOTVMbTQxZkpuMDV3",
-        "score": 62
+        "score": 61
       },
       {
         "id": "realestate-7KO87YOdwrfsi6",
@@ -1886,7 +1918,7 @@
         },
         "publishedAt": "2026-07-12T00:59:38.000Z",
         "guid": "CBMidEFVX3lxTE9GcEVXeTYyMWVBZ2FqNU1sdnhrcUF2SGNjbHAtalVvUDEtd3k0RVdwbnJIWFZpZ1lEQTc2NjZ5eXhKQzhfNXVUbmJIVmlIOWZyS0x6TVl5dGpmT3Fzc2hCOFV6WWtfX3hHbDd0YzZIVkRPTmRy",
-        "score": 61
+        "score": 60
       },
       {
         "id": "realestate-W-q1rOyekOusuO",
@@ -1902,7 +1934,7 @@
         },
         "publishedAt": "2026-07-12T08:20:24.000Z",
         "guid": "CBMiZ0FVX3lxTE1WN2t5elZBU1NMcWRaRTBwR3U4eERCLVQycDJlVXVvYkJoNV9DTW84UWp4V0g0SkxHQ01rTlFyRHZidEdhblNBS1hZQXZfcHdCcXFqbXdONURNakNWSVdpLTBlWDRUZ1k",
-        "score": 60
+        "score": 59
       },
       {
         "id": "realestate-W-ydtOyKiOu2hO",
@@ -1918,7 +1950,7 @@
         },
         "publishedAt": "2026-07-12T05:07:00.000Z",
         "guid": "CBMicEFVX3lxTE55eVZ6bnQ0OHNuN05SMzdIVUZaUzZvaFlJaHFFUlJBYVZncEt3N0p2aVpLWUN1dnVnQklzb2dfTVRyQkpIR3JkQ09IelpxSEtQOUZ0RHRYbjBKbHI2NWRtcy1yQlh1QldqTUdDYnNkYjk",
-        "score": 57
+        "score": 56
       },
       {
         "id": "realestate-64yA7ZiVIFBGwr",
@@ -1934,7 +1966,7 @@
         },
         "publishedAt": "2026-07-12T08:42:59.000Z",
         "guid": "CBMiWEFVX3lxTE92U3RRWExqOThEbUFKby1XeDhMSGZuWXFyeWFJdXE2TmxVY0xZVUs1c2tNSU9tRzdZYnBtdm1zT0NBSlczeWZfTl92bWF5TFpFSS15M1o0VjjSAVRBVV95cUxOeC13eFY3MVE4c1Q1Y0h0bXlhMUlEQUJzZmZfT2hzRWE3YWZ4VjJBSk1pbXVwSzRuSkU2d09veDlMdUlWZHg4…",
-        "score": 53
+        "score": 52
       }
     ],
     "crypto": [
@@ -1952,7 +1984,7 @@
         },
         "publishedAt": "2026-07-12T18:20:55.000Z",
         "guid": "CBMibEFVX3lxTFBEaXQ5QWk0Tk96bjZjYzdpQXVVeFFpZ2Q2Y2JzWDZIRHBfYnNDemNaSC1telZnaG5idkxLOVpBS1Rwa2lkY2plMkJyTXpWaXRnU2hqN0Q0T2pYc0RCV0kzOFdYTkJKd1pJV0Vjag",
-        "score": 70
+        "score": 69
       },
       {
         "id": "crypto-67mE7Yq47L2U7J",
@@ -1968,7 +2000,7 @@
         },
         "publishedAt": "2026-07-12T17:42:01.000Z",
         "guid": "CBMibEFVX3lxTE1LRkJJQmRDU2k2bDNHQkZPb2ExWURVVDNNU09kRWtmTFUtalNtRjY3aGhSM3R1d19sNktqVmczU0VMSXhJYmpGMUlLd013Tk5sUWVsNzF6OFZlZ1E4TWZOQXRVbmpGWGJCM3NQSQ",
-        "score": 70
+        "score": 69
       },
       {
         "id": "crypto-7KO87Iud64-EIF",
@@ -1984,7 +2016,7 @@
         },
         "publishedAt": "2026-07-12T17:00:00.000Z",
         "guid": "CBMia0FVX3lxTE1ZejYxQndIbjc5M3BVUUdxcGVTdThRT0ZkVVlkTGRsR2hhR214TlRBVENJdkkxZGwyVHp3R1M3OEpBalNSbXRHc0huajNmX1ZubVZuN3ZwbnNNdENTVXlHc1ZzcFY3MXNfZGVF0gFwQVVfeXFMTnhmblRXV05QSXd6T3NTaTdwUzkyZ0NWUDMyNl9XUjMwbWd0Vm42ZFM4QWph…",
-        "score": 69
+        "score": 68
       },
       {
         "id": "crypto-65287YOQIOyduO",
@@ -2000,7 +2032,7 @@
         },
         "publishedAt": "2026-07-12T12:57:57.000Z",
         "guid": "CBMi8wFBVV95cUxQSWU5RFhmMm9xY0V6OGFDeWJuZ1otdVhHdUt4a3d5X2YtQUtlUzhIbUVvWnJEVzM5cUVGRk5DM2VLTkdWN095WmxrblVVS3lKdzVPekxzUHZ3N0JFUWx4UGkxQXAxU0tveVU0bkRHaGZocEw3bWw2Y1FHQ2RqaTg5UHh1cFFyZUthTFhLcHBFX0Fpb2dpZHdYakxlWWs3WmhM…",
-        "score": 65
+        "score": 64
       },
       {
         "id": "crypto-SU1GIOuztOqzoO",
@@ -2016,7 +2048,7 @@
         },
         "publishedAt": "2026-07-11T16:34:38.000Z",
         "guid": "CBMickFVX3lxTE0wZkppVDc2bUlUOU9vU29vODFVUUM0R3g1YnMzc3AySkNtQ1hRZjMxUkE2OFN0clZMbi1pbUt6SEo4ZUpUV19VWEtfYzR6SUd1SmstRkFPaW5vUmtrWkNBSHF3ZGNLLWd2OGo0eUpuRGltZw",
-        "score": 61
+        "score": 60
       },
       {
         "id": "crypto-W-2VnOyjvOqwhC",
@@ -2032,7 +2064,7 @@
         },
         "publishedAt": "2026-07-12T06:00:00.000Z",
         "guid": "CBMiWEFVX3lxTE8zRUNONEVNQmlZSzF2STNRbnVCRDZWUHFIN2V1TmRiZEFsM2g5UTZxbEtldnktOE5iYjFCQnYwUkFTLVlLS242YmVDMmQtVUJvMGluQ28tamg",
-        "score": 58
+        "score": 57
       },
       {
         "id": "crypto-7YOc6rWtLCBVU0",
@@ -2048,7 +2080,7 @@
         },
         "publishedAt": "2026-07-12T13:24:53.000Z",
         "guid": "CBMidkFVX3lxTE9Cbk1vNnJ0TFRqeGVsaW5HNWt4M0JFeS1PUTQ5cllZRlNYMWJ6Qi1YdDh0OUFaVzAzT3dhZzRPZEQ0T1I3dURsNFRVUFVvb2VCX2x2X3JfS2VVWFpJMHBaOTAwYVJGTzZUZkZ2N1FHOVUxTmpvcmc",
-        "score": 57
+        "score": 56
       },
       {
         "id": "crypto-Um9iaW5ob29kLC",
@@ -2064,7 +2096,7 @@
         },
         "publishedAt": "2026-07-12T10:08:00.000Z",
         "guid": "CBMif0FVX3lxTE1yLU9NSVZrWVp2a0UtbDJQM0c3bnF2VmwySUVYQVpYZG1HbkN2ZS1UdW1TaGhjNzJnZlNQYTdWRGlRY1d0VGtuUXJ0bmpaeThPV0l6SFFmTmdqM0YyLUtFTGVRM0NrbDdWemstb1dINVJhWkNXNE9qS19LWXIyYnM",
-        "score": 54
+        "score": 53
       },
       {
         "id": "crypto-6riI7Jy17JyELC",
@@ -2080,7 +2112,7 @@
         },
         "publishedAt": "2026-07-12T07:00:00.000Z",
         "guid": "CBMiWkFVX3lxTFBaS1BQMFlvZzExRm5ydFM2cFljbEJ3bGxlcXdpMVVBNFFlbDZhcFJZNjNEVm5tLXlXWVpjOWo2WjJ5MVFPV2x2MXZtYU5QNXpoQzNPbjNrakNLQdIBWEFVX3lxTFA4c194UFRsQ21SRWxGZmVDY3puMzNPMmlKYXZVRUFrZkFRTUlxX05WVHVZMnVkNERxUjVkekFmUkpObGI3…",
-        "score": 51
+        "score": 50
       },
       {
         "id": "crypto-W-uJtOyalSDsvZ",
@@ -2096,7 +2128,7 @@
         },
         "publishedAt": "2026-07-11T21:29:00.000Z",
         "guid": "CBMiWEFVX3lxTFBrQWhSSzVfOTU3YjJIN2FjT25ESXc5Z2JaRHNCZVBMa0JEZ0g3QmNsTVZrb1JrYWdjTFFuaUE1QWpMNHlTQzFtdGZPTVZ6bGk2X3ladWlEWUY",
-        "score": 49
+        "score": 48
       },
       {
         "id": "crypto-7Iqk7YWM7J2067",
@@ -2112,7 +2144,23 @@
         },
         "publishedAt": "2026-07-11T21:00:00.000Z",
         "guid": "CBMi2gFBVV95cUxONTJGbE1UMXFVTHZaZF9jcm1TRzdjSlRDSlpCTHNIZWxIYW9ma2pOUnBFZlpSa2VQdkktUUdiY0ZBSlZtN0Y1RGVtUjgzTUp2Y1Q1VUdqWnd6UlBrS2tTUnUweXZWeEItMzZqVmx5bW9VTUdVTFFTbHIxQzdMTXJBVEdrX0N2a2ZMelZlSGFMbDFTblBVNWszMG4wZDZuNXhJ…",
-        "score": 49
+        "score": 48
+      },
+      {
+        "id": "crypto-VW5pc3dhcCwg7I",
+        "category": "crypto",
+        "categoryName": "가상자산",
+        "categoryIcon": "₿",
+        "title": "Uniswap, 스테이블코인 스왑 거래량과 프로토콜 업그레이드로 8% 이상 급등",
+        "description": "Uniswap, 스테이블코인 스왑 거래량과 프로토콜 업그레이드로 8% 이상 급등 &nbsp;&nbsp; Traders Union",
+        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPckVHblJ2bzRtUERZX0tfM29SYWFEWmRiOEFlSGZsc2xqTHpaQks3YTRCTGtIREwxWnBka3JoNDhadWhJalowRklGSUVsM1lLczlpQUdXQUFGWndUblRzal85VFF4YVBZdjk4RXlfV2FJNHVOdWFCc21GRFpHaUVSN2lCZW9XdnY0VjY4NHZ5dHlXX2lIWUtTNXY0S0pHR29keHBncQ?oc=5",
+        "source": {
+          "name": "Traders Union",
+          "url": "https://tradersunion.com"
+        },
+        "publishedAt": "2026-07-11T20:53:22.000Z",
+        "guid": "CBMipAFBVV95cUxPckVHblJ2bzRtUERZX0tfM29SYWFEWmRiOEFlSGZsc2xqTHpaQks3YTRCTGtIREwxWnBka3JoNDhadWhJalowRklGSUVsM1lLczlpQUdXQUFGWndUblRzal85VFF4YVBZdjk4RXlfV2FJNHVOdWFCc21GRFpHaUVSN2lCZW9XdnY0VjY4NHZ5dHlXX2lIWUtTNXY0S0pHR29k…",
+        "score": 48
       },
       {
         "id": "crypto-U29sYW5hKFNPTF",
@@ -2128,7 +2176,7 @@
         },
         "publishedAt": "2026-07-12T04:01:05.000Z",
         "guid": "CBMikgFBVV95cUxPcFBiTkNMWkVtRVdOdmFyUzh2M3htWktxT1BfS2JlOWdvNmhJWUlOZXdJb2pvXzd5T1R0d3VYQkhNdTVXc2cxMF81MW5JY0VQTDkxVTdoenN2Ym55cWN4TmdaRTFxNlZQNGY0aFZsNkppUzJ3b2tYUkozeUJDc25iZVlZbUZscHZ2UW81dnJWRGJHdw",
-        "score": 48
+        "score": 47
       },
       {
         "id": "crypto-67mE7Yq47L2U7J",
@@ -2144,7 +2192,7 @@
         },
         "publishedAt": "2026-07-11T11:55:24.000Z",
         "guid": "CBMic0FVX3lxTE9OTlkwN2Znek9HSnhsYXI2YmxHV1hwOGdUWFJmNGRlU1pGcVhSUlE3RW9EOHZBX21wWEVTUXJnRVdsUm5nRmw5YkxkQ2U2R2RHWlZuWWtEZVdYY3MyT0pURFFydFpPUkZyVzV5T0ZoLXE4X2M",
-        "score": 40
+        "score": 39
       },
       {
         "id": "crypto-67mE7Yq47L2U7J",
@@ -2160,7 +2208,7 @@
         },
         "publishedAt": "2026-07-11T00:47:30.000Z",
         "guid": "CBMiZ0FVX3lxTE1HVGpJcUdkODJnT29YeF9uc3MxMDBUcW1xMGJKdlNsSnktSlZ2b2pKYjhzQVFXZ29lSklRTXFuLVIyYWxxWS16eEZQR1o4bXQ3WERnMkR1WnUyWWc4NFN0ZUI2TEk1U1k",
-        "score": 37
+        "score": 36
       },
       {
         "id": "crypto-U29sYW5hKFNPTF",
@@ -2176,7 +2224,7 @@
         },
         "publishedAt": "2026-07-11T14:46:12.000Z",
         "guid": "CBMikgFBVV95cUxNVnFIVnRZLWFPU0xhRExkMzNMLXU1ZmpqaXJGeXBGd3Z1T3QzZzl3SndmMjhxXzFVcEh5TjRaZ0x0R3pLaUdwSHR5aURpTHZXYkJDZnNnZFJlRHNnWFVuckF6N1BtcjF1UTEyUkZ6eTZWSkt1QUNTUlZxN3QtbXRacUk0R3JfUE81MW5aU1pscGU5QQ",
-        "score": 35
+        "score": 34
       },
       {
         "id": "crypto-WFJQIOyngOq4iC",
@@ -2192,7 +2240,7 @@
         },
         "publishedAt": "2026-07-11T10:28:58.000Z",
         "guid": "CBMiW0FVX3lxTE1Lckw5SWhvT0tLV3llYlZkX1M4VGhLR3ZfcXZXa25hZlA1QXJsT3JHN09nV29weEJUWmF4UjhtZncycVRrQ2FkdlRMcFVQdmpqdjVvN2NDZDM3OEE",
-        "score": 30
+        "score": 29
       },
       {
         "id": "crypto-67CU7J2064K47I",
@@ -2208,7 +2256,7 @@
         },
         "publishedAt": "2026-07-11T09:17:55.000Z",
         "guid": "CBMiwAFBVV95cUxPWVJaa0NCV01rU0ViTG9CbmtQUEdfTHhEalJsRk9Ed0VUMUpBdURSMmpVLUJSOEtYS0tRWmc4S3ZEemJnVlE5NmdybWQ3bVZGT3hYcXFkTlEzQk94QWtyZ0RsaEpPRWx1clpsd2NjcG5tN1EzWXRrZXhCRlJKai1DcE9LcWRQTHBGSmFNQnZ3eHVwUHFNMVk5RnRRZlFES1pp…",
-        "score": 29
+        "score": 28
       },
       {
         "id": "crypto-VUZDIOyWuOuNlO",
@@ -2224,7 +2272,7 @@
         },
         "publishedAt": "2026-07-11T08:36:13.000Z",
         "guid": "CBMitwNBVV95cUxNNkdzSnZTWEdLYmRmYnFGS2NLM05udkFxbDN6Q0R1WW5aSXRHRTdQUTc2eENVNjVLV3prU09pRWY0dXduemx1LXhwUEYxOVFnamdrakJlZXhidEJ5ZzV2QS1VVVRxNUJVNHA2cmJkMHNaYmR2TGt6SEZkOUc2bTFIaV9fRmkxLW5ndkdDeHI3eUFBVU5nNWxsNHFHMlUwNGFM…",
-        "score": 29
+        "score": 28
       },
       {
         "id": "crypto-QlRDwrdFVEjCt1",
@@ -2240,7 +2288,7 @@
         },
         "publishedAt": "2026-07-11T05:09:51.000Z",
         "guid": "CBMiUEFVX3lxTE5RRHRoUGpFT3Z4SDBCSkhaMEZqUU5JRmdDNHY0UFZjaE5yZnZlaGhodWFtMkdkb003VXpUck1ZMm40MHNkS0hFdXFMZWtOSUot",
-        "score": 25
+        "score": 24
       },
       {
         "id": "crypto-IuyImOyImOujjC",
@@ -2256,7 +2304,7 @@
         },
         "publishedAt": "2026-07-11T00:32:36.000Z",
         "guid": "CBMid0FVX3lxTE9UZ0ZRNkNSSmJKTXQzVFdGbjVOV2xJVi1ya2xBcGlVcWNlY2xsY0wxR3JGUkx0MmJyZHZ3NUVTZUUyaWQtNG10Z3A2Z19RN0FmNUVKUlhvTkVEYnFpYXdBNXBWb1FtYXgyMnVNcWthbktXQ0VVMXlR",
-        "score": 21
+        "score": 20
       }
     ],
     "global": [
@@ -2274,7 +2322,7 @@
         },
         "publishedAt": "2026-07-12T02:59:00.000Z",
         "guid": "CBMibkFVX3lxTE56R3dHYWhpMklyUEdQbWFSUTR2RU1rdElNZUViN2pxTUVyNjVlTUtrOTFqcHJpbWFsZF9ZVkxEQjlKRGxhNjNWamhnaU1sdmFUTmF6VlZqemNWT0J0WWpxLWZtMGFaaDhSTE9vcFln",
-        "score": 63
+        "score": 62
       },
       {
         "id": "global-SE1NLCDtlbTsg4",
@@ -2290,7 +2338,7 @@
         },
         "publishedAt": "2026-07-11T22:01:00.000Z",
         "guid": "CBMiU0FVX3lxTE9VSHBVVExJemJ1WmR4X3hlQzVGek1va1JiNjdiLXVkdkRRZlVtVVllbUE2RERHYnpNZU11eDdETEpLRnhicHprelNtYVA4bk5yMVY4",
-        "score": 58
+        "score": 57
       },
       {
         "id": "global-7Jm467aAIOy2qe",
@@ -2306,23 +2354,7 @@
         },
         "publishedAt": "2026-07-11T23:51:42.000Z",
         "guid": "CBMifkFVX3lxTE81VHRPdjduMEVJZGJiX0ZtZjJwaS1NLUlQa3NKak5iQk1EdU9FaUluVXoxZ3Z5bng2dV84enJhM1pCR1lHYk5xU2JmT2RhOWZkWVhOTWtjVjF1YUtWa0JuZU1sRk1uLTBRTnJ4cnl0d0xRa2NmUmlISjlySW9VUQ",
-        "score": 44
-      },
-      {
-        "id": "global-W-2KueynkTog5p",
-        "category": "global",
-        "categoryName": "글로벌 경제",
-        "categoryIcon": "🌐",
-        "title": "[특집: 新국력전쟁 Series No. 6: 한국 경제외교의 미래] “외교가 곧 산업이고 산업이 곧 국력이다”",
-        "description": "[특집: 新국력전쟁 Series No. 6: 한국 경제외교의 미래] “외교가 곧 산업이고 산업이 곧 국력이다” &nbsp;&nbsp; 코리아포스트 한글판",
-        "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1FSkt6QklpTjh1bUllX0VxLXRKV3VvMnBabWhHcGs0TjFXUENsTXJWX0pCSjdxQ09FNFFQbzB3YjhUbUVWRzNrQ1NhNFM3c3kzYk4tRnVuZkpqdjlYUlhNU3BGZEJOYVpGXzlrUmNR?oc=5",
-        "source": {
-          "name": "코리아포스트 한글판",
-          "url": "https://www.koreapost.co.kr"
-        },
-        "publishedAt": "2026-07-11T22:00:00.000Z",
-        "guid": "CBMibkFVX3lxTE1FSkt6QklpTjh1bUllX0VxLXRKV3VvMnBabWhHcGs0TjFXUENsTXJWX0pCSjdxQ09FNFFQbzB3YjhUbUVWRzNrQ1NhNFM3c3kzYk4tRnVuZkpqdjlYUlhNU3BGZEJOYVpGXzlrUmNR",
-        "score": 42
+        "score": 43
       },
       {
         "id": "global-SUVBICLsnKDrn7",
@@ -2330,15 +2362,31 @@
         "categoryName": "글로벌 경제",
         "categoryIcon": "🌐",
         "title": "IEA \"유럽도, 한중일처럼 전기 비중 30% 넘겨야\"",
-        "description": "IEA \"유럽도, 한중일처럼 전기 비중 30% 넘겨야\" &nbsp;&nbsp; v.daum.net",
-        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBKZmtYZTZld25INm91LXlzcmtiOG5iX3RQM0o4by1jNjN4NlNRcmR4U0ZLbklISU13dDBkVEFXSllWdEFrUjE3azMzRUx6MEE?oc=5",
+        "description": "IEA \"유럽도, 한중일처럼 전기 비중 30% 넘겨야\" &nbsp;&nbsp; 파이낸셜뉴스",
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1sbWVPS2tTdHdlZ0hveVF6NUtrUW1BLU9BSUZ4Z2ptYW80Zk8xQWRrQlJHcnhzaGJ1dURCTC1FMjhCdW51VEtXLXprY1pLWl93cjVuT2NaUUZ2UQ?oc=5",
+        "source": {
+          "name": "파이낸셜뉴스",
+          "url": "https://www.fnnews.com"
+        },
+        "publishedAt": "2026-07-11T19:06:42.000Z",
+        "guid": "CBMiWkFVX3lxTE1sbWVPS2tTdHdlZ0hveVF6NUtrUW1BLU9BSUZ4Z2ptYW80Zk8xQWRrQlJHcnhzaGJ1dURCTC1FMjhCdW51VEtXLXprY1pLWl93cjVuT2NaUUZ2UQ",
+        "score": 38
+      },
+      {
+        "id": "global-4oCc7J2064yA66",
+        "category": "global",
+        "categoryName": "글로벌 경제",
+        "categoryIcon": "🌐",
+        "title": "“이대로면 EU 방문 취소”…韓철강, EU와 막판 담판",
+        "description": "“이대로면 EU 방문 취소”…韓철강, EU와 막판 담판 &nbsp;&nbsp; v.daum.net",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1XT09uaFotbkJkMXBhdXk3Y256NnJ1Z19uWm94NGRUU2Q2cF9ncWh0NVl1akQybUZJZ1h4QTJKbGxUVDU3QVJXdVpqYXFta3c?oc=5",
         "source": {
           "name": "v.daum.net",
           "url": "https://v.daum.net"
         },
-        "publishedAt": "2026-07-11T19:08:37.000Z",
-        "guid": "CBMiT0FVX3lxTFBKZmtYZTZld25INm91LXlzcmtiOG5iX3RQM0o4by1jNjN4NlNRcmR4U0ZLbklISU13dDBkVEFXSllWdEFrUjE3azMzRUx6MEE",
-        "score": 39
+        "publishedAt": "2026-07-11T00:22:42.000Z",
+        "guid": "CBMiT0FVX3lxTE1XT09uaFotbkJkMXBhdXk3Y256NnJ1Z19uWm94NGRUU2Q2cF9ncWh0NVl1akQybUZJZ1h4QTJKbGxUVDU3QVJXdVpqYXFta3c",
+        "score": 19
       },
       {
         "id": "global-7Ya17IOB64u56r",
@@ -2354,7 +2402,7 @@
         },
         "publishedAt": "2026-07-11T00:01:00.000Z",
         "guid": "CBMiW0FVX3lxTE1PN1ZaLUFKYUdxSGlQNjFwSEh0aWtENFJ0TF91WGxDdDVGV2N6Rml1X1k4RlE3aXB1NE5jbG5sc3pSSEQ0dThQbXZFVDRTVllKakJuWUozOXozcjjSAWBBVV95cUxQamRXbVdsYTJFajA2X3BqVEFtSWdBbDE4RU93TUx5SDhrUWgzb0ZHMmNabmFYS1pHWFlsNkRNUUhZME1E…",
-        "score": 20
+        "score": 19
       },
       {
         "id": "global-7ZWcIOuLrCDstq",
@@ -2370,7 +2418,7 @@
         },
         "publishedAt": "2026-07-10T22:01:28.000Z",
         "guid": "CBMiT0FVX3lxTE1ocjF1d1V1N1dqQkdSWDBqNHZPZ2R1aEJfMWhuS19rQ2htR3c5bGVMLUxrTU01blhhRFhSU1dLc1dmMW1qTHpyVXNscVBFS0k",
-        "score": 18
+        "score": 17
       }
     ],
     "policy": [
@@ -2388,7 +2436,7 @@
         },
         "publishedAt": "2026-07-10T22:38:55.000Z",
         "guid": "CBMi_wNBVV95cUxOaV9qSGNhSERKZnJuSUE4SzVNZHhlc1VxUVFCVFgxVV8xOGg5Y19QMlg5ZlJqdkhpQ0U0bHFod2p0Y3JjMGxrcktDSWZlYmNnYndOZGlsM1dEaGNyQUotLUFuc29QZG1Dd1VVZlIzUUtHd1hZRWxJeEZMc1FyWExqQnRRdlRyNElrbXN3SEM2enRhQW9JdFRSODJJd0lYX3lE…",
-        "score": 43
+        "score": 42
       },
       {
         "id": "policy-7KCB7KCVIOuztO",
@@ -2404,7 +2452,7 @@
         },
         "publishedAt": "2026-07-11T01:19:33.000Z",
         "guid": "CBMi-gJBVV95cUxOR2VRYXlzRU9IaGd0bU03MVlBQ1ljSjhtZDc3bVV4RnBzYjhyWjhOWlVFREhjTl9QS252ZUhIa3l5OHVpeVBrSFdxVEJhY1pOc3lET2kxUWdUNW15U0tPSDVCVl9rNUdoa1VSUXlsY2NIeVlNZkV1YWN6bG13WmJ1TVZuRC1wUnkyWURGVWMwT2RzbWVUS1Jnbl9KcmJUYTBB…",
-        "score": 29
+        "score": 28
       }
     ],
     "consumer": [
@@ -2422,7 +2470,7 @@
         },
         "publishedAt": "2026-07-11T22:00:00.000Z",
         "guid": "CBMiUkFVX3lxTE5yOGVpUzFTTndySnk3MzRTQjgtcFlvVjFSV1kzT0VIcTR2X2dJbGhOc1JMRGtiSHRLVTBEQlFEdmNSZC1raE10RFliNVFmSVRoYWfSAVNBVV95cUxOMmpMSno1M2huVTZuVlU0OWd6eEprcjNwSWh3dnpiaGMtbWZYTVdwSXNobmhHQnhjNXJFVkhJX2xvdXdod0QtUUt5WjNK…",
-        "score": 58
+        "score": 57
       },
       {
         "id": "consumer-6rWt7IS47LKtLC",
@@ -2438,7 +2486,7 @@
         },
         "publishedAt": "2026-07-12T09:18:53.000Z",
         "guid": "CBMiaEFVX3lxTFA0RXp3YkRLWFpyejBna3dmVDVGSjBQZXpIOWY3NVpHV1h6ajdqWmJtdjFyNVFLWkxvcm4zOFViaTc4QXhjbFkzdl9BOHR1RlZaU2JHNUJpRnZzOFpZT0Y5TjdCanpsbU5m",
-        "score": 53
+        "score": 52
       },
       {
         "id": "consumer-64K064WEIOy1nO",
@@ -2454,7 +2502,7 @@
         },
         "publishedAt": "2026-07-12T04:44:08.000Z",
         "guid": "CBMiT0FVX3lxTE9PZEtzRWx6UDBjOUs3YTd6R1M1SHhlSzJyMWh4OFdqVjN2ZGNyeGwtOHZ0SFV2YTI3WkZkS0dIQmlRbWJnVXVGQmx3SDYxTW8",
-        "score": 49
+        "score": 48
       },
       {
         "id": "consumer-67mg66W4IOuwsO",
@@ -2470,7 +2518,23 @@
         },
         "publishedAt": "2026-07-12T02:23:27.000Z",
         "guid": "CBMiWEFVX3lxTFA2dHQydUp1QThDUWxBQXhxUDlQNThob1NZV1laX0Z3U1VNSC03cFd3ZExjZ3pLaV8tczFOUGpyTHhFU0U0LXEwcVFDSE1nMkMyeUI3MWhacEs",
-        "score": 46
+        "score": 45
+      },
+      {
+        "id": "consumer-IuyDneqzhOu5hC",
+        "category": "consumer",
+        "categoryName": "소비·유통·생활경제",
+        "categoryIcon": "🛒",
+        "title": "\"생계비 빠듯\" vs \"인건비 한계\"…최저임금 '690원' 왜 못 좁히나",
+        "description": "\"생계비 빠듯\" vs \"인건비 한계\"…최저임금 '690원' 왜 못 좁히나 &nbsp;&nbsp; 파이낸셜뉴스",
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5wMnpkVXlUUjZPMmVkQ2lpam5YVzJQanE4UVY0ZHJKTFRSTzA2d21YT2RUQ3ZrQWJ1ZmJtbmUyUWtPRjlibi01S3pMTmVYRjB0TDFzYmRodzJDQQ?oc=5",
+        "source": {
+          "name": "파이낸셜뉴스",
+          "url": "https://www.fnnews.com"
+        },
+        "publishedAt": "2026-07-12T00:01:32.000Z",
+        "guid": "CBMiWkFVX3lxTE5wMnpkVXlUUjZPMmVkQ2lpam5YVzJQanE4UVY0ZHJKTFRSTzA2d21YT2RUQ3ZrQWJ1ZmJtbmUyUWtPRjlibi01S3pMTmVYRjB0TDFzYmRodzJDQQ",
+        "score": 43
       },
       {
         "id": "consumer-WyAyMDI264WEID",
@@ -2486,7 +2550,7 @@
         },
         "publishedAt": "2026-07-11T12:16:21.000Z",
         "guid": "CBMijgFBVV95cUxOU2FfUnprdkJVaWFna2hqcnFkaElYbUNQYkJ4R2ZLUkprbVZaU3FSRnhIbjRSdGMwcjhkQ1ZUc0N3RndhRExubjZvaGdabzBzSUJEUXFLc1AyaGRVT2otM3drNGhEUzBDX3VUQU5VMXpGMkFidXpPODBYbFFCVWloYVcwVEZGaTkyajNaUkZB",
-        "score": 32
+        "score": 31
       },
       {
         "id": "consumer-IuuJtOyniOuenO",
@@ -2502,7 +2566,7 @@
         },
         "publishedAt": "2026-07-11T10:11:30.000Z",
         "guid": "CBMi_gFBVV95cUxQeHpjS0syZDFMRVFOY2Y1RmVoSW5xNlg0Z2cxSEV0VTdYSE41R2ZSU1JQV0V2TWpUaEVnZUVsc2ZmQk5DS21QSG5mSmVUMWowMlVDSENnLUhrc3NSSjNXV2o4bjl6b2k2RHNndUpSMloxMzBEWkZmY2FNdmo0UmdKY2lmMXNrNjBXdU9XYmFaaW5DbXlwM1pJZjdnRnlhYVBY…",
-        "score": 30
+        "score": 29
       },
       {
         "id": "consumer-64KY7Lmo67CY77",
@@ -2518,7 +2582,7 @@
         },
         "publishedAt": "2026-07-11T03:42:32.000Z",
         "guid": "CBMiaEFVX3lxTE9pRXNvS0RqNzdIRTJGalhYUFRWYjR4ckFOXzVQTk9LUmpqNVpWS0Ffc1JjTGVOQ3R0MGdwT24wT0xDb0lNSS1XTHprYl9zcWY2T0FDSXdEYmZwNGVTdlZoOVdhRkhGcVFw",
-        "score": 24
+        "score": 23
       },
       {
         "id": "consumer-64K064WEIOy1nO",
@@ -2534,27 +2598,43 @@
         },
         "publishedAt": "2026-07-10T22:30:35.000Z",
         "guid": "CBMi_gFBVV95cUxOV0FDdmF0RE5nMzRPbG1tbzh1cld0dEdkaWhJOWhtUldCTTlqeGoyc1VmTWNRNjRxMGxxRGQ1VDNDbVI2Wm1DSTlkMG1SVzZlSm5ZTGs3aGRCbXdQdk4tVWxRa3Zmb0VGT0lodVNhTVU4ZERkTEJaNW5WWDNVdHVmLVdaTzdqYUJPVkU4dlVNMWk3b1JLVktmUlhCXzAzT3pw…",
-        "score": 18
-      },
-      {
-        "id": "consumer-7LWc7KCA7J6E6r",
-        "category": "consumer",
-        "categoryName": "소비·유통·생활경제",
-        "categoryIcon": "🛒",
-        "title": "최저임금 10% 오르자…'창업 3년 미만 사장님' 폐업확률 8.4%p 뛰었다 [사장님 잡는 최저임금]",
-        "description": "최저임금 10% 오르자…'창업 3년 미만 사장님' 폐업확률 8.4%p 뛰었다 [사장님 잡는 최저임금] &nbsp;&nbsp; 네이트",
-        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBoT1BYamVDTEZXemVvc2ZpZFFhdzY4T1VVa2J3TGplYk1kV2JORUtVamVIY3k2dHFvcG5nWm14Q0hYc3o3cF94QkFGRmRIXzRRNW1Z?oc=5",
-        "source": {
-          "name": "네이트",
-          "url": "https://news.nate.com"
-        },
-        "publishedAt": "2026-07-10T21:31:00.000Z",
-        "guid": "CBMiU0FVX3lxTFBoT1BYamVDTEZXemVvc2ZpZFFhdzY4T1VVa2J3TGplYk1kV2JORUtVamVIY3k2dHFvcG5nWm14Q0hYc3o3cF94QkFGRmRIXzRRNW1Z",
         "score": 17
       }
     ]
   },
   "allItems": [
+    {
+      "id": "finance-QUkg7Iuc64yA7J",
+      "category": "finance",
+      "categoryName": "은행·증권·보험",
+      "categoryIcon": "💳",
+      "title": "AI 시대에도 '20년 전 규제'…국책은행 경쟁력 갉아먹는 총액인건비의 덫",
+      "description": "AI 시대에도 '20년 전 규제'…국책은행 경쟁력 갉아먹는 총액인건비의 덫 &nbsp;&nbsp; 뉴스1",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBFTWNTRlRPT2NNMXFPdHVhMWNfUUQ2VjI0TEpScFlVU1BGNzBqTHlZMzZXOFh4LW1xTm0wRmg0Y3M5bHVaNWV3UDlRaHA3bjBpUmNGX2lTWFkyYWI5T0h6QlF3?oc=5",
+      "source": {
+        "name": "뉴스1",
+        "url": "https://www.news1.kr"
+      },
+      "publishedAt": "2026-07-12T21:20:00.000Z",
+      "guid": "CBMiYkFVX3lxTFBFTWNTRlRPT2NNMXFPdHVhMWNfUUQ2VjI0TEpScFlVU1BGNzBqTHlZMzZXOFh4LW1xTm0wRmg0Y3M5bHVaNWV3UDlRaHA3bjBpUmNGX2lTWFkyYWI5T0h6QlF3",
+      "score": 88
+    },
+    {
+      "id": "realestate-MTXsnbwg67aA64",
+      "category": "realestate",
+      "categoryName": "부동산·PF",
+      "categoryIcon": "🏙️",
+      "title": "15일 부동산 금융 토론회, 대출 규제 완급 조절...비거주 1주택자 규제, 지방 외지인 갭투자만 제한",
+      "description": "15일 부동산 금융 토론회, 대출 규제 완급 조절...비거주 1주택자 규제, 지방 외지인 갭투자만 제한 &nbsp;&nbsp; 대한경제",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1yU3ZJWGoyVmZtMXRIWTBFUDhNbGRwaWJkQWc5NlJ1Mm9BbEZlOXo1OWs4M0ZGaHZkVnNsczBCaUpBN05rNHlkblhPdFlNcDk1SHhfTl84aFltcmlWaEI2YW5LWVF0VnVhY2VtMnM1SzN0aVdD?oc=5",
+      "source": {
+        "name": "대한경제",
+        "url": "https://www.dnews.co.kr"
+      },
+      "publishedAt": "2026-07-12T21:00:25.000Z",
+      "guid": "CBMidEFVX3lxTE1yU3ZJWGoyVmZtMXRIWTBFUDhNbGRwaWJkQWc5NlJ1Mm9BbEZlOXo1OWs4M0ZGaHZkVnNsczBCaUpBN05rNHlkblhPdFlNcDk1SHhfTl84aFltcmlWaEI2YW5LWVF0VnVhY2VtMnM1SzN0aVdD",
+      "score": 88
+    },
     {
       "id": "market-Iuy9lOyKpO2UvC",
       "category": "market",
@@ -2569,7 +2649,7 @@
       },
       "publishedAt": "2026-07-12T19:22:46.000Z",
       "guid": "CBMibEFVX3lxTE5YeUtjZzFNLU9KY2xmN3FFU1dKdXFGM3JELU9VMnFYVjZfY1V6a1lLTmRlN1FyeDNhVVdwT0hKR3BTTXNGUjlJSHBnOUZlXzBwb1I4cy1HU0hNaE4yR3Nlb3lEbG9zRm4xTEpuTA",
-      "score": 87
+      "score": 86
     },
     {
       "id": "market-6Z-T6riI66aswr",
@@ -2585,23 +2665,23 @@
       },
       "publishedAt": "2026-07-12T19:00:00.000Z",
       "guid": "CBMiU0FVX3lxTE9MZzVPdTNPTVlLWUpxR1diOTY1SGM1V0lJb0FObkctcXFUQ1d3ZjZfSmVpUzZNbUFJYnFMUU5IQTFJQUNPTHZ4NUxXbl94SS1iMmI4",
-      "score": 87
+      "score": 86
     },
     {
       "id": "macro-7ZWc6rWt7J2A7Z",
       "category": "macro",
       "categoryName": "금리·환율·거시",
       "categoryIcon": "🏦",
-      "title": "한국은행, 이번주 금리 올린다…관건은 8월 연속 인상 여부",
-      "description": "한국은행, 이번주 금리 올린다…관건은 8월 연속 인상 여부 &nbsp;&nbsp; 네이트",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5ZT3VCd3ZZTkYzd0dFSGRhUm5VM0hvQUd1X3JiRldLdTdMR2J5YjZPZzlIMW5VQnZVTFBBNXBHUDgzUzdUbnIzZklPa2FGWGxaZzNNZjc3LVRqNGIwY0N2THlseWw1T1M3NjFZRDVR?oc=5",
+      "title": "한국은행, 이번주 금리 올린다… 관건은 8월 연속 인상 여부",
+      "description": "한국은행, 이번주 금리 올린다… 관건은 8월 연속 인상 여부 &nbsp;&nbsp; 세계일보",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9OYnZDMkFuSm5DcW5xZnVUaFNXeGtyMkFNZjR5UjFodHVES0pKVmdJSVU0aEtQVFU2cldVSUdxeWNMT3pzMkhUQ0hEZE1XT1ItbUI00gFUQVVfeXFMT1p0ZlBoQTVoY2hyNi11WWtWRTNtUU12ZkhtNHRxeEFyYVd0SHY1dEpFa3RldXRCX3NJRElRYVNpaVZiVy1ycThzdHc0RjJpZFhoNTVu?oc=5",
       "source": {
-        "name": "네이트",
-        "url": "https://news.nate.com"
+        "name": "세계일보",
+        "url": "https://www.segye.com"
       },
-      "publishedAt": "2026-07-12T10:16:00.000Z",
-      "guid": "CBMibkFVX3lxTE5ZT3VCd3ZZTkYzd0dFSGRhUm5VM0hvQUd1X3JiRldLdTdMR2J5YjZPZzlIMW5VQnZVTFBBNXBHUDgzUzdUbnIzZklPa2FGWGxaZzNNZjc3LVRqNGIwY0N2THlseWw1T1M3NjFZRDVR",
-      "score": 86
+      "publishedAt": "2026-07-12T10:15:52.000Z",
+      "guid": "CBMiU0FVX3lxTE9OYnZDMkFuSm5DcW5xZnVUaFNXeGtyMkFNZjR5UjFodHVES0pKVmdJSVU0aEtQVFU2cldVSUdxeWNMT3pzMkhUQ0hEZE1XT1ItbUI00gFUQVVfeXFMT1p0ZlBoQTVoY2hyNi11WWtWRTNtUU12ZkhtNHRxeEFyYVd0SHY1dEpFa3RldXRCX3NJRElRYVNpaVZiVy1ycThzdHc0…",
+      "score": 85
     },
     {
       "id": "market-W-ymneyLnCDsoI",
@@ -2617,7 +2697,7 @@
       },
       "publishedAt": "2026-07-12T15:00:00.000Z",
       "guid": "CBMicEFVX3lxTE5BSzJTb21jUVBRSzFXR240Z2NmVnZ4YXQ0bEZsSm5VQ3hFbWFUa2NoRHpZcjdORzVxVUJ2YWVtTWhCbFFsZHMyaHo5UXJzUE15VEJ3enZEZkdPV1NFaFFyNFlRdlVucXg3bzFmRkJwRm7SAXRBVV95cUxNWWJuMVZ0NFdsVXdBU0J5bkxDUzR3bmNocHU4c3R1b0lHUzNYOHBr…",
-      "score": 83
+      "score": 82
     },
     {
       "id": "finance-W0RRTl0g7Iug7Z",
@@ -2633,7 +2713,55 @@
       },
       "publishedAt": "2026-07-12T15:00:00.000Z",
       "guid": "CBMifEFVX3lxTE0wTWo2bVQtdHZnSHBlOTExdXBvTktlSFNHQTBuV2FDeWJXakdhd1hTa3pqTjZTOWE5eExBU1pIMkpwNmoyY1E2cDQzZFVhR3RjT19pOUhDQkFOSjRsbExnVXVCUDdpQzY3OWpGbWZCZUhTNTBfblNpOHJxNjM",
-      "score": 83
+      "score": 82
+    },
+    {
+      "id": "realestate-NeuMgCDsnYDtlo",
+      "category": "realestate",
+      "categoryName": "부동산·PF",
+      "categoryIcon": "🏙️",
+      "title": "5대 은행 가계대출 목표치 80% 소진…3곳은 이미 초과",
+      "description": "5대 은행 가계대출 목표치 80% 소진…3곳은 이미 초과 &nbsp;&nbsp; ER 이코노믹리뷰",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFByRmQxcFdHekpwUjBET0RNeTYtOC12VE1lRmxvdmxsZWx5TWY5a0psUDdvZkpZR1FLenVFT0U2SHk0RGpJcHhKRlRIa1k2aVV4ZU42V0JIQk1mZDBtQVNyZ0U1dGJ4WEhZUVcxQg?oc=5",
+      "source": {
+        "name": "ER 이코노믹리뷰",
+        "url": "https://www.econovill.com"
+      },
+      "publishedAt": "2026-07-12T21:51:49.000Z",
+      "guid": "CBMibEFVX3lxTFByRmQxcFdHekpwUjBET0RNeTYtOC12VE1lRmxvdmxsZWx5TWY5a0psUDdvZkpZR1FLenVFT0U2SHk0RGpJcHhKRlRIa1k2aVV4ZU42V0JIQk1mZDBtQVNyZ0U1dGJ4WEhZUVcxQg",
+      "score": 81
+    },
+    {
+      "id": "market-NzTsobAgJ-unpO",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "74조 '매물폭탄' 사라졌다…코스피 급락이 국민연금 매도 멈췄다",
+      "description": "74조 '매물폭탄' 사라졌다…코스피 급락이 국민연금 매도 멈췄다 &nbsp;&nbsp; 네이트",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9RX0NjSzlnaVJ5ZkJLOVRrWVphZ3pXRjFfYnJ3MXVhMkg3azcyWjlmY0pmblczdnFJZk1UamlmUEwtZGg1MUQzRzQ0emhJU19XMEo0?oc=5",
+      "source": {
+        "name": "네이트",
+        "url": "https://news.nate.com"
+      },
+      "publishedAt": "2026-07-12T21:51:00.000Z",
+      "guid": "CBMiU0FVX3lxTE9RX0NjSzlnaVJ5ZkJLOVRrWVphZ3pXRjFfYnJ3MXVhMkg3azcyWjlmY0pmblczdnFJZk1UamlmUEwtZGg1MUQzRzQ0emhJU19XMEo0",
+      "score": 81
+    },
+    {
+      "id": "market-U0vtlZjsnbTri4",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "SK하이닉스 ADR 13% 급등…코스피 반등 지속성은",
+      "description": "SK하이닉스 ADR 13% 급등…코스피 반등 지속성은 &nbsp;&nbsp; TopStarNews",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFA1SzZoeXFDZWR3bmZ1MXZQdEVTM3JWUlRSNG5Xdi1kcmJSU2I3aFk2S2FPMnVuWU03QXNNOHg4V0t5Wm1hOXVlSkZER1JWc1JuM2NOZFhuMGpMTnNGYkRfM1VHRDUwTGVZWmdfaDExVWJ5Zw?oc=5",
+      "source": {
+        "name": "TopStarNews",
+        "url": "https://www.topstarnews.net"
+      },
+      "publishedAt": "2026-07-12T21:36:24.000Z",
+      "guid": "CBMickFVX3lxTFA1SzZoeXFDZWR3bmZ1MXZQdEVTM3JWUlRSNG5Xdi1kcmJSU2I3aFk2S2FPMnVuWU03QXNNOHg4V0t5Wm1hOXVlSkZER1JWc1JuM2NOZFhuMGpMTnNGYkRfM1VHRDUwTGVZWmdfaDExVWJ5Zw",
+      "score": 81
     },
     {
       "id": "market-7L2U7Iqk64ulIO",
@@ -2649,23 +2777,23 @@
       },
       "publishedAt": "2026-07-12T20:45:00.000Z",
       "guid": "CBMiVEFVX3lxTFBIeEJhWVUxbUk4djJxbnhXS212WFpGeWY2R2JhV0h4dS1NWUtmclhQb254OEtUUEExaFpkUlFGMnF4NXFhWXRCaUYzN2VxSTFUeW9ZNw",
-      "score": 81
+      "score": 80
     },
     {
       "id": "market-67CY64-E7LK07K",
       "category": "market",
       "categoryName": "증시·시장",
       "categoryIcon": "📈",
-      "title": "반도체주 이끌 ASML·TSMC 실적…인플레 둔화 기대, 워시 의회 보고도 관심[이번주 美 증시는]",
-      "description": "반도체주 이끌 ASML·TSMC 실적…인플레 둔화 기대, 워시 의회 보고도 관심[이번주 美 증시는] &nbsp;&nbsp; 네이트",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5GVFhiLWJWb1RhTW9MMjJHU0VibEpvanI3UmZZNlNjLV9VbVJaeFdzcnpfdTJyclZIT0xvN1BJU2ZoRWNReFlaZ2g5c05CTDlLaVdj?oc=5",
+      "title": "반도체주 이끌 ASML·TSMC 실적…인플레 둔화 기대, 워시 의회 보고도 관심[이번주 美 증시는] - 머니투데이",
+      "description": "반도체주 이끌 ASML·TSMC 실적…인플레 둔화 기대, 워시 의회 보고도 관심[이번주 美 증시는] - 머니투데이 &nbsp;&nbsp; 머니투데이",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBFcDlienNjQTNfa3hCSTgycFZuSDlyUllRQTJ1bVFQNXJJZjVsZktRTlRqS0tCdEYyMnpTd3ctZWlXekpRdHBObHIxVlVDcmE0RW1yZE9Jai1xOHF6M25hSG5FMFZBSm5qRjBkSzJB0gFuQVVfeXFMUEVwOWJ6c2NBM19reEJJODJwVm5IOXJSWVFBMnVtUVA1cklmNWxmS1FOVGpLS0J0RjIyelN3dy1laVd6SlF0cE5scjFWVUNyYTRFbXJkT0lqLXE4cXozbmFIbkUwVkFKbmpGMGRLMkE?oc=5",
       "source": {
-        "name": "네이트",
-        "url": "https://news.nate.com"
+        "name": "머니투데이",
+        "url": "https://www.mt.co.kr"
       },
-      "publishedAt": "2026-07-12T20:36:00.000Z",
-      "guid": "CBMiU0FVX3lxTE5GVFhiLWJWb1RhTW9MMjJHU0VibEpvanI3UmZZNlNjLV9VbVJaeFdzcnpfdTJyclZIT0xvN1BJU2ZoRWNReFlaZ2g5c05CTDlLaVdj",
-      "score": 81
+      "publishedAt": "2026-07-12T20:35:12.000Z",
+      "guid": "CBMibkFVX3lxTFBFcDlienNjQTNfa3hCSTgycFZuSDlyUllRQTJ1bVFQNXJJZjVsZktRTlRqS0tCdEYyMnpTd3ctZWlXekpRdHBObHIxVlVDcmE0RW1yZE9Jai1xOHF6M25hSG5FMFZBSm5qRjBkSzJB0gFuQVVfeXFMUEVwOWJ6c2NBM19reEJJODJwVm5IOXJSWVFBMnVtUVA1cklmNWxmS1FO…",
+      "score": 80
     },
     {
       "id": "market-MzjsobAg67ma7Y",
@@ -2681,7 +2809,7 @@
       },
       "publishedAt": "2026-07-12T20:00:00.000Z",
       "guid": "CBMiVEFVX3lxTE9uWUtLZmluMzJBSDlGeGI3YUNxbmRFMlo3NEl5ZUoycVBPTkVMUXRlVXc2VGVsYzhVVXRFV09Vd1JSWFIxcjZDZzJ6ak0tZ1Nxa2tQcQ",
-      "score": 80
+      "score": 79
     },
     {
       "id": "realestate-7KCE7IS464yA7L",
@@ -2697,7 +2825,7 @@
       },
       "publishedAt": "2026-07-12T19:10:00.000Z",
       "guid": "CBMia0FVX3lxTE4zWUhRMnd2dzlXZGJVaVZRT3RtZVluNVUwZVI2dzBPdWJGdXpqdmxvbzlkWFhRZWdoZU5sS2pHU00tWXpsNXpldW9mOXNqNjBsVUNPdkdtaF92azBsS2VyYVhFaVQ2N1lnLVFZ0gFwQVVfeXFMTlJjWVNhMXVfTTNKWlNMbWpJUXFVRFlJcW9Ha2twczBjNjRHc1BfVmJZWDdj…",
-      "score": 79
+      "score": 78
     },
     {
       "id": "company-7L2U7Iqk7ZS8ID",
@@ -2713,7 +2841,7 @@
       },
       "publishedAt": "2026-07-12T11:07:55.000Z",
       "guid": "CBMi6gNBVV95cUxOd24xUS13S21wLWdYUTVabkxMMGlUU3k0eGlDNTZZMHNldzFaWjV5eFFhUmpVSnVfUlpMbmoxRjZMM3FKaVk0cWpyUC1pcGh3U0lVSnRIci11NjEweHppMG1RZnQtbFJObHhPV09NX01GZVo3R1FyRXJYbXhXWGRUdmM1TmVYZ0pkSjRqS2lOX0I0SFNsbHJ2dW9VVkJpYXIw…",
-      "score": 79
+      "score": 78
     },
     {
       "id": "finance-NeuMgCDsnYDtlo",
@@ -2745,7 +2873,23 @@
       },
       "publishedAt": "2026-07-12T15:00:00.000Z",
       "guid": "CBMicEFVX3lxTE82d2JpaXZtX0IyS1d1a0F3NHZWTkJ1UTkzZDJfX3pYOEVQR0lEMnFJUC1QUkI2OXp6SXUxbTI3VUxnQW5HdFo4X2RVdDhia05pbmpoekZldGR6S2E0VjVpWW1zVmJWMDQxRUhXdTRsaE3SAXRBVV95cUxQaThkeGE5Vjc3U0gzbGhnVERMQlhMbmFzRkg2dmtadklUR0YzNEJP…",
-      "score": 75
+      "score": 74
+    },
+    {
+      "id": "finance-MTPsnbwg7LCo6r",
+      "category": "finance",
+      "categoryName": "은행·증권·보험",
+      "categoryIcon": "💳",
+      "title": "13일 차기 보험개발원장 결정…유재훈·신현준·안철경 3파전 회추위 향방은 [보험개발원장 선임 레이스]",
+      "description": "13일 차기 보험개발원장 결정…유재훈·신현준·안철경 3파전 회추위 향방은 [보험개발원장 선임 레이스] &nbsp;&nbsp; 한국금융신문",
+      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBIR1BOYVljbDhLVFZCMXFXSXJFN0xXc1ZidE1wOTlpMmlDbUg0ZEJ2eVo4MTdJSWI4dGY1ODZKaXdkdWhsWGduaEY2Y0h6S2VWclZYaTJQd01WMXdWbFVOVExqOFJxTWxWa3lEeGJ0azg3MnptU3BVel9vaGI?oc=5",
+      "source": {
+        "name": "한국금융신문",
+        "url": "https://www.fntimes.com"
+      },
+      "publishedAt": "2026-07-12T21:00:00.000Z",
+      "guid": "CBMifEFVX3lxTFBIR1BOYVljbDhLVFZCMXFXSXJFN0xXc1ZidE1wOTlpMmlDbUg0ZEJ2eVo4MTdJSWI4dGY1ODZKaXdkdWhsWGduaEY2Y0h6S2VWclZYaTJQd01WMXdWbFVOVExqOFJxTWxWa3lEeGJ0azg3MnptU3BVel9vaGI",
+      "score": 72
     },
     {
       "id": "realestate-W-yYrOyVs-u2gO",
@@ -2761,7 +2905,7 @@
       },
       "publishedAt": "2026-07-12T21:00:00.000Z",
       "guid": "CBMiqgFBVV95cUxPVjBEY3FPMHdsaTdPX1MyZnhZMUdxakQyUlZpQ3JhTG1ucDJBdzJuOENMS0RqZk0wQWdCWU5tSDJxMkRfOW1OR3didDR6d2lrUTVyZTRaRTlkRGhUSGQ3R3E2S280NVRla2xQOWtnTG96aEFWSlFDUTVMelZzZWtHVTN5STNjUkxYQnVoaGJocHJLZ0lTbFhnbkpRbjF2MWxi…",
-      "score": 73
+      "score": 72
     },
     {
       "id": "market-QUkg67aI7J6lIO",
@@ -2777,7 +2921,7 @@
       },
       "publishedAt": "2026-07-12T20:00:00.000Z",
       "guid": "CBMieEFVX3lxTFBpU1JsVk5DS3lxcTU4OVBIeWdBWWljdWJRSEtaSXJkcmp0MDRQUW9FQlEyMVoyZS1MbkNuYkxCM2xFY0dNS0xoTG05dXZ4eFZXZkpweDlHV09fVWVJWUU0a1ExSHdiRVlaRTFkVUZCa1V3RFFNdm1IUQ",
-      "score": 72
+      "score": 71
     },
     {
       "id": "market-7L2U7Iqk7ZS8LC",
@@ -2793,7 +2937,7 @@
       },
       "publishedAt": "2026-07-12T03:57:51.000Z",
       "guid": "CBMiswJBVV95cUxPdHVzVzd5UkhUbmJHaTV3a3Z5Yk1WckE4akMtZVhsdVpRX1BjcDdwMEdpVzlucGxILU9zYjJnZjhOV2xJU1BjWlY0M1R6elZtV3N3TzJYS3pWWDQ2YVk5UkNPMEwzRkVMVVU2VmtPTG85ZGtXWnphbGdyTWppaVFSVUdZVjU5N2N5UXhYdVBlaWJRS1JabEZCdlVfYjFBVjBT…",
-      "score": 72
+      "score": 71
     },
     {
       "id": "realestate-6riw7KSA6riI66",
@@ -2809,7 +2953,7 @@
       },
       "publishedAt": "2026-07-12T03:38:11.000Z",
       "guid": "CBMi-wNBVV95cUxQdHNjSnhfTEw3ODRJcEd0X2VXWWQyUFhDb3JYWERYRTdSWVl3R0F1SThidmRhUWxDcHZPN0JadVowOGFEQVpNa216aXZKU3JNcmJRLThRVmJLbVBzako5ejJHZktoTlp3RV9oQmdRLW43dTZSWDdiVmthZGZJY0hjNzhldklWNjZieWxYbUxvN0tLamFJUmRLSzJhdk9Nb2E2…",
-      "score": 72
+      "score": 71
     },
     {
       "id": "company-7L2U7Iqk7ZS8ID",
@@ -2825,7 +2969,7 @@
       },
       "publishedAt": "2026-07-12T11:00:59.000Z",
       "guid": "CBMisgNBVV95cUxQdDA1MVczY2VCSVZCdmRMaGI0Sk11WmFlbEZVVDc3a1drOTRrbGdqMzFMZHROd0dGQ1VtUVRSRFJuc2pkRFRmZjhmNXdnMklpTlhFczBWcTRuRWl6cVZBd1B4VWlPbDhRLTZBcHRlb2NYX09Qa1hHeGNmYTc4b2RVc2luY21DVTBXTFJ5Qk00T3FOam0wZ2pTNE12bklqZHRR…",
-      "score": 71
+      "score": 70
     },
     {
       "id": "crypto-W0QtQklaIOyVlO",
@@ -2841,7 +2985,7 @@
       },
       "publishedAt": "2026-07-12T18:20:55.000Z",
       "guid": "CBMibEFVX3lxTFBEaXQ5QWk0Tk96bjZjYzdpQXVVeFFpZ2Q2Y2JzWDZIRHBfYnNDemNaSC1telZnaG5idkxLOVpBS1Rwa2lkY2plMkJyTXpWaXRnU2hqN0Q0T2pYc0RCV0kzOFdYTkJKd1pJV0Vjag",
-      "score": 70
+      "score": 69
     },
     {
       "id": "crypto-67mE7Yq47L2U7J",
@@ -2857,7 +3001,7 @@
       },
       "publishedAt": "2026-07-12T17:42:01.000Z",
       "guid": "CBMibEFVX3lxTE1LRkJJQmRDU2k2bDNHQkZPb2ExWURVVDNNU09kRWtmTFUtalNtRjY3aGhSM3R1d19sNktqVmczU0VMSXhJYmpGMUlLd013Tk5sUWVsNzF6OFZlZ1E4TWZOQXRVbmpGWGJCM3NQSQ",
-      "score": 70
+      "score": 69
     },
     {
       "id": "crypto-7KO87Iud64-EIF",
@@ -2873,7 +3017,7 @@
       },
       "publishedAt": "2026-07-12T17:00:00.000Z",
       "guid": "CBMia0FVX3lxTE1ZejYxQndIbjc5M3BVUUdxcGVTdThRT0ZkVVlkTGRsR2hhR214TlRBVENJdkkxZGwyVHp3R1M3OEpBalNSbXRHc0huajNmX1ZubVZuN3ZwbnNNdENTVXlHc1ZzcFY3MXNfZGVF0gFwQVVfeXFMTnhmblRXV05QSXd6T3NTaTdwUzkyZ0NWUDMyNl9XUjMwbWd0Vm42ZFM4QWph…",
-      "score": 69
+      "score": 68
     },
     {
       "id": "company-W-qwnOyepeyLnO",
@@ -2889,7 +3033,7 @@
       },
       "publishedAt": "2026-07-12T00:33:08.000Z",
       "guid": "CBMiuwRBVV95cUxPTU9mYWtaQXlGYkROUmF4SUxtenNTWFNpQjAzbURHbktCaVhIblBsQXFsa3pXUkNUNjJGejZqb2I1WXd6TUM3eDVRdUFnVTJpSVVjLWpCakVTd3JQRHRxbEZ0UFVCQ09POURjdUJlZ0o3RXJiU0ppQ1hESkYwUUk3SGkwdG5raHdYcHNSaEcyZmxuWTRkUVRPRklFSnA0bF8t…",
-      "score": 69
+      "score": 68
     },
     {
       "id": "finance-IuynkeqwksK37K",
@@ -2905,7 +3049,7 @@
       },
       "publishedAt": "2026-07-12T00:30:00.000Z",
       "guid": "CBMibEFVX3lxTE5pQ1pXaGw2UWl2SlVNUkFHblluRGw0UC14dFJFcVZnLThUTFB4c2FXYU9UY0dBS3ZUYUZrODdVcng1TldPRWE1YmJHSGhzV0xxeDNLUzlSdWZGY2RqWDRGbDBHalB4X2dFa1FqTA",
-      "score": 68
+      "score": 67
     },
     {
       "id": "company-U0vtlZjsnbTri4",
@@ -2921,7 +3065,23 @@
       },
       "publishedAt": "2026-07-11T23:12:07.000Z",
       "guid": "CBMia0FVX3lxTE9nRVBUMVpkMW5nb2ZpSVRnZGttdklWRkpFeWp3SjJHay1wN2ZrYkQ2cVp1TVd6cFFCak0yRHJwX3JhcHNETVgwaVFlaE43OFgxb2E4amx4NjloZjB5NGZqVEYzTzExV2k4MVJV",
-      "score": 67
+      "score": 66
+    },
+    {
+      "id": "macro-MDcvMTMgW-uJtO",
+      "category": "macro",
+      "categoryName": "금리·환율·거시",
+      "categoryIcon": "🏦",
+      "title": "07/13 [뉴욕증시 마감브리핑]",
+      "description": "07/13 [뉴욕증시 마감브리핑] &nbsp;&nbsp; 네이버 프리미엄콘텐츠",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPQm5JRVVWbUZETl9XaU93ZU5QQ3Z0QTdEQU9UbXdkOEV0SmVYeFR4XzRHNFVzVGduVUZUS0UyRHZYUkVhRGZoTVctZ3hzYVJRZWN1TjI5ODctb0NrNUUwckJWekotNnZrMURtbjVSMkRGU1lwQ18tMURSSDkyXzBFZkN4N2tFWU9ETHpJ?oc=5",
+      "source": {
+        "name": "네이버 프리미엄콘텐츠",
+        "url": "https://contents.premium.naver.com"
+      },
+      "publishedAt": "2026-07-12T21:46:00.000Z",
+      "guid": "CBMiiwFBVV95cUxPQm5JRVVWbUZETl9XaU93ZU5QQ3Z0QTdEQU9UbXdkOEV0SmVYeFR4XzRHNFVzVGduVUZUS0UyRHZYUkVhRGZoTVctZ3hzYVJRZWN1TjI5ODctb0NrNUUwckJWekotNnZrMURtbjVSMkRGU1lwQ18tMURSSDkyXzBFZkN4N2tFWU9ETHpJ",
+      "score": 65
     },
     {
       "id": "market-7L2U7Iqk7ZS8LC",
@@ -2937,7 +3097,7 @@
       },
       "publishedAt": "2026-07-12T14:13:42.000Z",
       "guid": "CBMibkFVX3lxTE11b1UzU1UteGphM2MxejJ0d0lZVDNnN0s1ank1VU1KMHdTUTIybndoaG9pQXh4V0xtYXlaM25CUzVDcmVHeTZMQUFCWEptT2FvajhwN3RTLTdBek9RUUVwUl9ReWhNdkk2dnBYaWZ30gFyQVVfeXFMTXZEU3VoakJIaW9uV3FFVG0xa1ZGUnR6eXdRS1V6bW9hNE94WUV1eG9C…",
-      "score": 66
+      "score": 65
     },
     {
       "id": "market-W-uvuOq1rSDrib",
@@ -2953,7 +3113,7 @@
       },
       "publishedAt": "2026-07-11T22:26:27.000Z",
       "guid": "CBMicEFVX3lxTFBfRzlseWkyYXdSc2ZwN0V6VHhkWlFuZEZudFQtdVFmWnRuZzZKRjhBelU5eC1HUXZ0dDNDWWw2d0JzcHd4cWdacEdsX3BHWkhhU0tja21JWGZNcEtwSXhMcTB2ZExGWXlCalUyOExNZ0Y",
-      "score": 66
+      "score": 65
     },
     {
       "id": "crypto-65287YOQIOyduO",
@@ -2969,7 +3129,7 @@
       },
       "publishedAt": "2026-07-12T12:57:57.000Z",
       "guid": "CBMi8wFBVV95cUxQSWU5RFhmMm9xY0V6OGFDeWJuZ1otdVhHdUt4a3d5X2YtQUtlUzhIbUVvWnJEVzM5cUVGRk5DM2VLTkdWN095WmxrblVVS3lKdzVPekxzUHZ3N0JFUWx4UGkxQXAxU0tveVU0bkRHaGZocEw3bWw2Y1FHQ2RqaTg5UHh1cFFyZUthTFhLcHBFX0Fpb2dpZHdYakxlWWs3WmhM…",
-      "score": 65
+      "score": 64
     },
     {
       "id": "market-U0vtlZjsnbTri4",
@@ -2985,7 +3145,7 @@
       },
       "publishedAt": "2026-07-12T04:56:07.000Z",
       "guid": "CBMibkFVX3lxTE81SXE0THg2WjgzeWw1QzZwVXN3T2RJZUYzUG9EdXZVaFF2eUlNc1E0VHp0MnNvNTJQRWtSdnRyNDBKUjZCb3ptU2N6ak5TUHJGV2FWQ0ZYTFF4YzREM1ZBbHhmcGQ0Z21qb0dmTTB3",
-      "score": 65
+      "score": 64
     },
     {
       "id": "company-W-yLrOy4tSDrto",
@@ -3001,7 +3161,23 @@
       },
       "publishedAt": "2026-07-12T04:52:00.000Z",
       "guid": "CBMiakFVX3lxTE1wc0NWaVFUWlRoZHBtLWVPNm1uc0ZWNWQtYnViTzZuRGJ6aVUwb0FFbU9nUHBhOWVmcmtDclVTU09wOW0zZGFkTm5ULWoycmpXSnh5MHhTY014QS1SUnI1OTdFczcySTNWSHc",
-      "score": 65
+      "score": 64
+    },
+    {
+      "id": "company-7L2U7Iqk7ZS8LC",
+      "category": "company",
+      "categoryName": "기업·실적·산업",
+      "categoryIcon": "🏭",
+      "title": "코스피, 변동성 속 강보합 마감…코스닥은 1%대 상승",
+      "description": "코스피, 변동성 속 강보합 마감…코스닥은 1%대 상승 &nbsp;&nbsp; MSN",
+      "url": "https://news.google.com/rss/articles/CBMizgJBVV95cUxOUnNZQnpRdEkwZG9rc0dXM2ZMLU1qeHpGdHBsTkZ0Y2pMN0k3ZVU0cE02X2NMV0lLUjg4dUlhcG5ZNDcxakVZOUsxc3JPRmw3dm1xSW1uRTUtNzkxRmE3REtSYzRuMnVfSnpoZUZFczlFNmYzWGZ6ZnRIcHREUkVnLTlDUFVYcUVubXVyR3MwMkROWUFqemJWb21UZWNackdYc0M4VlZiS001ZFFQYndqUTdHenYtdnFPYmM0RmI5R0xCOUYyNXFPTnEwMnlmbGZJcFFKN1NvMmFhVzhVVnlqZEplbzdVZXUyVS1QRkFHcWlnTzFxazRVRGlYRGZLVnlKY0ZOcWlNUERVUHIyUC1iY2phOWVkMmdQUUZ5djd0U09VZVFxcU9aYS1lejU1U3FTUXA5MnJrUFg0cDhjSFBzV1VkUlZwWDNnSHNLbU1R?oc=5",
+      "source": {
+        "name": "MSN",
+        "url": "https://www.msn.com"
+      },
+      "publishedAt": "2026-07-12T04:43:27.000Z",
+      "guid": "CBMizgJBVV95cUxOUnNZQnpRdEkwZG9rc0dXM2ZMLU1qeHpGdHBsTkZ0Y2pMN0k3ZVU0cE02X2NMV0lLUjg4dUlhcG5ZNDcxakVZOUsxc3JPRmw3dm1xSW1uRTUtNzkxRmE3REtSYzRuMnVfSnpoZUZFczlFNmYzWGZ6ZnRIcHREUkVnLTlDUFVYcUVubXVyR3MwMkROWUFqemJWb21UZWNackdY…",
+      "score": 64
     },
     {
       "id": "macro-N-yblCAxMOydvC",
@@ -3017,23 +3193,7 @@
       },
       "publishedAt": "2026-07-12T04:42:25.000Z",
       "guid": "CBMiakFVX3lxTE4zNmE4VWpzMnVNM0hFVzhrNS1yZHBmYjRNYlJkLUVDUUhQUEtSOUhCVTZSYjFWMFRPR2ZkOWFNa2dBQ1QtNV8zcmVlblM3ZUdnS0tRMmdtanMzdzBpQUkxSGxOLUVoRXJOcmc",
-      "score": 65
-    },
-    {
-      "id": "market-W-ychO2BtOumrC",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "[위클리 재테크 레터] 삼성전자 89조 벌고 급락, 하이닉스 나스닥 260조 잭팟… ‘롤러코스피’ 생존법",
-      "description": "[위클리 재테크 레터] 삼성전자 89조 벌고 급락, 하이닉스 나스닥 260조 잭팟… ‘롤러코스피’ 생존법 &nbsp;&nbsp; theconnectmoney.com",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE43R3pMblRTYklTdlVZeXJIdWdZMThiSkd4M2FaMWhIcEFrQ0FCS1AwZ3pMS19LYlE5M3NTV1J5eGVSeXh3RXI0enRmRnpodEhacmlaUzQxS3pMOTEwYXZXUw?oc=5",
-      "source": {
-        "name": "theconnectmoney.com",
-        "url": "https://www.theconnectmoney.com"
-      },
-      "publishedAt": "2026-07-11T21:20:00.000Z",
-      "guid": "CBMiYEFVX3lxTE43R3pMblRTYklTdlVZeXJIdWdZMThiSkd4M2FaMWhIcEFrQ0FCS1AwZ3pMS19LYlE5M3NTV1J5eGVSeXh3RXI0enRmRnpodEhacmlaUzQxS3pMOTEwYXZXUw",
-      "score": 65
+      "score": 64
     },
     {
       "id": "finance-7Iug7ZWc7Yis7J",
@@ -3049,7 +3209,7 @@
       },
       "publishedAt": "2026-07-12T12:13:34.000Z",
       "guid": "CBMiaEFVX3lxTE4td1MxM3N3eVh4R0w0Q3dwekQ0Q0JrclZ4aWMwRW5VNF9ZZkZlcDlScXZRTUpoZloyWllpV1IyeWY1WXVYeVV2NFlqZGVMc1cxNEN6WkNZSlIzYk5JOFB2VW9qTXJZTjRw0gFsQVVfeXFMTnlzZFEwa0hVS0VDMk8tVlNnOU1aY2dxend0TlhjMUlnLVlLMFRsbjVXVjNKU3Ax…",
-      "score": 64
+      "score": 63
     },
     {
       "id": "market-7L2U7Iqk7ZS8wr",
@@ -3065,7 +3225,7 @@
       },
       "publishedAt": "2026-07-12T11:33:49.000Z",
       "guid": "CBMiUkFVX3lxTE01TVpyU3NpREI5dWZJX1paOUJMeERWdUJuVC1FSl96XzR5S2xsNTE0RkNvY2VnX0RoZER5TERqMUhQWmZoYjRWc2YyRjhRUzlmTGc",
-      "score": 64
+      "score": 63
     },
     {
       "id": "macro-7KCE66ed772c6r",
@@ -3081,7 +3241,7 @@
       },
       "publishedAt": "2026-07-12T04:30:22.000Z",
       "guid": "CBMiaEFVX3lxTFBNOUx6ak5Ha0I0WUh3Mm10T3RfN1ZsVzFFQ0F3aGNnMXdKVkIxVnN5MWdUMk85TGFiRHlmd2gzV0RUbGJIZDVaYTRoVUJFUkg0X1lvUld0eW01RC13VGV2RWg0VG5sSlgz",
-      "score": 64
+      "score": 63
     },
     {
       "id": "market-W-yekOyCsOyatO",
@@ -3097,7 +3257,7 @@
       },
       "publishedAt": "2026-07-12T04:13:00.000Z",
       "guid": "CBMia0FVX3lxTE9kZy1tX0hQLVRZZU5ScXB2cmtTVkVkTHBzUXJ1UGROME9pOFJpdnhjTUhHYnozVWVHNjVrSmdpTGNUMjhVVVBCdUcyVEIzVXdmZGV0dWZUMUw5S2tId3Z0T3dLaWJvQU5udHQ0",
-      "score": 64
+      "score": 63
     },
     {
       "id": "finance-NeuMgOydgO2WiS",
@@ -3105,15 +3265,31 @@
       "categoryName": "은행·증권·보험",
       "categoryIcon": "💳",
       "title": "5대은행 가계대출 증가 여력 85% 소진…하반기 대출한파 닥친다",
-      "description": "5대은행 가계대출 증가 여력 85% 소진…하반기 대출한파 닥친다 &nbsp;&nbsp; v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE5xd29yc1J3YUFmcDFjSWtfbXExOE1LUTR5MzQwZWc2SXctYWU5S2Q3RDZTODlGQ0txa0ZGSHFKdkpidUZUYXc?oc=5",
+      "description": "5대은행 가계대출 증가 여력 85% 소진…하반기 대출한파 닥친다 &nbsp;&nbsp; 매일경제",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1fNm9sNnZabjNPYUZwZmV3WVc4TmthanRxdm4tZktSY3dZZkswQVdXeEZTSjB3UTFYQnhvMG96X0d5VjhZb3BnSXZrc0dyemRWaUhWeQ?oc=5",
       "source": {
-        "name": "v.daum.net",
-        "url": "https://v.daum.net"
+        "name": "매일경제",
+        "url": "https://www.mk.co.kr"
       },
-      "publishedAt": "2026-07-12T04:03:03.000Z",
-      "guid": "CBMiRkFVX3lxTE5xd29yc1J3YUFmcDFjSWtfbXExOE1LUTR5MzQwZWc2SXctYWU5S2Q3RDZTODlGQ0txa0ZGSHFKdkpidUZUYXc",
-      "score": 64
+      "publishedAt": "2026-07-12T04:02:41.000Z",
+      "guid": "CBMiVEFVX3lxTE1fNm9sNnZabjNPYUZwZmV3WVc4TmthanRxdm4tZktSY3dZZkswQVdXeEZTSjB3UTFYQnhvMG96X0d5VjhZb3BnSXZrc0dyemRWaUhWeQ",
+      "score": 63
+    },
+    {
+      "id": "company-J-uhpOufrOy9lO",
+      "category": "company",
+      "categoryName": "기업·실적·산업",
+      "categoryIcon": "🏭",
+      "title": "'롤러코스피' 7200선 상승 마감…개인은 2조 '팔자'",
+      "description": "'롤러코스피' 7200선 상승 마감…개인은 2조 '팔자' &nbsp;&nbsp; MSN",
+      "url": "https://news.google.com/rss/articles/CBMiwgNBVV95cUxOSTVjWmR0RDNsdE5FX0EzVWdXTFF4aGhKLXluU1E1aVJUUTdhbHpKWHFBUjUyamJSQ3BYTGxTUVFubHZSV1FwSXNmWmNiN1F2Sjh0NHZVTUJRRUQ0NVpBcnUzNWMwN3d3YWVpUzJRUTFIQWV4OXN1Y0F1Q0sxUXc0YklrX08xZEMySGhNcVhWamZlMmxyZ21PeS1ZUzFZU0FZOUJYMDZqRmtHbmlmT2tMOWxVNHlFeFBJMWJ6a3JEcXpBZ29Ya1A2d2JkVl9oZzZsMThrQ3Nkb0pUNVRrU0ZsYzlWRWd6Zy1MYTFXSkZFUlpfMXlTMDBDVUZfYmxWMGZrUldGSzBVbks4dUdiT25Eb2ExdHJjZ2FTQmpPbHZfNGplMUxqMXJLeWw5TnRiZVNic1VPZF83a2dFam9ZSEJzQ2k1UGtDMFNCZjdEcERhODU1ajAxdlU3dHd3U0tYVHhWUUVaV1Q5Z3l5X2pzS0NNRE1qNjFBRFFSMUozLS1aZGhETlRGQkpiWnhuTmtsaDRJUHRWUmdHZEJNZGoyb0dUSlVKSDF3R3NRR1BmQXVLVFd5NWxTdE1YcXZ4V0dMYlptY3c?oc=5",
+      "source": {
+        "name": "MSN",
+        "url": "http://www.msn.com"
+      },
+      "publishedAt": "2026-07-12T11:05:27.000Z",
+      "guid": "CBMiwgNBVV95cUxOSTVjWmR0RDNsdE5FX0EzVWdXTFF4aGhKLXluU1E1aVJUUTdhbHpKWHFBUjUyamJSQ3BYTGxTUVFubHZSV1FwSXNmWmNiN1F2Sjh0NHZVTUJRRUQ0NVpBcnUzNWMwN3d3YWVpUzJRUTFIQWV4OXN1Y0F1Q0sxUXc0YklrX08xZEMySGhNcVhWamZlMmxyZ21PeS1ZUzFZU0FZ…",
+      "score": 62
     },
     {
       "id": "market-W-yYpOuKmOymne",
@@ -3129,7 +3305,7 @@
       },
       "publishedAt": "2026-07-12T03:21:43.000Z",
       "guid": "CBMizwJBVV95cUxNUFdLbllVZmFCN0NueVh2Y2tQVEdtZ1NUWlV5MEx6Vmc4czNrM0NKU2o5eTBvTkhpMDJjUXpja3hsMzdVSW11VTJmb19Tbmc4MnJHcDZZZUhvVVpyUFhUTU4wbF9UVGhBeWZmYU54U0RidV9zNDRBanF3TVJLOFE3RDJ2bjg1Z1RhOVFNN2dQeUd2a2VlaW9yWWYtUDFsMkZY…",
-      "score": 63
+      "score": 62
     },
     {
       "id": "global-7Y-t7Iqk67CU6r",
@@ -3145,7 +3321,7 @@
       },
       "publishedAt": "2026-07-12T02:59:00.000Z",
       "guid": "CBMibkFVX3lxTE56R3dHYWhpMklyUEdQbWFSUTR2RU1rdElNZUViN2pxTUVyNjVlTUtrOTFqcHJpbWFsZF9ZVkxEQjlKRGxhNjNWamhnaU1sdmFUTmF6VlZqemNWT0J0WWpxLWZtMGFaaDhSTE9vcFln",
-      "score": 63
+      "score": 62
     },
     {
       "id": "realestate-S0Lqta3rr7zsnY",
@@ -3161,7 +3337,7 @@
       },
       "publishedAt": "2026-07-12T02:57:00.000Z",
       "guid": "CBMiaEFVX3lxTE0wRnMxU21POWdzdzFvQ3ZUS2NzeG5RNG9neHVoVDR4RUlWMTJnSWtEZkg4UEdDbUN5TkRkVmJTT0p4RmNxcWN6RlN3U21scUkwQnozbkl1SHQ5a19SM2w4dEpTM0d3cFdB",
-      "score": 63
+      "score": 62
     },
     {
       "id": "realestate-67aA64-Z7IKwIF",
@@ -3177,7 +3353,7 @@
       },
       "publishedAt": "2026-07-12T10:01:00.000Z",
       "guid": "CBMibkFVX3lxTE03bGNtRUlvdDVZei11MklZN0RyTlBSZ2czbjMzRXpGTXNlaVROcVVsSXdpa3A2T29VbXFETUhDOGJXT0tIXzlRU2JhdkRiRTBqZTZsV1NZcFh2d3VGR1NPaW1OOTVMbTQxZkpuMDV3",
-      "score": 62
+      "score": 61
     },
     {
       "id": "market-IuydtOufsCDqso",
@@ -3193,7 +3369,7 @@
       },
       "publishedAt": "2026-07-12T09:41:00.000Z",
       "guid": "CBMiYEFVX3lxTE90YW9fUHp1TktxUFJfeURrUXUxel9HbVFkQ2lPVW1OUTk4ZC1kS3Ixa29Gei1pV0poSmZUT2w4UlVwX3ozd3pZc2Izc3pFOHQ1dUxCZjg1cDA1TXRESkRTVQ",
-      "score": 62
+      "score": 61
     },
     {
       "id": "finance-6rCA6rOE64yA7L",
@@ -3209,7 +3385,7 @@
       },
       "publishedAt": "2026-07-12T01:34:09.000Z",
       "guid": "CBMickFVX3lxTE1MVHRWSF9TejBOTGZGMm45SHZ4UlR1d0gyVUlOSW45dEhCaG9JZm1MZ2xEYXJxc0htREp2TmlMTmJ6ODB3a29fTlpDNDBOVFM1YWV1aDY4ZERXSzhFVU1tYUp4dF9zVV9fdGlELU1Xak53QQ",
-      "score": 62
+      "score": 61
     },
     {
       "id": "finance-7J2A7ZaJ6raMIO",
@@ -3225,7 +3401,7 @@
       },
       "publishedAt": "2026-07-12T01:33:14.000Z",
       "guid": "CBMid0FVX3lxTE1xZE84aGQ1MS1LZmYwU240YUZVTFhnVTJFa1RWV01paFgyZFo4WW1QaU5xZV9OYzJHSDk0T3FxVjRBUkxSVFo4MU1NZWVJQnZKc2JuQ29EeEZ0alVaU0JMUUFGcmZySEVxSjFISEJrMktwWk5lb0Jr0gF3QVVfeXFMTXFkTzhoZDUxLUtmZjBTbjRhRlVMWGdVMkVrVFZXTWlo…",
-      "score": 62
+      "score": 61
     },
     {
       "id": "realestate-7KO87YOdwrfsi6",
@@ -3241,7 +3417,7 @@
       },
       "publishedAt": "2026-07-12T00:59:38.000Z",
       "guid": "CBMidEFVX3lxTE9GcEVXeTYyMWVBZ2FqNU1sdnhrcUF2SGNjbHAtalVvUDEtd3k0RVdwbnJIWFZpZ1lEQTc2NjZ5eXhKQzhfNXVUbmJIVmlIOWZyS0x6TVl5dGpmT3Fzc2hCOFV6WWtfX3hHbDd0YzZIVkRPTmRy",
-      "score": 61
+      "score": 60
     },
     {
       "id": "crypto-SU1GIOuztOqzoO",
@@ -3257,7 +3433,7 @@
       },
       "publishedAt": "2026-07-11T16:34:38.000Z",
       "guid": "CBMickFVX3lxTE0wZkppVDc2bUlUOU9vU29vODFVUUM0R3g1YnMzc3AySkNtQ1hRZjMxUkE2OFN0clZMbi1pbUt6SEo4ZUpUV19VWEtfYzR6SUd1SmstRkFPaW5vUmtrWkNBSHF3ZGNLLWd2OGo0eUpuRGltZw",
-      "score": 61
+      "score": 60
     },
     {
       "id": "realestate-W-q1rOyekOusuO",
@@ -3273,7 +3449,7 @@
       },
       "publishedAt": "2026-07-12T08:20:24.000Z",
       "guid": "CBMiZ0FVX3lxTE1WN2t5elZBU1NMcWRaRTBwR3U4eERCLVQycDJlVXVvYkJoNV9DTW84UWp4V0g0SkxHQ01rTlFyRHZidEdhblNBS1hZQXZfcHdCcXFqbXdONURNakNWSVdpLTBlWDRUZ1k",
-      "score": 60
+      "score": 59
     },
     {
       "id": "finance-7LWc7Jyk6JmfIE",
@@ -3289,7 +3465,7 @@
       },
       "publishedAt": "2026-07-12T08:08:25.000Z",
       "guid": "CBMiWkFVX3lxTFBqTXMtaVBNOS1BT0VGbW1MZUZlMHNvNFFIcUZoMXdRWE5raWFUMlVSZHgzRjJUcFNaS2JWMExMUkFDWkhtYlU2dUJMMUNwTWZXa2hoWHd0RWxNZw",
-      "score": 60
+      "score": 59
     },
     {
       "id": "macro-W-yYpOuKmOydmC",
@@ -3305,7 +3481,23 @@
       },
       "publishedAt": "2026-07-12T00:00:00.000Z",
       "guid": "CBMivwRBVV95cUxQa2NVMl9oRFZlS2VVc3RQOGNOUWtlSXYxb0JTVW9tMlE0OFBBMmlUUkJabzhaMDAtb25xNkpxdmtMQlBQUTVzSExNMnFKN3ZLTFI3TEtCZVdzVDczNVU2MGlxQ0pncU01WkV1ME5hRkF3OVlaMmIybUFVcTB2NnhDUmR4SkRQR0tqeWtrX0dOdEo5ZC1yRXdSUGFnLXo2MmN5…",
-      "score": 60
+      "score": 59
+    },
+    {
+      "id": "market-4oCY7JeF6rOEID",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "‘업계 1위’ 삼성운용, 신한운용 상품 그대로 ‘복붙’… 규제 피하려 기존 ETF 개명",
+      "description": "‘업계 1위’ 삼성운용, 신한운용 상품 그대로 ‘복붙’… 규제 피하려 기존 ETF 개명 &nbsp;&nbsp; MSN",
+      "url": "https://news.google.com/rss/articles/CBMiywRBVV95cUxPNDd3bFViekdialRzbWRlXzBscnVLZ2JKaXlmVjV6VGNLVWxCbkt0eGViWTZubjdQTTBHNXJySlNRMWhYUW91dWFDbU5VMjdobkFIXzZUUmpVWHo5bXJoMF9sS1VjTWxFTFVYMXJVSlAzWWV3SXh0cnBHUGE3dWx3Rm00SU15bWpLc2k0LXNDWHhzVW5mTWc1aE1nY1Q4Y0t0Z2pydU9oZ3pDdnhVUl9TMWRBUWcxZm9MMmpFWndJWlM2Y1lkQzFnX2VkV0hGRTZBeVNwRkFaelV4S1U5WmJVaWViUXc0Ylo4SDhrOFpBWjZDMGNmRWVtNU41YnBfZFhndVBKMnNoSGxLZnJIdlJmajAwbTBZYWZ5QXpvZVdWOFI0ZlBqaGdUOUJhdEpsZHd1dm9iYjM1c1RjM0s5MGhfSEZIWEdFWGtGdHdHaEJ2UE5qd0huUUdObk1zT1o4b2lRYW1vQ3dHRFRSZXVDdU0wQ0dHbWJIbGFLX0p0TlN0MWRkeFR0S1daemh0QW1sVFdxbldISEF5UHpsZ294dGg0SzJuYW4zNVVrWXpnSlhyVS13cGd2SndFaU8xMm1QSXUtQmk3b1g3SnR0QnliVEVBVHN3bUd4MTBEVWpfVGJxRmxmNG5kWjktdFBNZFF3VndWQ3BELVdMT05fVjlOdVdOajJjazRSbU5kNDFTSGx5SkF0aUdrTV9fR2dxcDVvWFpOdHBYN1IzeEFJZGlFNXJTQkhneG5ad2w5VG5FR2FsVnhtNjFvYWF3WW9Xbw?oc=5",
+      "source": {
+        "name": "MSN",
+        "url": "http://www.msn.com"
+      },
+      "publishedAt": "2026-07-12T06:33:21.000Z",
+      "guid": "CBMiywRBVV95cUxPNDd3bFViekdialRzbWRlXzBscnVLZ2JKaXlmVjV6VGNLVWxCbkt0eGViWTZubjdQTTBHNXJySlNRMWhYUW91dWFDbU5VMjdobkFIXzZUUmpVWHo5bXJoMF9sS1VjTWxFTFVYMXJVSlAzWWV3SXh0cnBHUGE3dWx3Rm00SU15bWpLc2k0LXNDWHhzVW5mTWc1aE1nY1Q4Y0t0…",
+      "score": 58
     },
     {
       "id": "market-6rWt64K07Jm4IO",
@@ -3321,7 +3513,7 @@
       },
       "publishedAt": "2026-07-11T22:57:58.000Z",
       "guid": "CBMic0FVX3lxTFA0aktqdjNFeHc1TW41WVZaYWljRUlXamRuTURsSDdoUFNnUVpVOGxwb09iSkp4bjcwM2NTRkp2QjA2YXRGRjhxODF4ODRkRmZwMlZHay1iZnBOVG55SWJhZ0kxV19xaHBia2VvdU8wdExTUTDSAXdBVV95cUxQdHVUaWtLZlNfTTE1X0dDQm5OckNtR2IwcWdPYXRJMUpCRm9C…",
-      "score": 59
+      "score": 58
     },
     {
       "id": "crypto-W-2VnOyjvOqwhC",
@@ -3337,7 +3529,7 @@
       },
       "publishedAt": "2026-07-12T06:00:00.000Z",
       "guid": "CBMiWEFVX3lxTE8zRUNONEVNQmlZSzF2STNRbnVCRDZWUHFIN2V1TmRiZEFsM2g5UTZxbEtldnktOE5iYjFCQnYwUkFTLVlLS242YmVDMmQtVUJvMGluQ28tamg",
-      "score": 58
+      "score": 57
     },
     {
       "id": "company-W0FCQyBBSeq1re",
@@ -3353,7 +3545,7 @@
       },
       "publishedAt": "2026-07-12T05:44:25.000Z",
       "guid": "CBMiWEFVX3lxTE4xaUk2clFmSHJsTEF4NTR0Q1F4OWo4amxnMVdfZlVYYmc1QVZfZVU1TEFTZjVhR0tmZzR2UUFYSjJfdllnOFliX0FkdWgzQUhmWTlLajV2SDfSAVhBVV95cUxOMWlJNnJRZkhybExBeDU0dENReDlqOGpsZzFXX2ZVWGJnNUFWX2VVNUxBU2Y1YUdLZmc0dlFBWEoyX3ZZZzhZ…",
-      "score": 58
+      "score": 57
     },
     {
       "id": "company-U0sg7LWc7YOc7J",
@@ -3369,7 +3561,7 @@
       },
       "publishedAt": "2026-07-11T22:30:00.000Z",
       "guid": "CBMiakFVX3lxTFBXeHlUSXBkbk1fTVF6LXBIc3NsbnE0Uk90R1NQLXZnSFJYcGx4bUxmSmd3UzhpTG5Nb1FpNVNRSl83bUZuVjZXSjJ2dmQwTFFqcGxReDd2SGRNY1B0Vzc5eDZBaHItWHpBVEE",
-      "score": 58
+      "score": 57
     },
     {
       "id": "global-SE1NLCDtlbTsg4",
@@ -3385,7 +3577,7 @@
       },
       "publishedAt": "2026-07-11T22:01:00.000Z",
       "guid": "CBMiU0FVX3lxTE9VSHBVVExJemJ1WmR4X3hlQzVGek1va1JiNjdiLXVkdkRRZlVtVVllbUE2RERHYnpNZU11eDdETEpLRnhicHprelNtYVA4bk5yMVY4",
-      "score": 58
+      "score": 57
     },
     {
       "id": "market-7L2U7Iqk7ZS8LC",
@@ -3401,7 +3593,7 @@
       },
       "publishedAt": "2026-07-11T22:00:20.000Z",
       "guid": "CBMiX0FVX3lxTE4tYnJkTzBtYnN0bG51R2ZXT2RRRmVyeW1CYjF0TTh0T1JXMnJzeHJOYXRrU0NYdHVMa0pwOEdCMWg3QW9UOWdWRzJwSGRFRGVCa1FUVWhkb2xhMXB1TzZN",
-      "score": 58
+      "score": 57
     },
     {
       "id": "consumer-N-uLrOufrCDrj4",
@@ -3417,7 +3609,7 @@
       },
       "publishedAt": "2026-07-11T22:00:00.000Z",
       "guid": "CBMiUkFVX3lxTE5yOGVpUzFTTndySnk3MzRTQjgtcFlvVjFSV1kzT0VIcTR2X2dJbGhOc1JMRGtiSHRLVTBEQlFEdmNSZC1raE10RFliNVFmSVRoYWfSAVNBVV95cUxOMmpMSno1M2huVTZuVlU0OWd6eEprcjNwSWh3dnpiaGMtbWZYTVdwSXNobmhHQnhjNXJFVkhJX2xvdXdod0QtUUt5WjNK…",
-      "score": 58
+      "score": 57
     },
     {
       "id": "macro-6riw7KSA6riI66",
@@ -3433,7 +3625,7 @@
       },
       "publishedAt": "2026-07-11T21:38:00.000Z",
       "guid": "CBMiWkFVX3lxTE4yR0FQaTQxbUd1MXpMUkxXY1FvRG9BdDBOYUEtTVBaWTBCTEhEU1J2X3puejVYd2ZGV2xkQ3I0U1lmRHd2dHBnakc0RGo4MTZHUl9McFFJeTZBZw",
-      "score": 58
+      "score": 57
     },
     {
       "id": "crypto-7YOc6rWtLCBVU0",
@@ -3449,7 +3641,7 @@
       },
       "publishedAt": "2026-07-12T13:24:53.000Z",
       "guid": "CBMidkFVX3lxTE9Cbk1vNnJ0TFRqeGVsaW5HNWt4M0JFeS1PUTQ5cllZRlNYMWJ6Qi1YdDh0OUFaVzAzT3dhZzRPZEQ0T1I3dURsNFRVUFVvb2VCX2x2X3JfS2VVWFpJMHBaOTAwYVJGTzZUZkZ2N1FHOVUxTmpvcmc",
-      "score": 57
+      "score": 56
     },
     {
       "id": "realestate-W-ydtOyKiOu2hO",
@@ -3465,23 +3657,23 @@
       },
       "publishedAt": "2026-07-12T05:07:00.000Z",
       "guid": "CBMicEFVX3lxTE55eVZ6bnQ0OHNuN05SMzdIVUZaUzZvaFlJaHFFUlJBYVZncEt3N0p2aVpLWUN1dnVnQklzb2dfTVRyQkpIR3JkQ09IelpxSEtQOUZ0RHRYbjBKbHI2NWRtcy1yQlh1QldqTUdDYnNkYjk",
-      "score": 57
+      "score": 56
     },
     {
-      "id": "company-J-uhpOufrOy9lO",
-      "category": "company",
-      "categoryName": "기업·실적·산업",
-      "categoryIcon": "🏭",
-      "title": "'롤러코스피' 7200선 상승 마감…개인은 2조 '팔자'",
-      "description": "'롤러코스피' 7200선 상승 마감…개인은 2조 '팔자' &nbsp;&nbsp; MSN",
-      "url": "https://news.google.com/rss/articles/CBMirAJBVV95cUxPcmRKdEY4X3E0WmJ6ejBfeEk1cElIWk9HX3c3Y2dvRElnenp5ejdKemM2UGhsbFZKUE1NME96VVhZWTlIVXE2NVNiQ1J2LUtqQVhXaHFRdGVDYW5HQV9ROWtqaUFpeWVaOGJZWUs4ajdMWGNDdlg3RzlRZXpacTIxQVpCYTFPWDhfWTVyMWR0WkUxRDlhQVlCVUlZX29tR0lqZXpTeXM2WWhEZ0IzcTg2QW51R2NMR0k2eDJCRDB0SEQtM05tVmtUeHdta3daUmhydUpzQTNPTWJYTE40TTNJY2J2MHd4dU04eUVkVXhSZDhENm4xU1FkYUIxRkFlaVlsaVRobFZnUGV1RWU3TlI0NFVLVGdGallzdG5KbkhPR2l6ZEZvRll1RlRkUmg?oc=5",
+      "id": "market-W-yYpOuKmOymne",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "[오늘증시] '롤러코스터' 코스피, 7290선 상승 마감…하이닉스 5.3%↑",
+      "description": "[오늘증시] '롤러코스터' 코스피, 7290선 상승 마감…하이닉스 5.3%↑ &nbsp;&nbsp; MSN",
+      "url": "https://news.google.com/rss/articles/CBMi6wJBVV95cUxNQk5ENEtHeFhNTjdoNG1uWlNXMlNMT3IxMklIeTAxMzJCbF8wMVExbE0wUzV4TnBiWE9oWDdrRWpITmVCYWRHaVZ1WkZXTGJiRDNSR2djVHV5XzAtTDA4Ym8zamJmYk45Ty1XTUQzQW94MWNONG1zRGN5NzhGbmExdUZoMlRaeGF5M1VhanhHc052ajhPVWt2RjY3dlN5VjZ2LTN5M0h2aGxOelEwMGxial9CR09EZGp3N0oxVVZVWXhHZF9HM0VmS2ZIYlByNnd2SDFod3RSc2FvdDhUTUEyeC12OHowaVhzekVDQ1kxOVFvY19xTmNnV2pqWmZIYmhIV2tVR1ZNbVJLNHNTcVJMVldhQlpBUUV0NXB5NEVKdEVSVTVHZFFDS3NHUkxIR3ZONUdtdUdrS1d6VGcycV9fcVB3OTAzcDJPQVBqdkJpU0hCOU1TTmJOQUZ0anFrTWJiLWxIRFZCenRHaFU?oc=5",
       "source": {
         "name": "MSN",
         "url": "https://www.msn.com"
       },
-      "publishedAt": "2026-07-12T04:54:26.000Z",
-      "guid": "CBMirAJBVV95cUxPcmRKdEY4X3E0WmJ6ejBfeEk1cElIWk9HX3c3Y2dvRElnenp5ejdKemM2UGhsbFZKUE1NME96VVhZWTlIVXE2NVNiQ1J2LUtqQVhXaHFRdGVDYW5HQV9ROWtqaUFpeWVaOGJZWUs4ajdMWGNDdlg3RzlRZXpacTIxQVpCYTFPWDhfWTVyMWR0WkUxRDlhQVlCVUlZX29tR0lq…",
-      "score": 57
+      "publishedAt": "2026-07-12T04:41:15.000Z",
+      "guid": "CBMi6wJBVV95cUxNQk5ENEtHeFhNTjdoNG1uWlNXMlNMT3IxMklIeTAxMzJCbF8wMVExbE0wUzV4TnBiWE9oWDdrRWpITmVCYWRHaVZ1WkZXTGJiRDNSR2djVHV5XzAtTDA4Ym8zamJmYk45Ty1XTUQzQW94MWNONG1zRGN5NzhGbmExdUZoMlRaeGF5M1VhanhHc052ajhPVWt2RjY3dlN5VjZ2…",
+      "score": 56
     },
     {
       "id": "macro-W-yjvOqwhOq4iO",
@@ -3497,7 +3689,7 @@
       },
       "publishedAt": "2026-07-11T21:01:00.000Z",
       "guid": "CBMiU0FVX3lxTE1SVjdERWZlVXVYY3phY0FISjZfQjJMRkgxNm9adnNnQ21fVHhKQjNPdjF3NjZabzV0dUQ3dEFZS1JzVHpiaWdac21tSzI3NHZRT1Bz",
-      "score": 57
+      "score": 56
     },
     {
       "id": "macro-6riI66asIOyYrO",
@@ -3513,7 +3705,7 @@
       },
       "publishedAt": "2026-07-11T21:01:00.000Z",
       "guid": "CBMiU0FVX3lxTFA5SHFvX1ZJbTZUYlZ4aTNJZGgxNk1Ub0ZiUjIzNVBLQW5fTVZ5R1J6TFhUWW9IRkkwdXhXNjB1OXRjMEdpY3hWdVR3Z0U1TUtYT2dJ",
-      "score": 57
+      "score": 56
     },
     {
       "id": "macro-W-yxhOq2jC3so7",
@@ -3529,7 +3721,7 @@
       },
       "publishedAt": "2026-07-12T04:03:16.000Z",
       "guid": "CBMicEFVX3lxTE5UT2dpOEZwZ1QzbVplQlFMRzVMaTRQTDNWLUtXbFFqQUIyZlhSYXlObkc4ME5yT0hqOU9FVjc4cEJxRl9Ga1pBdHRTSjRjMnNmblhqcXBNOTllVWtSNEUzSEFlaThnRHlUQUM4eHJfNWY",
-      "score": 56
+      "score": 55
     },
     {
       "id": "finance-6rCA6rOE7Iug7J",
@@ -3545,7 +3737,23 @@
       },
       "publishedAt": "2026-07-12T04:00:00.000Z",
       "guid": "CBMiZ0FVX3lxTE8xa25SMDlBS3JxUmxaRVZqcVJrWmFYWDJzaGtsWExPMGdvczJFWDdhRjFhalM3ZWJ4YlJqNmxqSXFfeW1nam1NZ3M0Qy1OTFpWR0JfN1kxekU4UkRzMnVUdUtsMkJLM0U",
-      "score": 56
+      "score": 55
+    },
+    {
+      "id": "market-7L2U7Iqk7ZS8IO",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "코스피 외면한 외인, 코스닥은 6조 샀다",
+      "description": "코스피 외면한 외인, 코스닥은 6조 샀다 &nbsp;&nbsp; MSN",
+      "url": "https://news.google.com/rss/articles/CBMingJBVV95cUxOZGpuV2xVamVsMDhuejBUczdxeW9FcWNIS1BJNmtuaHJ1dUV1ZFBkVjlOdy1kbXZ6Q21zT0RyVjAzSFN4Y010THg2bTcyalhkcXgxY2xQZmhKY1RlTE5IMlJXSWpMRTdVaTFDS2xES1ZjNEc4eng3eENpS0RiZXIySnIyd2JfRG5HLTRhUWZ0M0xIZG5ZNHlmSUc5TGFMNEc1Z01ZQUxjcGxfUEhaQ3p3WnZaSktldkJDMVVHNGVpSlpjb0hfRXdMbWRmT0RQTzB0S0ZaT3cxQmVZQVFqVDJpTVNzYjlBZHBPdzZQUVVkTm5NRU9LOU5xXzhRT3VsSVZuS1RQaGt6bFg3TkROVi16MmhvQ1d6Q2lHUldVemJR?oc=5",
+      "source": {
+        "name": "MSN",
+        "url": "https://www.msn.com"
+      },
+      "publishedAt": "2026-07-11T19:48:21.000Z",
+      "guid": "CBMingJBVV95cUxOZGpuV2xVamVsMDhuejBUczdxeW9FcWNIS1BJNmtuaHJ1dUV1ZFBkVjlOdy1kbXZ6Q21zT0RyVjAzSFN4Y010THg2bTcyalhkcXgxY2xQZmhKY1RlTE5IMlJXSWpMRTdVaTFDS2xES1ZjNEc4eng3eENpS0RiZXIySnIyd2JfRG5HLTRhUWZ0M0xIZG5ZNHlmSUc5TGFMNEc1…",
+      "score": 55
     },
     {
       "id": "company-QUkg7J6Q6riILC",
@@ -3561,7 +3769,7 @@
       },
       "publishedAt": "2026-07-11T11:59:14.000Z",
       "guid": "CBMibEFVX3lxTE1VRHJhVTZmOXpJUHFIU1hoQklqVTZvcGxsb1JtczRUZTRLU1RoOGtfdDIwbkludW5icnlWZVJRTFNKczdVUWtRWUt0aklCeDBETjBXRFdIbW5oRllNSXhucHM3aUtON05PWWNmSQ",
-      "score": 56
+      "score": 55
     },
     {
       "id": "macro-7ZiE64yA7JewIC",
@@ -3577,7 +3785,7 @@
       },
       "publishedAt": "2026-07-12T03:07:14.000Z",
       "guid": "CBMiiwFBVV95cUxQV0FIN3RKeTRfODV0Und6RmF4eGd6WERidmdJRzdXNkFPZThmenVNMzAtczhpT0EwRGdVOUtKYWRjbHlxSVZNYUhYR1JHdXZMc3NpVUtpQnUtRFNmcXRKTXEydUtGZDBpNWtOUklCd3F4NTcwOXJVTUdjYkVYSVM3SG91WUVNNTM4Yjlr",
-      "score": 55
+      "score": 54
     },
     {
       "id": "crypto-Um9iaW5ob29kLC",
@@ -3593,7 +3801,7 @@
       },
       "publishedAt": "2026-07-12T10:08:00.000Z",
       "guid": "CBMif0FVX3lxTE1yLU9NSVZrWVp2a0UtbDJQM0c3bnF2VmwySUVYQVpYZG1HbkN2ZS1UdW1TaGhjNzJnZlNQYTdWRGlRY1d0VGtuUXJ0bmpaeThPV0l6SFFmTmdqM0YyLUtFTGVRM0NrbDdWemstb1dINVJhWkNXNE9qS19LWXIyYnM",
-      "score": 54
+      "score": 53
     },
     {
       "id": "consumer-6rWt7IS47LKtLC",
@@ -3609,23 +3817,7 @@
       },
       "publishedAt": "2026-07-12T09:18:53.000Z",
       "guid": "CBMiaEFVX3lxTFA0RXp3YkRLWFpyejBna3dmVDVGSjBQZXpIOWY3NVpHV1h6ajdqWmJtdjFyNVFLWkxvcm4zOFViaTc4QXhjbFkzdl9BOHR1RlZaU2JHNUJpRnZzOFpZT0Y5TjdCanpsbU5m",
-      "score": 53
-    },
-    {
-      "id": "market-IuuPiCDrtojroK",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "\"돈 불려야 되는데\"...퇴직연금 30%, 현금으로만? 주식 꽉 채울 방법",
-      "description": "\"돈 불려야 되는데\"...퇴직연금 30%, 현금으로만? 주식 꽉 채울 방법 &nbsp;&nbsp; MSN",
-      "url": "https://news.google.com/rss/articles/CBMigwNBVV95cUxNZlFYTDdYS25qRjBPNXR1LTgyNlB3WEU3d0pvcWlqM3RhQUNsRmlmMkxpN3ExNkl1WGt5NkxMaWN0UF9BQlY3OWo5TkkzQUx0dklGMkp6dnJNLTFUNjB0Wlp4Q1hhb0VIaExHTE1UNXFGckZyU0V5OTJCSFVxYzFDUFAxMF90em1QMGQ4b3JhNHhiVmkxYlc2UnhJZGJuak1uaDlkVHA2cUtCb1dnb2s4T2pqMnR1elFOcWRKSTl1aVFZN3Iwcm5LTlJPLUVBb0x2dVZnZGpxdmJVVXY0a01rVTViTWsxSTdpUUxMSG1fd0Rhd3RWdjA4Q0MxbEZaZVc3dElNRjltODhWY01lMzhBdzkyczVSa1ZTMFZIOTI3RXlfN19XMFdTVll0WmZCNEkzVTlNbXNfd2NlUlRHQjQ1TURZVGJJdlNsa05vNWdrT09RVTNwUkZucmNwbkRwS2s1VTg0UWE5c0lqMWFrbTdpZXhYTGhFS2pNbFJDSVpyR1hOZ3M?oc=5",
-      "source": {
-        "name": "MSN",
-        "url": "https://www.msn.com"
-      },
-      "publishedAt": "2026-07-12T09:07:40.000Z",
-      "guid": "CBMigwNBVV95cUxNZlFYTDdYS25qRjBPNXR1LTgyNlB3WEU3d0pvcWlqM3RhQUNsRmlmMkxpN3ExNkl1WGt5NkxMaWN0UF9BQlY3OWo5TkkzQUx0dklGMkp6dnJNLTFUNjB0Wlp4Q1hhb0VIaExHTE1UNXFGckZyU0V5OTJCSFVxYzFDUFAxMF90em1QMGQ4b3JhNHhiVmkxYlc2UnhJZGJuak1u…",
-      "score": 53
+      "score": 52
     },
     {
       "id": "realestate-64yA7ZiVIFBGwr",
@@ -3641,7 +3833,7 @@
       },
       "publishedAt": "2026-07-12T08:42:59.000Z",
       "guid": "CBMiWEFVX3lxTE92U3RRWExqOThEbUFKby1XeDhMSGZuWXFyeWFJdXE2TmxVY0xZVUs1c2tNSU9tRzdZYnBtdm1zT0NBSlczeWZfTl92bWF5TFpFSS15M1o0VjjSAVRBVV95cUxOeC13eFY3MVE4c1Q1Y0h0bXlhMUlEQUJzZmZfT2hzRWE3YWZ4VjJBSk1pbXVwSzRuSkU2d09veDlMdUlWZHg4…",
-      "score": 53
+      "score": 52
     },
     {
       "id": "market-U0vtlZjsnbTri4",
@@ -3657,7 +3849,23 @@
       },
       "publishedAt": "2026-07-12T01:24:06.000Z",
       "guid": "CBMibkFVX3lxTE4tOVd6bGFmMjhHbGZ6Ylo5Z0I5M0ljSW9UMHE1QnJNWFpRTDlqSThZbFdfMWIzbXNVWHIxaVBxOU96RDNiMTN4UEN0Y0Izek03WFp5SGEyS3A0NHZfbEZTYTZfZHpSNDdWNFdjcWNB",
-      "score": 53
+      "score": 52
+    },
+    {
+      "id": "market-6riw6rSAIDEuNO",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "기관 1.4조원 순매수… 코스피 1.4% 상승 견인",
+      "description": "기관 1.4조원 순매수… 코스피 1.4% 상승 견인 &nbsp;&nbsp; MSN",
+      "url": "https://news.google.com/rss/articles/CBMiqANBVV95cUxPelU1LVlJamw2TFpxQy05dVRYdjlXeklHamxMck5saVk4cE5BSk9HUEFWaVZZUUdtbW9sZVEyc2JnNnJCN3JWSGRNMms1cGNtNGlkNnllOHIxUGFCYlJNY1pQX1gyUjRhaHJjdW5iVW8tcDZnVmtOMU9ndExqZDMzQ3dud05vbHRRUS03SXBxZkFDbHFOMER2NjVPS1BicEJkSDBIMFBURGRzS09PZVdoOGhwdHZPYnZPalB6dUJaa21RdzhwdGlZemhIMUUxZ2RwVjN4dmIxcGhxbHBHWXFQalhMR0xnNkV0S1B2cFc1OEhDS2pRWU9IdHQ5RXg2U1FTMlJzYTJoTGF4aFJ0R29ZbUJ0TTJpZnIzQkVtNU4yY3NVTDNiTjdnNUF5OWx0VDc2TnhqbExqM19tWlk4aXp0al9RRTlndUlUdTRUcE1wYVRVd1FuTmE3dC12dHZZVW14d3VNQnVwU2dUOF9MeEJzN3N4Nlc3NHlLNmdleGwyT0lHUGFXNWM1Z0ZveVBES0U0SlVLQkJNTkI1dWY4bGlkUEgyQmRObE5j?oc=5",
+      "source": {
+        "name": "MSN",
+        "url": "http://www.msn.com"
+      },
+      "publishedAt": "2026-07-12T00:53:12.000Z",
+      "guid": "CBMiqANBVV95cUxPelU1LVlJamw2TFpxQy05dVRYdjlXeklHamxMck5saVk4cE5BSk9HUEFWaVZZUUdtbW9sZVEyc2JnNnJCN3JWSGRNMms1cGNtNGlkNnllOHIxUGFCYlJNY1pQX1gyUjRhaHJjdW5iVW8tcDZnVmtOMU9ndExqZDMzQ3dud05vbHRRUS03SXBxZkFDbHFOMER2NjVPS1BicEJk…",
+      "score": 52
     },
     {
       "id": "market-J-uvuOq1rSBBSS",
@@ -3673,23 +3881,7 @@
       },
       "publishedAt": "2026-07-12T00:41:11.000Z",
       "guid": "CBMirgJBVV95cUxOdTI1R3pySkNheTAxeFNPVGxvOG5pU2FTcFpPN1hHZndXckhqcF82UGNMODRkT2hJWEtVTG0tbFRtaUIzTVZRNVpzN0dWcTZ0TTY5eExMWXRwZGdDblFfcGlBXzBsd0tkbElFd3JwZWQ5LTBEODVaWWJlNDNRUW9FeG5OWllqVkU3UlZsSFkxRlpoTW45OGRqWHJ2ZW9RdlEt…",
-      "score": 53
-    },
-    {
-      "id": "market-J0FJIO2IrOyekC",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "'AI 투자 확대 기대' 코스피 7400선 회복...코스닥도 5%대↑",
-      "description": "'AI 투자 확대 기대' 코스피 7400선 회복...코스닥도 5%대↑ &nbsp;&nbsp; 뉴시안",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5mQTA0WHdPZS1UU0ZDdFltb3JmMU1iV3k1UUxTcy04Y1hzcGliQVkzTEo1Nm5RUFBxdl95Vm9jdDJmVXJRWjBnZlNPQ21UcXZnU3A1NDYwYXdObkZDZkhOSEJLYjJ6U180NHfSAW5BVV95cUxQU05nd2c2clJ2NXNldkdqRXZfLXpqdnlNY2p4OV9sSTBNeVhjU1UtRzlIbmxZSzlpWVNlRnJ4NXV0QUl3V2tsSnJNaTZ3eXdzZ2JkTXFDS2FjMnBoZlJZLXNQcTNLdWNIMkhuNkpCUQ?oc=5",
-      "source": {
-        "name": "뉴시안",
-        "url": "http://www.newsian.co.kr"
-      },
-      "publishedAt": "2026-07-11T09:26:24.000Z",
-      "guid": "CBMiakFVX3lxTE5mQTA0WHdPZS1UU0ZDdFltb3JmMU1iV3k1UUxTcy04Y1hzcGliQVkzTEo1Nm5RUFBxdl95Vm9jdDJmVXJRWjBnZlNPQ21UcXZnU3A1NDYwYXdObkZDZkhOSEJLYjJ6U180NHfSAW5BVV95cUxQU05nd2c2clJ2NXNldkdqRXZfLXpqdnlNY2p4OV9sSTBNeVhjU1UtRzlIbmxZ…",
-      "score": 53
+      "score": 52
     },
     {
       "id": "company-7LWc7YOc7JuQIC",
@@ -3705,7 +3897,7 @@
       },
       "publishedAt": "2026-07-11T09:05:42.000Z",
       "guid": "CBMib0FVX3lxTFBkaGI4UXV6WEl1c0JTOUpxU3BDUjZabllrUERLQlVhSkpyU2xjSjB2OHJ4SHMyR1pNNVVQR0xwRk1HX2E2eHlFRXc1a2FsUlFCdjYzT2ZwanJPZzlCcXBKYVJjYlE4T3ZOeUJyU2U2RQ",
-      "score": 53
+      "score": 52
     },
     {
       "id": "macro-64uk7J2M7KO8IO",
@@ -3721,7 +3913,23 @@
       },
       "publishedAt": "2026-07-11T01:10:00.000Z",
       "guid": "CBMifkFVX3lxTE9qcUdaMlJ6ZjlYb1BCc2FnR1VWMWU4Nk5vdmNrVTZYd2ExY2ItOEE5WUx1VUhRU2hCVjJxZ3p3RjRQVDUyMkNIb1J4T0hzaDBaZ0YxampDYnBQblg1LXRaaUxNbDRuR09ndE5rMU9xTFY1UlBoaUw4SUpsZ2stdw",
-      "score": 53
+      "score": 52
+    },
+    {
+      "id": "market-Iuy9lOyduCDrrL",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "\"코인 물린게 얼만데 세금도 내라고?\"…250만원 넘게 벌면 22%",
+      "description": "\"코인 물린게 얼만데 세금도 내라고?\"…250만원 넘게 벌면 22% &nbsp;&nbsp; 네이트",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE4zbnNqZWQyZVZFbm1ydzZKRllkdk9GWV9XaW5IX3FvLXk3MUx2dXA3OEk0ZmVCSXd3a21DNktYRDlDZWNyNFZWZXk5UkE1MXJwZWRj?oc=5",
+      "source": {
+        "name": "네이트",
+        "url": "https://news.nate.com"
+      },
+      "publishedAt": "2026-07-12T00:17:00.000Z",
+      "guid": "CBMiU0FVX3lxTE4zbnNqZWQyZVZFbm1ydzZKRllkdk9GWV9XaW5IX3FvLXk3MUx2dXA3OEk0ZmVCSXd3a21DNktYRDlDZWNyNFZWZXk5UkE1MXJwZWRj",
+      "score": 51
     },
     {
       "id": "crypto-6riI7Jy17JyELC",
@@ -3737,7 +3945,7 @@
       },
       "publishedAt": "2026-07-12T07:00:00.000Z",
       "guid": "CBMiWkFVX3lxTFBaS1BQMFlvZzExRm5ydFM2cFljbEJ3bGxlcXdpMVVBNFFlbDZhcFJZNjNEVm5tLXlXWVpjOWo2WjJ5MVFPV2x2MXZtYU5QNXpoQzNPbjNrakNLQdIBWEFVX3lxTFA4c194UFRsQ21SRWxGZmVDY3puMzNPMmlKYXZVRUFrZkFRTUlxX05WVHVZMnVkNERxUjVkekFmUkpObGI3…",
-      "score": 51
+      "score": 50
     },
     {
       "id": "company-7ISx7ZmYIDEyNu",
@@ -3753,7 +3961,7 @@
       },
       "publishedAt": "2026-07-12T06:18:01.000Z",
       "guid": "CBMiaEFVX3lxTE5HS3h6V29oTkpWVVdJeVJvU1p2NGFwbGtBR2JkNDY3YnF0V1RLb1B2ZmxvSkxFLTVydnAxVTJ0c2NRRWk2eXJKYTFLTGpfZ2lvZHhpRjY2UnBGa1ZSTlhYSUZBTFAyM1NV",
-      "score": 50
+      "score": 49
     },
     {
       "id": "company-7ZSE656R7IqkIO",
@@ -3769,13 +3977,13 @@
       },
       "publishedAt": "2026-07-12T06:13:39.000Z",
       "guid": "CBMikwFBVV95cUxPMVJ5NTZoNFh5YV84YU8wa2l0M3c5d1hWbGJvSldjZDg4SGF0VDFZbUtyU0QzNzVIX2FucEM2Q3ZtN0pTUzFSSWtxV2kxRkkwd2d2ZXo0amRWOTRBWGhNV0dKRkI2VC1mbXUycF9BLXNHMVg0YWt2MG9ZZVNuN2dteGxJUDFjenpLWGZzSUNOSHY2YUE",
-      "score": 50
+      "score": 49
     },
     {
-      "id": "company-7Iqk7Y6Y7J207I",
-      "category": "company",
-      "categoryName": "기업·실적·산업",
-      "categoryIcon": "🏭",
+      "id": "market-7Iqk7Y6Y7J207I",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
       "title": "스페이스X 열풍 식자 우주 ETF '엑소더스'…한 달 새 5000억 이탈",
       "description": "스페이스X 열풍 식자 우주 ETF '엑소더스'…한 달 새 5000억 이탈 &nbsp;&nbsp; 스페셜경제",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1KaEJzeEo2M2hUV1ZQSkd4Ym5uUWZ6NVN0VGZOb1NpbS1FVnV6QXpoSFpZb010UjBBYnJsSHJBLWI0ZlVvLTY0QUNReHNEeE15em5leG5xWlhPTHlER1VsNmVTbTk2MVc3eUJ6WQ?oc=5",
@@ -3785,7 +3993,7 @@
       },
       "publishedAt": "2026-07-12T05:13:28.000Z",
       "guid": "CBMibEFVX3lxTE1KaEJzeEo2M2hUV1ZQSkd4Ym5uUWZ6NVN0VGZOb1NpbS1FVnV6QXpoSFpZb010UjBBYnJsSHJBLWI0ZlVvLTY0QUNReHNEeE15em5leG5xWlhPTHlER1VsNmVTbTk2MVc3eUJ6WQ",
-      "score": 49
+      "score": 48
     },
     {
       "id": "consumer-64K064WEIOy1nO",
@@ -3801,7 +4009,7 @@
       },
       "publishedAt": "2026-07-12T04:44:08.000Z",
       "guid": "CBMiT0FVX3lxTE9PZEtzRWx6UDBjOUs3YTd6R1M1SHhlSzJyMWh4OFdqVjN2ZGNyeGwtOHZ0SFV2YTI3WkZkS0dIQmlRbWJnVXVGQmx3SDYxTW8",
-      "score": 49
+      "score": 48
     },
     {
       "id": "crypto-W-uJtOyalSDsvZ",
@@ -3817,7 +4025,7 @@
       },
       "publishedAt": "2026-07-11T21:29:00.000Z",
       "guid": "CBMiWEFVX3lxTFBrQWhSSzVfOTU3YjJIN2FjT25ESXc5Z2JaRHNCZVBMa0JEZ0g3QmNsTVZrb1JrYWdjTFFuaUE1QWpMNHlTQzFtdGZPTVZ6bGk2X3ladWlEWUY",
-      "score": 49
+      "score": 48
     },
     {
       "id": "market-U05TIOuvuOuLtO",
@@ -3833,7 +4041,7 @@
       },
       "publishedAt": "2026-07-11T21:20:00.000Z",
       "guid": "CBMiW0FVX3lxTE5QYWJrQmI1TDRpRVZpVldBc2ZZOXRxZ255aXBRREpfaWxqOUY4SFByZ2tacHlRRHZnRGZGajV6RFM5RFBBM0xCOEVzWlBFdlRxWkRXek5rT0RvUzDSAWBBVV95cUxNZ3JjX2dBQmlicGNKVWJOc2htdUZXRGtaNXRSWXpUdloyTFFKUTRqU0R6WU9JcVFkYzVycDVmeU5sVWdO…",
-      "score": 49
+      "score": 48
     },
     {
       "id": "crypto-7Iqk7YWM7J2067",
@@ -3849,7 +4057,23 @@
       },
       "publishedAt": "2026-07-11T21:00:00.000Z",
       "guid": "CBMi2gFBVV95cUxONTJGbE1UMXFVTHZaZF9jcm1TRzdjSlRDSlpCTHNIZWxIYW9ma2pOUnBFZlpSa2VQdkktUUdiY0ZBSlZtN0Y1RGVtUjgzTUp2Y1Q1VUdqWnd6UlBrS2tTUnUweXZWeEItMzZqVmx5bW9VTUdVTFFTbHIxQzdMTXJBVEdrX0N2a2ZMelZlSGFMbDFTblBVNWszMG4wZDZuNXhJ…",
-      "score": 49
+      "score": 48
+    },
+    {
+      "id": "crypto-VW5pc3dhcCwg7I",
+      "category": "crypto",
+      "categoryName": "가상자산",
+      "categoryIcon": "₿",
+      "title": "Uniswap, 스테이블코인 스왑 거래량과 프로토콜 업그레이드로 8% 이상 급등",
+      "description": "Uniswap, 스테이블코인 스왑 거래량과 프로토콜 업그레이드로 8% 이상 급등 &nbsp;&nbsp; Traders Union",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPckVHblJ2bzRtUERZX0tfM29SYWFEWmRiOEFlSGZsc2xqTHpaQks3YTRCTGtIREwxWnBka3JoNDhadWhJalowRklGSUVsM1lLczlpQUdXQUFGWndUblRzal85VFF4YVBZdjk4RXlfV2FJNHVOdWFCc21GRFpHaUVSN2lCZW9XdnY0VjY4NHZ5dHlXX2lIWUtTNXY0S0pHR29keHBncQ?oc=5",
+      "source": {
+        "name": "Traders Union",
+        "url": "https://tradersunion.com"
+      },
+      "publishedAt": "2026-07-11T20:53:22.000Z",
+      "guid": "CBMipAFBVV95cUxPckVHblJ2bzRtUERZX0tfM29SYWFEWmRiOEFlSGZsc2xqTHpaQks3YTRCTGtIREwxWnBka3JoNDhadWhJalowRklGSUVsM1lLczlpQUdXQUFGWndUblRzal85VFF4YVBZdjk4RXlfV2FJNHVOdWFCc21GRFpHaUVSN2lCZW9XdnY0VjY4NHZ5dHlXX2lIWUtTNXY0S0pHR29k…",
+      "score": 48
     },
     {
       "id": "crypto-U29sYW5hKFNPTF",
@@ -3865,7 +4089,7 @@
       },
       "publishedAt": "2026-07-12T04:01:05.000Z",
       "guid": "CBMikgFBVV95cUxPcFBiTkNMWkVtRVdOdmFyUzh2M3htWktxT1BfS2JlOWdvNmhJWUlOZXdJb2pvXzd5T1R0d3VYQkhNdTVXc2cxMF81MW5JY0VQTDkxVTdoenN2Ym55cWN4TmdaRTFxNlZQNGY0aFZsNkppUzJ3b2tYUkozeUJDc25iZVlZbUZscHZ2UW81dnJWRGJHdw",
-      "score": 48
+      "score": 47
     },
     {
       "id": "consumer-67mg66W4IOuwsO",
@@ -3881,7 +4105,7 @@
       },
       "publishedAt": "2026-07-12T02:23:27.000Z",
       "guid": "CBMiWEFVX3lxTFA2dHQydUp1QThDUWxBQXhxUDlQNThob1NZV1laX0Z3U1VNSC03cFd3ZExjZ3pLaV8tczFOUGpyTHhFU0U0LXEwcVFDSE1nMkMyeUI3MWhacEs",
-      "score": 46
+      "score": 45
     },
     {
       "id": "market-6rOE7KKM6rCAIO",
@@ -3897,7 +4121,7 @@
       },
       "publishedAt": "2026-07-11T02:00:15.000Z",
       "guid": "CBMiW0FVX3lxTE4yeEpXb2VSd3JEMUdwLU1OUkQxQ2NQLXFlYmFlUFVVX2lHYWZNMXVRSkJRcE1nNnVGRkxQbnBLbGk4bDJGbktEOUprZE9DMlFWTTBOeDE3VDBRa1HSAVJBVV95cUxOSThxZVo5RXljWGtXOUlQMllaWWtZa2VablJEbXh1SEZKNnhOTnA0ZTVkUzFWUHVWczEwLVBWU2xyQnJX…",
-      "score": 46
+      "score": 45
     },
     {
       "id": "company-7JeQ7L2U7ZSE66",
@@ -3913,7 +4137,23 @@
       },
       "publishedAt": "2026-07-12T01:02:15.000Z",
       "guid": "CBMiU0FVX3lxTE9VZ3MwM1R1ZEg2eWlUaXExMzZ0SEJjeUZxc3RYYlV2dWRSZl9PWXBHaUNBUXdsS1hUb3hNR0VKaDlIZ3o0dFdrdW1Lc0pJWEtJZ2pB",
-      "score": 45
+      "score": 44
+    },
+    {
+      "id": "consumer-IuyDneqzhOu5hC",
+      "category": "consumer",
+      "categoryName": "소비·유통·생활경제",
+      "categoryIcon": "🛒",
+      "title": "\"생계비 빠듯\" vs \"인건비 한계\"…최저임금 '690원' 왜 못 좁히나",
+      "description": "\"생계비 빠듯\" vs \"인건비 한계\"…최저임금 '690원' 왜 못 좁히나 &nbsp;&nbsp; 파이낸셜뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5wMnpkVXlUUjZPMmVkQ2lpam5YVzJQanE4UVY0ZHJKTFRSTzA2d21YT2RUQ3ZrQWJ1ZmJtbmUyUWtPRjlibi01S3pMTmVYRjB0TDFzYmRodzJDQQ?oc=5",
+      "source": {
+        "name": "파이낸셜뉴스",
+        "url": "https://www.fnnews.com"
+      },
+      "publishedAt": "2026-07-12T00:01:32.000Z",
+      "guid": "CBMiWkFVX3lxTE5wMnpkVXlUUjZPMmVkQ2lpam5YVzJQanE4UVY0ZHJKTFRSTzA2d21YT2RUQ3ZrQWJ1ZmJtbmUyUWtPRjlibi01S3pMTmVYRjB0TDFzYmRodzJDQQ",
+      "score": 43
     },
     {
       "id": "global-7Jm467aAIOy2qe",
@@ -3929,7 +4169,7 @@
       },
       "publishedAt": "2026-07-11T23:51:42.000Z",
       "guid": "CBMifkFVX3lxTE81VHRPdjduMEVJZGJiX0ZtZjJwaS1NLUlQa3NKak5iQk1EdU9FaUluVXoxZ3Z5bng2dV84enJhM1pCR1lHYk5xU2JmT2RhOWZkWVhOTWtjVjF1YUtWa0JuZU1sRk1uLTBRTnJ4cnl0d0xRa2NmUmlISjlySW9VUQ",
-      "score": 44
+      "score": 43
     },
     {
       "id": "company-U0vtlZjsnbTri4",
@@ -3945,7 +4185,7 @@
       },
       "publishedAt": "2026-07-11T00:13:06.000Z",
       "guid": "CBMiU0FVX3lxTE9sV2oxMF8ybjdzYU5hWG56VGZrZUl0dzE1ZnBUamJxMm1ScGpULWhYT0hEa1lmVFg5aE5haVYzX2hQWUhhOWpXNk9oRE9LTTJNTjdN",
-      "score": 44
+      "score": 43
     },
     {
       "id": "company-SEJNIOuLpOydjO",
@@ -3961,7 +4201,7 @@
       },
       "publishedAt": "2026-07-11T00:00:00.000Z",
       "guid": "CBMiWEFVX3lxTE9wSy1wVElqd3hFdjJqTFRCenJvMGJ0cm5ZWEVQSmlReUV3Q0lHSExOY016OHdrTkd3aGJZYS1McjdsdE1TdTJwQmtuWGMzYnZoOFZtS0VRTFXSAVhBVV95cUxPcEstcFRJand4RXYyakxUQnpybzBidHJuWVhFUEppUXlFd0NJR0hMTmNNejh3a05Hd2hiWWEtTHI3bHRNU3Uy…",
-      "score": 44
+      "score": 43
     },
     {
       "id": "macro-W07snITtgaxdIO",
@@ -3970,14 +4210,14 @@
       "categoryIcon": "🏦",
       "title": "[N위크] 李대통령 부동산 大토론회 주재...하반기 경제전략·금리 인상 나올듯",
       "description": "[N위크] 李대통령 부동산 大토론회 주재...하반기 경제전략·금리 인상 나올듯 &nbsp;&nbsp; 조세금융신문",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9kU0FCTWdPYmZPajNrZVNYM0NScERmdU03NlM2TDBXcUNVWGllU2VXWEZvNWNzY0hTOV9FeUNmWENrQnVUOW1nal8tdnBQdXRtVTFqeGZIV3ZCaVMxZEgyMA?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5YRjdmMGo4T05ScFlwLXFSdUp4dl9wMEVSa3A2WDhUbzQzMzg0NHluUHNQcHBaaW1qeFp0c2dTcUY1Z0d6cG5yX3Zrb09MSHpUR0hUdlMyV2dRbDB2bWcwQTZrZw?oc=5",
       "source": {
         "name": "조세금융신문",
-        "url": "https://tfmedia.co.kr"
+        "url": "https://www.tfmedia.co.kr"
       },
       "publishedAt": "2026-07-10T23:56:20.000Z",
-      "guid": "CBMiYEFVX3lxTE9kU0FCTWdPYmZPajNrZVNYM0NScERmdU03NlM2TDBXcUNVWGllU2VXWEZvNWNzY0hTOV9FeUNmWENrQnVUOW1nal8tdnBQdXRtVTFqeGZIV3ZCaVMxZEgyMA",
-      "score": 44
+      "guid": "CBMiY0FVX3lxTE5YRjdmMGo4T05ScFlwLXFSdUp4dl9wMEVSa3A2WDhUbzQzMzg0NHluUHNQcHBaaW1qeFp0c2dTcUY1Z0d6cG5yX3Zrb09MSHpUR0hUdlMyV2dRbDB2bWcwQTZrZw",
+      "score": 43
     },
     {
       "id": "company-4oCc64m07JqV7J",
@@ -3993,7 +4233,7 @@
       },
       "publishedAt": "2026-07-10T22:52:34.000Z",
       "guid": "CBMiakFVX3lxTE9JbHcwZTNEcUtvcHR1ak0yeE1QeDVaRGY1b28zR3pJQW83YkZFcWpQX2t3Y2k5aTIxbTFtdkQ0LV9wbXZoN3hyNXJ5VGZiYTJNRWdqamh0dk5TclAwZEx6WjRFbkhFaWxfSnfSAW5BVV95cUxPZ0RneFdfb3cxSmNOT25JMDdZMkgwZ3BEQVpXT2pKRG9ncmVGM05NOEE4ZVZI…",
-      "score": 43
+      "score": 42
     },
     {
       "id": "policy-J-uztOycoOyEuM",
@@ -4009,38 +4249,6 @@
       },
       "publishedAt": "2026-07-10T22:38:55.000Z",
       "guid": "CBMi_wNBVV95cUxOaV9qSGNhSERKZnJuSUE4SzVNZHhlc1VxUVFCVFgxVV8xOGg5Y19QMlg5ZlJqdkhpQ0U0bHFod2p0Y3JjMGxrcktDSWZlYmNnYndOZGlsM1dEaGNyQUotLUFuc29QZG1Dd1VVZlIzUUtHd1hZRWxJeEZMc1FyWExqQnRRdlRyNElrbXN3SEM2enRhQW9JdFRSODJJd0lYX3lE…",
-      "score": 43
-    },
-    {
-      "id": "market-64uk7J2M7KO8IO",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "다음주 반등의 신호탄?…SK하이닉스 ‘ADR 상장 대박’ [선데이 머니카페]",
-      "description": "다음주 반등의 신호탄?…SK하이닉스 ‘ADR 상장 대박’ [선데이 머니카페] &nbsp;&nbsp; 서울경제신문",
-      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9zTjlOZFBfVmNDODBGUkg1QXlUX2txeXpnT3FveEJibHNSMTdrNGlqN1FjWEpUMHNjOHVBNmgwNGJiUFQyd0JXY0FsZlo2R3R0c2fSAVNBVV95cUxPc2NTRDNvcEV3SGJkdGU0elZUelNUa0FLM2FBQklrT0xKa3VwZ1I4Ulk0enFyQjVQTUJ4NjJSOVo5ZGpfdWprckNiZE5scUFVYW55SQ?oc=5",
-      "source": {
-        "name": "서울경제신문",
-        "url": "https://www.sedaily.com"
-      },
-      "publishedAt": "2026-07-11T22:00:00.000Z",
-      "guid": "CBMiUkFVX3lxTE9zTjlOZFBfVmNDODBGUkg1QXlUX2txeXpnT3FveEJibHNSMTdrNGlqN1FjWEpUMHNjOHVBNmgwNGJiUFQyd0JXY0FsZlo2R3R0c2fSAVNBVV95cUxPc2NTRDNvcEV3SGJkdGU0elZUelNUa0FLM2FBQklrT0xKa3VwZ1I4Ulk0enFyQjVQTUJ4NjJSOVo5ZGpfdWprckNiZE5s…",
-      "score": 42
-    },
-    {
-      "id": "global-W-2KueynkTog5p",
-      "category": "global",
-      "categoryName": "글로벌 경제",
-      "categoryIcon": "🌐",
-      "title": "[특집: 新국력전쟁 Series No. 6: 한국 경제외교의 미래] “외교가 곧 산업이고 산업이 곧 국력이다”",
-      "description": "[특집: 新국력전쟁 Series No. 6: 한국 경제외교의 미래] “외교가 곧 산업이고 산업이 곧 국력이다” &nbsp;&nbsp; 코리아포스트 한글판",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1FSkt6QklpTjh1bUllX0VxLXRKV3VvMnBabWhHcGs0TjFXUENsTXJWX0pCSjdxQ09FNFFQbzB3YjhUbUVWRzNrQ1NhNFM3c3kzYk4tRnVuZkpqdjlYUlhNU3BGZEJOYVpGXzlrUmNR?oc=5",
-      "source": {
-        "name": "코리아포스트 한글판",
-        "url": "https://www.koreapost.co.kr"
-      },
-      "publishedAt": "2026-07-11T22:00:00.000Z",
-      "guid": "CBMibkFVX3lxTE1FSkt6QklpTjh1bUllX0VxLXRKV3VvMnBabWhHcGs0TjFXUENsTXJWX0pCSjdxQ09FNFFQbzB3YjhUbUVWRzNrQ1NhNFM3c3kzYk4tRnVuZkpqdjlYUlhNU3BGZEJOYVpGXzlrUmNR",
       "score": 42
     },
     {
@@ -4057,7 +4265,7 @@
       },
       "publishedAt": "2026-07-11T14:18:05.000Z",
       "guid": "CBMicEFVX3lxTFBJaXVocHBjNWZveGRnRkNFMzctbWk3MEc2bTN4aHBHTHh6Umt0dGNZUlVpUXpLVGtvRGJTYzlRX1VZVWZCbTZnSjRBUG9nUG9EZXVzMHZsZGlKSHJva3RXYWtzNVZCSjZaUWtDTU04Mzc",
-      "score": 42
+      "score": 41
     },
     {
       "id": "macro-7Jik64qYKDEx7J",
@@ -4073,7 +4281,7 @@
       },
       "publishedAt": "2026-07-11T04:39:21.000Z",
       "guid": "CBMidEFVX3lxTE1UV1JjRFBxODd2aTRyZUtTbWlKMkd5cUk3UXZKekFGclNXZnplUFVfZDRHcUNrRnozWGhYOHAwcENMaWdsbWNvMVdxWEZva3BWZkVsOGpPcUpGekI1YjBxSEh0aENmM2otY190T1hoN2hyaTdn0gF0QVVfeXFMTVRXUmNEUHE4N3ZpNHJlS1NtaUoyR3lxSTdRdkp6QUZyU1dm…",
-      "score": 41
+      "score": 40
     },
     {
       "id": "crypto-67mE7Yq47L2U7J",
@@ -4089,7 +4297,7 @@
       },
       "publishedAt": "2026-07-11T11:55:24.000Z",
       "guid": "CBMic0FVX3lxTE9OTlkwN2Znek9HSnhsYXI2YmxHV1hwOGdUWFJmNGRlU1pGcVhSUlE3RW9EOHZBX21wWEVTUXJnRVdsUm5nRmw5YkxkQ2U2R2RHWlZuWWtEZVdYY3MyT0pURFFydFpPUkZyVzV5T0ZoLXE4X2M",
-      "score": 40
+      "score": 39
     },
     {
       "id": "global-SUVBICLsnKDrn7",
@@ -4097,15 +4305,15 @@
       "categoryName": "글로벌 경제",
       "categoryIcon": "🌐",
       "title": "IEA \"유럽도, 한중일처럼 전기 비중 30% 넘겨야\"",
-      "description": "IEA \"유럽도, 한중일처럼 전기 비중 30% 넘겨야\" &nbsp;&nbsp; v.daum.net",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBKZmtYZTZld25INm91LXlzcmtiOG5iX3RQM0o4by1jNjN4NlNRcmR4U0ZLbklISU13dDBkVEFXSllWdEFrUjE3azMzRUx6MEE?oc=5",
+      "description": "IEA \"유럽도, 한중일처럼 전기 비중 30% 넘겨야\" &nbsp;&nbsp; 파이낸셜뉴스",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1sbWVPS2tTdHdlZ0hveVF6NUtrUW1BLU9BSUZ4Z2ptYW80Zk8xQWRrQlJHcnhzaGJ1dURCTC1FMjhCdW51VEtXLXprY1pLWl93cjVuT2NaUUZ2UQ?oc=5",
       "source": {
-        "name": "v.daum.net",
-        "url": "https://v.daum.net"
+        "name": "파이낸셜뉴스",
+        "url": "https://www.fnnews.com"
       },
-      "publishedAt": "2026-07-11T19:08:37.000Z",
-      "guid": "CBMiT0FVX3lxTFBKZmtYZTZld25INm91LXlzcmtiOG5iX3RQM0o4by1jNjN4NlNRcmR4U0ZLbklISU13dDBkVEFXSllWdEFrUjE3azMzRUx6MEE",
-      "score": 39
+      "publishedAt": "2026-07-11T19:06:42.000Z",
+      "guid": "CBMiWkFVX3lxTE1sbWVPS2tTdHdlZ0hveVF6NUtrUW1BLU9BSUZ4Z2ptYW80Zk8xQWRrQlJHcnhzaGJ1dURCTC1FMjhCdW51VEtXLXprY1pLWl93cjVuT2NaUUZ2UQ",
+      "score": 38
     },
     {
       "id": "company-6riI6rCQ7JuQIO",
@@ -4121,7 +4329,7 @@
       },
       "publishedAt": "2026-07-11T18:34:11.000Z",
       "guid": "CBMiqwRBVV95cUxPNGtrT3RXekVzQzVCN1lybWxNcml1dGNSdEhFRTh4VzljYU54d2lSRHdRU0xXUDJPYVc2WE85NndIdU9tMC1ZSk1xY2RkZHlkVU9qQ0RPOTJqRWpEdWJyeUROalJ2Y3FYblRWVjFzM0NMRDJzdmF0V2ZrZjV4cHg2MS1DcmNReU9OSVQwcFRTVmphYVk5alV5ZnRQR2lrNVVN…",
-      "score": 39
+      "score": 38
     },
     {
       "id": "market-Wzfsm5Qg65GY7K",
@@ -4137,7 +4345,7 @@
       },
       "publishedAt": "2026-07-11T02:18:53.000Z",
       "guid": "CBMib0FVX3lxTFB6b3owUVVtOXJLOFFmTzEzYmRmMGRsTU4xQTRRSGV2MXRtUUlndFdSNkhqMi0tbmU5cHZBSkxrck4zRnhkVDRlSkVrdEQ4SldWT0lBMzc4bk45d25lSTBubjZVT0ZMdTV1NElfNFV5MA",
-      "score": 38
+      "score": 37
     },
     {
       "id": "finance-W-yjvOuqqSBlLe",
@@ -4153,22 +4361,6 @@
       },
       "publishedAt": "2026-07-11T01:41:43.000Z",
       "guid": "CBMibEFVX3lxTE5VZmhkcnVxck91a1lzVjhDcWF5SGZzNVRuNklRY0hsSWh2U2h4aDNqbUd6SlN3VC1mSm02LWFBU1lRV1JXV2tublJkVk5yZEtmOXhaekVDa2VCZHh6cHRZNEhVVW4xU3hXS1ZsSQ",
-      "score": 38
-    },
-    {
-      "id": "macro-JzUw7KGwIO2BtO",
-      "category": "macro",
-      "categoryName": "금리·환율·거시",
-      "categoryIcon": "🏦",
-      "title": "'50조 클럽' 눈앞인데…현대차 주가 전망 엇갈린 이유 [투자톡]",
-      "description": "'50조 클럽' 눈앞인데…현대차 주가 전망 엇갈린 이유 [투자톡] &nbsp;&nbsp; 블루밍비트",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5MQVdUSjVqTzQzN1NJbGNpN1JIVXZvUVllRGdUck1FeUVjNndjZVptNTRaejVDeGpSQ0huT0VrRGRmc1JGWUxzQzBha3FzaTJv?oc=5",
-      "source": {
-        "name": "블루밍비트",
-        "url": "https://bloomingbit.io"
-      },
-      "publishedAt": "2026-07-11T09:25:33.000Z",
-      "guid": "CBMiUEFVX3lxTE5MQVdUSjVqTzQzN1NJbGNpN1JIVXZvUVllRGdUck1FeUVjNndjZVptNTRaejVDeGpSQ0huT0VrRGRmc1JGWUxzQzBha3FzaTJv",
       "score": 37
     },
     {
@@ -4185,7 +4377,7 @@
       },
       "publishedAt": "2026-07-11T00:47:30.000Z",
       "guid": "CBMiZ0FVX3lxTE1HVGpJcUdkODJnT29YeF9uc3MxMDBUcW1xMGJKdlNsSnktSlZ2b2pKYjhzQVFXZ29lSklRTXFuLVIyYWxxWS16eEZQR1o4bXQ3WERnMkR1WnUyWWc4NFN0ZUI2TEk1U1k",
-      "score": 37
+      "score": 36
     },
     {
       "id": "market-7ZiE64yA6rG07I",
@@ -4201,7 +4393,23 @@
       },
       "publishedAt": "2026-07-11T15:44:06.000Z",
       "guid": "CBMilwFBVV95cUxNdmVFMUtQd1BoZ0ZvRmVUWE5lbzU3MFFyTUdEeE0zQmRyRFN5ckkxMlVUVFF4YWFlb2JaV0dYVFJYZ21McndDYi0tMm9aX0RpQnJQV1QxY2NZT0N1QkFsbUg5MUw3YXVsZVpLYnpFNzJuOEtQTmIzTkJlYTdhbHJ4eHlyT29BaGplM2lBbXkxQldPVUpRWFQ4",
-      "score": 36
+      "score": 35
+    },
+    {
+      "id": "market-U0vtlZjsnbTri4",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "SK하이닉스, 나스닥 첫날 13% 폭등…뉴욕증시 일제히 상승",
+      "description": "SK하이닉스, 나스닥 첫날 13% 폭등…뉴욕증시 일제히 상승 &nbsp;&nbsp; 직썰",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFA3LW03ajhoNUc5ZG4tLUxlVkY4SlZjVWM1dG9GS19BY0htaUU4MlA0bGpVYkc1aUlqQUhaVFlsYVBsV3JVUjR4NlJWcGdnZWVjNlF0Qmh2d250LWdERmtwRHpZaXBBU1E00gFsQVVfeXFMTnB2aEJNSGhHMTVINUk3TzlFZTJtakhLS3B5RzBTcHlsY3dnSDJqNW1kWlNRUzFJaHBudmlfZDlxNXAxZnRybGhpcHJtb3JMQ1BBVUJ4cEJMUkk4cms3NW9sWDFCeFhUVFo3ZnVK?oc=5",
+      "source": {
+        "name": "직썰",
+        "url": "https://www.ziksir.com"
+      },
+      "publishedAt": "2026-07-11T00:23:52.000Z",
+      "guid": "CBMiaEFVX3lxTFA3LW03ajhoNUc5ZG4tLUxlVkY4SlZjVWM1dG9GS19BY0htaUU4MlA0bGpVYkc1aUlqQUhaVFlsYVBsV3JVUjR4NlJWcGdnZWVjNlF0Qmh2d250LWdERmtwRHpZaXBBU1E00gFsQVVfeXFMTnB2aEJNSGhHMTVINUk3TzlFZTJtakhLS3B5RzBTcHlsY3dnSDJqNW1kWlNRUzFJ…",
+      "score": 35
     },
     {
       "id": "company-7J2Y66OM6riw6r",
@@ -4217,7 +4425,7 @@
       },
       "publishedAt": "2026-07-11T00:01:00.000Z",
       "guid": "CBMieEFVX3lxTE82ZVdzcm1rLTAzbDY2b1lGZEJVLWFYVENSeGZtU2d6OHdreWNVODRsNlRGVW1ja1Q2aUV0bUhMdjVIR05TbTFWQ0VoZjM4aDVjNnl6T2FaaUxzUnBKV3Jad1pJRDNTUGdEVmVDSzJzS0thWWFoOFFKNw",
-      "score": 36
+      "score": 35
     },
     {
       "id": "company-W0lQT-yxl10gJ-",
@@ -4233,7 +4441,7 @@
       },
       "publishedAt": "2026-07-11T00:00:02.000Z",
       "guid": "CBMiYEFVX3lxTE9ZdXgtQ25SZmRMWTJzMEtaSXBYTG1ncFFjWGN0RURNQllTVHlneVA0V2Rzci1tNkdmSkYtUlNWeTlKejVncVFnbTZnaUpJY08yOWNPa2JuQjJjS2dXdWk1U9IBYEFVX3lxTE9ZdXgtQ25SZmRMWTJzMEtaSXBYTG1ncFFjWGN0RURNQllTVHlneVA0V2Rzci1tNkdmSkYtUlNW…",
-      "score": 36
+      "score": 35
     },
     {
       "id": "company-7LWc7YOc7JuQIC",
@@ -4249,7 +4457,7 @@
       },
       "publishedAt": "2026-07-11T00:00:00.000Z",
       "guid": "CBMiU0FVX3lxTFBBN2E2ZF9Uel9CaU9vX0pKVnhNSWVFU3ZEMEdLUjQzeWt4SkhhX0NZMVJZdkc1NVZmcl9OQkM4bGxtSVZOZkx4MGJVRDZoTlphaEVv",
-      "score": 36
+      "score": 35
     },
     {
       "id": "market-7L2U7Iqk7ZS8LC",
@@ -4265,7 +4473,7 @@
       },
       "publishedAt": "2026-07-10T23:56:00.000Z",
       "guid": "CBMickFVX3lxTE5QcVIydl85SXR4Rm9RVXRteWNrTGhrS3RtV2N1S25EUXNzZVRxMzNDb1p2TXMtS2RtNzUtWnNCeHNPdGl5UHg0VXhSS2dvcDVSYkUxbVBLVkR1amFNeUV1WnZhampvUTBNcnl2WjFvc3ZVd9IBdkFVX3lxTE1CQlljckF6R0oxM290d00yRmo3V0xnYnBpMDJzQW44aTFZLUpM…",
-      "score": 36
+      "score": 35
     },
     {
       "id": "finance-MjDsnbzrtoDthL",
@@ -4281,22 +4489,6 @@
       },
       "publishedAt": "2026-07-10T23:36:22.000Z",
       "guid": "CBMidkFVX3lxTE1lYTdpcGFKLUdSWlYxR05wUUtWcW1BN28xTlV6MGNVazllRjVIemlVQmNlQl9nc240TXNQUjcwRl9FT0RpU1ktUHFPUWlwU0E0OW5OMC1MT1UtUVFsaTQxVjB6RUxuTlQyZmNOUFRsSG1sX3F4a0HSAXZBVV95cUxNZWE3aXBhSi1HUlpWMUdOcFFLVnFtQTdvMU5VejBjVWs5…",
-      "score": 36
-    },
-    {
-      "id": "company-7J2067KI7KO8IO",
-      "category": "company",
-      "categoryName": "기업·실적·산업",
-      "categoryIcon": "🏭",
-      "title": "이번주 공모주 청약, 에이치엘지노믹스 1개사",
-      "description": "이번주 공모주 청약, 에이치엘지노믹스 1개사 &nbsp;&nbsp; 데일리안",
-      "url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxNVHl4RWF5RjAwakUzU1oxSVR0R3VaZ0hGYTh6YlBpZE1JTWR2MVhpZGYtR192SnhKaEtzbVpNa3RZc1A3MTI3Y3JyQlVOYm5zdlJfSlhwTGRfdzFpZEd4ZEoySGdGNVBwU1NkV2Y5cTZ6SzB0ZjY1ekNSNm10NzU3NW0yMXJRdVFJWlpFbGxqcm1tcUc0eWcxSW5MbVpqc0Z0LWJSNWtadVpHcVNCMGJfdXNoRm1QR1BCMzdwTkIxQ2R5N3lRTzAwRmJ0LTZlTmx4VzBkaEtjY1hHM0VyLWFjaC12OEtLZTFaVEhMQU9NbnF3N1JfcnpCSHV6MjFoWVZLdnFNdlFMR20tdkdMNWZwWktsN2Z6bXJ5WW9PelNNckNBZ9IBpAJBVV95cUxQYmJWd0g5am9MX19KWldYT1pKRHowdkl0aHNtcWVvTUlGUDF2d3ZQWjJXWFNxSGU2bnQtMVNGOHpLbFJJR1BxUmh2SU9rNldDeHhKSHMtcWdxRksyZE9QZGx4RFA5Z0RxMnROdFNZMTRrUm9JcWZQRUgwZVVkV2pqVXktbG5pODFSZjlQRDJkYVo0VkljaVVJNmhaYVdhQjdydmNwYnNZVGhNOGxTWHNYNVBvekg1QTNhMFh3Zl93V0F4SFdVeF9JOG1vSUR2UTFNU1ZfVXYyVHJwdDNMYzk4N2hqZHlUMXU5OVhqb2dXZkdGNUZnNGVieHlLNW5mcDJPd1FISUpabzd1YVJadjdSMG9VNWtXdGNoR2VqNTlQWUhabEJf?oc=5",
-      "source": {
-        "name": "데일리안",
-        "url": "https://www.dailian.co.kr"
-      },
-      "publishedAt": "2026-07-11T15:10:00.000Z",
-      "guid": "CBMiogJBVV95cUxNVHl4RWF5RjAwakUzU1oxSVR0R3VaZ0hGYTh6YlBpZE1JTWR2MVhpZGYtR192SnhKaEtzbVpNa3RZc1A3MTI3Y3JyQlVOYm5zdlJfSlhwTGRfdzFpZEd4ZEoySGdGNVBwU1NkV2Y5cTZ6SzB0ZjY1ekNSNm10NzU3NW0yMXJRdVFJWlpFbGxqcm1tcUc0eWcxSW5MbVpqc0Z0…",
       "score": 35
     },
     {
@@ -4313,7 +4505,7 @@
       },
       "publishedAt": "2026-07-11T15:03:37.000Z",
       "guid": "CBMilwFBVV95cUxNbS0yNm05aENtV3h2SzRRWGlISTJLYm5MWk9obkdaaUxnT0l4QnVUMDNVbVBsbWJJeTNURzRnN2dpWno3bmJnOUU0VHBZTjJjQVRfdWRyZDdubmFMUFI5cmg3S0VjOU55NFhwcEFkTm1haUh4ckhXRU0tOWROWGd5TENUNFI3RENYUFlkZ3VRNG4xZW1oYlFn",
-      "score": 35
+      "score": 34
     },
     {
       "id": "crypto-U29sYW5hKFNPTF",
@@ -4329,7 +4521,7 @@
       },
       "publishedAt": "2026-07-11T14:46:12.000Z",
       "guid": "CBMikgFBVV95cUxNVnFIVnRZLWFPU0xhRExkMzNMLXU1ZmpqaXJGeXBGd3Z1T3QzZzl3SndmMjhxXzFVcEh5TjRaZ0x0R3pLaUdwSHR5aURpTHZXYkJDZnNnZFJlRHNnWFVuckF6N1BtcjF1UTEyUkZ6eTZWSkt1QUNTUlZxN3QtbXRacUk0R3JfUE81MW5aU1pscGU5QQ",
-      "score": 35
+      "score": 34
     },
     {
       "id": "company-U0sg7LWc7YOc7J",
@@ -4345,23 +4537,23 @@
       },
       "publishedAt": "2026-07-11T07:08:53.000Z",
       "guid": "CBMia0FVX3lxTE1UalQ3VG9YTFNkY0pXUjk5WEp6QTR2dUVwYThxczVrdUJVZGlHQXI0U3J4NUZpZG5vTGVfdXlSWUdpOEhNeUZIYUpXenl5X284dEZxMzlZMDhnUUhFbmZUelplSU8zaENTUUkw",
-      "score": 35
+      "score": 34
     },
     {
-      "id": "company-W-yngOuCnOuwpC",
+      "id": "company-7IK87ISxU0RJKD",
       "category": "company",
       "categoryName": "기업·실적·산업",
       "categoryIcon": "🏭",
-      "title": "[지난밤 뉴욕에선] SK하이닉스 ADR, 나스닥 첫날 13% 급등",
-      "description": "[지난밤 뉴욕에선] SK하이닉스 ADR, 나스닥 첫날 13% 급등 &nbsp;&nbsp; 스트레이트뉴스",
-      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBzekF1Vm1RaWQ4VHlKZWs3WXlPX2I5OVNRb1FLenNQYzFDR09KTnVrbXZsQzdFUW5YLUVxT1JKc2NUM2lNWW52ZlBfdWdCdWxSN0dJalpGaTl5dU9uOG1abGVJMWgtQ0ZqWFhncUtoTm92RWxWNzh30gF3QVVfeXFMUHN6QXVWbVFpZDhUeUplazdZeU9fYjk5U1FvUUt6c1BjMUNHT0pOdWttdmxDN0VRblgtRXFPUkpzY1QzaU1ZbnZmUF91Z0J1bFI3R0lqWkZpOXl1T244bVpsZUkxaC1DRmpYWGdxS2hOb3ZFbFY3OHc?oc=5",
+      "title": "삼성SDI(006400)밀릴때마다 물량 모아둘 기회로 보이며 이후 전망 및 대응전략.",
+      "description": "삼성SDI(006400)밀릴때마다 물량 모아둘 기회로 보이며 이후 전망 및 대응전략. &nbsp;&nbsp; 씽크풀 AI",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9XZUNhVnpyLUJ2MXpuWWIyT2xPU0RDZEtwVVNhbnF2aU55N182NVgtbDVWZFJnejBwTVZEY3dKc3BTamxWMmJkbW9SVGUwN1FTdzJZNFlaV1lwRUwt?oc=5",
       "source": {
-        "name": "스트레이트뉴스",
-        "url": "https://www.straightnews.co.kr"
+        "name": "씽크풀 AI",
+        "url": "https://m.thinkpool.com"
       },
-      "publishedAt": "2026-07-10T21:44:33.000Z",
-      "guid": "CBMid0FVX3lxTFBzekF1Vm1RaWQ4VHlKZWs3WXlPX2I5OVNRb1FLenNQYzFDR09KTnVrbXZsQzdFUW5YLUVxT1JKc2NUM2lNWW52ZlBfdWdCdWxSN0dJalpGaTl5dU9uOG1abGVJMWgtQ0ZqWFhncUtoTm92RWxWNzh30gF3QVVfeXFMUHN6QXVWbVFpZDhUeUplazdZeU9fYjk5U1FvUUt6c1Bj…",
-      "score": 34
+      "publishedAt": "2026-07-11T04:41:00.000Z",
+      "guid": "CBMiXEFVX3lxTE9XZUNhVnpyLUJ2MXpuWWIyT2xPU0RDZEtwVVNhbnF2aU55N182NVgtbDVWZFJnejBwTVZEY3dKc3BTamxWMmJkbW9SVGUwN1FTdzJZNFlaV1lwRUwt",
+      "score": 32
     },
     {
       "id": "finance-7Iug7ZWc6riI7J",
@@ -4377,23 +4569,7 @@
       },
       "publishedAt": "2026-07-11T04:36:13.000Z",
       "guid": "CBMibkFVX3lxTE5Lc29fVlFackpoV3VvcktLb3BUVG1vM1cxRDZkY3pPTUtHS1lSNXBCUVhPQnZ4RHNzR21TZUI0ZEFINU9QdDlxUy1aekY2eEJrVmlOdGZVb1hobm1yY1AxSEkzQXYyUWtvQTBxdUVR",
-      "score": 33
-    },
-    {
-      "id": "market-U0vtlZjsnbTri4",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "SK하이닉스, AI 반도체 수요 급증...美 증시 데뷔 첫날 13% 상승",
-      "description": "SK하이닉스, AI 반도체 수요 급증...美 증시 데뷔 첫날 13% 상승 &nbsp;&nbsp; thefairnews.co.kr",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9uX0p4NEFFYnQ1WnJacHFUSjNrTGgyaUFnNnEzZ1F4alR6dXJMaWFEaWxmOVZpLVFLQ19hcjE4eEp6S0hUU2dkZ3p1UkhfbXVpUHBOWlk2bUluZ3ZlVmppM0ZWOUxQaXBBZm5uX2Nqd0bSAXRBVV95cUxNU1BLcHUxZHUycDU4NjE5dDRBblU1bkYwTFNtUWl3cGxRVkpBZUNHNFJ3QzBmQ2NEMThSd3JTTXlhOGJWb0NJNDRxNy1lZVJTVFhGRlVmS05MYThsMjFiLTVUZkpFX2lzX0R6ZFdjZndLZ293dw?oc=5",
-      "source": {
-        "name": "thefairnews.co.kr",
-        "url": "https://www.thefairnews.co.kr"
-      },
-      "publishedAt": "2026-07-10T21:11:33.000Z",
-      "guid": "CBMicEFVX3lxTE9uX0p4NEFFYnQ1WnJacHFUSjNrTGgyaUFnNnEzZ1F4alR6dXJMaWFEaWxmOVZpLVFLQ19hcjE4eEp6S0hUU2dkZ3p1UkhfbXVpUHBOWlk2bUluZ3ZlVmppM0ZWOUxQaXBBZm5uX2Nqd0bSAXRBVV95cUxNU1BLcHUxZHUycDU4NjE5dDRBblU1bkYwTFNtUWl3cGxRVkpBZUNH…",
-      "score": 33
+      "score": 32
     },
     {
       "id": "market-66as7ZSMWFJQLC",
@@ -4409,7 +4585,7 @@
       },
       "publishedAt": "2026-07-11T12:19:55.000Z",
       "guid": "CBMiaEFVX3lxTE1GVWhPZDFVYWdxTkpyaGVEREl0ZTVjamJacHF3NnFWeEpBNUxBM2tuUndMRUtZYklqTjJoMS1STzlVcURnZ1ByNkxWakdWZDlRN2lJWTJrYTdHaUFvckYzX2NuekZBQnd6",
-      "score": 32
+      "score": 31
     },
     {
       "id": "consumer-WyAyMDI264WEID",
@@ -4425,7 +4601,7 @@
       },
       "publishedAt": "2026-07-11T12:16:21.000Z",
       "guid": "CBMijgFBVV95cUxOU2FfUnprdkJVaWFna2hqcnFkaElYbUNQYkJ4R2ZLUkprbVZaU3FSRnhIbjRSdGMwcjhkQ1ZUc0N3RndhRExubjZvaGdabzBzSUJEUXFLc1AyaGRVT2otM3drNGhEUzBDX3VUQU5VMXpGMkFidXpPODBYbFFCVWloYVcwVEZGaTkyajNaUkZB",
-      "score": 32
+      "score": 31
     },
     {
       "id": "market-7J2867O4LCDrlJ",
@@ -4441,7 +4617,7 @@
       },
       "publishedAt": "2026-07-11T04:00:00.000Z",
       "guid": "CBMiWEFVX3lxTE12YzI0RjlBWEtDX1ZRS1pPYTZ1cFlaOFJQRmpuN3cxdE11MmpUOEFtUjhna005WklaOFpPMWtjc0xhS0N0Z3R2WTF3R25TR1dpalNISGNFOTg",
-      "score": 32
+      "score": 31
     },
     {
       "id": "macro-N-yblCAxMOydvC",
@@ -4457,22 +4633,6 @@
       },
       "publishedAt": "2026-07-11T03:48:15.000Z",
       "guid": "CBMib0FVX3lxTE5hX0NvbzJyMnFaNEQ4REo2YlZuNHhIaU8yLUFlN1UzbzFIZkRoMjZvbEZIeHV1c05qQlc4bFRJNmgyQ0dFTTFRY0tfSEhvN1lJd2prVzhmaEE2RmhlanBoU0JXMjdQczNCWVU2a0ZiNA",
-      "score": 32
-    },
-    {
-      "id": "macro-6riw7KSA6riI66",
-      "category": "macro",
-      "categoryName": "금리·환율·거시",
-      "categoryIcon": "🏦",
-      "title": "기준금리 상승 압력에 6월 초장기물 금리↑… 외인 채권보유도 ↑",
-      "description": "기준금리 상승 압력에 6월 초장기물 금리↑… 외인 채권보유도 ↑ &nbsp;&nbsp; MSN",
-      "url": "https://news.google.com/rss/articles/CBMigANBVV95cUxQWnNWblY3ZVpCQWViaGhkbkNSX0pfNi0xUnpjYXdTRWZ0M1E4SlFnZmxyQ1YxVmg1RUx5Y0V2NzNUdmpmbE1LYmRQaEVoY0dyb08wNUtIaWFlQVZZR3hEZGprMTkxaUNnVjJ1TC1yUERNOWFjMGVOQkpzdWJWU1l6UENMcWJaMkhrOEZRTlNSOWJyWFRZbC1hSzVtN3RVaENHc0o2Rm1USkZzMXVFeUJ1Z2N2bUt0YzJPTEQzYjlUX2kwaWJjZVRLQ3lCV0RENExjMkxUNkkyN2hrQ2lsQXJPZXBBWk5zOWtnNW1lOXJqYUQxNU1yc3ZFOWRDY0NvU2NCWEtST0QwU0wzaklXM21sV0xuTGZra3dNdU54SUV6bng2VlBiTnJHZnJESnhMSUxHYmxxTkZrNU1BUkJGYkdSWmVnTjMtLWRyZEJ1alNDM3F3c1lxd3RfQ3pBS2RrS2U3U0JUaWlrUUZsbW9OZVNTSW91WFNGMUs2eWpKWUVVNHQ?oc=5",
-      "source": {
-        "name": "MSN",
-        "url": "https://www.msn.com"
-      },
-      "publishedAt": "2026-07-11T03:24:14.000Z",
-      "guid": "CBMigANBVV95cUxQWnNWblY3ZVpCQWViaGhkbkNSX0pfNi0xUnpjYXdTRWZ0M1E4SlFnZmxyQ1YxVmg1RUx5Y0V2NzNUdmpmbE1LYmRQaEVoY0dyb08wNUtIaWFlQVZZR3hEZGprMTkxaUNnVjJ1TC1yUERNOWFjMGVOQkpzdWJWU1l6UENMcWJaMkhrOEZRTlNSOWJyWFRZbC1hSzVtN3RVaENH…",
       "score": 31
     },
     {
@@ -4489,7 +4649,7 @@
       },
       "publishedAt": "2026-07-11T10:28:58.000Z",
       "guid": "CBMiW0FVX3lxTE1Lckw5SWhvT0tLV3llYlZkX1M4VGhLR3ZfcXZXa25hZlA1QXJsT3JHN09nV29weEJUWmF4UjhtZncycVRrQ2FkdlRMcFVQdmpqdjVvN2NDZDM3OEE",
-      "score": 30
+      "score": 29
     },
     {
       "id": "consumer-IuuJtOyniOuenO",
@@ -4505,7 +4665,7 @@
       },
       "publishedAt": "2026-07-11T10:11:30.000Z",
       "guid": "CBMi_gFBVV95cUxQeHpjS0syZDFMRVFOY2Y1RmVoSW5xNlg0Z2cxSEV0VTdYSE41R2ZSU1JQV0V2TWpUaEVnZUVsc2ZmQk5DS21QSG5mSmVUMWowMlVDSENnLUhrc3NSSjNXV2o4bjl6b2k2RHNndUpSMloxMzBEWkZmY2FNdmo0UmdKY2lmMXNrNjBXdU9XYmFaaW5DbXlwM1pJZjdnRnlhYVBY…",
-      "score": 30
+      "score": 29
     },
     {
       "id": "finance-NuyblCDqsIDqs4",
@@ -4521,7 +4681,7 @@
       },
       "publishedAt": "2026-07-11T01:57:37.000Z",
       "guid": "CBMicEFVX3lxTFBfODA3RFY3UC1reWVCNEFHOFN1eGxIb21QWE9xWGk2UjhFWXM2VUhQMnVLYldabFlHdXVBbGd5T3NSLWg5VGJJbE5yWl93ajJIM09OSThRYzFqdUpaWkRTR2tOZTRVR3lwQklVQ1V4VmY",
-      "score": 30
+      "score": 29
     },
     {
       "id": "crypto-67CU7J2064K47I",
@@ -4537,7 +4697,7 @@
       },
       "publishedAt": "2026-07-11T09:17:55.000Z",
       "guid": "CBMiwAFBVV95cUxPWVJaa0NCV01rU0ViTG9CbmtQUEdfTHhEalJsRk9Ed0VUMUpBdURSMmpVLUJSOEtYS0tRWmc4S3ZEemJnVlE5NmdybWQ3bVZGT3hYcXFkTlEzQk94QWtyZ0RsaEpPRWx1clpsd2NjcG5tN1EzWXRrZXhCRlJKai1DcE9LcWRQTHBGSmFNQnZ3eHVwUHFNMVk5RnRRZlFES1pp…",
-      "score": 29
+      "score": 28
     },
     {
       "id": "crypto-VUZDIOyWuOuNlO",
@@ -4553,7 +4713,23 @@
       },
       "publishedAt": "2026-07-11T08:36:13.000Z",
       "guid": "CBMitwNBVV95cUxNNkdzSnZTWEdLYmRmYnFGS2NLM05udkFxbDN6Q0R1WW5aSXRHRTdQUTc2eENVNjVLV3prU09pRWY0dXduemx1LXhwUEYxOVFnamdrakJlZXhidEJ5ZzV2QS1VVVRxNUJVNHA2cmJkMHNaYmR2TGt6SEZkOUc2bTFIaV9fRmkxLW5ndkdDeHI3eUFBVU5nNWxsNHFHMlUwNGFM…",
-      "score": 29
+      "score": 28
+    },
+    {
+      "id": "market-64m07JqV7Kad7I",
+      "category": "market",
+      "categoryName": "증시·시장",
+      "categoryIcon": "📈",
+      "title": "뉴욕증시 'SK하이닉스 첫날' 상승 마감…나스닥 0.3%↑",
+      "description": "뉴욕증시 'SK하이닉스 첫날' 상승 마감…나스닥 0.3%↑ &nbsp;&nbsp; 경기신문",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5CNHEwSG05NzhacDZhb0d3T2JCallkSzJYN0JLRmxBUlhvdUYtazBYUGlZUVphQ21kb0xNT25aZTNOQnU1UC1QZWcwQ1VDNmdTUTVsalh6bU41enhrNzYzWkJ3?oc=5",
+      "source": {
+        "name": "경기신문",
+        "url": "https://www.kgnews.co.kr"
+      },
+      "publishedAt": "2026-07-11T01:28:29.000Z",
+      "guid": "CBMiYkFVX3lxTE5CNHEwSG05NzhacDZhb0d3T2JCallkSzJYN0JLRmxBUlhvdUYtazBYUGlZUVphQ21kb0xNT25aZTNOQnU1UC1QZWcwQ1VDNmdTUTVsalh6bU41enhrNzYzWkJ3",
+      "score": 28
     },
     {
       "id": "policy-7KCB7KCVIOuztO",
@@ -4569,7 +4745,7 @@
       },
       "publishedAt": "2026-07-11T01:19:33.000Z",
       "guid": "CBMi-gJBVV95cUxOR2VRYXlzRU9IaGd0bU03MVlBQ1ljSjhtZDc3bVV4RnBzYjhyWjhOWlVFREhjTl9QS252ZUhIa3l5OHVpeVBrSFdxVEJhY1pOc3lET2kxUWdUNW15U0tPSDVCVl9rNUdoa1VSUXlsY2NIeVlNZkV1YWN6bG13WmJ1TVZuRC1wUnkyWURGVWMwT2RzbWVUS1Jnbl9KcmJUYTBB…",
-      "score": 29
+      "score": 28
     },
     {
       "id": "finance-7J2067KI7KO8IO",
@@ -4585,7 +4761,7 @@
       },
       "publishedAt": "2026-07-11T08:00:00.000Z",
       "guid": "CBMiXEFVX3lxTE1CY1lneDl6Ykl2RURPTHpsM1d2cDJoV2FHNjZjOENiMVR5TW02Q2xZenhkdjFBTXg5R2VSakx6d0YwSWpvUUtuWms3RmZ0X3piUG5SWDdhVFVmeDlr",
-      "score": 28
+      "score": 27
     },
     {
       "id": "market-W-uJtOyaleymne",
@@ -4601,7 +4777,7 @@
       },
       "publishedAt": "2026-07-11T00:15:03.000Z",
       "guid": "CBMia0FVX3lxTE9XcTMxcHBKOGFFVWlXUnFLOGxLYURBdjd2Y1Znbkw3MDQ3V1lDd1M4RWhxR0pFOXZiOURSanZnZ0dwcUJQVDVFQU1kUmpabkxXOXU5a1FGOWdSZkhQWFRCUU1nQWR3TllTVXBR0gFvQVVfeXFMUE9vQ3BYU2p0a0QxaTdWRHF4RmVma0QyQTl1aHBRel8wbzhzNS04bFYyQ2VL…",
-      "score": 28
+      "score": 27
     },
     {
       "id": "market-W-uvuOq1reymne",
@@ -4617,7 +4793,7 @@
       },
       "publishedAt": "2026-07-11T00:00:00.000Z",
       "guid": "CBMiZ0FVX3lxTE5JM0p2RmtkV3liVnhETHY2ZUQxQ1Z0RElXbDAzdmRYQ2FnYTZNRncyUW9rUDRwRWhwNDVDRVNRUEtSd2FpZmN3ZE9VSEIyMWJpRC1DNmc3MU5MajlyaFZrOVZwTUFaN2M",
-      "score": 28
+      "score": 27
     },
     {
       "id": "market-64m07JqV7Kad7I",
@@ -4633,7 +4809,7 @@
       },
       "publishedAt": "2026-07-10T23:51:32.000Z",
       "guid": "CBMibEFVX3lxTE16M2RiZ29veTNGZkhZSTM3MmNtMnFTR2ROV1ZQWnBGdEJxcHNlb3YyRTF0Wkg5T2VQVC1Jc2R4cE11d0RhYXpUcnFLbDNaWk1UZE1fTWpnQ1FCemhwTUhzbVRFcU50VDFZb19ERg",
-      "score": 28
+      "score": 27
     },
     {
       "id": "finance-W-q4sO2ajV0g7I",
@@ -4649,7 +4825,7 @@
       },
       "publishedAt": "2026-07-11T07:00:00.000Z",
       "guid": "CBMic0FVX3lxTFBEU1pFS01HTGRLRVI5MU5aY1NTamVnRFhJY3U1VjdsOVhoam5kUnhOVDRoX01XSXY5eHN2VVRJMVFVRV9KLUhNM3h3bHUtZVJISGtieXM1VlBCaV85RXRldzYtd2VjYThSa0tLN0g5anFSeDg",
-      "score": 27
+      "score": 26
     },
     {
       "id": "market-7Zi864-I7J2YIO",
@@ -4665,39 +4841,23 @@
       },
       "publishedAt": "2026-07-10T23:28:29.000Z",
       "guid": "CBMiWEFVX3lxTE82b2ZNemdvR1g3ckZDeGhGdjhBbmphbG5DMndJa0FILV9vREtRbmpHM0JjWVlZMlNKbzdhdDFyMEc5NHdTTFRpVjZBNk9nNDhnVjFIVkhnYk3SAVhBVV95cUxPNm9mTXpnb0dYN3JGQ3hoRnY4QW5qYWxuQzJ3SWtBSC1fb0RLUW5qRzNCY1lZWTJTSm83YXQxcjBHOTR3U0xU…",
-      "score": 27
+      "score": 26
     },
     {
       "id": "market-64m07JqV7Kad7I",
       "category": "market",
       "categoryName": "증시·시장",
       "categoryIcon": "📈",
-      "title": "뉴욕증시, SK하이닉스 상장 '대박'에 상승 마감... 나스닥 0.3%↑",
-      "description": "뉴욕증시, SK하이닉스 상장 '대박'에 상승 마감... 나스닥 0.3%↑ &nbsp;&nbsp; 글로벌경제신문",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1RV01pSFlNdXNuaG1FdGdjdmdjQXFnUmtzeWxmVzlJQ2NuX1ZDcXFkeDJWb3F4a0UxMzdDMXRrNHVuMnh5NWRIZkFZRnNjdHhBVVFJS1VBZmp5aDFjS2o2MmFqVHlDRjVWV1lDbtIBcEFVX3lxTE9mUVNxOWtaa0s1XzhubEVack1SSTg0dUxNWExzSW5TVXBnV2EtTTNtQWhtM3VJMTJIU2pwMHRUdkhndHphYTBCdkJjbzktdFV3a2ZUTlRRWVZkVHN3Rm51XzFMbmF6Z3U5MnpOU1lCeUU?oc=5",
+      "title": "뉴욕증시, ‘SK하이닉스 데뷔’에 상승…나스닥 0.29%↑",
+      "description": "뉴욕증시, ‘SK하이닉스 데뷔’에 상승…나스닥 0.29%↑ &nbsp;&nbsp; 중소기업신문",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5LMDB0ZkJhbWRKWjEzYzVfbnJyV2FDWmtBcUMzcVFjVFp0d2VZc0c0SFhISE9SQ1hQVTc3c3I4YzF4Qm14bU9nT1BUV0JQVmdVVWU3aEVXVEk0eEo1TlpIb1V6UXU1aTlIODRHaC1n?oc=5",
       "source": {
-        "name": "글로벌경제신문",
-        "url": "https://www.getnews.co.kr"
+        "name": "중소기업신문",
+        "url": "https://www.smedaily.co.kr"
       },
-      "publishedAt": "2026-07-10T22:51:47.000Z",
-      "guid": "CBMibEFVX3lxTE1RV01pSFlNdXNuaG1FdGdjdmdjQXFnUmtzeWxmVzlJQ2NuX1ZDcXFkeDJWb3F4a0UxMzdDMXRrNHVuMnh5NWRIZkFZRnNjdHhBVVFJS1VBZmp5aDFjS2o2MmFqVHlDRjVWV1lDbtIBcEFVX3lxTE9mUVNxOWtaa0s1XzhubEVack1SSTg0dUxNWExzSW5TVXBnV2EtTTNtQWht…",
-      "score": 27
-    },
-    {
-      "id": "market-64KY7Iqk64ulIO",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "나스닥 데뷔 SK하이닉스 13% 상승…뉴욕증시 소폭 상승 마감 [뉴욕증시 브리핑]",
-      "description": "나스닥 데뷔 SK하이닉스 13% 상승…뉴욕증시 소폭 상승 마감 [뉴욕증시 브리핑] &nbsp;&nbsp; 블루밍비트",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE8wdjQxR3prazVmc2dRLTlVTTlIcGhTb3VsNzFvNW1abGMzZkdkM0pmX3F3M21NczlETktDc2JtYWgwR2wwU3RzYzQyWmdPYXk2?oc=5",
-      "source": {
-        "name": "블루밍비트",
-        "url": "https://bloomingbit.io"
-      },
-      "publishedAt": "2026-07-10T22:48:36.000Z",
-      "guid": "CBMiUEFVX3lxTE8wdjQxR3prazVmc2dRLTlVTTlIcGhTb3VsNzFvNW1abGMzZkdkM0pmX3F3M21NczlETktDc2JtYWgwR2wwU3RzYzQyWmdPYXk2",
-      "score": 27
+      "publishedAt": "2026-07-10T22:52:42.000Z",
+      "guid": "CBMibkFVX3lxTE5LMDB0ZkJhbWRKWjEzYzVfbnJyV2FDWmtBcUMzcVFjVFp0d2VZc0c0SFhISE9SQ1hQVTc3c3I4YzF4Qm14bU9nT1BUV0JQVmdVVWU3aEVXVEk0eEo1TlpIb1V6UXU1aTlIODRHaC1n",
+      "score": 26
     },
     {
       "id": "market-64m07JqV7Kad7I",
@@ -4706,29 +4866,13 @@
       "categoryIcon": "📈",
       "title": "뉴욕증시, 기술주 호조에 상승...나스닥 0.3%↑",
       "description": "뉴욕증시, 기술주 호조에 상승...나스닥 0.3%↑ &nbsp;&nbsp; 여성신문",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5ZTEhLTzdZeTAwN1hndGJvUUFRRkIzcjh2OGdxcFpyNVFFcEtfY2hrZjg0QzVheVB0MWFrZG9LcDRkS09ETkdjU25oTjR3d21NRXg1WGtKYWdsbFJvblNFMjV3bXdLWnlsMm45aG4zY9IBc0FVX3lxTE9DSDJDTlM2RnZJYzZqRTlkNU1yakNuTDlQMWxSX0JTQmFTOWEtVEpiUWZmVmgzYXdJVlZhZkh6SVdrMkxlQV9qZkU0Nm83NEwzaDZYaXNiaU11cTFJMEViWk5VcHR3SmpxVGFRUXdTMWtiNTQ?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9DSDJDTlM2RnZJYzZqRTlkNU1yakNuTDlQMWxSX0JTQmFTOWEtVEpiUWZmVmgzYXdJVlZhZkh6SVdrMkxlQV9qZkU0Nm83NEwzaDZYaXNiaU11cTFJMEViWk5VcHR3SmpxVGFRUXdTMWtiNTTSAXNBVV95cUxPQ0gyQ05TNkZ2SWM2akU5ZDVNcmpDbkw5UDFsUl9CU0JhUzlhLVRKYlFmZlZoM2F3SVZWYWZIeklXazJMZUFfamZFNDZvNzRMM2g2WGlzYmlNdXExSTBFYlpOVXB0d0pqcVRhUVF3UzFrYjU0?oc=5",
       "source": {
         "name": "여성신문",
         "url": "https://www.womennews.co.kr"
       },
-      "publishedAt": "2026-07-10T21:57:13.000Z",
-      "guid": "CBMib0FVX3lxTE5ZTEhLTzdZeTAwN1hndGJvUUFRRkIzcjh2OGdxcFpyNVFFcEtfY2hrZjg0QzVheVB0MWFrZG9LcDRkS09ETkdjU25oTjR3d21NRXg1WGtKYWdsbFJvblNFMjV3bXdLWnlsMm45aG4zY9IBc0FVX3lxTE9DSDJDTlM2RnZJYzZqRTlkNU1yakNuTDlQMWxSX0JTQmFTOWEtVEpi…",
-      "score": 26
-    },
-    {
-      "id": "market-64m07JqV7Kad7I",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "뉴욕증시, 미·이란 긴장에도 상승 마감…SK하이닉스 12.7% 급등",
-      "description": "뉴욕증시, 미·이란 긴장에도 상승 마감…SK하이닉스 12.7% 급등 &nbsp;&nbsp; 네이트",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1fbEgtZU9DdVM1empmb3V1NVVIMEk3OVExN0dFQUthUURLYTByQXpGbmRKQUlSQjdUc1RFX1hKVmZrR2xGNk5rMHVYRnZlZTFENEFlZFp5ZjV3aTNhNmpIRg?oc=5",
-      "source": {
-        "name": "네이트",
-        "url": "https://news.nate.com"
-      },
-      "publishedAt": "2026-07-10T21:38:00.000Z",
-      "guid": "CBMiYEFVX3lxTE1fbEgtZU9DdVM1empmb3V1NVVIMEk3OVExN0dFQUthUURLYTByQXpGbmRKQUlSQjdUc1RFX1hKVmZrR2xGNk5rMHVYRnZlZTFENEFlZFp5ZjV3aTNhNmpIRg",
+      "publishedAt": "2026-07-10T22:48:09.000Z",
+      "guid": "CBMic0FVX3lxTE9DSDJDTlM2RnZJYzZqRTlkNU1yakNuTDlQMWxSX0JTQmFTOWEtVEpiUWZmVmgzYXdJVlZhZkh6SVdrMkxlQV9qZkU0Nm83NEwzaDZYaXNiaU11cTFJMEViWk5VcHR3SmpxVGFRUXdTMWtiNTTSAXNBVV95cUxPQ0gyQ05TNkZ2SWM2akU5ZDVNcmpDbkw5UDFsUl9CU0JhUzlh…",
       "score": 26
     },
     {
@@ -4745,39 +4889,7 @@
       },
       "publishedAt": "2026-07-11T05:09:51.000Z",
       "guid": "CBMiUEFVX3lxTE5RRHRoUGpFT3Z4SDBCSkhaMEZqUU5JRmdDNHY0UFZjaE5yZnZlaGhodWFtMkdkb003VXpUck1ZMm40MHNkS0hFdXFMZWtOSUot",
-      "score": 25
-    },
-    {
-      "id": "market-W-uJtOyaleuniO",
-      "category": "market",
-      "categoryName": "증시·시장",
-      "categoryIcon": "📈",
-      "title": "[뉴욕마감] S&P500 0.42%↑…SK하닉 상장 첫날 13% 급등",
-      "description": "[뉴욕마감] S&P500 0.42%↑…SK하닉 상장 첫날 13% 급등 &nbsp;&nbsp; 뉴스1",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1XQmJCVU9uX0pVbzJuT1JhWUwwSkpXRFd6STBwVDE5cnBsUVNsMENLLTk3RVNnemRuR01qR3lMc2dnSmtXelFJeGtsWXRYYm9CRkxuU2tKZXU?oc=5",
-      "source": {
-        "name": "뉴스1",
-        "url": "https://www.news1.kr"
-      },
-      "publishedAt": "2026-07-10T21:15:02.000Z",
-      "guid": "CBMiWEFVX3lxTE1XQmJCVU9uX0pVbzJuT1JhWUwwSkpXRFd6STBwVDE5cnBsUVNsMENLLTk3RVNnemRuR01qR3lMc2dnSmtXelFJeGtsWXRYYm9CRkxuU2tKZXU",
-      "score": 25
-    },
-    {
-      "id": "company-67mE7Yq47L2U7J",
-      "category": "company",
-      "categoryName": "기업·실적·산업",
-      "categoryIcon": "🏭",
-      "title": "비트코인 P2P 거래 디시 을 효과적으로 배우는 방법: 학습 전략과 자원 - 실전 사례 분석",
-      "description": "비트코인 P2P 거래 디시 을 효과적으로 배우는 방법: 학습 전략과 자원 - 실전 사례 분석 &nbsp;&nbsp; les24heures.fr",
-      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNWTVXRERGV0loQnAwYzJ0WFZ4OGlUYjdrZThlZHRFaW41ajgyYWhOYzZhRUhfMmtEeFVwamNTNVZDV0lzVzREQzN0d3I1TzJQUW11M3hXbUozNEIyM3Q0MkxpNE9qcW84ZFpQbGtwSDBtUVdKWjk5OE9Lbkh6cFA0eFdvMUtnTmcxbnZoMg?oc=5",
-      "source": {
-        "name": "les24heures.fr",
-        "url": "https://www.les24heures.fr"
-      },
-      "publishedAt": "2026-07-10T21:03:46.000Z",
-      "guid": "CBMijAFBVV95cUxNWTVXRERGV0loQnAwYzJ0WFZ4OGlUYjdrZThlZHRFaW41ajgyYWhOYzZhRUhfMmtEeFVwamNTNVZDV0lzVzREQzN0d3I1TzJQUW11M3hXbUozNEIyM3Q0MkxpNE9qcW84ZFpQbGtwSDBtUVdKWjk5OE9Lbkh6cFA0eFdvMUtnTmcxbnZoMg",
-      "score": 25
+      "score": 24
     },
     {
       "id": "consumer-64KY7Lmo67CY77",
@@ -4793,7 +4905,7 @@
       },
       "publishedAt": "2026-07-11T03:42:32.000Z",
       "guid": "CBMiaEFVX3lxTE9pRXNvS0RqNzdIRTJGalhYUFRWYjR4ckFOXzVQTk9LUmpqNVpWS0Ffc1JjTGVOQ3R0MGdwT24wT0xDb0lNSS1XTHprYl9zcWY2T0FDSXdEYmZwNGVTdlZoOVdhRkhGcVFw",
-      "score": 24
+      "score": 23
     },
     {
       "id": "market-7IK87KCE64uJ7I",
@@ -4809,7 +4921,7 @@
       },
       "publishedAt": "2026-07-11T03:26:16.000Z",
       "guid": "CBMiWkFVX3lxTE91dlRTQnRodXNNSHRCTEJvQVBTclFYYmRUMWFHOXBwbjlWRGNHYnRPQVlfbEl0VkVIM00wNlBfdy1VQ1JGajJZZjlDMVRGTWw5TU82MWtRNldkQdIBVEFVX3lxTE9MU3VqM1NMVFNVbWJKelZ3WDZ6NXNINTUzeXp4cnVrck90RUZDZnA1QVFOcFRSMlp4d1JjUGxzN0lsb1Rx…",
-      "score": 23
+      "score": 22
     },
     {
       "id": "finance-4oCY7LqE67O065",
@@ -4825,7 +4937,7 @@
       },
       "publishedAt": "2026-07-11T03:20:18.000Z",
       "guid": "CBMiY0FVX3lxTE1qcWl0bmtXc2R3S3gybWlWTFhQQWpTSWxEamhJWlBKRDV0R0FPS1dIbGZNeFh3UlRWckEzYldlYXlVdE5kWHRSNHNMTVhUS0F3TjJPSG1hWnJ6YmJoMllWRlk3bw",
-      "score": 23
+      "score": 22
     },
     {
       "id": "finance-W-q4iOyctV0g7I",
@@ -4841,7 +4953,7 @@
       },
       "publishedAt": "2026-07-11T02:43:00.000Z",
       "guid": "CBMickFVX3lxTE5ULXU5NEVobWpNdXJ6amdnX3NkVEQ4Sjl6Ym9KUGhsV3BOQ1VVeEo0UHZQSnFmdFZtZ0l1dWdPZzZSV2Y2OFA5NC1kTnI3Z0pvdzk2VkxNQnNHT0VjRDVfcVlQX0JNakVuUkV4endEZG1zQQ",
-      "score": 23
+      "score": 22
     },
     {
       "id": "market-67KE7Yuw642YIO",
@@ -4857,7 +4969,7 @@
       },
       "publishedAt": "2026-07-11T02:25:41.000Z",
       "guid": "CBMibkFVX3lxTE0waTdWV3BtVWxCWDlzTGNld2docmczdUdCd0ZaWHF0ZUtOQUV3Y1MzYnhuaXJTc0EzREJfNDk3LU9tU0RnRVdhRloyYldMUElMVFFFeGF2WGRSX3AtSVNySlZFNmQ0WE5BUWxidmt3",
-      "score": 22
+      "score": 21
     },
     {
       "id": "macro-W-yIj-2PvOuJtO",
@@ -4873,7 +4985,7 @@
       },
       "publishedAt": "2026-07-11T01:55:19.000Z",
       "guid": "CBMib0FVX3lxTE5CbFQ3OFRCOWc1UW90ckVaUTc0b0dOcDFya251VmltQ0I4WXBoRmFEcnRaaUFzSm9PYkx4Nk5hbDI5ck5DUXYzRjQ5aE5pTms1SmhJRkhUd2N2Z2lmcy03UjJIQ284RnBlbmhtWlNrVQ",
-      "score": 22
+      "score": 21
     },
     {
       "id": "crypto-IuyImOyImOujjC",
@@ -4889,7 +5001,23 @@
       },
       "publishedAt": "2026-07-11T00:32:36.000Z",
       "guid": "CBMid0FVX3lxTE9UZ0ZRNkNSSmJKTXQzVFdGbjVOV2xJVi1ya2xBcGlVcWNlY2xsY0wxR3JGUkx0MmJyZHZ3NUVTZUUyaWQtNG10Z3A2Z19RN0FmNUVKUlhvTkVEYnFpYXdBNXBWb1FtYXgyMnVNcWthbktXQ0VVMXlR",
-      "score": 21
+      "score": 20
+    },
+    {
+      "id": "global-4oCc7J2064yA66",
+      "category": "global",
+      "categoryName": "글로벌 경제",
+      "categoryIcon": "🌐",
+      "title": "“이대로면 EU 방문 취소”…韓철강, EU와 막판 담판",
+      "description": "“이대로면 EU 방문 취소”…韓철강, EU와 막판 담판 &nbsp;&nbsp; v.daum.net",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1XT09uaFotbkJkMXBhdXk3Y256NnJ1Z19uWm94NGRUU2Q2cF9ncWh0NVl1akQybUZJZ1h4QTJKbGxUVDU3QVJXdVpqYXFta3c?oc=5",
+      "source": {
+        "name": "v.daum.net",
+        "url": "https://v.daum.net"
+      },
+      "publishedAt": "2026-07-11T00:22:42.000Z",
+      "guid": "CBMiT0FVX3lxTE1XT09uaFotbkJkMXBhdXk3Y256NnJ1Z19uWm94NGRUU2Q2cF9ncWh0NVl1akQybUZJZ1h4QTJKbGxUVDU3QVJXdVpqYXFta3c",
+      "score": 19
     },
     {
       "id": "global-7Ya17IOB64u56r",
@@ -4905,7 +5033,7 @@
       },
       "publishedAt": "2026-07-11T00:01:00.000Z",
       "guid": "CBMiW0FVX3lxTE1PN1ZaLUFKYUdxSGlQNjFwSEh0aWtENFJ0TF91WGxDdDVGV2N6Rml1X1k4RlE3aXB1NE5jbG5sc3pSSEQ0dThQbXZFVDRTVllKakJuWUozOXozcjjSAWBBVV95cUxQamRXbVdsYTJFajA2X3BqVEFtSWdBbDE4RU93TUx5SDhrUWgzb0ZHMmNabmFYS1pHWFlsNkRNUUhZME1E…",
-      "score": 20
+      "score": 19
     },
     {
       "id": "finance-7Jew66eQ64-EIO",
@@ -4921,23 +5049,23 @@
       },
       "publishedAt": "2026-07-10T23:44:43.000Z",
       "guid": "CBMia0FVX3lxTE51RWMzZDN0T1RmVHlydUZISVQtMnRnV2xfZG1PSHlKdWM2R3B3UjdpckRSd1hXdUkwV0ViQUs0X19VbTZEQmY4MGpIVUdOd2RfZ0tBLXdLTF9EZUl5cV9qcWx0dTd5ZGdpZkJr0gFrQVVfeXFMTnVFYzNkM3RPVGZUeXJ1RkhJVC0ydGdXbF9kbU9IeUp1YzZHcHdSN2lyRFJ3…",
-      "score": 20
+      "score": 19
     },
     {
       "id": "market-W0VCTiDrjbDsnb",
       "category": "market",
       "categoryName": "증시·시장",
       "categoryIcon": "📈",
-      "title": "[EBN 데이터센터] 미국 증시, 기술주 강세에 일제히 상승 마감…S&P500 7575.39",
-      "description": "[EBN 데이터센터] 미국 증시, 기술주 강세에 일제히 상승 마감…S&P500 7575.39 &nbsp;&nbsp; 네이트",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5GWi1aeGp0SzZaTkpoZnhDaERZYWRMSE13TFlyX0s4Y05tRmp2MHR4YjF6Q2tRRHNBUG1OUS1GWnJzQUktTDNES19keEItYXcxMTJqTmFWcmJLV3U1SklyRw?oc=5",
+      "title": "[EBN 데이터센터] 미국 증시, 기술주 강세에 일제히 상승 마감...S&P500 7575.39",
+      "description": "[EBN 데이터센터] 미국 증시, 기술주 강세에 일제히 상승 마감...S&P500 7575.39 &nbsp;&nbsp; ebn.co.kr",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE82Y2c2UUpVWGFCQnhqczlDUmY1S0NWWGpsRUU0R2NpTFZVNml1bU9MX0RUU3kwRlNMekxkODA1OFJKN05PdnBuSFNKak9TMWdQdUV2WXlvZ1RVODVMNWQ5NDYwQUxnZzdz?oc=5",
       "source": {
-        "name": "네이트",
-        "url": "https://news.nate.com"
+        "name": "ebn.co.kr",
+        "url": "https://www.ebn.co.kr"
       },
-      "publishedAt": "2026-07-10T23:13:00.000Z",
-      "guid": "CBMiYEFVX3lxTE5GWi1aeGp0SzZaTkpoZnhDaERZYWRMSE13TFlyX0s4Y05tRmp2MHR4YjF6Q2tRRHNBUG1OUS1GWnJzQUktTDNES19keEItYXcxMTJqTmFWcmJLV3U1SklyRw",
-      "score": 19
+      "publishedAt": "2026-07-10T23:12:43.000Z",
+      "guid": "CBMiaEFVX3lxTE82Y2c2UUpVWGFCQnhqczlDUmY1S0NWWGpsRUU0R2NpTFZVNml1bU9MX0RUU3kwRlNMekxkODA1OFJKN05PdnBuSFNKak9TMWdQdUV2WXlvZ1RVODVMNWQ5NDYwQUxnZzdz",
+      "score": 18
     },
     {
       "id": "company-W-yjvOqwhCDrp6",
@@ -4953,7 +5081,7 @@
       },
       "publishedAt": "2026-07-10T23:01:58.000Z",
       "guid": "CBMid0FVX3lxTE1MTUlmaEJqSlp3VjY1MFVqLS1aS2RWTGtFQmhUcEtVaDRyY3BPS25SQlF6Wi1FWmh2cFZwaG02ekNsX0NBSGNFaEM1bWRjTU1TSGExUEtIUmhFeVpuWjdzNE1mUzR6N2Y5d3AzQXVTWXl3MWd6ZmZ30gF3QVVfeXFMTUxNSWZoQmpKWndWNjUwVWotLVpLZFZMa0VCaFRwS1Vo…",
-      "score": 19
+      "score": 18
     },
     {
       "id": "consumer-64K064WEIOy1nO",
@@ -4969,7 +5097,7 @@
       },
       "publishedAt": "2026-07-10T22:30:35.000Z",
       "guid": "CBMi_gFBVV95cUxOV0FDdmF0RE5nMzRPbG1tbzh1cld0dEdkaWhJOWhtUldCTTlqeGoyc1VmTWNRNjRxMGxxRGQ1VDNDbVI2Wm1DSTlkMG1SVzZlSm5ZTGs3aGRCbXdQdk4tVWxRa3Zmb0VGT0lodVNhTVU4ZERkTEJaNW5WWDNVdHVmLVdaTzdqYUJPVkU4dlVNMWk3b1JLVktmUlhCXzAzT3pw…",
-      "score": 18
+      "score": 17
     },
     {
       "id": "global-7ZWcIOuLrCDstq",
@@ -4985,38 +5113,6 @@
       },
       "publishedAt": "2026-07-10T22:01:28.000Z",
       "guid": "CBMiT0FVX3lxTE1ocjF1d1V1N1dqQkdSWDBqNHZPZ2R1aEJfMWhuS19rQ2htR3c5bGVMLUxrTU01blhhRFhSU1dLc1dmMW1qTHpyVXNscVBFS0k",
-      "score": 18
-    },
-    {
-      "id": "consumer-7LWc7KCA7J6E6r",
-      "category": "consumer",
-      "categoryName": "소비·유통·생활경제",
-      "categoryIcon": "🛒",
-      "title": "최저임금 10% 오르자…'창업 3년 미만 사장님' 폐업확률 8.4%p 뛰었다 [사장님 잡는 최저임금]",
-      "description": "최저임금 10% 오르자…'창업 3년 미만 사장님' 폐업확률 8.4%p 뛰었다 [사장님 잡는 최저임금] &nbsp;&nbsp; 네이트",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBoT1BYamVDTEZXemVvc2ZpZFFhdzY4T1VVa2J3TGplYk1kV2JORUtVamVIY3k2dHFvcG5nWm14Q0hYc3o3cF94QkFGRmRIXzRRNW1Z?oc=5",
-      "source": {
-        "name": "네이트",
-        "url": "https://news.nate.com"
-      },
-      "publishedAt": "2026-07-10T21:31:00.000Z",
-      "guid": "CBMiU0FVX3lxTFBoT1BYamVDTEZXemVvc2ZpZFFhdzY4T1VVa2J3TGplYk1kV2JORUtVamVIY3k2dHFvcG5nWm14Q0hYc3o3cF94QkFGRmRIXzRRNW1Z",
-      "score": 17
-    },
-    {
-      "id": "company-W-yjvOqwhCDqsb",
-      "category": "company",
-      "categoryName": "기업·실적·산업",
-      "categoryIcon": "🏭",
-      "title": "[주간 거래소 기관] 삼성전자·KB금융 집중 매수… SK하이닉스·삼성전기 팔았다",
-      "description": "[주간 거래소 기관] 삼성전자·KB금융 집중 매수… SK하이닉스·삼성전기 팔았다 &nbsp;&nbsp; 핀포인트뉴스",
-      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1tVHpoYzZ1OW9aSkYwek1IcUFvUFF1ODRndWdDTmFseUsyRjMzZFdidzEtMllCSHRUMjdpVkMzeW92SkxQOTRwMU5wbXM2dGRkUkNaTEtibHp5WGhTY3pEVER4NXBXMTcxOF9SLVZXWFRwN0tBaUZZ0gF3QVVfeXFMTW1UemhjNnU5b1pKRjB6TUhxQW9QUXU4NGd1Z0NOYWx5SzJGMzNkV2J3MS0yWUJIdFQyN2lWQzN5b3ZKTFA5NHAxTnBtczZ0ZGRSQ1pMS2JsenlYaFNjekRURHg1cFcxNzE4X1ItVldYVHA3S0FpRlk?oc=5",
-      "source": {
-        "name": "핀포인트뉴스",
-        "url": "https://www.pinpointnews.co.kr"
-      },
-      "publishedAt": "2026-07-10T21:05:26.000Z",
-      "guid": "CBMid0FVX3lxTE1tVHpoYzZ1OW9aSkYwek1IcUFvUFF1ODRndWdDTmFseUsyRjMzZFdidzEtMllCSHRUMjdpVkMzeW92SkxQOTRwMU5wbXM2dGRkUkNaTEtibHp5WGhTY3pEVER4NXBXMTcxOF9SLVZXWFRwN0tBaUZZ0gF3QVVfeXFMTW1UemhjNnU5b1pKRjB6TUhxQW9QUXU4NGd1Z0NOYWx5…",
       "score": 17
     }
   ],
