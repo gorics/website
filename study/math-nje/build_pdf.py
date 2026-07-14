@@ -1,6 +1,8 @@
 from pathlib import Path
+import base64
 import glob
 import re
+import zlib
 
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
@@ -28,10 +30,11 @@ TOP = 15 * mm
 BOTTOM = 14 * mm
 MAX_WIDTH = PAGE_W - LEFT - RIGHT
 
-parts = [Path(p) for p in sorted(glob.glob(str(SOURCE_DIR / "part-*.txt")))]
-if not parts:
-    raise FileNotFoundError("No source/part-*.txt files")
-text = "".join(p.read_text(encoding="utf-8") for p in parts)
+chunks = [Path(p) for p in sorted(glob.glob(str(SOURCE_DIR / "data-*.b64")))]
+if not chunks:
+    raise FileNotFoundError("No source/data-*.b64 files")
+encoded = "".join(p.read_text(encoding="ascii").strip() for p in chunks)
+text = zlib.decompress(base64.b64decode(encoded)).decode("utf-8")
 pages = text.split("\f")
 if pages and not pages[-1].strip():
     pages.pop()
@@ -98,4 +101,4 @@ for page_index, page in enumerate(pages, start=1):
     c.showPage()
 
 c.save()
-print(f"Built {OUTPUT} from {len(parts)} source parts and {len(pages)} source pages")
+print(f"Built {OUTPUT} from {len(chunks)} compressed chunks and {len(pages)} source pages")
