@@ -6,17 +6,30 @@ on:
       - 'study/math-nje/source/**'
       - 'study/math-nje/build_pdf.py'
       - '.github/workflows/build-csat-math-pdf.yml'
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'study/math-nje/source/**'
+  schedule:
+    - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: permanent-csat-math-pdf
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Check out main branch
         uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -42,5 +55,6 @@ jobs:
             echo "No PDF changes"
           else
             git commit -m "build(math-nje): update permanent latest PDF"
-            git push
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
