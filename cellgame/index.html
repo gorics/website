@@ -104,10 +104,12 @@
   // DPI 대응
   const dpr=Math.max(1,Math.min(2.5,window.devicePixelRatio||1));
   let W=window.innerWidth, H=window.innerHeight;
+  let canvasRect=canvas.getBoundingClientRect();
   function resize() {
     W=window.innerWidth; H=window.innerHeight;
     canvas.style.width=W+'px'; canvas.style.height=H+'px';
     canvas.width=Math.floor(W*dpr); canvas.height=Math.floor(H*dpr);
+    canvasRect=canvas.getBoundingClientRect();
     const miniW=window.matchMedia('(max-width:768px)').matches?170:200;
     const miniH=Math.round(miniW*0.66);
     miniCanvas.style.width=miniW+'px'; miniCanvas.style.height=miniH+'px';
@@ -263,9 +265,8 @@
   canvas.addEventListener('touchend',()=>pointer.active=false);
 
   function setPointer(e){
-    const rect=canvas.getBoundingClientRect();
-    const x=(e.touches?e.touches[0].clientX:e.clientX)-rect.left;
-    const y=(e.touches?e.touches[0].clientY:e.clientY)-rect.top;
+    const x=(e.touches?e.touches[0].clientX:e.clientX)-canvasRect.left;
+    const y=(e.touches?e.touches[0].clientY:e.clientY)-canvasRect.top;
     pointer.active=true; pointer.x=x; pointer.y=y;
   }
 
