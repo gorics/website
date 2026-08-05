@@ -150,20 +150,24 @@
       const pointerStates = new Map();
       const tapMemory = new WeakMap();
 
-      const tipId = '__gesture_tip';
-      if (!doc.getElementById(tipId)) {
-        const tip = doc.createElement('div');
-        tip.id = tipId;
-        tip.className = 'gesture-tip';
-        tip.textContent = '화면을 탭하거나 스와이프하면 방향키와 액션이 입력됩니다.';
-        body.appendChild(tip);
-        requestAnimationFrame(() => {
-          tip.classList.add('is-visible');
-          setTimeout(() => {
-            tip.classList.add('is-hidden');
-            setTimeout(() => tip.remove(), 320);
-          }, 2600);
-        });
+      initTip();
+
+      function initTip() {
+        const tipId = '__gesture_tip';
+        if (!doc.getElementById(tipId)) {
+          const tip = doc.createElement('div');
+          tip.id = tipId;
+          tip.className = 'gesture-tip';
+          tip.textContent = '화면을 탭하거나 스와이프하면 방향키와 액션이 입력됩니다.';
+          body.appendChild(tip);
+          requestAnimationFrame(() => {
+            tip.classList.add('is-visible');
+            setTimeout(() => {
+              tip.classList.add('is-hidden');
+              setTimeout(() => tip.remove(), 320);
+            }, 2600);
+          });
+        }
       }
 
       function surfaceOptions(surface) {
@@ -224,12 +228,7 @@
         tapMemory.set(surface, { time: now, x: clientX, y: clientY });
       }
 
-      surfaces.forEach((surface) => {
-        if (!surface.hasAttribute('tabindex')) {
-          surface.setAttribute('tabindex', '0');
-        }
-
-        surface.classList.add('gesture-surface');
+      function handlePointerEvents(surface) {
         const opts = surfaceOptions(surface);
 
         const endPointer = (e) => {
@@ -295,6 +294,15 @@
           setTimeout(() => pressEnd(key), 60);
           e.preventDefault();
         }, { passive: false });
+      }
+
+      surfaces.forEach((surface) => {
+        if (!surface.hasAttribute('tabindex')) {
+          surface.setAttribute('tabindex', '0');
+        }
+
+        surface.classList.add('gesture-surface');
+        handlePointerEvents(surface);
       });
     }
   }
