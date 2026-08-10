@@ -112,6 +112,7 @@
             </ul>
         </aside>
     </main>
+    <script src="logic.js"></script>
     <script>
         const canvas = document.getElementById('game');
         const ctx = canvas.getContext('2d');
@@ -203,7 +204,7 @@
         function handlePlacement(event) {
             if (!placingTower || !selectedTower) return;
             const { offsetX, offsetY } = event;
-            if (!canPlaceTower(offsetX, offsetY)) {
+            if (!canPlaceTower(offsetX, offsetY, canvas.width, canvas.height, towers, path)) {
                 logEl.textContent = '이 위치에는 타워를 지을 수 없습니다.';
                 return;
             }
@@ -222,18 +223,6 @@
             towerContainers.forEach((container) => container.classList.remove('active'));
             logEl.textContent = '타워를 배치했습니다! 웨이브를 시작하거나 추가 배치를 계속하세요.';
             ghostPosition = null;
-        }
-
-        function canPlaceTower(x, y) {
-            const margin = 28;
-            if (x < margin || y < margin || x > canvas.width - margin || y > canvas.height - margin) return false;
-            if (towers.some((tower) => distance(tower, { x, y }) < 50)) return false;
-            for (let i = 0; i < path.length - 1; i++) {
-                const a = path[i];
-                const b = path[i + 1];
-                if (pointToSegmentDistance({ x, y }, a, b) < 32) return false;
-            }
-            return true;
         }
 
         function startWave() {
@@ -462,21 +451,9 @@
             energyEl.textContent = energy;
         }
 
-        function distance(a, b) {
-            return Math.hypot(a.x - b.x, a.y - b.y);
-        }
-
         function normalize(vec) {
             const length = Math.hypot(vec.x, vec.y) || 1;
             return { x: vec.x / length, y: vec.y / length };
-        }
-
-        function pointToSegmentDistance(point, a, b) {
-            const ab = { x: b.x - a.x, y: b.y - a.y };
-            const ap = { x: point.x - a.x, y: point.y - a.y };
-            const t = Math.max(0, Math.min(1, (ap.x * ab.x + ap.y * ab.y) / (ab.x * ab.x + ab.y * ab.y)));
-            const closest = { x: a.x + ab.x * t, y: a.y + ab.y * t };
-            return distance(point, closest);
         }
 
         function resetGame() {
