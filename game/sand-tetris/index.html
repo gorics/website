@@ -137,10 +137,16 @@
         canvas.addEventListener('touchcancel', () => dragging = false);
         canvas.style.touchAction = 'none';
 
+        let cachedRect = null;
+        window.addEventListener('resize', () => cachedRect = null);
+        window.addEventListener('scroll', () => cachedRect = null);
+
         function addSandFromEvent(e) {
-            const rect = canvas.getBoundingClientRect();
-            const x = Math.floor((e.clientX - rect.left) / cellSize);
-            const y = Math.floor((e.clientY - rect.top) / cellSize);
+            if (!cachedRect) {
+                cachedRect = canvas.getBoundingClientRect();
+            }
+            const x = Math.floor((e.clientX - cachedRect.left) / cellSize);
+            const y = Math.floor((e.clientY - cachedRect.top) / cellSize);
             for (let dy = -1; dy <= 1; dy++) {
                 for (let dx = -1; dx <= 1; dx++) {
                     addSand(x + dx, y + dy);
