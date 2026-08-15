@@ -112,6 +112,7 @@
             </ul>
         </aside>
     </main>
+    <script src="math.js"></script>
     <script>
         const canvas = document.getElementById('game');
         const ctx = canvas.getContext('2d');
@@ -462,21 +463,9 @@
             energyEl.textContent = energy;
         }
 
-        function distance(a, b) {
-            return Math.hypot(a.x - b.x, a.y - b.y);
-        }
-
         function normalize(vec) {
             const length = Math.hypot(vec.x, vec.y) || 1;
             return { x: vec.x / length, y: vec.y / length };
-        }
-
-        function pointToSegmentDistance(point, a, b) {
-            const ab = { x: b.x - a.x, y: b.y - a.y };
-            const ap = { x: point.x - a.x, y: point.y - a.y };
-            const t = Math.max(0, Math.min(1, (ap.x * ab.x + ap.y * ab.y) / (ab.x * ab.x + ab.y * ab.y)));
-            const closest = { x: a.x + ab.x * t, y: a.y + ab.y * t };
-            return distance(point, closest);
         }
 
         function resetGame() {
