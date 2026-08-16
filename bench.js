@@ -1,0 +1,69 @@
+const puppeteer = require('puppeteer');
+
+(async () => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  page.on('console', msg => console.log(msg.text()));
+
+  await page.setContent(`
+    <!DOCTYPE html>
+    <html>
+    <body>
+    <canvas id="game" width="800" height="600" style="width: 800px; height: 600px; border: 1px solid black; display: block;"></canvas>
+    <script>
+      const canvas = document.getElementById('game');
+      let pointer = { active: false, x: 0, y: 0 };
+
+      function setPointerOrig(e) {
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+        const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+        pointer.active = true; pointer.x = x; pointer.y = y;
+      }
+
+      let cachedRect = canvas.getBoundingClientRect();
+      window.addEventListener('resize', () => {
+        cachedRect = canvas.getBoundingClientRect();
+      });
+
+      function setPointerOpt(e) {
+        const x = (e.touches ? e.touches[0].clientX : e.clientX) - cachedRect.left;
+        const y = (e.touches ? e.touches[0].clientY : e.clientY) - cachedRect.top;
+        pointer.active = true; pointer.x = x; pointer.y = y;
+      }
+
+      const mockEvent = { clientX: 100, clientY: 100 };
+
+      // Warmup
+      for (let i = 0; i < 1000; i++) {
+        setPointerOrig(mockEvent);
+        setPointerOpt(mockEvent);
+      }
+
+      const ITERATIONS = 1000000;
+
+      const startOrig = performance.now();
+      for (let i = 0; i < ITERATIONS; i++) {
+        setPointerOrig(mockEvent);
+      }
+      const timeOrig = performance.now() - startOrig;
+
+      const startOpt = performance.now();
+      for (let i = 0; i < ITERATIONS; i++) {
+        setPointerOpt(mockEvent);
+      }
+      const timeOpt = performance.now() - startOpt;
+
+      console.log(\`Original: \${timeOrig.toFixed(2)}ms\`);
+      console.log(\`Optimized: \${timeOpt.toFixed(2)}ms\`);
+      console.log(\`Improvement: \${((timeOrig - timeOpt) / timeOrig * 100).toFixed(2)}%\`);
+      window.done = true;
+    </script>
+    </body>
+    </html>
+  `);
+
+  await page.waitForFunction("window.done === true", {timeout: 5000});
+  await browser.close();
+})();
