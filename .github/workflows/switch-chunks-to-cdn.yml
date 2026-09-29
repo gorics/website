@@ -1,4 +1,4 @@
-name: FlyBrain Hybrid Real Run V2
+name: FlyBrain Hybrid Real Run V3 SSD1B
 
 on:
   push:
@@ -36,10 +36,10 @@ jobs:
           pip install --index-url https://download.pytorch.org/whl/cpu torch
           pip install 'transformers>=4.48,<5' 'diffusers>=0.33,<1' accelerate safetensors sentencepiece pillow numpy huggingface_hub
 
-      - name: Fetch V2 runner and open-source FlyBrain
+      - name: Fetch V3 runner and open-source FlyBrain
         run: |
           mkdir -p flybrain_ai
-          curl -fL https://raw.githubusercontent.com/gorics/detect-bot/flybrain-hybrid-run/flybrain_ai/v2_semantic.py -o flybrain_ai/v2_semantic.py
+          curl -fL https://raw.githubusercontent.com/gorics/detect-bot/flybrain-hybrid-run/flybrain_ai/v3_ssd1b.py -o flybrain_ai/v3_ssd1b.py
           git clone --depth 1 https://github.com/snedea/flybrain.git flybrain-src
           git -C flybrain-src rev-parse HEAD | tee flybrain_upstream_commit.txt
           python - <<'PY'
@@ -49,39 +49,37 @@ jobs:
           n,e=struct.unpack_from('<II',raw,0)
           meta=json.loads(Path('flybrain-src/data/neuron_meta.json').read_text())
           print('connectome',n,e,meta['neuron_count'],meta['edge_count'])
-          assert n==meta['neuron_count'] and e==meta['edge_count']
+          assert n==139255 and n==meta['neuron_count'] and e==meta['edge_count']
           PY
 
-      - name: Train semantic bridge and run LLM plus Stable Diffusion
-        run: python flybrain_ai/v2_semantic.py 2>&1 | tee flybrain_v2_run.log
+      - name: Train bridge run larger LLM and SSD-1B
+        run: python flybrain_ai/v3_ssd1b.py 2>&1 | tee flybrain_v3_run.log
 
-      - name: Upload V2 binary results
+      - name: Upload V3 binary results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: flybrain-hybrid-v2-${{ github.run_id }}
+          name: flybrain-hybrid-v3-ssd1b-${{ github.run_id }}
           path: |
-            flybrain_ai/results_v2/**
-            flybrain_v2_run.log
+            flybrain_ai/results_v3/**
+            flybrain_v3_run.log
             flybrain_upstream_commit.txt
           if-no-files-found: warn
           retention-days: 3
 
-      - name: Persist V2 readable results
+      - name: Persist V3 readable results
         if: always()
         run: |
-          target='flybrain-run-output/v2-latest'
+          target='flybrain-run-output/v3-latest'
           rm -rf "$target"
           mkdir -p "$target"
-          for f in results_v2.json semantic_bridge.pt.b64 sd_probe.png.b64 sd_food_seek.png.b64 sd_visual.png.b64; do
-            if [ -f "flybrain_ai/results_v2/$f" ]; then cp "flybrain_ai/results_v2/$f" "$target/$f"; fi
-          done
-          cp flybrain_v2_run.log "$target/run.log" 2>/dev/null || true
+          cp flybrain_ai/results_v3/results_v3.json "$target/results_v3.json" 2>/dev/null || true
+          cp flybrain_v3_run.log "$target/run.log" 2>/dev/null || true
           cp flybrain_upstream_commit.txt "$target/upstream_commit.txt" 2>/dev/null || true
           echo -n "$GITHUB_RUN_ID" > "$target/run_id.txt"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add "$target"
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Persist FlyBrain V2 results [skip ci]'
+          git commit -m 'Persist FlyBrain V3 SSD1B results [skip ci]'
           git push origin HEAD:flybrain-hybrid-run
