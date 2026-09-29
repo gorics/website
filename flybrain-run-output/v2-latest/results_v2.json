@@ -1,0 +1,265 @@
+{
+  "version": "v2-semantic-bridge",
+  "seed": 20260929,
+  "connectome": {
+    "neurons": 139255,
+    "edges": 2698236,
+    "groups": 63
+  },
+  "bridge": {
+    "architecture": "63D actual connectome state -> MLP semantic state classifier",
+    "augmented_samples": 768,
+    "train": [
+      {
+        "step": 0,
+        "loss": 1.7638921737670898,
+        "train_acc": 0.328125
+      },
+      {
+        "step": 9,
+        "loss": 0.2757578492164612,
+        "train_acc": 1.0
+      },
+      {
+        "step": 39,
+        "loss": 0.1157519519329071,
+        "train_acc": 1.0
+      },
+      {
+        "step": 99,
+        "loss": 0.1130865067243576,
+        "train_acc": 1.0
+      },
+      {
+        "step": 199,
+        "loss": 0.1125234067440033,
+        "train_acc": 1.0
+      },
+      {
+        "step": 359,
+        "loss": 0.11215077340602875,
+        "train_acc": 1.0
+      }
+    ],
+    "scenario_predictions": {
+      "food_seek": [
+        {
+          "label": "food-seeking",
+          "prob": 0.9850854873657227
+        },
+        {
+          "label": "multisensory-exploration",
+          "prob": 0.0030583562329411507
+        },
+        {
+          "label": "visual-tracking",
+          "prob": 0.0029788606334477663
+        }
+      ],
+      "touch_alert": [
+        {
+          "label": "touch-alert",
+          "prob": 0.9863439798355103
+        },
+        {
+          "label": "multisensory-exploration",
+          "prob": 0.003231783164665103
+        },
+        {
+          "label": "visual-tracking",
+          "prob": 0.0027054704260081053
+        }
+      ],
+      "bright_visual": [
+        {
+          "label": "visual-tracking",
+          "prob": 0.9842208623886108
+        },
+        {
+          "label": "cooling",
+          "prob": 0.0035459515638649464
+        },
+        {
+          "label": "touch-alert",
+          "prob": 0.0031205222476273775
+        }
+      ],
+      "warmth": [
+        {
+          "label": "warmth",
+          "prob": 0.9861348271369934
+        },
+        {
+          "label": "multisensory-exploration",
+          "prob": 0.002910569543018937
+        },
+        {
+          "label": "touch-alert",
+          "prob": 0.0029056372586637735
+        }
+      ],
+      "cooling": [
+        {
+          "label": "cooling",
+          "prob": 0.9859681129455566
+        },
+        {
+          "label": "multisensory-exploration",
+          "prob": 0.0030316694173961878
+        },
+        {
+          "label": "visual-tracking",
+          "prob": 0.0030083979945629835
+        }
+      ],
+      "novel_mix": [
+        {
+          "label": "multisensory-exploration",
+          "prob": 0.9851537942886353
+        },
+        {
+          "label": "touch-alert",
+          "prob": 0.0031740569975227118
+        },
+        {
+          "label": "warmth",
+          "prob": 0.0030513196252286434
+        }
+      ]
+    },
+    "probe_prediction": [
+      {
+        "label": "touch-alert",
+        "prob": 0.94073486328125
+      },
+      {
+        "label": "visual-tracking",
+        "prob": 0.028906524181365967
+      },
+      {
+        "label": "multisensory-exploration",
+        "prob": 0.011637503281235695
+      }
+    ]
+  },
+  "scenario_states": [
+    {
+      "name": "food_seek",
+      "label": "food-seeking",
+      "stimulated_neurons": 644,
+      "top_groups": [
+        {
+          "name": "GUS_GRN_SWEET",
+          "score": 1.0
+        },
+        {
+          "name": "DRIVE_HUNGER",
+          "score": 1.0
+        },
+        {
+          "name": "OLF_ORN_FOOD",
+          "score": 0.20745542645454407
+        }
+      ]
+    },
+    {
+      "name": "touch_alert",
+      "label": "touch-alert",
+      "stimulated_neurons": 768,
+      "top_groups": [
+        {
+          "name": "MECH_JO",
+          "score": 1.0
+        },
+        {
+          "name": "MECH_BRISTLE",
+          "score": 0.45614945888519287
+        }
+      ]
+    },
+    {
+      "name": "bright_visual",
+      "label": "visual-tracking",
+      "stimulated_neurons": 768,
+      "top_groups": [
+        {
+          "name": "VIS_R1R6",
+          "score": 1.0
+        },
+        {
+          "name": "VIS_ME",
+          "score": 0.13954420387744904
+        }
+      ]
+    },
+    {
+      "name": "warmth",
+      "label": "warmth",
+      "stimulated_neurons": 49,
+      "top_groups": [
+        {
+          "name": "THERMO_WARM",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "name": "cooling",
+      "label": "cooling",
+      "stimulated_neurons": 54,
+      "top_groups": [
+        {
+          "name": "THERMO_COOL",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "name": "novel_mix",
+      "label": "multisensory-exploration",
+      "stimulated_neurons": 1152,
+      "top_groups": [
+        {
+          "name": "OLF_ORN_FOOD",
+          "score": 1.0
+        },
+        {
+          "name": "MECH_BRISTLE",
+          "score": 0.9605604410171509
+        },
+        {
+          "name": "VIS_R1R6",
+          "score": 0.16113868355751038
+        }
+      ]
+    }
+  ],
+  "llm": {
+    "model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+    "mode": "frozen open-source LLM conditioned by trained semantic bridge + actual active groups",
+    "outputs": {
+      "food_seek": "The fruit fly's learned semantic bridge enables it to navigate through complex environments with ease, using its visual and auditory cues to guide its movement. The dominant input is food seeking (GUS_GRN_SWEET), which allows it to explore new territories while avoiding obstacles. The output of this input is a high score indicating that the fruit fly has successfully",
+      "touch_alert": "The fruit fly's learned semantic bridge enables it to learn and respond to tactile stimuli through multisensory exploration. This allows it to navigate complex environments with ease, even when faced with unfamiliar objects. The output of this system is a set of three short sentences that describe the dominant input/state and a plausible controller action.",
+      "bright_visual": "The fruit fly's learned semantic bridge is a visual-tracking system that allows it to navigate through its environment with ease and precision. The output of this system is a single sentence describing the dominant input/state, which is a visual representation of the fly's current location in space. This sentence is also the basis for the proposed controller action, which involves adjusting the",
+      "warmth": "The fruit fly's learned semantic bridge has been successfully integrated with its multisensory exploration system to learn and control complex behaviors. The output of this process is a set of three short sentences that describe the dominant input/state (warmth) and the corresponding controller action (multisensory exploration).",
+      "cooling": "The fruit fly's learned semantic bridge has been activated, and it is currently in the state of cooling (THOROUS). The dominant input/state is cooling (cooling), while the output is a possible controller action that involves multisensory exploration (multisensory-exploration).",
+      "novel_mix": "The fruit fly's learned semantic bridge enables it to navigate complex environments with ease and precision. The dominant input is sensory exploration (OLF_ORN_FOOD), which allows the fly to learn about its environment through touch and visual cues. The output is a set of actions that can be taken in response to these inputs, such as navigating through obstacles"
+    },
+    "probe_output": "The fruit fly's learned semantic bridge enables it to detect and respond to tactile stimuli through visual tracking, allowing it to learn and adapt its behavior in response to changing environmental conditions. The output of this system is a set of three short sentences that describe the dominant input/state and a plausible controller action."
+  },
+  "stable_diffusion": {
+    "model": "segmind/tiny-sd",
+    "mode": "frozen open-source Stable Diffusion conditioned by trained semantic bridge + actual active groups",
+    "image_size": [
+      256,
+      256
+    ],
+    "files": [
+      "sd_probe.png",
+      "sd_food_seek.png",
+      "sd_visual.png"
+    ],
+    "probe_prompt": "scientific abstract visualization of a Drosophila fruit fly brain connectome, glowing neural pathways, dark laboratory background, highly detailed neural network, state touch-alert 0.94, visual-tracking 0.03, active circuits MECH_JO=0.58, VIS_R1R6=0.42, MECH_BRISTLE=0.26, VIS_ME=0.06, no text, no letters"
+  },
+  "limitations": "The bridge is trained on six engineered connectome stimulation regimes with noisy augmentation; this is a functional hybrid demo, not biological proof of cognition or consciousness."
+}
