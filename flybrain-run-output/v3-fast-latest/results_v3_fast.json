@@ -1,0 +1,49 @@
+{
+  "version": "v3-fast-float32",
+  "connectome": {
+    "neurons": 139255,
+    "edges": 2698236,
+    "groups": 63
+  },
+  "bridge_probe": [
+    {
+      "label": "touch-alert",
+      "prob": 0.9147641658782959
+    },
+    {
+      "label": "visual-tracking",
+      "prob": 0.047898612916469574
+    },
+    {
+      "label": "multisensory-exploration",
+      "prob": 0.023707209154963493
+    }
+  ],
+  "active_groups": [
+    [
+      "MECH_JO",
+      0.5799999833106995
+    ],
+    [
+      "VIS_R1R6",
+      0.41999998688697815
+    ],
+    [
+      "MECH_BRISTLE",
+      0.26456668972969055
+    ],
+    [
+      "VIS_ME",
+      0.05860856547951698
+    ]
+  ],
+  "model": "segmind/SSD-1B",
+  "dtype": "float32",
+  "size": [
+    512,
+    512
+  ],
+  "steps": 6,
+  "prompt": "ultra detailed scientific macro visualization of a Drosophila fruit fly brain connectome inside a translucent fly head, thousands of fine glowing neural pathways and synapses, realistic microscopy fused with cinematic laboratory photography, dark background, volumetric light, high contrast, anatomically inspired neural wiring, photorealistic, no text, no labels, neural controller state touch-alert 0.91, visual-tracking 0.05, active sensory circuits MECH JO, VIS R1R6, MECH BRISTLE, VIS ME, tactile and visual tracking pathways strongly illuminated",
+  "file": "ssd1b_flybrain_fast.png"
+}
