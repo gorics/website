@@ -73,6 +73,7 @@
         <p class="hint">마우스나 터치로 패들을 움직여 공을 튕겨내세요. 10점을 먼저 획득하면 승리!</p>
     </div>
 
+    <script src="pong-logic.js"></script>
     <script>
         const canvas = document.getElementById('game');
         const ctx = canvas.getContext('2d');
@@ -127,19 +128,11 @@
             }
 
             function paddleCollision(p) {
-                if (
-                    ball.x - ball.radius < p.x + paddle.width &&
-                    ball.x + ball.radius > p.x &&
-                    ball.y + ball.radius > p.y &&
-                    ball.y - ball.radius < p.y + paddle.height
-                ) {
-                    const relativeIntersectY = (ball.y - (p.y + paddle.height / 2)) / (paddle.height / 2);
-                    const bounceAngle = relativeIntersectY * (Math.PI / 3);
-                    const direction = p === player ? 1 : -1;
-                    const speed = Math.min(10, Math.hypot(ball.vx, ball.vy) + 0.4);
-                    ball.vx = Math.cos(bounceAngle) * speed * direction;
-                    ball.vy = Math.sin(bounceAngle) * speed;
-                    ball.x = p === player ? p.x + paddle.width + ball.radius : p.x - ball.radius;
+                const result = calculatePaddleCollision(ball, p, paddle.width, paddle.height, p === player);
+                if (result.collided) {
+                    ball.vx = result.vx;
+                    ball.vy = result.vy;
+                    ball.x = result.x;
                 }
             }
 
