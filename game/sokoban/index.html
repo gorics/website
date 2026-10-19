@@ -403,6 +403,10 @@
         const boardWrapper = document.querySelector('.board');
         boardWrapper.style.touchAction = 'none';
 
+        let cachedBoardRect = null;
+        window.addEventListener('resize', () => cachedBoardRect = null, { passive: true });
+        window.addEventListener('scroll', () => cachedBoardRect = null, { passive: true });
+
         function performMove(direction) {
             if (checkSolved()) return;
             switch (direction) {
@@ -438,9 +442,14 @@
             boardWrapper.releasePointerCapture?.(event.pointerId);
             gesture.pointerId = null;
 
+            if (!cachedBoardRect) {
+                cachedBoardRect = boardWrapper.getBoundingClientRect();
+            }
+            const rect = cachedBoardRect;
+
             const dx = event.clientX - gesture.startX;
             const dy = event.clientY - gesture.startY;
-            const threshold = Math.max(18, Math.min(boardWrapper.clientWidth, boardWrapper.clientHeight) * 0.06);
+            const threshold = Math.max(18, Math.min(rect.width, rect.height) * 0.06);
             let direction = null;
 
             if (Math.abs(dx) > threshold || Math.abs(dy) > threshold) {
@@ -448,7 +457,6 @@
                     ? (dx > 0 ? 'right' : 'left')
                     : (dy > 0 ? 'down' : 'up');
             } else {
-                const rect = boardWrapper.getBoundingClientRect();
                 if (!rect.width || !rect.height) return;
                 const localX = event.clientX - rect.left;
                 const localY = event.clientY - rect.top;
