@@ -192,6 +192,7 @@
             <div class="toast" id="message" role="status">레벨 1을 공략 중!</div>
         </section>
     </main>
+    <script src="sokoban.js"></script>
     <script>
         const LEVELS = [
             [
@@ -279,10 +280,6 @@
             if (board[y]) board[y][x] = value;
         }
 
-        function isGoal(x, y) {
-            return LEVELS[levelIndex][y]?.[x] === '.';
-        }
-
         function move(dx, dy) {
             const target = { x: player.x + dx, y: player.y + dy };
             const targetCell = cell(target.x, target.y);
@@ -297,15 +294,15 @@
                 pushes += 1;
                 const crateOnGoal = beyondCell === '.';
                 setCell(beyond.x, beyond.y, crateOnGoal ? '*' : '$');
-                setCell(target.x, target.y, isGoal(target.x, target.y) ? '.' : ' ');
+                setCell(target.x, target.y, isGoal(LEVELS, levelIndex, target.x, target.y) ? '.' : ' ');
             } else {
                 pushHistory();
                 moves += 1;
             }
-            const playerWasOnGoal = isGoal(player.x, player.y);
+            const playerWasOnGoal = isGoal(LEVELS, levelIndex, player.x, player.y);
             setCell(player.x, player.y, playerWasOnGoal ? '.' : ' ');
             player = target;
-            const playerNowOnGoal = isGoal(player.x, player.y);
+            const playerNowOnGoal = isGoal(LEVELS, levelIndex, player.x, player.y);
             setCell(player.x, player.y, playerNowOnGoal ? '+' : '@');
             render();
             updateHUD();
@@ -345,7 +342,7 @@
                 const tr = document.createElement('tr');
                 row.forEach((cell, x) => {
                     const td = document.createElement('td');
-                    const type = cell === '#' ? 'wall' : isGoal(x, y) ? 'goal' : 'floor';
+                    const type = cell === '#' ? 'wall' : isGoal(LEVELS, levelIndex, x, y) ? 'goal' : 'floor';
                     td.className = type;
                     if (cell === '$' || cell === '*') {
                         const crate = document.createElement('div');
