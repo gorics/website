@@ -86,13 +86,15 @@
 
         let targetY = player.y;
 
+        let canvasRect = canvas.getBoundingClientRect();
+        window.addEventListener('resize', () => canvasRect = canvas.getBoundingClientRect());
+        window.addEventListener('scroll', () => canvasRect = canvas.getBoundingClientRect(), { passive: true });
+
         canvas.addEventListener('mousemove', e => {
-            const rect = canvas.getBoundingClientRect();
-            targetY = e.clientY - rect.top - paddle.height / 2;
+            targetY = e.clientY - canvasRect.top - paddle.height / 2;
         });
         canvas.addEventListener('touchmove', e => {
-            const rect = canvas.getBoundingClientRect();
-            targetY = e.touches[0].clientY - rect.top - paddle.height / 2;
+            targetY = e.touches[0].clientY - canvasRect.top - paddle.height / 2;
             e.preventDefault();
         }, { passive: false });
         canvas.style.touchAction = 'none';
