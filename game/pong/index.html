@@ -73,6 +73,7 @@
         <p class="hint">마우스나 터치로 패들을 움직여 공을 튕겨내세요. 10점을 먼저 획득하면 승리!</p>
     </div>
 
+    <script src="clamp.js"></script>
     <script>
         const canvas = document.getElementById('game');
         const ctx = canvas.getContext('2d');
@@ -96,10 +97,6 @@
             e.preventDefault();
         }, { passive: false });
         canvas.style.touchAction = 'none';
-
-        function clamp(value, min, max) {
-            return Math.max(min, Math.min(max, value));
-        }
 
         function resetBall(direction = 1) {
             ball.x = canvas.width / 2;
