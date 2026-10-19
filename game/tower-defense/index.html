@@ -112,6 +112,7 @@
             </ul>
         </aside>
     </main>
+    <script src="math.js"></script>
     <script>
         const canvas = document.getElementById('game');
         const ctx = canvas.getContext('2d');
@@ -460,10 +461,6 @@
             waveEl.textContent = wave;
             livesEl.textContent = lives;
             energyEl.textContent = energy;
-        }
-
-        function distance(a, b) {
-            return Math.hypot(a.x - b.x, a.y - b.y);
         }
 
         function normalize(vec) {
